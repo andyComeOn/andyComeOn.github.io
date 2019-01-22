@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/22/my-hexo-summary/">demo</a>
+      <a class="article-title" href="/2019/01/22/my-hexo-summary/">my-hexo-summary</a>
     </h1>
   
 
@@ -88,16 +88,25 @@
 <li><code>{username} github.io</code></li>
 </ul>
 <h5 id="根目录下的-config-yml："><a href="#根目录下的-config-yml：" class="headerlink" title="根目录下的_config.yml："></a>根目录下的<code>_config.yml</code>：</h5><ul>
-<li>要正确的把你的新建的github的仓库copy到<code>_config.yml</code>的deploy处 </li>
+<li>要正确的把你的新建的github的仓库地址copy到<code>_config.yml</code>的deploy处 </li>
 </ul>
 <h5 id="按照网上的说法安装完成之后要注意以下几点："><a href="#按照网上的说法安装完成之后要注意以下几点：" class="headerlink" title="按照网上的说法安装完成之后要注意以下几点："></a>按照网上的说法安装完成之后要注意以下几点：</h5><ul>
 <li>每次在根目录下执行<code>hexo clean</code> -&gt; <code>hexo generate (hexo g)</code> -&gt; <code>hexo deploy (hexo d)</code></li>
+</ul>
+<h5 id="hexo-怎么删除文章"><a href="#hexo-怎么删除文章" class="headerlink" title="hexo 怎么删除文章"></a>hexo 怎么删除文章</h5><ul>
+<li><p>先删除本地文件，然后通过生成和部署命令进而将远程仓库中的文件也一并删除。</p>
+</li>
+<li><p>具体来说，以最开始默认生成的hello-world.md这篇文章为例：首先进入到source / _post 文件夹中，找到hello-world.md文件，在本地直接执行删除。然后依次执行<code>hexo g</code>，<code>hexo d</code>，即可删除。</p>
+</li>
+</ul>
+<h5 id="发现的小问题"><a href="#发现的小问题" class="headerlink" title="发现的小问题"></a>发现的小问题</h5><ul>
+<li>本来通过<code>hexo new post demo</code> ，生成的demo.md文件，我后来感觉命名不合理，就直接修改文件名字，发现修改之后标题没有修改过来？原因是忘记了修改了此处 <img src="https://github.com/andyComeOn/andygithub-static/blob/master/static/img/my-hexo-summary.jpg" alt="图片">。|| <img src="https://github.githubassets.com/favicon.ico" alt="图片"></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/my-hexo-summary/" data-id="cjr778lbs0001yovhie3x6j4b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/my-hexo-summary/" data-id="cjr79vwlg0001d8vhapy7e8ad" class="article-share-link">Share</a>
       
       
     </footer>
@@ -142,7 +151,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="cjr778lbh0000yovhz5mz7vkj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="cjr79vwl40000d8vhikrilhzo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -183,7 +192,7 @@
       <ul>
         
           <li>
-            <a href="/2019/01/22/my-hexo-summary/">demo</a>
+            <a href="/2019/01/22/my-hexo-summary/">my-hexo-summary</a>
           </li>
         
           <li>
