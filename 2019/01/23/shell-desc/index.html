@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Shell文档记录 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这是对Shell相关的总结Shell的介绍 大家在使用windows电脑时候，多多少少都会给shell打交道，我们进行的cmd命令、以及windows自带的 ， 打开的界面如下：。 还有大家常用的（此终端相比windows自带增加了一些键盘复制粘贴等常用功能）以及大家在windows上安装的git，它自带也有一个git bush（它相比前面介绍的终端增加了很多linux命令行指令）。  最近买了一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell文档记录">
+<meta property="og:url" content="http://yoursite.com/2019/01/23/shell-desc/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这是对Shell相关的总结Shell的介绍 大家在使用windows电脑时候，多多少少都会给shell打交道，我们进行的cmd命令、以及windows自带的 ， 打开的界面如下：。 还有大家常用的（此终端相比windows自带增加了一些键盘复制粘贴等常用功能）以及大家在windows上安装的git，它自带也有一个git bush（它相比前面介绍的终端增加了很多linux命令行指令）。  最近买了一">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190123/Windows-PowerShell0.png">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190123/Windows-PowerShell1.png">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190123/ConEum.png">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190123/PuTTY-org.jpg">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190123/PuTTY-dir.jpg">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190123/PuTTY-Configuration.jpg">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190123/PuTTY-exe-GUI.jpg">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190123/puttygen-GUI.jpg">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190123/puttygen-GUI-Generate.jpg">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190123/PuTTY-Configuration-noEdit.jpg">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190123/Connection-SSH-Auth.jpg">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190123/Connection-SSH-Auth.jpg">
+<meta property="og:updated_time" content="2019-01-23T11:23:52.157Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Shell文档记录">
+<meta name="twitter:description" content="这是对Shell相关的总结Shell的介绍 大家在使用windows电脑时候，多多少少都会给shell打交道，我们进行的cmd命令、以及windows自带的 ， 打开的界面如下：。 还有大家常用的（此终端相比windows自带增加了一些键盘复制粘贴等常用功能）以及大家在windows上安装的git，它自带也有一个git bush（它相比前面介绍的终端增加了很多linux命令行指令）。  最近买了一">
+<meta name="twitter:image" content="http://139.199.23.2/img/blog/20190123/Windows-PowerShell0.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-shell-desc" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/23/shell-desc/" class="article-date">
+  <time datetime="2019-01-23T05:12:37.000Z" itemprop="datePublished">2019-01-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Shell文档记录
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="这是对Shell相关的总结"><a href="#这是对Shell相关的总结" class="headerlink" title="这是对Shell相关的总结"></a>这是对Shell相关的总结</h4><h5 id="Shell的介绍"><a href="#Shell的介绍" class="headerlink" title="Shell的介绍"></a>Shell的介绍</h5><ol>
+<li><p>大家在使用windows电脑时候，多多少少都会给shell打交道，我们进行的<code>cmd</code>命令、以及windows自带的</p>
+<p><img src="http://139.199.23.2/img/blog/20190123/Windows-PowerShell0.png" alt="Windows-PowerShell">，</p>
+<p>打开的界面如下：<img src="http://139.199.23.2/img/blog/20190123/Windows-PowerShell1.png" alt="Windows-PowerShell-GUI">。</p>
+<p>还有大家常用的<img src="http://139.199.23.2/img/blog/20190123/ConEum.png" alt="ConEum">（此终端相比windows自带增加了一些键盘复制粘贴等常用功能）以及大家在windows上安装的git，它自带也有一个git bush（它相比前面介绍的终端增加了很多linux命令行指令）。</p>
+</li>
+<li><p>最近买了一个腾讯云的服务器，打算使用shell来远程控制服务器，在腾讯云的文档上介绍了2种方式，首先介绍密码登录<code>Linux</code>实例</p>
+<ul>
+<li>使用远程登录软件 ，采用密码登录<code>Linux</code>实例，它选择使用<code>PuTTY</code>做了介绍。</li>
+<li>登录<code>PuTTY</code>的<a href="https://www.putty.org/" target="_blank" rel="noopener">官网</a>，页面如下：<img src="http://139.199.23.2/img/blog/20190123/PuTTY-org.jpg" alt="PuTTY">，在网上搜了一下，大致的意思是这里有3种的下载版本，第一种是最官方的、第二种是在官方安装包的基础上（二次开发增加了实用的功能）、第三种不是很清楚。我是直接下载的第一种安装包。很快安装完成，之后弹出来一个<code>README.txt</code>，由于在桌面上没找到快捷方式，感觉很懵。只好硬着头皮看<code>README.txt</code>，该文件告诉我们安装目录在<code>C:\Program Files\PuTTY</code>，该目录截图如下：<img src="http://139.199.23.2/img/blog/20190123/PuTTY-dir.jpg" alt="PuTTY-dir">，<br>于是明白PuTTY的很多功能入口在该目录！</li>
+<li>接着说腾讯云的操作文档（采用密码登录<code>Linux</code>实例），在刚才的目录下找到<code>putty.exe</code>文件打开是一个<code>GUI</code>， 如图：<img src="http://139.199.23.2/img/blog/20190123/PuTTY-Configuration.jpg" alt="PuTTY-Configuration">。按照提示输入你自己买的服务器地址，最后点击Open按妞。弹出GUI如下：<img src="http://139.199.23.2/img/blog/20190123/PuTTY-exe-GUI.jpg" alt="PuTTY-exe-GUI">，这时候输入密码（注输入密码时候不显示小黑点一定要小心）就连接上了，默认是根目录。</li>
+<li>上面介绍了使用账号密码的登录方式，但是这种方式有一个不友好的操作，就是每次都要重新输入密码，这对于开发人员来说很麻烦。怎么解决？这时候就有了SSH的免密的配置。</li>
+</ul>
+</li>
+<li><p>使用远程登录软件 ，采用SSH 密钥登录。</p>
+<ul>
+<li><p>采用SSH 密钥登录，首先是在目录<code>C:\Program Files\PuTTY</code>中找到<code>puttygen.exe</code>，双击打开如图：<br><img src="http://139.199.23.2/img/blog/20190123/puttygen-GUI.jpg" alt="puttygen-GUI"><br>点击<code>Generate</code>，效果如下：<br><img src="http://139.199.23.2/img/blog/20190123/puttygen-GUI-Generate.jpg" alt="puttygen-GUI-Generate"><br>完成之后点击<code>Save private key</code>，则会把文件保存在本地（我在保存时候，想保存到<code>C:\Program Files\PuTTY</code>下）但是好像提示什么需要管理员权限，默认给我保存到了<code>C:\Users\user</code>。</p>
+</li>
+<li><p>再次回到</p>
+<p><img src="http://139.199.23.2/img/blog/20190123/PuTTY-Configuration-noEdit.jpg" alt="PuTTY-Configuration-noEdit"></p>
+<p>找到<code>Connection-SSH-Auth</code></p>
+<p><img src="http://139.199.23.2/img/blog/20190123/Connection-SSH-Auth.jpg" alt="Connection-SSH-Auth"></p>
+<p>点击Browser，找到你的刚才存的ppk文件，再回到</p>
+<p><img src="http://139.199.23.2/img/blog/20190123/Connection-SSH-Auth.jpg" alt="Connection-SSH-Auth"></p>
+<p>Session项输入你的服务器地址。</p>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/23/shell-desc/" data-id="cjr93rbgw0002z0vh24b8rjus" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/22/MarkDown-Summary/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MarkDown总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/01/23/shell-desc/">Shell文档记录</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/22/MarkDown-Summary/">MarkDown总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/22/my-hexo-summary/">Hexo总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/22/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
