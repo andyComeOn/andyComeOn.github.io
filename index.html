@@ -99,7 +99,97 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="cjrdj9zyu0002tsvh2dy4fpu2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="cjrflx2lh0006n4vhjsuamxyr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Linux一些常用命令总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/25/Linux一些常用命令总结/" class="article-date">
+  <time datetime="2019-01-25T02:23:45.000Z" itemprop="datePublished">2019-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/25/Linux一些常用命令总结/">Linux一些常用命令总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Linux一些常用命令总结"><a href="#Linux一些常用命令总结" class="headerlink" title="Linux一些常用命令总结"></a>Linux一些常用命令总结</h4><p>最近在提交git时候（我使用的是git的命令行），在执行git pull时候出现了，让编辑merge提交。一时间束手无策。决定好好看看这个命令，把常用的命令记录一下，主要参考的这篇帖子<a href="https://www.cnblogs.com/yjd_hycf_space/p/7730690.html" target="_blank" rel="noopener">Linux常用命令大全（非常全！！！）</a></p>
+<hr>
+<h5 id="下面的一些常用指令我在git-bash中测试，git-bash只是模拟了部分的linux指令。"><a href="#下面的一些常用指令我在git-bash中测试，git-bash只是模拟了部分的linux指令。" class="headerlink" title="下面的一些常用指令我在git bash中测试，git bash只是模拟了部分的linux指令。"></a>下面的一些常用指令我在git bash中测试，git bash只是模拟了部分的linux指令。</h5><ul>
+<li>clear：清除记录</li>
+<li>pwd：显示当前的目录</li>
+<li>cd ~：直接进入到用户的主目录</li>
+<li>cd -：返回上次所在目录</li>
+<li>ls：我理解的是把该目录下的所有文件列出来</li>
+<li>ll：我理解的是把该目录下的所有文件以列表的形式显示出来，显示的有文件创建时间，还有文件夹（drwxr-xr-x）与文件（-rw-r–r–）的区别，这个ll指令没有细查，可能是ls -l的简写，在文档上没有找到ll的指令，只是找到了指令ls -l</li>
+<li>mkdir dir1：创建一个目录dir1 </li>
+<li>mkdir dir2 dir3：创建2个平级目录dir2 dir3</li>
+<li>mkdir -p tmp/dir1/dir2：创建一个目录树 </li>
+</ul>
+<hr>
+<h5 id="在windows的cmd下面也有一些类命令"><a href="#在windows的cmd下面也有一些类命令" class="headerlink" title="在windows的cmd下面也有一些类命令"></a>在windows的cmd下面也有一些类命令</h5><ul>
+<li>cd：命令进去目录</li>
+<li>cls：清除记录</li>
+</ul>
+<hr>
+<h5 id="删除和移动指令"><a href="#删除和移动指令" class="headerlink" title="删除和移动指令"></a>删除和移动指令</h5><ul>
+<li>rm -f xx.html ：删除一个文件</li>
+<li>rmdir dir1：删除dir1目录，并且这个目录只能是空目录，其中不能有文件，若有文件命令行会提示 Directory not empty，感觉这个命令不用记，没什么卵用啊，一般一个目录都有文件。</li>
+<li>rmdir dir1 dir2：删除dir1和dir2目录</li>
+<li>rm -rf dir1：删除dir1目录并且把该目录下的文件内容都删除了</li>
+<li>rm -rf dir1 dir2：同时删除两个目录及它们的内容</li>
+<li>mv dir1 dir2 ●把dir1移动到dir2目录</li>
+</ul>
+<hr>
+<h5 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h5><ul>
+<li>cp file1 dir2：●复制file1文件到dir2目录</li>
+<li>cp dir1/* dir2：●复制dir1下面的所有文件到dir2目录，切记是copy的dir1下所有文件，不包含dir1下的目录</li>
+<li>cp dir1/* . ：●复制dir1下面的所有文件到当前目录</li>
+<li>cp -a dir1 dir2：●复制dir1（包括dir1下边的所有目录和文件）到dir2</li>
+<li>cp -a dir1/* dir2：●复制dir1下边的所有目录和文件到dir2</li>
+</ul>
+<hr>
+<h5 id="新建文件"><a href="#新建文件" class="headerlink" title="新建文件"></a>新建文件</h5><p>linux的touch命令不常用，一般在使用make的时候可能会用到，用来修改文件时间戳，或者新建一个不存在的文件，但是在git bash中使用touch aa.txt会直接生成文件。</p>
+<ul>
+<li>touch file1 ：创建一个新文件</li>
+</ul>
+<hr>
+<h5 id="修改文件"><a href="#修改文件" class="headerlink" title="修改文件"></a>修改文件</h5><ul>
+<li>首先进到目录下，直接键入vim aa.txt 或者是vim dir1/bb.txt会出现如下截图：</li>
+</ul>
+<hr>
+<h5 id="压缩解压文件"><a href="#压缩解压文件" class="headerlink" title="压缩解压文件"></a>压缩解压文件</h5><ul>
+<li>打包网上说了很多种有zip rar tar等很多的指令但是在git bush上我只能使用tar</li>
+<li>tar –cvf xx.tar file1 创建一个非压缩的xx.tar 这句话我理解创建一个非压缩的文件，意为，直接压缩的文件，压缩比很小所以叫非压缩。</li>
+<li>tar –cvf xx.tar file file1 file2 dir1  创建一个包含了 ‘file1’, ‘file2’ 以及 ‘dir1’的档案文件</li>
+<li>tar -tf archive.tar 显示一个包中的内容 </li>
+<li>tar -xvf archive.tar 释放一个包</li>
+<li>tar -xvf archive.tar -C /tmp 将压缩包释放到 /tmp目录下 </li>
+<li>其中压缩解压指令不好记忆可参考<a href="http://www.360doc.com/content/11/0620/13/2104556_128204591.shtml" target="_blank" rel="noopener">tar参数详解</a>   </li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="cjrflx2kn0002n4vht4jj9yic" class="article-share-link">Share</a>
       
       
     </footer>
@@ -138,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/aa/" data-id="cjrdj9zya0000tsvhxmjpluly" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/aa/" data-id="cjrflx2jr0000n4vh0il83gjy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -182,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="cjrdj9zzb0005tsvhhwlfyr5o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="cjrflx2la0005n4vh622rfnpa" class="article-share-link">Share</a>
       
       
     </footer>
@@ -247,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/23/shell-desc/" data-id="cjrdj9zze0006tsvhrh0d5k43" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/23/shell-desc/" data-id="cjrflx2lm0007n4vh19795g4i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -321,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/MarkDown-Summary/" data-id="cjrdj9zyk0001tsvhd9cs30ms" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/MarkDown-Summary/" data-id="cjrflx2ks0003n4vh70o7t2r0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -393,7 +483,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/my-hexo-summary/" data-id="cjrdj9zz20004tsvh5ul6rd11" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/my-hexo-summary/" data-id="cjrflx2k80001n4vhkld9084e" class="article-share-link">Share</a>
       
       
     </footer>
@@ -438,7 +528,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="cjrdj9zyx0003tsvhsseydc9h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="cjrflx2kx0004n4vhd37y2ygw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -483,6 +573,10 @@
           </li>
         
           <li>
+            <a href="/2019/01/25/Linux一些常用命令总结/">Linux一些常用命令总结</a>
+          </li>
+        
+          <li>
             <a href="/2019/01/25/aa/">aaa</a>
           </li>
         
@@ -492,10 +586,6 @@
         
           <li>
             <a href="/2019/01/23/shell-desc/">Shell文档记录</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/22/MarkDown-Summary/">MarkDown总结</a>
           </li>
         
       </ul>
