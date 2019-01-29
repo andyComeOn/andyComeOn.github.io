@@ -7,17 +7,17 @@
   
   <title>浏览器中网址访问过程详解 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这个md是记录浏览器访问网页的一个过程 主要参考一下的2个帖子：  浏览器中网址访问过程详解 用户用浏览器访问一个网站，发生了什么 用户用浏览器访问一个网站的时候背后的过程与步骤是怎样的？   没事可以常看看  温故而知新">
+  <meta name="description" content="这个md是记录浏览器访问网页的一个过程 主要参考一下的2个帖子：  浏览器中网址访问过程详解 用户用浏览器访问一个网站，发生了什么 用户用浏览器访问一个网站的时候背后的过程与步骤是怎样的？   没事可以常看看  温故而知新   一直在搜后台接到前端的接口请求是怎么一个处理过程，搜的结果不是自己想要的，但是发现了nginx是如何处理请求的，这篇帖子我理解，在访问接口（刨除寻找主机的过程）时，首先是N">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浏览器中网址访问过程详解">
 <meta property="og:url" content="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="这个md是记录浏览器访问网页的一个过程 主要参考一下的2个帖子：  浏览器中网址访问过程详解 用户用浏览器访问一个网站，发生了什么 用户用浏览器访问一个网站的时候背后的过程与步骤是怎样的？   没事可以常看看  温故而知新">
+<meta property="og:description" content="这个md是记录浏览器访问网页的一个过程 主要参考一下的2个帖子：  浏览器中网址访问过程详解 用户用浏览器访问一个网站，发生了什么 用户用浏览器访问一个网站的时候背后的过程与步骤是怎样的？   没事可以常看看  温故而知新   一直在搜后台接到前端的接口请求是怎么一个处理过程，搜的结果不是自己想要的，但是发现了nginx是如何处理请求的，这篇帖子我理解，在访问接口（刨除寻找主机的过程）时，首先是N">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-29T03:34:48.249Z">
+<meta property="og:updated_time" content="2019-01-29T07:22:50.045Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器中网址访问过程详解">
-<meta name="twitter:description" content="这个md是记录浏览器访问网页的一个过程 主要参考一下的2个帖子：  浏览器中网址访问过程详解 用户用浏览器访问一个网站，发生了什么 用户用浏览器访问一个网站的时候背后的过程与步骤是怎样的？   没事可以常看看  温故而知新">
+<meta name="twitter:description" content="这个md是记录浏览器访问网页的一个过程 主要参考一下的2个帖子：  浏览器中网址访问过程详解 用户用浏览器访问一个网站，发生了什么 用户用浏览器访问一个网站的时候背后的过程与步骤是怎样的？   没事可以常看看  温故而知新   一直在搜后台接到前端的接口请求是怎么一个处理过程，搜的结果不是自己想要的，但是发现了nginx是如何处理请求的，这篇帖子我理解，在访问接口（刨除寻找主机的过程）时，首先是N">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -99,12 +99,27 @@
 <li>温故而知新</li>
 </ul>
 </li>
+<li><p>一直在搜后台接到前端的接口请求是怎么一个处理过程，搜的结果不是自己想要的，但是发现了<a href="https://blog.csdn.net/lp09160206/article/details/72964893" target="_blank" rel="noopener">nginx是如何处理请求的</a>，这篇帖子我理解，在访问接口（刨除寻找主机的过程）时，首先是Nginx处理逻辑，因为我在文档中发现Nginx的配置代码：</p>
+</li>
+</ol>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>      <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> example.org www.example.org;</span><br><span class="line">    <span class="attribute">root</span>        /data/www;</span><br><span class="line">     </span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">index</span>   index.html index.php;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">location</span> <span class="regexp">~* \.(gif|jpg|png)$</span> &#123;</span><br><span class="line">        <span class="attribute">expires</span> <span class="number">30d</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span>  localhost:<span class="number">9000</span>;</span><br><span class="line">        <span class="attribute">fastcgi_param</span> SCRIPT_FILENAME;</span><br><span class="line">        $document_root $fastcgi_script_name;</span><br><span class="line">        <span class="attribute">include</span>  fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虽然我不是太懂Nginx的配置的意思，我自己猜想不一定对，若是网页请求的是静态的图片就走的<code>location ~* \.(gif|jpg|png)$</code>通道，直接返回目录下的静态资源。若是带有参数接口请求，会走<code>location ~ \.php$</code>，进而在去查sql，查好了进行数据的包装，在return到前端。大致就是这个过程。</p>
+<ol start="4">
+<li><p>本地的机器上在配置网络时都会填写DNS</p>
+<ul>
+<li>在网上看到这句话，我个人理解就是你的个人电脑在连接wifi热点或者使用网线自己就接入了公网，这个公网有自己所在的区域DNS（即是：本地的机器上在配置网络时都会填写DNS）。</li>
+</ul>
+</li>
+<li><p><a href="https://www.cnblogs.com/lycsmzl/p/5225809.html" target="_blank" rel="noopener">一个http请求发送到后端的详细过程</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/foohack/p/5053084.html" target="_blank" rel="noopener">用javascript向一个网页连接接口发送请求，并接收该接口返回的json串</a></p>
+</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="cjrh7mqgo0002hovh53r53evv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="cjrhi0jqe0008govhy05yzre7" class="article-share-link">Share</a>
       
       
     </footer>
