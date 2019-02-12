@@ -62,6 +62,135 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-html一些不常用标签" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/12/html一些不常用标签/" class="article-date">
+  <time datetime="2019-02-12T08:13:52.000Z" itemprop="datePublished">2019-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/12/html一些不常用标签/">html一些不常用标签</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="记录一下html的一些不常用标签"><a href="#记录一下html的一些不常用标签" class="headerlink" title="记录一下html的一些不常用标签"></a>记录一下html的一些不常用标签</h4><ul>
+<li>blockquote顾名思义是引用引述的意思，它有默认的css，请看下面的代码：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Here comes a long quotation:</span><br><span class="line">    <span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">class</span>=<span class="string">"quote1"</span> <span class="attr">cite</span>=<span class="string">"http://www.baidu.com"</span> <span class="attr">style</span>=<span class="string">"background: #ccc;"</span>&gt;</span></span><br><span class="line">        This is a long quotation. This is a long quotation. This is a long quotation. This is a long quotation. This is</span><br><span class="line">        a long quotation.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>渲染效果如下：</p>
+<p><img src="http://139.199.23.2/img/blog/20190212/blockquote-formal.jpg" alt="blockquote-formal"></p>
+<ul>
+<li>在layui中看到有衍生使用例子，请看下面的代码：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Here comes a long quotation:</span><br><span class="line">    <span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">class</span>=<span class="string">"quote1"</span> <span class="attr">cite</span>=<span class="string">"http://www.baidu.com"</span> <span class="attr">style</span>=<span class="string">"margin: 0; padding: 15px; border-left: 5px solid #009688;"</span>&gt;</span></span><br><span class="line">        This is a long quotation. This is a long quotation. This is a long quotation. This is a long quotation. This is</span><br><span class="line">        a long quotation.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>渲染效果如下：</p>
+<p><img src="http://139.199.23.2/img/blog/20190212/blockquote.jpg" alt="blockquote"></p>
+<hr>
+<ul>
+<li>在开发过程中遇到fieldset和legend标签，细查之后发现这个是form中的分组，请看下面的代码：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span> <span class="attr">class</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span> <span class="attr">class</span>=<span class="string">""</span>&gt;</span>标题标题标题标题标题标题标题标题<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        身高：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> /&gt;</span></span><br><span class="line">        体重：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>展示效果如下：</p>
+<p><img src="http://139.199.23.2/img/blog/20190212/fieldset1.jpg" alt="fieldset1"></p>
+<p>这里面的边框是fieldset的。</p>
+<ul>
+<li>fieldset的衍生写法，代码如下：</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.fieldset</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">border-top</span>: <span class="number">1px</span> solid <span class="number">#e5e5e5</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.legend</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">6px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#009688</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span> <span class="attr">class</span>=<span class="string">"fieldset"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span> <span class="attr">class</span>=<span class="string">"legend"</span>&gt;</span>标题标题标题标题标题标题标题标题<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        身高：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> /&gt;</span></span><br><span class="line">        体重：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>效果如下：<br><img src="http://139.199.23.2/img/blog/20190212/fieldset2.jpg" alt="fieldset2"><br>针对这种衍生写法，可以直接使用它做标题使用，但是标题内容不能太长否则会把上边框覆盖了。在网页上也找到fieldset相关的帖子：<a href="https://www.cnblogs.com/theWayToAce/p/5456208.html" target="_blank" rel="noopener">fieldset——一个不常用的HTML标签</a></p>
+<p>我在写这个文档时候，突然想到weui中的底部标题居中，打开网页看代码一开他是父元素写的border-top，里面的内容标签是使用定位<code>relative</code>，还纠正了我的理解<code>relative</code> 并不能把inline元素转变为块元素，只有<code>absolute</code>，<code>float</code>能把非block元素转变为block元素。</p>
+<p>代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.demo</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">24px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">40px</span> auto;</span><br><span class="line">    <span class="attribute">border-top</span>: <span class="number">1px</span> solid red;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="comment">/* position: relative; */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.demo</span> <span class="selector-tag">span</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="comment">/* display: block; */</span></span><br><span class="line">    <span class="comment">/* position: absolute; */</span></span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">24px</span>;</span><br><span class="line">    <span class="attribute">top</span>: -<span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span> .<span class="number">55em</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#FFFFFF</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#808080</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"demo"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>你好<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>展示效果如下：</p>
+<p><img src="http://139.199.23.2/img/blog/20190212/demo.jpg" alt="demo"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/12/html一些不常用标签/" data-id="cjs1oa98h0003xgvh7so1tyeh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js默认行为和事件冒泡" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/12/js默认行为和事件冒泡/" class="article-date">
+  <time datetime="2019-02-12T06:02:02.000Z" itemprop="datePublished">2019-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/12/js默认行为和事件冒泡/">js默认行为和事件冒泡</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="js默认行为和事件冒泡的几种方法"><a href="#js默认行为和事件冒泡的几种方法" class="headerlink" title="js默认行为和事件冒泡的几种方法"></a>js默认行为和事件冒泡的几种方法</h4><ol>
+<li>js阻止事件冒泡</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'el'</span>);</span><br><span class="line">el.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event &amp;&amp; event.stopPropagation) &#123;</span><br><span class="line">        <span class="comment">// 如果提供了事件对象，则这是一个非IE浏览器</span></span><br><span class="line">        event.stopPropagation();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 否则，我们需要使用IE的方式来取消事件冒泡 </span></span><br><span class="line">        <span class="built_in">window</span>.event.cancelBubble = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>js阻止默认事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'el'</span>);</span><br><span class="line">el.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">ev</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ev = ev || event;</span><br><span class="line">    <span class="keyword">if</span> (ev &amp;&amp; ev.preventDefault) &#123;</span><br><span class="line">        <span class="comment">// 如果提供了默认事件，则这是一个非IE浏览器</span></span><br><span class="line">        <span class="comment">// w3c阻止默认浏览器动作</span></span><br><span class="line">        ev.preventDefault();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// IE中阻止函数器默认动作的方式 </span></span><br><span class="line">        <span class="built_in">window</span>.event.returnValue = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>jq阻止事件冒泡和默认行为</p>
+</li>
+</ol>
+<ul>
+<li><p>阻止事件冒泡</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"a"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    e.stopPropagation();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>阻止默认行为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"a"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>阻止默认和冒泡事件</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"a"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="js默认行为有哪些"><a href="#js默认行为有哪些" class="headerlink" title="js默认行为有哪些"></a>js默认行为有哪些</h4><p>很多的网页元素都会有默认的行为，比如说当你点击一下超链接a标签的时候，它会有一个跳转的行为；当你在网页上点鼠标右键时会出现一个右键菜；当你在一个form表单里点击提交按钮时网页会产生提交行为并刷新网页，当你网页上滚动鼠标滚轮时，网页的滚动条会动等等。这些都叫事件的默认行为，如果想把这默认行为取消了，相应的JS代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">el.onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">false</span>;&#125;<span class="comment">//在方法里加个return false，就阻止超链接点击时的跳转行为了</span></span><br><span class="line"><span class="built_in">document</span>.oncontextmenu=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">/* 在这里你还可以加一些代码，实现自定义的右键菜单 */</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 系统自带的右键菜单就失效了</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这样表单就不会产生提交行为了</span></span><br><span class="line">Form.onsubmit=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">false</span>;&#125; </span><br><span class="line"><span class="comment">// IE和chrome的方式，取消鼠标的滚轮的默认行为，网页的滚动条就不会动了</span></span><br><span class="line"><span class="built_in">document</span>.onmousewheel=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">false</span>&#125; </span><br><span class="line"><span class="comment">// 功能同上，火狐的方式。火狐只能用DOM二级的绑定方式，并且用e.preventDefault=true</span></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOMMouseScroll'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;e.preventDefault=<span class="literal">true</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>我们要知道常见的事件默认行为有那些，并且要知道阻止默认行为，只要在绑定到这个行为事件的方法里最后加一句：return false;就可以了。<br>但要强调注意的是：如果你的事件绑定是用addEventListener来实现的，那阻止默认行为必须用e.preventDefault=true。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/12/js默认行为和事件冒泡/" data-id="cjs1oa98m0006xgvhs45apt7m" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-jqready" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/02/12/jqready/" class="article-date">
@@ -109,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/jqready/" data-id="cjs18mg5v0001n4vh4g9q9yji" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/jqready/" data-id="cjs1oa97v0002xgvhalcglrwl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -174,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="cjs18mg6x0008n4vhsvtbvosl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="cjs1oa99g000bxgvh550kdvc8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -221,7 +350,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="cjs18mg700009n4vh97avgo5x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="cjs1oa99b000axgvhbg7a8lcb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -329,7 +458,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="cjs18mg5v0003n4vhxv1hspoa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="cjs1oa97i0000xgvhlidxqynv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -368,7 +497,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/aa/" data-id="cjs18mg5v0002n4vhvrhreyar" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/aa/" data-id="cjs1oa98m0005xgvhcpc9tz6c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -412,7 +541,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="cjs18mg6b0006n4vhzc7e6hs6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="cjs1oa99a0009xgvh45ud8vo0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -477,7 +606,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/23/shell-desc/" data-id="cjs18mg6b0005n4vh90leg95h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/23/shell-desc/" data-id="cjs1oa9950008xgvht2eeyrn1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -547,128 +676,14 @@
 <li>还有一种是针对代码块的，这种一般在语句中出现。它有2中方式：输入3个~按enter即可选择语言||输入三个`按enter即可选择语言。下面是2种方式实现的代码块，但是我在写该文档时候发现一个问题是hexo不能很好的识别第二种写法，在网上也搜到了有人发的帖子 <a href="https://github.com/hexojs/hexo/issues/2400" target="_blank" rel="noopener">无法渲染代码段</a>，这里我避开了有问题的写法。</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">3</span>;</span><br><span class="line">a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> c = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> d = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-<h5 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续~"></a>未完待续~</h5>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/MarkDown-Summary/" data-id="cjs18mg5o0000n4vh542c0d0b" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-my-hexo-summary" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/22/my-hexo-summary/" class="article-date">
-  <time datetime="2019-01-22T01:59:30.000Z" itemprop="datePublished">2019-01-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/22/my-hexo-summary/">Hexo总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="这是我个人对安装hexo的一些总结"><a href="#这是我个人对安装hexo的一些总结" class="headerlink" title="这是我个人对安装hexo的一些总结"></a>这是我个人对安装hexo的一些总结</h4><h5 id="在github上新建仓库时候一定遵循下面的格式："><a href="#在github上新建仓库时候一定遵循下面的格式：" class="headerlink" title="在github上新建仓库时候一定遵循下面的格式："></a>在github上新建仓库时候一定遵循下面的格式：</h5><ul>
-<li><code>{username} github.io</code></li>
-</ul>
-<h5 id="根目录下的-config-yml："><a href="#根目录下的-config-yml：" class="headerlink" title="根目录下的_config.yml："></a>根目录下的<code>_config.yml</code>：</h5><ul>
-<li>要正确的把你的新建的github的仓库地址copy到<code>_config.yml</code>的deploy处 </li>
-</ul>
-<h5 id="网上说的安装方法："><a href="#网上说的安装方法：" class="headerlink" title="网上说的安装方法："></a>网上说的安装方法：</h5><ul>
-<li>有的说<code>npm install hexo -g</code>（我采用）</li>
-<li>有的说<code>npm install hexo-cli -g</code></li>
-</ul>
-<h5 id="按照网上的说法安装完成之后要注意以下几点："><a href="#按照网上的说法安装完成之后要注意以下几点：" class="headerlink" title="按照网上的说法安装完成之后要注意以下几点："></a>按照网上的说法安装完成之后要注意以下几点：</h5><ul>
-<li>每次在根目录下执行<code>hexo clean</code> -&gt; <code>hexo generate (hexo g)</code> -&gt; <code>hexo deploy (hexo d)</code></li>
-<li>后来发现根本不需要执行<code>hexo clean</code></li>
-</ul>
-<h5 id="hexo-怎么新建文章"><a href="#hexo-怎么新建文章" class="headerlink" title="hexo 怎么新建文章"></a>hexo 怎么新建文章</h5><ul>
-<li>网上说的是执行<code>hexo new post &#39;name&#39;</code>,尝试可行。但是我在Hexo自己生成的hello-word.md的文档中发现指令<code>hexo new &#39;name&#39;</code>少写了post。经测试亦可行！</li>
-</ul>
-<h5 id="hexo-怎么删除文章"><a href="#hexo-怎么删除文章" class="headerlink" title="hexo 怎么删除文章"></a>hexo 怎么删除文章</h5><ul>
-<li>先删除本地文件，然后通过生成和部署命令进而将远程仓库中的文件也一并删除。</li>
-<li>具体来说，以最开始默认生成的hello-world.md这篇文章为例：首先进入到source / _post 文件夹中，找到hello-world.md文件，在本地直接执行删除。然后依次执行<code>hexo g</code>，<code>hexo d</code>，即可删除。</li>
-</ul>
-<h5 id="发现的小问题"><a href="#发现的小问题" class="headerlink" title="发现的小问题"></a>发现的小问题</h5><ul>
-<li><p>本来通过<code>hexo new post demo</code> ，生成的demo.md文件，我后来感觉命名不合理，就直接修改文件名字，发现修改之后标题没有修改过来？原因是忘记了修改了此处 <img src="https://github.com/andyComeOn/andygithub-static/blob/master/static/img/my-hexo-summary.jpg" alt="图片"> || <img src="https://github.githubassets.com/favicon.ico" alt="图片"></p>
-</li>
-<li><p>网上说的新建的md文件不能使用中文命名，经测试可行。</p>
-</li>
-</ul>
-<hr>
-<h5 id="参考的帖子"><a href="#参考的帖子" class="headerlink" title="参考的帖子"></a>参考的帖子</h5><ul>
-<li><a href="https://www.cnblogs.com/fengxiongZz/p/7707219.html" target="_blank" rel="noopener">使用Hexo+Github一步步搭建属于自己的博客（基础）</a>、<a href="https://www.cnblogs.com/fengxiongZz/p/7707568.html" target="_blank" rel="noopener">使用Hexo+Github一步步搭建属于自己的博客（进阶）</a> 这2个帖子是我最开始参考的。</li>
-<li><a href="https://blog.csdn.net/ainuser/article/details/77609180" target="_blank" rel="noopener">hexo+github搭建个人博客(超详细教程)</a> 这个帖子讲的详细，同时也讲述了安装git的一些info和使用镜像的说明。</li>
-<li><a href="https://blog.csdn.net/qq_32454537/article/details/79482908" target="_blank" rel="noopener">2018最新版hexo+Github搭建个人博客教程（2018-1-22 更新）</a>这个是一个学生写的，写的很细。</li>
-</ul>
-<h5 id="需要探究的问题"><a href="#需要探究的问题" class="headerlink" title="需要探究的问题"></a>需要探究的问题</h5><ul>
-<li>就是我在一个电脑上，按照网上的配置在本地配了相应的环境，若我换了电脑，是否再次配置？配置好了之后，之前的历史文章怎么clone到本地，再次edit呢？</li>
-</ul>
+<h5 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续~"></a>未完待续~</h5><ol>
+<li>若是没有服务器可以使用下面的帖子：<a href="https://www.cnblogs.com/cxint/p/7200164.html" target="_blank" rel="noopener">关于markdown文件插入图片遇到的小问题和解决办法</a>  的方法存放图片，进而进行md的书写。</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/my-hexo-summary/" data-id="cjs18mg6u0007n4vhehwns4d4" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/22/hello-world/" class="article-date">
-  <time datetime="2019-01-22T01:32:09.980Z" itemprop="datePublished">2019-01-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/22/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="cjs18mg6b0004n4vha5ukm5ls" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/MarkDown-Summary/" data-id="cjs1oa97v0001xgvh0nik9cny" class="article-share-link">Share</a>
       
       
     </footer>
@@ -679,6 +694,11 @@
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -709,6 +729,14 @@
       <ul>
         
           <li>
+            <a href="/2019/02/12/html一些不常用标签/">html一些不常用标签</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/12/js默认行为和事件冒泡/">js默认行为和事件冒泡</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/12/jqready/">jqready</a>
           </li>
         
@@ -718,14 +746,6 @@
         
           <li>
             <a href="/2019/01/26/美团2019春节干货/">美团2019春节干货</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/25/Linux一些常用命令总结/">Linux一些常用命令总结</a>
-          </li>
-        
-          <li>
-            <a href="/2019/01/25/aa/">aaa</a>
           </li>
         
       </ul>
