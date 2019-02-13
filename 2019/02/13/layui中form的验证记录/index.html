@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>layui中form的验证记录 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="layui中form的验证记录 在layui中针对form的验证，发现一个问题：&amp;lt;div class=&amp;quot;layui-form-item&amp;quot; style=&amp;quot;display: none;&amp;quot;&amp;gt;即使对这种隐藏的元素，layui也进行了验证，这种情况会让用户看着很懵，这是我在pms的底部“办理入住”看代码逻辑：    第二个参数：filter，为 class">
+<meta property="og:type" content="article">
+<meta property="og:title" content="layui中form的验证记录">
+<meta property="og:url" content="http://yoursite.com/2019/02/13/layui中form的验证记录/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="layui中form的验证记录 在layui中针对form的验证，发现一个问题：&amp;lt;div class=&amp;quot;layui-form-item&amp;quot; style=&amp;quot;display: none;&amp;quot;&amp;gt;即使对这种隐藏的元素，layui也进行了验证，这种情况会让用户看着很懵，这是我在pms的底部“办理入住”看代码逻辑：    第二个参数：filter，为 class">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190124/layui-form.jpg">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190213/verify-tips.jpg">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190213/required-tips.jpg">
+<meta property="og:updated_time" content="2019-02-13T02:48:47.527Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="layui中form的验证记录">
+<meta name="twitter:description" content="layui中form的验证记录 在layui中针对form的验证，发现一个问题：&amp;lt;div class=&amp;quot;layui-form-item&amp;quot; style=&amp;quot;display: none;&amp;quot;&amp;gt;即使对这种隐藏的元素，layui也进行了验证，这种情况会让用户看着很懵，这是我在pms的底部“办理入住”看代码逻辑：    第二个参数：filter，为 class">
+<meta name="twitter:image" content="http://139.199.23.2/img/blog/20190124/layui-form.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-layui中form的验证记录" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/13/layui中form的验证记录/" class="article-date">
+  <time datetime="2019-02-13T02:47:10.000Z" itemprop="datePublished">2019-02-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      layui中form的验证记录
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="layui中form的验证记录"><a href="#layui中form的验证记录" class="headerlink" title="layui中form的验证记录"></a>layui中form的验证记录</h4><ol>
+<li>在layui中针对form的验证，发现一个问题：<br><code>&lt;div class=&quot;layui-form-item&quot; style=&quot;display: none;&quot;&gt;</code><br>即使对这种隐藏的元素，<code>layui</code>也进行了验证，这种情况会让用户看着很懵，这是我在pms的底部“办理入住”看代码逻辑：</li>
+</ol>
+<p><img src="http://139.199.23.2/img/blog/20190124/layui-form.jpg" alt="代码逻辑"></p>
+<ol start="2">
+<li>第二个参数：filter，为 class=”layui-form” 所在元素的 lay-filter=”” 的值。你可以借助该参数，对表单完成局部更新。<br>如下：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form"</span> <span class="attr">lay-filter</span>=<span class="string">"test1"</span>&gt;</span></span><br><span class="line">  …</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form"</span> <span class="attr">lay-filter</span>=<span class="string">"test2"</span>&gt;</span></span><br><span class="line">  …</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">form.render(<span class="literal">null</span>, <span class="string">'test1'</span>); <span class="comment">//更新 lay-filter="test1" 所在容器内的全部表单状态</span></span><br><span class="line">form.render(<span class="string">'select'</span>, <span class="string">'test2'</span>); <span class="comment">//更新 lay-filter="test2" 所在容器内的全部 select 状态</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>针对layui中的验证问题，此问题在修改862bug时效果如下：</p>
+<p><img src="http://139.199.23.2/img/blog/20190213/verify-tips.jpg" alt="verify-tips"></p>
+<p>这个提示是在验证时候加了<code>required lay-verify=&quot;&quot;</code>属性，出现此效果还要额外引入<code>layui.js</code>。</p>
+<p>若这样写<code>required lay-verify=&quot;required&quot;</code>只会提示下面的效果：</p>
+</li>
+</ol>
+<p>   <img src="http://139.199.23.2/img/blog/20190213/required-tips.jpg" alt="required-tips"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/13/layui中form的验证记录/" data-id="cjs2ljn7k000410vhdmtn45ve" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/12/html一些不常用标签/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">html一些不常用标签</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/02/13/layui中form的验证记录/">layui中form的验证记录</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/12/html一些不常用标签/">html一些不常用标签</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/12/js默认行为和事件冒泡/">js默认行为和事件冒泡</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/12/jqready/">jqready</a>
+          </li>
+        
+          <li>
+            <a href="/2019/01/29/浏览器中网址访问过程详解/">浏览器中网址访问过程详解</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
