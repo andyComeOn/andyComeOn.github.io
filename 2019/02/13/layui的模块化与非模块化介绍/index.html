@@ -5,19 +5,22 @@
   
 
   
-  <title>Hello World | Hexo</title>
+  <title>layui的模块化与非模块化介绍 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="layui的模块化与非模块化介绍 下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：  我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/01/22/hello-world/index.html">
+<meta property="og:title" content="layui的模块化与非模块化介绍">
+<meta property="og:url" content="http://yoursite.com/2019/02/13/layui的模块化与非模块化介绍/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="layui的模块化与非模块化介绍 下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：  我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-22T06:03:17.605Z">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190213/layui-on-err.jpg">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190213/verify-tips.jpg">
+<meta property="og:updated_time" content="2019-02-14T01:07:14.196Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="layui的模块化与非模块化介绍">
+<meta name="twitter:description" content="layui的模块化与非模块化介绍 下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：  我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样">
+<meta name="twitter:image" content="http://139.199.23.2/img/blog/20190213/layui-on-err.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,10 +67,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-layui的模块化与非模块化介绍" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/01/22/hello-world/" class="article-date">
-  <time datetime="2019-01-22T01:32:09.980Z" itemprop="datePublished">2019-01-22</time>
+    <a href="/2019/02/13/layui的模块化与非模块化介绍/" class="article-date">
+  <time datetime="2019-02-13T05:57:38.000Z" itemprop="datePublished">2019-02-13</time>
 </a>
     
   </div>
@@ -78,7 +81,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      layui的模块化与非模块化介绍
     </h1>
   
 
@@ -86,20 +89,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h4 id="layui的模块化与非模块化介绍"><a href="#layui的模块化与非模块化介绍" class="headerlink" title="layui的模块化与非模块化介绍"></a>layui的模块化与非模块化介绍</h4><ol>
+<li>下面这个帖子<a href="https://www.cnblogs.com/qlqwjy/p/8975931.html" target="_blank" rel="noopener">layui的模块化和非模块化使用</a>，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：<br><img src="http://139.199.23.2/img/blog/20190213/layui-on-err.jpg" alt="layui-on-err"></li>
+</ol>
+<p>我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样写了<code>required lay-verify=&quot;&quot;</code>出现不了下面这个效果：</p>
+<p><img src="http://139.199.23.2/img/blog/20190213/verify-tips.jpg" alt="verify-tips"></p>
+<p>这感觉不合理！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="cjs3xd5hc0000c8vh48k7audm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/13/layui的模块化与非模块化介绍/" data-id="cjs3xd5ki0006c8vhiayokxzt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -108,15 +108,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/01/22/my-hexo-summary/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Hexo总结
-        
-      </div>
-    </a>
   
+    <a href="/2019/02/13/layui中form的验证记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">layui中form的验证记录</div>
+    </a>
   
 </nav>
 
