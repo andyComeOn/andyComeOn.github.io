@@ -62,6 +62,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS封装备份" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/22/JS封装备份/" class="article-date">
+  <time datetime="2019-02-22T06:40:54.000Z" itemprop="datePublished">2019-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/22/JS封装备份/">JS封装备份</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="这是自己在开发过程中封装的一些方法"><a href="#这是自己在开发过程中封装的一些方法" class="headerlink" title="这是自己在开发过程中封装的一些方法"></a>这是自己在开发过程中封装的一些方法</h4><ol>
+<li>针对一个浮点型数，保留几位小数（符合四舍五入）的方法</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">fixto(number, n = <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = number.toString();</span><br><span class="line">    <span class="keyword">const</span> arr = result.split(<span class="string">'.'</span>);</span><br><span class="line">    <span class="keyword">const</span> integer = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> decimal = arr[<span class="number">1</span>];</span><br><span class="line">    result = integer + <span class="string">'.'</span> + decimal.substr(<span class="number">0</span>, n);  </span><br><span class="line">    <span class="keyword">const</span> last = decimal.substr(n, <span class="number">1</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 四舍五入，转换为整数再处理，避免浮点数精度的损失</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(last, <span class="number">10</span>) &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> x = <span class="built_in">Math</span>.pow(<span class="number">10</span>, n); </span><br><span class="line">        result = ((<span class="built_in">parseFloat</span>(result) * x) + <span class="number">1</span>) / x;  </span><br><span class="line">        result = result.toFixed(n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>说明保留几位小说，参数n设置为几即可！</p>
+<hr>
+<ol start="2">
+<li>未完待续</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/22/JS封装备份/" data-id="cjsfpdu4f00018ovho1re31pz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-设置路由器的一次记录" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/02/15/设置路由器的一次记录/" class="article-date">
@@ -85,13 +130,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="记录一次路由器的设置的过程"><a href="#记录一次路由器的设置的过程" class="headerlink" title="记录一次路由器的设置的过程"></a>记录一次路由器的设置的过程</h4><ul>
-<li>网络已不能连接，点击路由器小按钮（一般是一个小孔，用卡针之类扎一下），这时候其已复位，连接其默认WiFi，找到其背面的标签写的：用户名、密码，进去。输入你的的宽带账号密码（运营商给你的）之后选择动态获取（联通电话技术支持说是PPPoe）。看到光猫的Internet灯只要亮说明就已经连接成功了。在连接上路由器进行密码设置即可。</li>
+<li><p>网络已不能连接，点击路由器小按钮（一般是一个小孔，用卡针之类扎一下），这时候其已复位，连接其默认WiFi，找到其背面的标签写的：用户名、密码，进去。输入你的的宽带账号密码（运营商给你的）之后选择动态获取（联通电话技术支持说是PPPoe）。看到光猫的Internet灯只要亮说明就已经连接成功了。在连接上路由器进行密码设置即可。</p>
+</li>
+<li><p>还有一个疑问是，师傅直接操作路由器，能否直接操作光猫呢？我在设置时候一开始没弄好，就试着把光猫的网线插到电脑上这样行吗？后来师傅弄好之后，登录路由器的登录页面访问网址变成了192.168.0.1，光猫的变成了192.168.1.1。最开始路由器的登录页面访问网址是192.168.1.1。</p>
+</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/15/设置路由器的一次记录/" data-id="cjscrlpas000e7cvh6dkemygb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/15/设置路由器的一次记录/" data-id="cjsfpdu5v000d8ovh8qcjvao4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -146,7 +194,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/15/CSS字体行高相关/" data-id="cjscrlp9000017cvhe85hkufk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/15/CSS字体行高相关/" data-id="cjsfpdu4400008ovhsp9n3oq9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -188,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/13/layui的模块化与非模块化介绍/" data-id="cjscrlpa300087cvhlqa3hmsf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/13/layui的模块化与非模块化介绍/" data-id="cjsfpdu6k000f8ovhp65d1he1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -241,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/13/layui中form的验证记录/" data-id="cjscrlp9y00077cvhcd83uor3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/13/layui中form的验证记录/" data-id="cjsfpdu5i00098ovh1nbulga8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -309,7 +357,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/html一些不常用标签/" data-id="cjscrlp9i00047cvhyeswv7hm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/html一些不常用标签/" data-id="cjsfpdu5b00068ovhigx5nerp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -370,7 +418,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/js默认行为和事件冒泡/" data-id="cjscrlp9u00067cvhmqtsypa2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/js默认行为和事件冒泡/" data-id="cjsfpdu5d00078ovho5umgltq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -427,7 +475,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/jqready/" data-id="cjscrlp9r00057cvhtryk153g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/jqready/" data-id="cjsfpdu5m000a8ovhmwfu9lmc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -492,7 +540,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="cjscrlpaj000c7cvhnniye8m3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="cjsfpdu5p000b8ovh1he86vsl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -539,115 +587,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="cjscrlpan000d7cvh2ad06gie" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Linux一些常用命令总结" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/25/Linux一些常用命令总结/" class="article-date">
-  <time datetime="2019-01-25T02:23:45.000Z" itemprop="datePublished">2019-01-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/25/Linux一些常用命令总结/">Linux一些常用命令总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="Linux一些常用命令总结"><a href="#Linux一些常用命令总结" class="headerlink" title="Linux一些常用命令总结"></a>Linux一些常用命令总结</h4><p>最近在提交git时候（我使用的是git的命令行），在执行git pull时候出现了，让编辑merge提交。一时间束手无策。决定好好看看这个命令，把常用的命令记录一下，主要参考的这篇帖子<a href="https://www.cnblogs.com/yjd_hycf_space/p/7730690.html" target="_blank" rel="noopener">Linux常用命令大全（非常全！！！）</a></p>
-<hr>
-<h5 id="下面的一些常用指令我在git-bash中测试，git-bash只是模拟了部分的linux指令。"><a href="#下面的一些常用指令我在git-bash中测试，git-bash只是模拟了部分的linux指令。" class="headerlink" title="下面的一些常用指令我在git bash中测试，git bash只是模拟了部分的linux指令。"></a>下面的一些常用指令我在git bash中测试，git bash只是模拟了部分的linux指令。</h5><ul>
-<li>clear：清除记录</li>
-<li>pwd：显示当前的目录</li>
-<li>cd ~：直接进入到用户的主目录</li>
-<li>cd -：返回上次所在目录</li>
-<li>ls：我理解的是把该目录下的所有文件列出来</li>
-<li>ll：我理解的是把该目录下的所有文件以列表的形式显示出来，显示的有文件创建时间，还有文件夹（drwxr-xr-x）与文件（-rw-r–r–）的区别，这个ll指令没有细查，可能是ls -l的简写，在文档上没有找到ll的指令，只是找到了指令ls -l</li>
-<li>mkdir dir1：创建一个目录dir1 </li>
-<li>mkdir dir2 dir3：创建2个平级目录dir2 dir3</li>
-<li>mkdir -p tmp/dir1/dir2：创建一个目录树 </li>
-</ul>
-<hr>
-<h5 id="在windows的cmd下面也有一些类命令"><a href="#在windows的cmd下面也有一些类命令" class="headerlink" title="在windows的cmd下面也有一些类命令"></a>在windows的cmd下面也有一些类命令</h5><ul>
-<li>cd：命令进去目录</li>
-<li>cls：清除记录</li>
-</ul>
-<hr>
-<h5 id="删除和移动指令"><a href="#删除和移动指令" class="headerlink" title="删除和移动指令"></a>删除和移动指令</h5><ul>
-<li>rm -f xx.html ：删除一个文件</li>
-<li>rmdir dir1：删除dir1目录，并且这个目录只能是空目录，其中不能有文件，若有文件命令行会提示 Directory not empty，感觉这个命令不用记，没什么卵用啊，一般一个目录都有文件。</li>
-<li>rmdir dir1 dir2：删除dir1和dir2目录</li>
-<li>rm -rf dir1：删除dir1目录并且把该目录下的文件内容都删除了</li>
-<li>rm -rf dir1 dir2：同时删除两个目录及它们的内容</li>
-<li>mv dir1 dir2 ●把dir1移动到dir2目录</li>
-</ul>
-<hr>
-<h5 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h5><ul>
-<li>cp file1 dir2：●复制file1文件到dir2目录</li>
-<li>cp dir1/* dir2：●复制dir1下面的所有文件到dir2目录，切记是copy的dir1下所有文件，不包含dir1下的目录</li>
-<li>cp dir1/* . ：●复制dir1下面的所有文件到当前目录</li>
-<li>cp -a dir1 dir2：●复制dir1（包括dir1下边的所有目录和文件）到dir2</li>
-<li>cp -a dir1/* dir2：●复制dir1下边的所有目录和文件到dir2</li>
-</ul>
-<hr>
-<h5 id="新建文件"><a href="#新建文件" class="headerlink" title="新建文件"></a>新建文件</h5><p>linux的touch命令不常用，一般在使用make的时候可能会用到，用来修改文件时间戳，或者新建一个不存在的文件，但是在git bash中使用touch aa.txt会直接生成文件。</p>
-<ul>
-<li>touch file1 ：创建一个新文件</li>
-</ul>
-<hr>
-<h5 id="修改、编辑文件"><a href="#修改、编辑文件" class="headerlink" title="修改、编辑文件"></a>修改、编辑文件</h5><ul>
-<li>首先进到目录下，直接键入vim aa.txt 或者是vim dir1/bb.txt会出现如下截图：</li>
-</ul>
-<p><img src="http://139.199.23.2/img/blog/20190125/vim-edit-status.jpg" alt="vim-edit-status"></p>
-<p>按下【i, I, o, O, a, A, r, R】等任何一个字母之后才会进入编辑模式，不过大家一般都是按下i，其本意就是insert（插入）之意。按下i之后显示插入状态：</p>
-<p><img src="http://139.199.23.2/img/blog/20190125/vim-insert-status.jpg" alt="vim-insert-status"> </p>
-<p>想怎么编辑就怎能编辑。我编辑的输入的一句话：“我在进行vim编辑”。编辑之后需要按下ESC才退出编辑状态，如下截图：</p>
-<p><img src="http://139.199.23.2/img/blog/20190125/vim-esc-status.jpg" alt="vim-esc-status"> </p>
-<p>这时候选择你想要退出的模式：</p>
-<ul>
-<li>:w 保存编辑的内容，执行了这个命令指令，还是在命令行模式。</li>
-<li>:w! 强制写入该文件，但跟你对该文件的权限有关</li>
-<li>:q 离开vi</li>
-<li>:q! 不想保存修改强制离开！！这个也是很常用</li>
-<li>:wq 保存后离开，这个指令感觉是:w :q的简写</li>
-<li>:x 保存后离开</li>
-</ul>
-<hr>
-<h5 id="压缩解压文件"><a href="#压缩解压文件" class="headerlink" title="压缩解压文件"></a>压缩解压文件</h5><ul>
-<li>打包网上说了很多种有zip rar tar等很多的指令但是在git bush上我只能使用tar</li>
-<li>tar –cvf xx.tar file1 创建一个非压缩的xx.tar 这句话我理解创建一个非压缩的文件，意为，直接压缩的文件，压缩比很小所以叫非压缩。</li>
-<li>tar –cvf xx.tar file file1 file2 dir1  创建一个包含了 ‘file1’, ‘file2’ 以及 ‘dir1’的档案文件</li>
-<li>tar -tf archive.tar 显示一个包中的内容 </li>
-<li>tar -xvf archive.tar 释放一个包</li>
-<li>tar -xvf archive.tar -C /tmp 将压缩包释放到 /tmp目录下 </li>
-<li>其中压缩解压指令不好记忆可参考<a href="http://www.360doc.com/content/11/0620/13/2104556_128204591.shtml" target="_blank" rel="noopener">tar参数详解</a>   </li>
-</ul>
-<hr>
-<h5 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h5><ul>
-<li>cat 某个文件，即在命令行显示文件内容</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="cjscrlp9a00027cvh9mi4kcoi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="cjsfpdu5s000c8ovhq66dkrh9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -693,6 +633,10 @@
       <ul>
         
           <li>
+            <a href="/2019/02/22/JS封装备份/">JS封装备份</a>
+          </li>
+        
+          <li>
             <a href="/2019/02/15/设置路由器的一次记录/">设置路由器的一次记录</a>
           </li>
         
@@ -706,10 +650,6 @@
         
           <li>
             <a href="/2019/02/13/layui中form的验证记录/">layui中form的验证记录</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/12/html一些不常用标签/">html一些不常用标签</a>
           </li>
         
       </ul>
