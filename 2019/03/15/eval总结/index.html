@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>eval总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="eval的一些总结eval的用法 在很多的js代码中，可以看到有eval的身影，在菜鸟教程中：“eval() 函数计算 JavaScript 字符串，并把它作为脚本代码来执行。”这个言外之意是处理字符串。可是下面还有一句话：“如果参数是一个表达式，eval() 函数将执行表达式。如果参数是Javascript语句，eval()将执行 Javascript 语句。” 总结一下就是eval()无论你是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="eval总结">
+<meta property="og:url" content="http://yoursite.com/2019/03/15/eval总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="eval的一些总结eval的用法 在很多的js代码中，可以看到有eval的身影，在菜鸟教程中：“eval() 函数计算 JavaScript 字符串，并把它作为脚本代码来执行。”这个言外之意是处理字符串。可是下面还有一句话：“如果参数是一个表达式，eval() 函数将执行表达式。如果参数是Javascript语句，eval()将执行 Javascript 语句。” 总结一下就是eval()无论你是">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-15T04:00:58.351Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="eval总结">
+<meta name="twitter:description" content="eval的一些总结eval的用法 在很多的js代码中，可以看到有eval的身影，在菜鸟教程中：“eval() 函数计算 JavaScript 字符串，并把它作为脚本代码来执行。”这个言外之意是处理字符串。可是下面还有一句话：“如果参数是一个表达式，eval() 函数将执行表达式。如果参数是Javascript语句，eval()将执行 Javascript 语句。” 总结一下就是eval()无论你是">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-eval总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/15/eval总结/" class="article-date">
+  <time datetime="2019-03-15T02:07:55.000Z" itemprop="datePublished">2019-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      eval总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="eval的一些总结"><a href="#eval的一些总结" class="headerlink" title="eval的一些总结"></a>eval的一些总结</h4><h5 id="eval的用法"><a href="#eval的用法" class="headerlink" title="eval的用法"></a>eval的用法</h5><ol>
+<li><p>在很多的js代码中，可以看到有eval的身影，在菜鸟教程中：“eval() 函数计算 JavaScript 字符串，并把它作为脚本代码来执行。”这个言外之意是处理字符串。可是下面还有一句话：“如果参数是一个表达式，eval() 函数将执行表达式。如果参数是Javascript语句，eval()将执行 Javascript 语句。” 总结一下就是eval()无论你是处理什么，他就会执行，大不了执行不了的就报错！</p>
+</li>
+<li><p>在w3school中写 ：eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。eval(string)，既然都是这样定义的，那为什呢会让他执行什么语句啥的呢？ 我个人猜想一定是后来把js引擎中的eval()处理方法更改了，赋予它更多的功能。</p>
+</li>
+<li><p>eval的巧用</p>
+<ul>
+<li><p>如果data是字符串，使用eval(“(“+data+”)”)可以将其转换为json对象，和JSON.parse的功能一样。<br>如果data是json对象，使用eval(“(“+data+”)”)会报错，正如你描述的错误。eval一个json对象，没有什么作用，这个时候不需要使用eval方法，直接用data即可。</p>
+</li>
+<li><p>所以，如果你那边能确定后台返回的是字符串，就使用eval(“(“+data+”)”)(eval会带来很多问题，不建议使用，如果想实现转化用JSON.parse更好)，如果后台返回的是json对象，什么操作都不需要，直接使用data即可。如果你是用的jquery, 将type（一般为这个配置属性）设为json，或者利用$.getJSON()方法获得服务器返回，那么就不需要eval()方法了，因为这时候得到的结果已经是json对象了，只需直接调用该对象即可</p>
+</li>
+<li><p>另外多说一点：为什么eval要添加括号呢？原因：eval本身的问题。 由于json是以{}的方式来开始以及结束的，在JS中，它会被当成一个语句块来处理，所以必须强制性的将它转换成一种表达式。加上圆括号的目的是迫使eval函数在处理JavaScript代码的时候强制将括号内的表达式(expression)转化为对象，而不是作为语句(statement)来执行。举一个例子，例如对象字面量{}，如若不加外层的括号，那么eval会将大括号识别为JavaScript代码块的开始和结束标记，那么{}将会被认为是执行了一句空语句。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(<span class="string">"&#123;&#125;"</span>); <span class="comment">// undefined </span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(<span class="string">"(&#123;&#125;)"</span>);<span class="comment">// object[Object]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这使我想到为什么有时候后台返回的数据是一个字符串，我使用<code>JSON.parse()</code>处理（目的转为json对象使用）之后会出现：<code>Uncaught SyntaxError: Unexpected token r</code>，这里报错的根本原因是你后台返回的数据不是标准格式，以至于<code>JSON.parse()</code>解析不了。上面无序列表第二条是说用jq的json方法，我认为这是jq里面帮你处理数据了。所以大家只要是各个工种都按照严格的规范来，怎么不出现这个问题呢？</p>
+</li>
+</ul>
+</li>
+<li><p>我来做最后的总结：记住，eval()解析字符串参数时,会把参数以执行语句的方式返回，请看下面例子。</p>
+</li>
+</ol>
+<p>例子1：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'2'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(str));  <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p>上面会输出2，但是这样做没有什么意义。2和’2’都被eval作为参数以执行语句的方式返回。</p>
+<p>例子2：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'a:3'</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'a=3'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(str));  <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>上面会输出3，我认为这和例子1差不多，’a:3’和’a=3’也都被eval作为参数以执行语句的方式返回。</p>
+<p>例子2：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'a:3'</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'a=3'</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'&#123;a:3&#125;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(str));  <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>上面会输出3，我认为这和例子1差不多，’a:3’、’a=3’、’{a:3}’也都被eval作为参数以执行语句的方式返回。但是这是简单的字符串，请看下面的例子。</p>
+<p>例子3：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'&#123;a:3,b:4&#125;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(str));  <span class="comment">// Uncaught SyntaxError: Unexpected token :</span></span><br></pre></td></tr></table></figure>
+<p>为什么报错了，我理解的是eval处理不了，本身这是<code>&#39;{ , }&#39;</code>这是对象，比较复杂，在eval解析的时候，解释器遇到{},它会认为这个是一个代码块，会执行它，处理不了报错，有人说例子2中为什么可以，我认为例子2中固然有’{a:3}’例子，但是该对象只有一对键值对。比较简单。复杂的<code>&#39;{ , }&#39;</code>，解释器把它当成代码块处理就会出错，我们为此用一个()包裹起来，把代码块转为表达式，这样解释器就把<code>&#39;{ , }&#39;</code>作为一个对象正常解析。</p>
+<p>例子4：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'&#123;&#125;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(str));  <span class="comment">// undefined 由于他也是简单的对象，所以js输出了undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(<span class="string">'('</span>+str+<span class="string">')'</span>));  <span class="comment">// &#123;&#125; ,把代码块加上()，当做表达式来处理，固输出&#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>例子5：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">"x=10;y=20;console.log(x*y)"</span>);</span><br></pre></td></tr></table></figure>
+<p>这种可以执行，打印出200。</p>
+<ol start="5">
+<li>详细见这篇帖子<a href="https://segmentfault.com/q/1010000006965715" target="_blank" rel="noopener">关于eval（data）和eval(“(“+data+”)”)</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/15/eval总结/" data-id="cjt9n5pvr0004o0vhkjb53fgq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/14/js中的逗号/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">js中的逗号</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/15/eval总结/">eval总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/14/js中的逗号/">js中的逗号</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/14/layui的form说明/">layui的form记录</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/28/故事目录序/">故事目录序</a>
+          </li>
+        
+          <li>
+            <a href="/2019/02/26/Vuex总结/">Vuex总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
