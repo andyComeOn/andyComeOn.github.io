@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="js默认行为和事件冒泡的几种方法 js阻止事件冒泡  1234567891011var el = document.getElementById(&apos;el&apos;);el.onclick = function (event) &amp;#123;    if (event &amp;amp;&amp;amp; event.stopPropagation) &amp;#123;        // 如果提供了事件对象，则这是一个非IE浏览">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-12T06:50:17.019Z">
+<meta property="og:updated_time" content="2019-04-03T10:39:55.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js默认行为和事件冒泡">
 <meta name="twitter:description" content="js默认行为和事件冒泡的几种方法 js阻止事件冒泡  1234567891011var el = document.getElementById(&apos;el&apos;);el.onclick = function (event) &amp;#123;    if (event &amp;amp;&amp;amp; event.stopPropagation) &amp;#123;        // 如果提供了事件对象，则这是一个非IE浏览">
@@ -108,6 +108,14 @@
 </li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"a"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>针对上面的click()，在括号内直接写<code>function () {}</code> 这里面可传入e，ev，event，evok等形参都可以，函数体中直接写<code>e.preventDefault()</code>、<code>ev.preventDefault()</code>、<code>event.preventDefault()</code>、<code>evok.preventDefault()</code>等语句都可以生效，切忌是形参不穿，直接写：<code>e.preventDefault()</code>、<code>ev.preventDefault()</code>、<code>event.preventDefault()</code>；还可以是形参不写，使用<code>event.preventDefault()</code>（不报错猜想event是关键字）。</p>
+</li>
+<li><p>上面的click()，都是简写的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"el"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这种方法虽是看着简单，但是针对document中已经存在的元素，动态添加的元素是绑定不上click事件的，所以一是养成好习惯，二是为了避免click绑定不上。固<code>$(&#39;el&#39;).on(&#39;click&#39;, function () {})</code>这样写。注：在之前老版本jq是bind关键词，后来改为了on。</p>
 <h4 id="js默认行为有哪些"><a href="#js默认行为有哪些" class="headerlink" title="js默认行为有哪些"></a>js默认行为有哪些</h4><p>很多的网页元素都会有默认的行为，比如说当你点击一下超链接a标签的时候，它会有一个跳转的行为；当你在网页上点鼠标右键时会出现一个右键菜；当你在一个form表单里点击提交按钮时网页会产生提交行为并刷新网页，当你网页上滚动鼠标滚轮时，网页的滚动条会动等等。这些都叫事件的默认行为，如果想把这默认行为取消了，相应的JS代码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">el.onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">false</span>;&#125;<span class="comment">//在方法里加个return false，就阻止超链接点击时的跳转行为了</span></span><br><span class="line"><span class="built_in">document</span>.oncontextmenu=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">/* 在这里你还可以加一些代码，实现自定义的右键菜单 */</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 系统自带的右键菜单就失效了</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这样表单就不会产生提交行为了</span></span><br><span class="line">Form.onsubmit=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">false</span>;&#125; </span><br><span class="line"><span class="comment">// IE和chrome的方式，取消鼠标的滚轮的默认行为，网页的滚动条就不会动了</span></span><br><span class="line"><span class="built_in">document</span>.onmousewheel=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">false</span>&#125; </span><br><span class="line"><span class="comment">// 功能同上，火狐的方式。火狐只能用DOM二级的绑定方式，并且用e.preventDefault=true</span></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOMMouseScroll'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;e.preventDefault=<span class="literal">true</span>&#125;);</span><br></pre></td></tr></table></figure>
 <p>我们要知道常见的事件默认行为有那些，并且要知道阻止默认行为，只要在绑定到这个行为事件的方法里最后加一句：return false;就可以了。<br>但要强调注意的是：如果你的事件绑定是用addEventListener来实现的，那阻止默认行为必须用e.preventDefault=true。</p>
@@ -115,7 +123,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/js默认行为和事件冒泡/" data-id="cjt9n5pwn000ho0vhz3ywo63j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/js默认行为和事件冒泡/" data-id="cju13b25h000dy4vhs82dvvk9" class="article-share-link">Share</a>
       
       
     </footer>
