@@ -62,6 +62,158 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-MarkDown总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/22/MarkDown总结/" class="article-date">
+  <time datetime="2019-01-22T04:45:27.000Z" itemprop="datePublished">2019-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/22/MarkDown总结/">MarkDown总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="MarkDown个人的小总结"><a href="#MarkDown个人的小总结" class="headerlink" title="MarkDown个人的小总结"></a>MarkDown个人的小总结</h4><h5 id="基本总结"><a href="#基本总结" class="headerlink" title="基本总结"></a>基本总结</h5><ol>
+<li>markdown的文件格式是<code>**.md</code>这种，我们可以在软件<strong>Typora</strong>中编辑也可在编辑器中写md文档。</li>
+<li>个人感觉在既然有对应的软件<strong>Typora</strong>，使用它应该更方便写文档。</li>
+<li>md文档可以在浏览器中访问这个感觉是很好的，它还可以写代码，对于技术文档更清晰。</li>
+</ol>
+<hr>
+<h5 id="常用的一些方法"><a href="#常用的一些方法" class="headerlink" title="常用的一些方法"></a>常用的一些方法</h5><ol>
+<li>起标题大小是按照#的数量来区分，有6个等级类似于html中的h1-h6。主标题我感觉可以居中但是我没有找到具体的设置方法。是不是需要导入外部的css呢？我自己在写的md文档都是使用的h4作为该文章的主标题即4个####号。副标题使用5个#号，有序列表是：数字+空格+.。无序列表是：*+空格即可（一般我是最常用这种）。在有序列表下可使用无须列表，可以有序列表下面空4格在按照无序列表语法写就成了空心小圆。具体可参考我的“Shell总结.md”。</li>
+<li>使用Typora软件写文档发现一个小问题是，你写完一个标题之后想换行，直接在键盘上按下enter之后光标换行，但是在vscode中打开md文件发现换行换的不止是一行。猜想可能在Typora软件的换1行，可能在md文件中换的不止1行。 不过最后hexo在把你的md文档转换为html会过滤多余空行。</li>
+<li><strong>加粗</strong>在段落中某个想加粗的文本使用<strong>4个*</strong>来加粗提示，具体操作是把你想要加粗强调的文本放到他们中间。</li>
+<li><strong><em>倾斜</em></strong>在段落中某个想倾斜的文本使用<strong>2个*</strong>来倾斜提示，具体操作是把你想要加粗强调的文本放到他们中间。</li>
+<li><strong>分割线</strong>的具体操作：是直接新启一行在首段键入3个以上*或者是-即可，如下所示。</li>
+<li><strong>下划线</strong>是使用ctrl+U快捷键可以实现，例如：<u>下划线</u>。</li>
+<li><strong>删除线</strong>是键入四个~，例如：<del>删除</del>。</li>
+<li><strong>高亮</strong>是键入四个=，例如：==高亮==，但是这个是我在网页上搜到的，不起作用。  </li>
+<li><strong>块状提示</strong>是我在hexo部署时候，新建的demo中看到的效果，就是键入3个连字符“-”之后，写你的文本，在随后再键入3个连字符“-”结束即可。</li>
+</ol>
+<hr>
+<h5 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h5><ol>
+<li>有序列表：具体操作是按下数字1再按下.再按下空格即可。</li>
+<li>无序列表：具体操作是按下+再按下空格即可||按下-再按下空格即可||按下*再按下空格即可。</li>
+</ol>
+<hr>
+<h5 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h5><ol>
+<li>图片是有三个符号组成：! 、[]、() 。他们在一块使用即可。[]中的是image的alt属性，()之内的的image的地址。例如：<img src="https://cn.vuejs.org/images/logo.png" alt="这是vue官网的logo"></li>
+<li>网页上说这个地址也可以是本地的地址，但是我感觉一般的md文件都是在浏览器访问，弄成本地的没有意义。</li>
+</ol>
+<hr>
+<h5 id="超链"><a href="#超链" class="headerlink" title="超链"></a>超链</h5><ul>
+<li>这个与图片很类似，具体操作是按下[]、()即可。例如：<a href="www.baidu.com">百度</a>。我在写文档时候，主要参考了一下几个链接：<a href="https://blog.csdn.net/zhangruishi/article/details/70768923" target="_blank" rel="noopener">Typora学习笔记</a>、<a href="https://blog.csdn.net/mingzhuo_126/article/details/79941450" target="_blank" rel="noopener">初识Typora</a>等。</li>
+</ul>
+<hr>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><p>在技术文档中针对代码写demo很重要，下面介绍一下md代码具体怎么操作。</p>
+<ol>
+<li>在文本中输入2个反斜杠，在其中加入代码即可，这种一般适应于一句话的代码或者是具体的代码的某个属性关键词。如：<code>line-height: 30px;</code>，<code>height</code>，<code>color</code>。</li>
+<li>还有一种是针对代码块的，这种一般在语句中出现。它有2中方式：输入3个~按enter即可选择语言||输入三个`按enter即可选择语言。下面是2种方式实现的代码块，但是我在写该文档时候发现一个问题是hexo不能很好的识别第二种写法，在网上也搜到了有人发的帖子 <a href="https://github.com/hexojs/hexo/issues/2400" target="_blank" rel="noopener">无法渲染代码段</a>，这里我避开了有问题的写法。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">3</span>;</span><br><span class="line">a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> c = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> d = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续~"></a>未完待续~</h5><ol>
+<li>若是没有服务器可以使用下面的帖子：<a href="https://www.cnblogs.com/cxint/p/7200164.html" target="_blank" rel="noopener">关于markdown文件插入图片遇到的小问题和解决办法</a>  的方法存放图片，进而进行md的书写。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/22/MarkDown总结/" data-id="cjudd8c4x0004csvhyhbcrmju" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Hexo总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/22/Hexo总结/" class="article-date">
+  <time datetime="2019-01-22T01:59:30.000Z" itemprop="datePublished">2019-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/22/Hexo总结/">Hexo总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="这是我个人对安装hexo的一些总结"><a href="#这是我个人对安装hexo的一些总结" class="headerlink" title="这是我个人对安装hexo的一些总结"></a>这是我个人对安装hexo的一些总结</h4><h5 id="在github上新建仓库时候一定遵循下面的格式："><a href="#在github上新建仓库时候一定遵循下面的格式：" class="headerlink" title="在github上新建仓库时候一定遵循下面的格式："></a>在github上新建仓库时候一定遵循下面的格式：</h5><ul>
+<li><code>{username} github.io</code></li>
+</ul>
+<h5 id="根目录下的-config-yml："><a href="#根目录下的-config-yml：" class="headerlink" title="根目录下的_config.yml："></a>根目录下的<code>_config.yml</code>：</h5><ul>
+<li>要正确的把你的新建的github的仓库地址copy到<code>_config.yml</code>的deploy处 </li>
+</ul>
+<h5 id="网上说的安装方法："><a href="#网上说的安装方法：" class="headerlink" title="网上说的安装方法："></a>网上说的安装方法：</h5><ul>
+<li>有的说<code>npm install hexo -g</code>（我采用）</li>
+<li>有的说<code>npm install hexo-cli -g</code></li>
+</ul>
+<h5 id="按照网上的说法安装完成之后要注意以下几点："><a href="#按照网上的说法安装完成之后要注意以下几点：" class="headerlink" title="按照网上的说法安装完成之后要注意以下几点："></a>按照网上的说法安装完成之后要注意以下几点：</h5><ul>
+<li>每次在根目录下执行<code>hexo clean</code> -&gt; <code>hexo generate (hexo g)</code> -&gt; <code>hexo deploy (hexo d)</code></li>
+<li>后来发现根本不需要执行<code>hexo clean</code></li>
+</ul>
+<h5 id="hexo-怎么新建文章"><a href="#hexo-怎么新建文章" class="headerlink" title="hexo 怎么新建文章"></a>hexo 怎么新建文章</h5><ul>
+<li>网上说的是执行<code>hexo new post &#39;name&#39;</code>,尝试可行。但是我在Hexo自己生成的hello-word.md的文档中发现指令<code>hexo new &#39;name&#39;</code>少写了post。经测试亦可行！</li>
+</ul>
+<h5 id="hexo-怎么删除文章"><a href="#hexo-怎么删除文章" class="headerlink" title="hexo 怎么删除文章"></a>hexo 怎么删除文章</h5><ul>
+<li>先删除本地文件，然后通过生成和部署命令进而将远程仓库中的文件也一并删除。</li>
+<li>具体来说，以最开始默认生成的hello-world.md这篇文章为例：首先进入到source / _post 文件夹中，找到hello-world.md文件，在本地直接执行删除。然后依次执行<code>hexo g</code>，<code>hexo d</code>，即可删除。</li>
+</ul>
+<h5 id="发现的小问题"><a href="#发现的小问题" class="headerlink" title="发现的小问题"></a>发现的小问题</h5><ul>
+<li><p>本来通过<code>hexo new post demo</code> ，生成的demo.md文件，我后来感觉命名不合理，就直接修改文件名字，发现修改之后标题没有修改过来？原因是忘记了修改了此处 <img src="https://github.com/andyComeOn/andygithub-static/blob/master/static/img/my-hexo-summary.jpg" alt="图片"> || <img src="https://github.githubassets.com/favicon.ico" alt="图片"></p>
+</li>
+<li><p>网上说的新建的md文件不能使用中文命名，经测试可行。</p>
+</li>
+</ul>
+<hr>
+<h5 id="参考的帖子"><a href="#参考的帖子" class="headerlink" title="参考的帖子"></a>参考的帖子</h5><ul>
+<li><a href="https://www.cnblogs.com/fengxiongZz/p/7707219.html" target="_blank" rel="noopener">使用Hexo+Github一步步搭建属于自己的博客（基础）</a>、<a href="https://www.cnblogs.com/fengxiongZz/p/7707568.html" target="_blank" rel="noopener">使用Hexo+Github一步步搭建属于自己的博客（进阶）</a> 这2个帖子是我最开始参考的。</li>
+<li><a href="https://blog.csdn.net/ainuser/article/details/77609180" target="_blank" rel="noopener">hexo+github搭建个人博客(超详细教程)</a> 这个帖子讲的详细，同时也讲述了安装git的一些info和使用镜像的说明。</li>
+<li><a href="https://blog.csdn.net/qq_32454537/article/details/79482908" target="_blank" rel="noopener">2018最新版hexo+Github搭建个人博客教程（2018-1-22 更新）</a>这个是一个学生写的，写的很细。</li>
+</ul>
+<h5 id="需要探究的问题"><a href="#需要探究的问题" class="headerlink" title="需要探究的问题"></a>需要探究的问题</h5><ul>
+<li>就是我在一个电脑上，按照网上的配置在本地配了相应的环境，若我换了电脑，是否再次配置？配置好了之后，之前的历史文章怎么clone到本地，再次edit呢？</li>
+</ul>
+<h6 id="hexo的添加文章目录以及归档"><a href="#hexo的添加文章目录以及归档" class="headerlink" title="hexo的添加文章目录以及归档"></a>hexo的添加文章目录以及归档</h6><ul>
+<li>在写博客过程中遇到归档的需求，搜了一篇文章说的如何归档：<a href="https://www.jianshu.com/p/72408c410904" target="_blank" rel="noopener">Hexo站点中添加文章目录以及归档</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/22/Hexo总结/" data-id="cjudd8c4m0001csvhrd0xpywz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/22/hello-world/" class="article-date">
@@ -97,7 +249,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="cju13b24t0004y4vhqzuqalxe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="cjudd8c5a0008csvhhrg9gczm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -130,7 +282,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -143,6 +295,14 @@
       <ul>
         
           <li>
+            <a href="/2019/04/11/js函数的一些记录/">js函数的一些记录</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/11/js构造函数及原型链继承/">js的几种继承</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/15/eval总结/">eval总结</a>
           </li>
         
@@ -152,14 +312,6 @@
         
           <li>
             <a href="/2019/03/14/layui的form说明/">layui的form记录</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/28/故事目录序/">故事目录序</a>
-          </li>
-        
-          <li>
-            <a href="/2019/02/26/Vuex总结/">Vuex总结</a>
           </li>
         
       </ul>
