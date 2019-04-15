@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>js中的prototype总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="序： 在看js的几种继承方式相关文档时候，看到原型(prototype)继承，之前也看到有关的prototype的相关知识，看了就忘了，现自己总结一下。  我们大家在平时写代码时候，一般都是：  1function foo() &amp;#123;&amp;#125; 但是在看到一些封装的函数一般是： 1function Foo() &amp;#123;&amp;#125; 后来自己的理解：封装的一些函数，一般是采用的大写命名，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js中的prototype总结">
+<meta property="og:url" content="http://yoursite.com/2019/04/12/js中的prototype总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="序： 在看js的几种继承方式相关文档时候，看到原型(prototype)继承，之前也看到有关的prototype的相关知识，看了就忘了，现自己总结一下。  我们大家在平时写代码时候，一般都是：  1function foo() &amp;#123;&amp;#125; 但是在看到一些封装的函数一般是： 1function Foo() &amp;#123;&amp;#125; 后来自己的理解：封装的一些函数，一般是采用的大写命名，">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/960109/201607/960109-20160712231541998-1991573736.png">
+<meta property="og:updated_time" content="2019-04-13T09:57:24.885Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js中的prototype总结">
+<meta name="twitter:description" content="序： 在看js的几种继承方式相关文档时候，看到原型(prototype)继承，之前也看到有关的prototype的相关知识，看了就忘了，现自己总结一下。  我们大家在平时写代码时候，一般都是：  1function foo() &amp;#123;&amp;#125; 但是在看到一些封装的函数一般是： 1function Foo() &amp;#123;&amp;#125; 后来自己的理解：封装的一些函数，一般是采用的大写命名，">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/960109/201607/960109-20160712231541998-1991573736.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-js中的prototype总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/12/js中的prototype总结/" class="article-date">
+  <time datetime="2019-04-12T05:56:28.000Z" itemprop="datePublished">2019-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      js中的prototype总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>序： 在看js的几种继承方式相关文档时候，看到原型(prototype)继承，之前也看到有关的prototype的相关知识，看了就忘了，现自己总结一下。</p>
+<ol>
+<li>我们大家在平时写代码时候，一般都是：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>但是在看到一些封装的函数一般是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>后来自己的理解：封装的一些函数，一般是采用的大写命名，醒目、清晰、大家约定俗称（这里针对js，jq的传统js写法）。自己写的函数一般小写命名，固函数大小写命名区别不大。 </p>
+<p>下面说一下prototype，看代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'Byron'</span>);</span><br></pre></td></tr></table></figure>
+<p>我们把p1称为Person的一个实例，new Person(‘Byron’)，可理解为构造函数。 针对Person函数，我们在函数体中写了<br><code>this.name = name;</code>,<code>this.foo = function () {};</code>, 这意思就是给Person声明了2个属性 <code>name</code>、<code>foo</code>（这是我们通过代码增加的属性）；只要Person函数已经声明了，它就有一个属性prototype（是一个对象-包含1个默认的属性<code>constructor</code>）,这个 <code>constructor</code>又指向了Person函数本身！</p>
+<p>再来说p1，p1详见上面的代码，p1它具有了2个挂载属性：<code>name: &#39;Byron&#39;</code>， <code>foo: function(){}</code> 和一个默认的 <code>__proto__</code>，这个<code>__proto__</code> 指向的是Person的<code>prototype</code>。而Person的<code>prototype</code>又指向自己的<code>constructor</code>。 看起来有点绕，每次脑子就乱乱的，那么就看下面图：</p>
+<p><img src="https://images2015.cnblogs.com/blog/960109/201607/960109-20160712231541998-1991573736.png" alt="prototype解释图"></p>
+<p>我想只要大家没事就看看上面的图，不断温习就有印象了。</p>
+<hr>
+<p>针对上面p1它其中一个属性name，其属性值是传的实参’Byron’，他的foo属性是一个函数，这就是继承了父的属性。<br>若：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> Person(<span class="string">'Frank'</span>);</span><br></pre></td></tr></table></figure></p>
+<p>p2同样拥有了name、foo属性。我们可以对p2拥有的属性进行改动<code>p2.f00 = [];</code>, 请看下面的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(p2.f00);  <span class="comment">// []</span></span><br><span class="line"><span class="built_in">console</span>.log(p1.f00);  <span class="comment">// function()&#123;&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>上面的代码打印结果显示， 虽然是p1和p2都是Person的实例，但是他们好像是把Person的属性深copy一份，彼此相互独立！</p>
+<p>针对p1,p2这种构造的Person(),他们都有一个<strong>proto</strong> 属性，好像这种情况，这2个变量才有<strong>proto</strong> 属性</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="cjui0jovv000cwcvhhi0038ty" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/15/js数组排序去重等/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          js数组排序去重等
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/11/js function的相关总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">js函数的一些记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/15/js数组排序去重等/">js数组排序去重等</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/12/js中的prototype总结/">js中的prototype总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/11/js function的相关总结/">js函数的一些记录</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/11/js构造函数及原型链继承/">js的几种继承</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/15/eval总结/">eval总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
