@@ -19,7 +19,8 @@
 <meta property="og:image" content="http://139.199.23.2/img/blog/20190212/fieldset1.jpg">
 <meta property="og:image" content="http://139.199.23.2/img/blog/20190212/fieldset2.jpg">
 <meta property="og:image" content="http://139.199.23.2/img/blog/20190212/demo.jpg">
-<meta property="og:updated_time" content="2019-02-12T11:10:49.284Z">
+<meta property="og:image" content="http://139.199.23.2/img/blog/20190509/actionsheet.jpg">
+<meta property="og:updated_time" content="2019-05-09T05:45:20.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="html一些不常用标签">
 <meta name="twitter:description" content="记录一下html的一些不常用标签 blockquote顾名思义是引用引述的意思，它有默认的css，请看下面的代码：  12345Here comes a long quotation:    &amp;lt;blockquote class=&quot;quote1&quot; cite=&quot;http://www.baidu.com&quot; style=&quot;background: #ccc;&quot;&amp;gt;        This is a">
@@ -124,11 +125,24 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"demo"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>你好<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>展示效果如下：</p>
 <p><img src="http://139.199.23.2/img/blog/20190212/demo.jpg" alt="demo"></p>
+<p>分割线</p>
+<hr>
+<p>分割线</p>
+<ol>
+<li><p>在css中html和body是有区别的，大家常对body写背景色，若对html上写背景色#ccc，这时查找body中css的background属性也没有继承#ccc，但是整个可视区的背景色确是#ccc。猜想：这是浏览器的机制所致。</p>
+</li>
+<li><p>body中对其写height: 100%;是不起作用的！可这样写<code>body { height: 100vh; }</code>，这样body的高度就是整个可视区。 vh这个单位我也是使用的不多，后来发现它是针对可视区的高度，在某些场景很实用。如：在移动端的actionsheet中高度可设置为80vh，在对其加上滚动属性，效果很实用。如下图： </p>
+</li>
+</ol>
+<p><img src="http://139.199.23.2/img/blog/20190509/actionsheet.jpg" alt="actionsheet"></p>
+<p>接着上面的聊： body写height: 100%;无效。但html写height: 100%;高度却可以铺满整个屏。这个时候，在对body写height: 100%;body的高度也铺满整个屏，其实这里面的原因：html的height: 100%;生效 =&gt; 高度铺满屏 =&gt; body继承了其高 =&gt; 高度也铺满整个屏。</p>
+<p>总结：有些小伙伴就是直接写：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>, <span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其实这里面body的高度是继承了html而来！</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/html一些不常用标签/" data-id="cjui0jovf0006wcvh0k8ms84m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/html一些不常用标签/" data-id="cjvg8oaxh00040gvh7gthzwom" class="article-share-link">Share</a>
       
       
     </footer>
