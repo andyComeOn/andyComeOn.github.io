@@ -62,6 +62,101 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-jq中一些总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/22/jq中一些总结/" class="article-date">
+  <time datetime="2019-02-22T06:40:54.000Z" itemprop="datePublished">2019-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/22/jq中一些总结/">jq中一些总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、标签下的data-总结"><a href="#1、标签下的data-总结" class="headerlink" title="1、标签下的data-**总结"></a>1、标签下的data-**总结</h3><p><strong>写法一：</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"el1"</span> <span class="attr">data-isdata</span> = <span class="string">"1"</span>&gt;</span>标签1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"el2"</span> <span class="attr">data-isData</span> = <span class="string">"2"</span>&gt;</span>标签2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"el3"</span> <span class="attr">data-is_Data</span> = <span class="string">"3"</span>&gt;</span>标签3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log($(<span class="string">'.el1'</span>).data(<span class="string">'isdata'</span>));  <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'.el2'</span>).data(<span class="string">'isData'</span>));  <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'.el3'</span>).data(<span class="string">'isdata'</span>));  <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确的用法</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'.el2'</span>).data(<span class="string">'isdata'</span>)); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'.el3'</span>).data(<span class="string">'is_data'</span>)); <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 总结就是遇见大写的就转为小写即可</span></span><br></pre></td></tr></table></figure>
+<p>说明：保留几位小数点，参数n设置为几！</p>
+<hr>
+<h3 id="2、简单的分页逻辑"><a href="#2、简单的分页逻辑" class="headerlink" title="2、简单的分页逻辑"></a>2、简单的分页逻辑</h3><p><strong>方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">page</span>(<span class="params">total, pagesize = <span class="number">10</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> tmp = (total / pagesize).toString();</span><br><span class="line">    <span class="keyword">if</span> (tmp.indexOf(<span class="string">'.'</span>) == <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> tmp - <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.ceil(tmp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(page(<span class="number">21</span>, <span class="number">22</span>));</span><br></pre></td></tr></table></figure>
+<p>说明：第一个参数是数据的总数量，第二个参数是每页数量，该函数抛出的是总共有几页！</p>
+<hr>
+<h3 id="3、数字字符串转数字"><a href="#3、数字字符串转数字" class="headerlink" title="3、数字字符串转数字"></a>3、数字字符串转数字</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'1'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a - <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(a));</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="4、函数传参"><a href="#4、函数传参" class="headerlink" title="4、函数传参"></a>4、函数传参</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">todo</span>(<span class="params">a, b = <span class="number">2</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + <span class="string">'|'</span> + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(todo(<span class="number">1</span>, <span class="number">3</span>)); <span class="comment">// '1|3'</span></span><br><span class="line"><span class="built_in">console</span>.log(todo(<span class="number">1</span>)); <span class="comment">// '1|2'</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/22/jq中一些总结/" data-id="cjwk69hky0009ygvh15s9sfdt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JS封装备份" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/22/JS封装备份/" class="article-date">
+  <time datetime="2019-02-22T06:40:54.000Z" itemprop="datePublished">2019-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/22/JS封装备份/">JS封装备份</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法"><a href="#1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法" class="headerlink" title="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法"></a>1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">fixto(number, n = <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = number.toString();</span><br><span class="line">    <span class="keyword">const</span> arr = result.split(<span class="string">'.'</span>);</span><br><span class="line">    <span class="keyword">const</span> integer = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> decimal = arr[<span class="number">1</span>];</span><br><span class="line">    result = integer + <span class="string">'.'</span> + decimal.substr(<span class="number">0</span>, n);  </span><br><span class="line">    <span class="keyword">const</span> last = decimal.substr(n, <span class="number">1</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 四舍五入，转换为整数再处理，避免浮点数精度的损失</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(last, <span class="number">10</span>) &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> x = <span class="built_in">Math</span>.pow(<span class="number">10</span>, n); </span><br><span class="line">        result = ((<span class="built_in">parseFloat</span>(result) * x) + <span class="number">1</span>) / x;  </span><br><span class="line">        result = result.toFixed(n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>说明：保留几位小数点，参数n设置为几！</p>
+<hr>
+<h3 id="2、简单的分页逻辑"><a href="#2、简单的分页逻辑" class="headerlink" title="2、简单的分页逻辑"></a>2、简单的分页逻辑</h3><p><strong>方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">page</span>(<span class="params">total, pagesize = <span class="number">10</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> tmp = (total / pagesize).toString();</span><br><span class="line">    <span class="keyword">if</span> (tmp.indexOf(<span class="string">'.'</span>) == <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> tmp - <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.ceil(tmp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(page(<span class="number">21</span>, <span class="number">22</span>));</span><br></pre></td></tr></table></figure>
+<p>说明：第一个参数是数据的总数量，第二个参数是每页数量，该函数抛出的是总共有几页！</p>
+<hr>
+<h3 id="3、数字字符串转数字"><a href="#3、数字字符串转数字" class="headerlink" title="3、数字字符串转数字"></a>3、数字字符串转数字</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'1'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a - <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(a));</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="4、函数传参"><a href="#4、函数传参" class="headerlink" title="4、函数传参"></a>4、函数传参</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">todo</span>(<span class="params">a, b = <span class="number">2</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + <span class="string">'|'</span> + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(todo(<span class="number">1</span>, <span class="number">3</span>)); <span class="comment">// '1|3'</span></span><br><span class="line"><span class="built_in">console</span>.log(todo(<span class="number">1</span>)); <span class="comment">// '1|2'</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/22/JS封装备份/" data-id="cjwk69hk80001ygvh1qi3r1pi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-设置路由器的一次记录" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/02/15/设置路由器的一次记录/" class="article-date">
@@ -95,7 +190,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/15/设置路由器的一次记录/" data-id="cjvg8oayr000n0gvhrhdneqgf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/15/设置路由器的一次记录/" data-id="cjwk69hn8000qygvhwlidds5y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -150,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/15/CSS字体行高相关/" data-id="cjvg8oavu00000gvh9ss1eqxq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/15/CSS字体行高相关/" data-id="cjwk69hk20000ygvhgl393xzg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -192,7 +287,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/13/layui的模块化与非模块化介绍/" data-id="cjvg8oayg000i0gvh97ot7qi7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/13/layui的模块化与非模块化介绍/" data-id="cjwk69hm1000lygvh2nsp6ybv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -245,7 +340,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/13/layui中form的验证记录/" data-id="cjvg8oayb000f0gvhcx4kar7z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/13/layui中form的验证记录/" data-id="cjwk69hlw000jygvh5ce4b0cr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -326,7 +421,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/html一些不常用标签/" data-id="cjvg8oaxh00040gvh7gthzwom" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/html一些不常用标签/" data-id="cjwk69hlb000cygvhus5tcc1o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -395,7 +490,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/js默认行为和事件冒泡/" data-id="cjvg8oaye000h0gvhbvxlkk9c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/js默认行为和事件冒泡/" data-id="cjwk69hlt000iygvhgk67p6my" class="article-share-link">Share</a>
       
       
     </footer>
@@ -419,7 +514,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/12/jqready/">jqready</a>
+      <a class="article-title" href="/2019/02/12/jqready/">jq中ready函数总结</a>
     </h1>
   
 
@@ -452,7 +547,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/jqready/" data-id="cjvg8oaxu00090gvhlpua6qj0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/jqready/" data-id="cjwk69hkw0008ygvhhxa8ff4d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -517,162 +612,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="cjvg8oaym000l0gvhf77msk9v" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-美团2019春节干货" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/26/美团2019春节干货/" class="article-date">
-  <time datetime="2019-01-26T13:48:13.000Z" itemprop="datePublished">2019-01-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/26/美团2019春节干货/">美团2019春节干货</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="这是美团2019春节干货包含一些电子书"><a href="#这是美团2019春节干货包含一些电子书" class="headerlink" title="这是美团2019春节干货包含一些电子书"></a>这是美团2019春节干货包含一些电子书</h4><p>温馨提醒：文件有点大（全部下载约350M），请耐心等候下载。建议通过WIFI下载，或将地址复制到PC端，使用浏览器下载。</p>
-<ol>
-<li>【前端系列】下载链接：<a href="http://dpurl.cn/DWVhPpS" target="_blank" rel="noopener">http://dpurl.cn/DWVhPpS</a></li>
-<li>【后台系列】下载链接：<a href="http://dpurl.cn/obtIVn" target="_blank" rel="noopener">http://dpurl.cn/obtIVn</a></li>
-<li>【系统系列】下载链接：<a href="http://dpurl.cn/zTDWq8Q" target="_blank" rel="noopener">http://dpurl.cn/zTDWq8Q</a></li>
-<li>【算法系列】下载链接：<a href="http://dpurl.cn/ODj5qAB" target="_blank" rel="noopener">http://dpurl.cn/ODj5qAB</a></li>
-<li>【运维系列】下载链接：<a href="http://dpurl.cn/6zjgHFj" target="_blank" rel="noopener">http://dpurl.cn/6zjgHFj</a></li>
-<li>【测试系列】下载链接：<a href="http://dpurl.cn/wfKQqy" target="_blank" rel="noopener">http://dpurl.cn/wfKQqy</a></li>
-<li>【工程师成长系列】下载链接：<a href="http://dpurl.cn/p5sPoKT" target="_blank" rel="noopener">http://dpurl.cn/p5sPoKT</a></li>
-<li>【2018年美团点评技术文章合辑】下载链接：<a href="http://dpurl.cn/iLGBtuS" target="_blank" rel="noopener">http://dpurl.cn/iLGBtuS</a></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="cjvg8oayk000k0gvhz93w9e8m" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Linux一些常用命令总结" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/25/Linux一些常用命令总结/" class="article-date">
-  <time datetime="2019-01-25T02:23:45.000Z" itemprop="datePublished">2019-01-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/25/Linux一些常用命令总结/">Linux一些常用命令总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="Linux一些常用命令总结"><a href="#Linux一些常用命令总结" class="headerlink" title="Linux一些常用命令总结"></a>Linux一些常用命令总结</h4><p>最近在提交git时候（我使用的是git的命令行），在执行git pull时候出现了，让编辑merge提交。一时间束手无策。决定好好看看这个命令，把常用的命令记录一下，主要参考的这篇帖子<a href="https://www.cnblogs.com/yjd_hycf_space/p/7730690.html" target="_blank" rel="noopener">Linux常用命令大全（非常全！！！）</a></p>
-<hr>
-<h5 id="下面的一些常用指令我在git-bash中测试，git-bash只是模拟了部分的linux指令。"><a href="#下面的一些常用指令我在git-bash中测试，git-bash只是模拟了部分的linux指令。" class="headerlink" title="下面的一些常用指令我在git bash中测试，git bash只是模拟了部分的linux指令。"></a>下面的一些常用指令我在git bash中测试，git bash只是模拟了部分的linux指令。</h5><ul>
-<li>clear：清除记录</li>
-<li>pwd：显示当前的目录</li>
-<li>cd ~：直接进入到用户的主目录</li>
-<li>cd -：返回上次所在目录</li>
-<li>ls：我理解的是把该目录下的所有文件列出来</li>
-<li>ll：我理解的是把该目录下的所有文件以列表的形式显示出来，显示的有文件创建时间，还有文件夹（drwxr-xr-x）与文件（-rw-r–r–）的区别，这个ll指令没有细查，可能是ls -l的简写，在文档上没有找到ll的指令，只是找到了指令ls -l</li>
-<li>mkdir dir1：创建一个目录dir1 </li>
-<li>mkdir dir2 dir3：创建2个平级目录dir2 dir3</li>
-<li>mkdir -p tmp/dir1/dir2：创建一个目录树 </li>
-</ul>
-<hr>
-<h5 id="在windows的cmd下面也有一些类命令"><a href="#在windows的cmd下面也有一些类命令" class="headerlink" title="在windows的cmd下面也有一些类命令"></a>在windows的cmd下面也有一些类命令</h5><ul>
-<li>cd：命令进去目录</li>
-<li>cls：清除记录</li>
-</ul>
-<hr>
-<h5 id="删除和移动指令"><a href="#删除和移动指令" class="headerlink" title="删除和移动指令"></a>删除和移动指令</h5><ul>
-<li>rm -f xx.html ：删除一个文件</li>
-<li>rmdir dir1：删除dir1目录，并且这个目录只能是空目录，其中不能有文件，若有文件命令行会提示 Directory not empty，感觉这个命令不用记，没什么卵用啊，一般一个目录都有文件。</li>
-<li>rmdir dir1 dir2：删除dir1和dir2目录</li>
-<li>rm -rf dir1：删除dir1目录并且把该目录下的文件内容都删除了</li>
-<li>rm -rf dir1 dir2：同时删除两个目录及它们的内容</li>
-<li>mv dir1 dir2 ●把dir1移动到dir2目录</li>
-</ul>
-<hr>
-<h5 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h5><ul>
-<li>cp file1 dir2：●复制file1文件到dir2目录</li>
-<li>cp dir1/* dir2：●复制dir1下面的所有文件到dir2目录，切记是copy的dir1下所有文件，不包含dir1下的目录</li>
-<li>cp dir1/* . ：●复制dir1下面的所有文件到当前目录</li>
-<li>cp -a dir1 dir2：●复制dir1（包括dir1下边的所有目录和文件）到dir2</li>
-<li>cp -a dir1/* dir2：●复制dir1下边的所有目录和文件到dir2</li>
-</ul>
-<hr>
-<h5 id="新建文件"><a href="#新建文件" class="headerlink" title="新建文件"></a>新建文件</h5><p>linux的touch命令不常用，一般在使用make的时候可能会用到，用来修改文件时间戳，或者新建一个不存在的文件，但是在git bash中使用touch aa.txt会直接生成文件。</p>
-<ul>
-<li>touch file1 ：创建一个新文件</li>
-</ul>
-<hr>
-<h5 id="修改、编辑文件"><a href="#修改、编辑文件" class="headerlink" title="修改、编辑文件"></a>修改、编辑文件</h5><ul>
-<li>首先进到目录下，直接键入vim aa.txt 或者是vim dir1/bb.txt会出现如下截图：</li>
-</ul>
-<p><img src="http://139.199.23.2/img/blog/20190125/vim-edit-status.jpg" alt="vim-edit-status"></p>
-<p>按下【i, I, o, O, a, A, r, R】等任何一个字母之后才会进入编辑模式，不过大家一般都是按下i，其本意就是insert（插入）之意。按下i之后显示插入状态：</p>
-<p><img src="http://139.199.23.2/img/blog/20190125/vim-insert-status.jpg" alt="vim-insert-status"> </p>
-<p>想怎么编辑就怎能编辑。我编辑的输入的一句话：“我在进行vim编辑”。编辑之后需要按下ESC才退出编辑状态，如下截图：</p>
-<p><img src="http://139.199.23.2/img/blog/20190125/vim-esc-status.jpg" alt="vim-esc-status"> </p>
-<p>这时候选择你想要退出的模式：</p>
-<ul>
-<li>:w 保存编辑的内容，执行了这个命令指令，还是在命令行模式。</li>
-<li>:w! 强制写入该文件，但跟你对该文件的权限有关</li>
-<li>:q 离开vi</li>
-<li>:q! 不想保存修改强制离开！！这个也是很常用</li>
-<li>:wq 保存后离开，这个指令感觉是:w :q的简写</li>
-<li>:x 保存后离开</li>
-</ul>
-<hr>
-<h5 id="压缩解压文件"><a href="#压缩解压文件" class="headerlink" title="压缩解压文件"></a>压缩解压文件</h5><ul>
-<li>打包网上说了很多种有zip rar tar等很多的指令但是在git bush上我只能使用tar</li>
-<li>tar –cvf xx.tar file1 创建一个非压缩的xx.tar 这句话我理解创建一个非压缩的文件，意为，直接压缩的文件，压缩比很小所以叫非压缩。</li>
-<li>tar –cvf xx.tar file file1 file2 dir1  创建一个包含了 ‘file1’, ‘file2’ 以及 ‘dir1’的档案文件</li>
-<li>tar -tf archive.tar 显示一个包中的内容 </li>
-<li>tar -xvf archive.tar 释放一个包</li>
-<li>tar -xvf archive.tar -C /tmp 将压缩包释放到 /tmp目录下 </li>
-<li>其中压缩解压指令不好记忆可参考<a href="http://www.360doc.com/content/11/0620/13/2104556_128204591.shtml" target="_blank" rel="noopener">tar参数详解</a>   </li>
-</ul>
-<hr>
-<h5 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h5><ul>
-<li>cat 某个文件，即在命令行显示文件内容</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="cjvg8oaxe00030gvhk8eo37m7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="cjwk69hmb000oygvh5uy9u6e2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -705,7 +645,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -716,6 +656,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/05/09/CSS的normalize-css的文档说明/">CSS的normalize.css的文档说明</a>
+          </li>
         
           <li>
             <a href="/2019/04/15/js数组排序去重等/">js数组排序去重等</a>
@@ -731,10 +675,6 @@
         
           <li>
             <a href="/2019/04/11/js构造函数及原型链继承/">js的几种继承</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/15/eval总结/">eval总结</a>
           </li>
         
       </ul>

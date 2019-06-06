@@ -5,19 +5,19 @@
   
 
   
-  <title>JS封装备份 | Hexo</title>
+  <title>jq中一些总结 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法方法：1234567891011121314151617fixto(number, n = 2) &amp;#123;    let result = number.toString();    const arr = result.split(&apos;.&apos;);    const integer = arr[0];    const decimal = a">
+  <meta name="description" content="1、标签下的data-**总结写法一：123&amp;lt;div class=&quot;el1&quot; data-isdata = &quot;1&quot;&amp;gt;标签1&amp;lt;/div&amp;gt;&amp;lt;div class=&quot;el2&quot; data-isData = &quot;2&quot;&amp;gt;标签2&amp;lt;/div&amp;gt;&amp;lt;div class=&quot;el3&quot; data-is_Data = &quot;3&quot;&amp;gt;标签3&amp;lt;/div&amp;gt; 12345678">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS封装备份">
-<meta property="og:url" content="http://yoursite.com/2019/02/22/JS封装备份/index.html">
+<meta property="og:title" content="jq中一些总结">
+<meta property="og:url" content="http://yoursite.com/2019/02/22/jq中一些总结/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法方法：1234567891011121314151617fixto(number, n = 2) &amp;#123;    let result = number.toString();    const arr = result.split(&apos;.&apos;);    const integer = arr[0];    const decimal = a">
+<meta property="og:description" content="1、标签下的data-**总结写法一：123&amp;lt;div class=&quot;el1&quot; data-isdata = &quot;1&quot;&amp;gt;标签1&amp;lt;/div&amp;gt;&amp;lt;div class=&quot;el2&quot; data-isData = &quot;2&quot;&amp;gt;标签2&amp;lt;/div&amp;gt;&amp;lt;div class=&quot;el3&quot; data-is_Data = &quot;3&quot;&amp;gt;标签3&amp;lt;/div&amp;gt; 12345678">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-06T03:52:40.307Z">
+<meta property="og:updated_time" content="2019-06-06T04:38:09.400Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS封装备份">
-<meta name="twitter:description" content="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法方法：1234567891011121314151617fixto(number, n = 2) &amp;#123;    let result = number.toString();    const arr = result.split(&apos;.&apos;);    const integer = arr[0];    const decimal = a">
+<meta name="twitter:title" content="jq中一些总结">
+<meta name="twitter:description" content="1、标签下的data-**总结写法一：123&amp;lt;div class=&quot;el1&quot; data-isdata = &quot;1&quot;&amp;gt;标签1&amp;lt;/div&amp;gt;&amp;lt;div class=&quot;el2&quot; data-isData = &quot;2&quot;&amp;gt;标签2&amp;lt;/div&amp;gt;&amp;lt;div class=&quot;el3&quot; data-is_Data = &quot;3&quot;&amp;gt;标签3&amp;lt;/div&amp;gt; 12345678">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,9 +64,9 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-JS封装备份" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-jq中一些总结" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/02/22/JS封装备份/" class="article-date">
+    <a href="/2019/02/22/jq中一些总结/" class="article-date">
   <time datetime="2019-02-22T06:40:54.000Z" itemprop="datePublished">2019-02-22</time>
 </a>
     
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JS封装备份
+      jq中一些总结
     </h1>
   
 
@@ -86,7 +86,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法"><a href="#1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法" class="headerlink" title="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法"></a>1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">fixto(number, n = <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = number.toString();</span><br><span class="line">    <span class="keyword">const</span> arr = result.split(<span class="string">'.'</span>);</span><br><span class="line">    <span class="keyword">const</span> integer = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> decimal = arr[<span class="number">1</span>];</span><br><span class="line">    result = integer + <span class="string">'.'</span> + decimal.substr(<span class="number">0</span>, n);  </span><br><span class="line">    <span class="keyword">const</span> last = decimal.substr(n, <span class="number">1</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 四舍五入，转换为整数再处理，避免浮点数精度的损失</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(last, <span class="number">10</span>) &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> x = <span class="built_in">Math</span>.pow(<span class="number">10</span>, n); </span><br><span class="line">        result = ((<span class="built_in">parseFloat</span>(result) * x) + <span class="number">1</span>) / x;  </span><br><span class="line">        result = result.toFixed(n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+        <h3 id="1、标签下的data-总结"><a href="#1、标签下的data-总结" class="headerlink" title="1、标签下的data-**总结"></a>1、标签下的data-**总结</h3><p><strong>写法一：</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"el1"</span> <span class="attr">data-isdata</span> = <span class="string">"1"</span>&gt;</span>标签1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"el2"</span> <span class="attr">data-isData</span> = <span class="string">"2"</span>&gt;</span>标签2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"el3"</span> <span class="attr">data-is_Data</span> = <span class="string">"3"</span>&gt;</span>标签3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log($(<span class="string">'.el1'</span>).data(<span class="string">'isdata'</span>));  <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'.el2'</span>).data(<span class="string">'isData'</span>));  <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'.el3'</span>).data(<span class="string">'isdata'</span>));  <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确的用法</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'.el2'</span>).data(<span class="string">'isdata'</span>)); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'.el3'</span>).data(<span class="string">'is_data'</span>)); <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 总结就是遇见大写的就转为小写即可</span></span><br></pre></td></tr></table></figure>
 <p>说明：保留几位小数点，参数n设置为几！</p>
 <hr>
 <h3 id="2、简单的分页逻辑"><a href="#2、简单的分页逻辑" class="headerlink" title="2、简单的分页逻辑"></a>2、简单的分页逻辑</h3><p><strong>方法：</strong></p>
@@ -101,7 +102,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/22/JS封装备份/" data-id="cjwk69hk80001ygvh1qi3r1pi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/22/jq中一些总结/" data-id="cjwk69hky0009ygvh15s9sfdt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -110,19 +111,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/02/22/jq中一些总结/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/02/26/Vuex总结/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          jq中一些总结
+          Vuex总结
         
       </div>
     </a>
   
   
-    <a href="/2019/02/15/设置路由器的一次记录/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/02/22/JS封装备份/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">设置路由器的一次记录</div>
+      <div class="article-nav-title">JS封装备份</div>
     </a>
   
 </nav>
