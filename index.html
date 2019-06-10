@@ -62,6 +62,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-h5中img标签的边框问题" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/10/h5中img标签的边框问题/" class="article-date">
+  <time datetime="2019-06-10T05:22:11.000Z" itemprop="datePublished">2019-06-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/10/h5中img标签的边框问题/">h5中img标签的边框问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="总结一下h5中img标签的边框问题"><a href="#总结一下h5中img标签的边框问题" class="headerlink" title="总结一下h5中img标签的边框问题"></a>总结一下h5中img标签的边框问题</h3><p>我们常在一些重置css如：reset.css、normaize.css 看到：<code>border-style: none; border: 0;</code>。在网页中搜到img标签的边框问题。自己总结如下：</p>
+<ol>
+<li>网上说img有边框问题，我在chrome（版本 74.0.3729.169（正式版本） （64 位））中测试无发现此bug。</li>
+<li>网上说解决边框问题方法：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span><span class="selector-attr">[src=""]</span>,</span><br><span class="line"><span class="selector-tag">img</span><span class="selector-pseudo">:not(</span><span class="selector-attr">[src]</span>)&#123;</span><br><span class="line">    <span class="attribute">opacity</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>确实可以解决部门场景的img边框，但这是有条件的。上面css代码指：该img标签无src属性或src属性值为空。试想一下写前端代码的小伙伴谁会忘记写src属性？若忘记写src属性，则图片渲染不出来，Ta也会发现该bug！若开发小伙伴就是如下写法：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.imgWrap</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">	<span class="attribute">background</span>: antiquewhite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.imgSrc</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">64px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"imgWrap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"imgSrc"</span> <span class="attr">src</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>渲染效果：<br><img src="http://139.199.23.2/img/blog/20190610/img_src1.jpg" alt="opacity=0效果"></p>
+<p>确实img图片无渲染，无边框。opacity:0;把img占位区的透明度给置为0，所以不展示边框。</p>
+<hr>
+<ol start="3">
+<li>正常情况，对img写了src属性，可是图片没有加载过来，2中的解决方法依然是有边框。代码如下：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.imgWrap</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">	<span class="attribute">background</span>: antiquewhite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.imgSrc</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">64px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"imgWrap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"imgSrc"</span> <span class="attr">src</span>=<span class="string">"favicon.ic"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>网上说的方法大多不行，自己思考你给图片写了宽高，但图片没有加载出来， 浏览器就按照你写的宽高给img添加默认的边框。<br><img src="http://139.199.23.2/img/blog/20190610/img_src2.jpg" alt="无加载出图片依旧有边框"></p>
+<p>默认的没有加载出的图片大小是16x16：<br><img src="http://139.199.23.2/img/blog/20190610/img_src3.jpg" alt="无加载出默认图片大小"></p>
+<p>但是一般情况大家都会对图片写宽高啊! 最后得出：只对图片写宽（刚好图片有一个机制是宽度确认高自己是适配），加载不出来，也有一个默认16x16的图片提示，本来浏览器就是这样提示用户的，设计、产品、老板就只顾着说，哈哈。 最后得出网上所谓的方法也是鸡肋办法，不实用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/10/h5中img标签的边框问题/" data-id="cjwq195010007qgvhu7tobziz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CSS的normalize-css的文档说明" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/05/09/CSS的normalize-css的文档说明/" class="article-date">
@@ -88,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="cjwk69hkc0002ygvh9z2lijf5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="cjwq194zc0000qgvh8o6ytq4i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -146,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/15/js数组排序去重等/" data-id="cjwk69hlr000hygvh2japdufp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/15/js数组排序去重等/" data-id="cjwq1950r000gqgvhbwe857y3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -201,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="cjwk69hll000fygvhyrm9eomc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="cjwq1950p000fqgvh1hj53rya" class="article-share-link">Share</a>
       
       
     </footer>
@@ -286,7 +341,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/js function的相关总结/" data-id="cjwk69hli000eygvhxw1hw7fg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/js function的相关总结/" data-id="cjwq1950o000eqgvh2g2mmtei" class="article-share-link">Share</a>
       
       
     </footer>
@@ -330,7 +385,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/js构造函数及原型链继承/" data-id="cjwk69hlo000gygvh0yczbwxt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/js构造函数及原型链继承/" data-id="cjwq1950t000hqgvhwadfr2ax" class="article-share-link">Share</a>
       
       
     </footer>
@@ -407,7 +462,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/15/eval总结/" data-id="cjwk69hl6000bygvhb5qaom4t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/15/eval总结/" data-id="cjwq195040008qgvh4pdgzn5c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -455,7 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/14/js中的逗号/" data-id="cjwk69hlf000dygvhx1e4xn9r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/14/js中的逗号/" data-id="cjwq1950m000dqgvh8b2jup6l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -498,7 +553,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/14/layui的form说明/" data-id="cjwk69hm4000mygvhwjcol9oy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/14/layui的form说明/" data-id="cjwq1950x000kqgvha7kvov57" class="article-share-link">Share</a>
       
       
     </footer>
@@ -554,68 +609,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/28/故事目录序/" data-id="cjwk69hm7000nygvh5jf8u204" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Vuex总结" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/02/26/Vuex总结/" class="article-date">
-  <time datetime="2019-02-26T07:35:27.000Z" itemprop="datePublished">2019-02-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/26/Vuex总结/">Vuex总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="这是对Vuex的一次小总结"><a href="#这是对Vuex的一次小总结" class="headerlink" title="这是对Vuex的一次小总结"></a>这是对Vuex的一次小总结</h4><h5 id="vuex是什么？"><a href="#vuex是什么？" class="headerlink" title="vuex是什么？"></a>vuex是什么？</h5><ol>
-<li><p>vuex它是解决：针对vue中的组件，当应用遇到多个组件共享状态时，单向数据流的简洁性很容易被破坏：</p>
-<ul>
-<li>多个视图依赖于同一状态。</li>
-<li>来自不同视图的行为需要变更同一状态 。<br>总结起来就是：有些场景如兄弟组件，通信很麻烦；还有就是多层嵌套Son.vue &gt; Father.vue &gt; Grandfa.vue孙子给爷爷通信也很困难。有困难，为了解决困难，Vuex应运而生！</li>
-</ul>
-</li>
-<li><p>每次看每次忘！到底怎么梳理</p>
-<ul>
-<li>首先记住就三个大的状态管理部门：<code>action</code>，<code>state</code>，<code>view</code>最开始我们定义的state，就是显示在页面上(view)的状态，在页面(view)上用户操作之后，就是我们常说的action。</li>
-<li>详解：Father.vue中引入了Son.vue，在Father.vue页面对Son.vue组件进行操作，我们引入了dispatch的概念，即：<code>$store.diapatch(&#39;switch_dialog&#39;)</code>，代码的意思是分发<code>switch_dialog</code>方法，该方法就是store中action的方法。</li>
-<li>store中action下的switch_dialog方法，又进行了<code>context.commit(&#39;switch_dialog&#39;)</code>，这个context.commit中的switch_dialog，就是mutation中的switch_dialog，在mutation的switch_dialog终于进行了代码的逻辑操作，如：<code>state.show = true</code>，最开始show的状态是false。</li>
-<li>这就是store的过程，下面把代码截图展示一下。</li>
-</ul>
-</li>
-<li><p>截图如下：</p>
-</li>
-</ol>
-<p>Father.vue中有2个容器（加了click事件）代码：</p>
-<p><img src="http://139.199.23.2/img/blog/20190226/father.vue.jpg" alt="father.vue"></p>
-<p>其中的2个组件分别是<code>dialog.vue</code>、<code>dialogTab.vue</code>，在这两个组件中代码截图（只截图dialog.vue）如下：</p>
-<p><img src="http://139.199.23.2/img/blog/20190226/son-dialog.jpg" alt="son-dialog.vue"></p>
-<p>最后的store中的<code>dialog.js</code>、<code>dialogTab.js</code>的代码截图如下：</p>
-<p><img src="http://139.199.23.2/img/blog/20190226/store-dialog.jpg" alt="store-dialog.jpg"></p>
-<p><img src="http://139.199.23.2/img/blog/20190226/store-dialog-tab.jpg" alt="store-dialog-tab.jpg"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/26/Vuex总结/" data-id="cjwk69hkt0007ygvhif7m2xvs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/28/故事目录序/" data-id="cjwq19512000nqgvhn40zgo8f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -648,7 +642,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -659,6 +653,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/06/10/h5中img标签的边框问题/">h5中img标签的边框问题</a>
+          </li>
         
           <li>
             <a href="/2019/05/09/CSS的normalize-css的文档说明/">CSS的normalize.css的文档说明</a>
@@ -674,10 +672,6 @@
         
           <li>
             <a href="/2019/04/11/js function的相关总结/">js函数的一些记录</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/11/js构造函数及原型链继承/">js的几种继承</a>
           </li>
         
       </ul>
