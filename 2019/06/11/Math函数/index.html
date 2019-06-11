@@ -5,22 +5,19 @@
   
 
   
-  <title>layui的模块化与非模块化介绍 | Hexo</title>
+  <title>Math函数 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="layui的模块化与非模块化介绍 下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：  我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样">
+  <meta name="description" content="总结一下Math相关函数 我们在写涉及到钱业务逻辑前端页面时，会有保留2位小数的场景，后台一般返回钱数相关字段的值是字符串，如：3.00，但是有时候页面需要计算钱数，如 3.00 + 5.00 = &amp;gt; 8，这时候8转为8.00比较符合场景，这时候可能会使用到toFixed(2)。  toFixed用法 ：  1NumberObject.toFixed(num); 上面意思是针对Number型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="layui的模块化与非模块化介绍">
-<meta property="og:url" content="http://yoursite.com/2019/02/13/layui的模块化与非模块化介绍/index.html">
+<meta property="og:title" content="Math函数">
+<meta property="og:url" content="http://yoursite.com/2019/06/11/Math函数/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="layui的模块化与非模块化介绍 下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：  我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样">
+<meta property="og:description" content="总结一下Math相关函数 我们在写涉及到钱业务逻辑前端页面时，会有保留2位小数的场景，后台一般返回钱数相关字段的值是字符串，如：3.00，但是有时候页面需要计算钱数，如 3.00 + 5.00 = &amp;gt; 8，这时候8转为8.00比较符合场景，这时候可能会使用到toFixed(2)。  toFixed用法 ：  1NumberObject.toFixed(num); 上面意思是针对Number型">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://139.199.23.2/img/blog/20190213/layui-on-err.jpg">
-<meta property="og:image" content="http://139.199.23.2/img/blog/20190213/verify-tips.jpg">
-<meta property="og:updated_time" content="2019-02-14T01:07:14.197Z">
+<meta property="og:updated_time" content="2019-06-11T10:31:14.165Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="layui的模块化与非模块化介绍">
-<meta name="twitter:description" content="layui的模块化与非模块化介绍 下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：  我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样">
-<meta name="twitter:image" content="http://139.199.23.2/img/blog/20190213/layui-on-err.jpg">
+<meta name="twitter:title" content="Math函数">
+<meta name="twitter:description" content="总结一下Math相关函数 我们在写涉及到钱业务逻辑前端页面时，会有保留2位小数的场景，后台一般返回钱数相关字段的值是字符串，如：3.00，但是有时候页面需要计算钱数，如 3.00 + 5.00 = &amp;gt; 8，这时候8转为8.00比较符合场景，这时候可能会使用到toFixed(2)。  toFixed用法 ：  1NumberObject.toFixed(num); 上面意思是针对Number型">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -67,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-layui的模块化与非模块化介绍" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-Math函数" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/02/13/layui的模块化与非模块化介绍/" class="article-date">
-  <time datetime="2019-02-13T05:57:38.000Z" itemprop="datePublished">2019-02-13</time>
+    <a href="/2019/06/11/Math函数/" class="article-date">
+  <time datetime="2019-06-11T09:25:00.000Z" itemprop="datePublished">2019-06-11</time>
 </a>
     
   </div>
@@ -81,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      layui的模块化与非模块化介绍
+      Math函数
     </h1>
   
 
@@ -89,17 +86,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="layui的模块化与非模块化介绍"><a href="#layui的模块化与非模块化介绍" class="headerlink" title="layui的模块化与非模块化介绍"></a>layui的模块化与非模块化介绍</h4><ol>
-<li>下面这个帖子<a href="https://www.cnblogs.com/qlqwjy/p/8975931.html" target="_blank" rel="noopener">layui的模块化和非模块化使用</a>，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：<br><img src="http://139.199.23.2/img/blog/20190213/layui-on-err.jpg" alt="layui-on-err"></li>
+        <h3 id="总结一下Math相关函数"><a href="#总结一下Math相关函数" class="headerlink" title="总结一下Math相关函数"></a>总结一下Math相关函数</h3><ol>
+<li>我们在写涉及到钱业务逻辑前端页面时，会有保留2位小数的场景，后台一般返回钱数相关字段的值是字符串，如：<code>3.00</code>，但是有时候页面需要计算钱数，如 3.00 + 5.00 = &gt; 8，这时候8转为8.00比较符合场景，这时候可能会使用到toFixed(2)。</li>
 </ol>
-<p>我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样写了<code>required lay-verify=&quot;&quot;</code>出现不了下面这个效果：</p>
-<p><img src="http://139.199.23.2/img/blog/20190213/verify-tips.jpg" alt="verify-tips"></p>
-<p>这感觉不合理！</p>
+<p>toFixed用法 ： </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NumberObject.toFixed(num);</span><br></pre></td></tr></table></figure>
+<p>上面意思是针对Number型，才能使用 <code>toFixed()</code>, 切记这个也是满足四舍五入的数学规则。</p>
+<ol start="2">
+<li>Math.ceil(num))，是只是向上取整数，但是若是3.00之类的数还是3 如下： <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.ceil(<span class="number">3.12</span>))   <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">Math</span>.ceil(<span class="number">3.00</span>))   <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>同理Math.floor()也是如此。</p>
+<ol start="3">
+<li>toString() 也是针对Number。但是它好像是有2进制的作用</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/13/layui的模块化与非模块化介绍/" data-id="cjwro5tkt000l40vh3rx664uj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="cjwro5tja000640vh0lmo77k0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -108,19 +113,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/02/15/CSS字体行高相关/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          CSS字体行高相关
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/02/13/layui中form的验证记录/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/06/10/h5中img标签的边框问题/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">layui中form的验证记录</div>
+      <div class="article-nav-title">h5中img标签的边框问题</div>
     </a>
   
 </nav>

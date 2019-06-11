@@ -62,6 +62,63 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-jqready" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/12/jqready/" class="article-date">
+  <time datetime="2019-02-12T03:14:09.000Z" itemprop="datePublished">2019-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/12/jqready/">jq中ready函数总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="记录一下jq的ready的几种写法"><a href="#记录一下jq的ready的几种写法" class="headerlink" title="记录一下jq的ready的几种写法"></a>记录一下jq的ready的几种写法</h4><ol>
+<li>最常用也是最标准</li>
+</ol>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// todo sth</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>是上面的简写</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// todo sth</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这种写法可能有很多人有疑问，jq的源码中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// jQuery的构造函数； </span></span><br><span class="line"><span class="keyword">var</span> jQuery = <span class="function"><span class="keyword">function</span>(<span class="params"> a, c </span>) </span>&#123; </span><br><span class="line"><span class="comment">// $(document).ready()的简写形式，只有在$(function()&#123;...&#125;)下才会执行； </span></span><br><span class="line"><span class="keyword">if</span> ( a &amp;&amp; <span class="keyword">typeof</span> a == <span class="string">"function"</span> &amp;&amp; jQuery.fn.ready ) <span class="keyword">return</span> jQuery(<span class="built_in">document</span>).ready(a); </span><br><span class="line"><span class="comment">// 确保参数a非空，默认值为document； </span></span><br><span class="line">a = a || jQuery.context || <span class="built_in">document</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 耶！找到了,我们再看下$这个方法的参数 </span></span><br><span class="line"><span class="comment">// $(selector,context) </span></span><br><span class="line"><span class="comment">// 第一个为选择器,第二个是容器 </span></span><br><span class="line"><span class="comment">// 如果不填就默认为document k</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>这个帖子上说是打酱油的</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jQuery(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// todo sth</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>看清楚</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jQuery(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// todo sth</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这种写法是为了避免其他插件中也使用了美元符号$，造成冲突，才传入参数，通过<code>jQuery.noConflict()</code>这个方法,我们可在代码中通过jQuery来代替$来使用,但又习惯了使用$怎么办?看下面代码:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jQuery.noConflict(); </span><br><span class="line">jQuery(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123; </span><br><span class="line">    alert($(<span class="string">"#ready1"</span>).html()); <span class="comment">//我们又能用上$符号了 </span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>上面的第二个jQuery不能使用$。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/12/jqready/" data-id="cjwro5tla000s40vhdz7j56qj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-浏览器中网址访问过程详解" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/29/浏览器中网址访问过程详解/" class="article-date">
@@ -117,7 +174,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="cjwq19514000oqgvh5d568281" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="cjwro5tkz000o40vh15i7cpg6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -164,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="cjwq19516000pqgvhrkrwnthf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="cjwro5tl8000r40vhpp5kd3a4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -272,7 +329,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="cjwq194zq0003qgvh99knq21l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="cjwro5tix000340vhr58q2su1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -316,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="cjwq19510000mqgvh6cke4362" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="cjwro5tkv000m40vhd627uspk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -381,7 +438,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/23/Shell总结/" data-id="cjwq194zx0005qgvhjxd9q9zz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/23/Shell总结/" data-id="cjwro5tk7000e40vhpa5lfuhv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -458,7 +515,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/MarkDown总结/" data-id="cjwq194zu0004qgvh8cvw8ffd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/MarkDown总结/" data-id="cjwro5tj2000440vhxkyb8kk4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -533,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/Hexo总结/" data-id="cjwq1951s000rqgvhyxexqycg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/Hexo总结/" data-id="cjwro5tis000240vh6i1z24xx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -578,7 +635,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="cjwq195060009qgvhjeawha9f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="cjwro5tjn000a40vhgg8kffcn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -624,6 +681,10 @@
       <ul>
         
           <li>
+            <a href="/2019/06/11/Math函数/">Math函数</a>
+          </li>
+        
+          <li>
             <a href="/2019/06/10/h5中img标签的边框问题/">h5中img标签的边框问题</a>
           </li>
         
@@ -637,10 +698,6 @@
         
           <li>
             <a href="/2019/04/12/js中的prototype总结/">js中的prototype总结</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/11/js function的相关总结/">js函数的一些记录</a>
           </li>
         
       </ul>
