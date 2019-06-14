@@ -5,16 +5,19 @@
   
 
   
-  <title>CSS的normalize.css的文档说明 | Hexo</title>
+  <title>layui中函数使用方法 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="CSS的normalize.css的文档说明">
-<meta property="og:url" content="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/index.html">
+  <meta name="description" content="总结一下layui的函数使用方法 针对声明函数如 onclick=myClick()，可在layui.use([], function(){})中写但是必须是window.myClick = function () {}，这能声明成功，但是有时候我们常常使用jq中的 $(this)，这时候this指向不是我们想要的当前元素，而是window。贤心在一篇帖子中回答使用此方法。  还有一种就是使用jq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="layui中函数使用方法">
+<meta property="og:url" content="http://yoursite.com/2019/06/14/layui中函数使用方法/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="总结一下layui的函数使用方法 针对声明函数如 onclick=myClick()，可在layui.use([], function(){})中写但是必须是window.myClick = function () {}，这能声明成功，但是有时候我们常常使用jq中的 $(this)，这时候this指向不是我们想要的当前元素，而是window。贤心在一篇帖子中回答使用此方法。  还有一种就是使用jq">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-09T07:32:46.393Z">
+<meta property="og:updated_time" content="2019-06-14T02:49:25.020Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS的normalize.css的文档说明">
+<meta name="twitter:title" content="layui中函数使用方法">
+<meta name="twitter:description" content="总结一下layui的函数使用方法 针对声明函数如 onclick=myClick()，可在layui.use([], function(){})中写但是必须是window.myClick = function () {}，这能声明成功，但是有时候我们常常使用jq中的 $(this)，这时候this指向不是我们想要的当前元素，而是window。贤心在一篇帖子中回答使用此方法。  还有一种就是使用jq">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -61,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-CSS的normalize-css的文档说明" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-layui中函数使用方法" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/05/09/CSS的normalize-css的文档说明/" class="article-date">
-  <time datetime="2019-05-09T07:32:46.000Z" itemprop="datePublished">2019-05-09</time>
+    <a href="/2019/06/14/layui中函数使用方法/" class="article-date">
+  <time datetime="2019-06-14T02:10:16.000Z" itemprop="datePublished">2019-06-14</time>
 </a>
     
   </div>
@@ -75,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      CSS的normalize.css的文档说明
+      layui中函数使用方法
     </h1>
   
 
@@ -83,11 +86,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h3 id="总结一下layui的函数使用方法"><a href="#总结一下layui的函数使用方法" class="headerlink" title="总结一下layui的函数使用方法"></a>总结一下layui的函数使用方法</h3><ol>
+<li><p>针对声明函数如 <code>onclick=myClick()</code>，可在layui.use([], function(){})中写但是必须是window.myClick = function () {}，这能声明成功，但是有时候我们常常使用jq中的 <code>$(this)</code>，这时候this指向不是我们想要的当前元素，而是window。贤心在一篇帖子中回答使用此方法。</p>
+</li>
+<li><p>还有一种就是使用jq绑定事件写在layui.use([], function(){})中，视情况而定。当然你也可以放到layui.use([], function(){})外面，但是你记得要引入jQuery，否则会报错： Uncaught ReferenceError: $ is not defined。个人感觉就直接写在layui.use之间就可以。</p>
+</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="cjwvhueap0001lwvhw3l2zkej" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="cjwvhuebt000llwvh4pb80jen" class="article-share-link">Share</a>
       
       
     </footer>
@@ -96,19 +105,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/06/10/h5中img标签的边框问题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          h5中img标签的边框问题
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/04/15/js数组排序去重等/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/06/11/Math函数/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">js数组排序去重等</div>
+      <div class="article-nav-title">Math函数</div>
     </a>
   
 </nav>
