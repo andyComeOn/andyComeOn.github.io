@@ -62,6 +62,85 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-看冴羽博客笔记" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/02/看冴羽博客笔记/" class="article-date">
+  <time datetime="2019-07-02T11:11:42.000Z" itemprop="datePublished">2019-07-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/02/看冴羽博客笔记/">看冴羽博客笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="看冴羽博客自己总结"><a href="#看冴羽博客自己总结" class="headerlink" title="看冴羽博客自己总结"></a>看冴羽博客自己总结</h3><p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">"global scope"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkscope</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> scope = <span class="string">"local scope"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> scope;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f();</span><br><span class="line">&#125;</span><br><span class="line">checkscope();</span><br></pre></td></tr></table></figure>
+<p>执行过程如下：<br>1.首先是创建一个全局执行上下文，把其压入执行栈中；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ECStack = &#123;</span><br><span class="line">    globalContext</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>创建完，全局执行上下文，随后就会对全局执行上下文进行初始化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">globalContext = &#123;</span><br><span class="line">    VO: [global],</span><br><span class="line">    Scope: [globalContext.VO],</span><br><span class="line">    <span class="keyword">this</span>: globalContext.VO</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化全局执行上下文的同时，checkscope函数被创建，保存作用域链到函数的内部属性<code>[[scope]]</code></p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">checkscope.[[scope]]] = [</span><br><span class="line">    globalContext.VO</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p>执行checkscope函数之前，创建该函数的执行上下文，并把该函数上下文压入执行上下文栈中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ECStack = [</span><br><span class="line">    checkscopeContext,</span><br><span class="line">    globalContext</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>checkscope函数执行上下文开始初始化：</p>
+<ul>
+<li>复制函数属性[[scope]]创建作用域链</li>
+<li>用arguments创建活动对象AO</li>
+<li>初始化AO，即加入形参、函数声明、变量声明</li>
+<li>将活动对象压入checkscope作用域链的顶端</li>
+</ul>
+</li>
+</ol>
+<p>初始化之后AO的结果是：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">checkscopeContext = &#123;</span><br><span class="line">    AO: &#123;</span><br><span class="line">        <span class="built_in">arguments</span>: &#123;</span><br><span class="line">            length: <span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">        scope: <span class="literal">undefined</span>,</span><br><span class="line">        f: Reference f () &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    Scope: [globalContext.VO],</span><br><span class="line">    <span class="keyword">this</span>: <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>将活动对象压入checkscope作用域链的顶端:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">checkscopeContext = &#123;</span><br><span class="line">    AO: &#123;</span><br><span class="line">        <span class="built_in">arguments</span>: &#123;</span><br><span class="line">            length: <span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">        scope: <span class="literal">undefined</span>,</span><br><span class="line">        f: Reference f () &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    Scope: [AO, globalContext.VO],</span><br><span class="line">    <span class="keyword">this</span>: <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol start="6">
+<li><p>checkscope函数的解析就结束了，随后就解析f函数，同理：创建f函数执行上下文 - 把f函数执行上下文压入执行上下文栈这时候执行栈变成了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ECStack = [</span><br><span class="line">    fContext,</span><br><span class="line">    checkscopeContext,</span><br><span class="line">    globalContext</span><br><span class="line">]</span><br><span class="line">~~~ </span><br><span class="line">f函数执行上下文初始化的步骤与checkscope函数是同理的。最终f函数的执行上下文初始化之后的结果是：</span><br><span class="line">~~~javascript</span><br><span class="line">fContext = &#123;</span><br><span class="line">    AO: &#123;</span><br><span class="line">        <span class="built_in">arguments</span>: &#123;</span><br><span class="line">            length: <span class="number">0</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    Scope: [AO, checkscopeContext.AO, globalContext.VO],</span><br><span class="line">    <span class="keyword">this</span>: <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>f函数的执行上下文也初始化完成之后，就开始执行函数了，当然执行栈是按照自上而下的方式执行，于是首先执行f函数，因为f函数return了scope这时候f函数就沿着他的作用域链找scope的变量声明，首先在它自己的活动对象找scope没找到，就去checkscopeContext.AO找,发现该处的AO中scope被赋值为local scope，所以执行结果就是local scope。</p>
+</li>
+<li><p>f函数执行完毕，f函数上下文从ECStack弹出，checkscope函数执行完毕，checkscope执行上下文也会从ECStack弹出，最终ECStack变成：</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ECStack = [</span><br><span class="line">    globalContext</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li><p>最终页面关闭时候，全局执行上下文，也会弹出。</p>
+</li>
+<li><p>参考链接：<a href="https://github.com/mqyqingfeng/Blog/issues/8" target="_blank" rel="noopener">JavaScript深入之执行上下文</a>;</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="cjxlpr1hn000r28vhibd6g58v" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-layui中函数使用方法" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/06/14/layui中函数使用方法/" class="article-date">
@@ -94,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="cjwvhuebt000llwvh4pb80jen" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="cjxlpr1h9000l28vhzgqn3gnr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -144,7 +223,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="cjwvhueaz0005lwvh7488t1dy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="cjxlpr1ga000728vhn54dco6g" class="article-share-link">Share</a>
       
       
     </footer>
@@ -199,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/10/h5中img标签的边框问题/" data-id="cjwvhueb50009lwvhjjv2tn6t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/10/h5中img标签的边框问题/" data-id="cjxlpr1gg000a28vhnaokyk7t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -235,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="cjwvhueap0001lwvhw3l2zkej" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="cjxlpr1fq000028vhba5tn551" class="article-share-link">Share</a>
       
       
     </footer>
@@ -293,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/15/js数组排序去重等/" data-id="cjwvhuebp000ilwvh7becu91c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/15/js数组排序去重等/" data-id="cjxlpr1h0000i28vhu13c2w4z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -348,7 +427,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="cjwvhuebn000hlwvhgw6rt10q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="cjxlpr1gw000g28vh1x63kqft" class="article-share-link">Share</a>
       
       
     </footer>
@@ -433,7 +512,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/js function的相关总结/" data-id="cjwvhuebm000glwvhw1xk3b3x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/js function的相关总结/" data-id="cjxlpr1gr000e28vhmcebrp6z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -477,7 +556,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/js构造函数及原型链继承/" data-id="cjwvhuebq000jlwvhbgsa8w3s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/js构造函数及原型链继承/" data-id="cjxlpr1gx000h28vhfbrdtvyi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -554,55 +633,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/15/eval总结/" data-id="cjwvhueb7000alwvhlvalcuza" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-js中的逗号" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/14/js中的逗号/" class="article-date">
-  <time datetime="2019-03-14T06:57:55.000Z" itemprop="datePublished">2019-03-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/14/js中的逗号/">js中的逗号</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="js中的逗号，分号的小议"><a href="#js中的逗号，分号的小议" class="headerlink" title="js中的逗号，分号的小议"></a>js中的逗号，分号的小议</h4><h5 id="使用var"><a href="#使用var" class="headerlink" title="使用var"></a>使用var</h5><ol>
-<li>js中声明变量使用var，如：</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a, b, c;  <span class="comment">// 这里a，b，c都是局部变量；</span></span><br><span class="line"><span class="keyword">var</span> a;</span><br><span class="line">    b;</span><br><span class="line">    c; <span class="comment">// 这里除了a为局部变量外，b和c都为全局变量。</span></span><br></pre></td></tr></table></figure>
-<p>分号就是相当于划分了代码片段，逗号可理解为语句没有说完。</p>
-<h5 id="确定你的存在-变量声明"><a href="#确定你的存在-变量声明" class="headerlink" title="确定你的存在(变量声明)"></a>确定你的存在(变量声明)</h5><ol>
-<li><p>我们要使用盒子装东西,是不是先要找到盒子,那在编程中，这个过程叫声明变量,找盒子的动作，如何表示：</p>
-<ul>
-<li>声明变量语法: var 变量名;    </li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/14/js中的逗号/" data-id="cjwvhuebi000elwvhx6l83gyg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/15/eval总结/" data-id="cjxlpr1ge000928vh13xcq451" class="article-share-link">Share</a>
       
       
     </footer>
@@ -616,7 +647,7 @@
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -635,7 +666,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -646,6 +677,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/07/02/看冴羽博客笔记/">看冴羽博客笔记</a>
+          </li>
         
           <li>
             <a href="/2019/06/14/layui中函数使用方法/">layui中函数使用方法</a>
@@ -661,10 +696,6 @@
         
           <li>
             <a href="/2019/05/09/CSS的normalize-css的文档说明/">CSS的normalize.css的文档说明</a>
-          </li>
-        
-          <li>
-            <a href="/2019/04/15/js数组排序去重等/">js数组排序去重等</a>
           </li>
         
       </ul>
