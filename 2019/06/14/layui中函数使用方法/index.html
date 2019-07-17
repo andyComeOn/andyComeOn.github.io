@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="总结一下layui的函数使用方法 针对声明函数如 onclick=myClick()，可在layui.use([], function(){})中写但是必须是window.myClick = function () {}，这能声明成功，但是有时候我们常常使用jq中的 $(this)，这时候this指向不是我们想要的当前元素，而是window。贤心在一篇帖子中回答使用此方法。  还有一种就是使用jq">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-17T03:12:33.051Z">
+<meta property="og:updated_time" content="2019-07-17T03:16:08.507Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="layui中函数使用方法">
 <meta name="twitter:description" content="总结一下layui的函数使用方法 针对声明函数如 onclick=myClick()，可在layui.use([], function(){})中写但是必须是window.myClick = function () {}，这能声明成功，但是有时候我们常常使用jq中的 $(this)，这时候this指向不是我们想要的当前元素，而是window。贤心在一篇帖子中回答使用此方法。  还有一种就是使用jq">
@@ -104,10 +104,14 @@
 </li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// layui的模块备份</span></span><br><span class="line">layui.use([<span class="string">'element'</span>,<span class="string">'table'</span>,<span class="string">'laydate'</span>,<span class="string">'form'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> element = layui.element;</span><br><span class="line">    <span class="keyword">var</span> laydate = layui.laydate;</span><br><span class="line">    <span class="keyword">var</span> table = layui.table;</span><br><span class="line">    <span class="keyword">var</span> form = layui.form;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>layui的弹框有3个大项：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-layer-move"</span> <span class="attr">style</span>=<span class="string">"cursor: move; display: none;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-layer-shade"</span> <span class="attr">id</span>=<span class="string">"layui-layer-shade4"</span> <span class="attr">times</span>=<span class="string">"4"</span> <span class="attr">style</span>=<span class="string">"z-index: 19891017; background-color: rgb(0, 0, 0); opacity: 0.5;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-layer layui-layer-iframe"</span> <span class="attr">id</span>=<span class="string">"layui-layer4"</span> <span class="attr">type</span>=<span class="string">"iframe"</span> <span class="attr">times</span>=<span class="string">"4"</span> <span class="attr">showtime</span>=<span class="string">"0"</span> <span class="attr">contype</span>=<span class="string">"string"</span> <span class="attr">style</span>=<span class="string">"z-index: 19891018; width: 90%; height: 90%; top: 17px; left: 58.5px;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="cjy6o7lkm000husvhs9whl7nr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="cjy6obszl000m14vhmiuy5m5j" class="article-share-link">Share</a>
       
       
     </footer>
