@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="总结一下layui的函数使用方法 针对声明函数如 onclick=myClick()，可在layui.use([], function(){})中写但是必须是window.myClick = function () {}，这能声明成功，但是有时候我们常常使用jq中的 $(this)，这时候this指向不是我们想要的当前元素，而是window。贤心在一篇帖子中回答使用此方法。  还有一种就是使用jq">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-14T02:49:25.020Z">
+<meta property="og:updated_time" content="2019-07-17T03:12:33.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="layui中函数使用方法">
 <meta name="twitter:description" content="总结一下layui的函数使用方法 针对声明函数如 onclick=myClick()，可在layui.use([], function(){})中写但是必须是window.myClick = function () {}，这能声明成功，但是有时候我们常常使用jq中的 $(this)，这时候this指向不是我们想要的当前元素，而是window。贤心在一篇帖子中回答使用此方法。  还有一种就是使用jq">
@@ -91,12 +91,23 @@
 </li>
 <li><p>还有一种就是使用jq绑定事件写在layui.use([], function(){})中，视情况而定。当然你也可以放到layui.use([], function(){})外面，但是你记得要引入jQuery，否则会报错： Uncaught ReferenceError: $ is not defined。个人感觉就直接写在layui.use之间就可以。</p>
 </li>
+<li><p>有关table监听有一下几种用法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">table.on(<span class="string">'edit(fiterTabname)'</span>; <span class="comment">// table中的input输入</span></span><br><span class="line">table.on(<span class="string">'checkbox(fiterTabname)'</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line">table.on(<span class="string">'radio(fiterTabname)'</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line">table.on(<span class="string">'tool(fiterTabname)'</span>; <span class="comment">// 这是操作按钮</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>有关form监听有一下几种用法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">form.on(<span class="string">'edit(fiterFormname)'</span>; <span class="comment">// table中的input输入</span></span><br><span class="line">form.on(<span class="string">'checkbox(fiterFormname)'</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line">form.on(<span class="string">'radio(fiterFormname)'</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line">form.on(<span class="string">'tool(fiterFormname)'</span>; <span class="comment">// 这是操作按钮</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>layui中的css的默认样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">optgroup</span>, <span class="selector-tag">option</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: inherit;</span><br><span class="line">    <span class="attribute">font-size</span>: inherit;</span><br><span class="line">    <span class="attribute">font-style</span>: inherit;</span><br><span class="line">    <span class="attribute">font-weight</span>: inherit;</span><br><span class="line">    <span class="attribute">outline</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>layui模块使用的demo</p>
+</li>
 </ol>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// layui的模块备份</span></span><br><span class="line">layui.use([<span class="string">'element'</span>,<span class="string">'table'</span>,<span class="string">'laydate'</span>,<span class="string">'form'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> element = layui.element;</span><br><span class="line">    <span class="keyword">var</span> laydate = layui.laydate;</span><br><span class="line">    <span class="keyword">var</span> table = layui.table;</span><br><span class="line">    <span class="keyword">var</span> form = layui.form;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="cjxlpr1h9000l28vhzgqn3gnr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="cjy6o7lkm000husvhs9whl7nr" class="article-share-link">Share</a>
       
       
     </footer>

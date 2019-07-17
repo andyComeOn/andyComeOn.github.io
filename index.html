@@ -131,7 +131,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="cjxlpr1hn000r28vhibd6g58v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="cjy6o7ln4000tusvhzlrwvlf4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -168,12 +168,23 @@
 </li>
 <li><p>还有一种就是使用jq绑定事件写在layui.use([], function(){})中，视情况而定。当然你也可以放到layui.use([], function(){})外面，但是你记得要引入jQuery，否则会报错： Uncaught ReferenceError: $ is not defined。个人感觉就直接写在layui.use之间就可以。</p>
 </li>
+<li><p>有关table监听有一下几种用法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">table.on(<span class="string">'edit(fiterTabname)'</span>; <span class="comment">// table中的input输入</span></span><br><span class="line">table.on(<span class="string">'checkbox(fiterTabname)'</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line">table.on(<span class="string">'radio(fiterTabname)'</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line">table.on(<span class="string">'tool(fiterTabname)'</span>; <span class="comment">// 这是操作按钮</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>有关form监听有一下几种用法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">form.on(<span class="string">'edit(fiterFormname)'</span>; <span class="comment">// table中的input输入</span></span><br><span class="line">form.on(<span class="string">'checkbox(fiterFormname)'</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line">form.on(<span class="string">'radio(fiterFormname)'</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line">form.on(<span class="string">'tool(fiterFormname)'</span>; <span class="comment">// 这是操作按钮</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>layui中的css的默认样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">optgroup</span>, <span class="selector-tag">option</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: inherit;</span><br><span class="line">    <span class="attribute">font-size</span>: inherit;</span><br><span class="line">    <span class="attribute">font-style</span>: inherit;</span><br><span class="line">    <span class="attribute">font-weight</span>: inherit;</span><br><span class="line">    <span class="attribute">outline</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>layui模块使用的demo</p>
+</li>
 </ol>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// layui的模块备份</span></span><br><span class="line">layui.use([<span class="string">'element'</span>,<span class="string">'table'</span>,<span class="string">'laydate'</span>,<span class="string">'form'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> element = layui.element;</span><br><span class="line">    <span class="keyword">var</span> laydate = layui.laydate;</span><br><span class="line">    <span class="keyword">var</span> table = layui.table;</span><br><span class="line">    <span class="keyword">var</span> form = layui.form;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="cjxlpr1h9000l28vhzgqn3gnr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="cjy6o7lkm000husvhs9whl7nr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -223,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="cjxlpr1ga000728vhn54dco6g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="cjy6o7ljj0005usvhh8gco4cw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -278,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/10/h5中img标签的边框问题/" data-id="cjxlpr1gg000a28vhnaokyk7t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/10/h5中img标签的边框问题/" data-id="cjy6o7ljp0007usvhl42kwez9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -314,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="cjxlpr1fq000028vhba5tn551" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="cjy6o7lis0000usvhhguaqcvs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -372,7 +383,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/15/js数组排序去重等/" data-id="cjxlpr1h0000i28vhu13c2w4z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/15/js数组排序去重等/" data-id="cjy6o7lku000jusvhv3avyyre" class="article-share-link">Share</a>
       
       
     </footer>
@@ -427,7 +438,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="cjxlpr1gw000g28vh1x63kqft" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="cjy6o7lkq000iusvh08iqeowg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -512,7 +523,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/js function的相关总结/" data-id="cjxlpr1gr000e28vhmcebrp6z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/js function的相关总结/" data-id="cjy6o7lkg000eusvhn5jenus0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -556,7 +567,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/js构造函数及原型链继承/" data-id="cjxlpr1gx000h28vhfbrdtvyi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/js构造函数及原型链继承/" data-id="cjy6o7ll3000nusvhr6m75hvs" class="article-share-link">Share</a>
       
       
     </footer>
@@ -633,7 +644,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/15/eval总结/" data-id="cjxlpr1ge000928vh13xcq451" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/15/eval总结/" data-id="cjy6o7ljv0009usvhmidej02h" class="article-share-link">Share</a>
       
       
     </footer>
