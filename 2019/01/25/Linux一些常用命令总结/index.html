@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://139.199.23.2/img/blog/20190125/vim-edit-status.jpg">
 <meta property="og:image" content="http://139.199.23.2/img/blog/20190125/vim-insert-status.jpg">
 <meta property="og:image" content="http://139.199.23.2/img/blog/20190125/vim-esc-status.jpg">
-<meta property="og:updated_time" content="2019-07-25T10:54:30.936Z">
+<meta property="og:updated_time" content="2019-09-09T07:31:23.322Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux一些常用命令总结">
 <meta name="twitter:description" content="最近在提交git时候（我使用的是git的命令行），在执行git pull时候出现了，让编辑merge提交。一时间束手无策。决定好好看看这个命令，把常用的命令记录一下，主要参考的这篇帖子Linux常用命令大全（非常全！！！）这篇帖子总结的也很好linux的一些命令  1、下面的一些常用指令我在git bash中测试，git bash只是模拟了部分的linux指令。 clear：清除记录 pwd：显示">
@@ -185,14 +185,20 @@
 </li>
 </ul>
 <ul>
-<li>这是老东在安装lnmp的指令：</li>
+<li>这是老东在安装lnmp的指令：<br>wget <a href="http://soft.vpser.net/lnmp/lnmp1.6.tar.gz" target="_blank" rel="noopener">http://soft.vpser.net/lnmp/lnmp1.6.tar.gz</a> -cO lnmp1.6.tar.gz &amp;&amp; tar zxf lnmp1.6.tar.gz &amp;&amp; cd lnmp1.6 &amp;&amp; ./install.sh lnmp</li>
 </ul>
-<p>wget <a href="http://soft.vpser.net/lnmp/lnmp1.6.tar.gz" target="_blank" rel="noopener">http://soft.vpser.net/lnmp/lnmp1.6.tar.gz</a> -cO lnmp1.6.tar.gz &amp;&amp; tar zxf lnmp1.6.tar.gz &amp;&amp; cd lnmp1.6 &amp;&amp; ./install.sh lnmp</p>
+<h4 id="10、常用命令补充1：-curl命令"><a href="#10、常用命令补充1：-curl命令" class="headerlink" title="10、常用命令补充1： curl命令"></a>10、常用命令补充1： curl命令</h4><ul>
+<li>在shell中可以使用该命令 curl <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 模拟在浏览器中访问，返回服务器响应。</li>
+</ul>
+<h4 id="11、sz-rz-下载到本地-上传到远程服务器"><a href="#11、sz-rz-下载到本地-上传到远程服务器" class="headerlink" title="11、sz rz 下载到本地  上传到远程服务器"></a>11、sz rz 下载到本地  上传到远程服务器</h4><ul>
+<li>sz rz 是 send Zmodem receive Zmodem的缩写，可这样记忆：都以远程服务器为中心， 那么 rz 就是指服务器收到文件，也就是上传本地文件到远程服务器。反之，sz 指远程服务器发送文件到本地。 </li>
+<li>最开始我使用 rz 提示好像是没有这个指令，查资料发现要安装一个软件 <code>yum -y install lrzsz</code> 于是安装之后就可以顺利的使用 <code>rz</code>、<code>sz</code>指令了。</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="cjyikbthd000ukcvhok9wzmup" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ck0c3bjig0001p4vhcikp37fh" class="article-share-link">Share</a>
       
       
     </footer>
