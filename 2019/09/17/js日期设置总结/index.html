@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>js日期设置总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="js日期相关处理函数，时间久了就会忘记怎么使用，每次都是临时在网上搜，写个笔记记录一下：  1、 日期的基本处理。一般针对前端而言，后端（PHP、Java）传给你的时间字段，常见的有2种：如1：2018-09-09 00:00:00，如2：1568711273205。  情况1是他们处理过，情况2是直接返回的时间戳。情况1中已处理过，可直接用js处理字符串的方法处理成自己所需要的格式。 情况2直接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js日期设置总结">
+<meta property="og:url" content="http://yoursite.com/2019/09/17/js日期设置总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="js日期相关处理函数，时间久了就会忘记怎么使用，每次都是临时在网上搜，写个笔记记录一下：  1、 日期的基本处理。一般针对前端而言，后端（PHP、Java）传给你的时间字段，常见的有2种：如1：2018-09-09 00:00:00，如2：1568711273205。  情况1是他们处理过，情况2是直接返回的时间戳。情况1中已处理过，可直接用js处理字符串的方法处理成自己所需要的格式。 情况2直接">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-17T11:44:55.601Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js日期设置总结">
+<meta name="twitter:description" content="js日期相关处理函数，时间久了就会忘记怎么使用，每次都是临时在网上搜，写个笔记记录一下：  1、 日期的基本处理。一般针对前端而言，后端（PHP、Java）传给你的时间字段，常见的有2种：如1：2018-09-09 00:00:00，如2：1568711273205。  情况1是他们处理过，情况2是直接返回的时间戳。情况1中已处理过，可直接用js处理字符串的方法处理成自己所需要的格式。 情况2直接">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-js日期设置总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/17/js日期设置总结/" class="article-date">
+  <time datetime="2019-09-17T08:55:00.000Z" itemprop="datePublished">2019-09-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      js日期设置总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>js日期相关处理函数，时间久了就会忘记怎么使用，每次都是临时在网上搜，写个笔记记录一下：</p>
+<hr>
+<h3 id="1、-日期的基本处理。"><a href="#1、-日期的基本处理。" class="headerlink" title="1、 日期的基本处理。"></a>1、 日期的基本处理。</h3><p>一般针对前端而言，后端（PHP、Java）传给你的时间字段，常见的有2种：如1：<code>2018-09-09 00:00:00</code>，如2：<code>1568711273205</code>。 </p>
+<p>情况1是他们处理过，情况2是直接返回的时间戳。情况1中已处理过，可直接用js处理字符串的方法处理成自己所需要的格式。</p>
+<p>情况2直接 <code>new Date(timestamp)</code> 打印之是：<code>Tue Sep 17 2019 17:07:53 GMT+0800 (中国标准时间)</code>。时间戳必须是数字否则提示：<code>Invalid Date</code>。若是想使用其中的年月日信息则可：<code>_data = new Date(timestamp)</code> ，切记月份记得要加 1 ， 若需要月、日都是2位 ，写一个过滤函数处理之即可。过滤器函数如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 月、日是一位数字的补齐2位，若函数名重复可shift用_padding</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_fill</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 使程序更严谨</span></span><br><span class="line">    <span class="keyword">if</span> (arg == <span class="literal">undefined</span> || arg == <span class="string">''</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> re = arg + <span class="string">''</span>;  <span class="comment">// 转为字符串为了使用字符串 length 属性</span></span><br><span class="line">    <span class="keyword">if</span> (re.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        re = <span class="string">'0'</span> + re;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> re;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2、-JS中date日期初始化的几种方法"><a href="#2、-JS中date日期初始化的几种方法" class="headerlink" title="2、 JS中date日期初始化的几种方法"></a>2、 JS中date日期初始化的几种方法</h3><p>在标题1中讲述到一般后端返回的是 <code>timestamp</code>、<code>2018-09-09 00:00:00</code>2种，针对这两种初始化可使用如下5种方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> objDate = <span class="keyword">new</span> <span class="built_in">Date</span>([<span class="built_in">arguments</span> list]);</span><br></pre></td></tr></table></figure>
+<p>1) <code>new Date(&quot;month dd,yyyy hh:mm:ss&quot;);</code><br>2) <code>new Date(&quot;month dd,yyyy&quot;);</code><br>以下情况必须是数字型参数！<br>3) <code>new Date(yyyy, mth, dd, hh, mm, ss);</code><br>4) <code>new Date(yyyy, mth, dd);</code><br>5) <code>new Date(ms);</code></p>
+<p>代码如下：<br>1) <code>new Date(&quot;January 12,2006 22:19:35&quot;);</code><br>2) <code>new Date(&quot;January 12,2006&quot;);</code><br>3) <code>new Date(2006,0,12,22,19,35);</code><br>4) <code>new Date(2006,0,12);</code><br>5) <code>new Date(1137075575000);</code></p>
+<p>上面的5种例子是网上说的，个人感觉不是很实用，一般后台传过来的格式是 <code>2018-09-09 00:00:00</code> ，可以直接 <code>new Date(2018-09-09 00:00:00);</code> 也可以不加 hh:mm:ss。</p>
+<p>但是我在其他帖子上看到 <code>Date.parse()</code> 这种解析方式，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'2019/09/17'</span>, <span class="built_in">Date</span>.parse(<span class="string">'2019/09/17'</span>), <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.parse(<span class="string">'2019/09/17'</span>))); </span><br><span class="line"><span class="comment">// 2019/09/17 1568649600000 Tue Sep 17 2019 00:00:00 GMT+0800 (中国标准时间)</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'2019-09-17'</span>, <span class="built_in">Date</span>.parse(<span class="string">'2019-09-17'</span>), <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.parse(<span class="string">'2019-09-17'</span>)));</span><br><span class="line"><span class="comment">// 2019-09-17 1568678400000 Tue Sep 17 2019 08:00:00 GMT+0800 (中国标准时间)</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'2019- 9-17'</span>, <span class="built_in">Date</span>.parse(<span class="string">'2019-9-17'</span>), <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.parse(<span class="string">'2019-9-17'</span>)));</span><br><span class="line"><span class="comment">// 2019- 9-17 1568649600000 Tue Sep 17 2019 00:00:00 GMT+0800 (中国标准时间)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面的三种写法，Date.parse 获得的时间戳不一样， 说明了时间格式的最简写、加默认的0 解析的该天的 hh:mm:ss 不一样。如果加上hh:mm:ss 三种写法会保持一致。 也可观察出 '2019-9-17' '2019/09/17' 这2中写法获取到的是该天凌晨的时间戳。</span></span><br></pre></td></tr></table></figure>
+<p>！！！既然<code>new Date()</code> 也可以解析数字字符串，那就没必要使用<code>Date.parse()</code>。何必要多记忆这个方法呢？</p>
+<h3 id="3、-日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。"><a href="#3、-日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。" class="headerlink" title="3、 日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。"></a>3、 日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addDate</span>(<span class="params">date, days</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (days == <span class="literal">undefined</span> || days == <span class="string">''</span>) &#123;</span><br><span class="line">        days = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> _date = <span class="keyword">new</span> <span class="built_in">Date</span>(date);</span><br><span class="line">    <span class="comment">// 这时候 _data 可根据自己需求处理 </span></span><br><span class="line">    _date.setDate(_date.getDate() + days);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的可以拓展加（减）年、加（间）月</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addYear</span>(<span class="params">date, years</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (years == <span class="literal">undefined</span> || years == <span class="string">''</span>) &#123;</span><br><span class="line">        years = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> _date = <span class="keyword">new</span> <span class="built_in">Date</span>(date);</span><br><span class="line">    <span class="comment">// 这时候 _data 可根据自己需求处理 </span></span><br><span class="line">    _date.setYear(_date.getFullYear() + years);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addMonth</span>(<span class="params">date, months</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (months == <span class="literal">undefined</span> || months == <span class="string">''</span>) &#123;</span><br><span class="line">        months = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> _date = <span class="keyword">new</span> <span class="built_in">Date</span>(date);</span><br><span class="line">    <span class="comment">// 这时候 _data 可根据自己需求处理 </span></span><br><span class="line">    _date.setMonth(_date.getMonth() + months);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4、-日期之间相差多少天。"><a href="#4、-日期之间相差多少天。" class="headerlink" title="4、 日期之间相差多少天。"></a>4、 日期之间相差多少天。</h3><p>很多的帖子就是直接把startTime endTime 直接转换为时间戳相减之后在取整（或者向下取整）在除以86400000，就是相差的天数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_subtraction</span> (<span class="params">start, end</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Date</span>(start);</span><br><span class="line">    <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Date</span>(end);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.floor((b - a) / <span class="number">86400000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5、-有初末日期，获取其中之间的日历（场景：酒店系统-餐费的时间日历选择）"><a href="#5、-有初末日期，获取其中之间的日历（场景：酒店系统-餐费的时间日历选择）" class="headerlink" title="5、 有初末日期，获取其中之间的日历（场景：酒店系统 餐费的时间日历选择）"></a>5、 有初末日期，获取其中之间的日历（场景：酒店系统 餐费的时间日历选择）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectMealDate</span> (<span class="params">s, e</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 月、天不够2位补0</span></span><br><span class="line">    <span class="keyword">this</span>._fill = <span class="function"><span class="keyword">function</span> (<span class="params">arg</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 使程序更严谨</span></span><br><span class="line">        <span class="keyword">if</span> (arg == <span class="literal">undefined</span> || arg == <span class="string">''</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> re = arg + <span class="string">''</span>;  <span class="comment">// 转为字符串为了使用字符串 length 属性</span></span><br><span class="line">        <span class="keyword">if</span> (re.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            re = <span class="string">'0'</span> + re;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> re;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 初末日期相差多少天</span></span><br><span class="line">    <span class="keyword">this</span>._subtraction = <span class="function"><span class="keyword">function</span> (<span class="params">startArg, endArg</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Date</span>(startArg);</span><br><span class="line">        <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Date</span>(endArg);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.floor((b - a) / <span class="number">86400000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 抛出的值</span></span><br><span class="line">    <span class="keyword">var</span> _arr = [];</span><br><span class="line">    <span class="comment">// 循环出餐费日历数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="keyword">this</span>._subtraction(s, e); i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> temp = <span class="keyword">new</span> <span class="built_in">Date</span>(s);</span><br><span class="line">        temp.setDate(temp.getDate() + i ); </span><br><span class="line">        _arr.push(temp.getFullYear() + <span class="string">'-'</span>+ <span class="keyword">this</span>._fill(temp.getMonth() + <span class="number">1</span>) + <span class="string">'-'</span> + <span class="keyword">this</span>._fill(temp.getDate()));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> _arr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="6、-参考的链接，未完，相差小时，分钟，秒-继续看参考的帖子"><a href="#6、-参考的链接，未完，相差小时，分钟，秒-继续看参考的帖子" class="headerlink" title="6、 参考的链接，未完，相差小时，分钟，秒 继续看参考的帖子"></a>6、 参考的链接，未完，相差小时，分钟，秒 继续看参考的帖子</h3><p><a href="https://www.cnblogs.com/summer-qd/p/10103984.html" target="_blank" rel="noopener">js 日期相差计算</a><br><a href="http://www.miaoqiyuan.cn/p/date-range" target="_blank" rel="noopener">JS日历循环，指定开始结束日期，自动向后计算</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ck0nrtdgp000h2ovhnyzkvj4y" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/02/看冴羽博客笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">看冴羽博客笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/17/js日期设置总结/">js日期设置总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/02/看冴羽博客笔记/">看冴羽博客笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/14/layui中函数使用方法/">layui中函数使用方法</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/11/Math函数/">Math函数</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/10/h5中img标签的边框问题/">h5中img标签的边框问题</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

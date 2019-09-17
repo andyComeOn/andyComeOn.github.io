@@ -62,6 +62,63 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-js日期设置总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/17/js日期设置总结/" class="article-date">
+  <time datetime="2019-09-17T08:55:00.000Z" itemprop="datePublished">2019-09-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/17/js日期设置总结/">js日期设置总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>js日期相关处理函数，时间久了就会忘记怎么使用，每次都是临时在网上搜，写个笔记记录一下：</p>
+<hr>
+<h3 id="1、-日期的基本处理。"><a href="#1、-日期的基本处理。" class="headerlink" title="1、 日期的基本处理。"></a>1、 日期的基本处理。</h3><p>一般针对前端而言，后端（PHP、Java）传给你的时间字段，常见的有2种：如1：<code>2018-09-09 00:00:00</code>，如2：<code>1568711273205</code>。 </p>
+<p>情况1是他们处理过，情况2是直接返回的时间戳。情况1中已处理过，可直接用js处理字符串的方法处理成自己所需要的格式。</p>
+<p>情况2直接 <code>new Date(timestamp)</code> 打印之是：<code>Tue Sep 17 2019 17:07:53 GMT+0800 (中国标准时间)</code>。时间戳必须是数字否则提示：<code>Invalid Date</code>。若是想使用其中的年月日信息则可：<code>_data = new Date(timestamp)</code> ，切记月份记得要加 1 ， 若需要月、日都是2位 ，写一个过滤函数处理之即可。过滤器函数如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 月、日是一位数字的补齐2位，若函数名重复可shift用_padding</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_fill</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 使程序更严谨</span></span><br><span class="line">    <span class="keyword">if</span> (arg == <span class="literal">undefined</span> || arg == <span class="string">''</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> re = arg + <span class="string">''</span>;  <span class="comment">// 转为字符串为了使用字符串 length 属性</span></span><br><span class="line">    <span class="keyword">if</span> (re.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        re = <span class="string">'0'</span> + re;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> re;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2、-JS中date日期初始化的几种方法"><a href="#2、-JS中date日期初始化的几种方法" class="headerlink" title="2、 JS中date日期初始化的几种方法"></a>2、 JS中date日期初始化的几种方法</h3><p>在标题1中讲述到一般后端返回的是 <code>timestamp</code>、<code>2018-09-09 00:00:00</code>2种，针对这两种初始化可使用如下5种方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> objDate = <span class="keyword">new</span> <span class="built_in">Date</span>([<span class="built_in">arguments</span> list]);</span><br></pre></td></tr></table></figure>
+<p>1) <code>new Date(&quot;month dd,yyyy hh:mm:ss&quot;);</code><br>2) <code>new Date(&quot;month dd,yyyy&quot;);</code><br>以下情况必须是数字型参数！<br>3) <code>new Date(yyyy, mth, dd, hh, mm, ss);</code><br>4) <code>new Date(yyyy, mth, dd);</code><br>5) <code>new Date(ms);</code></p>
+<p>代码如下：<br>1) <code>new Date(&quot;January 12,2006 22:19:35&quot;);</code><br>2) <code>new Date(&quot;January 12,2006&quot;);</code><br>3) <code>new Date(2006,0,12,22,19,35);</code><br>4) <code>new Date(2006,0,12);</code><br>5) <code>new Date(1137075575000);</code></p>
+<p>上面的5种例子是网上说的，个人感觉不是很实用，一般后台传过来的格式是 <code>2018-09-09 00:00:00</code> ，可以直接 <code>new Date(2018-09-09 00:00:00);</code> 也可以不加 hh:mm:ss。</p>
+<p>但是我在其他帖子上看到 <code>Date.parse()</code> 这种解析方式，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'2019/09/17'</span>, <span class="built_in">Date</span>.parse(<span class="string">'2019/09/17'</span>), <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.parse(<span class="string">'2019/09/17'</span>))); </span><br><span class="line"><span class="comment">// 2019/09/17 1568649600000 Tue Sep 17 2019 00:00:00 GMT+0800 (中国标准时间)</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'2019-09-17'</span>, <span class="built_in">Date</span>.parse(<span class="string">'2019-09-17'</span>), <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.parse(<span class="string">'2019-09-17'</span>)));</span><br><span class="line"><span class="comment">// 2019-09-17 1568678400000 Tue Sep 17 2019 08:00:00 GMT+0800 (中国标准时间)</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'2019- 9-17'</span>, <span class="built_in">Date</span>.parse(<span class="string">'2019-9-17'</span>), <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.parse(<span class="string">'2019-9-17'</span>)));</span><br><span class="line"><span class="comment">// 2019- 9-17 1568649600000 Tue Sep 17 2019 00:00:00 GMT+0800 (中国标准时间)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面的三种写法，Date.parse 获得的时间戳不一样， 说明了时间格式的最简写、加默认的0 解析的该天的 hh:mm:ss 不一样。如果加上hh:mm:ss 三种写法会保持一致。 也可观察出 '2019-9-17' '2019/09/17' 这2中写法获取到的是该天凌晨的时间戳。</span></span><br></pre></td></tr></table></figure>
+<p>！！！既然<code>new Date()</code> 也可以解析数字字符串，那就没必要使用<code>Date.parse()</code>。何必要多记忆这个方法呢？</p>
+<h3 id="3、-日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。"><a href="#3、-日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。" class="headerlink" title="3、 日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。"></a>3、 日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addDate</span>(<span class="params">date, days</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (days == <span class="literal">undefined</span> || days == <span class="string">''</span>) &#123;</span><br><span class="line">        days = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> _date = <span class="keyword">new</span> <span class="built_in">Date</span>(date);</span><br><span class="line">    <span class="comment">// 这时候 _data 可根据自己需求处理 </span></span><br><span class="line">    _date.setDate(_date.getDate() + days);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的可以拓展加（减）年、加（间）月</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addYear</span>(<span class="params">date, years</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (years == <span class="literal">undefined</span> || years == <span class="string">''</span>) &#123;</span><br><span class="line">        years = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> _date = <span class="keyword">new</span> <span class="built_in">Date</span>(date);</span><br><span class="line">    <span class="comment">// 这时候 _data 可根据自己需求处理 </span></span><br><span class="line">    _date.setYear(_date.getFullYear() + years);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addMonth</span>(<span class="params">date, months</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (months == <span class="literal">undefined</span> || months == <span class="string">''</span>) &#123;</span><br><span class="line">        months = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> _date = <span class="keyword">new</span> <span class="built_in">Date</span>(date);</span><br><span class="line">    <span class="comment">// 这时候 _data 可根据自己需求处理 </span></span><br><span class="line">    _date.setMonth(_date.getMonth() + months);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4、-日期之间相差多少天。"><a href="#4、-日期之间相差多少天。" class="headerlink" title="4、 日期之间相差多少天。"></a>4、 日期之间相差多少天。</h3><p>很多的帖子就是直接把startTime endTime 直接转换为时间戳相减之后在取整（或者向下取整）在除以86400000，就是相差的天数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_subtraction</span> (<span class="params">start, end</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Date</span>(start);</span><br><span class="line">    <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Date</span>(end);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.floor((b - a) / <span class="number">86400000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5、-有初末日期，获取其中之间的日历（场景：酒店系统-餐费的时间日历选择）"><a href="#5、-有初末日期，获取其中之间的日历（场景：酒店系统-餐费的时间日历选择）" class="headerlink" title="5、 有初末日期，获取其中之间的日历（场景：酒店系统 餐费的时间日历选择）"></a>5、 有初末日期，获取其中之间的日历（场景：酒店系统 餐费的时间日历选择）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectMealDate</span> (<span class="params">s, e</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 月、天不够2位补0</span></span><br><span class="line">    <span class="keyword">this</span>._fill = <span class="function"><span class="keyword">function</span> (<span class="params">arg</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 使程序更严谨</span></span><br><span class="line">        <span class="keyword">if</span> (arg == <span class="literal">undefined</span> || arg == <span class="string">''</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> re = arg + <span class="string">''</span>;  <span class="comment">// 转为字符串为了使用字符串 length 属性</span></span><br><span class="line">        <span class="keyword">if</span> (re.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            re = <span class="string">'0'</span> + re;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> re;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 初末日期相差多少天</span></span><br><span class="line">    <span class="keyword">this</span>._subtraction = <span class="function"><span class="keyword">function</span> (<span class="params">startArg, endArg</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Date</span>(startArg);</span><br><span class="line">        <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Date</span>(endArg);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.floor((b - a) / <span class="number">86400000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 抛出的值</span></span><br><span class="line">    <span class="keyword">var</span> _arr = [];</span><br><span class="line">    <span class="comment">// 循环出餐费日历数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="keyword">this</span>._subtraction(s, e); i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> temp = <span class="keyword">new</span> <span class="built_in">Date</span>(s);</span><br><span class="line">        temp.setDate(temp.getDate() + i ); </span><br><span class="line">        _arr.push(temp.getFullYear() + <span class="string">'-'</span>+ <span class="keyword">this</span>._fill(temp.getMonth() + <span class="number">1</span>) + <span class="string">'-'</span> + <span class="keyword">this</span>._fill(temp.getDate()));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> _arr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="6、-参考的链接，未完，相差小时，分钟，秒-继续看参考的帖子"><a href="#6、-参考的链接，未完，相差小时，分钟，秒-继续看参考的帖子" class="headerlink" title="6、 参考的链接，未完，相差小时，分钟，秒 继续看参考的帖子"></a>6、 参考的链接，未完，相差小时，分钟，秒 继续看参考的帖子</h3><p><a href="https://www.cnblogs.com/summer-qd/p/10103984.html" target="_blank" rel="noopener">js 日期相差计算</a><br><a href="http://www.miaoqiyuan.cn/p/date-range" target="_blank" rel="noopener">JS日历循环，指定开始结束日期，自动向后计算</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ck0nrtdgp000h2ovhnyzkvj4y" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-看冴羽博客笔记" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/07/02/看冴羽博客笔记/" class="article-date">
@@ -131,7 +188,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ck0c3bjkg000rp4vhe3t2icnh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ck0nrtdhi000s2ovhnpjqrhhh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -194,7 +251,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="ck0c3bjkf000qp4vhycmt2mua" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="ck0nrtdhp000v2ovh0ai7oq2k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -244,7 +301,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="ck0c3bjio0003p4vhxgszbfju" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="ck0nrtdfs00052ovhb098x0ix" class="article-share-link">Share</a>
       
       
     </footer>
@@ -299,7 +356,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/10/h5中img标签的边框问题/" data-id="ck0c3bjj00008p4vhyhzgtv5d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/10/h5中img标签的边框问题/" data-id="ck0nrtdfv00062ovh7j1uh757" class="article-share-link">Share</a>
       
       
     </footer>
@@ -335,7 +392,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="ck0c3bjil0002p4vh0vv54rtc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="ck0nrtdg7000a2ovh7yvks938" class="article-share-link">Share</a>
       
       
     </footer>
@@ -393,7 +450,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/15/js数组排序去重等/" data-id="ck0c3bjjv000jp4vhqsmmmdrf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/15/js数组排序去重等/" data-id="ck0nrtdgn000g2ovh41eax2og" class="article-share-link">Share</a>
       
       
     </footer>
@@ -448,7 +505,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="ck0c3bjjo000gp4vhul6ku6pg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="ck0nrtdgl000f2ovhfyywqad2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -533,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/js function的相关总结/" data-id="ck0c3bjjl000fp4vhcsoltyd5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/js function的相关总结/" data-id="ck0nrtdgr000i2ovh835hc12i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -577,84 +634,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/js构造函数及原型链继承/" data-id="ck0c3bjkk000tp4vhovpfcr9i" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-eval总结" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/15/eval总结/" class="article-date">
-  <time datetime="2019-03-15T02:07:55.000Z" itemprop="datePublished">2019-03-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/15/eval总结/">eval总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="eval的一些总结"><a href="#eval的一些总结" class="headerlink" title="eval的一些总结"></a>eval的一些总结</h4><h5 id="eval的用法"><a href="#eval的用法" class="headerlink" title="eval的用法"></a>eval的用法</h5><ol>
-<li><p>在很多的js代码中，可以看到有eval的身影，在菜鸟教程中：“eval() 函数计算 JavaScript 字符串，并把它作为脚本代码来执行。”这个言外之意是处理字符串。可是下面还有一句话：“如果参数是一个表达式，eval() 函数将执行表达式。如果参数是Javascript语句，eval()将执行 Javascript 语句。” 总结一下就是eval()无论你是处理什么，他就会执行，大不了执行不了的就报错！</p>
-</li>
-<li><p>在w3school中写 ：eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。eval(string)，既然都是这样定义的，那为什呢会让他执行什么语句啥的呢？ 我个人猜想一定是后来把js引擎中的eval()处理方法更改了，赋予它更多的功能。</p>
-</li>
-<li><p>eval的巧用</p>
-<ul>
-<li><p>如果data是字符串，使用eval(“(“+data+”)”)可以将其转换为json对象，和JSON.parse的功能一样。<br>如果data是json对象，使用eval(“(“+data+”)”)会报错，正如你描述的错误。eval一个json对象，没有什么作用，这个时候不需要使用eval方法，直接用data即可。</p>
-</li>
-<li><p>所以，如果你那边能确定后台返回的是字符串，就使用eval(“(“+data+”)”)(eval会带来很多问题，不建议使用，如果想实现转化用JSON.parse更好)，如果后台返回的是json对象，什么操作都不需要，直接使用data即可。如果你是用的jquery, 将type（一般为这个配置属性）设为json，或者利用$.getJSON()方法获得服务器返回，那么就不需要eval()方法了，因为这时候得到的结果已经是json对象了，只需直接调用该对象即可</p>
-</li>
-<li><p>另外多说一点：为什么eval要添加括号呢？原因：eval本身的问题。 由于json是以{}的方式来开始以及结束的，在JS中，它会被当成一个语句块来处理，所以必须强制性的将它转换成一种表达式。加上圆括号的目的是迫使eval函数在处理JavaScript代码的时候强制将括号内的表达式(expression)转化为对象，而不是作为语句(statement)来执行。举一个例子，例如对象字面量{}，如若不加外层的括号，那么eval会将大括号识别为JavaScript代码块的开始和结束标记，那么{}将会被认为是执行了一句空语句。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(<span class="string">"&#123;&#125;"</span>); <span class="comment">// undefined </span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(<span class="string">"(&#123;&#125;)"</span>);<span class="comment">// object[Object]</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>这使我想到为什么有时候后台返回的数据是一个字符串，我使用<code>JSON.parse()</code>处理（目的转为json对象使用）之后会出现：<code>Uncaught SyntaxError: Unexpected token r</code>，这里报错的根本原因是你后台返回的数据不是标准格式，以至于<code>JSON.parse()</code>解析不了。上面无序列表第二条是说用jq的json方法，我认为这是jq里面帮你处理数据了。所以大家只要是各个工种都按照严格的规范来，怎么不出现这个问题呢？</p>
-</li>
-</ul>
-</li>
-<li><p>我来做最后的总结：记住，eval()解析字符串参数时,会把参数以执行语句的方式返回，请看下面例子。</p>
-</li>
-</ol>
-<p>例子1：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'2'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(str));  <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-<p>上面会输出2，但是这样做没有什么意义。2和’2’都被eval作为参数以执行语句的方式返回。</p>
-<p>例子2：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'a:3'</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'a=3'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(str));  <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
-<p>上面会输出3，我认为这和例子1差不多，’a:3’和’a=3’也都被eval作为参数以执行语句的方式返回。</p>
-<p>例子2：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'a:3'</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'a=3'</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'&#123;a:3&#125;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(str));  <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
-<p>上面会输出3，我认为这和例子1差不多，’a:3’、’a=3’、’{a:3}’也都被eval作为参数以执行语句的方式返回。但是这是简单的字符串，请看下面的例子。</p>
-<p>例子3：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'&#123;a:3,b:4&#125;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(str));  <span class="comment">// Uncaught SyntaxError: Unexpected token :</span></span><br></pre></td></tr></table></figure>
-<p>为什么报错了，我理解的是eval处理不了，本身这是<code>&#39;{ , }&#39;</code>这是对象，比较复杂，在eval解析的时候，解释器遇到{},它会认为这个是一个代码块，会执行它，处理不了报错，有人说例子2中为什么可以，我认为例子2中固然有’{a:3}’例子，但是该对象只有一对键值对。比较简单。复杂的<code>&#39;{ , }&#39;</code>，解释器把它当成代码块处理就会出错，我们为此用一个()包裹起来，把代码块转为表达式，这样解释器就把<code>&#39;{ , }&#39;</code>作为一个对象正常解析。</p>
-<p>例子4：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">'&#123;&#125;'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(str));  <span class="comment">// undefined 由于他也是简单的对象，所以js输出了undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">eval</span>(<span class="string">'('</span>+str+<span class="string">')'</span>));  <span class="comment">// &#123;&#125; ,把代码块加上()，当做表达式来处理，固输出&#123;&#125;</span></span><br></pre></td></tr></table></figure>
-<p>例子5：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">"x=10;y=20;console.log(x*y)"</span>);</span><br></pre></td></tr></table></figure>
-<p>这种可以执行，打印出200。</p>
-<ol start="5">
-<li>详细见这篇帖子<a href="https://segmentfault.com/q/1010000006965715" target="_blank" rel="noopener">关于eval（data）和eval(“(“+data+”)”)</a></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/15/eval总结/" data-id="ck0c3bjj30009p4vhwp0xvhbh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/js构造函数及原型链继承/" data-id="ck0nrtdgt000j2ovhl5o4u4id" class="article-share-link">Share</a>
       
       
     </footer>
@@ -687,7 +667,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -698,6 +678,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/09/17/js日期设置总结/">js日期设置总结</a>
+          </li>
         
           <li>
             <a href="/2019/07/02/看冴羽博客笔记/">看冴羽博客笔记</a>
@@ -713,10 +697,6 @@
         
           <li>
             <a href="/2019/06/10/h5中img标签的边框问题/">h5中img标签的边框问题</a>
-          </li>
-        
-          <li>
-            <a href="/2019/05/09/CSS的normalize-css的文档说明/">CSS的normalize.css的文档说明</a>
           </li>
         
       </ul>
