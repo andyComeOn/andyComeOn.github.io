@@ -104,12 +104,12 @@
 <h3 id="4、-日期之间相差多少天。"><a href="#4、-日期之间相差多少天。" class="headerlink" title="4、 日期之间相差多少天。"></a>4、 日期之间相差多少天。</h3><p>很多的帖子就是直接把startTime endTime 直接转换为时间戳相减之后在取整（或者向下取整）在除以86400000，就是相差的天数。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_subtraction</span> (<span class="params">start, end</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Date</span>(start);</span><br><span class="line">    <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Date</span>(end);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.floor((b - a) / <span class="number">86400000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="5、-有初末日期，获取其中之间的日历（场景：酒店系统-餐费的时间日历选择）"><a href="#5、-有初末日期，获取其中之间的日历（场景：酒店系统-餐费的时间日历选择）" class="headerlink" title="5、 有初末日期，获取其中之间的日历（场景：酒店系统 餐费的时间日历选择）"></a>5、 有初末日期，获取其中之间的日历（场景：酒店系统 餐费的时间日历选择）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectMealDate</span> (<span class="params">s, e</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 月、天不够2位补0</span></span><br><span class="line">    <span class="keyword">this</span>._fill = <span class="function"><span class="keyword">function</span> (<span class="params">arg</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 使程序更严谨</span></span><br><span class="line">        <span class="keyword">if</span> (arg == <span class="literal">undefined</span> || arg == <span class="string">''</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> re = arg + <span class="string">''</span>;  <span class="comment">// 转为字符串为了使用字符串 length 属性</span></span><br><span class="line">        <span class="keyword">if</span> (re.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            re = <span class="string">'0'</span> + re;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> re;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 初末日期相差多少天</span></span><br><span class="line">    <span class="keyword">this</span>._subtraction = <span class="function"><span class="keyword">function</span> (<span class="params">startArg, endArg</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Date</span>(startArg);</span><br><span class="line">        <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Date</span>(endArg);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.floor((b - a) / <span class="number">86400000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 抛出的值</span></span><br><span class="line">    <span class="keyword">var</span> _arr = [];</span><br><span class="line">    <span class="comment">// 循环出餐费日历数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="keyword">this</span>._subtraction(s, e); i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> temp = <span class="keyword">new</span> <span class="built_in">Date</span>(s);</span><br><span class="line">        temp.setDate(temp.getDate() + i ); </span><br><span class="line">        _arr.push(temp.getFullYear() + <span class="string">'-'</span>+ <span class="keyword">this</span>._fill(temp.getMonth() + <span class="number">1</span>) + <span class="string">'-'</span> + <span class="keyword">this</span>._fill(temp.getDate()));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> _arr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="6、-参考的链接，未完，相差小时，分钟，秒-继续看参考的帖子"><a href="#6、-参考的链接，未完，相差小时，分钟，秒-继续看参考的帖子" class="headerlink" title="6、 参考的链接，未完，相差小时，分钟，秒 继续看参考的帖子"></a>6、 参考的链接，未完，相差小时，分钟，秒 继续看参考的帖子</h3><p><a href="https://www.cnblogs.com/summer-qd/p/10103984.html" target="_blank" rel="noopener">js 日期相差计算</a><br><a href="http://www.miaoqiyuan.cn/p/date-range" target="_blank" rel="noopener">JS日历循环，指定开始结束日期，自动向后计算</a><br><a href="http://www.runoob.com/js/js-obj-date.html" target="_blank" rel="noopener">JavaScript Date（日期） 对象</a>  </p>
+<h3 id="6、-参考的链接，未完，相差小时，分钟，秒-继续看参考的帖子"><a href="#6、-参考的链接，未完，相差小时，分钟，秒-继续看参考的帖子" class="headerlink" title="6、 参考的链接，未完，相差小时，分钟，秒 继续看参考的帖子"></a>6、 参考的链接，未完，相差小时，分钟，秒 继续看参考的帖子</h3><p><a href="https://www.cnblogs.com/summer-qd/p/10103984.html" target="_blank" rel="noopener">js 日期相差计算</a><br><a href="http://www.miaoqiyuan.cn/p/date-range" target="_blank" rel="noopener">JS日历循环，指定开始结束日期，自动向后计算</a><br><a href="http://www.runoob.com/js/js-obj-date.html" target="_blank" rel="noopener">JavaScript Date（日期） 对象</a>     </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ck0nsdcvy000j3wvheps7nt33" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ck0ojhcih000igsvhvuqdrxpq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -188,7 +188,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ck0nsdcwj000t3wvh492u8ajk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ck0ojhcjj000ugsvh3podpmjq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -251,7 +251,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="ck0nsdcw7000n3wvhjil09wy1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="ck0ojhcjh000tgsvhgp5lhqnr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -301,7 +301,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="ck0nsdcv000063wvhqcx7a4j2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="ck0ojhchm0006gsvhn11x7jz0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -356,7 +356,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/10/h5中img标签的边框问题/" data-id="ck0nsdcva000a3wvhytguqk6k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/10/h5中img标签的边框问题/" data-id="ck0ojhchu0009gsvhr1ircwm9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -392,7 +392,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="ck0nsdcus00033wvhtz86wm4e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="ck0ojhchj0005gsvhqftldnp1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -450,7 +450,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/15/js数组排序去重等/" data-id="ck0nsdcvv000i3wvhhdm260ax" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/15/js数组排序去重等/" data-id="ck0ojhcif000hgsvhzpgn4n9l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -505,7 +505,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="ck0nsdcvq000g3wvhztzlxwkm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="ck0ojhcjc000rgsvhn3qez05z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -590,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/js function的相关总结/" data-id="ck0nsdcvo000f3wvhpx22d0m5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/js function的相关总结/" data-id="ck0ojhcic000fgsvhzqwhz8zj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -634,7 +634,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/js构造函数及原型链继承/" data-id="ck0nsdcw1000k3wvh7usy8rxa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/js构造函数及原型链继承/" data-id="ck0ojhcij000jgsvhiioelkla" class="article-share-link">Share</a>
       
       
     </footer>
