@@ -129,7 +129,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/15/eval总结/" data-id="ck0os97mc0008dkvh38pdd2er" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/15/eval总结/" data-id="ck0oxbk1p00087svhg9obgubt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -177,50 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/14/js中的逗号/" data-id="ck0os97or000gdkvhmrzahjjb" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-layui的form说明" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/14/layui的form说明/" class="article-date">
-  <time datetime="2019-03-14T05:55:33.000Z" itemprop="datePublished">2019-03-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/14/layui的form说明/">layui的form记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="layui中的form的记录"><a href="#layui中的form的记录" class="headerlink" title="layui中的form的记录"></a>layui中的form的记录</h4><ol>
-<li>layui的form是直接按照其官网的写法即可：</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"layui-form"</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form-item"</span> &gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"layui-form-label"</span>&gt;</span>输入框<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-input-block"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"title"</span> <span class="attr">required</span> <span class="attr">lay-verify</span>=<span class="string">"required"</span>  <span class="attr">placeholder</span>=<span class="string">"请输入标题"</span> <span class="attr">autocomplete</span>=<span class="string">"off"</span>  <span class="attr">class</span>=<span class="string">"layui-input"</span>  &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form-item"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-input-block"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"layui-btn"</span> <span class="attr">lay-submit</span> <span class="attr">lay-filter</span>=<span class="string">"formDemo"</span>&gt;</span>立即提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"reset"</span> <span class="attr">class</span>=<span class="string">"layui-btn layui-btn-primary"</span>&gt;</span>重置<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>别忘了form中要加上<code>form.layui-form</code>，form的每一个项是<code>&lt;div class=&quot;layui-form-item&quot;&gt;&lt;/div&gt;</code>，其中<code>lay-verify=&quot;required&quot;</code>这是验证用的，在input的html代码中加入了required属性，当用户的鼠标放到这个input输入框时候会有一个提示这个在“layui中form的验证记录.md”文档中有提现。 <code>lay-filter=&quot;formDemo&quot;</code>中的lay-filter是提交的对数据的过滤。若你想传哪个字段如desc字段，要如下写法：</p>
-<p>在input中的name属性<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"desc"</span> <span class="attr">required</span> <span class="attr">lay-verify</span>=<span class="string">"required"</span> <span class="attr">placeholder</span>=<span class="string">"请输入标题"</span> <span class="attr">autocomplete</span>=<span class="string">"off"</span>  <span class="attr">class</span>=<span class="string">"layui-input"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="input的name属性"><a href="#input的name属性" class="headerlink" title="input的name属性"></a>input的name属性</h4><p>对layui中的循环出来的input（集团端的循环出来的门店），一般是不加name，用一个input type=hidden的name来接（隐藏作用域），针对radio这种（认为浏览器自己内部封装的有，你点击之后，name就是获取你当前触发的那个input的value）    layui中的<input type="checkbox" name="switch" lay-skin="switch">这个开关不开，在form中data.field是不会打印switch的，也许这个是layui的二次封装，但是我想在很早时候，大家使用form提数据，针对复选框，浏览器也是针对checkbox，取消选中，就不会在作为name提交了！</p>
-<h5 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续~"></a>未完待续~</h5>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/14/layui的form说明/" data-id="ck0os97pa000ldkvh7vm7yoq6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/14/js中的逗号/" data-id="ck0oxbk2n000i7svhvtdz4w83" class="article-share-link">Share</a>
       
       
     </footer>
@@ -276,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/28/故事目录序/" data-id="ck0os97q4000pdkvhe5fe5237" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/28/故事目录序/" data-id="ck0oxbk33000p7svhsazfxyl6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -337,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/26/Vuex总结/" data-id="ck0os97m90007dkvhx7tlojon" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/26/Vuex总结/" data-id="ck0oxbk1s00097svh3ro5615f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -385,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/22/jq中一些总结/" data-id="ck0os97mo000cdkvhwogcqy5c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/22/jq中一些总结/" data-id="ck0oxbk27000e7svhj8txmivm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -432,7 +389,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/22/JS封装备份/" data-id="ck0os97m00003dkvhs4bjf180" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/22/JS封装备份/" data-id="ck0oxbk1d00037svhhkc3jdc3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -475,7 +432,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/15/设置路由器的一次记录/" data-id="ck0os97q9000rdkvhlh2y8fvp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/15/设置路由器的一次记录/" data-id="ck0oxbk3q000u7svhn495tbmi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -530,7 +487,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/15/CSS字体行高相关/" data-id="ck0os97lh0000dkvh4dxr0vzd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/15/CSS字体行高相关/" data-id="ck0oxbk0y00007svhbv0jhkcr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -572,7 +529,68 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/13/layui的模块化与非模块化介绍/" data-id="ck0os97qh000vdkvh3uzumboe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/13/layui的模块化与非模块化介绍/" data-id="ck0oxbk2z000n7svhlt9w8u5f" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-layui中form的记录" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/13/layui中form的记录/" class="article-date">
+  <time datetime="2019-02-13T02:47:10.000Z" itemprop="datePublished">2019-02-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/13/layui中form的记录/">layui中form的验证记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="layui中form的验证记录"><a href="#layui中form的验证记录" class="headerlink" title="layui中form的验证记录"></a>layui中form的验证记录</h4><ol>
+<li>在layui中针对form的验证，发现一个问题：<br><code>&lt;div class=&quot;layui-form-item&quot; style=&quot;display: none;&quot;&gt;</code><br>即使对这种隐藏的元素，<code>layui</code>也进行了验证，这种情况会让用户看着很懵，这是我在pms的底部“办理入住”看代码逻辑：</li>
+</ol>
+<p><img src="http://139.199.23.2/img/blog/20190124/layui-form.jpg" alt="代码逻辑"></p>
+<ol start="2">
+<li>第二个参数：filter，为 class=”layui-form” 所在元素的 lay-filter=”” 的值。你可以借助该参数，对表单完成局部更新。<br>如下：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form"</span> <span class="attr">lay-filter</span>=<span class="string">"test1"</span>&gt;</span></span><br><span class="line">  …</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form"</span> <span class="attr">lay-filter</span>=<span class="string">"test2"</span>&gt;</span></span><br><span class="line">  …</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">form.render(<span class="literal">null</span>, <span class="string">'test1'</span>); <span class="comment">//更新 lay-filter="test1" 所在容器内的全部表单状态</span></span><br><span class="line">form.render(<span class="string">'select'</span>, <span class="string">'test2'</span>); <span class="comment">//更新 lay-filter="test2" 所在容器内的全部 select 状态</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>针对layui中的验证问题，此问题在修改862bug时效果如下：</li>
+</ol>
+<p><img src="http://139.199.23.2/img/blog/20190213/verify-tips.jpg" alt="verify-tips"> 这个提示是在验证时候加了<code>required lay-verify=&quot;&quot;</code>属性，出现此效果还要额外引入<code>layui.js</code>。若这样写<code>required lay-verify=&quot;required&quot;</code>只会提示下面的效果：<img src="http://139.199.23.2/img/blog/20190213/required-tips.jpg" alt="required-tips"> </p>
+<ol start="4">
+<li>关于form的思考</li>
+</ol>
+<p>最早时候网页很简单，就是一些静态页，后来有了简单的form提交数据，这就是原生的 <code>&lt;form&gt; ... &lt;/form&gt;</code>，前后端没有分离，都是写在一块，直接使用原生form提交数据，后来技术发展前后端分离之后，使用接口的形式拉取数据。上面的layui中的form模块是写好的美观的form，在业务复杂情况下也可以直接写元素form的标签，form中原生标签如：input=radio 、button、select、input=checkbox、textarea都是可以写css的，也可以写的符合业务要求。注：个人测试select（css生效）下的option（写css不生效）！</p>
+<ol start="5">
+<li>layui的form是直接按照其官网的写法即可：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"layui-form"</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form-item"</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"layui-form-label"</span>&gt;</span>输入框<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-input-block"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"title"</span> <span class="attr">required</span> <span class="attr">lay-verify</span>=<span class="string">"required"</span>  <span class="attr">placeholder</span>=<span class="string">"请输入标题"</span> <span class="attr">autocomplete</span>=<span class="string">"off"</span>  <span class="attr">class</span>=<span class="string">"layui-input"</span>  &gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form-item"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-input-block"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"layui-btn"</span> <span class="attr">lay-submit</span> <span class="attr">lay-filter</span>=<span class="string">"formDemo"</span>&gt;</span>立即提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"reset"</span> <span class="attr">class</span>=<span class="string">"layui-btn layui-btn-primary"</span>&gt;</span>重置<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>别忘了form中要加上<code>form.layui-form</code>，form的每一个项是<code>&lt;div class=&quot;layui-form-item&quot;&gt;&lt;/div&gt;</code>，其中<code>lay-verify=&quot;required&quot;</code>这是验证用的，在input的html代码中加入了required属性，当用户的鼠标放到这个input输入框时候会有一个提示，这个在“layui中form的验证记录.md”文档中有提现。<code>lay-filter=&quot;formDemo&quot;</code>中的lay-filter是提交的对数据的过滤。若你想传哪个字段如desc字段，要如下写法：</p>
+<p>在input中的name属性<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"desc"</span> <span class="attr">required</span> <span class="attr">lay-verify</span>=<span class="string">"required"</span> <span class="attr">placeholder</span>=<span class="string">"请输入标题"</span> <span class="attr">autocomplete</span>=<span class="string">"off"</span>  <span class="attr">class</span>=<span class="string">"layui-input"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>对layui中的循环出来的input（集团端的循环出来的门店），一般是不加name，用一个input type=hidden的name来接（隐藏作用域），针对radio这种（认为浏览器自己内部封装的有，你点击之后，name就是获取你当前触发的那个input的value） </p>
+<p>layui中的<input type="checkbox" name="switch" lay-skin="switch">这个开关不开，在form中data.field是不会打印switch的，也许这个是layui的二次封装，radio也是一样，没有默认选中，是不会提交该radio对应的name字段的值。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/13/layui中form的记录/" data-id="ck0oxbk35000q7svh85wemktj" class="article-share-link">Share</a>
       
       
     </footer>
