@@ -62,6 +62,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-table标签相关总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/25/table标签相关总结/" class="article-date">
+  <time datetime="2019-09-25T10:59:34.000Z" itemprop="datePublished">2019-09-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/25/table标签相关总结/">table标签相关总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>table在后台管理系统中使用很普遍，有时候在使用它时很多属性都记不清，以至于又临时百度，现在总结一下！</p>
+<h4 id="1、table中属性"><a href="#1、table中属性" class="headerlink" title="1、table中属性"></a>1、table中属性</h4><ul>
+<li>table一般html写法是：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">"1"</span> <span class="attr">width</span>=<span class="string">"400"</span> <span class="attr">rules</span>=<span class="string">"all"</span> <span class="attr">cellpadding</span>=<span class="string">"5"</span> <span class="attr">cellspaceing</span>=<span class="string">"5"</span> <span class="attr">summary</span>=<span class="string">"各银行的网上银行支付限额总表"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">colgroup</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">col</span> <span class="attr">width</span>=<span class="string">"60px"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">col</span> <span class="attr">width</span>=<span class="string">"100px"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">col</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">colgroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>name<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>age<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>height<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>weight<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>andy<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>18<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>180<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>66<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这里面涉及到html属性：border、width、rules、cellpadding、cellspaceing、summary等。其中rules是我偶然间看别人这样写，该属性是解决table中边框的。加上 <code>rules=&quot;all&quot;</code> 效果如下：<br><img src="http://139.199.23.2/img/blog/20190925/tab_rules_all.png" alt="tab_rules_all"><br>若是不写该属性，tab有外边框及每个td都有边框，效果很不好看，如下：<br><img src="http://139.199.23.2/img/blog/20190925/tab_rules_no.png" alt="tab_rules_no"><br>所以大家一般都加上该属性！场景：你在本地临时想测试table问题，没有引入reset.css等库，加上该属性，table效果就好看多了。我在有些重置css库中发现有对table加上如下css代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">table</span> &#123;</span><br><span class="line">    <span class="comment">/* 重置库添加下面代码 */</span></span><br><span class="line">    <span class="attribute">border-collapse</span>: collapse;  </span><br><span class="line">    <span class="comment">/* table中默认的css */</span></span><br><span class="line">    <span class="attribute">border-collapse</span>: separate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>看到上面的css代码知晓table默认样式是每个td分割的，加上collapse（塌陷），就是让他“塌陷”，不分割！可以理解 <code>border-collapse: collapse;</code>、<code>rules=&quot;all&quot;</code>所起的作用一致。 细查一下rules有三种情况：<code>rules=&quot;all&quot;</code>、<code>rules=&quot;rows&quot;</code>、<code>rules=&quot;cols&quot;</code> 在w3c文档中显示效过如下：<br><img src="http://139.199.23.2/img/blog/20190925/tab_rules_w3c.png" alt="tab_rules_w3c"><br>这与我本地的效果不一样，我理解只要是加上rules，不论啥属性值，表格最外面都ok的。</p>
+<p>colgroup是用来定义宽度的，未完待续~</p>
+<h4 id="2、table中tb合并"><a href="#2、table中tb合并" class="headerlink" title="2、table中tb合并"></a>2、table中tb合并</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/25/table标签相关总结/" data-id="ck0z7s333000ldovhdk78fa6n" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-js日期设置总结" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/09/17/js日期设置总结/" class="article-date">
@@ -112,7 +157,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ck0w33f55000hkcvhatci8coh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ck0z7s32t000idovhg2vu51k3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -191,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ck0w33f5v000rkcvhmry6siaw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ck0z7s35i000udovhk801515u" class="article-share-link">Share</a>
       
       
     </footer>
@@ -254,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="ck0w33f60000tkcvhuwb2z2yl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="ck0z7s33r000tdovhpoo6vr2h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -304,7 +349,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="ck0w33f420004kcvhye60ha66" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="ck0z7s31m0004dovhch8pqqhl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -359,7 +404,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/10/h5中img标签的边框问题/" data-id="ck0w33f4e0008kcvhlxs0q2pw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/10/h5中img标签的边框问题/" data-id="ck0z7s329000bdovh2w4zrto4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -395,7 +440,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="ck0w33f62000ukcvhgz56w2hs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="ck0z7s3110000dovhdvownfqb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -453,7 +498,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/15/js数组排序去重等/" data-id="ck0w33f57000ikcvhuxsrcwn1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/15/js数组排序去重等/" data-id="ck0z7s32o000gdovhpckv6nqk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -508,7 +553,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="ck0w33f52000fkcvhh2gmtepl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="ck0z7s33l000rdovho507u9c4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -593,51 +638,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/js function的相关总结/" data-id="ck0w33f4y000ekcvhx1fsa3cg" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-js构造函数及原型链继承" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/11/js构造函数及原型链继承/" class="article-date">
-  <time datetime="2019-04-11T06:41:48.000Z" itemprop="datePublished">2019-04-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/11/js构造函数及原型链继承/">js的几种继承</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>js的构造函数继承</li>
-</ol>
-<ul>
-<li>我所理解的就是在原有函数声明之后，new了一次。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="keyword">new</span> Foo();</span><br></pre></td></tr></table></figure>
-<p>这个时候el 就继承了Foo函数的prototype。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/js构造函数及原型链继承/" data-id="ck0w33f59000jkcvhmozq0rm4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/js function的相关总结/" data-id="ck0z7s32i000edovh5iphjkq2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -683,6 +684,10 @@
       <ul>
         
           <li>
+            <a href="/2019/09/25/table标签相关总结/">table标签相关总结</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/17/js日期设置总结/">js日期设置总结</a>
           </li>
         
@@ -696,10 +701,6 @@
         
           <li>
             <a href="/2019/06/11/Math函数/">Math函数</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/10/h5中img标签的边框问题/">h5中img标签的边框问题</a>
           </li>
         
       </ul>

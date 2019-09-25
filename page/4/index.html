@@ -62,6 +62,81 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Hexo总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/22/Hexo总结/" class="article-date">
+  <time datetime="2019-01-22T01:59:30.000Z" itemprop="datePublished">2019-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/22/Hexo总结/">Hexo总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="这是我个人对安装hexo的一些总结"><a href="#这是我个人对安装hexo的一些总结" class="headerlink" title="这是我个人对安装hexo的一些总结"></a>这是我个人对安装hexo的一些总结</h4><h5 id="在github上新建仓库时候一定遵循下面的格式："><a href="#在github上新建仓库时候一定遵循下面的格式：" class="headerlink" title="在github上新建仓库时候一定遵循下面的格式："></a>在github上新建仓库时候一定遵循下面的格式：</h5><ul>
+<li><code>{username} github.io</code></li>
+</ul>
+<h5 id="根目录下的-config-yml："><a href="#根目录下的-config-yml：" class="headerlink" title="根目录下的_config.yml："></a>根目录下的<code>_config.yml</code>：</h5><ul>
+<li>要正确的把你的新建的github的仓库地址copy到<code>_config.yml</code>的deploy处 </li>
+</ul>
+<h5 id="网上说的安装方法："><a href="#网上说的安装方法：" class="headerlink" title="网上说的安装方法："></a>网上说的安装方法：</h5><ul>
+<li>有的说<code>npm install hexo -g</code>（我采用）</li>
+<li>有的说<code>npm install hexo-cli -g</code></li>
+</ul>
+<h5 id="按照网上的说法安装完成之后要注意以下几点："><a href="#按照网上的说法安装完成之后要注意以下几点：" class="headerlink" title="按照网上的说法安装完成之后要注意以下几点："></a>按照网上的说法安装完成之后要注意以下几点：</h5><ul>
+<li>每次在根目录下执行<code>hexo clean</code> -&gt; <code>hexo generate (hexo g)</code> -&gt; <code>hexo deploy (hexo d)</code></li>
+<li>后来发现根本不需要执行<code>hexo clean</code></li>
+</ul>
+<h5 id="hexo-怎么新建文章"><a href="#hexo-怎么新建文章" class="headerlink" title="hexo 怎么新建文章"></a>hexo 怎么新建文章</h5><ul>
+<li>网上说的是执行<code>hexo new post &#39;name&#39;</code>,尝试可行。但是我在Hexo自己生成的hello-word.md的文档中发现指令<code>hexo new &#39;name&#39;</code>少写了post。经测试亦可行！</li>
+</ul>
+<h5 id="hexo-怎么删除文章"><a href="#hexo-怎么删除文章" class="headerlink" title="hexo 怎么删除文章"></a>hexo 怎么删除文章</h5><ul>
+<li>先删除本地文件，然后通过生成和部署命令进而将远程仓库中的文件也一并删除。</li>
+<li>具体来说，以最开始默认生成的hello-world.md这篇文章为例：首先进入到source / _post 文件夹中，找到hello-world.md文件，在本地直接执行删除。然后依次执行<code>hexo g</code>，<code>hexo d</code>，即可删除。</li>
+</ul>
+<h5 id="发现的小问题"><a href="#发现的小问题" class="headerlink" title="发现的小问题"></a>发现的小问题</h5><ul>
+<li><p>本来通过<code>hexo new post demo</code> ，生成的demo.md文件，我后来感觉命名不合理，就直接修改文件名字，发现修改之后标题没有修改过来？原因是忘记了修改了此处 <img src="https://github.com/andyComeOn/andygithub-static/blob/master/static/img/my-hexo-summary.jpg" alt="图片"> || <img src="https://github.githubassets.com/favicon.ico" alt="图片"></p>
+</li>
+<li><p>网上说的新建的md文件不能使用中文命名，经测试可行。</p>
+</li>
+</ul>
+<hr>
+<h5 id="参考的帖子"><a href="#参考的帖子" class="headerlink" title="参考的帖子"></a>参考的帖子</h5><ul>
+<li><a href="https://www.cnblogs.com/fengxiongZz/p/7707219.html" target="_blank" rel="noopener">使用Hexo+Github一步步搭建属于自己的博客（基础）</a>、<a href="https://www.cnblogs.com/fengxiongZz/p/7707568.html" target="_blank" rel="noopener">使用Hexo+Github一步步搭建属于自己的博客（进阶）</a> 这2个帖子是我最开始参考的。</li>
+<li><a href="https://blog.csdn.net/ainuser/article/details/77609180" target="_blank" rel="noopener">hexo+github搭建个人博客(超详细教程)</a> 这个帖子讲的详细，同时也讲述了安装git的一些info和使用镜像的说明。</li>
+<li><a href="https://blog.csdn.net/qq_32454537/article/details/79482908" target="_blank" rel="noopener">2018最新版hexo+Github搭建个人博客教程（2018-1-22 更新）</a>这个是一个学生写的，写的很细。</li>
+</ul>
+<h5 id="需要探究的问题"><a href="#需要探究的问题" class="headerlink" title="需要探究的问题"></a>需要探究的问题</h5><ul>
+<li>就是我在一个电脑上，按照网上的配置在本地配了相应的环境，若我换了电脑，是否再次配置？配置好了之后，之前的历史文章怎么clone到本地，再次edit呢？</li>
+</ul>
+<h6 id="hexo的添加文章目录以及归档"><a href="#hexo的添加文章目录以及归档" class="headerlink" title="hexo的添加文章目录以及归档"></a>hexo的添加文章目录以及归档</h6><ul>
+<li>在写博客过程中遇到归档的需求，搜了一篇文章说的如何归档：<a href="https://www.jianshu.com/p/72408c410904" target="_blank" rel="noopener">Hexo站点中添加文章目录以及归档</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/22/Hexo总结/" data-id="ck0z7s31e0002dovhnikssuq7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/22/hello-world/" class="article-date">
@@ -97,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="ck0w33f4l000akcvhmb2cmlrg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="ck0z7s32b000cdovhz9tm3h58" class="article-share-link">Share</a>
       
       
     </footer>
@@ -143,6 +218,10 @@
       <ul>
         
           <li>
+            <a href="/2019/09/25/table标签相关总结/">table标签相关总结</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/17/js日期设置总结/">js日期设置总结</a>
           </li>
         
@@ -156,10 +235,6 @@
         
           <li>
             <a href="/2019/06/11/Math函数/">Math函数</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/10/h5中img标签的边框问题/">h5中img标签的边框问题</a>
           </li>
         
       </ul>
