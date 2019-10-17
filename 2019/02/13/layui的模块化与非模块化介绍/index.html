@@ -7,19 +7,19 @@
   
   <title>layui的模块化与非模块化介绍 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="layui的模块化与非模块化介绍 下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：  我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样">
+  <meta name="description" content="1. 下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问： 我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样写了required lay-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="layui的模块化与非模块化介绍">
 <meta property="og:url" content="http://yoursite.com/2019/02/13/layui的模块化与非模块化介绍/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="layui的模块化与非模块化介绍 下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：  我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样">
+<meta property="og:description" content="1. 下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问： 我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样写了required lay-">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://139.199.23.2/img/blog/20190213/layui-on-err.jpg">
 <meta property="og:image" content="http://139.199.23.2/img/blog/20190213/verify-tips.jpg">
-<meta property="og:updated_time" content="2019-02-14T01:07:14.197Z">
+<meta property="og:updated_time" content="2019-10-17T09:45:12.727Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="layui的模块化与非模块化介绍">
-<meta name="twitter:description" content="layui的模块化与非模块化介绍 下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：  我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样">
+<meta name="twitter:description" content="1. 下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问： 我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样写了required lay-">
 <meta name="twitter:image" content="http://139.199.23.2/img/blog/20190213/layui-on-err.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -89,17 +89,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="layui的模块化与非模块化介绍"><a href="#layui的模块化与非模块化介绍" class="headerlink" title="layui的模块化与非模块化介绍"></a>layui的模块化与非模块化介绍</h4><ol>
-<li>下面这个帖子<a href="https://www.cnblogs.com/qlqwjy/p/8975931.html" target="_blank" rel="noopener">layui的模块化和非模块化使用</a>，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：<br><img src="http://139.199.23.2/img/blog/20190213/layui-on-err.jpg" alt="layui-on-err"></li>
-</ol>
+        <h4 id="1-下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问："><a href="#1-下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：" class="headerlink" title="1. 下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问："></a>1. 下面这个帖子<a href="https://www.cnblogs.com/qlqwjy/p/8975931.html" target="_blank" rel="noopener">layui的模块化和非模块化使用</a>，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：</h4><p><img src="http://139.199.23.2/img/blog/20190213/layui-on-err.jpg" alt="layui-on-err"></p>
 <p>我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样写了<code>required lay-verify=&quot;&quot;</code>出现不了下面这个效果：</p>
 <p><img src="http://139.199.23.2/img/blog/20190213/verify-tips.jpg" alt="verify-tips"></p>
 <p>这感觉不合理！</p>
+<h4 id="2-layui中模块加载问题"><a href="#2-layui中模块加载问题" class="headerlink" title="2. layui中模块加载问题"></a>2. layui中模块加载问题</h4><p>layui只use layer 打印form table 是undefined<br>layui只use table 打印form table 是OK的<br>layui只use form 打印form table 仅form是OK的</p>
+<p>得出结论，只要use使用的有模块，layer就能使用（全局的），只use table，form也能使用；只ues form，table不能使用；table逻辑嵌入了form逻辑。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/13/layui的模块化与非模块化介绍/" data-id="ck1kcn055000nvovhdesyvvj7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/13/layui的模块化与非模块化介绍/" data-id="ck1uirj0b000k7kvhq2d00txq" class="article-share-link">Share</a>
       
       
     </footer>
