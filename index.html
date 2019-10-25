@@ -98,7 +98,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/25/table标签相关总结/" data-id="ck24e8loj000p5cvhtcfhggqd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/25/table标签相关总结/" data-id="ck25f87h1000qy8vhyd0au0x8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -158,7 +158,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ck24e8lo5000i5cvh1wq4ppfq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ck25f87gi000ky8vhvbjq4sjg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -237,7 +237,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ck24e8lop000s5cvhz8uerqf0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ck25f87ij000uy8vhfktj2tve" class="article-share-link">Share</a>
       
       
     </footer>
@@ -269,15 +269,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="总结一下layui的函数使用方法"><a href="#总结一下layui的函数使用方法" class="headerlink" title="总结一下layui的函数使用方法"></a>总结一下layui的函数使用方法</h3><ol>
+        <h4 id="总结一下layui的函数使用方法"><a href="#总结一下layui的函数使用方法" class="headerlink" title="总结一下layui的函数使用方法"></a>总结一下layui的函数使用方法</h4><ol>
 <li><p>针对声明函数如 <code>onclick=myClick()</code>，可在layui.use([], function(){})中写但是必须是window.myClick = function () {}，这能声明成功，但是有时候我们常常使用jq中的 <code>$(this)</code>，这时候this指向不是我们想要的当前元素，而是window。贤心在一篇帖子中回答使用此方法。</p>
 </li>
 <li><p>还有一种就是使用jq绑定事件写在layui.use([], function(){})中，视情况而定。当然你也可以放到layui.use([], function(){})外面，但是你记得要引入jQuery，否则会报错： Uncaught ReferenceError: $ is not defined。个人感觉就直接写在layui.use之间就可以。</p>
 </li>
 <li><p>有关table监听有一下几种用法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这下面的 fiterTabname 是指table标签中lay-filter="fiterTabname"</span></span><br><span class="line">table.on(<span class="string">'edit(fiterTabname)'</span>; <span class="comment">// table中的input输入</span></span><br><span class="line">table.on(<span class="string">'checkbox(fiterTabname)'</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line">table.on(<span class="string">'radio(fiterTabname)'</span>; <span class="comment">// 点击radio</span></span><br><span class="line">table.on(<span class="string">'tool(fiterTabname)'</span>; <span class="comment">// 这是操作按钮（一般在table中最后一列，通过templet的标识，如：templet: '#barDemo'。针对barDemo是script渲染标签的id，详见下例：）</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这下面的 fiterTabname 是指table标签中lay-filter="fiterTabname"</span></span><br><span class="line">table.on(<span class="string">'edit(fiterTabname)'</span>; <span class="comment">// table中的input输入</span></span><br><span class="line">table.on(<span class="string">'checkbox(fiterTabname)'</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line">table.on(<span class="string">'radio(fiterTabname)'</span>; <span class="comment">// 点击radio</span></span><br><span class="line">table.on(<span class="string">'tool(fiterTabname)'</span>; <span class="comment">// 这是操作按钮（一般在table中最后一列，通过templet的标识，如：templet: '#barDemo'。针对barDemo是script渲染标签的id，详见下例：）</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/html"</span> <span class="attr">id</span>=<span class="string">"barDemo"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    &lt;a <span class="class"><span class="keyword">class</span></span>=<span class="string">"layui-btn layui-btn-primary layui-btn-xs"</span> lay-event=<span class="string">"read"</span>&gt;读卡&lt;<span class="regexp">/a&gt;</span></span></span><br><span class="line"><span class="javascript">    &lt;a <span class="class"><span class="keyword">class</span></span>=<span class="string">"layui-btn layui-btn-danger layui-btn-xs"</span> lay-event=<span class="string">"del"</span>&gt;删除&lt;<span class="regexp">/a&gt;</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 还要注意table标签中的id="table1"一般是渲染table时候使用，用法如下：</span></span><br><span class="line">table.render(&#123;</span><br><span class="line">    elem: <span class="string">"#table1"</span>,</span><br><span class="line">    data: [],</span><br><span class="line">    cols: []</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <ol start="4">
@@ -302,13 +302,15 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-row"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-col-md3"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;div class="grid-demo"&gt; --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form-item"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-inline"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"layui-form-label"</span>&gt;</span>姓名：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-input-block select_after"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"nam"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"user_name"</span> <span class="attr">class</span>=<span class="string">"layui-input"</span> <span class="attr">value</span>=<span class="string">"value值"</span> <span class="attr">lay-verify</span>=<span class="string">"nullStr"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;/div&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><code>&lt;div class=&quot;grid-demo&quot;&gt;&lt;/div&gt;</code>这个是官网给的例子，在css中这个class无体现！</p>
 <ol start="9">
-<li>layui中的html使用demo</li>
+<li>layui中的icon的记录</li>
 </ol>
+<p>icon:<br>    1绿色对号<br>    2红色X号<br>    3黄色问好<br>    4暗灰色加锁<br>    5生气小红脸<br>    6开心小绿脸<br>    7黄色感叹号</p>
+<p>layer.msg(‘暂无当前日期前7天数据’, {icon: 2});</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="ck24e8lob000l5cvhf4uzb7ak" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="ck25f87gr000my8vhcxqqg857" class="article-share-link">Share</a>
       
       
     </footer>
@@ -358,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="ck24e8lna00065cvhz2hq1x8v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="ck25f87fa0007y8vhnlna8ly7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -413,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/10/h5中img标签的边框问题/" data-id="ck24e8lot000u5cvh9anogwg7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/10/h5中img标签的边框问题/" data-id="ck25f87fj000ay8vhfhtkr1yr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -449,7 +451,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="ck24e8lmy00015cvh8iwbhcnx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="ck25f87ea0000y8vh61keesku" class="article-share-link">Share</a>
       
       
     </footer>
@@ -507,7 +509,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/15/js数组排序去重等/" data-id="ck24e8lo2000h5cvhz3ylk4g6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/15/js数组排序去重等/" data-id="ck25f87gc000iy8vhxpbrza9z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -562,7 +564,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="ck24e8lnz000f5cvhwk7u37b3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="ck25f87ga000hy8vhmtuznkxu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -647,7 +649,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/js function的相关总结/" data-id="ck24e8lnw000e5cvhfg1qpvqs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/js function的相关总结/" data-id="ck25f87g5000fy8vhta2spn46" class="article-share-link">Share</a>
       
       
     </footer>
