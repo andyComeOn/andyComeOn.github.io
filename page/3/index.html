@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/13/layui中form的记录/">layui中form的验证记录</a>
+      <a class="article-title" href="/2019/02/13/layui中form的记录/">layui中form相关记录</a>
     </h1>
   
 
@@ -84,7 +84,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="layui中form的验证记录"><a href="#layui中form的验证记录" class="headerlink" title="layui中form的验证记录"></a>layui中form的验证记录</h4><ol>
+        <h4 id="layui中form相关记录"><a href="#layui中form相关记录" class="headerlink" title="layui中form相关记录"></a>layui中form相关记录</h4><ol>
 <li>在layui中针对form的验证，发现一个问题：<br><code>&lt;div class=&quot;layui-form-item&quot; style=&quot;display: none;&quot;&gt;</code><br>即使对这种隐藏的元素，<code>layui</code>也进行了验证，这种情况会让用户看着很懵，这是我在pms的底部“办理入住”看代码逻辑：</li>
 </ol>
 <p><img src="http://139.199.23.2/img/blog/20190124/layui-form.jpg" alt="代码逻辑"></p>
@@ -110,10 +110,13 @@
 <p>对layui中的循环出来的input（集团端的循环出来的门店），一般是不加name，用一个input type=hidden的name来接（隐藏作用域），针对radio这种（认为浏览器自己内部封装的有，你点击之后，name就是获取你当前触发的那个input的value） </p>
 <p>layui中的<input type="checkbox" name="switch" lay-skin="switch">这个开关不开，在form中data.field是不会打印switch的，也许这个是layui的二次封装，radio也是一样，没有默认选中，是不会提交该radio对应的name字段的值。</p>
 <ol start="6">
-<li><p>form中layui-input<br>form中layui-input默认是width: 100%; display: block; 官网中给的有一个价格输入，他是针对input标签又包括了一个标签<code>&lt;div class=&quot;layui-input-inline&quot; style=&quot;width: 100px;&quot;&gt;&lt;/div&gt;</code>，我在开发crs中的新版房态页涉及到修改房价dialog中有加减按钮和input在一行的效果，我想到官网的该例子，后来想到何必在加一对标签呢？况且加了一对标签（layui-input-inline）该标签默认左浮动。综合考虑直接在input添加display: inline; 加上一个宽度即可，input左侧与右侧的按钮该怎么写就怎么写！</p>
-</li>
-<li><p>laydate记录<br>laydate应用场景：一般是在input中起一个id，在js中，进行渲染。如下代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 日期的初始化赋值</span></span><br><span class="line">laydate.render(&#123;</span><br><span class="line">	elem: <span class="string">'#dateArea'</span>,</span><br><span class="line">	range: <span class="string">'至'</span>,</span><br><span class="line">	value: <span class="string">'2019-09-26 至 2019-09-26'</span>,</span><br><span class="line">	<span class="comment">// done: function (value, startDate, endDate) &#123;</span></span><br><span class="line">	<span class="comment">// 	$('input[name=business_time]').val(value);</span></span><br><span class="line">	<span class="comment">// 	console.log(value);</span></span><br><span class="line">	<span class="comment">// 	console.log('startDate', startDate);</span></span><br><span class="line">	<span class="comment">// 	console.log('endDate', endDate);</span></span><br><span class="line">	<span class="comment">// &#125;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<li>form中layui-input<br>form中layui-input默认是width: 100%; display: block; 官网中给的有一个价格输入，他是针对input标签又包括了一个标签<code>&lt;div class=&quot;layui-input-inline&quot; style=&quot;width: 100px;&quot;&gt;&lt;/div&gt;</code>，我在开发crs中的新版房态页涉及到修改房价dialog中有加减按钮和input在一行的效果，我想到官网的该例子，后来想到何必在加一对标签呢？况且加了一对标签（layui-input-inline）该标签默认左浮动。综合考虑直接在input添加display: inline; 加上一个宽度即可，input左侧与右侧的按钮该怎么写就怎么写！</li>
+</ol>
+<p>20191028补充，记忆中 <code>.layui-input-inline</code>是 <code>float: left;</code> 但是在今天的ReportStatis/ondutyIncomeStatisOld页面中发现使用的 layui-input-inline 并没左浮动。细查发现如下css： </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.layui-form-item</span> <span class="selector-class">.layui-input-inline</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">190px</span>;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.layui-input-inline</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只有在 layui-form-item 包裹下的html，才有上面的css，具体效果见：testme/layui/form_module_room_status.html</p>
+<ol start="7">
+<li>laydate记录<br>laydate应用场景：一般是在input中起一个id，在js中，进行渲染。如下代码：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 日期的初始化赋值</span></span><br><span class="line">laydate.render(&#123;</span><br><span class="line">	elem: <span class="string">'#dateArea'</span>,</span><br><span class="line">	range: <span class="string">'至'</span>,</span><br><span class="line">	value: <span class="string">'2019-09-26 至 2019-09-26'</span>,</span><br><span class="line">	<span class="comment">// done: function (value, startDate, endDate) &#123;</span></span><br><span class="line">	<span class="comment">// 	$('input[name=business_time]').val(value);</span></span><br><span class="line">	<span class="comment">// 	console.log(value);</span></span><br><span class="line">	<span class="comment">// 	console.log('startDate', startDate);</span></span><br><span class="line">	<span class="comment">// 	console.log('endDate', endDate);</span></span><br><span class="line">	<span class="comment">// &#125;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>在laydate中添加range属性，laydate默认就是给你一个日期选择范围，若不写range属性，默认就是一个单日历，若<code>range: &#39;至&#39;</code>，那么你value中赋值就要符合格式，正确的格式如：<code>value: &#39;2019-09-26 至 2019-09-26&#39;</code>，当然了欧美国家一般设置为<code>value: &#39;2019-09-26 , 2019-09-26&#39;</code>。</p>
@@ -121,7 +124,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/13/layui中form的记录/" data-id="ck25f87gu000ny8vh12c8f7wm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/13/layui中form的记录/" data-id="ck2aafkhi000mdcvhi16bkc71" class="article-share-link">Share</a>
       
       
     </footer>
@@ -202,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/html一些不常用标签/" data-id="ck25f87fu000cy8vhhnn26jp5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/html一些不常用标签/" data-id="ck2aafkgq000cdcvhewg9gtrk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -271,7 +274,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/js默认行为和事件冒泡/" data-id="ck25f87gl000ly8vhk8hteuc0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/js默认行为和事件冒泡/" data-id="ck2aafkhn000ndcvhdd6gwoc2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -328,7 +331,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/jqready/" data-id="ck25f87fz000dy8vhcvl3am51" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/jqready/" data-id="ck2aafkgr000ddcvh19n9254x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -393,7 +396,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="ck25f87h7000sy8vhv4om321x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="ck2aafki1000rdcvh5k0hc419" class="article-share-link">Share</a>
       
       
     </footer>
@@ -440,7 +443,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="ck25f87ie000ty8vhgfj39rhl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="ck2aafki6000udcvhlr2zb0hn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -592,7 +595,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ck25f87f20005y8vhjmu2nfba" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ck2aafkg00005dcvh92ium2zt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -636,7 +639,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="ck25f87gx000py8vhml44l6ug" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="ck2aafkhr000pdcvhdzcdin79" class="article-share-link">Share</a>
       
       
     </footer>
@@ -695,7 +698,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/23/Shell总结/" data-id="ck25f87f60006y8vhishmwhdh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/23/Shell总结/" data-id="ck2aafkgb0008dcvhtf35bdj2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -772,7 +775,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/MarkDown总结/" data-id="ck25f87ez0004y8vhpxfz1y9c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/MarkDown总结/" data-id="ck2aafkg70007dcvhf6tu4d7i" class="article-share-link">Share</a>
       
       
     </footer>
