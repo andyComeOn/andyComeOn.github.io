@@ -62,6 +62,91 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-js function的相关总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/11/js function的相关总结/" class="article-date">
+  <time datetime="2019-04-11T08:40:05.000Z" itemprop="datePublished">2019-04-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/11/js function的相关总结/">js函数的一些记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>function的定义方法，及function对象的理解,首先说一下 function的的定义：</p>
+<p>一：实际上就和我们最为平常的方法是一样的。<br><code>function fname(test){ alert(&quot;&quot;+test); }</code></p>
+<p>二：通过Function的函数的构造器进行函数对象的定义。</p>
+<p><code>var fname = new Function(&quot;test&quot;, &quot;alert(&#39;&#39;+test);&quot;);</code><br>第一个参数表示的要传入函数的参数，第二个参数表示的是当前函数要执行的过程（语句）。两个参数实际上都是string类型的。但是可以看出当前的内容是十分的繁杂。</p>
+<p>三：通过变量只带一块function关键字定义的方法来进行定义。</p>
+<p><code>var fname = function(test){alert(&quot;&quot;+test);}</code></p>
+<p>上面的三种方法虽然最后都是声明定义了一个函数，但是也是有区别的。第一种方法实际上是为函数命名为fname，而二三种方法使用起来实际上是把一个匿名函数赋值给一个变量。使用第二种方法来定义函数的时候，实际上就是<strong>调用构造函数并在每次解析的时候都会重新读取并创建一新的函数对象</strong>，由此可见当在循环体中调用这样的函数的时候会是十分的低效的，还有一点就是，当我们使用其创建一个函数对象的时候，其并不遵循典型的作用域，而是一直作为顶级函数来执行的。意思就是，当在函数内部调用它的时候，其实他并不会用函数内部定义的变量。而是只能使用全局变量。</p>
+<p>第一三种方法实际上定义了一种函数字面量也可以称之为是一种函数表达式。当我们不为函数直接量定义名称的时候。函数就叫做匿名函数。那么我们如何调用一个匿名直接量，如下:</p>
+<ol>
+<li><p>执行后得到返回值的函数调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式一，调用函数，得到返回值。强制运算符使函数调用执行</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">　　alert(x+y);</span><br><span class="line">　　<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;(<span class="number">3</span>,<span class="number">4</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式二，调用函数，得到返回值。强制函数直接量执行再返回一个引用，引用在去调用执行</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">　　alert(x+y);</span><br><span class="line">　　<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;)(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 还有一种很奇葩的方式三</span></span><br><span class="line">~<span class="function"><span class="keyword">function</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line"><span class="comment">// to do sth </span></span><br><span class="line">&#125;(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line"><span class="comment">// 这样写实际上也是可以执行的~可以把函数表达式进行运算符操作并使用后面的小括号中传入的参数。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行后忽略返回值</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式四，调用函数，忽略返回值</span></span><br><span class="line"><span class="keyword">void</span> <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">    x = x<span class="number">-1</span>;</span><br><span class="line">    alert(x);</span><br><span class="line">&#125;(<span class="number">9</span>);<span class="comment">//这里实际上就是使用了void运算符，其用于计算之后的表达式并且不返回任何值。</span></span><br></pre></td></tr></table></figure>
+<p>这个例子不理解，该写法有什么含义呢？既然封装为函数，一般就是调用它，该函数表示不返回任何值，感觉失去了函数的意义！</p>
+<p>实际上在使用第一和第三种方法来说，在第一次解析的时候会通过new Function来定义一个函数的对象，并把这一对象作为内部对象来进行存储和运行。由此可知在js中每写一个函数，实际上就是在其中存储一个相关的函数对象，并在我们需要调用的时候对其进行调用。</p>
+<hr>
+<p>接下来我们来具体的了解一下Function对象的定义和内容</p>
+<ol>
+<li>首先是我们最为常用的内容arguments对象。他的定义是，一个类似于数组的对象，对应的是传递给函数对象的属性。arguments对象是一个所有的函数内部都可以用的函数内部变量。当我们调用函数的时候，他会存储我们传输进来的参数的数据。如下：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">arguments</span>[<span class="number">0</span>])&#123;</span><br><span class="line">        alert(<span class="string">"arguments:"</span>,+<span class="built_in">arguments</span>[<span class="number">0</span>]);</span><br><span class="line">    &#125;     </span><br><span class="line">&#125;</span><br><span class="line">test(<span class="string">"a"</span>);</span><br><span class="line"><span class="comment">// 当前页面中会显示出一个弹出框并显示arguments:a</span></span><br></pre></td></tr></table></figure>
+<p>该arguments是一个类数组，针对上面代码打印arguments: [a, callee: ƒ, Symbol(Symbol.iterator): ƒ]，但是arguments.length 为1<br>当然在arguments对象中也是有一些其自己的属性的，如下：</p>
+<ul>
+<li><p>callee，属性存储的是当前的调用的函数对象。当我们使用匿名函数的时候，如果需要调用存储当前的arguments对象的方法对象，此时可以使用当前属性。但是在ECM5中是阻止使用这一属性的。这样做的原因是，函数命名来调用函数的实现是优于这种方式的。</p>
+</li>
+<li><p>caller，这一属性只有当函数正在执行的情况之下才会被定义。当然其返回的内容是当前的和toString方法是一样的，为function的反编译文本。但是实际上在使用的时候返回便以文本之后，js有解析成为函数对象之后执行，所以说，这一属性实际上还是返回函数本身。但是这一属性在ECM5中已经被删除了。</p>
+</li>
+<li><p>length属性，是初始化的时候读取当前函数中的参数后获取的值。所以函数的length属性的值其实就和arguments.length的值的大小是一样的。</p>
+</li>
+<li><p>prototype属性，表示的是当前的function对象的原型对象。也可以了几位当前的函数对象继承了原型对象的属性和方法。具体参见js原型链学习。</p>
+</li>
+</ul>
+<p>当然对于函数对象js中也是有定义一些基本方法的</p>
+<ul>
+<li>apply方法相信你不会陌生，制定方法替换当前的this指针，冰用穿入的对象中的数据替换当前函数的参数值。上例子：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">""</span> + <span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testTwo</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"this:"</span>+<span class="keyword">this</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"a:"</span>+a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">testTwo.apply(test, [<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出的效果是this:function test()&#123; alert("" + this);&#125; 与 a:1</span></span><br></pre></td></tr></table></figure>
+<p>实际上apply是用第一个参数中的对象替换当前的函数中的this指针，并用数组参数中的数据来来替换但钱的函数调用时的参数。</p>
+<ul>
+<li>bind方法，其效果是不论当前的函数怎么调用，他的this指针代表的值都是一样的。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> displayArgs = <span class="function"><span class="keyword">function</span> (<span class="params">val1, val2, val3, val4</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.write(val1 + <span class="string">" "</span> + val2 + <span class="string">" "</span> + val3 + <span class="string">" "</span> + val4);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> emptyObject = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> displayArgs2 = displayArgs.bind(emptyObject, <span class="number">12</span>, <span class="string">"a"</span>);</span><br><span class="line">displayArgs2(<span class="string">"b"</span>, <span class="string">"c"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Output: 12 a b c</span></span><br></pre></td></tr></table></figure>
+<p>由上面可见实际上bind函数就有点像是绑定当前的内容和一个数据的关系。并返回一个可调用对象。</p>
+<ul>
+<li>call方法使用效果实际上和apply方法是一样的，只是其后面传递的第二个参数不在是严格要求是数组。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/11/js function的相关总结/" data-id="ck2o8f80g000g64vh2kuqgcgx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-js构造函数及原型链继承" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/04/11/js构造函数及原型链继承/" class="article-date">
@@ -96,7 +181,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/js构造函数及原型链继承/" data-id="ck2aafkhd000kdcvhe8q6jo2z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/js构造函数及原型链继承/" data-id="ck2o8f80l000i64vh60pyfhab" class="article-share-link">Share</a>
       
       
     </footer>
@@ -173,7 +258,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/15/eval总结/" data-id="ck2aafkgh000adcvh91rgflvm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/15/eval总结/" data-id="ck2o8f801000b64vh60b7mdae" class="article-share-link">Share</a>
       
       
     </footer>
@@ -221,7 +306,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/14/js中的逗号/" data-id="ck2aafkh8000hdcvhurfpuuu1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/14/js中的逗号/" data-id="ck2o8f80i000h64vhi9dj3bin" class="article-share-link">Share</a>
       
       
     </footer>
@@ -277,7 +362,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/28/故事目录序/" data-id="ck2aafkhv000qdcvh5d2kbhi2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/28/故事目录序/" data-id="ck2o8f813000p64vhdrmcili0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -338,54 +423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/26/Vuex总结/" data-id="ck2aafkg60006dcvh3dmgyemb" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JS封装备份" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/02/22/JS封装备份/" class="article-date">
-  <time datetime="2019-02-22T06:40:54.000Z" itemprop="datePublished">2019-02-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/22/JS封装备份/">JS封装备份</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法"><a href="#1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法" class="headerlink" title="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法"></a>1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">fixto(number, n = <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = number.toString();</span><br><span class="line">    <span class="keyword">const</span> arr = result.split(<span class="string">'.'</span>);</span><br><span class="line">    <span class="keyword">const</span> integer = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> decimal = arr[<span class="number">1</span>];</span><br><span class="line">    result = integer + <span class="string">'.'</span> + decimal.substr(<span class="number">0</span>, n);  </span><br><span class="line">    <span class="keyword">const</span> last = decimal.substr(n, <span class="number">1</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 四舍五入，转换为整数再处理，避免浮点数精度的损失</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(last, <span class="number">10</span>) &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> x = <span class="built_in">Math</span>.pow(<span class="number">10</span>, n); </span><br><span class="line">        result = ((<span class="built_in">parseFloat</span>(result) * x) + <span class="number">1</span>) / x;  </span><br><span class="line">        result = result.toFixed(n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
-<p>说明：保留几位小数点，参数n设置为几！</p>
-<hr>
-<h3 id="2、简单的分页逻辑"><a href="#2、简单的分页逻辑" class="headerlink" title="2、简单的分页逻辑"></a>2、简单的分页逻辑</h3><p><strong>方法：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">page</span>(<span class="params">total, pagesize = <span class="number">10</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> tmp = (total / pagesize).toString();</span><br><span class="line">    <span class="keyword">if</span> (tmp.indexOf(<span class="string">'.'</span>) == <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> tmp - <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.ceil(tmp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(page(<span class="number">21</span>, <span class="number">22</span>));</span><br></pre></td></tr></table></figure>
-<p>说明：第一个参数是数据的总数量，第二个参数是每页数量，该函数抛出的是总共有几页！</p>
-<hr>
-<h3 id="3、数字字符串转数字"><a href="#3、数字字符串转数字" class="headerlink" title="3、数字字符串转数字"></a>3、数字字符串转数字</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'1'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a - <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(a));</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h3 id="4、函数传参"><a href="#4、函数传参" class="headerlink" title="4、函数传参"></a>4、函数传参</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">todo</span>(<span class="params">a, b = <span class="number">2</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + <span class="string">'|'</span> + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(todo(<span class="number">1</span>, <span class="number">3</span>)); <span class="comment">// '1|3'</span></span><br><span class="line"><span class="built_in">console</span>.log(todo(<span class="number">1</span>)); <span class="comment">// '1|2'</span></span><br></pre></td></tr></table></figure></p>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/22/JS封装备份/" data-id="ck2aafkfw0003dcvh8w5upiyu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/26/Vuex总结/" data-id="ck2o8f7zh000664vh55ekvord" class="article-share-link">Share</a>
       
       
     </footer>
@@ -433,7 +471,54 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/22/jq中一些总结/" data-id="ck2aafkgz000fdcvhpwx8os6z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/22/jq中一些总结/" data-id="ck2o8f80b000e64vhucpr3vjv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JS封装备份" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/22/JS封装备份/" class="article-date">
+  <time datetime="2019-02-22T06:40:54.000Z" itemprop="datePublished">2019-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/22/JS封装备份/">JS封装备份</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法"><a href="#1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法" class="headerlink" title="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法"></a>1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">fixto(number, n = <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = number.toString();</span><br><span class="line">    <span class="keyword">const</span> arr = result.split(<span class="string">'.'</span>);</span><br><span class="line">    <span class="keyword">const</span> integer = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> decimal = arr[<span class="number">1</span>];</span><br><span class="line">    result = integer + <span class="string">'.'</span> + decimal.substr(<span class="number">0</span>, n);  </span><br><span class="line">    <span class="keyword">const</span> last = decimal.substr(n, <span class="number">1</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 四舍五入，转换为整数再处理，避免浮点数精度的损失</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(last, <span class="number">10</span>) &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> x = <span class="built_in">Math</span>.pow(<span class="number">10</span>, n); </span><br><span class="line">        result = ((<span class="built_in">parseFloat</span>(result) * x) + <span class="number">1</span>) / x;  </span><br><span class="line">        result = result.toFixed(n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>说明：保留几位小数点，参数n设置为几！</p>
+<hr>
+<h3 id="2、简单的分页逻辑"><a href="#2、简单的分页逻辑" class="headerlink" title="2、简单的分页逻辑"></a>2、简单的分页逻辑</h3><p><strong>方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">page</span>(<span class="params">total, pagesize = <span class="number">10</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> tmp = (total / pagesize).toString();</span><br><span class="line">    <span class="keyword">if</span> (tmp.indexOf(<span class="string">'.'</span>) == <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> tmp - <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.ceil(tmp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(page(<span class="number">21</span>, <span class="number">22</span>));</span><br></pre></td></tr></table></figure>
+<p>说明：第一个参数是数据的总数量，第二个参数是每页数量，该函数抛出的是总共有几页！</p>
+<hr>
+<h3 id="3、数字字符串转数字"><a href="#3、数字字符串转数字" class="headerlink" title="3、数字字符串转数字"></a>3、数字字符串转数字</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'1'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a - <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(a));</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="4、函数传参"><a href="#4、函数传参" class="headerlink" title="4、函数传参"></a>4、函数传参</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">todo</span>(<span class="params">a, b = <span class="number">2</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + <span class="string">'|'</span> + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(todo(<span class="number">1</span>, <span class="number">3</span>)); <span class="comment">// '1|3'</span></span><br><span class="line"><span class="built_in">console</span>.log(todo(<span class="number">1</span>)); <span class="comment">// '1|2'</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/22/JS封装备份/" data-id="ck2o8f7yw000264vhhxdj3h7m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -476,7 +561,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/15/设置路由器的一次记录/" data-id="ck2aafki6000tdcvhiwaonsdn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/15/设置路由器的一次记录/" data-id="ck2o8f81h000u64vh53vhcxop" class="article-share-link">Share</a>
       
       
     </footer>
@@ -531,49 +616,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/15/CSS字体行高相关/" data-id="ck2aafkfc0000dcvhego7q7iq" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-layui的模块化与非模块化介绍" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/02/13/layui的模块化与非模块化介绍/" class="article-date">
-  <time datetime="2019-02-13T05:57:38.000Z" itemprop="datePublished">2019-02-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/13/layui的模块化与非模块化介绍/">layui的模块化与非模块化介绍</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问："><a href="#1-下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：" class="headerlink" title="1. 下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问："></a>1. 下面这个帖子<a href="https://www.cnblogs.com/qlqwjy/p/8975931.html" target="_blank" rel="noopener">layui的模块化和非模块化使用</a>，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：</h4><p><img src="http://139.199.23.2/img/blog/20190213/layui-on-err.jpg" alt="layui-on-err"></p>
-<p>我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用非模块化（只引入layui.all.js）在页面中即使这样写了<code>required lay-verify=&quot;&quot;</code>出现不了下面这个效果：</p>
-<p><img src="http://139.199.23.2/img/blog/20190213/verify-tips.jpg" alt="verify-tips"></p>
-<p>这感觉不合理！</p>
-<h4 id="2-layui中模块加载问题"><a href="#2-layui中模块加载问题" class="headerlink" title="2. layui中模块加载问题"></a>2. layui中模块加载问题</h4><p>layui只use layer 打印form table 是undefined<br>layui只use table 打印form table 是OK的<br>layui只use form 打印form table 仅form是OK的</p>
-<p>得出结论，只要use使用的有模块，layer就能使用（全局的），只use table，form也能使用；只ues form，table不能使用；table逻辑嵌入了form逻辑。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/13/layui的模块化与非模块化介绍/" data-id="ck2aafkhr000odcvh0uudoj3j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/15/CSS字体行高相关/" data-id="ck2o8f7zm000764vhvr5wv238" class="article-share-link">Share</a>
       
       
     </footer>
@@ -606,7 +649,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -617,6 +660,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/11/07/浏览器加载资源报错/">浏览器加载资源报错</a>
+          </li>
         
           <li>
             <a href="/2019/09/25/table标签相关总结/">table标签相关总结</a>
@@ -632,10 +679,6 @@
         
           <li>
             <a href="/2019/06/14/layui中函数使用方法/">layui中函数使用方法</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/11/Math函数/">Math函数</a>
           </li>
         
       </ul>
