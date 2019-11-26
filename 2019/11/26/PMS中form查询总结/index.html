@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>PMS中form查询总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="写在前面：空格缩进、代码换行、注释描述、结构清晰、 一个系统面对的是形形色色的用户，不要想当然啥，例如loading的添加。最终趋势还是前后端分离！ PMS在很多页面都是查询数据为主，为此在该项目中，前同事封装了一些查询的方法。这里做一些总结！ 1、页面布局最好遵循下面的说明页面body中有一个根容器 &amp;lt;div class=&amp;quot;layui-row pad10&amp;quot;&amp;gt;&amp;lt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PMS中form查询总结">
+<meta property="og:url" content="http://yoursite.com/2019/11/26/PMS中form查询总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="写在前面：空格缩进、代码换行、注释描述、结构清晰、 一个系统面对的是形形色色的用户，不要想当然啥，例如loading的添加。最终趋势还是前后端分离！ PMS在很多页面都是查询数据为主，为此在该项目中，前同事封装了一些查询的方法。这里做一些总结！ 1、页面布局最好遵循下面的说明页面body中有一个根容器 &amp;lt;div class=&amp;quot;layui-row pad10&amp;quot;&amp;gt;&amp;lt">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-11-26T09:35:00.360Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PMS中form查询总结">
+<meta name="twitter:description" content="写在前面：空格缩进、代码换行、注释描述、结构清晰、 一个系统面对的是形形色色的用户，不要想当然啥，例如loading的添加。最终趋势还是前后端分离！ PMS在很多页面都是查询数据为主，为此在该项目中，前同事封装了一些查询的方法。这里做一些总结！ 1、页面布局最好遵循下面的说明页面body中有一个根容器 &amp;lt;div class=&amp;quot;layui-row pad10&amp;quot;&amp;gt;&amp;lt">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-PMS中form查询总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/26/PMS中form查询总结/" class="article-date">
+  <time datetime="2019-11-26T06:51:58.000Z" itemprop="datePublished">2019-11-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PMS中form查询总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>写在前面：空格缩进、代码换行、注释描述、结构清晰、 一个系统面对的是形形色色的用户，不要想当然啥，例如loading的添加。最终趋势还是前后端分离！</p>
+<p>PMS在很多页面都是查询数据为主，为此在该项目中，前同事封装了一些查询的方法。这里做一些总结！</p>
+<h3 id="1、页面布局最好遵循下面的说明"><a href="#1、页面布局最好遵循下面的说明" class="headerlink" title="1、页面布局最好遵循下面的说明"></a>1、页面布局最好遵循下面的说明</h3><p>页面body中有一个根容器 <code>&lt;div class=&quot;layui-row pad10&quot;&gt;&lt;/div&gt;</code>，紧接着是form标签，下面就是table标签。Form是用来提交数据这里面包含查询条件等，table中若有表格名字、一些信息，可看情况写在table中的<code>&lt;caption&gt;&lt;h1&gt;*表&lt;/h1&gt;&lt;div&gt;&lt;/div&gt;&lt;/caption&gt;</code>。当然这种表格头部信息写法的前提是表格已经存在了，就是最普通的表格，在html上已经全部渲染好了。若是使用下文中table.render方法（此时table字标签还没有渲染好），那就在table标签上面写div，写清楚table表头相关信息即可！</p>
+<h3 id="2、需要-layui-form-verify-验证"><a href="#2、需要-layui-form-verify-验证" class="headerlink" title="2、需要 layui form.verify 验证"></a>2、需要 layui form.verify 验证</h3><p>这种场景：需要验证form-item中input的name值。所以需写成layui中lay-submit的形式！这样才能很好的使用layui中封装的form.verify方法和效果。补充：使用form.on(‘submit’)，就要阻止 form默认提交，可在form.on(‘submit’)函数中末尾加return false、可把button的type默认提交修改为按钮类型。</p>
+<p>代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 验证 满足什么条件</span></span><br><span class="line">form.verify(&#123;</span><br><span class="line">    verifyAddtime: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> temp = value.split(<span class="string">' , '</span>); </span><br><span class="line">        <span class="keyword">if</span> (date_subtraction(temp[<span class="number">0</span>], temp[<span class="number">1</span>]) &gt; <span class="number">90</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'查询时间间隔不能超过 3 个月，请重新选择时间段！'</span>;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交</span></span><br><span class="line">form.on(<span class="string">'submit(filterSubmit)'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123; </span><br><span class="line">	table.reload(<span class="string">'lists'</span>, &#123;</span><br><span class="line">    	where: data.field,</span><br><span class="line">        page: &#123;</span><br><span class="line">            curr: <span class="number">1</span> </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="3、提交使用commonjs中封装的-getListData-return-false-的情况"><a href="#3、提交使用commonjs中封装的-getListData-return-false-的情况" class="headerlink" title="3、提交使用commonjs中封装的 getListData(); return false;的情况"></a>3、提交使用commonjs中封装的 <code>getListData(); return false;</code>的情况</h3><ul>
+<li>对于这种情况，不能一概而论，要看场景的需要，归根到底就是form的原生提交与否，是否使用layui中的verify的效果和方法。每次后台套页面之后提交了，测试人员看到，告诉前端时间段要验证，这是事后诸葛亮的表现，事先可以规划好。使用 getListData 也许之前是封装的一个方法，可是没有细究，有些小问题没考虑到。还要注意的是 form 中的默认提交问题，有的是需要使用默认的提交，有的不需要（此种情况，一定要给与阻止！）。对于规则的表格最好是使用 <code>&lt;table class=&quot;layui-table&quot; id=&quot;lists&quot; lay-filter=&quot;filterLists&quot;&gt;&lt;/table&gt;</code>。在js中使用渲染的方式！</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">table.render(&#123;</span><br><span class="line">    elem: <span class="string">'#lists'</span>,</span><br><span class="line">    url: <span class="string">'/ReportStatis/forwardEarningsStatis'</span>,</span><br><span class="line">    title: <span class="string">'远期收益分析表'</span>, <span class="comment">// 发现这个title不起作用！</span></span><br><span class="line">    totalRow: <span class="literal">true</span>,</span><br><span class="line">    cols: [[</span><br><span class="line">        &#123;<span class="attr">field</span>: <span class="string">'business_time'</span>, <span class="attr">title</span>: <span class="string">'日期'</span>, <span class="attr">align</span>:<span class="string">'center'</span>, <span class="attr">totalRowText</span>: <span class="string">'合计'</span>&#125;,</span><br><span class="line">        &#123;<span class="attr">field</span>: <span class="string">'week'</span>, <span class="attr">title</span>: <span class="string">'星期'</span>, <span class="attr">align</span>:<span class="string">'center'</span>&#125;,</span><br><span class="line">        &#123;<span class="attr">field</span>:<span class="string">' usable_room_num'</span>, <span class="attr">title</span>:<span class="string">'可用房数'</span>, <span class="attr">align</span>:<span class="string">'center'</span>, <span class="attr">totalRow</span>:<span class="literal">true</span>&#125;,</span><br><span class="line">    ]],</span><br><span class="line">    response:&#123;</span><br><span class="line">        statusName:<span class="string">'status'</span>,</span><br><span class="line">        statusCode:<span class="number">1</span>,</span><br><span class="line">        msgName:<span class="string">'msg'</span>,</span><br><span class="line">        countName:<span class="string">'total'</span>,</span><br><span class="line">        dataName:<span class="string">'data'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    page: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// limit: 0,</span></span><br><span class="line">    limit: <span class="built_in">Number</span>.MAX_VALUE,</span><br><span class="line">    done: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 取消分页展示</span></span><br><span class="line">        $(<span class="string">'.layui-table-page'</span>).hide();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>切记只有这种第一次页面已经使用render方法的表格，才能使用<code>table.reload()</code>函数。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">table.reload(<span class="string">'lists'</span>, &#123;</span><br><span class="line">    where: data.field,</span><br><span class="line">    page: &#123;</span><br><span class="line">        curr: <span class="number">1</span> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>为什么要使用 <code>&lt;table lay-data=&quot;{}&quot;&gt; ... &lt;/table&gt;</code>这种方式？官网上说此种写法是为了 SEO 优化，PMS一般是功能软件，需要SEO优化吗？况且使用这种方式，格式也没有对齐，即使对齐占用很大的篇幅，在done中写回调代码也不高亮！</p>
+</li>
+<li><p>这种最常见的情况（后台也是最快做出页面）阻止了form默认提交，在页面加载完之后，再次输入查询条件，点击查询按钮执行的函数就是commonjs中的getListData方法。getListData是一个封装好的方法，很多页面都在使用，这时候要是测试让前端人员修改verify逻辑怎么办，原方法不能动，只能在该页面重新写，所以我认为慢慢全部把这些东西解耦，说明开始封装的方法有的地方不合适！所以该场景，测试若要验证form，就在页面中单独写逻辑。</p>
+</li>
+</ul>
+<h3 id="4、使用原生form提交，table是灌好的数据（report-statis-forwardSourceStatis-远期客源分析表）"><a href="#4、使用原生form提交，table是灌好的数据（report-statis-forwardSourceStatis-远期客源分析表）" class="headerlink" title="4、使用原生form提交，table是灌好的数据（report_statis/forwardSourceStatis 远期客源分析表）"></a>4、使用原生form提交，table是灌好的数据（report_statis/forwardSourceStatis 远期客源分析表）</h3><p>该例子使用form原生提交，应用了lay-verify验证，数据及页面结构在后台已经渲染好（我写的后台循环），结构清晰，可做模板使用。注：此类型表格是一个统计表格无分页场景。就是要应用原生form的提交功能。layui中lay-submit应该是封装了，只要是不满足verify，即使是type是默认提交，也不会给你提交！</p>
+<h3 id="5、筛选条件：按钮-form"><a href="#5、筛选条件：按钮-form" class="headerlink" title="5、筛选条件：按钮 + form"></a>5、筛选条件：按钮 + form</h3><p>查询条件：按钮选择 + form中的input筛选条件，在测试ar_account/rechargeList页面时候，测试要添加时间段区间验证，把getListData方法删除，直接写。发现按钮区的逻辑依然是正常。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/26/PMS中form查询总结/" data-id="ck3fphckc0009ikvhhcovfhal" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/25/Git常用命令/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Git常用命令</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/26/PMS中form查询总结/">PMS中form查询总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/25/Git常用命令/">Git常用命令</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/07/浏览器加载资源报错/">浏览器加载资源报错</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/25/table标签相关总结/">table标签相关总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/17/js日期设置总结/">js日期设置总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

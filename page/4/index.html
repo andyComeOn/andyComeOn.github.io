@@ -62,6 +62,109 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-大前端群" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/25/大前端群/" class="article-date">
+  <time datetime="2019-01-25T00:57:23.000Z" itemprop="datePublished">2019-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/25/大前端群/">大前端群</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="大前端群的每日资讯"><a href="#大前端群的每日资讯" class="headerlink" title="大前端群的每日资讯"></a>大前端群的每日资讯</h4><ul>
+<li><p>该群中的每日资讯是成员“深圳-阿里巴巴-马跃”整理所发。</p>
+</li>
+<li><p>每天都会有。</p>
+</li>
+<li><p>主页在<a href="http://fe.jskou.com/" target="_blank" rel="noopener">前端艺术家-飞冰早报</a>。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="ck3fphctx000qikvhb40wann6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Shell总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/23/Shell总结/" class="article-date">
+  <time datetime="2019-01-23T05:12:37.000Z" itemprop="datePublished">2019-01-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/23/Shell总结/">Shell总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于开发人员多多少少会给shell打交道，自己总结一下shell的相关文档</p>
+<h4 id="1、界面"><a href="#1、界面" class="headerlink" title="1、界面"></a>1、界面</h4><p>大家在使用windows电脑时候，多多少少都会给shell打交道，我们进行的<code>cmd</code>命令、以及windows自带的</p>
+<p><img src="http://139.199.23.2/img/blog/20190123/Windows-PowerShell0.png" alt="Windows-PowerShell"></p>
+<p>打开的界面如下：<br><img src="http://139.199.23.2/img/blog/20190123/Windows-PowerShell1.png" alt="Windows-PowerShell-GUI"><br>还有大家常用的<br><img src="http://139.199.23.2/img/blog/20190123/ConEum.png" alt="ConEum"><br>ConEum终端相比windows自带增加了一些键盘复制粘贴等常用功能；还有大家在windows上安装的git，它自带也有一个git bush（它相比前面介绍的终端增加了很多linux命令行指令）。</p>
+<h4 id="2、远程shell设置记录"><a href="#2、远程shell设置记录" class="headerlink" title="2、远程shell设置记录"></a>2、远程shell设置记录</h4><p>最近买了一个腾讯云的服务器，打算使用shell来远程控制服务器，在腾讯云的文档上介绍了2种方式，首先介绍密码登录<code>Linux</code>实例</p>
+<ul>
+<li><p>使用远程登录软件 ，采用密码登录<code>Linux</code>实例，它选择使用<code>PuTTY</code>做了介绍。</p>
+</li>
+<li><p>登录<code>PuTTY</code>的<a href="https://www.putty.org/" target="_blank" rel="noopener">官网</a>，页面如下：<br><img src="http://139.199.23.2/img/blog/20190123/PuTTY-org.jpg" alt="PuTTY"><br>在网上搜了一下，大致的意思是这里有3种的下载版本，第一种是最官方的、第二种是在官方安装包的基础上（二次开发增加了实用的功能）、第三种不是很清楚。我是直接下载的第一种安装包。很快安装完成，之后弹出来一个<code>README.txt</code>，由于在桌面上没找到快捷方式，感觉很懵。只好硬着头皮看<code>README.txt</code>，该文件告诉我们安装目录在<code>C:\Program Files\PuTTY</code>，该目录截图如下：<br><img src="http://139.199.23.2/img/blog/20190123/PuTTY-dir.jpg" alt="PuTTY-dir"><br>于是明白PuTTY的很多功能入口在该目录！</p>
+</li>
+<li><p>接着说腾讯云的操作文档（采用密码登录<code>Linux</code>实例），在刚才的目录下找到<code>putty.exe</code>文件打开是一个<code>GUI</code>， 如图：<br><img src="http://139.199.23.2/img/blog/20190123/PuTTY-Configuration.jpg" alt="PuTTY-Configuration"><br>按照提示输入你自己买的服务器地址，最后点击Open按妞。弹出GUI如下：<br><img src="http://139.199.23.2/img/blog/20190123/PuTTY-exe-GUI.jpg" alt="PuTTY-exe-GUI"><br>这时候输入密码（注输入密码时候不显示小黑点一定要小心）就连接上了，默认是根目录。</p>
+</li>
+<li><p>上面介绍了使用账号密码的登录方式，但是这种方式有一个不友好的操作，就是每次都要重新输入密码，这对于开发人员来说很麻烦。怎么解决？这时候就有了SSH的免密的配置。</p>
+</li>
+</ul>
+<h4 id="3、-使用远程登录软件采用-SSH-密钥登录。"><a href="#3、-使用远程登录软件采用-SSH-密钥登录。" class="headerlink" title="3、 使用远程登录软件采用 SSH 密钥登录。"></a>3、 使用远程登录软件采用 SSH 密钥登录。</h4><ul>
+<li><p>ssh 是什么？ 这是20190923补记。 ssh（secure shell，安全外壳协议）。该协议有2个常用的作用：远程连接、远程文件传输。协议使用端口号：默认是22。但是该端口号是可以被修改的，如果需要修改，则需要修改ssh服务的配置文件如下：<br><img src="http://139.199.23.2/img/blog/20190123/ssh_config.png" alt="ssh_config">;</p>
+</li>
+<li><p>采用SSH 密钥登录，首先是在目录<code>C:\Program Files\PuTTY</code>中找到<code>puttygen.exe</code>，双击打开如图：<br><img src="http://139.199.23.2/img/blog/20190123/puttygen-GUI.jpg" alt="puttygen-GUI"><br>点击<code>Generate</code>，效果如下：<br><img src="http://139.199.23.2/img/blog/20190123/puttygen-GUI-Generate.jpg" alt="puttygen-GUI-Generate"><br>完成之后点击<code>Save private key</code>，则会把文件保存在本地（我在保存时候，想保存到<code>C:\Program Files\PuTTY</code>下）但是好像提示什么需要管理员权限，默认给我保存到了<code>C:\Users\user</code>。</p>
+</li>
+<li><p>再次回到<br><img src="http://139.199.23.2/img/blog/20190123/PuTTY-Configuration-noEdit.jpg" alt="PuTTY-Configuration-noEdit"><br>找到<code>Connection-SSH-Auth</code><br><img src="http://139.199.23.2/img/blog/20190123/Connection-SSH-Auth.jpg" alt="Connection-SSH-Auth"><br>点击Browser，找到你的刚才存的ppk文件，再回到<br><img src="http://139.199.23.2/img/blog/20190123/Connection-SSH-Auth.jpg" alt="Connection-SSH-Auth"><br>Session项输入你的服务器地址。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/23/Shell总结/" data-id="ck3fphcj40007ikvhrh7p1kof" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-MarkDown总结" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/22/MarkDown总结/" class="article-date">
@@ -129,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/MarkDown总结/" data-id="ck39yhlnj000440vh45m0qkmd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/MarkDown总结/" data-id="ck3fphcig0006ikvhvo448uxd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -204,7 +307,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/Hexo总结/" data-id="ck39yhlnd000340vhpuark4hh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/Hexo总结/" data-id="ck3fphci50005ikvh5k7v7g22" class="article-share-link">Share</a>
       
       
     </footer>
@@ -249,7 +352,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="ck39yhlq0000b40vh2m2a7jtl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="ck3fphcmk000cikvhh6nrxnv2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -295,6 +398,14 @@
       <ul>
         
           <li>
+            <a href="/2019/11/26/PMS中form查询总结/">PMS中form查询总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/25/Git常用命令/">Git常用命令</a>
+          </li>
+        
+          <li>
             <a href="/2019/11/07/浏览器加载资源报错/">浏览器加载资源报错</a>
           </li>
         
@@ -304,14 +415,6 @@
         
           <li>
             <a href="/2019/09/17/js日期设置总结/">js日期设置总结</a>
-          </li>
-        
-          <li>
-            <a href="/2019/07/02/看冴羽博客笔记/">看冴羽博客笔记</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/14/layui中函数使用方法/">layui中函数使用方法</a>
           </li>
         
       </ul>
