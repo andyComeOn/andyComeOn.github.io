@@ -62,6 +62,162 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Linux一些常用命令总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/25/Linux一些常用命令总结/" class="article-date">
+  <time datetime="2019-01-25T02:23:45.000Z" itemprop="datePublished">2019-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/25/Linux一些常用命令总结/">Linux一些常用命令总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在提交git时候（我使用的是git的命令行），在执行git pull时候出现了，让编辑merge提交。一时间束手无策。决定好好看看这个命令，把常用的命令记录一下，主要参考的这篇帖子<a href="https://www.cnblogs.com/yjd_hycf_space/p/7730690.html" target="_blank" rel="noopener">Linux常用命令大全（非常全！！！）</a><br>这篇帖子总结的也很好<a href="https://www.jianshu.com/p/0ba3e4da38de" target="_blank" rel="noopener">linux的一些命令</a></p>
+<hr>
+<h4 id="1、下面的一些常用指令我在git-bash中测试，git-bash只是模拟了部分的linux指令。"><a href="#1、下面的一些常用指令我在git-bash中测试，git-bash只是模拟了部分的linux指令。" class="headerlink" title="1、下面的一些常用指令我在git bash中测试，git bash只是模拟了部分的linux指令。"></a>1、下面的一些常用指令我在git bash中测试，git bash只是模拟了部分的linux指令。</h4><ul>
+<li>clear：清除记录</li>
+<li>pwd：显示当前的目录</li>
+<li>cd ~：直接进入到用户的主目录</li>
+<li>cd -：返回上次所在目录</li>
+<li>ls：我理解的是把该目录下的所有文件列出来</li>
+<li>ll：我理解的是把该目录下的所有文件以列表的形式显示出来，显示的有文件创建时间，还有文件夹（drwxr-xr-x）与文件（-rw-r–r–）的区别，这个ll指令没有细查，可能是ls -l的简写，在文档上没有找到ll的指令，只是找到了指令ls -l</li>
+<li>mkdir dir1：创建一个目录dir1 </li>
+<li>mkdir dir2 dir3：创建2个平级目录dir2 dir3</li>
+<li>mkdir -p tmp/dir1/dir2：创建一个目录树 </li>
+</ul>
+<hr>
+<h4 id="2、在windows的cmd下面也有一些类命令"><a href="#2、在windows的cmd下面也有一些类命令" class="headerlink" title="2、在windows的cmd下面也有一些类命令"></a>2、在windows的cmd下面也有一些类命令</h4><ul>
+<li>cd：命令进去目录</li>
+<li>cls：清除记录</li>
+</ul>
+<hr>
+<h4 id="3、删除和移动指令"><a href="#3、删除和移动指令" class="headerlink" title="3、删除和移动指令"></a>3、删除和移动指令</h4><ul>
+<li>rm -f xx.html ：删除一个文件</li>
+<li>rmdir dir1：删除dir1目录，并且这个目录只能是空目录，其中不能有文件，若有文件命令行会提示 Directory not empty，感觉这个命令不用记，没什么卵用啊，一般一个目录都有文件。</li>
+<li>rmdir dir1 dir2：删除dir1和dir2目录</li>
+<li>rm -rf dir1：删除dir1目录并且把该目录下的文件内容都删除了</li>
+<li>rm -rf dir1 dir2：同时删除两个目录及它们的内容</li>
+<li>mv dir1 dir2 ●把dir1移动到dir2目录</li>
+</ul>
+<hr>
+<h4 id="4、复制"><a href="#4、复制" class="headerlink" title="4、复制"></a>4、复制</h4><ul>
+<li>cp file1 dir2：●复制file1文件到dir2目录</li>
+<li>cp dir1/* dir2：●复制dir1下面的所有文件到dir2目录，切记是copy的dir1下所有文件，不包含dir1下的目录</li>
+<li>cp dir1/* . ：●复制dir1下面的所有文件到当前目录</li>
+<li>cp -a dir1 dir2：●复制dir1（包括dir1下边的所有目录和文件）到dir2</li>
+<li>cp -a dir1/* dir2：●复制dir1下边的所有目录和文件到dir2</li>
+</ul>
+<hr>
+<h4 id="5、新建文件"><a href="#5、新建文件" class="headerlink" title="5、新建文件"></a>5、新建文件</h4><p>linux的touch命令不常用，一般在使用make的时候可能会用到，用来修改文件时间戳，或者新建一个不存在的文件，但是在git bash中使用touch aa.txt会直接生成文件。</p>
+<ul>
+<li>touch file1 ：创建一个新文件</li>
+</ul>
+<hr>
+<h4 id="6、修改、编辑文件"><a href="#6、修改、编辑文件" class="headerlink" title="6、修改、编辑文件"></a>6、修改、编辑文件</h4><ul>
+<li>首先进到目录下，直接键入vim aa.txt 或者是vim dir1/bb.txt会出现如下截图：</li>
+</ul>
+<p><img src="http://139.199.23.2/img/blog/20190125/vim-edit-status.jpg" alt="vim-edit-status"></p>
+<p>按下【i, I, o, O, a, A, r, R】等任何一个字母之后才会进入编辑模式，不过大家一般都是按下i，其本意就是insert（插入）之意。按下i之后显示插入状态：</p>
+<p><img src="http://139.199.23.2/img/blog/20190125/vim-insert-status.jpg" alt="vim-insert-status"> </p>
+<p>想怎么编辑就怎能编辑。我编辑的输入的一句话：“我在进行vim编辑”。编辑之后需要按下ESC才退出编辑状态，如下截图：</p>
+<p><img src="http://139.199.23.2/img/blog/20190125/vim-esc-status.jpg" alt="vim-esc-status"> </p>
+<p>这时候选择你想要退出的模式：</p>
+<ul>
+<li>:w 保存编辑的内容，执行了这个命令指令，还是在命令行模式。</li>
+<li>:w! 强制写入该文件，但跟你对该文件的权限有关</li>
+<li>:q 离开（quit），如果修改了文件，执行这个指令会提示：已经修改但尚未保存（可用！强制执行）</li>
+<li>:q! 不保存修改强制离开！！这个也是很常用</li>
+<li>:wq 保存后离开，这个指令感觉是:w :q的简写</li>
+<li>:x 保存后离开</li>
+<li>20190725总结，vim在xshell连接到服务器（linux）才能使用。本地的文件xshell使用vim打开，没有该指令。Git Bash vim可以使用，但是xshell的ctrl + insert（复制） 不能使用，shift + insert（粘贴）可以使用。</li>
+</ul>
+<hr>
+<h4 id="7、压缩解压文件"><a href="#7、压缩解压文件" class="headerlink" title="7、压缩解压文件"></a>7、压缩解压文件</h4><ul>
+<li>打包网上说了很多种有zip rar tar等很多的指令但是在git bush上我只能使用tar</li>
+<li>tar –cvf xx.tar file1 创建一个非压缩的xx.tar 这句话我理解创建一个非压缩的文件，意为，直接压缩的文件，压缩比很小所以叫非压缩。</li>
+<li>tar –cvf xx.tar file file1 file2 dir1  创建一个包含了 ‘file1’, ‘file2’ 以及 ‘dir1’的档案文件</li>
+<li>tar -tf archive.tar 显示一个包中的内容 </li>
+<li>tar -xvf archive.tar 释放一个包</li>
+<li>tar -xvf archive.tar -C /tmp 将压缩包释放到 /tmp目录下 </li>
+<li>其中压缩解压指令不好记忆可参考<a href="http://www.360doc.com/content/11/0620/13/2104556_128204591.shtml" target="_blank" rel="noopener">tar参数详解</a>   </li>
+</ul>
+<hr>
+<h4 id="8、查看文件"><a href="#8、查看文件" class="headerlink" title="8、查看文件"></a>8、查看文件</h4><ul>
+<li>cat 某个文件，即在命令行显示文件内容</li>
+</ul>
+<h4 id="9、一些杂记（关于linux安装目录）"><a href="#9、一些杂记（关于linux安装目录）" class="headerlink" title="9、一些杂记（关于linux安装目录）"></a>9、一些杂记（关于linux安装目录）</h4><ul>
+<li><p>问：Windows下软件的默认安装位置一般是c:\program files ，Linux中是否也有一个类似的目录用来存放应用软件安装后形成的文件夹？ 答：在/usr/local 下；一般的deb包（包括新立得或者apt-get下载的）都装在/usr.自己下载的压缩包或者编译的包,有些可以选择安装目录,一般放在/usr/local/,也有在/opt的。如果想知道具体位置,用命令。</p>
+</li>
+<li><p>sudo是普通用户想以root的身份运行命令</p>
+</li>
+<li>yum: 是redhat, centos 系统下的软件安装方式，基于Linux，全称为 Yellow dog Updater, Modified，是一个在Fedora和RedHat以及CentOS中的Shell前端软件包管理器基于RPM包管理，能够从指定的服务器自动下载RPM包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软件包。</li>
+<li><p>rpm:  软件管理;  redhat的软件格式 rpm ：r=redhat p=package m=management 用于安装 卸载 .rpm软件</p>
+</li>
+<li><p>wget 类似于迅雷，是一种下载工具，通过HTTP、HTTPS、FTP三个最常见的TCP/IP协议下载，并可以使用HTTP代理名字是World Wide Web”与“get”的结合。</p>
+</li>
+<li><p>串联下：使用wget下载一个 rpm包, 然后用 rpm -ivh  xxx.rpm  安装这个软件，嫌麻烦的话，就可以直接用  yum  install  sqoop   来自动下载和安装依赖的rpm软件。</p>
+</li>
+<li><p>ap-get是ubuntu下的一个软件安装方式，它是基于debain。</p>
+</li>
+<li><p>dnf是一个较新的安装命令，centos6不支持dnf，可以在centos7上安装dnf，dnf安装速度比yum要快的多，但是几乎所有的yum选项dnf都支持，并且dnf与yum共享数据库。（可理解为node中npm与yarn的状况）</p>
+</li>
+<li><p>网友回答1：yum安装，其实就是自动下载rpm软件包，然后把rpm软件包解压缩，把包里面的文件复制到相应的目录下。必须要明白，linux下的每个目录是有特殊含义的。/bin  /etc  /home /mnt  /opt等等，都是意味着这个目录下放置某种类型的文件。而你所安装的软件，是分散到这些目录里面去的。是“分散”的！你还是在windows系统里面下载一个rpm或deb的linux软件包，然后用解压软件打开看看。</p>
+</li>
+<li><p>网友回答2：如果是rpm，deb等软件包，你可以使用解压缩软件打开看看目录结构就明白了。linux的软件安装是分散在各个目录里面的，比如/usr/bin /usr/share /usr/lib 等等，总之，你要先弄明白linux的这些目录是什么意思。当然，也可以集中在一个目录里面。一些闭源的软件就集中放在/opt里面。</p>
+</li>
+</ul>
+<ul>
+<li>这是老东在安装lnmp的指令：<br>wget <a href="http://soft.vpser.net/lnmp/lnmp1.6.tar.gz" target="_blank" rel="noopener">http://soft.vpser.net/lnmp/lnmp1.6.tar.gz</a> -cO lnmp1.6.tar.gz &amp;&amp; tar zxf lnmp1.6.tar.gz &amp;&amp; cd lnmp1.6 &amp;&amp; ./install.sh lnmp</li>
+</ul>
+<h4 id="10、常用命令补充1：-curl命令"><a href="#10、常用命令补充1：-curl命令" class="headerlink" title="10、常用命令补充1： curl命令"></a>10、常用命令补充1： curl命令</h4><ul>
+<li>在shell中可以使用该命令 curl <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 模拟在浏览器中访问，返回服务器响应。</li>
+</ul>
+<h4 id="11、sz-rz-下载到本地-上传到远程服务器"><a href="#11、sz-rz-下载到本地-上传到远程服务器" class="headerlink" title="11、sz rz 下载到本地  上传到远程服务器"></a>11、sz rz 下载到本地  上传到远程服务器</h4><ul>
+<li>sz rz 是 send Zmodem receive Zmodem的缩写，可这样记忆：都以远程服务器为中心， 那么 rz 就是指服务器收到文件，也就是上传本地文件到远程服务器。反之，sz 指远程服务器发送文件到本地。 </li>
+<li>最开始我使用 rz 提示好像是没有这个指令，查资料发现要安装一个软件 <code>yum -y install lrzsz</code> 于是安装之后就可以顺利的使用 <code>rz</code>、<code>sz</code>指令了。</li>
+</ul>
+<h4 id="12、ps命令"><a href="#12、ps命令" class="headerlink" title="12、ps命令"></a>12、ps命令</h4><ul>
+<li>作用：表示process show，查看进程</li>
+<li>语法：# ps -ef</li>
+<li><p>选项含义：-e：等价于-A，all，表示全部  -f：表示full，显示全部的列</p>
+<p>  <img src="http://139.199.23.2/img/blog/20190125/ps_eg.png" alt="ps_eg.png"><br>  UID：该进程的启动用户名；<br>  PID：process id，进程的id号<br>  PPID：parent process id，父级进程id号<br>  C：表示的cpu的使用情况<br>  STIME：start time，启动时间<br>  TTY：终端的设备编号，“？”表示该进程不是由终端发起的<br>  TIME：持续运行的时间<br>  CMD：command，显示进程的名称或者位置</p>
+</li>
+<li><p>补充：结束进程的指令 # kill PID</p>
+</li>
+</ul>
+<h4 id="13、在linux中新建文件"><a href="#13、在linux中新建文件" class="headerlink" title="13、在linux中新建文件"></a>13、在linux中新建文件</h4><ul>
+<li>我在自己的xshell中新建一个aa.txt 并且编辑文件添加一些数字文本：123478787。下载到windows本地，发现编码是ANSI。但是我针对新建的文件添加文本中包含中文字符，该文件下载到本地之后，发现编码就是UTF-8。猜想这是linux自动转换格式的原因!</li>
+</ul>
+<h4 id="14、配置相关（网上帖子）"><a href="#14、配置相关（网上帖子）" class="headerlink" title="14、配置相关（网上帖子）"></a>14、配置相关（网上帖子）</h4><ul>
+<li>系统配置文件基本都放在/etc下</li>
+<li>个人配置文件放在用户目录下/usr</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ck411h8dj0004jwvhabgq10p8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-大前端群" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/25/大前端群/" class="article-date">
@@ -96,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="ck40r3vek000svovh9abc8dts" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="ck411h8ep000qjwvhrg71bko4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -155,7 +311,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/23/Shell总结/" data-id="ck40r3vd6000avovhfvib0zhe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/23/Shell总结/" data-id="ck411h8dx000bjwvh02e304o9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -232,7 +388,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/MarkDown总结/" data-id="ck40r3vd00007vovhztqls3uz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/MarkDown总结/" data-id="ck411h8dp0007jwvhkgvftrhv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -307,7 +463,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/Hexo总结/" data-id="ck40r3vcr0004vovhlte6ml18" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/Hexo总结/" data-id="ck411h8dn0006jwvhi24sodgt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -352,7 +508,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="ck40r3vdl000evovh4w4nfpc2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="ck411h8e8000gjwvh1ij8xd97" class="article-share-link">Share</a>
       
       
     </footer>
@@ -398,6 +554,10 @@
       <ul>
         
           <li>
+            <a href="/2019/12/11/CSS常用代码/">CSS常用代码</a>
+          </li>
+        
+          <li>
             <a href="/2019/12/10/CSS字体换总结行/">CSS字体换行总结</a>
           </li>
         
@@ -411,10 +571,6 @@
         
           <li>
             <a href="/2019/11/07/浏览器加载资源报错/">浏览器加载资源报错</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/25/table标签相关总结/">table标签相关总结</a>
           </li>
         
       </ul>
