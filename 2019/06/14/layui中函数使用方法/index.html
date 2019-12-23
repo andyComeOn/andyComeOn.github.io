@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="总结一下layui的函数使用方法 针对声明函数如 onclick=myClick()，可在layui.use([], function(){})中写但是必须是window.myClick = function () {}，这能声明成功，但是有时候我们常常使用jq中的 $(this)，这时候this指向不是我们想要的当前元素，而是window。贤心在一篇帖子中回答使用此方法。  还有一种就是使用jq">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-11T09:05:12.742Z">
+<meta property="og:updated_time" content="2019-12-23T08:10:14.569Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="layui中函数使用方法">
 <meta name="twitter:description" content="总结一下layui的函数使用方法 针对声明函数如 onclick=myClick()，可在layui.use([], function(){})中写但是必须是window.myClick = function () {}，这能声明成功，但是有时候我们常常使用jq中的 $(this)，这时候this指向不是我们想要的当前元素，而是window。贤心在一篇帖子中回答使用此方法。  还有一种就是使用jq">
@@ -108,7 +108,15 @@
 </ol>
 <p>针对 <code>layui-form-item</code>，layui中对其写了一个伪类<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.layui-form-item</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">'\20'</span>;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">    *zoom: 1;</span><br><span class="line">    <span class="selector-tag">display</span>: <span class="selector-tag">block</span>;</span><br><span class="line">    <span class="selector-tag">height</span>: 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><code>layui-form-label</code>为啥是38px，因为其内部样式写了行高是20px，其padding添加了9px 15px。具体代码如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.layui-form-label</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">9px</span> <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">80px</span>;</span><br><span class="line">    <span class="attribute">font-weight</span>: <span class="number">400</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: right;</span><br><span class="line">&#125;</span><br><span class="line">~~~ </span><br><span class="line"></span><br><span class="line">在<span class="selector-tag">room_pre</span>\的<span class="selector-tag">addOccTeamInfo</span><span class="selector-class">.php</span> 中客户保留了<span class="selector-tag">pad-bottom0</span> <span class="selector-tag">pad-top0</span> <span class="selector-tag">lh30</span>，开始估计是不统一，才临时加的<span class="selector-tag">css</span>，后来就直接<span class="selector-tag">copy</span> 全部嫁接了。</span><br><span class="line"></span><br><span class="line">6. <span class="selector-tag">layui</span>模块使用的<span class="selector-tag">demo</span></span><br><span class="line"></span><br><span class="line">~~~<span class="selector-tag">javascript</span></span><br><span class="line">// layui的模块备份</span><br><span class="line"><span class="selector-tag">layui</span><span class="selector-class">.use</span>(<span class="selector-attr">['element','table','laydate','form']</span>, <span class="selector-tag">function</span>()&#123;</span><br><span class="line">    var element = layui.element;</span><br><span class="line">    var laydate = layui.laydate;</span><br><span class="line">    var layedit = layui.layedit;</span><br><span class="line">    var laypage = layui.laypage;</span><br><span class="line">    var table = layui.table;</span><br><span class="line">    var form = layui.form;</span><br><span class="line">    var $ = layui.$;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.layui-form-label</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">9px</span> <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">80px</span>;</span><br><span class="line">    <span class="attribute">font-weight</span>: <span class="number">400</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在room_pre\的addOccTeamInfo.php 中客户保留了pad-bottom0 pad-top0 lh30，开始估计是不统一，才临时加的css，后来就直接copy 全部嫁接了。</p>
+<hr>
+<p>在 pms 中的弹框大多是由 <code>iframe</code> 形式，在一些弹框中的最后提交的按钮的那一栏 <code>layui-form-item</code> 好像不知道谁加入一个 layui-main 样式类，是这个class 有宽度 width: 1140px; margin: 0 auto; 导致弹框出现横向滚动条！如下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form-item layui-main"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-input-block"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"layui-btn"</span> <span class="attr">lay-submit</span> <span class="attr">lay-filter</span>=<span class="string">"PostSubmit"</span>&gt;</span>立即提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"layui-btn layui-btn-primary"</span> <span class="attr">onclick</span>=<span class="string">"closeUpWin()"</span>&gt;</span>返回<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"do"</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">value</span>=<span class="string">"dosubmit"</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">value</span>=<span class="string">"&#123;$StoreInfo.id&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>layui模块使用的demo</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// layui的模块备份</span></span><br><span class="line">layui.use([<span class="string">'element'</span>,<span class="string">'table'</span>,<span class="string">'laydate'</span>,<span class="string">'form'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> element = layui.element;</span><br><span class="line">    <span class="keyword">var</span> laydate = layui.laydate;</span><br><span class="line">    <span class="keyword">var</span> layedit = layui.layedit;</span><br><span class="line">    <span class="keyword">var</span> laypage = layui.laypage;</span><br><span class="line">    <span class="keyword">var</span> table = layui.table;</span><br><span class="line">    <span class="keyword">var</span> form = layui.form;</span><br><span class="line">    <span class="keyword">var</span> $ = layui.$;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>在这里补充一下：之前一直理解的是layer，不用引入该模块也可使用，但自己测试 <code>layui.use([], function(){ layer.msg(123) })</code> 会提示 layer is not defined，所以可以推理layer是钳在其他模块中，也可理解为use要有模块名字，layer可不写确能使用。偶然间测出了，use table可以不写form，但是只是引入form，不能使用table。猜想是table模块中包含了form逻辑，具体细究。</p>
 <ol start="7">
 <li>layui的弹框有3个大项：</li>
@@ -128,7 +136,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="ck49iqwdk0014e8vhv2fi951x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="ck4i6s61k0017pgvhech6dxu8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui相关/">layui相关</a></li></ul>
@@ -170,7 +178,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS相关/">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui相关/">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS相关/">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui相关/">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
     </div>
   </div>
 
@@ -180,7 +188,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/layui相关/" style="font-size: 10px;">layui相关</a> <a href="/tags/工具使用总结/" style="font-size: 15px;">工具使用总结</a>
+      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/layui相关/" style="font-size: 13.33px;">layui相关</a> <a href="/tags/工具使用总结/" style="font-size: 16.67px;">工具使用总结</a>
     </div>
   </div>
 
@@ -202,6 +210,10 @@
       <ul>
         
           <li>
+            <a href="/2019/12/18/Form的相关记录/">Form的相关记录</a>
+          </li>
+        
+          <li>
             <a href="/2019/12/11/CSS常用代码/">CSS常用代码</a>
           </li>
         
@@ -215,10 +227,6 @@
         
           <li>
             <a href="/2019/11/25/Git常用命令/">Git常用命令</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/07/浏览器加载资源报错/">浏览器加载资源报错</a>
           </li>
         
       </ul>
