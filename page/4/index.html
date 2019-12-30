@@ -99,7 +99,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="ck4i6s61x001hpgvhnwneym1y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="ck4s7cyj6001hpgvhwlzvvizw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -148,6 +148,7 @@
 <h4 id="2、在windows的cmd下面也有一些类命令"><a href="#2、在windows的cmd下面也有一些类命令" class="headerlink" title="2、在windows的cmd下面也有一些类命令"></a>2、在windows的cmd下面也有一些类命令</h4><ul>
 <li>cd：命令进去目录</li>
 <li>cls：清除记录</li>
+<li>ls：查看文件列表 / windows 有自己特有的查看文件列表指令 dir </li>
 </ul>
 <hr>
 <h4 id="3、删除和移动指令"><a href="#3、删除和移动指令" class="headerlink" title="3、删除和移动指令"></a>3、删除和移动指令</h4><ul>
@@ -156,7 +157,11 @@
 <li>rmdir dir1 dir2：删除dir1和dir2目录</li>
 <li>rm -rf dir1：删除dir1目录并且把该目录下的文件内容都删除了</li>
 <li>rm -rf dir1 dir2：同时删除两个目录及它们的内容</li>
-<li>mv dir1 dir2 ●把dir1移动到dir2目录</li>
+<li>mv dir1 dir2  把dir1移动到dir2目录</li>
+<li>mv file1  file2 将源文件名改为目标文件名</li>
+<li>mv file1 dir1 将源文件移动到目标目录</li>
+<li>mv dir1 file1 出错</li>
+<li>在 19/12/30 在弄自己双十一买的阿里云，看到帖子说</li>
 </ul>
 <hr>
 <h4 id="4、复制"><a href="#4、复制" class="headerlink" title="4、复制"></a>4、复制</h4><ul>
@@ -228,7 +233,7 @@
 <ul>
 <li>这是老东在安装lnmp的指令：<br>wget <a href="http://soft.vpser.net/lnmp/lnmp1.6.tar.gz" target="_blank" rel="noopener">http://soft.vpser.net/lnmp/lnmp1.6.tar.gz</a> -cO lnmp1.6.tar.gz &amp;&amp; tar zxf lnmp1.6.tar.gz &amp;&amp; cd lnmp1.6 &amp;&amp; ./install.sh lnmp</li>
 </ul>
-<h4 id="10、常用命令补充1：-curl命令"><a href="#10、常用命令补充1：-curl命令" class="headerlink" title="10、常用命令补充1： curl命令"></a>10、常用命令补充1： curl命令</h4><ul>
+<h4 id="10、常用命令补充1：-curl-命令"><a href="#10、常用命令补充1：-curl-命令" class="headerlink" title="10、常用命令补充1： curl 命令"></a>10、常用命令补充1： curl 命令</h4><ul>
 <li>在shell中可以使用该命令 curl <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 模拟在浏览器中访问，返回服务器响应。</li>
 </ul>
 <h4 id="11、sz-rz-下载到本地-上传到远程服务器"><a href="#11、sz-rz-下载到本地-上传到远程服务器" class="headerlink" title="11、sz rz 下载到本地  上传到远程服务器"></a>11、sz rz 下载到本地  上传到远程服务器</h4><ul>
@@ -250,12 +255,16 @@
 <h4 id="14、配置相关（网上帖子）"><a href="#14、配置相关（网上帖子）" class="headerlink" title="14、配置相关（网上帖子）"></a>14、配置相关（网上帖子）</h4><ul>
 <li>系统配置文件基本都放在/etc下</li>
 <li>个人配置文件放在用户目录下/usr</li>
+<li>这些默认配置，我使用的 lnmp 安装（个人理解：一部分软件是按照 lnmp 的默认配置安装，还有一些 linux的默认安装）可以查看帖子 <a href="https://lnmp.org/faq/lnmp-vhost-add-howto.html" target="_blank" rel="noopener"><a href="https://lnmp.org/faq/lnmp-vhost-add-howto.html" target="_blank" rel="noopener">LNMP添加、删除虚拟主机及伪静态使用教程</a></a></li>
 </ul>
-
+<h4 id="15、rpm-qa-查看-linux-安装的软件"><a href="#15、rpm-qa-查看-linux-安装的软件" class="headerlink" title="15、rpm -qa 查看 linux 安装的软件"></a>15、rpm -qa 查看 linux 安装的软件</h4><ul>
+<li>rpm -qa | grep wegt 单独查看是否安装 wegt。应为 rpm -qa 会打印所有安装软件，不容易查看，我们可以使用此命令过滤某软件，查看是否安装之！</li>
+</ul>
+<h4 id="16、service-nginx-restart-重启-nginx"><a href="#16、service-nginx-restart-重启-nginx" class="headerlink" title="16、service nginx restart 重启 nginx"></a>16、service nginx restart 重启 nginx</h4>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ck4i6s608000epgvhc8ptz6m9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ck4s7cyh7000gpgvhxj5vdav7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
@@ -301,7 +310,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="ck4i6s61o001apgvhhxkh2bpe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="ck4s7cyip0016pgvhvg2i2h1x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -360,7 +369,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/23/Shell总结/" data-id="ck4i6s60m000mpgvh5d88fm68" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/23/Shell总结/" data-id="ck4s7cyhf000kpgvhp6gjstj7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -442,7 +451,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/MarkDown总结/" data-id="ck4i6s60d000hpgvh6l31kcg9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/MarkDown总结/" data-id="ck4s7cyhk000mpgvhq4v1h9fy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
@@ -519,7 +528,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/Hexo总结/" data-id="ck4i6s602000apgvhjbnvjcdg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/Hexo总结/" data-id="ck4s7cygx000cpgvhswzcup45" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
@@ -566,7 +575,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="ck4i6s60w000upgvhfte49wxm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="ck4s7cyhv000tpgvhx5ms5rmm" class="article-share-link">Share</a>
       
       
     </footer>
