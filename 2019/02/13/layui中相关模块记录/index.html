@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://139.199.23.2/img/blog/20190213/required-tips.jpg">
 <meta property="og:image" content="http://139.199.23.2/img/blog/20191223/confirm_no_title.jpg">
 <meta property="og:image" content="http://139.199.23.2/img/blog/20191223/confirm_has_title.jpg">
-<meta property="og:updated_time" content="2019-12-30T08:01:52.761Z">
+<meta property="og:updated_time" content="2020-01-13T08:26:23.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="layui中相关模块记录">
 <meta name="twitter:description" content="写在前面：此文档是在使用 layui 过程的一些总结！ 1. layui的模块化和非模块化使用下面这个帖子layui的模块化和非模块化使用，着重介绍了layui中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问： 我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的2种模式只是用户的使用方式，但是我发现使用">
@@ -126,6 +126,8 @@
 <p>在input中的name属性<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"desc"</span> <span class="attr">required</span> <span class="attr">lay-verify</span>=<span class="string">"required"</span> <span class="attr">placeholder</span>=<span class="string">"请输入标题"</span> <span class="attr">autocomplete</span>=<span class="string">"off"</span>  <span class="attr">class</span>=<span class="string">"layui-input"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>对layui中的循环出来的input（集团端的循环出来的门店），一般是不加name，用一个input type=hidden的name来接（隐藏作用域），针对radio这种（认为浏览器自己内部封装的有，你点击之后，name就是获取你当前触发的那个input的value） </p>
 <p>layui中的<input type="checkbox" name="switch" lay-skin="switch">这个开关不开，在form中data.field是不会打印switch的，也许这个是layui的二次封装，radio也是一样，没有默认选中，是不会提交该radio对应的name字段的值。</p>
+<hr>
+<p>layui中的 select ，若是其下的 option 比较多，可以在 select 标签上加上属性 <code>lay-search</code>  在 pms 中看到在form 中加的 class 类 search-form，查资料没发现有该 class 对应的 css效果，可理解为是 开发人员自己写的！还回忆起提交按钮查询时候，加了一些不认识的 class 类，估计这也是工作人员copy的。</p>
 <h4 id="9-layui的-margin、padding重置css"><a href="#9-layui的-margin、padding重置css" class="headerlink" title="9. layui的 margin、padding重置css"></a>9. layui的 margin、padding重置css</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">blockquote</span>, <span class="selector-tag">body</span>, <span class="selector-tag">button</span>, <span class="selector-tag">dd</span>, <span class="selector-tag">div</span>, <span class="selector-tag">dl</span>, <span class="selector-tag">dt</span>, <span class="selector-tag">form</span>, <span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span>, <span class="selector-tag">input</span>, <span class="selector-tag">li</span>, <span class="selector-tag">ol</span>, <span class="selector-tag">p</span>, <span class="selector-tag">pre</span>, <span class="selector-tag">td</span>, <span class="selector-tag">textarea</span>, <span class="selector-tag">th</span>, <span class="selector-tag">ul</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">-webkit-tap-highlight-color</span>: <span class="built_in">rgba</span>(0,0,0,0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="10-layui-的报错记录"><a href="#10-layui-的报错记录" class="headerlink" title="10. layui 的报错记录"></a>10. layui 的报错记录</h4><ul>
 <li>使用 layer 时报错：<code>layui s.parents is not a function</code>，我是在使用 <code>layer.msg</code> 时报错，这是应为 layer.msg(msg, {icon: 1}) 输出的 msg 值为Object类型（对象），导致报错。详见下链接：<br><a href="https://blog.csdn.net/Radish999/article/details/88737483" target="_blank" rel="noopener">layui s.parents is not a function</a><br>注：layer.alert() 里面的内容也不能是 obj。</li>
@@ -141,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/13/layui中相关模块记录/" data-id="ck551qo9n0016iovh6e9tvp1l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/13/layui中相关模块记录/" data-id="ck5ccita20016vwvhin4gqsig" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui相关/">layui相关</a></li></ul>
