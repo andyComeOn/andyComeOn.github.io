@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://139.199.23.2/img/blog/20190125/vim-insert-status.jpg">
 <meta property="og:image" content="http://139.199.23.2/img/blog/20190125/vim-esc-status.jpg">
 <meta property="og:image" content="http://139.199.23.2/img/blog/20190125/ps_eg.png">
-<meta property="og:updated_time" content="2019-12-30T08:40:15.523Z">
+<meta property="og:updated_time" content="2020-02-20T05:52:24.132Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux一些常用命令总结">
 <meta name="twitter:description" content="最近在提交git时候（我使用的是git的命令行），在执行git pull时候出现了，让编辑merge提交。一时间束手无策。决定好好看看这个命令，把常用的命令记录一下，主要参考的这篇帖子Linux常用命令大全（非常全！！！）这篇帖子总结的也很好linux的一些命令  1、下面的一些常用指令我在git bash中测试，git bash只是模拟了部分的linux指令。 clear：清除记录 pwd：显示">
@@ -221,11 +221,25 @@
 <h4 id="15、rpm-qa-查看-linux-安装的软件"><a href="#15、rpm-qa-查看-linux-安装的软件" class="headerlink" title="15、rpm -qa 查看 linux 安装的软件"></a>15、rpm -qa 查看 linux 安装的软件</h4><ul>
 <li>rpm -qa | grep wegt 单独查看是否安装 wegt。应为 rpm -qa 会打印所有安装软件，不容易查看，我们可以使用此命令过滤某软件，查看是否安装之！</li>
 </ul>
-<h4 id="16、service-nginx-restart-重启-nginx"><a href="#16、service-nginx-restart-重启-nginx" class="headerlink" title="16、service nginx restart 重启 nginx"></a>16、service nginx restart 重启 nginx</h4>
+<h4 id="16、linux-如何查看是否开启、重启某进程如：nginx-mysql"><a href="#16、linux-如何查看是否开启、重启某进程如：nginx-mysql" class="headerlink" title="16、linux 如何查看是否开启、重启某进程如：nginx mysql"></a>16、linux 如何查看是否开启、重启某进程如：nginx mysql</h4><ul>
+<li>service nginx status </li>
+<li>service mysql status</li>
+<li>service mysql restart </li>
+<li>service nginx restart</li>
+</ul>
+<h4 id="17、Windows-查看端口"><a href="#17、Windows-查看端口" class="headerlink" title="17、Windows 查看端口"></a>17、Windows 查看端口</h4><ul>
+<li>netstat -a -n 出现列表 分别指：协议 本地地址 外部地址 状态</li>
+<li>状态listen：表示FTP服务启动后首先处于侦听（LISTENING）状态？？？</li>
+<li>状态establish：ESTABLISHED的意思是建立连接，表示两台机器正在通信</li>
+<li>CLOSE_WAIT表示对方主动关闭连接或者网络异常导致连接中断，此时我方要调用close()来使得连接正确关闭。</li>
+<li>TIME_WAIT表示我方主动调用close()断开连接，收到对方确认后状态变为TIME_WAIT。</li>
+<li>如果7626端口显示为LISTENING（正在监听等待连接）状态，电脑极有可能感染了病毒！！！</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ck5ccit8u000evwvh9jc0s5vy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ck6vtq75e000egcvhol0vnaew" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
