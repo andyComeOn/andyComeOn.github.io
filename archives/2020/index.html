@@ -5,19 +5,15 @@
   
 
   
-  <title>Math函数 | Hexo</title>
+  <title>Archives: 2020 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="总结一下Math相关函数 我们在写涉及到钱业务逻辑前端页面时，会有保留2位小数的场景，后台一般返回钱数相关字段的值是字符串，如：3.00，但是有时候页面需要计算钱数，如 3.00 + 5.00 = &amp;gt; 8，这时候8转为8.00比较符合场景，这时候可能会使用到toFixed(2)。  toFixed用法 ：  1NumberObject.toFixed(num); 上面意思是针对Number型">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Math函数">
-<meta property="og:url" content="http://yoursite.com/2019/06/11/Math函数/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/archives/2020/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="总结一下Math相关函数 我们在写涉及到钱业务逻辑前端页面时，会有保留2位小数的场景，后台一般返回钱数相关字段的值是字符串，如：3.00，但是有时候页面需要计算钱数，如 3.00 + 5.00 = &amp;gt; 8，这时候8转为8.00比较符合场景，这时候可能会使用到toFixed(2)。  toFixed用法 ：  1NumberObject.toFixed(num); 上面意思是针对Number型">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-11T10:31:14.165Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Math函数">
-<meta name="twitter:description" content="总结一下Math相关函数 我们在写涉及到钱业务逻辑前端页面时，会有保留2位小数的场景，后台一般返回钱数相关字段的值是字符串，如：3.00，但是有时候页面需要计算钱数，如 3.00 + 5.00 = &amp;gt; 8，这时候8转为8.00比较符合场景，这时候可能会使用到toFixed(2)。  toFixed用法 ：  1NumberObject.toFixed(num); 上面意思是针对Number型">
+<meta name="twitter:title" content="Hexo">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,74 +60,40 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Math函数" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/11/Math函数/" class="article-date">
-  <time datetime="2019-06-11T09:25:00.000Z" itemprop="datePublished">2019-06-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      Math函数
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2020/03/03/laravel创建table字段参考表/" class="archive-article-date">
+  <time datetime="2020-03-03T04:44:06.000Z" itemprop="datePublished">Mar 3</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/03/03/laravel创建table字段参考表/">laravel创建table字段参考表</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="总结一下Math相关函数"><a href="#总结一下Math相关函数" class="headerlink" title="总结一下Math相关函数"></a>总结一下Math相关函数</h3><ol>
-<li>我们在写涉及到钱业务逻辑前端页面时，会有保留2位小数的场景，后台一般返回钱数相关字段的值是字符串，如：<code>3.00</code>，但是有时候页面需要计算钱数，如 3.00 + 5.00 = &gt; 8，这时候8转为8.00比较符合场景，这时候可能会使用到toFixed(2)。</li>
-</ol>
-<p>toFixed用法 ： </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NumberObject.toFixed(num);</span><br></pre></td></tr></table></figure>
-<p>上面意思是针对Number型，才能使用 <code>toFixed()</code>, 切记这个也是满足四舍五入的数学规则。</p>
-<ol start="2">
-<li>Math.ceil(num))，是只是向上取整数，但是若是3.00之类的数还是3 如下： <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.ceil(<span class="number">3.12</span>))   <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">Math</span>.ceil(<span class="number">3.00</span>))   <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>同理Math.floor()也是如此。</p>
-<ol start="3">
-<li>toString() 也是针对Number。但是它好像是有2进制的作用</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="ck7beshuo000hhcvhf4p6kyjb" class="article-share-link">Share</a>
-      
-      
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/06/14/layui中函数使用方法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          layui中函数使用方法
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/06/10/h5中img标签的边框问题/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">h5中img标签的边框问题</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
+
 
 </section>
         

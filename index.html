@@ -62,6 +62,47 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-laravel创建table字段参考表" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/03/laravel创建table字段参考表/" class="article-date">
+  <time datetime="2020-03-03T04:44:06.000Z" itemprop="datePublished">2020-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/03/laravel创建table字段参考表/">laravel创建table字段参考表</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>~~~php</p>
+<p>$table-&gt;bigIncrements(‘id’);   自增ID，类型为bigint<br>$table-&gt;bigInteger(‘votes’);   等同于数据库中的BIGINT类型<br>$table-&gt;binary(‘data’);    等同于数据库中的BLOB类型<br>$table-&gt;boolean(‘confirmed’);  等同于数据库中的BOOLEAN类型<br>$table-&gt;char(‘name’, 4);   等同于数据库中的CHAR类型<br>$table-&gt;date(‘created_at’);    等同于数据库中的DATE类型<br>$table-&gt;dateTime(‘created_at’);    等同于数据库中的DATETIME类型<br>$table-&gt;dateTimeTz(‘created_at’);  等同于数据库中的DATETIME类型（带时区）<br>$table-&gt;decimal(‘amount’, 5, 2);   等同于数据库中的DECIMAL类型，带一个精度和范围<br>$table-&gt;double(‘column’, 15, 8);   等同于数据库中的DOUBLE类型，带精度, 总共15位数字，小数点后8位.<br>$table-&gt;enum(‘choices’, [‘foo’, ‘bar’]);   等同于数据库中的 ENUM类型<br>$table-&gt;float(‘amount’);   等同于数据库中的 FLOAT 类型<br>$table-&gt;increments(‘id’);  数据库主键自增ID<br>$table-&gt;integer(‘votes’);  等同于数据库中的 INTEGER 类型<br>$table-&gt;ipAddress(‘visitor’);  等同于数据库中的 IP 地址<br>$table-&gt;json(‘options’);   等同于数据库中的 JSON 类型<br>$table-&gt;jsonb(‘options’);  等同于数据库中的 JSONB 类型<br>$table-&gt;longText(‘description’);   等同于数据库中的 LONGTEXT 类型<br>$table-&gt;macAddress(‘device’);  等同于数据库中的 MAC 地址<br>$table-&gt;mediumIncrements(‘id’);    自增ID，类型为无符号的mediumint<br>$table-&gt;mediumInteger(‘numbers’);  等同于数据库中的 MEDIUMINT类型<br>$table-&gt;mediumText(‘description’); 等同于数据库中的 MEDIUMTEXT类型<br>$table-&gt;morphs(‘taggable’);    添加一个 INTEGER类型的 taggable_id 列和一个 STRING类型的 taggable_type列<br>$table-&gt;nullableTimestamps();  和 timestamps()一样但允许 NULL值.<br>$table-&gt;rememberToken();   添加一个 remember_token 列： VARCHAR(100) NULL.<br>$table-&gt;smallIncrements(‘id’); 自增ID，类型为无符号的smallint<br>$table-&gt;smallInteger(‘votes’); 等同于数据库中的 SMALLINT 类型<br>$table-&gt;softDeletes(); 新增一个 deleted_at 列 用于软删除.<br>$table-&gt;string(‘email’);   等同于数据库中的 VARCHAR 列  .<br>$table-&gt;string(‘name’, 100);   等同于数据库中的 VARCHAR，带一个长度<br>$table-&gt;text(‘description’);   等同于数据库中的 TEXT 类型<br>$table-&gt;time(‘sunrise’);   等同于数据库中的 TIME类型<br>$table-&gt;timeTz(‘sunrise’); 等同于数据库中的 TIME 类型（带时区）<br>$table-&gt;tinyInteger(‘numbers’);    等同于数据库中的 TINYINT 类型<br>$table-&gt;timestamp(‘added_on’); 等同于数据库中的 TIMESTAMP 类型<br>$table-&gt;timestampTz(‘added_on’);   等同于数据库中的 TIMESTAMP 类型（带时区）<br>$table-&gt;timestamps();  添加 created_at 和 updated_at列<br>$table-&gt;timestampsTz();    添加 created_at 和 updated_at列（带时区）<br>$table-&gt;unsignedBigInteger(‘votes’);   等同于数据库中无符号的 BIGINT 类型<br>$table-&gt;unsignedInteger(‘votes’);  等同于数据库中无符号的 INT 类型<br>$table-&gt;unsignedMediumInteger(‘votes’);    等同于数据库中无符号的 MEDIUMINT 类型<br>$table-&gt;unsignedSmallInteger(‘votes’); 等同于数据库中无符号的 SMALLINT 类型<br>$table-&gt;unsignedTinyInteger(‘votes’);  等同于数据库中无符号的 TINYINT 类型<br>$table-&gt;uuid(‘id’);    等同于数据库的UUID</p>
+<p>~~~php</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/03/laravel创建table字段参考表/" data-id="ck7beshwk0015hcvh6virxi37" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Form的相关记录" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/18/Form的相关记录/" class="article-date">
@@ -134,7 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/18/Form的相关记录/" data-id="ck6vtq74x0005gcvhejc2m8fa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/18/Form的相关记录/" data-id="ck7beshtx0005hcvhb5t74nly" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li></ul>
@@ -178,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/11/CSS常用代码/" data-id="ck6vtq7470000gcvhfu4mvrh8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/11/CSS常用代码/" data-id="ck7beshtp0003hcvhbeb15pxo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -272,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/10/CSS字体换总结行/" data-id="ck6vtq74r0003gcvh5si25bbj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/10/CSS字体换总结行/" data-id="ck7beshtj0001hcvhifp3cvqg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -331,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/26/PMS中form查询总结/" data-id="ck6vtq75v000mgcvhktq7mxd8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/26/PMS中form查询总结/" data-id="ck7beshus000ihcvhw8kzp6uf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -367,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/25/Git常用命令/" data-id="ck6vtq757000agcvhcyt961uk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/25/Git常用命令/" data-id="ck7beshu20008hcvhqzzdjnd2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -409,7 +450,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/07/浏览器加载资源报错/" data-id="ck6vtq778001fgcvhnz2srjb8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/07/浏览器加载资源报错/" data-id="ck7beshwz001ghcvhsrsk9abx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -477,7 +518,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/25/table标签相关总结/" data-id="ck6vtq76x0017gcvhdnzj3e31" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/25/table标签相关总结/" data-id="ck7beshwu001chcvhjt6cajid" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Table相关/">Table相关</a></li></ul>
@@ -539,9 +580,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ck6vtq76s0014gcvh6tjpk7c4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ck7beshwf0012hcvhlre2dbk6" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
+
     </footer>
   </div>
   
@@ -618,95 +661,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ck6vtq77g001kgcvhlpm1cfld" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ck7beshx7001khcvht1c10pa0" class="article-share-link">Share</a>
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-layui中函数使用方法" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/14/layui中函数使用方法/" class="article-date">
-  <time datetime="2019-06-14T02:10:16.000Z" itemprop="datePublished">2019-06-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/14/layui中函数使用方法/">layui中函数使用方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="总结一下layui的函数使用方法"><a href="#总结一下layui的函数使用方法" class="headerlink" title="总结一下layui的函数使用方法"></a>总结一下layui的函数使用方法</h4><ol>
-<li><p>针对声明函数如 <code>onclick=myClick()</code>，可在layui.use([], function(){})中写但是必须是window.myClick = function () {}，这能声明成功，但是有时候我们常常使用jq中的 <code>$(this)</code>，这时候this指向不是我们想要的当前元素，而是window。贤心在一篇帖子中回答使用此方法。</p>
-</li>
-<li><p>还有一种就是使用jq绑定事件写在layui.use([], function(){})中，视情况而定。当然你也可以放到layui.use([], function(){})外面，但是你记得要引入jQuery，否则会报错： Uncaught ReferenceError: $ is not defined。个人感觉就直接写在layui.use之间就可以。</p>
-</li>
-<li><p>有关table监听有一下几种用法</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这下面的 fiterTabname 是指table标签中lay-filter="fiterTabname"</span></span><br><span class="line">table.on(<span class="string">'edit(fiterTabname)'</span>; <span class="comment">// table中的input输入</span></span><br><span class="line">table.on(<span class="string">'checkbox(fiterTabname)'</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line">table.on(<span class="string">'radio(fiterTabname)'</span>; <span class="comment">// 点击radio</span></span><br><span class="line">table.on(<span class="string">'tool(fiterTabname)'</span>; <span class="comment">// 这是操作按钮（一般在table中最后一列，通过templet的标识，如：templet: '#barDemo'。针对barDemo是script渲染标签的id，详见下例：）</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/html"</span> <span class="attr">id</span>=<span class="string">"barDemo"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    &lt;a <span class="class"><span class="keyword">class</span></span>=<span class="string">"layui-btn layui-btn-primary layui-btn-xs"</span> lay-event=<span class="string">"read"</span>&gt;读卡&lt;<span class="regexp">/a&gt;</span></span></span><br><span class="line"><span class="javascript">    &lt;a <span class="class"><span class="keyword">class</span></span>=<span class="string">"layui-btn layui-btn-danger layui-btn-xs"</span> lay-event=<span class="string">"del"</span>&gt;删除&lt;<span class="regexp">/a&gt;</span></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 还要注意table标签中的id="table1"一般是渲染table时候使用，用法如下：</span></span><br><span class="line">table.render(&#123;</span><br><span class="line">    elem: <span class="string">"#table1"</span>,</span><br><span class="line">    data: [],</span><br><span class="line">    cols: []</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li><p>有关form监听有一下几种用法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">form.on(<span class="string">'edit(fiterFormname)'</span>; <span class="comment">// table中的input输入</span></span><br><span class="line">form.on(<span class="string">'tool(fiterFormname)'</span>; <span class="comment">// 这是操作按钮</span></span><br><span class="line"></span><br><span class="line">form.on(<span class="string">'checkbox(fiterFormname)'</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line">form.on(<span class="string">'radio(fiterFormname)'</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 说明一下，针对上面form监听的几种用法，笔记写的比较早，现在19/09/18发现，有不合理的地方？ ` form.on('tool(***)') `， ` form.on('edit(***)') ` 怎么没发现使用场景？ 在一个页面中form监听常用方法： </span></span><br><span class="line"></span><br><span class="line">form.on(<span class="string">'checkbox(fiterCheckboxName)'</span>);</span><br><span class="line">form.on(<span class="string">'radio(fiterRadioName)'</span>);</span><br><span class="line">form.on(<span class="string">'select(fiterSelectName)'</span>);</span><br><span class="line">form.on(<span class="string">'submit(fiterSubmitName)'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 细想checkbox使用form监听的场景也很少，本身他就是多选框，就是记录一个状态！场景：选择多标签时候，选择标签数量超过设定数量，禁止点击。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// radio点击之后，切换大状态，改变页面中对应展示！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在pms添加消费时候，餐费日期选择，使用jq插入节点，要再次渲染form.render('checkbox');</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>layui中的css的默认样式</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">optgroup</span>, <span class="selector-tag">option</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: inherit;</span><br><span class="line">    <span class="attribute">font-size</span>: inherit;</span><br><span class="line">    <span class="attribute">font-style</span>: inherit;</span><br><span class="line">    <span class="attribute">font-weight</span>: inherit;</span><br><span class="line">    <span class="attribute">outline</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.layui-form</span> <span class="selector-tag">input</span><span class="selector-attr">[type=checkbox]</span>, <span class="selector-class">.layui-form</span> <span class="selector-tag">input</span><span class="selector-attr">[type=radio]</span>, <span class="selector-class">.layui-form</span> <span class="selector-tag">select</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.layui-inline</span>, <span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.layui-btn</span>, <span class="selector-class">.layui-input</span>, <span class="selector-class">.layui-select</span>, <span class="selector-class">.layui-textarea</span>, <span class="selector-class">.layui-upload-button</span> &#123;</span><br><span class="line">    <span class="attribute">outline</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">-webkit-appearance</span>: none;</span><br><span class="line">    <span class="attribute">transition</span>: all .<span class="number">3s</span>;</span><br><span class="line">    <span class="attribute">-webkit-transition</span>: all .<span class="number">3s</span>;</span><br><span class="line">    <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.layui-btn</span>, <span class="selector-class">.layui-disabled</span>, <span class="selector-class">.layui-icon</span>, <span class="selector-class">.layui-unselect</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-user-select</span>: none;</span><br><span class="line">    <span class="attribute">-ms-user-select</span>: none;</span><br><span class="line">    <span class="attribute">-moz-user-select</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.layui-btn</span>, <span class="selector-class">.layui-edge</span>, <span class="selector-class">.layui-inline</span>, <span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>针对 <code>layui-form-item</code>，layui中对其写了一个伪类<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.layui-form-item</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">'\20'</span>;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">    *zoom: 1;</span><br><span class="line">    <span class="selector-tag">display</span>: <span class="selector-tag">block</span>;</span><br><span class="line">    <span class="selector-tag">height</span>: 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><code>layui-form-label</code>为啥是38px，因为其内部样式写了行高是20px，其padding添加了9px 15px。具体代码如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.layui-form-label</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">9px</span> <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">80px</span>;</span><br><span class="line">    <span class="attribute">font-weight</span>: <span class="number">400</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在room_pre\的addOccTeamInfo.php 中客户保留了pad-bottom0 pad-top0 lh30，开始估计是不统一，才临时加的css，后来就直接copy 全部嫁接了。</p>
-<hr>
-<p>在 pms 中的弹框大多是由 <code>iframe</code> 形式，在一些弹框中的最后提交的按钮的那一栏 <code>layui-form-item</code> 好像不知道谁加入一个 layui-main 样式类，是这个class 有宽度 width: 1140px; margin: 0 auto; 导致弹框出现横向滚动条！如下代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form-item layui-main"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-input-block"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"layui-btn"</span> <span class="attr">lay-submit</span> <span class="attr">lay-filter</span>=<span class="string">"PostSubmit"</span>&gt;</span>立即提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"layui-btn layui-btn-primary"</span> <span class="attr">onclick</span>=<span class="string">"closeUpWin()"</span>&gt;</span>返回<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"do"</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">value</span>=<span class="string">"dosubmit"</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">value</span>=<span class="string">"&#123;$StoreInfo.id&#125;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol start="6">
-<li>layui模块使用的demo</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// layui的模块备份</span></span><br><span class="line">layui.use([<span class="string">'element'</span>,<span class="string">'table'</span>,<span class="string">'laydate'</span>,<span class="string">'form'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> element = layui.element;</span><br><span class="line">    <span class="keyword">var</span> laydate = layui.laydate;</span><br><span class="line">    <span class="keyword">var</span> layedit = layui.layedit;</span><br><span class="line">    <span class="keyword">var</span> laypage = layui.laypage;</span><br><span class="line">    <span class="keyword">var</span> table = layui.table;</span><br><span class="line">    <span class="keyword">var</span> form = layui.form;</span><br><span class="line">    <span class="keyword">var</span> $ = layui.$;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>在这里补充一下：之前一直理解的是layer，不用引入该模块也可使用，但自己测试 <code>layui.use([], function(){ layer.msg(123) })</code> 会提示 layer is not defined，所以可以推理layer是钳在其他模块中，也可理解为use要有模块名字，layer可不写确能使用。偶然间测出了，use table可以不写form，但是只是引入form，不能使用table。猜想是table模块中包含了form逻辑，具体细究。</p>
-<ol start="7">
-<li>layui的弹框有3个大项：</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-layer-move"</span> <span class="attr">style</span>=<span class="string">"cursor: move; display: none;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-layer-shade"</span> <span class="attr">id</span>=<span class="string">"layui-layer-shade4"</span> <span class="attr">times</span>=<span class="string">"4"</span> <span class="attr">style</span>=<span class="string">"z-index: 19891017; background-color: rgb(0, 0, 0); opacity: 0.5;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-layer layui-layer-iframe"</span> <span class="attr">id</span>=<span class="string">"layui-layer4"</span> <span class="attr">type</span>=<span class="string">"iframe"</span> <span class="attr">times</span>=<span class="string">"4"</span> <span class="attr">showtime</span>=<span class="string">"0"</span> <span class="attr">contype</span>=<span class="string">"string"</span> <span class="attr">style</span>=<span class="string">"z-index: 19891018; width: 90%; height: 90%; top: 17px; left: 58.5px;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol start="8">
-<li>layui中的html使用demo</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-row"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-col-md3"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;div class="grid-demo"&gt; --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form-item"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-inline"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"layui-form-label"</span>&gt;</span>姓名：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-input-block select_after"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"nam"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"user_name"</span> <span class="attr">class</span>=<span class="string">"layui-input"</span> <span class="attr">value</span>=<span class="string">"value值"</span> <span class="attr">lay-verify</span>=<span class="string">"nullStr"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;/div&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><code>&lt;div class=&quot;grid-demo&quot;&gt;&lt;/div&gt;</code>这个是官网给的例子，在css中这个class无体现！</p>
-<ol start="9">
-<li>layui中的icon的记录</li>
-</ol>
-<p>icon:<br>    1绿色对号<br>    2红色X号<br>    3黄色问好<br>    4暗灰色加锁<br>    5生气小红脸<br>    6开心小绿脸<br>    7黄色感叹号</p>
-<p>layer.msg(‘暂无当前日期前7天数据’, {icon: 2});</p>
-<ol start="10">
-<li>layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）。 若你采用layer.open({type: 1})方式调用，则type为必填项（信息框除外）</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="ck6vtq776001egcvhp5mpsu45" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui相关/">layui相关</a></li></ul>
-
     </footer>
   </div>
   
@@ -732,7 +689,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS相关/">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table相关/">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui相关/">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS相关/">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS相关/">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table相关/">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui相关/">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
     </div>
   </div>
 
@@ -742,7 +699,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 13.33px;">layui相关</a> <a href="/tags/工具使用总结/" style="font-size: 16.67px;">工具使用总结</a>
+      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/JS相关/" style="font-size: 10px;">JS相关</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 15px;">layui相关</a> <a href="/tags/工具使用总结/" style="font-size: 20px;">工具使用总结</a>
     </div>
   </div>
 
@@ -751,7 +708,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -762,6 +719,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/03/03/laravel创建table字段参考表/">laravel创建table字段参考表</a>
+          </li>
         
           <li>
             <a href="/2019/12/18/Form的相关记录/">Form的相关记录</a>
@@ -777,10 +738,6 @@
         
           <li>
             <a href="/2019/11/26/PMS中form查询总结/">PMS中form查询总结</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/25/Git常用命令/">Git常用命令</a>
           </li>
         
       </ul>

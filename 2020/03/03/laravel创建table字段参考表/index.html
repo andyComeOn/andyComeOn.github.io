@@ -5,19 +5,20 @@
   
 
   
-  <title>Math函数 | Hexo</title>
+  <title>laravel创建table字段参考表 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="总结一下Math相关函数 我们在写涉及到钱业务逻辑前端页面时，会有保留2位小数的场景，后台一般返回钱数相关字段的值是字符串，如：3.00，但是有时候页面需要计算钱数，如 3.00 + 5.00 = &amp;gt; 8，这时候8转为8.00比较符合场景，这时候可能会使用到toFixed(2)。  toFixed用法 ：  1NumberObject.toFixed(num); 上面意思是针对Number型">
+  <meta name="description" content="~~~php $table-&amp;gt;bigIncrements(‘id’);   自增ID，类型为bigint$table-&amp;gt;bigInteger(‘votes’);   等同于数据库中的BIGINT类型$table-&amp;gt;binary(‘data’);    等同于数据库中的BLOB类型$table-&amp;gt;boolean(‘confirmed’);  等同于数据库中的BOOLEAN类型">
+<meta name="keywords" content="工具使用总结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Math函数">
-<meta property="og:url" content="http://yoursite.com/2019/06/11/Math函数/index.html">
+<meta property="og:title" content="laravel创建table字段参考表">
+<meta property="og:url" content="http://yoursite.com/2020/03/03/laravel创建table字段参考表/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="总结一下Math相关函数 我们在写涉及到钱业务逻辑前端页面时，会有保留2位小数的场景，后台一般返回钱数相关字段的值是字符串，如：3.00，但是有时候页面需要计算钱数，如 3.00 + 5.00 = &amp;gt; 8，这时候8转为8.00比较符合场景，这时候可能会使用到toFixed(2)。  toFixed用法 ：  1NumberObject.toFixed(num); 上面意思是针对Number型">
+<meta property="og:description" content="~~~php $table-&amp;gt;bigIncrements(‘id’);   自增ID，类型为bigint$table-&amp;gt;bigInteger(‘votes’);   等同于数据库中的BIGINT类型$table-&amp;gt;binary(‘data’);    等同于数据库中的BLOB类型$table-&amp;gt;boolean(‘confirmed’);  等同于数据库中的BOOLEAN类型">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-11T10:31:14.165Z">
+<meta property="og:updated_time" content="2020-03-03T04:45:14.335Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Math函数">
-<meta name="twitter:description" content="总结一下Math相关函数 我们在写涉及到钱业务逻辑前端页面时，会有保留2位小数的场景，后台一般返回钱数相关字段的值是字符串，如：3.00，但是有时候页面需要计算钱数，如 3.00 + 5.00 = &amp;gt; 8，这时候8转为8.00比较符合场景，这时候可能会使用到toFixed(2)。  toFixed用法 ：  1NumberObject.toFixed(num); 上面意思是针对Number型">
+<meta name="twitter:title" content="laravel创建table字段参考表">
+<meta name="twitter:description" content="~~~php $table-&amp;gt;bigIncrements(‘id’);   自增ID，类型为bigint$table-&amp;gt;bigInteger(‘votes’);   等同于数据库中的BIGINT类型$table-&amp;gt;binary(‘data’);    等同于数据库中的BLOB类型$table-&amp;gt;boolean(‘confirmed’);  等同于数据库中的BOOLEAN类型">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Math函数" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-laravel创建table字段参考表" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/06/11/Math函数/" class="article-date">
-  <time datetime="2019-06-11T09:25:00.000Z" itemprop="datePublished">2019-06-11</time>
+    <a href="/2020/03/03/laravel创建table字段参考表/" class="article-date">
+  <time datetime="2020-03-03T04:44:06.000Z" itemprop="datePublished">2020-03-03</time>
 </a>
     
   </div>
@@ -78,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Math函数
+      laravel创建table字段参考表
     </h1>
   
 
@@ -86,46 +87,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="总结一下Math相关函数"><a href="#总结一下Math相关函数" class="headerlink" title="总结一下Math相关函数"></a>总结一下Math相关函数</h3><ol>
-<li>我们在写涉及到钱业务逻辑前端页面时，会有保留2位小数的场景，后台一般返回钱数相关字段的值是字符串，如：<code>3.00</code>，但是有时候页面需要计算钱数，如 3.00 + 5.00 = &gt; 8，这时候8转为8.00比较符合场景，这时候可能会使用到toFixed(2)。</li>
-</ol>
-<p>toFixed用法 ： </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NumberObject.toFixed(num);</span><br></pre></td></tr></table></figure>
-<p>上面意思是针对Number型，才能使用 <code>toFixed()</code>, 切记这个也是满足四舍五入的数学规则。</p>
-<ol start="2">
-<li>Math.ceil(num))，是只是向上取整数，但是若是3.00之类的数还是3 如下： <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.ceil(<span class="number">3.12</span>))   <span class="comment">// 4</span></span><br><span class="line"><span class="built_in">Math</span>.ceil(<span class="number">3.00</span>))   <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>同理Math.floor()也是如此。</p>
-<ol start="3">
-<li>toString() 也是针对Number。但是它好像是有2进制的作用</li>
-</ol>
+        <p>~~~php</p>
+<p>$table-&gt;bigIncrements(‘id’);   自增ID，类型为bigint<br>$table-&gt;bigInteger(‘votes’);   等同于数据库中的BIGINT类型<br>$table-&gt;binary(‘data’);    等同于数据库中的BLOB类型<br>$table-&gt;boolean(‘confirmed’);  等同于数据库中的BOOLEAN类型<br>$table-&gt;char(‘name’, 4);   等同于数据库中的CHAR类型<br>$table-&gt;date(‘created_at’);    等同于数据库中的DATE类型<br>$table-&gt;dateTime(‘created_at’);    等同于数据库中的DATETIME类型<br>$table-&gt;dateTimeTz(‘created_at’);  等同于数据库中的DATETIME类型（带时区）<br>$table-&gt;decimal(‘amount’, 5, 2);   等同于数据库中的DECIMAL类型，带一个精度和范围<br>$table-&gt;double(‘column’, 15, 8);   等同于数据库中的DOUBLE类型，带精度, 总共15位数字，小数点后8位.<br>$table-&gt;enum(‘choices’, [‘foo’, ‘bar’]);   等同于数据库中的 ENUM类型<br>$table-&gt;float(‘amount’);   等同于数据库中的 FLOAT 类型<br>$table-&gt;increments(‘id’);  数据库主键自增ID<br>$table-&gt;integer(‘votes’);  等同于数据库中的 INTEGER 类型<br>$table-&gt;ipAddress(‘visitor’);  等同于数据库中的 IP 地址<br>$table-&gt;json(‘options’);   等同于数据库中的 JSON 类型<br>$table-&gt;jsonb(‘options’);  等同于数据库中的 JSONB 类型<br>$table-&gt;longText(‘description’);   等同于数据库中的 LONGTEXT 类型<br>$table-&gt;macAddress(‘device’);  等同于数据库中的 MAC 地址<br>$table-&gt;mediumIncrements(‘id’);    自增ID，类型为无符号的mediumint<br>$table-&gt;mediumInteger(‘numbers’);  等同于数据库中的 MEDIUMINT类型<br>$table-&gt;mediumText(‘description’); 等同于数据库中的 MEDIUMTEXT类型<br>$table-&gt;morphs(‘taggable’);    添加一个 INTEGER类型的 taggable_id 列和一个 STRING类型的 taggable_type列<br>$table-&gt;nullableTimestamps();  和 timestamps()一样但允许 NULL值.<br>$table-&gt;rememberToken();   添加一个 remember_token 列： VARCHAR(100) NULL.<br>$table-&gt;smallIncrements(‘id’); 自增ID，类型为无符号的smallint<br>$table-&gt;smallInteger(‘votes’); 等同于数据库中的 SMALLINT 类型<br>$table-&gt;softDeletes(); 新增一个 deleted_at 列 用于软删除.<br>$table-&gt;string(‘email’);   等同于数据库中的 VARCHAR 列  .<br>$table-&gt;string(‘name’, 100);   等同于数据库中的 VARCHAR，带一个长度<br>$table-&gt;text(‘description’);   等同于数据库中的 TEXT 类型<br>$table-&gt;time(‘sunrise’);   等同于数据库中的 TIME类型<br>$table-&gt;timeTz(‘sunrise’); 等同于数据库中的 TIME 类型（带时区）<br>$table-&gt;tinyInteger(‘numbers’);    等同于数据库中的 TINYINT 类型<br>$table-&gt;timestamp(‘added_on’); 等同于数据库中的 TIMESTAMP 类型<br>$table-&gt;timestampTz(‘added_on’);   等同于数据库中的 TIMESTAMP 类型（带时区）<br>$table-&gt;timestamps();  添加 created_at 和 updated_at列<br>$table-&gt;timestampsTz();    添加 created_at 和 updated_at列（带时区）<br>$table-&gt;unsignedBigInteger(‘votes’);   等同于数据库中无符号的 BIGINT 类型<br>$table-&gt;unsignedInteger(‘votes’);  等同于数据库中无符号的 INT 类型<br>$table-&gt;unsignedMediumInteger(‘votes’);    等同于数据库中无符号的 MEDIUMINT 类型<br>$table-&gt;unsignedSmallInteger(‘votes’); 等同于数据库中无符号的 SMALLINT 类型<br>$table-&gt;unsignedTinyInteger(‘votes’);  等同于数据库中无符号的 TINYINT 类型<br>$table-&gt;uuid(‘id’);    等同于数据库的UUID</p>
+<p>~~~php</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="ck7beshuo000hhcvhf4p6kyjb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/03/laravel创建table字段参考表/" data-id="ck7beshwk0015hcvh6virxi37" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2019/06/14/layui中函数使用方法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          layui中函数使用方法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/06/10/h5中img标签的边框问题/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/12/18/Form的相关记录/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">h5中img标签的边框问题</div>
+      <div class="article-nav-title">Form的相关记录</div>
     </a>
   
 </nav>
