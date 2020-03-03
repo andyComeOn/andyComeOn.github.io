@@ -84,14 +84,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>~~~php</p>
-<p>$table-&gt;bigIncrements(‘id’);   自增ID，类型为bigint<br>$table-&gt;bigInteger(‘votes’);   等同于数据库中的BIGINT类型<br>$table-&gt;binary(‘data’);    等同于数据库中的BLOB类型<br>$table-&gt;boolean(‘confirmed’);  等同于数据库中的BOOLEAN类型<br>$table-&gt;char(‘name’, 4);   等同于数据库中的CHAR类型<br>$table-&gt;date(‘created_at’);    等同于数据库中的DATE类型<br>$table-&gt;dateTime(‘created_at’);    等同于数据库中的DATETIME类型<br>$table-&gt;dateTimeTz(‘created_at’);  等同于数据库中的DATETIME类型（带时区）<br>$table-&gt;decimal(‘amount’, 5, 2);   等同于数据库中的DECIMAL类型，带一个精度和范围<br>$table-&gt;double(‘column’, 15, 8);   等同于数据库中的DOUBLE类型，带精度, 总共15位数字，小数点后8位.<br>$table-&gt;enum(‘choices’, [‘foo’, ‘bar’]);   等同于数据库中的 ENUM类型<br>$table-&gt;float(‘amount’);   等同于数据库中的 FLOAT 类型<br>$table-&gt;increments(‘id’);  数据库主键自增ID<br>$table-&gt;integer(‘votes’);  等同于数据库中的 INTEGER 类型<br>$table-&gt;ipAddress(‘visitor’);  等同于数据库中的 IP 地址<br>$table-&gt;json(‘options’);   等同于数据库中的 JSON 类型<br>$table-&gt;jsonb(‘options’);  等同于数据库中的 JSONB 类型<br>$table-&gt;longText(‘description’);   等同于数据库中的 LONGTEXT 类型<br>$table-&gt;macAddress(‘device’);  等同于数据库中的 MAC 地址<br>$table-&gt;mediumIncrements(‘id’);    自增ID，类型为无符号的mediumint<br>$table-&gt;mediumInteger(‘numbers’);  等同于数据库中的 MEDIUMINT类型<br>$table-&gt;mediumText(‘description’); 等同于数据库中的 MEDIUMTEXT类型<br>$table-&gt;morphs(‘taggable’);    添加一个 INTEGER类型的 taggable_id 列和一个 STRING类型的 taggable_type列<br>$table-&gt;nullableTimestamps();  和 timestamps()一样但允许 NULL值.<br>$table-&gt;rememberToken();   添加一个 remember_token 列： VARCHAR(100) NULL.<br>$table-&gt;smallIncrements(‘id’); 自增ID，类型为无符号的smallint<br>$table-&gt;smallInteger(‘votes’); 等同于数据库中的 SMALLINT 类型<br>$table-&gt;softDeletes(); 新增一个 deleted_at 列 用于软删除.<br>$table-&gt;string(‘email’);   等同于数据库中的 VARCHAR 列  .<br>$table-&gt;string(‘name’, 100);   等同于数据库中的 VARCHAR，带一个长度<br>$table-&gt;text(‘description’);   等同于数据库中的 TEXT 类型<br>$table-&gt;time(‘sunrise’);   等同于数据库中的 TIME类型<br>$table-&gt;timeTz(‘sunrise’); 等同于数据库中的 TIME 类型（带时区）<br>$table-&gt;tinyInteger(‘numbers’);    等同于数据库中的 TINYINT 类型<br>$table-&gt;timestamp(‘added_on’); 等同于数据库中的 TIMESTAMP 类型<br>$table-&gt;timestampTz(‘added_on’);   等同于数据库中的 TIMESTAMP 类型（带时区）<br>$table-&gt;timestamps();  添加 created_at 和 updated_at列<br>$table-&gt;timestampsTz();    添加 created_at 和 updated_at列（带时区）<br>$table-&gt;unsignedBigInteger(‘votes’);   等同于数据库中无符号的 BIGINT 类型<br>$table-&gt;unsignedInteger(‘votes’);  等同于数据库中无符号的 INT 类型<br>$table-&gt;unsignedMediumInteger(‘votes’);    等同于数据库中无符号的 MEDIUMINT 类型<br>$table-&gt;unsignedSmallInteger(‘votes’); 等同于数据库中无符号的 SMALLINT 类型<br>$table-&gt;unsignedTinyInteger(‘votes’);  等同于数据库中无符号的 TINYINT 类型<br>$table-&gt;uuid(‘id’);    等同于数据库的UUID</p>
-<p>~~~php</p>
+        <p>$table-&gt;bigIncrements(‘id’);   自增ID，类型为bigint<br>$table-&gt;bigInteger(‘votes’);   等同于数据库中的BIGINT类型<br>$table-&gt;binary(‘data’);    等同于数据库中的BLOB类型<br>$table-&gt;boolean(‘confirmed’);  等同于数据库中的BOOLEAN类型<br>$table-&gt;char(‘name’, 4);   等同于数据库中的CHAR类型<br>$table-&gt;date(‘created_at’);    等同于数据库中的DATE类型<br>$table-&gt;dateTime(‘created_at’);    等同于数据库中的DATETIME类型<br>$table-&gt;dateTimeTz(‘created_at’);  等同于数据库中的DATETIME类型（带时区）<br>$table-&gt;decimal(‘amount’, 5, 2);   等同于数据库中的DECIMAL类型，带一个精度和范围<br>$table-&gt;double(‘column’, 15, 8);   等同于数据库中的DOUBLE类型，带精度, 总共15位数字，小数点后8位.<br>$table-&gt;enum(‘choices’, [‘foo’, ‘bar’]);   等同于数据库中的 ENUM类型<br>$table-&gt;float(‘amount’);   等同于数据库中的 FLOAT 类型<br>$table-&gt;increments(‘id’);  数据库主键自增ID<br>$table-&gt;integer(‘votes’);  等同于数据库中的 INTEGER 类型<br>$table-&gt;ipAddress(‘visitor’);  等同于数据库中的 IP 地址<br>$table-&gt;json(‘options’);   等同于数据库中的 JSON 类型<br>$table-&gt;jsonb(‘options’);  等同于数据库中的 JSONB 类型<br>$table-&gt;longText(‘description’);   等同于数据库中的 LONGTEXT 类型<br>$table-&gt;macAddress(‘device’);  等同于数据库中的 MAC 地址<br>$table-&gt;mediumIncrements(‘id’);    自增ID，类型为无符号的mediumint<br>$table-&gt;mediumInteger(‘numbers’);  等同于数据库中的 MEDIUMINT类型<br>$table-&gt;mediumText(‘description’); 等同于数据库中的 MEDIUMTEXT类型<br>$table-&gt;morphs(‘taggable’);    添加一个 INTEGER类型的 taggable_id 列和一个 STRING类型的 taggable_type列<br>$table-&gt;nullableTimestamps();  和 timestamps()一样但允许 NULL值.<br>$table-&gt;rememberToken();   添加一个 remember_token 列： VARCHAR(100) NULL.<br>$table-&gt;smallIncrements(‘id’); 自增ID，类型为无符号的smallint<br>$table-&gt;smallInteger(‘votes’); 等同于数据库中的 SMALLINT 类型<br>$table-&gt;softDeletes(); 新增一个 deleted_at 列 用于软删除.<br>$table-&gt;string(‘email’);   等同于数据库中的 VARCHAR 列  .<br>$table-&gt;string(‘name’, 100);   等同于数据库中的 VARCHAR，带一个长度<br>$table-&gt;text(‘description’);   等同于数据库中的 TEXT 类型<br>$table-&gt;time(‘sunrise’);   等同于数据库中的 TIME类型<br>$table-&gt;timeTz(‘sunrise’); 等同于数据库中的 TIME 类型（带时区）<br>$table-&gt;tinyInteger(‘numbers’);    等同于数据库中的 TINYINT 类型<br>$table-&gt;timestamp(‘added_on’); 等同于数据库中的 TIMESTAMP 类型<br>$table-&gt;timestampTz(‘added_on’);   等同于数据库中的 TIMESTAMP 类型（带时区）<br>$table-&gt;timestamps();  添加 created_at 和 updated_at列<br>$table-&gt;timestampsTz();    添加 created_at 和 updated_at列（带时区）<br>$table-&gt;unsignedBigInteger(‘votes’);   等同于数据库中无符号的 BIGINT 类型<br>$table-&gt;unsignedInteger(‘votes’);  等同于数据库中无符号的 INT 类型<br>$table-&gt;unsignedMediumInteger(‘votes’);    等同于数据库中无符号的 MEDIUMINT 类型<br>$table-&gt;unsignedSmallInteger(‘votes’); 等同于数据库中无符号的 SMALLINT 类型<br>$table-&gt;unsignedTinyInteger(‘votes’);  等同于数据库中无符号的 TINYINT 类型<br>$table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/03/laravel创建table字段参考表/" data-id="ck7beshwk0015hcvh6virxi37" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/03/laravel创建table字段参考表/" data-id="ck7bf610u001oy8vhu2qo405q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
@@ -175,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/18/Form的相关记录/" data-id="ck7beshtx0005hcvhb5t74nly" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/18/Form的相关记录/" data-id="ck7bf60vw0005y8vh76lnaat5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li></ul>
@@ -219,7 +217,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/11/CSS常用代码/" data-id="ck7beshtp0003hcvhbeb15pxo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/11/CSS常用代码/" data-id="ck7bf60vr0003y8vhrzqkznys" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -313,7 +311,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/10/CSS字体换总结行/" data-id="ck7beshtj0001hcvhifp3cvqg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/10/CSS字体换总结行/" data-id="ck7bf60vg0001y8vh41ppcopm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -372,7 +370,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/26/PMS中form查询总结/" data-id="ck7beshus000ihcvhw8kzp6uf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/26/PMS中form查询总结/" data-id="ck7bf60ws000ky8vhwzmgaj50" class="article-share-link">Share</a>
       
       
     </footer>
@@ -408,7 +406,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/25/Git常用命令/" data-id="ck7beshu20008hcvhqzzdjnd2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/25/Git常用命令/" data-id="ck7bf60w10008y8vhxwo2mvxq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -450,7 +448,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/07/浏览器加载资源报错/" data-id="ck7beshwz001ghcvhsrsk9abx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/07/浏览器加载资源报错/" data-id="ck7bf60yj001hy8vhgz126u19" class="article-share-link">Share</a>
       
       
     </footer>
@@ -518,7 +516,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/25/table标签相关总结/" data-id="ck7beshwu001chcvhjt6cajid" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/25/table标签相关总结/" data-id="ck7bf60yb001by8vh1ejp4dbw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Table相关/">Table相关</a></li></ul>
@@ -580,7 +578,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ck7beshwf0012hcvhlre2dbk6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ck7bf60xu0013y8vhuxkuk5mc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -661,7 +659,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ck7beshx7001khcvht1c10pa0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ck7bf60yo001ky8vh926pdec7" class="article-share-link">Share</a>
       
       
     </footer>
