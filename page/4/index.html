@@ -62,6 +62,63 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-jqready" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/12/jqready/" class="article-date">
+  <time datetime="2019-02-12T03:14:09.000Z" itemprop="datePublished">2019-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/12/jqready/">jq中ready函数总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="记录一下jq的ready的几种写法"><a href="#记录一下jq的ready的几种写法" class="headerlink" title="记录一下jq的ready的几种写法"></a>记录一下jq的ready的几种写法</h4><ol>
+<li>最常用也是最标准</li>
+</ol>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// todo sth</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>是上面的简写</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// todo sth</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这种写法可能有很多人有疑问，jq的源码中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// jQuery的构造函数； </span></span><br><span class="line"><span class="keyword">var</span> jQuery = <span class="function"><span class="keyword">function</span>(<span class="params"> a, c </span>) </span>&#123; </span><br><span class="line"><span class="comment">// $(document).ready()的简写形式，只有在$(function()&#123;...&#125;)下才会执行； </span></span><br><span class="line"><span class="keyword">if</span> ( a &amp;&amp; <span class="keyword">typeof</span> a == <span class="string">"function"</span> &amp;&amp; jQuery.fn.ready ) <span class="keyword">return</span> jQuery(<span class="built_in">document</span>).ready(a); </span><br><span class="line"><span class="comment">// 确保参数a非空，默认值为document； </span></span><br><span class="line">a = a || jQuery.context || <span class="built_in">document</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 耶！找到了,我们再看下$这个方法的参数 </span></span><br><span class="line"><span class="comment">// $(selector,context) </span></span><br><span class="line"><span class="comment">// 第一个为选择器,第二个是容器 </span></span><br><span class="line"><span class="comment">// 如果不填就默认为document k</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>这个帖子上说是打酱油的</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jQuery(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// todo sth</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>看清楚</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jQuery(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// todo sth</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这种写法是为了避免其他插件中也使用了美元符号$，造成冲突，才传入参数，通过<code>jQuery.noConflict()</code>这个方法,我们可在代码中通过jQuery来代替$来使用,但又习惯了使用$怎么办?看下面代码:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jQuery.noConflict(); </span><br><span class="line">jQuery(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123; </span><br><span class="line">    alert($(<span class="string">"#ready1"</span>).html()); <span class="comment">//我们又能用上$符号了 </span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>上面的第二个jQuery不能使用$。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/12/jqready/" data-id="ck7j23fx8000yr0vhj8w805wv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-浏览器中网址访问过程详解" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/29/浏览器中网址访问过程详解/" class="article-date">
@@ -117,7 +174,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="ck7iizf51001iucvhdky07eut" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="ck7j23g0s001hr0vh0zv3kik3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -164,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="ck7iizf63001oucvhh982ru22" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="ck7j23g18001or0vht64pyb53" class="article-share-link">Share</a>
       
       
     </footer>
@@ -343,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ck7iizf2x000eucvhl81w48x8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ck7j23fuy0008r0vhoodebm0i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
@@ -389,7 +446,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="ck7iizf4t001eucvh72bhcgwa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="ck7j23g02001cr0vhsz5v53cj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -448,7 +505,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/23/Shell总结/" data-id="ck7iizf3e000mucvh9bi6m8lc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/23/Shell总结/" data-id="ck7j23fwi000qr0vhi744fspl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -530,7 +587,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/MarkDown总结/" data-id="ck7iizf34000hucvh3ztkxkpu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/MarkDown总结/" data-id="ck7j23fvp000hr0vh5kaoxxjd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
@@ -581,7 +638,7 @@
 </ul>
 <h5 id="一些补充："><a href="#一些补充：" class="headerlink" title="一些补充："></a>一些补充：</h5><ul>
 <li>我配置的hexo就是用的默认主题landscape，没有多余设置其他，该主题默认的给分了几个板块Tags、TAG CLOUD、ARCHIVES、RECENT POSTS，</li>
-<li>若是你使用 next主题，需要配置一下板块执行 hexo new page “tags” 、hexo new page “categories”、hexo new page “about”</li>
+<li>若是你使用 next主题，需要配置一下板块执行 hexo new page “tags” （会在你source目录下创建tagsmul）、hexo new page “categories”（会在你的source目录下创建categories目录）、hexo new page “about”，</li>
 </ul>
 <h5 id="按照网上的说法安装完成之后要注意以下几点："><a href="#按照网上的说法安装完成之后要注意以下几点：" class="headerlink" title="按照网上的说法安装完成之后要注意以下几点："></a>按照网上的说法安装完成之后要注意以下几点：</h5><ul>
 <li>每次在根目录下执行<code>hexo clean</code> -&gt; <code>hexo generate (hexo g)</code> -&gt; <code>hexo deploy (hexo d)</code></li>
@@ -595,10 +652,9 @@
 <li>具体来说，以最开始默认生成的hello-world.md这篇文章为例：首先进入到source / _post 文件夹中，找到hello-world.md文件，在本地直接执行删除。然后依次执行<code>hexo g</code>，<code>hexo d</code>，即可删除。</li>
 </ul>
 <h5 id="发现的小问题"><a href="#发现的小问题" class="headerlink" title="发现的小问题"></a>发现的小问题</h5><ul>
-<li><p>本来通过<code>hexo new post demo</code> ，生成的demo.md文件，我后来感觉命名不合理，就直接修改文件名字，发现修改之后标题没有修改过来？原因是忘记了修改了md文件中date时间<img src="https://github.githubassets.com/favicon.ico" alt="图片"></p>
-</li>
-<li><p>网上说的新建的md文件不能使用中文命名，经测试可行。</p>
-</li>
+<li>本来通过<code>hexo new post demo</code> ，生成的demo.md文件，我后来感觉命名不合理，就直接修改文件名字，发现修改之后标题没有修改过来？原因是忘记了修改了md文件中date时间<img src="https://github.githubassets.com/favicon.ico" alt="图片"></li>
+<li>网上说的新建的md文件不能使用中文命名，经测试可行。</li>
+<li>有的帖子说  npm install hexo-server –save ，安装这个啥用？我在本地测试 hexo s一样可以自动生效啊。</li>
 </ul>
 <hr>
 <h5 id="参考的帖子"><a href="#参考的帖子" class="headerlink" title="参考的帖子"></a>参考的帖子</h5><ul>
@@ -609,21 +665,29 @@
 <li><a href="https://blog.csdn.net/weixin_42334475/article/details/101055364?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">GitHub+hexo搭建个人博客（2019新版超详细教程）</a></li>
 <li><a href="https://www.cnblogs.com/penglei-it/category/934299.html" target="_blank" rel="noopener">随笔分类 - Github+Hexo建站系列</a>    <a href="https://www.cnblogs.com/penglei-it/p/hexo_next_baseset.html" target="_blank" rel="noopener">Hexo+NextT基本设置【3】</a></li>
 <li><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">hexo中文文档</a>  <a href="https://zhuanlan.zhihu.com/p/94038688" target="_blank" rel="noopener">hexo next 主题进阶设置</a></li>
-<li><a href="https://blog.newnius.com/" target="_blank" rel="noopener">研究生好博客</a></li>
+<li><a href="https://blog.newnius.com/" target="_blank" rel="noopener">研究生好博客</a>  <a href="https://www.dazhuanlan.com/life/" target="_blank" rel="noopener">大专栏</a> <a href="http://disixueyuan.com/index.php/article/8.html" target="_blank" rel="noopener">半小时学会做个人博客网站</a></li>
 <li><a href="https://www.v2ex.com/t/548912" target="_blank" rel="noopener">coding pages 杂谈</a></li>
 </ul>
 <h5 id="需要探究的问题"><a href="#需要探究的问题" class="headerlink" title="需要探究的问题"></a>需要探究的问题</h5><ul>
 <li>就是我在一个电脑上，按照网上的配置在本地配了相应的环境，若我换了电脑，是否再次配置？配置好了之后，之前的历史文章怎么clone到本地，再次edit呢？</li>
 </ul>
-<h6 id="hexo的添加文章目录以及归档"><a href="#hexo的添加文章目录以及归档" class="headerlink" title="hexo的添加文章目录以及归档"></a>hexo的添加文章目录以及归档</h6><ul>
-<li>在写博客过程中遇到归档的需求，搜了一篇文章说的如何归档：<a href="https://www.jianshu.com/p/72408c410904" target="_blank" rel="noopener">Hexo站点中添加文章目录以及归档</a></li>
-<li>hexo 中landscape主题的favicon.ico不能生效，网上给出结局问题的帖子很少，很多都是废话！这个主题直接舍弃了，使用next主图吧。</li>
+<h5 id="hexo的添加文章目录以及归档"><a href="#hexo的添加文章目录以及归档" class="headerlink" title="hexo的添加文章目录以及归档"></a>hexo的添加文章目录以及归档</h5><ul>
+<li><p>在写博客过程中遇到归档的需求，搜了一篇文章说的如何归档：<a href="https://www.jianshu.com/p/72408c410904" target="_blank" rel="noopener">Hexo站点中添加文章目录以及归档</a></p>
+</li>
+<li><p>hexo 中landscape主题的favicon.ico不能生效，网上给出结局问题的帖子很少，很多都是废话！这个主题直接舍弃了，使用next主图吧。</p>
+</li>
+<li><p>next主题出现这种错误：</p>
+<p><img src="http://39.106.63.190/img/blog/20190122/theme-next-err.png" alt=""></p>
+</li>
+<li><p>解决办法：</p>
+</li>
 </ul>
+<p><img src="http://39.106.63.190/img/blog/20190122/fixed-err.png" alt=""></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/Hexo总结/" data-id="ck7iizf2v000ducvh54642m1x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/Hexo总结/" data-id="ck7j23fus0005r0vhn60d7035" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
@@ -670,7 +734,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="ck7iizf3q000uucvhcctsck32" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="ck7j23fwq000tr0vh0knhi3yi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -698,7 +762,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS相关/">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS相关/">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table相关/">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui相关/">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS相关/">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS相关/">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table相关/">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui相关/">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
     </div>
   </div>
 
@@ -708,7 +772,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/JS相关/" style="font-size: 10px;">JS相关</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 15px;">layui相关</a> <a href="/tags/工具使用总结/" style="font-size: 20px;">工具使用总结</a>
+      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/JS相关/" style="font-size: 10px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 15px;">layui相关</a> <a href="/tags/工具使用总结/" style="font-size: 20px;">工具使用总结</a>
     </div>
   </div>
 
@@ -730,6 +794,10 @@
       <ul>
         
           <li>
+            <a href="/2020/03/08/Nodejs一次安装记录/">Nodejs一次安装记录</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/03/laravel创建table字段参考表/">laravel创建table字段参考表</a>
           </li>
         
@@ -743,10 +811,6 @@
         
           <li>
             <a href="/2019/12/10/CSS字体换总结行/">CSS字体换行总结</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/26/PMS中form查询总结/">PMS中form查询总结</a>
           </li>
         
       </ul>
