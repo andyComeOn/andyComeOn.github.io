@@ -5,15 +5,25 @@
   
 
   
-  <title>Archives: 2019/7 | Andy Zhang&#39;Hexo</title>
+  <title>Git在linux上的一次使用记录 | Andy Zhang&#39;Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Andy Zhang&#39;Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/07/index.html">
+  <meta name="description" content="记录一次Git 在 linux的操作过程1、linux主机是百度云活动免费试用3个月，是CentOS 。 系统默认安装的有 git 客户端，键入 git –version 显示 1.8.3.1。我想试试如何在 linux 下试用 git 拉取代码。由于之前我弄过很多次，直接copy 我电脑中的 .ssh\id_rsa | id_rsa.pub 就能用，于是我直接把我ddyg工作的ThinkPad中">
+<meta name="keywords" content="Git相关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git在linux上的一次使用记录">
+<meta property="og:url" content="http://yoursite.com/2020/03/16/Git在linux上的一次使用记录/index.html">
 <meta property="og:site_name" content="Andy Zhang&#39;Hexo">
+<meta property="og:description" content="记录一次Git 在 linux的操作过程1、linux主机是百度云活动免费试用3个月，是CentOS 。 系统默认安装的有 git 客户端，键入 git –version 显示 1.8.3.1。我想试试如何在 linux 下试用 git 拉取代码。由于之前我弄过很多次，直接copy 我电脑中的 .ssh\id_rsa | id_rsa.pub 就能用，于是我直接把我ddyg工作的ThinkPad中">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://file.798run.top/img/blog/20200316/know_hosts.jpg">
+<meta property="og:image" content="http://file.798run.top/img/blog/20200316/get_ssh_key.jpg">
+<meta property="og:image" content="http://file.798run.top/img/blog/20200316/ssh_config.jpg">
+<meta property="og:image" content="http://file.798run.top/img/blog/20200316/can_not_remote.jpg">
+<meta property="og:updated_time" content="2020-03-16T07:27:28.929Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Andy Zhang&#39;Hexo">
+<meta name="twitter:title" content="Git在linux上的一次使用记录">
+<meta name="twitter:description" content="记录一次Git 在 linux的操作过程1、linux主机是百度云活动免费试用3个月，是CentOS 。 系统默认安装的有 git 客户端，键入 git –version 显示 1.8.3.1。我想试试如何在 linux 下试用 git 拉取代码。由于之前我弄过很多次，直接copy 我电脑中的 .ssh\id_rsa | id_rsa.pub 就能用，于是我直接把我ddyg工作的ThinkPad中">
+<meta name="twitter:image" content="http://file.798run.top/img/blog/20200316/know_hosts.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Andy Zhang&#39;Hexo" type="application/atom+xml">
   
@@ -60,40 +70,66 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/07/02/看冴羽博客笔记/" class="archive-article-date">
-  <time datetime="2019-07-02T11:11:42.000Z" itemprop="datePublished">Jul 2</time>
+        <section id="main"><article id="post-Git在linux上的一次使用记录" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/16/Git在linux上的一次使用记录/" class="article-date">
+  <time datetime="2020-03-16T06:42:49.000Z" itemprop="datePublished">2020-03-16</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/02/看冴羽博客笔记/">看冴羽博客笔记</a>
+    <h1 class="article-title" itemprop="name">
+      Git在linux上的一次使用记录
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="记录一次Git-在-linux的操作过程"><a href="#记录一次Git-在-linux的操作过程" class="headerlink" title="记录一次Git 在 linux的操作过程"></a>记录一次Git 在 linux的操作过程</h2><h5 id="1、linux主机是百度云活动免费试用3个月，是CentOS-。"><a href="#1、linux主机是百度云活动免费试用3个月，是CentOS-。" class="headerlink" title="1、linux主机是百度云活动免费试用3个月，是CentOS 。"></a>1、linux主机是百度云活动免费试用3个月，是CentOS 。</h5><ul>
+<li>系统默认安装的有 git 客户端，键入 git –version 显示 1.8.3.1。我想试试如何在 linux 下试用 git 拉取代码。由于之前我弄过很多次，直接copy 我电脑中的 .ssh\id_rsa | id_rsa.pub 就能用，于是我直接把我ddyg工作的ThinkPad中的id_rsa | id_rsa.pub 移动到 linux ~/.ssh 目录中，我直接执行 git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:andyComeOn/CXADView.git  提示如下：</li>
+</ul>
+<p><img src="http://file.798run.top/img/blog/20200316/know_hosts.jpg" alt="know_hosts"></p>
+<p>我想是不是 linux 不能直接 copy id_rsa.pub文件，于是我想干脆自己生成一对新的 id_rsa 得了。于是在linux 中依次执行如下：</p>
+<p><img src="http://file.798run.top/img/blog/20200316/get_ssh_key.jpg" alt="get_ssh_key"></p>
+<p>再次 clone 依旧是不成功，于是在网上开始找答案，让修改 /etc/ssh/ssh_config文件</p>
+<p><img src="http://file.798run.top/img/blog/20200316/ssh_config.jpg" alt="ssh_config"></p>
+<p>让把啥 ask 改成 no，依旧是不行，后来还让在 ~/.ssh/ 创建 config 文件加上 LogLeval=什么我忘记了，尝试如下</p>
+<p><img src="http://file.798run.top/img/blog/20200316/can_not_remote.jpg" alt="can_not_remote"></p>
+<p>依旧不行，后来想到我在自己电脑上配置的多个git拉取代码，不就是在config 配置的吗？于是我直接把自己的配置的代码修改之后放到我的~/.ssh/config中，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">User andyComeOn  </span><br><span class="line">IdentityFile ~/.ssh/id_rsa_baiduyun</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentitiesOnly yes</span><br></pre></td></tr></table></figure>
+<p>问题解决，网上说也不一定对，自己要摸索！</p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/16/Git在linux上的一次使用记录/" data-id="ck7u5emhr000a0kvhwhbuj1i6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git相关/">Git相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/08/Nodejs一次安装记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Nodejs一次安装记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         
