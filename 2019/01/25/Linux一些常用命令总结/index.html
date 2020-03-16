@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://file.798run.top/img/blog/20190125/vim-insert-status.jpg">
 <meta property="og:image" content="http://file.798run.top/img/blog/20190125/vim-esc-status.jpg">
 <meta property="og:image" content="http://file.798run.top/img/blog/20190125/ps_eg.png">
-<meta property="og:updated_time" content="2020-03-16T06:33:46.448Z">
+<meta property="og:updated_time" content="2020-03-16T08:16:25.449Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux一些常用命令总结">
 <meta name="twitter:description" content="最近在提交git时候（我使用的是git的命令行），在执行git pull时候出现了，让编辑merge提交。一时间束手无策。决定好好看看这个命令，把常用的命令记录一下，主要参考的这篇帖子Linux常用命令大全（非常全！！！）这篇帖子总结的也很好linux的一些命令  1、下面的一些常用指令我在git bash中测试，git bash只是模拟了部分的linux指令。 clear：清除记录 pwd：显示">
@@ -235,11 +235,17 @@
 <li>TIME_WAIT表示我方主动调用close()断开连接，收到对方确认后状态变为TIME_WAIT。</li>
 <li>如果7626端口显示为LISTENING（正在监听等待连接）状态，电脑极有可能感染了病毒！！！</li>
 </ul>
+<h4 id="18、linux下如何查看某软件是否已安装"><a href="#18、linux下如何查看某软件是否已安装" class="headerlink" title="18、linux下如何查看某软件是否已安装"></a>18、linux下如何查看某软件是否已安装</h4><ul>
+<li>rpm包安装的，可以用rpm -qa看到 <code>rpm -qa | grep php</code></li>
+<li>以deb包安装的dpkg -l能看到 <code>dpkg -l| grep php</code></li>
+<li>yum方法安装的，可以用yum list installed查找 <code>yum list installed | grep php</code></li>
+<li>源码包安装，可以通过文件查找 <code>find  / -name php</code></li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ck7u6av7g000e9wvhgkkglfly" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ck7u720nx001w0svh3h9mi98i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
