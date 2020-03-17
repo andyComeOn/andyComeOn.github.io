@@ -19,7 +19,8 @@
 <meta property="og:image" content="http://file.798run.top/img/blog/20200316/get_ssh_key.jpg">
 <meta property="og:image" content="http://file.798run.top/img/blog/20200316/ssh_config.jpg">
 <meta property="og:image" content="http://file.798run.top/img/blog/20200316/can_not_remote.jpg">
-<meta property="og:updated_time" content="2020-03-16T07:55:08.872Z">
+<meta property="og:image" content="http://file.798run.top/img/blog/20200316/could_not_lock_config.jpg">
+<meta property="og:updated_time" content="2020-03-17T06:51:47.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git在linux上的一次使用记录">
 <meta name="twitter:description" content="记录一次Git 在 linux的操作过程1、linux主机是百度云活动免费试用3个月，是CentOS 。 系统默认安装的有 git 客户端，键入 git –version 显示 1.8.3.1。我想试试如何在 linux 下试用 git 拉取代码。由于之前我弄过很多次，直接copy 我电脑中的 .ssh\id_rsa | id_rsa.pub 就能用，于是我直接把我ddyg工作的ThinkPad中">
@@ -106,11 +107,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">User andyComeOn  </span><br><span class="line">IdentityFile ~/.ssh/id_rsa_baiduyun</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentitiesOnly yes</span><br></pre></td></tr></table></figure>
 <p>问题解决，网上说也不一定对，自己要摸索！</p>
 <p>补记：我自己想着能不能把我的 gitee 的公钥也配置一下，直接 copy 电脑的 id_rsa_gitee_117 文件，不行，linux下不让这样搞，只能再次生产 ssh-keygen -t rsa -C “<a href="mailto:1174839512@qq.com" target="_blank" rel="noopener">1174839512@qq.com</a>“ ，配置好config 就可以拉取 gitee 仓库的代码了。</p>
+<h5 id="2、记录一下阿里云服务器-git-拉取gitee项目过程"><a href="#2、记录一下阿里云服务器-git-拉取gitee项目过程" class="headerlink" title="2、记录一下阿里云服务器 git 拉取gitee项目过程"></a>2、记录一下阿里云服务器 git 拉取gitee项目过程</h5><ul>
+<li>在20200317这天想把自己本地学习 laravel 项目部署到宝塔上，已经知道 bt 可以自动创建站点，心想自己的项目使用 git 拉取更方便，于是就在自己的阿里云服务器上配置 ssh key，由于服务器默认自带 git ，我就直接执行：<code>git config --local user.name &quot;andyComeOn&quot;</code> 效果：<br><img src="http://file.798run.top/img/blog/20200316/could_not_lock_config.jpg" alt=""><br>后来发现这是我马虎，键入的指令错了，正确的应该是：<code>git config --global user.name &quot;andyComeOn&quot;</code>，键入之后会在 ~/目录下生成一个 <code>.gitconfig</code> 文件，接着说上面的截图错误，如果你在某个目录执行 <code>git config --local user.name &quot;andyComeOn&quot;</code> 必须是该目录下有一个 <code>.git</code> 目录 。</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/16/Git在linux上的一次使用记录/" data-id="ck7u720jl000a0svhn9yerrcw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/16/Git在linux上的一次使用记录/" data-id="ck7vjvxra000878vhe00cqcdk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git相关/">Git相关</a></li></ul>
