@@ -62,6 +62,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-js构造函数及原型链继承" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/11/js构造函数及原型链继承/" class="article-date">
+  <time datetime="2019-04-11T06:41:48.000Z" itemprop="datePublished">2019-04-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/11/js构造函数及原型链继承/">js的几种继承</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>js的构造函数继承</li>
+</ol>
+<ul>
+<li>我所理解的就是在原有函数声明之后，new了一次。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="keyword">new</span> Foo();</span><br></pre></td></tr></table></figure>
+<p>这个时候el 就继承了Foo函数的prototype。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/11/js构造函数及原型链继承/" data-id="ck7wyxyg8001c34vhcnyo5xn8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-eval总结" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/15/eval总结/" class="article-date">
@@ -129,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/15/eval总结/" data-id="ck7vjvxsk001078vhjbkrj2ex" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/15/eval总结/" data-id="ck7wyxyfv001334vhgt6oz7xl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -177,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/14/js中的逗号/" data-id="ck7vjvxt1001878vh21n4x7kz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/14/js中的逗号/" data-id="ck7wyxyg4001934vhh7u389c7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -233,7 +277,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/28/故事目录序/" data-id="ck7vjvxtn001l78vhvo8ecipy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/28/故事目录序/" data-id="ck7wyxygl001k34vhpuwn28ep" class="article-share-link">Share</a>
       
       
     </footer>
@@ -294,54 +338,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/26/Vuex总结/" data-id="ck7vjvxsi000z78vhbjefv8c4" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JS封装备份" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/02/22/JS封装备份/" class="article-date">
-  <time datetime="2019-02-22T06:40:54.000Z" itemprop="datePublished">2019-02-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/22/JS封装备份/">JS封装备份</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法"><a href="#1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法" class="headerlink" title="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法"></a>1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">fixto(number, n = <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = number.toString();</span><br><span class="line">    <span class="keyword">const</span> arr = result.split(<span class="string">'.'</span>);</span><br><span class="line">    <span class="keyword">const</span> integer = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> decimal = arr[<span class="number">1</span>];</span><br><span class="line">    result = integer + <span class="string">'.'</span> + decimal.substr(<span class="number">0</span>, n);  </span><br><span class="line">    <span class="keyword">const</span> last = decimal.substr(n, <span class="number">1</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 四舍五入，转换为整数再处理，避免浮点数精度的损失</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(last, <span class="number">10</span>) &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> x = <span class="built_in">Math</span>.pow(<span class="number">10</span>, n); </span><br><span class="line">        result = ((<span class="built_in">parseFloat</span>(result) * x) + <span class="number">1</span>) / x;  </span><br><span class="line">        result = result.toFixed(n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
-<p>说明：保留几位小数点，参数n设置为几！</p>
-<hr>
-<h3 id="2、简单的分页逻辑"><a href="#2、简单的分页逻辑" class="headerlink" title="2、简单的分页逻辑"></a>2、简单的分页逻辑</h3><p><strong>方法：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">page</span>(<span class="params">total, pagesize = <span class="number">10</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> tmp = (total / pagesize).toString();</span><br><span class="line">    <span class="keyword">if</span> (tmp.indexOf(<span class="string">'.'</span>) == <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> tmp - <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.ceil(tmp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(page(<span class="number">21</span>, <span class="number">22</span>));</span><br></pre></td></tr></table></figure>
-<p>说明：第一个参数是数据的总数量，第二个参数是每页数量，该函数抛出的是总共有几页！</p>
-<hr>
-<h3 id="3、数字字符串转数字"><a href="#3、数字字符串转数字" class="headerlink" title="3、数字字符串转数字"></a>3、数字字符串转数字</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'1'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a - <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(a));</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h3 id="4、函数传参"><a href="#4、函数传参" class="headerlink" title="4、函数传参"></a>4、函数传参</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">todo</span>(<span class="params">a, b = <span class="number">2</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + <span class="string">'|'</span> + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(todo(<span class="number">1</span>, <span class="number">3</span>)); <span class="comment">// '1|3'</span></span><br><span class="line"><span class="built_in">console</span>.log(todo(<span class="number">1</span>)); <span class="comment">// '1|2'</span></span><br></pre></td></tr></table></figure></p>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/22/JS封装备份/" data-id="ck7vjvxrr000h78vhpcv89k66" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/26/Vuex总结/" data-id="ck7wyxyfk000v34vhahotdi74" class="article-share-link">Share</a>
       
       
     </footer>
@@ -389,7 +386,54 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/22/jq中一些总结/" data-id="ck7vjvxsv001678vhvywvxxg1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/22/jq中一些总结/" data-id="ck7wyxyh1001v34vhb1pg6c6l" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JS封装备份" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/22/JS封装备份/" class="article-date">
+  <time datetime="2019-02-22T06:40:54.000Z" itemprop="datePublished">2019-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/22/JS封装备份/">JS封装备份</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法"><a href="#1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法" class="headerlink" title="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法"></a>1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">fixto(number, n = <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = number.toString();</span><br><span class="line">    <span class="keyword">const</span> arr = result.split(<span class="string">'.'</span>);</span><br><span class="line">    <span class="keyword">const</span> integer = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> decimal = arr[<span class="number">1</span>];</span><br><span class="line">    result = integer + <span class="string">'.'</span> + decimal.substr(<span class="number">0</span>, n);  </span><br><span class="line">    <span class="keyword">const</span> last = decimal.substr(n, <span class="number">1</span>);  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 四舍五入，转换为整数再处理，避免浮点数精度的损失</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(last, <span class="number">10</span>) &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> x = <span class="built_in">Math</span>.pow(<span class="number">10</span>, n); </span><br><span class="line">        result = ((<span class="built_in">parseFloat</span>(result) * x) + <span class="number">1</span>) / x;  </span><br><span class="line">        result = result.toFixed(n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p>说明：保留几位小数点，参数n设置为几！</p>
+<hr>
+<h3 id="2、简单的分页逻辑"><a href="#2、简单的分页逻辑" class="headerlink" title="2、简单的分页逻辑"></a>2、简单的分页逻辑</h3><p><strong>方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">page</span>(<span class="params">total, pagesize = <span class="number">10</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> tmp = (total / pagesize).toString();</span><br><span class="line">    <span class="keyword">if</span> (tmp.indexOf(<span class="string">'.'</span>) == <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> tmp - <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.ceil(tmp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(page(<span class="number">21</span>, <span class="number">22</span>));</span><br></pre></td></tr></table></figure>
+<p>说明：第一个参数是数据的总数量，第二个参数是每页数量，该函数抛出的是总共有几页！</p>
+<hr>
+<h3 id="3、数字字符串转数字"><a href="#3、数字字符串转数字" class="headerlink" title="3、数字字符串转数字"></a>3、数字字符串转数字</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'1'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a - <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(a));</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="4、函数传参"><a href="#4、函数传参" class="headerlink" title="4、函数传参"></a>4、函数传参</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">todo</span>(<span class="params">a, b = <span class="number">2</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + <span class="string">'|'</span> + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(todo(<span class="number">1</span>, <span class="number">3</span>)); <span class="comment">// '1|3'</span></span><br><span class="line"><span class="built_in">console</span>.log(todo(<span class="number">1</span>)); <span class="comment">// '1|2'</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/22/JS封装备份/" data-id="ck7wyxyf4000k34vhuvjl1tf1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -432,7 +476,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/15/设置路由器的一次记录/" data-id="ck7vjvxu1001t78vhaor4gmcp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/15/设置路由器的一次记录/" data-id="ck7wyxyh6001z34vhvz8d9dhr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -487,7 +531,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/15/CSS字体行高相关/" data-id="ck7vjvxpp000078vhnp3m99b5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/15/CSS字体行高相关/" data-id="ck7wyxydt000034vh3nxsjwlt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -569,7 +613,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/13/layui中相关模块记录/" data-id="ck7vjvxth001g78vhavzjx75h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/13/layui中相关模块记录/" data-id="ck7wyxygw001q34vhs5srlqd6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui相关/">layui相关</a></li></ul>
@@ -581,92 +625,11 @@
 
 
   
-    <article id="post-html一些不常用标签" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/02/12/html一些不常用标签/" class="article-date">
-  <time datetime="2019-02-12T08:13:52.000Z" itemprop="datePublished">2019-02-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/12/html一些不常用标签/">html一些不常用标签</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="记录一下html的一些不常用标签"><a href="#记录一下html的一些不常用标签" class="headerlink" title="记录一下html的一些不常用标签"></a>记录一下html的一些不常用标签</h4><ul>
-<li>blockquote顾名思义是引用引述的意思，它有默认的css，请看下面的代码：</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Here comes a long quotation:</span><br><span class="line">    <span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">class</span>=<span class="string">"quote1"</span> <span class="attr">cite</span>=<span class="string">"http://www.baidu.com"</span> <span class="attr">style</span>=<span class="string">"background: #ccc;"</span>&gt;</span></span><br><span class="line">        This is a long quotation. This is a long quotation. This is a long quotation. This is a long quotation. This is</span><br><span class="line">        a long quotation.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>渲染效果如下：</p>
-<p><img src="http://file.798run.top/img/blog/20190212/blockquote-formal.jpg" alt="blockquote-formal"></p>
-<ul>
-<li>在layui中看到有衍生使用例子，请看下面的代码：</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Here comes a long quotation:</span><br><span class="line">    <span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">class</span>=<span class="string">"quote1"</span> <span class="attr">cite</span>=<span class="string">"http://www.baidu.com"</span> <span class="attr">style</span>=<span class="string">"margin: 0; padding: 15px; border-left: 5px solid #009688;"</span>&gt;</span></span><br><span class="line">        This is a long quotation. This is a long quotation. This is a long quotation. This is a long quotation. This is</span><br><span class="line">        a long quotation.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>渲染效果如下：</p>
-<p><img src="http://file.798run.top/img/blog/20190212/blockquote.jpg" alt="blockquote"></p>
-<hr>
-<ul>
-<li>在开发过程中遇到fieldset和legend标签，细查之后发现这个是form中的分组，请看下面的代码：</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span> <span class="attr">class</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span> <span class="attr">class</span>=<span class="string">""</span>&gt;</span>标题标题标题标题标题标题标题标题<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        身高：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> /&gt;</span></span><br><span class="line">        体重：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>展示效果如下：</p>
-<p><img src="http://file.798run.top/img/blog/20190212/fieldset1.jpg" alt="fieldset1"></p>
-<p>这里面的边框是fieldset的。</p>
-<ul>
-<li>fieldset的衍生写法，代码如下：</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.fieldset</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">border-top</span>: <span class="number">1px</span> solid <span class="number">#e5e5e5</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.legend</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">6px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#009688</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fieldset</span> <span class="attr">class</span>=<span class="string">"fieldset"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">legend</span> <span class="attr">class</span>=<span class="string">"legend"</span>&gt;</span>标题标题标题标题标题标题标题标题<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">        身高：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> /&gt;</span></span><br><span class="line">        体重：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>效果如下：<br><img src="http://file.798run.top/img/blog/20190212/fieldset2.jpg" alt="fieldset2"><br>针对这种衍生写法，可以直接使用它做标题使用，但是标题内容不能太长否则会把上边框覆盖了。在网页上也找到fieldset相关的帖子：<a href="https://www.cnblogs.com/theWayToAce/p/5456208.html" target="_blank" rel="noopener">fieldset——一个不常用的HTML标签</a></p>
-<p>我在写这个文档时候，突然想到weui中的底部标题居中，打开网页看代码一开他是父元素写的border-top，里面的内容标签是使用定位<code>relative</code>，还纠正了我的理解<code>relative</code> 并不能把inline元素转变为块元素，只有<code>absolute</code>，<code>float</code>能把非block元素转变为block元素。</p>
-<p>代码如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.demo</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">24px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">40px</span> auto;</span><br><span class="line">    <span class="attribute">border-top</span>: <span class="number">1px</span> solid red;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="comment">/* position: relative; */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.demo</span> <span class="selector-tag">span</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="comment">/* display: block; */</span></span><br><span class="line">    <span class="comment">/* position: absolute; */</span></span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">24px</span>;</span><br><span class="line">    <span class="attribute">top</span>: -<span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span> .<span class="number">55em</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#FFFFFF</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#808080</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"demo"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>你好<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>展示效果如下：</p>
-<p><img src="http://file.798run.top/img/blog/20190212/demo.jpg" alt="demo"></p>
-<p>分割线</p>
-<hr>
-<p>分割线</p>
-<ol>
-<li><p>在css中html和body是有区别的，大家常对body写背景色，若对html上写背景色#ccc，这时查找body中css的background属性也没有继承#ccc，但是整个可视区的背景色确是#ccc。猜想：这是浏览器的机制所致。</p>
-</li>
-<li><p>body中对其写height: 100%;是不起作用的！可这样写<code>body { height: 100vh; }</code>，这样body的高度就是整个可视区。 vh这个单位我也是使用的不多，后来发现它是针对可视区的高度，在某些场景很实用。如：在移动端的actionsheet中高度可设置为80vh，在对其加上滚动属性，效果很实用。如下图： </p>
-</li>
-</ol>
-<p><img src="http://file.798run.top/img/blog/20190509/actionsheet.jpg" alt="actionsheet"></p>
-<p>接着上面的聊： body写height: 100%;无效。但html写height: 100%;高度却可以铺满整个屏。这个时候，在对body写height: 100%;body的高度也铺满整个屏，其实这里面的原因：html的height: 100%;生效 =&gt; 高度铺满屏 =&gt; body继承了其高 =&gt; 高度也铺满整个屏。</p>
-<p>总结：有些小伙伴就是直接写：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>, <span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>其实这里面body的高度是继承了html而来！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/html一些不常用标签/" data-id="ck7vjvxst001578vh60cmibvy" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -680,7 +643,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS相关/">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git相关/">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS相关/">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table相关/">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui相关/">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS相关/">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git相关/">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS相关/">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table相关/">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui相关/">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/宝塔/">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
     </div>
   </div>
 
@@ -690,7 +653,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 15px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 10px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 15px;">layui相关</a> <a href="/tags/工具使用总结/" style="font-size: 20px;">工具使用总结</a>
+      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 15px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 10px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 15px;">layui相关</a> <a href="/tags/宝塔/" style="font-size: 10px;">宝塔</a> <a href="/tags/工具使用总结/" style="font-size: 20px;">工具使用总结</a>
     </div>
   </div>
 
@@ -712,6 +675,10 @@
       <ul>
         
           <li>
+            <a href="/2020/03/18/宝塔配置记录/">宝塔配置记录</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/16/Git在linux上的一次使用记录/">Git在linux上的一次使用记录</a>
           </li>
         
@@ -725,10 +692,6 @@
         
           <li>
             <a href="/2019/12/18/Form的相关记录/">Form的相关记录</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/11/CSS常用代码/">CSS常用代码</a>
           </li>
         
       </ul>

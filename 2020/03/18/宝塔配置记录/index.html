@@ -5,16 +5,23 @@
   
 
   
-  <title>categories | Andy Zhang&#39;Hexo</title>
+  <title>宝塔配置记录 | Andy Zhang&#39;Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+  <meta name="description" content="记录一次宝塔使用过程  新建站点，la.798run.top。在wwwroot目录下默认新建了目录 la.798run.top，一定要记得默认二次配置站点，站点是 /wwwroot/la.798run.top/项目名，在下面二级目录写好 public ！  我在修改了 站点配置目录时，一直提示 该网页无法正常运作， la.798run.top无法处理此请求。网上说的修改 php.ini 中disp">
+<meta name="keywords" content="宝塔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="宝塔配置记录">
+<meta property="og:url" content="http://yoursite.com/2020/03/18/宝塔配置记录/index.html">
 <meta property="og:site_name" content="Andy Zhang&#39;Hexo">
+<meta property="og:description" content="记录一次宝塔使用过程  新建站点，la.798run.top。在wwwroot目录下默认新建了目录 la.798run.top，一定要记得默认二次配置站点，站点是 /wwwroot/la.798run.top/项目名，在下面二级目录写好 public ！  我在修改了 站点配置目录时，一直提示 该网页无法正常运作， la.798run.top无法处理此请求。网上说的修改 php.ini 中disp">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-08T02:25:16.863Z">
+<meta property="og:image" content="http://file.798run.top/img/blog/20200318/composer_err.jpg">
+<meta property="og:image" content="http://file.798run.top/img/blog/20200318/composer_suc.jpg">
+<meta property="og:updated_time" content="2020-03-18T06:52:31.119Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
+<meta name="twitter:title" content="宝塔配置记录">
+<meta name="twitter:description" content="记录一次宝塔使用过程  新建站点，la.798run.top。在wwwroot目录下默认新建了目录 la.798run.top，一定要记得默认二次配置站点，站点是 /wwwroot/la.798run.top/项目名，在下面二级目录写好 public ！  我在修改了 站点配置目录时，一直提示 该网页无法正常运作， la.798run.top无法处理此请求。网上说的修改 php.ini 中disp">
+<meta name="twitter:image" content="http://file.798run.top/img/blog/20200318/composer_err.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Andy Zhang&#39;Hexo" type="application/atom+xml">
   
@@ -61,10 +68,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="page-" class="article article-type-page" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-宝塔配置记录" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/categories/index.html" class="article-date">
-  <time datetime="2020-03-08T02:25:16.000Z" itemprop="datePublished">2020-03-08</time>
+    <a href="/2020/03/18/宝塔配置记录/" class="article-date">
+  <time datetime="2020-03-18T06:34:37.000Z" itemprop="datePublished">2020-03-18</time>
 </a>
     
   </div>
@@ -75,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      categories
+      宝塔配置记录
     </h1>
   
 
@@ -83,17 +90,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>记录一次宝塔使用过程</p>
+<ol>
+<li><p>新建站点，la.798run.top。在wwwroot目录下默认新建了目录 la.798run.top，一定要记得默认二次配置站点，站点是 /wwwroot/la.798run.top/项目名，在下面二级目录写好 public ！</p>
+</li>
+<li><p>我在修改了 站点配置目录时，一直提示 该网页无法正常运作， la.798run.top无法处理此请求。网上说的修改 php.ini 中<br>display_errors = On display_startup_errors = On 是不行的！其根本原因是权限不够，在项目的同级目录，执行sudo chmod -R 777 项目名 即可。</p>
+</li>
+<li><p>在首次配置站点 la.798run.top 时，项目一直访问不了，帖子说修改 php.ini 的 open_basedir 配置，后来在配置第二个站点 lara.798run.top，发现 composer 不能使用，于是我想很多项目都是用我安装的php7.3，修改这个  php.ini 的 open_basedir是不是不合适，于是我注释该配置，composer 可用！</p>
+</li>
+</ol>
+<ul>
+<li>出现的报错截图：<br><img src="//file.798run.top/img/blog/20200318/composer_err.jpg" alt="composer不能使用"></li>
+<li>按照上面方案解决，composer 可用。截图如下：<br><img src="//file.798run.top/img/blog/20200318/composer_suc.jpg" alt="composer可用"></li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/categories/index.html" data-id="ck7wyxye2000134vhgzpaf5oe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/18/宝塔配置记录/" data-id="ck7wyxygn001l34vheaglr8xi" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/宝塔/">宝塔</a></li></ul>
+
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/16/Git在linux上的一次使用记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Git在linux上的一次使用记录</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
