@@ -5,16 +5,20 @@
   
 
   
-  <title>about | Andy Zhang&#39;Hexo</title>
+  <title>循环与迭代 | Andy Zhang&#39;Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+  <meta name="description" content="我在写 for in 与 for of 的区别文档时候，在 MDN 上看到一直在迭代、枚举其官方定义不是很清楚，现总结一下“循环与迭代”的相关文档    首先打开 MDN 找到 [循环与迭代])(https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration) 的讲解！讲解分了两个大类：循环、迭代">
+<meta name="keywords" content="JS相关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="循环与迭代">
+<meta property="og:url" content="http://yoursite.com/2020/07/15/循环与迭代/index.html">
 <meta property="og:site_name" content="Andy Zhang&#39;Hexo">
+<meta property="og:description" content="我在写 for in 与 for of 的区别文档时候，在 MDN 上看到一直在迭代、枚举其官方定义不是很清楚，现总结一下“循环与迭代”的相关文档    首先打开 MDN 找到 [循环与迭代])(https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration) 的讲解！讲解分了两个大类：循环、迭代">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-08T02:34:24.510Z">
+<meta property="og:updated_time" content="2020-07-15T07:58:21.343Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
+<meta name="twitter:title" content="循环与迭代">
+<meta name="twitter:description" content="我在写 for in 与 for of 的区别文档时候，在 MDN 上看到一直在迭代、枚举其官方定义不是很清楚，现总结一下“循环与迭代”的相关文档    首先打开 MDN 找到 [循环与迭代])(https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration) 的讲解！讲解分了两个大类：循环、迭代">
   
     <link rel="alternate" href="/atom.xml" title="Andy Zhang&#39;Hexo" type="application/atom+xml">
   
@@ -61,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="page-" class="article article-type-page" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-循环与迭代" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/about/index.html" class="article-date">
-  <time datetime="2020-03-08T02:34:24.000Z" itemprop="datePublished">2020-03-08</time>
+    <a href="/2020/07/15/循环与迭代/" class="article-date">
+  <time datetime="2020-07-15T04:12:43.000Z" itemprop="datePublished">2020-07-15</time>
 </a>
     
   </div>
@@ -75,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      about
+      循环与迭代
     </h1>
   
 
@@ -83,17 +87,79 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <blockquote>
+<p>我在写 for in 与 for of 的区别文档时候，在 MDN 上看到一直在迭代、枚举其官方定义不是很清楚，现总结一下“循环与迭代”的相关文档</p>
+</blockquote>
+<ul>
+<li><ol>
+<li>首先打开 MDN 找到 [循环与迭代])(<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration</a>) 的讲解！讲解分了两个大类：循环、迭代！</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><ol start="2">
+<li>循环。在 JS 中循环语句有：</li>
+</ol>
+<ul>
+<li>for 语句</li>
+<li>do…while 语句</li>
+<li>while 语句</li>
+<li>labeled 语句</li>
+<li>break 语句</li>
+<li>continue 语句</li>
+<li>for…in 语句</li>
+<li><p>for…of 语句</p>
+<ul>
+<li><p>但是我脑子里想到一个 forEach 方法，为啥 MDN 没有列举出来，自查一下，原来该方法是 Array、Set 等对象原型上的挂载的一个方法！</p>
+</li>
+<li><p>在文档说到：for…in 语句循环一个指定的变量来循环一个对象所有可枚举的属性。JavaScript 会为每一个不同的属性执行指定的语句。虽然使用 for…in 来迭代数组 Array 元素听起来很诱人，但是它返回的东西除了数字索引外，还有可能是你自定义的属性名字。</p>
+</li>
+<li><p>for…of 语句在可迭代对象（包括 Array、Map、Set、arguments 等等）上创建了一个循环，对值的每一个独特属性调用一次迭代。</p>
+</li>
+</ul>
+<ul>
+<li>迭代，迭代 单词是 iterator 艹既然有这个单词，说明它与循环 forloop 不是一个概念！</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Enumerability_and_ownership_of_properties" target="_blank" rel="noopener">属性的可枚举性和所有权</a></p>
+<p><a href="https://www.zhihu.com/question/348391864/answer/840460894" target="_blank" rel="noopener">javascript 对象属性为什么要区分可枚举和不可枚举？</a></p>
+<p><a href="https://www.cnblogs.com/strongfan/p/6244422.html" target="_blank" rel="noopener">对象可枚举和不可枚举属性</a></p>
+<p><a href="https://www.jianshu.com/p/0534746020a2" target="_blank" rel="noopener">JavaScript 中的各种迭代</a></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/about/index.html" data-id="ckcn9m2b80001pkvhfxu7h1xy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/循环与迭代/" data-id="ckcn9m2ek001upkvhlxlinn3h" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
+
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2020/07/15/枚举与不可枚举/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          枚举与不可枚举
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/13/ES6新特性/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ES6新特性</div>
+    </a>
+  
+</nav>
+
   
 </article>
 

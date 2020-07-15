@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>ES6新特性 | Andy Zhang&#39;Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="面试时候，会经常问 ES6 的新特性，现总结一下！  for of 循环 我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下：  12345const digits = [1, 2, 3];for (const index in digits) &amp;#123;  con">
+<meta name="keywords" content="JS相关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6新特性">
+<meta property="og:url" content="http://yoursite.com/2020/07/13/ES6新特性/index.html">
+<meta property="og:site_name" content="Andy Zhang&#39;Hexo">
+<meta property="og:description" content="面试时候，会经常问 ES6 的新特性，现总结一下！  for of 循环 我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下：  12345const digits = [1, 2, 3];for (const index in digits) &amp;#123;  con">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://file.798run.top/img/blog/20200713/forin_proto.png">
+<meta property="og:image" content="http://file.798run.top/img/blog/20200713/for_of.png">
+<meta property="og:updated_time" content="2020-07-15T05:23:42.189Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6新特性">
+<meta name="twitter:description" content="面试时候，会经常问 ES6 的新特性，现总结一下！  for of 循环 我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下：  12345const digits = [1, 2, 3];for (const index in digits) &amp;#123;  con">
+<meta name="twitter:image" content="http://file.798run.top/img/blog/20200713/forin_proto.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Andy Zhang&#39;Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Andy Zhang&#39;Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ES6新特性" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/13/ES6新特性/" class="article-date">
+  <time datetime="2020-07-13T01:34:02.000Z" itemprop="datePublished">2020-07-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ES6新特性
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>面试时候，会经常问 ES6 的新特性，现总结一下！</p>
+</blockquote>
+<h4 id="for-of-循环"><a href="#for-of-循环" class="headerlink" title="for of 循环"></a>for of 循环</h4><ul>
+<li>我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const digits = [1, 2, 3];</span><br><span class="line"></span><br><span class="line">for (const index in digits) &#123;</span><br><span class="line">  console.log(index, &apos;--&apos;, digits[index]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样一看，for in 挺好啊，对象与数组通吃！但，有一种场景，for in 就会出现问题。场景：开发过程中，你需要给数组中添加额外方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.decimalfy = function() &#123;</span><br><span class="line">  for (let i = 0; i &lt; this.length; i++) &#123;</span><br><span class="line">    this[i] = this[i].toFixed(2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时循环上面的数组效果如下：</p>
+<p><img src="//file.798run.top/img/blog/20200713/forin_proto.png" alt="for in 会循环出原型链上的属性"></p>
+<p>forin 直接把原型链上的方法也给循环了。为啥会出现此结果？因为 forin 循环访问所有可枚举的属性！既然 forin 在某些场景下出现我们不期望的结果！那 es6 就推出一个新的循环方法 for of！</p>
+<p>for of 用于循环访问任何可迭代的数据类型，其编写方式和 for…in 循环的基本一样，只是将 in 替换为 of，可以忽略索引。于是我就写下了下面的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const digits = [11, 12, 13];</span><br><span class="line"></span><br><span class="line">for (const index of digits) &#123;</span><br><span class="line">  console.log(index, &apos;--&apos;, digits[index]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="//file.798run.top/img/blog/20200713/for_of.png" alt="for of 循环效果"></p>
+<p>这一看好怪！ 怎么有 undefined，index 怎么分别是 11, 12, 13。于是我想是不是我写的语法不对？我就直接在 MDN 上查，人家举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const array1 = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line"></span><br><span class="line">for (const element of array1) &#123;</span><br><span class="line">  console.log(element);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// expected output: &quot;a&quot;</span><br><span class="line">// expected output: &quot;b&quot;</span><br><span class="line">// expected output: &quot;c&quot;</span><br></pre></td></tr></table></figure>
+<p>我发现自己理解错了，MDN 上 for of 的例子，压根就没有啥 index，人家直接使用的就是 element，恍然大悟明白，for of 就是直接给你把数组中的成员取出来了！所以我们也要按照 MDN 上写法使用该方法！</p>
+<p>此时脑袋中闪出一个想法，for of 既然这么强大，我能不能循环对象呢？于是直接写出下面代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var object = &#123;</span><br><span class="line">  name: &apos;Tom&apos;,</span><br><span class="line">  age: 19</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">for (const iterator of object) &#123;</span><br><span class="line">  console.log(iterator)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>遗憾的是出错了！错误：<code>Uncaught TypeError: object is not iterable</code> object 不是迭代类型。所以我们不能使用之循环 object！具体可细看 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank" rel="noopener">MDN for…of</a></p>
+<p>可枚举的属性</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/13/ES6新特性/" data-id="ckcn9m2bn0007pkvhdmt444ig" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/15/循环与迭代/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          循环与迭代
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/10/CSS中display总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CSS中display总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS相关/">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git相关/">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS相关/">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table相关/">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui相关/">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/宝塔/">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 13.33px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 16.67px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 13.33px;">layui相关</a> <a href="/tags/宝塔/" style="font-size: 10px;">宝塔</a> <a href="/tags/工具使用总结/" style="font-size: 16.67px;">工具使用总结</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/15/枚举与不可枚举/">枚举与不可枚举</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/循环与迭代/">循环与迭代</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/13/ES6新特性/">ES6新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/10/CSS中display总结/">CSS中display总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/10/CSS中背景图片的总结/">CSS中背景图片的总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

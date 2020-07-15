@@ -62,6 +62,329 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-枚举与不可枚举" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/15/枚举与不可枚举/" class="article-date">
+  <time datetime="2020-07-15T08:30:16.000Z" itemprop="datePublished">2020-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/15/枚举与不可枚举/">枚举与不可枚举</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>每次看到枚举，枚举。到底他妈的啥意思，无非就是前辈们翻译过来的一个词而已。翻译的这么高大上，本质就是列举出来之意！今天我们讨论一下此名称在 JS 中的含义！</p>
+</blockquote>
+<h4 id="1-枚举是什么？"><a href="#1-枚举是什么？" class="headerlink" title="1. 枚举是什么？"></a>1. 枚举是什么？</h4><ul>
+<li><p>枚举指对象的属性是否可以遍历出来，简单说，是否可被列举出来。这就是：可枚举性（<code>propertyIsEnumerable</code>），propertyIsEnumerable = true，表示可以被列举，反之，表示不可枚举！propertyIsEnumerable 决定了这个属性能否被 for…in 查找遍历到。</p>
+</li>
+<li><p>JS 中基本包装类型（Boolean,Number 和 String）的原型属性是不可枚举的。基本包装类型还可以像引用类型一样通过对象的方法访问它自带的一些方法，但是不能像引用类型那样自定义方法。看代码：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var num = new Number(123);</span><br><span class="line">for(var pro in num) &#123;</span><br><span class="line">    console.log(&quot;num.&quot; + pro + &quot; = &quot; + num[pro]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打印效果是空白，因为 Number 中内置的属性是不可枚举的。但是文档有一点的不准确，new String(‘hello’)，有打印结果！</p>
+<ul>
+<li>判断一个属性是否可枚举，用 <code>Object.propertyIsEnumerable()</code> 来判断。注意：如果需要判断的属性在 object 的原型链上不管它是否可枚举，<code>Object.propertyIsEnumerable()</code> 始终返回 false。</li>
+</ul>
+<blockquote>
+<p><code>propertyIsEnumerable()</code> 方法返回一个布尔值，表示指定的属性是否可枚举。但是在原型链上 propertyIsEnumerable 不被考虑。<code>hasOwnProperty()</code> 方法会返回一个布尔值，指示对象自身属性中是否具有指定的属性。</p>
+</blockquote>
+<h4 id="2-枚举性的作用"><a href="#2-枚举性的作用" class="headerlink" title="2. 枚举性的作用"></a>2. 枚举性的作用</h4><ul>
+<li><p>属性的枚举性会影响以下三个函数的结果：</p>
+<ul>
+<li>for in</li>
+<li>Object.keys()</li>
+<li>JSON.stringify()</li>
+</ul>
+</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function enumer()&#123;</span><br><span class="line">    this.a = &apos;我是对象本身就有的属性&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">enumer.prototype.b = &apos;我是通过对象原型挂载的属性&apos;</span><br><span class="line"></span><br><span class="line">let fn = new enumer()</span><br><span class="line"></span><br><span class="line">Object.defineProperty(fn,&apos;c&apos;,&#123;</span><br><span class="line">    value:&apos;我是通过Object.defineProperty方法添加的可枚举属性&apos;,</span><br><span class="line">    enumerable:true</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>for in 执行的结果是：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (const key in fn) &#123;</span><br><span class="line">    console.log(key) // a b c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>for…in 循环可以枚举(遍历)出对象本身具有的属性，通过 Object.defineProperty()方法加的可枚举属性，或者通过原型对象绑定的可以枚举属性</p>
+<ul>
+<li>Object.keys() 执行的结果是：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object.keys(fn) //  [a c]</span><br></pre></td></tr></table></figure>
+<p>Object.keys()方法可以枚举 <strong>实例</strong> 对象本身的属性和通过 Object.defineProperty()添加的可枚举属性，即不会枚举原型链上的属性</p>
+<ul>
+<li>JSON.stringify() 执行的结果是：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JSON.stringify(fn) // &#123;&quot;a&quot;:&quot;我是对象本身就有的属性&quot;,&quot;c&quot;:&quot;我是通过Object.defineProperty方法添加的可枚举属性&quot;&#125;</span><br></pre></td></tr></table></figure>
+<p>JSON.stringify()方法只能序列化 <strong>实例</strong> 对象本身的属性和通过 Object.defineProperty()添加的可枚举属性为 JSON 对象，即不会序化原型链上的属性</p>
+<h4 id="3、为什么要加上实例二字呢？请看下面"><a href="#3、为什么要加上实例二字呢？请看下面" class="headerlink" title="3、为什么要加上实例二字呢？请看下面"></a>3、为什么要加上实例二字呢？请看下面</h4><p><img src="//file.798run.top/img/blog/20200715/object_keys.png" alt="为什么要加上实例二字？"></p>
+<h4 id="4、参考文档"><a href="#4、参考文档" class="headerlink" title="4、参考文档"></a>4、参考文档</h4><p><a href="https://www.jianshu.com/p/01a8ae8ac62c" target="_blank" rel="noopener">JS 中的枚举和不可枚举</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/15/枚举与不可枚举/" data-id="ckcn9m2f40028pkvhh9rj52bz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-循环与迭代" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/15/循环与迭代/" class="article-date">
+  <time datetime="2020-07-15T04:12:43.000Z" itemprop="datePublished">2020-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/15/循环与迭代/">循环与迭代</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>我在写 for in 与 for of 的区别文档时候，在 MDN 上看到一直在迭代、枚举其官方定义不是很清楚，现总结一下“循环与迭代”的相关文档</p>
+</blockquote>
+<ul>
+<li><ol>
+<li>首先打开 MDN 找到 [循环与迭代])(<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration</a>) 的讲解！讲解分了两个大类：循环、迭代！</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><ol start="2">
+<li>循环。在 JS 中循环语句有：</li>
+</ol>
+<ul>
+<li>for 语句</li>
+<li>do…while 语句</li>
+<li>while 语句</li>
+<li>labeled 语句</li>
+<li>break 语句</li>
+<li>continue 语句</li>
+<li>for…in 语句</li>
+<li><p>for…of 语句</p>
+<ul>
+<li><p>但是我脑子里想到一个 forEach 方法，为啥 MDN 没有列举出来，自查一下，原来该方法是 Array、Set 等对象原型上的挂载的一个方法！</p>
+</li>
+<li><p>在文档说到：for…in 语句循环一个指定的变量来循环一个对象所有可枚举的属性。JavaScript 会为每一个不同的属性执行指定的语句。虽然使用 for…in 来迭代数组 Array 元素听起来很诱人，但是它返回的东西除了数字索引外，还有可能是你自定义的属性名字。</p>
+</li>
+<li><p>for…of 语句在可迭代对象（包括 Array、Map、Set、arguments 等等）上创建了一个循环，对值的每一个独特属性调用一次迭代。</p>
+</li>
+</ul>
+<ul>
+<li>迭代，迭代 单词是 iterator 艹既然有这个单词，说明它与循环 forloop 不是一个概念！</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Enumerability_and_ownership_of_properties" target="_blank" rel="noopener">属性的可枚举性和所有权</a></p>
+<p><a href="https://www.zhihu.com/question/348391864/answer/840460894" target="_blank" rel="noopener">javascript 对象属性为什么要区分可枚举和不可枚举？</a></p>
+<p><a href="https://www.cnblogs.com/strongfan/p/6244422.html" target="_blank" rel="noopener">对象可枚举和不可枚举属性</a></p>
+<p><a href="https://www.jianshu.com/p/0534746020a2" target="_blank" rel="noopener">JavaScript 中的各种迭代</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/15/循环与迭代/" data-id="ckcn9m2ek001upkvhlxlinn3h" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ES6新特性" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/13/ES6新特性/" class="article-date">
+  <time datetime="2020-07-13T01:34:02.000Z" itemprop="datePublished">2020-07-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/ES6新特性/">ES6新特性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>面试时候，会经常问 ES6 的新特性，现总结一下！</p>
+</blockquote>
+<h4 id="for-of-循环"><a href="#for-of-循环" class="headerlink" title="for of 循环"></a>for of 循环</h4><ul>
+<li>我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const digits = [1, 2, 3];</span><br><span class="line"></span><br><span class="line">for (const index in digits) &#123;</span><br><span class="line">  console.log(index, &apos;--&apos;, digits[index]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样一看，for in 挺好啊，对象与数组通吃！但，有一种场景，for in 就会出现问题。场景：开发过程中，你需要给数组中添加额外方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.decimalfy = function() &#123;</span><br><span class="line">  for (let i = 0; i &lt; this.length; i++) &#123;</span><br><span class="line">    this[i] = this[i].toFixed(2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时循环上面的数组效果如下：</p>
+<p><img src="//file.798run.top/img/blog/20200713/forin_proto.png" alt="for in 会循环出原型链上的属性"></p>
+<p>forin 直接把原型链上的方法也给循环了。为啥会出现此结果？因为 forin 循环访问所有可枚举的属性！既然 forin 在某些场景下出现我们不期望的结果！那 es6 就推出一个新的循环方法 for of！</p>
+<p>for of 用于循环访问任何可迭代的数据类型，其编写方式和 for…in 循环的基本一样，只是将 in 替换为 of，可以忽略索引。于是我就写下了下面的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const digits = [11, 12, 13];</span><br><span class="line"></span><br><span class="line">for (const index of digits) &#123;</span><br><span class="line">  console.log(index, &apos;--&apos;, digits[index]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="//file.798run.top/img/blog/20200713/for_of.png" alt="for of 循环效果"></p>
+<p>这一看好怪！ 怎么有 undefined，index 怎么分别是 11, 12, 13。于是我想是不是我写的语法不对？我就直接在 MDN 上查，人家举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const array1 = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line"></span><br><span class="line">for (const element of array1) &#123;</span><br><span class="line">  console.log(element);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// expected output: &quot;a&quot;</span><br><span class="line">// expected output: &quot;b&quot;</span><br><span class="line">// expected output: &quot;c&quot;</span><br></pre></td></tr></table></figure>
+<p>我发现自己理解错了，MDN 上 for of 的例子，压根就没有啥 index，人家直接使用的就是 element，恍然大悟明白，for of 就是直接给你把数组中的成员取出来了！所以我们也要按照 MDN 上写法使用该方法！</p>
+<p>此时脑袋中闪出一个想法，for of 既然这么强大，我能不能循环对象呢？于是直接写出下面代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var object = &#123;</span><br><span class="line">  name: &apos;Tom&apos;,</span><br><span class="line">  age: 19</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">for (const iterator of object) &#123;</span><br><span class="line">  console.log(iterator)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>遗憾的是出错了！错误：<code>Uncaught TypeError: object is not iterable</code> object 不是迭代类型。所以我们不能使用之循环 object！具体可细看 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank" rel="noopener">MDN for…of</a></p>
+<p>可枚举的属性</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/13/ES6新特性/" data-id="ckcn9m2bn0007pkvhdmt444ig" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSS中display总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/10/CSS中display总结/" class="article-date">
+  <time datetime="2020-07-10T15:27:23.000Z" itemprop="datePublished">2020-07-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/10/CSS中display总结/">CSS中display总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<h3 id="CSS-中-display-有很多的属性值。记录一下！"><a href="#CSS-中-display-有很多的属性值。记录一下！" class="headerlink" title="CSS 中 display 有很多的属性值。记录一下！"></a>CSS 中 display 有很多的属性值。记录一下！</h3></blockquote>
+<h4 id="display-在-css-中包含很多属性。我们合理使用之能带来很好的效果。"><a href="#display-在-css-中包含很多属性。我们合理使用之能带来很好的效果。" class="headerlink" title="display 在 css 中包含很多属性。我们合理使用之能带来很好的效果。"></a>display 在 css 中包含很多属性。我们合理使用之能带来很好的效果。</h4><ul>
+<li><ol>
+<li>display 的最常用的 none、block 就不在记录了。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>display 在开发过程中，看到在写 gddyg crs 欢迎页时候使用 <code>display: flex</code> 时候，发现了 display: -webkit-box，很是疑问（缘由是项目中有 normalize.css 自动给加上 -webkit-box 了）于是查资料发下：</li>
+</ol>
+<ul>
+<li><p>flex 是 2012 年的语法，也将是以后标准的语法，大部分浏览器已经实现了无前缀版本。</p>
+</li>
+<li><p>box 是 2009 年的语法，已经过时，是需要加上对应前缀的。</p>
+</li>
+<li><p>所以兼容性的代码，大致如下：</p>
+</li>
+</ul>
+<p>display: -webkit-box; /_ Chrome 4+, Safari 3.1, iOS Safari 3.2+ <em>/<br>display: -moz-box; /</em> Firefox 17- <em>/<br>display: -webkit-flex; /</em> Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 <em>/<br>display: -moz-flex; /</em> Firefox 18+ <em>/<br>display: -ms-flexbox; /</em> IE 10 <em>/<br>display: flex; /</em> Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ _/</p>
+<ul>
+<li><p>都是当时各阶段草案命名。</p>
+</li>
+<li><p>既然后出现的 flex 浏览器已经支持，个人感觉就没有必要在使用 box 了，再说 normalize.css 已经帮我们做了！</p>
+</li>
+<li><p>参考博文 <a href="https://www.cnblogs.com/websmile/p/11607884.html" target="_blank" rel="noopener">display：flex 和 display：box 有什么区别</a>！</p>
+</li>
+</ul>
+</li>
+<li><ol start="3">
+<li>flex 一些用法</li>
+</ol>
+<ul>
+<li><p><strong>父元素的属性</strong></p>
+</li>
+<li><p>妈的很容易忘记。不理会特殊复杂的情况。flex-direction 就是你的 item 排列方向。默认是水平排列，就别贱贱的写代码。若想主轴是垂直排列：写上 <code>flex-direction: column</code></p>
+</li>
+<li><p>justify-content 属性：定义项目在主轴上的对齐方式。切记是主轴！<code>justify-content: flex-start | flex-end | center | left | right | space-between（两端对齐，项目之间间隔相等，C 端订房入住、离店、几晚可使用此属性值） | space-around（每个项目两侧的间隔相等，即使是first、last与父元素都有间隔） |</code> 这个还有很多，没写完但是不常用！</p>
+</li>
+<li><p>align-items 属性：定义在交叉轴上的对齐方式，这个有一个单词是 items，可能认为是不止一个 item 所以加 items。<code>align-items: flex-start | flex-end | center | baseline | stretch;</code></p>
+</li>
+<li><p>align-content 属性：定义多根轴线的对齐方式（如果项目只有一根轴线，该属性不起作用。所以容器必须设置 flex-wrap，flex-wrap 是写在父元素上的，一般也是不常用！<code>flex-wrap: nowrap | wrap | wrap-reverse;</code>）</p>
+</li>
+<li><p>flex 中的子元素还有一个 order 写法，就是直接可以使用 order: 1。css 把子元素的位置按照你写的 order 顺序排列！个个感觉也没多大的用处，妈的不会把 子元素 顺序写好吗？非得要使用 order 吗？</p>
+</li>
+<li><p><strong>子元素的属性</strong></p>
+</li>
+<li><p>设置在项目上的属性也有 6 个。<br>order<br>flex-grow<br>flex-shrink<br>flex-basis<br>flex<br>align-sel</p>
+</li>
+</ul>
+</li>
+<li><ol start="4">
+<li>个人总结</li>
+</ol>
+<ul>
+<li>其实很多场景下我们就是简单的运用。例如我们在一个容易，想快速把里面一个图片垂直水平居中，直接就写了管它啥轴不轴的，直接：<code>justify-content: center; align-items: center;</code> 就完事了。</li>
+</ul>
+</li>
+<li><ol start="5">
+<li>参考了解 [前端布局神器display:flex] (<a href="https://www.cnblogs.com/qingchunshiguang/p/8011103.html" target="_blank" rel="noopener">https://www.cnblogs.com/qingchunshiguang/p/8011103.html</a>)  </li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/10/CSS中display总结/" data-id="ckcn9m2bj0005pkvh7e6btx60" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CSS中背景图片的总结" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/10/CSS中背景图片的总结/" class="article-date">
@@ -130,111 +453,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/10/CSS中背景图片的总结/" data-id="ckcgzd5ro0000r4vhv7rq1j3h" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-CSS中display总结" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/10/CSS中display总结/" class="article-date">
-  <time datetime="2020-07-10T15:27:23.000Z" itemprop="datePublished">2020-07-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/10/CSS中display总结/">CSS中display总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<h3 id="CSS-中-display-有很多的属性值。记录一下！"><a href="#CSS-中-display-有很多的属性值。记录一下！" class="headerlink" title="CSS 中 display 有很多的属性值。记录一下！"></a>CSS 中 display 有很多的属性值。记录一下！</h3></blockquote>
-<h4 id="display-在-css-中包含很多属性。我们合理使用之能带来很好的效果。"><a href="#display-在-css-中包含很多属性。我们合理使用之能带来很好的效果。" class="headerlink" title="display 在 css 中包含很多属性。我们合理使用之能带来很好的效果。"></a>display 在 css 中包含很多属性。我们合理使用之能带来很好的效果。</h4><ul>
-<li><ol>
-<li>display 的最常用的 none、block 就不在记录了。</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>display 在开发过程中，看到在写 gddyg crs 欢迎页时候使用 <code>display: flex</code> 时候，发现了 display: -webkit-box，很是疑问（缘由是项目中有 normalize.css 自动给加上 -webkit-box 了）于是查资料发下：</li>
-</ol>
-<ul>
-<li><p>flex 是 2012 年的语法，也将是以后标准的语法，大部分浏览器已经实现了无前缀版本。</p>
-</li>
-<li><p>box 是 2009 年的语法，已经过时，是需要加上对应前缀的。</p>
-</li>
-<li><p>所以兼容性的代码，大致如下：</p>
-</li>
-</ul>
-<p>display: -webkit-box; /_ Chrome 4+, Safari 3.1, iOS Safari 3.2+ <em>/<br>display: -moz-box; /</em> Firefox 17- <em>/<br>display: -webkit-flex; /</em> Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 <em>/<br>display: -moz-flex; /</em> Firefox 18+ <em>/<br>display: -ms-flexbox; /</em> IE 10 <em>/<br>display: flex; /</em> Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ _/</p>
-<ul>
-<li><p>都是当时各阶段草案命名。</p>
-</li>
-<li><p>既然后出现的 flex 浏览器已经支持，个人感觉就没有必要在使用 box 了，再说 normalize.css 已经帮我们做了！</p>
-</li>
-<li><p>参考博文 <a href="https://www.cnblogs.com/websmile/p/11607884.html" target="_blank" rel="noopener">display：flex 和 display：box 有什么区别</a>！</p>
-</li>
-</ul>
-</li>
-<li><ol start="3">
-<li>flex 一些用法</li>
-</ol>
-<ul>
-<li><p><strong>父元素的属性</strong></p>
-</li>
-<li><p>妈的很容易忘记。不理会特殊复杂的情况。flex-direction 就是你的 item 排列方向。默认是水平排列，就别贱贱的写代码。若想主轴是垂直排列：写上 <code>flex-direction: column</code></p>
-</li>
-<li><p>justify-content 属性：定义项目在主轴上的对齐方式。切记是主轴！<code>justify-content: flex-start | flex-end | center | left | right | space-between | space-around |</code> 这个还有很多，没写完但是不常用！</p>
-</li>
-<li><p>align-items 属性：定义在交叉轴上的对齐方式，这个有一个单词是 items，可能认为是不止一个 item 所以加 items。<code>align-items: flex-start | flex-end | center | baseline | stretch;</code></p>
-</li>
-<li><p>align-content 属性：定义多根轴线的对齐方式（如果项目只有一根轴线，该属性不起作用。所以容器必须设置 flex-wrap，flex-wrap 是写在父元素上的，一般也是不常用！<code>flex-wrap: nowrap | wrap | wrap-reverse;</code>）</p>
-</li>
-<li><p>flex 中的子元素还有一个 order 写法，就是直接可以使用 order: 1。css 把子元素的位置按照你写的 order 顺序排列！个个感觉也没多大的用处，妈的不会把 子元素 顺序写好吗？非得要使用 order 吗？</p>
-</li>
-<li><p><strong>子元素的属性</strong></p>
-</li>
-<li><p>设置在项目上的属性也有 6 个。<br>order<br>flex-grow<br>flex-shrink<br>flex-basis<br>flex<br>align-sel</p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><ol start="4">
-<li>个人总结</li>
-</ol>
-<ul>
-<li>其实很多场景下我们就是简单的运用。例如我们在一个容易，想快速把里面一个图片垂直水平居中，直接就写了管它啥轴不轴的，直接：<code>justify-content: center; align-items: center;</code> 就完事了。</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><ol start="5">
-<li>参考了解 [前端布局神器display:flex] (<a href="https://www.cnblogs.com/qingchunshiguang/p/8011103.html" target="_blank" rel="noopener">https://www.cnblogs.com/qingchunshiguang/p/8011103.html</a>)  </li>
-</ol>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/10/CSS中display总结/" data-id="ckcgzd5rx0001r4vhtve78iny" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/10/CSS中背景图片的总结/" data-id="ckcn9m2b00000pkvhrie5uobl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -279,7 +498,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/07/秋果开发服务器不是node项目记录/" data-id="ckcgzd5x20020r4vhke7iakek" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/07/秋果开发服务器不是node项目记录/" data-id="ckcn9m2fa002apkvh8mb9o2th" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
@@ -412,7 +631,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/27/this-bind-call-apply/" data-id="ckcgzd5w7001jr4vhxti9nlyc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/27/this-bind-call-apply/" data-id="ckcn9m2e8001mpkvhe3of3ll4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -463,7 +682,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/18/宝塔配置记录/" data-id="ckcgzd5wk001rr4vhtpir9pse" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/18/宝塔配置记录/" data-id="ckcn9m2ed001ppkvhbcj0camp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/宝塔/">宝塔</a></li></ul>
@@ -518,7 +737,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/16/Git在linux上的一次使用记录/" data-id="ckcgzd5ty000hr4vh39tdvlgz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/16/Git在linux上的一次使用记录/" data-id="ckcn9m2bq0008pkvhgawih9lk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git相关/">Git相关</a></li></ul>
@@ -569,177 +788,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/08/Nodejs一次安装记录/" data-id="ckcgzd5um000tr4vh9gu7evvc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/08/Nodejs一次安装记录/" data-id="ckcn9m2d8000zpkvh7n2w2e37" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/">Nodejs</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-laravel创建table字段参考表" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/03/laravel创建table字段参考表/" class="article-date">
-  <time datetime="2020-03-03T04:44:06.000Z" itemprop="datePublished">2020-03-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/03/laravel创建table字段参考表/">laravel创建table字段参考表</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>$table-&gt;bigIncrements(‘id’);   自增ID，类型为bigint<br>$table-&gt;bigInteger(‘votes’);   等同于数据库中的BIGINT类型<br>$table-&gt;binary(‘data’);    等同于数据库中的BLOB类型<br>$table-&gt;boolean(‘confirmed’);  等同于数据库中的BOOLEAN类型<br>$table-&gt;char(‘name’, 4);   等同于数据库中的CHAR类型<br>$table-&gt;date(‘created_at’);    等同于数据库中的DATE类型<br>$table-&gt;dateTime(‘created_at’);    等同于数据库中的DATETIME类型<br>$table-&gt;dateTimeTz(‘created_at’);  等同于数据库中的DATETIME类型（带时区）<br>$table-&gt;decimal(‘amount’, 5, 2);   等同于数据库中的DECIMAL类型，带一个精度和范围<br>$table-&gt;double(‘column’, 15, 8);   等同于数据库中的DOUBLE类型，带精度, 总共15位数字，小数点后8位.<br>$table-&gt;enum(‘choices’, [‘foo’, ‘bar’]);   等同于数据库中的 ENUM类型<br>$table-&gt;float(‘amount’);   等同于数据库中的 FLOAT 类型<br>$table-&gt;increments(‘id’);  数据库主键自增ID<br>$table-&gt;integer(‘votes’);  等同于数据库中的 INTEGER 类型<br>$table-&gt;ipAddress(‘visitor’);  等同于数据库中的 IP 地址<br>$table-&gt;json(‘options’);   等同于数据库中的 JSON 类型<br>$table-&gt;jsonb(‘options’);  等同于数据库中的 JSONB 类型<br>$table-&gt;longText(‘description’);   等同于数据库中的 LONGTEXT 类型<br>$table-&gt;macAddress(‘device’);  等同于数据库中的 MAC 地址<br>$table-&gt;mediumIncrements(‘id’);    自增ID，类型为无符号的mediumint<br>$table-&gt;mediumInteger(‘numbers’);  等同于数据库中的 MEDIUMINT类型<br>$table-&gt;mediumText(‘description’); 等同于数据库中的 MEDIUMTEXT类型<br>$table-&gt;morphs(‘taggable’);    添加一个 INTEGER类型的 taggable_id 列和一个 STRING类型的 taggable_type列<br>$table-&gt;nullableTimestamps();  和 timestamps()一样但允许 NULL值.<br>$table-&gt;rememberToken();   添加一个 remember_token 列： VARCHAR(100) NULL.<br>$table-&gt;smallIncrements(‘id’); 自增ID，类型为无符号的smallint<br>$table-&gt;smallInteger(‘votes’); 等同于数据库中的 SMALLINT 类型<br>$table-&gt;softDeletes(); 新增一个 deleted_at 列 用于软删除.<br>$table-&gt;string(‘email’);   等同于数据库中的 VARCHAR 列  .<br>$table-&gt;string(‘name’, 100);   等同于数据库中的 VARCHAR，带一个长度<br>$table-&gt;text(‘description’);   等同于数据库中的 TEXT 类型<br>$table-&gt;time(‘sunrise’);   等同于数据库中的 TIME类型<br>$table-&gt;timeTz(‘sunrise’); 等同于数据库中的 TIME 类型（带时区）<br>$table-&gt;tinyInteger(‘numbers’);    等同于数据库中的 TINYINT 类型<br>$table-&gt;timestamp(‘added_on’); 等同于数据库中的 TIMESTAMP 类型<br>$table-&gt;timestampTz(‘added_on’);   等同于数据库中的 TIMESTAMP 类型（带时区）<br>$table-&gt;timestamps();  添加 created_at 和 updated_at列<br>$table-&gt;timestampsTz();    添加 created_at 和 updated_at列（带时区）<br>$table-&gt;unsignedBigInteger(‘votes’);   等同于数据库中无符号的 BIGINT 类型<br>$table-&gt;unsignedInteger(‘votes’);  等同于数据库中无符号的 INT 类型<br>$table-&gt;unsignedMediumInteger(‘votes’);    等同于数据库中无符号的 MEDIUMINT 类型<br>$table-&gt;unsignedSmallInteger(‘votes’); 等同于数据库中无符号的 SMALLINT 类型<br>$table-&gt;unsignedTinyInteger(‘votes’);  等同于数据库中无符号的 TINYINT 类型<br>$table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/03/laravel创建table字段参考表/" data-id="ckcgzd5w5001ir4vhuu9v777o" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Form的相关记录" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/18/Form的相关记录/" class="article-date">
-  <time datetime="2019-12-18T06:14:09.000Z" itemprop="datePublished">2019-12-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/18/Form的相关记录/">Form的相关记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>在 web早期，大家使用 form 提交数据居多，现对 form 相关知识进行一下总结。</p>
-</blockquote>
-<h2 id="提交方式-Get-Post"><a href="#提交方式-Get-Post" class="headerlink" title="提交方式 Get Post"></a>提交方式 Get Post</h2><p>表单有两种提交方式，POST和GET。通常我们会使用POST方式，一是因为形式上的安全 ；二是可以上传文件。下面先看一段 html 代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/xxxx"</span> <span class="attr">method</span>=<span class="string">""</span> <span class="attr">enctype</span>=<span class="string">"application/x-www-form-urlencoded"</span>&gt;</span></span><br><span class="line">  username: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  password: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>针对一个 form 想到三大件 <code>action</code>、<code>method</code>、<code>enctype</code> 其中 action 是你的表单提交的地址，method 是表单的提交方式，大家一般就是使用 2 种 get、post。method的属性值若是不写就会默认为 get。 enctype 是指你的表单编码类型，这个单词我是这样记忆 en(使能) + c(content编码) + type ，针对 html 表单 enctype的常见类型详见下表：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left"><strong>enctype</strong></th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">application/x-www-form-urlencoded</td>
-<td>默认编码方式， key1=value1&amp;key2=value2</td>
-</tr>
-<tr>
-<td style="text-align:left">multipart/form-data</td>
-<td>普通表单提交，以及表单文件上传</td>
-</tr>
-<tr>
-<td style="text-align:left">text/plain</td>
-<td>该方式不常用，数据获取方式 getInputStream</td>
-</tr>
-</tbody>
-</table>
-<p>其实 Content-Type 是 http/https 发送信息至服务器时的内容编码类型，Content-Type 用于表明发送数据流的类型，服务器根据编码类型使用特定的解析方式，获取数据流中的数据。上面表格仅仅是 html 表单支持的编码方式，实际上面还有存在各种文件类型的编码方式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">image/jpeg, image/png, image/gif, text/css, text/javascript,text/html,text/xml 等等</span><br></pre></td></tr></table></figure>
-<p>表单的 get 请求方式，在浏览器控制台可以看到 参数编码前后的数据：</p>
-<p><img src="http://file.798run.top/img/blog/20191219/get_type_url_encoded.jpg" alt="get_type_url_encoded"></p>
-<p><img src="http://file.798run.top/img/blog/20191219/get_type_url_decoded.jpg" alt="get_type_url_decoded"></p>
-<p>在其请求头里不会添加 <code>Content-Type</code> 字段。</p>
-<h2 id="POST-请求方式"><a href="#POST-请求方式" class="headerlink" title="POST 请求方式"></a>POST 请求方式</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/xxxx"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">  username: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  password: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>post 请求 即使你没有在表单里写 <code>enctype=&quot;application/x-www-form-urlencoded&quot;</code> ，也会在请求头里默认给你加上application/x-www-form-urlencoded ，这是 post 默认类型。</p>
-</li>
-<li><p>还有一种类型是 <code>enctype=&quot;application/form-data&quot;</code>这种类型是为了解决上面的类型在传送 非 ASC2码效率低问题，此类型还可以传送文件！这种传输方式有 在 form data 中有边界提示：</p>
-<p><img src="http://file.798run.top/img/blog/20191219/post_type_multipart.jpg" alt="post_type_multipart"></p>
-</li>
-</ol>
-<ol start="3">
-<li>post 主要是这 2 种使用较多。</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/18/Form的相关记录/" data-id="ckcgzd5u7000kr4vhweimifw6" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-CSS常用代码" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/11/CSS常用代码/" class="article-date">
-  <time datetime="2019-12-11T08:13:27.000Z" itemprop="datePublished">2019-12-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/11/CSS常用代码/">CSS常用代码</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="▲-maring-padding-设置为-0"><a href="#▲-maring-padding-设置为-0" class="headerlink" title="▲ maring padding 设置为 0"></a>▲ maring padding 设置为 0</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="▲-弹性盒"><a href="#▲-弹性盒" class="headerlink" title="▲ 弹性盒"></a>▲ 弹性盒</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.boxE</span> &#123;</span><br><span class="line">    <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="▲-body-bg-颜色2行文字并添加省略号"><a href="#▲-body-bg-颜色2行文字并添加省略号" class="headerlink" title="▲ body bg 颜色2行文字并添加省略号"></a>▲ body bg 颜色2行文字并添加省略号</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="▲-li-重置默认样式"><a href="#▲-li-重置默认样式" class="headerlink" title="▲ li 重置默认样式"></a>▲ li 重置默认样式</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.reLi</span> &#123;</span><br><span class="line">    <span class="attribute">list-style</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="▲-宽度-100-常对-input-使用"><a href="#▲-宽度-100-常对-input-使用" class="headerlink" title="▲ 宽度 100% 常对 input 使用"></a>▲ 宽度 100% 常对 input 使用</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wP</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="▲-2行文字并添加省略号"><a href="#▲-2行文字并添加省略号" class="headerlink" title="▲ 2行文字并添加省略号"></a>▲ 2行文字并添加省略号</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.elli2</span> &#123;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">    <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">    <span class="attribute">-webkit-line-clamp</span>: <span class="number">2</span>;</span><br><span class="line">    <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="▲-bg-复合属性分开写"><a href="#▲-bg-复合属性分开写" class="headerlink" title="▲ bg 复合属性分开写"></a>▲ bg 复合属性分开写</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.bg</span> &#123;</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">    <span class="attribute">background-size</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">background-position</span>: center;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">''</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/11/CSS常用代码/" data-id="ckcgzd5tk000br4vhlndaoiz1" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
 
     </footer>
   </div>
@@ -776,7 +828,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 13.33px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 13.33px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 13.33px;">layui相关</a> <a href="/tags/宝塔/" style="font-size: 10px;">宝塔</a> <a href="/tags/工具使用总结/" style="font-size: 16.67px;">工具使用总结</a>
+      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 13.33px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 16.67px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 13.33px;">layui相关</a> <a href="/tags/宝塔/" style="font-size: 10px;">宝塔</a> <a href="/tags/工具使用总结/" style="font-size: 16.67px;">工具使用总结</a>
     </div>
   </div>
 
@@ -798,7 +850,15 @@
       <ul>
         
           <li>
-            <a href="/2020/07/10/CSS中背景图片的总结/">CSS中背景图片的总结</a>
+            <a href="/2020/07/15/枚举与不可枚举/">枚举与不可枚举</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/循环与迭代/">循环与迭代</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/13/ES6新特性/">ES6新特性</a>
           </li>
         
           <li>
@@ -806,15 +866,7 @@
           </li>
         
           <li>
-            <a href="/2020/07/07/秋果开发服务器不是node项目记录/">秋果开发服务器部署 node 项目的记录</a>
-          </li>
-        
-          <li>
-            <a href="/2020/06/27/this-bind-call-apply/">this-bind-call-apply</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/18/宝塔配置记录/">宝塔配置记录</a>
+            <a href="/2020/07/10/CSS中背景图片的总结/">CSS中背景图片的总结</a>
           </li>
         
       </ul>

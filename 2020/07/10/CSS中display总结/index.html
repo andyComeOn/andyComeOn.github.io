@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Andy Zhang&#39;Hexo">
 <meta property="og:description" content="CSS 中 display 有很多的属性值。记录一下！ display 在 css 中包含很多属性。我们合理使用之能带来很好的效果。  display 的最常用的 none、block 就不在记录了。    display 在开发过程中，看到在写 gddyg crs 欢迎页时候使用 display: flex 时候，发现了 display: -webkit-box，很是疑问（缘由是项目中有 no">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-07-11T01:36:51.228Z">
+<meta property="og:updated_time" content="2020-07-14T00:50:35.005Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS中display总结">
 <meta name="twitter:description" content="CSS 中 display 有很多的属性值。记录一下！ display 在 css 中包含很多属性。我们合理使用之能带来很好的效果。  display 的最常用的 none、block 就不在记录了。    display 在开发过程中，看到在写 gddyg crs 欢迎页时候使用 display: flex 时候，发现了 display: -webkit-box，很是疑问（缘由是项目中有 no">
@@ -123,7 +123,7 @@
 </li>
 <li><p>妈的很容易忘记。不理会特殊复杂的情况。flex-direction 就是你的 item 排列方向。默认是水平排列，就别贱贱的写代码。若想主轴是垂直排列：写上 <code>flex-direction: column</code></p>
 </li>
-<li><p>justify-content 属性：定义项目在主轴上的对齐方式。切记是主轴！<code>justify-content: flex-start | flex-end | center | left | right | space-between | space-around |</code> 这个还有很多，没写完但是不常用！</p>
+<li><p>justify-content 属性：定义项目在主轴上的对齐方式。切记是主轴！<code>justify-content: flex-start | flex-end | center | left | right | space-between（两端对齐，项目之间间隔相等，C 端订房入住、离店、几晚可使用此属性值） | space-around（每个项目两侧的间隔相等，即使是first、last与父元素都有间隔） |</code> 这个还有很多，没写完但是不常用！</p>
 </li>
 <li><p>align-items 属性：定义在交叉轴上的对齐方式，这个有一个单词是 items，可能认为是不止一个 item 所以加 items。<code>align-items: flex-start | flex-end | center | baseline | stretch;</code></p>
 </li>
@@ -137,8 +137,6 @@
 </li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><ol start="4">
 <li>个人总结</li>
 </ol>
@@ -146,8 +144,6 @@
 <li>其实很多场景下我们就是简单的运用。例如我们在一个容易，想快速把里面一个图片垂直水平居中，直接就写了管它啥轴不轴的，直接：<code>justify-content: center; align-items: center;</code> 就完事了。</li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><ol start="5">
 <li>参考了解 [前端布局神器display:flex] (<a href="https://www.cnblogs.com/qingchunshiguang/p/8011103.html" target="_blank" rel="noopener">https://www.cnblogs.com/qingchunshiguang/p/8011103.html</a>)  </li>
 </ol>
@@ -157,7 +153,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/10/CSS中display总结/" data-id="ckcgzd5rx0001r4vhtve78iny" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/10/CSS中display总结/" data-id="ckcn9m2bj0005pkvh7e6btx60" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -168,19 +164,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/07/10/CSS中背景图片的总结/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/07/13/ES6新特性/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          CSS中背景图片的总结
+          ES6新特性
         
       </div>
     </a>
   
   
-    <a href="/2020/07/07/秋果开发服务器不是node项目记录/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/07/10/CSS中背景图片的总结/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">秋果开发服务器部署 node 项目的记录</div>
+      <div class="article-nav-title">CSS中背景图片的总结</div>
     </a>
   
 </nav>
@@ -209,7 +205,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 13.33px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 13.33px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 13.33px;">layui相关</a> <a href="/tags/宝塔/" style="font-size: 10px;">宝塔</a> <a href="/tags/工具使用总结/" style="font-size: 16.67px;">工具使用总结</a>
+      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 13.33px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 16.67px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 13.33px;">layui相关</a> <a href="/tags/宝塔/" style="font-size: 10px;">宝塔</a> <a href="/tags/工具使用总结/" style="font-size: 16.67px;">工具使用总结</a>
     </div>
   </div>
 
@@ -231,7 +227,15 @@
       <ul>
         
           <li>
-            <a href="/2020/07/10/CSS中背景图片的总结/">CSS中背景图片的总结</a>
+            <a href="/2020/07/15/枚举与不可枚举/">枚举与不可枚举</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/循环与迭代/">循环与迭代</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/13/ES6新特性/">ES6新特性</a>
           </li>
         
           <li>
@@ -239,15 +243,7 @@
           </li>
         
           <li>
-            <a href="/2020/07/07/秋果开发服务器不是node项目记录/">秋果开发服务器部署 node 项目的记录</a>
-          </li>
-        
-          <li>
-            <a href="/2020/06/27/this-bind-call-apply/">this-bind-call-apply</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/18/宝塔配置记录/">宝塔配置记录</a>
+            <a href="/2020/07/10/CSS中背景图片的总结/">CSS中背景图片的总结</a>
           </li>
         
       </ul>
