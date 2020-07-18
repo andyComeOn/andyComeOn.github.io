@@ -89,7 +89,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/03/laravel创建table字段参考表/" data-id="ckcn9m2ey0024pkvhiiw6gjkd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/03/laravel创建table字段参考表/" data-id="ckcrqkwp2001ikcvho6m5kmur" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
@@ -173,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/18/Form的相关记录/" data-id="ckcn9m2cb000hpkvhk4mn6m01" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/18/Form的相关记录/" data-id="ckcrqkwma000ckcvhgcz07co3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li></ul>
@@ -217,7 +217,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/11/CSS常用代码/" data-id="ckcn9m2c7000fpkvh9falsm86" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/11/CSS常用代码/" data-id="ckcrqkwlt000akcvhxlsfyumw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -311,7 +311,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/10/CSS字体换总结行/" data-id="ckcn9m2c0000cpkvhey7sro2r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/10/CSS字体换总结行/" data-id="ckcrqkwlt0003kcvh9ofc53fg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -370,7 +370,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/26/PMS中form查询总结/" data-id="ckcn9m2cw000tpkvhbs175etp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/26/PMS中form查询总结/" data-id="ckcrqkwnr0010kcvh9lckz5ze" class="article-share-link">Share</a>
       
       
     </footer>
@@ -402,11 +402,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <blockquote>
+<p>基本的指令每天都在使用，可是新建分支，合并分支使用的相对少一些！现记录一下使用过程中遇到的问题！</p>
+</blockquote>
+<h3 id="1、ums-仓库"><a href="#1、ums-仓库" class="headerlink" title="1、ums 仓库"></a>1、ums 仓库</h3><ul>
+<li>默认已创建 master 分支，部署项目（为了给邱双弄 Nginx 接口代理），于是我 <code>git pull</code> 截图如下：</li>
+</ul>
+<p><img src="http://file.798run.top/img/blog/20200717/ums-git-pull.png" alt="ums-git-pull"></p>
+<p>图中看到新增加了 dev 分支。于是我就执行 <code>git checkout -b dev</code> 切换到 dev 分支，随即 <code>git pull</code>，提示如下：</p>
+<p><img src="http://file.798run.top/img/blog/20200717/checkout-pull.png" alt="checkout-pull"></p>
+<p>已经不止一次看到上面的截图了！心想先不管它，先干活。我就在 dev 分支上修改了一个文件，于是 <code>git status</code>、<code>git add .</code>、<code>git commit -m &quot;修改 .gitignore 文件&quot;</code>、<code>git pull</code>、<code>git push</code>。push 的时候出现提示如下：</p>
+<p><img src="http://file.798run.top/img/blog/20200717/git-push.png" alt="git-push"></p>
+<p>push 没成功看开我必须要解决提示的问题，于是网上搜，参考：<a href="https://www.jianshu.com/p/f6f7dae0b8b6" target="_blank" rel="noopener">git pull 报错 There is no tracking information for the current branch…</a>。按照文中提示，我执行 <code>git branch --set-upstream-to=origin/dev dev</code>。随后又通过 <code>git branch -vv</code> 确认是否关联。总的截图如下：</p>
+<p><img src="http://file.798run.top/img/blog/20200717/set-upstream-vv.png" alt="set-upstream-vv"></p>
+<p>上图则说明关联成功，git pull 拉下来很多代码！随后我又重复 <code>git add .</code>、<code>git commit -m &quot;修改 .gitignore 文件&quot;</code>、<code>git pull</code>、<code>git push</code>。把我刚才修改的文件 push 到 dev 了！</p>
+<h3 id="2、查看、切换分支"><a href="#2、查看、切换分支" class="headerlink" title="2、查看、切换分支"></a>2、查看、切换分支</h3><ul>
+<li><p>查看分支是 <code>git branch</code> 后面可以加参数 -a （指的是所有的分支） </p>
+</li>
+<li><p>切换分支  <code>git checkout 分支名</code></p>
+</li>
+<li><p>创建分支  <code>git checkout -b dev</code>，此指令创建一个 dev 分支，若是 dev 分支已经存在，命令行会有提示：dev has already exists！</p>
+</li>
+<li><p>创建于切换其实是一个指令，仅仅是添加的参数不同！</p>
+</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/25/Git常用命令/" data-id="ckcn9m2eg001rpkvhidoio2mh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/25/Git常用命令/" data-id="ckcrqkwmg000ekcvh3m507g7c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git相关/">Git相关</a></li></ul>
@@ -450,7 +474,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/07/浏览器加载资源报错/" data-id="ckcn9m2es0020pkvhqd0fdbka" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/07/浏览器加载资源报错/" data-id="ckcrqkwql0023kcvh3azpxut9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -518,7 +542,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/25/table标签相关总结/" data-id="ckcn9m2ea001npkvhj3m6c8d5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/25/table标签相关总结/" data-id="ckcrqkwpm001pkcvha1io33r4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Table相关/">Table相关</a></li></ul>
@@ -605,7 +629,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ckcn9m2dz001hpkvhircmtl4z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ckcrqkwox001hkcvhq0l29esu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -686,7 +710,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ckcn9m2ev0022pkvhtpsek3q7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ckcrqkwra0027kcvh4krzj7j4" class="article-share-link">Share</a>
       
       
     </footer>

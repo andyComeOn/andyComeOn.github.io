@@ -133,7 +133,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/枚举与不可枚举/" data-id="ckcn9m2f40028pkvhh9rj52bz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/枚举与不可枚举/" data-id="ckcrqkwqi0021kcvhp7yc00x0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -212,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/循环与迭代/" data-id="ckcn9m2ek001upkvhlxlinn3h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/循环与迭代/" data-id="ckcrqkwpx001rkcvhdunecoq7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -256,12 +256,12 @@
 <p>这样一看，for in 挺好啊，对象与数组通吃！但，有一种场景，for in 就会出现问题。场景：开发过程中，你需要给数组中添加额外方法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.decimalfy = function() &#123;</span><br><span class="line">  for (let i = 0; i &lt; this.length; i++) &#123;</span><br><span class="line">    this[i] = this[i].toFixed(2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>此时循环上面的数组效果如下：</p>
-<p><img src="//file.798run.top/img/blog/20200713/forin_proto.png" alt="for in 会循环出原型链上的属性"></p>
+<p><img src="http://file.798run.top/img/blog/20200713/forin_proto.png" alt="for in 会循环出原型链上的属性"></p>
 <p>forin 直接把原型链上的方法也给循环了。为啥会出现此结果？因为 forin 循环访问所有可枚举的属性！既然 forin 在某些场景下出现我们不期望的结果！那 es6 就推出一个新的循环方法 for of！</p>
 <p>for of 用于循环访问任何可迭代的数据类型，其编写方式和 for…in 循环的基本一样，只是将 in 替换为 of，可以忽略索引。于是我就写下了下面的代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const digits = [11, 12, 13];</span><br><span class="line"></span><br><span class="line">for (const index of digits) &#123;</span><br><span class="line">  console.log(index, &apos;--&apos;, digits[index]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果如下：</p>
-<p><img src="//file.798run.top/img/blog/20200713/for_of.png" alt="for of 循环效果"></p>
+<p><img src="http://file.798run.top/img/blog/20200713/for_of.png" alt="for of 循环效果"></p>
 <p>这一看好怪！ 怎么有 undefined，index 怎么分别是 11, 12, 13。于是我想是不是我写的语法不对？我就直接在 MDN 上查，人家举例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const array1 = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line"></span><br><span class="line">for (const element of array1) &#123;</span><br><span class="line">  console.log(element);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// expected output: &quot;a&quot;</span><br><span class="line">// expected output: &quot;b&quot;</span><br><span class="line">// expected output: &quot;c&quot;</span><br></pre></td></tr></table></figure>
 <p>我发现自己理解错了，MDN 上 for of 的例子，压根就没有啥 index，人家直接使用的就是 element，恍然大悟明白，for of 就是直接给你把数组中的成员取出来了！所以我们也要按照 MDN 上写法使用该方法！</p>
@@ -273,7 +273,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/13/ES6新特性/" data-id="ckcn9m2bn0007pkvhdmt444ig" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/13/ES6新特性/" data-id="ckcrqkwmn000gkcvhi6vr93fk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -373,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/10/CSS中display总结/" data-id="ckcn9m2bj0005pkvh7e6btx60" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/10/CSS中display总结/" data-id="ckcrqkwio0000kcvhyyg78egq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -453,7 +453,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/10/CSS中背景图片的总结/" data-id="ckcn9m2b00000pkvhrie5uobl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/10/CSS中背景图片的总结/" data-id="ckcrqkwlt0006kcvhteb6p6y7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -498,7 +498,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/07/秋果开发服务器不是node项目记录/" data-id="ckcn9m2fa002apkvh8mb9o2th" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/07/秋果开发服务器不是node项目记录/" data-id="ckcrqkwrp002bkcvhs7i8qaxj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
@@ -631,7 +631,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/27/this-bind-call-apply/" data-id="ckcn9m2e8001mpkvhe3of3ll4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/27/this-bind-call-apply/" data-id="ckcrqkwpq001qkcvhlrwyqqlg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -682,7 +682,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/18/宝塔配置记录/" data-id="ckcn9m2ed001ppkvhbcj0camp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/18/宝塔配置记录/" data-id="ckcrqkwpg001nkcvhpyzrco0q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/宝塔/">宝塔</a></li></ul>
@@ -737,7 +737,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/16/Git在linux上的一次使用记录/" data-id="ckcn9m2bq0008pkvhgawih9lk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/16/Git在linux上的一次使用记录/" data-id="ckcrqkwms000hkcvhfw0gzup5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git相关/">Git相关</a></li></ul>
@@ -788,7 +788,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/08/Nodejs一次安装记录/" data-id="ckcn9m2d8000zpkvh7n2w2e37" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/08/Nodejs一次安装记录/" data-id="ckcrqkwn8000skcvhn1slzwa8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/">Nodejs</a></li></ul>
