@@ -62,6 +62,151 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-数据类型转换" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/20/数据类型转换/" class="article-date">
+  <time datetime="2020-07-20T12:55:25.000Z" itemprop="datePublished">2020-07-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/20/数据类型转换/">数据类型转换</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>总结一下数据类型转换</p>
+</blockquote>
+<h2 id="1、数据类型检测常用方法"><a href="#1、数据类型检测常用方法" class="headerlink" title="1、数据类型检测常用方法"></a>1、数据类型检测常用方法</h2><ul>
+<li>type of</li>
+<li>instanceof</li>
+<li>constructor</li>
+<li>Object.prototype.toString.call()</li>
+</ul>
+<h2 id="2、type-of"><a href="#2、type-of" class="headerlink" title="2、type of"></a>2、type of</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">type of NaN  // =&gt; number</span><br><span class="line"></span><br><span class="line">type of function() &#123;&#125;  // =&gt; function</span><br><span class="line">type of BigInt(10)  // =&gt; bigint</span><br><span class="line">type of null  // =&gt; object 计算机遗留的 bug 存储时候是二进制开始；000默认是对象，</span><br></pre></td></tr></table></figure>
+<h2 id="3、其他类型转换为-Number-类型"><a href="#3、其他类型转换为-Number-类型" class="headerlink" title="3、其他类型转换为 Number 类型"></a>3、其他类型转换为 Number 类型</h2><ul>
+<li><p>需要特定转换为 Number</p>
+<ul>
+<li><p>Number([val])</p>
+<ul>
+<li>Number(‘’) // 0</li>
+<li>Number(‘10’) // 10</li>
+<li>Number(‘10px’) // NaN 只要出现非数字结果都是 NaN</li>
+<li>Number(true) // 1</li>
+<li>Number(false) // 0</li>
+<li>Number(null) // 0</li>
+<li>Number(undefined) // NaN</li>
+<li>Number(Symbol(10)) // error</li>
+<li>Number(BigInt(10)) // 10</li>
+<li>Number({name: 1}) // NaN 把对象转换为数字，需要隐式依次执行 valueOf、toString、在转换为数字，不满足转换为数字的对象输出 NaN</li>
+</ul>
+</li>
+<li><p>parseInt / parseFloat([val])</p>
+<ul>
+<li>把转换值先转换为字符串</li>
+<li>从字符串左侧第一个字符开始查找，若遇到非有效数字，停止查找。把找到的有效数字字符串转换为数字并返回！若是一个没有找到就返回 NaN</li>
+<li>提了一嘴说：留了一个进阶知识点</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>隐式转换为（浏览器内部先进行 Number 转换）</p>
+<ul>
+<li><p>isNaN([val])，首先走的 Number()</p>
+</li>
+<li><p>数学运算(1+2 =&gt; 3。+出现在字符串前后，该表达式直接变成了字符串拼接，如：’hi’ + 9 =&gt; hi9, 9变成字符串与 ‘hi’ 相加。{age: 20} + 9，对象与数字相加，对象要转换数字（转换为数字之前首先要转换字符串，又变成字符串拼接了），[object Object]9。[‘hi’]+1 =&gt; hi1。[1,2,3]+1 =&gt; “1,2,31”。[{}]+1 =&gt; [object Object]1  </p>
+</li>
+<li><p>注意：针对上面的例子，有 + 号的“算术”表达式，也有特殊的情况。如 {} + 0 =&gt; 0，此时解析器把 {} 当成一个代码块，于是就变成了 +0 =&gt; 0；({} + 0) 会参与到数学运算中，结果是：[object Object]0；0 + {} 这种情况是数学运算，结果是：0[object Object]</p>
+</li>
+<li>== 运算（对象==字符串：对象转为字符串在进行比较；*==*都是转为数字在进行比较）</li>
+</ul>
+</li>
+<li><p>对象转换为数字：对象 =&gt; str =&gt; number</p>
+</li>
+</ul>
+<h2 id="4、其他类型转换为-String-类型"><a href="#4、其他类型转换为-String-类型" class="headerlink" title="4、其他类型转换为 String 类型"></a>4、其他类型转换为 String 类型</h2><ul>
+<li>能使用的方法：<code>toString()</code>、<code>String()</code></li>
+<li><p>隐式转换（一般都是调用 <code>toString()</code>）</p>
+<ul>
+<li>String(1) =&gt; “1”</li>
+<li>String(null) =&gt; “null”</li>
+<li>String(undefined) =&gt; “undefined”</li>
+<li>String({}) =&gt; “[object Object]” 此例子调用的是 Object.prototype.toString.call() 方法，不是转换字符串，变成了数据类型检测，({age: 1}).toString() =&gt; “[object Object]”</li>
+<li>String(null) =&gt; “null”</li>
+</ul>
+<ul>
+<li>给予 alert/confirm/prompt/document.write 这些方法输出，都是先转换为 string 在输出</li>
+</ul>
+</li>
+</ul>
+<h2 id="5、其他类型转换为-Boolean-类型"><a href="#5、其他类型转换为-Boolean-类型" class="headerlink" title="5、其他类型转换为 Boolean 类型"></a>5、其他类型转换为 Boolean 类型</h2><ul>
+<li><p>给予一下方式可以把其他类型转化为布尔</p>
+<ul>
+<li>! 转化为布尔值后取反</li>
+<li>!! 转化为布尔</li>
+</ul>
+</li>
+<li><p>隐式转化</p>
+<ul>
+<li>再循环或条件判断中，条件处理的结果都是布尔</li>
+</ul>
+</li>
+<li><p>规则：只有 0、null、false、undefined、’’ 五个值变成 false 其余都是变为 true</p>
+</li>
+</ul>
+<h2 id="6、-比较过程中数据转换规则"><a href="#6、-比较过程中数据转换规则" class="headerlink" title="6、== 比较过程中数据转换规则"></a>6、== 比较过程中数据转换规则</h2><ul>
+<li><p>类型一样的几个特殊情况</p>
+<ul>
+<li>[] == [] // false 比较的是堆内存地址</li>
+<li>{} == {} // false 比较的是堆内存地址</li>
+<li>NaN == NaN // false 比较的是堆内存地址</li>
+</ul>
+</li>
+<li><p>类型不一样的转换规则</p>
+<ul>
+<li>null == undefined =&gt; true，剩下 null / undefined 与其他任何数据类型都不想等</li>
+<li>字符串 == 对象，对象 =&gt; str 在进行比较</li>
+<li>剩下如果 == 两边数据类型不一致，转化为数字在比较</li>
+</ul>
+</li>
+</ul>
+<h2 id="7、特殊情况"><a href="#7、特殊情况" class="headerlink" title="7、特殊情况"></a>7、特殊情况</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let result = 10 + false + undefined + [] + &apos;Tencent&apos; + null + true + &#123;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>看到此题，首先还是数学运算的范畴，无非就是有一些特殊情况，那就按照规则来处理。</p>
+</li>
+<li><p>首先 10 + false =&gt; 10 + 0 =&gt; 10</p>
+</li>
+<li>其次 10 + undefined，undefined 经过 Number 处理之后变成 NaN，10 + NaN 依旧是 NaN。</li>
+<li>其次 NaN + []，[] 经过 valueOf 还是 []，在经过 toString()，变成 ‘’，只要 + 左右出现字符串，就是字符串拼接，则结果：NaN</li>
+<li>其次 NaN + ‘Tencent’ =&gt; ‘NaNTencent’</li>
+<li>余下都是字符串拼接了 ‘NaNTencent’ + null + true + {} =&gt; “NaNTencentnulltrue[object Object]”</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/20/数据类型转换/" data-id="ckcvbtgrp0025ysvhd459p3cr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-枚举与不可枚举" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/15/枚举与不可枚举/" class="article-date">
@@ -133,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/枚举与不可枚举/" data-id="ckcrqkwqi0021kcvhp7yc00x0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/枚举与不可枚举/" data-id="ckcvbtgru0026ysvhaduvcnp5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -212,7 +357,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/循环与迭代/" data-id="ckcrqkwpx001rkcvhdunecoq7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/循环与迭代/" data-id="ckcvbtgr4001uysvhwhp52az6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -273,10 +418,90 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/13/ES6新特性/" data-id="ckcrqkwmn000gkcvhi6vr93fk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/13/ES6新特性/" data-id="ckcvbtgno000bysvhbphyl1ig" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSS中背景图片的总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/10/CSS中背景图片的总结/" class="article-date">
+  <time datetime="2020-07-10T15:27:23.000Z" itemprop="datePublished">2020-07-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/10/CSS中背景图片的总结/">CSS中背景图片的总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<h3 id="时间一长，CSS-中背景相关的知识又忘记了，现做一下总结！"><a href="#时间一长，CSS-中背景相关的知识又忘记了，现做一下总结！" class="headerlink" title="时间一长，CSS 中背景相关的知识又忘记了，现做一下总结！"></a>时间一长，CSS 中背景相关的知识又忘记了，现做一下总结！</h3></blockquote>
+<h4 id="background-在-css-中其实是一个复合属性。我们合理使用之能带来很好的效果。"><a href="#background-在-css-中其实是一个复合属性。我们合理使用之能带来很好的效果。" class="headerlink" title="background 在 css 中其实是一个复合属性。我们合理使用之能带来很好的效果。"></a>background 在 css 中其实是一个复合属性。我们合理使用之能带来很好的效果。</h4><ul>
+<li><ol>
+<li>很多后台只会使用 img 不知道使用 bg （王柳）。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>background 的 size 属性，菜鸟上介绍：background-size: length|percentage|cover|contain;</li>
+</ol>
+<ul>
+<li><p>length： 设置背景图片高度和宽度。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为 auto(自动)。如：<code>background-size: 80px 60px</code></p>
+</li>
+<li><p>percentage：将计算相对于背景定位区域的百分比。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为”auto(自动)”。如： <code>background-size: 100%</code></p>
+</li>
+<li><p>cover：此时会保持图像的纵横比并将图像缩放成将完全覆盖背景定位区域的最小大小。如： <code>background-size: cover</code></p>
+</li>
+<li><p>contain：此时会保持图像的纵横比并将图像缩放成将适合背景定位区域的最大大小。如：<code>background-size: contain</code></p>
+</li>
+</ul>
+</li>
+<li><ol start="3">
+<li>谈谈自己理解</li>
+</ol>
+<ul>
+<li><p>100% 100% 就是你的背景图会给你的容器大小一致，很容易出现背景图拉伸变形。在项目中一般针对矩形容器背景图也是做的和矩形一样大！</p>
+</li>
+<li><p>方形容器背景图一般 UI 给的也是方形的！</p>
+</li>
+<li><p>针对一个大的矩形容器，UI 给了一张背景图也是矩形的但是没有容器大，（再说，容器很可能是自己显示器大小，UI 也不可能兼顾这么多），我们可以不写 size 属性。发现 size 属性值是 inherit，大小就是 UI 背景图的大小！（我在写 DDYG crs 系统时候的欢迎页就是使用的该模式）</p>
+</li>
+<li><p>一个原则：不想出现变形，那就最好让 UI 搞一下等比例的 bg 图！</p>
+</li>
+<li><p>cover contain 菜鸟说的不是很易理解，可按照字面意思，cover 是覆盖（背景图把你的容器全部覆盖）， contain 是包含之意（容器会包含你的背景图，就是说你的背景图可能比你的容器小，容器有空白！）</p>
+</li>
+<li><p>网上总结：两者均以保持图像宽高比的形式缩放来适合背景容器的大小。<br>区别: 在 no-repeat 的情况下：</p>
+<p>cover:图片宽高比不变,铺满整个容器的宽高,图片多出来的部分会裁掉<br>contain:图片宽高比不变 ,缩放至图片完全展示出来,所以会有留白区域</p>
+<p>在repeat情况下<br>cover:图片宽高比不变,铺满整个容器的宽高,图片多出来的部分会裁掉<br>contain:容器至少有一张完整的图,留白区域则平铺背景图,铺不下的再裁掉</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/10/CSS中背景图片的总结/" data-id="ckcvbtgnf0008ysvhv9j6t17y" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
 
     </footer>
   </div>
@@ -373,87 +598,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/10/CSS中display总结/" data-id="ckcrqkwio0000kcvhyyg78egq" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-CSS中背景图片的总结" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/10/CSS中背景图片的总结/" class="article-date">
-  <time datetime="2020-07-10T15:27:23.000Z" itemprop="datePublished">2020-07-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/10/CSS中背景图片的总结/">CSS中背景图片的总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<h3 id="时间一长，CSS-中背景相关的知识又忘记了，现做一下总结！"><a href="#时间一长，CSS-中背景相关的知识又忘记了，现做一下总结！" class="headerlink" title="时间一长，CSS 中背景相关的知识又忘记了，现做一下总结！"></a>时间一长，CSS 中背景相关的知识又忘记了，现做一下总结！</h3></blockquote>
-<h4 id="background-在-css-中其实是一个复合属性。我们合理使用之能带来很好的效果。"><a href="#background-在-css-中其实是一个复合属性。我们合理使用之能带来很好的效果。" class="headerlink" title="background 在 css 中其实是一个复合属性。我们合理使用之能带来很好的效果。"></a>background 在 css 中其实是一个复合属性。我们合理使用之能带来很好的效果。</h4><ul>
-<li><ol>
-<li>很多后台只会使用 img 不知道使用 bg （王柳）。</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>background 的 size 属性，菜鸟上介绍：background-size: length|percentage|cover|contain;</li>
-</ol>
-<ul>
-<li><p>length： 设置背景图片高度和宽度。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为 auto(自动)。如：<code>background-size: 80px 60px</code></p>
-</li>
-<li><p>percentage：将计算相对于背景定位区域的百分比。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为”auto(自动)”。如： <code>background-size: 100%</code></p>
-</li>
-<li><p>cover：此时会保持图像的纵横比并将图像缩放成将完全覆盖背景定位区域的最小大小。如： <code>background-size: cover</code></p>
-</li>
-<li><p>contain：此时会保持图像的纵横比并将图像缩放成将适合背景定位区域的最大大小。如：<code>background-size: contain</code></p>
-</li>
-</ul>
-</li>
-<li><ol start="3">
-<li>谈谈自己理解</li>
-</ol>
-<ul>
-<li><p>100% 100% 就是你的背景图会给你的容器大小一致，很容易出现背景图拉伸变形。在项目中一般针对矩形容器背景图也是做的和矩形一样大！</p>
-</li>
-<li><p>方形容器背景图一般 UI 给的也是方形的！</p>
-</li>
-<li><p>针对一个大的矩形容器，UI 给了一张背景图也是矩形的但是没有容器大，（再说，容器很可能是自己显示器大小，UI 也不可能兼顾这么多），我们可以不写 size 属性。发现 size 属性值是 inherit，大小就是 UI 背景图的大小！（我在写 DDYG crs 系统时候的欢迎页就是使用的该模式）</p>
-</li>
-<li><p>一个原则：不想出现变形，那就最好让 UI 搞一下等比例的 bg 图！</p>
-</li>
-<li><p>cover contain 菜鸟说的不是很易理解，可按照字面意思，cover 是覆盖（背景图把你的容器全部覆盖）， contain 是包含之意（容器会包含你的背景图，就是说你的背景图可能比你的容器小，容器有空白！）</p>
-</li>
-<li><p>网上总结：两者均以保持图像宽高比的形式缩放来适合背景容器的大小。<br>区别: 在 no-repeat 的情况下：</p>
-<p>cover:图片宽高比不变,铺满整个容器的宽高,图片多出来的部分会裁掉<br>contain:图片宽高比不变 ,缩放至图片完全展示出来,所以会有留白区域</p>
-<p>在repeat情况下<br>cover:图片宽高比不变,铺满整个容器的宽高,图片多出来的部分会裁掉<br>contain:容器至少有一张完整的图,留白区域则平铺背景图,铺不下的再裁掉</p>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/10/CSS中背景图片的总结/" data-id="ckcrqkwlt0006kcvhteb6p6y7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/10/CSS中display总结/" data-id="ckcvbtgnb0007ysvhu13t9nbz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -498,7 +643,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/07/秋果开发服务器不是node项目记录/" data-id="ckcrqkwrp002bkcvhs7i8qaxj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/07/秋果开发服务器不是node项目记录/" data-id="ckcvbtgs5002cysvh7keoyu5v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
@@ -631,7 +776,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/27/this-bind-call-apply/" data-id="ckcrqkwpq001qkcvhlrwyqqlg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/27/this-bind-call-apply/" data-id="ckcvbtgqw001rysvhpolzvv8r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -682,7 +827,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/18/宝塔配置记录/" data-id="ckcrqkwpg001nkcvhpyzrco0q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/18/宝塔配置记录/" data-id="ckcvbtgr8001xysvhtiqmzsp7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/宝塔/">宝塔</a></li></ul>
@@ -737,61 +882,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/16/Git在linux上的一次使用记录/" data-id="ckcrqkwms000hkcvhfw0gzup5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/16/Git在linux上的一次使用记录/" data-id="ckcvbtgo5000gysvhn45xu75l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git相关/">Git相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Nodejs一次安装记录" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/08/Nodejs一次安装记录/" class="article-date">
-  <time datetime="2020-03-08T12:45:57.000Z" itemprop="datePublished">2020-03-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/08/Nodejs一次安装记录/">Nodejs一次安装记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>由于github上的博客太慢了，我决定在gitee上搭建一份博客！于疫情期间2020-03-05在家捯饬，想到我的hexo 安装的比较早（大概是在20190122，参考的文档就更早了），就打算找一个最近发布的文档参考！文档中让安装 npm install -g hexo-cli ，于是执行命令效果如下：</p>
-<p><img src="http://file.798run.top/img/blog/20200308/install-hexo-cli.png" alt="执行命令效果"></p>
-<p>我在执行npm install -g hexo-cli时候在想我之前应该已经执行了类似的全局操作，这次执行会不会覆盖之前的版本？升级hexo依赖包不行吗？npm 升级hexo包的指令又是啥？带着上面的疑问我Windows10系统找到本机nodejs安装目录：C:\Program Files\nodejs，截图如下：</p>
-<p><img src="http://file.798run.top/img/blog/20200308/nodejs-install-dir.png" alt="nodejs安装目录"></p>
-<p>看到之后发现怎么是一个快捷方式？该快捷方式地址详情如下：</p>
-<p><img src="http://file.798run.top/img/blog/20200308/nodejs-shortcut.png" alt="快捷方式详情"></p>
-<p>怎么是user下Roaming的nvm？nvm是为了切换当前nodejs运行版本安装的一个小工具，难道是nvm把nodejs安装地址更改了？又找到我本机缓存的目录如下：</p>
-<p><img src="http://file.798run.top/img/blog/20200308/roaming.png" alt=""></p>
-<p>hexo之前参考的老文档是让安装npm install hexo –g，新参考文档让安装npm install hexo-cli –g，老文档中安装完成键入hexo –v显示：</p>
-<p><img src="http://file.798run.top/img/blog/20200308/hexo-v-old.png" alt=""></p>
-<p>我在安装了hexo-cli –g之后也执行hexo –v显示：</p>
-<p><img src="http://file.798run.top/img/blog/20200308/hexo-v-new.png" alt=""></p>
-<p>猜想是不是hexo的版本升级，之前安装的指令与现在安装的指令虽有点不太一样，安装完之后功能是一样的，可以在一个新电脑在尝试！</p>
-<h6 id="思考，是不是安装了nvm-nodejs-的安装目录就是变成了快捷方式，属性值指向了-roaming下的nvm了？"><a href="#思考，是不是安装了nvm-nodejs-的安装目录就是变成了快捷方式，属性值指向了-roaming下的nvm了？" class="headerlink" title="思考，是不是安装了nvm nodejs 的安装目录就是变成了快捷方式，属性值指向了 roaming下的nvm了？"></a>思考，是不是安装了nvm nodejs 的安装目录就是变成了快捷方式，属性值指向了 roaming下的nvm了？</h6>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/08/Nodejs一次安装记录/" data-id="ckcrqkwn8000skcvhn1slzwa8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/">Nodejs</a></li></ul>
 
     </footer>
   </div>
@@ -828,7 +922,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 13.33px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 16.67px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 13.33px;">layui相关</a> <a href="/tags/宝塔/" style="font-size: 10px;">宝塔</a> <a href="/tags/工具使用总结/" style="font-size: 16.67px;">工具使用总结</a>
+      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 13.33px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 20px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 13.33px;">layui相关</a> <a href="/tags/宝塔/" style="font-size: 10px;">宝塔</a> <a href="/tags/工具使用总结/" style="font-size: 16.67px;">工具使用总结</a>
     </div>
   </div>
 
@@ -850,6 +944,10 @@
       <ul>
         
           <li>
+            <a href="/2020/07/20/数据类型转换/">数据类型转换</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/15/枚举与不可枚举/">枚举与不可枚举</a>
           </li>
         
@@ -859,10 +957,6 @@
         
           <li>
             <a href="/2020/07/13/ES6新特性/">ES6新特性</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/10/CSS中display总结/">CSS中display总结</a>
           </li>
         
           <li>
