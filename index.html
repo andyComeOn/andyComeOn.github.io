@@ -62,6 +62,56 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-dns记录" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/22/dns记录/" class="article-date">
+  <time datetime="2020-07-22T04:36:46.000Z" itemprop="datePublished">2020-07-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/22/dns记录/">dns记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>记录一次有关 dns 范畴的知识</p>
+</blockquote>
+<h2 id="1、github-不能打开部分图片"><a href="#1、github-不能打开部分图片" class="headerlink" title="1、github 不能打开部分图片"></a>1、github 不能打开部分图片</h2><p>在访问 github 时候，一些图片一直打不开看着很难受，在没有后买 vpn 的情况下，于是找到的方法是：配置 host 。于是配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">172.217.160.0	www.google.com.hk</span><br><span class="line"></span><br><span class="line">199.232.68.133 raw.githubusercontent.com</span><br><span class="line"></span><br><span class="line">151.101.56.133 avatars0.githubusercontent.com</span><br><span class="line">151.101.56.133 avatars1.githubusercontent.com</span><br><span class="line">151.101.56.133 avatars2.githubusercontent.com</span><br><span class="line">151.101.56.133 avatars3.githubusercontent.com</span><br><span class="line">151.101.56.133	avatars4.githubusercontent.com</span><br><span class="line"></span><br><span class="line">151.101.56.133	avatars5.githubusercontent.com</span><br><span class="line">151.101.56.133	avatars6.githubusercontent.com</span><br><span class="line">151.101.56.133	avatars7.githubusercontent.com</span><br><span class="line">151.101.56.133	avatars8.githubusercontent.com</span><br></pre></td></tr></table></figure>
+<p>图片不能打开的问题解决！但发现 <a href="https://api.github.com/_private/browser/stats" target="_blank" rel="noopener">https://api.github.com/_private/browser/stats</a> 链接不能访问，一直提示 403 rate limit exceeded。很少见！</p>
+<h2 id="2、思考-api-github-com-不能访问的原因"><a href="#2、思考-api-github-com-不能访问的原因" class="headerlink" title="2、思考 api.github.com 不能访问的原因"></a>2、思考 api.github.com 不能访问的原因</h2><p>我直接配置 host 不就完事了， 于是:</p>
+<p><img src="http://file.798run.top/img/blog/20200722/api.github.png" alt="api.github.png"></p>
+<p>随后配置 dns 依然是没用！于是打开访问助手，直接访问 <a href="https://api.github.com/_private/browser/stats" target="_blank" rel="noopener">https://api.github.com/_private/browser/stats</a> ，看到返回的信息中有一个 ip，接着配置 host ，依然是不行！查到原因是：<a href="https://www.errorvault.com/en/troubleshooting/runtime-errors/google-inc/picasa/error-403_rate-limit-exceeded" target="_blank" rel="noopener">How to fix the Runtime Error 403 Rate-limit exceeded</a>、<a href="https://bugxia.com/1234.html" target="_blank" rel="noopener">解决 gdrive 报错 Error 403: Rate Limit Exceeded</a></p>
+<h2 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h2><ul>
+<li>访问助手使用，还没有我配置 host =&gt; 151.101.56.133 avatars0.githubusercontent.com 访问快！还是想收费罢了！</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/22/dns记录/" data-id="ckcww1xmc0013hkvhfezgpoz7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-数据类型转换" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/20/数据类型转换/" class="article-date">
@@ -195,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/20/数据类型转换/" data-id="ckcvbtgrp0025ysvhd459p3cr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/20/数据类型转换/" data-id="ckcww1xo30027hkvhobjpbesl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -278,7 +328,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/枚举与不可枚举/" data-id="ckcvbtgru0026ysvhaduvcnp5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/枚举与不可枚举/" data-id="ckcww1xo8002ahkvhtirep82c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -357,7 +407,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/循环与迭代/" data-id="ckcvbtgr4001uysvhwhp52az6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/循环与迭代/" data-id="ckcww1xo10026hkvh6f217dmy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -418,7 +468,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/13/ES6新特性/" data-id="ckcvbtgno000bysvhbphyl1ig" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/13/ES6新特性/" data-id="ckcww1xlb000dhkvhwded5b3x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -498,7 +548,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/10/CSS中背景图片的总结/" data-id="ckcvbtgnf0008ysvhv9j6t17y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/10/CSS中背景图片的总结/" data-id="ckcww1xke0003hkvh5xm7dk1g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -598,7 +648,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/10/CSS中display总结/" data-id="ckcvbtgnb0007ysvhu13t9nbz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/10/CSS中display总结/" data-id="ckcww1xk40001hkvhg3fxhbma" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -643,7 +693,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/07/秋果开发服务器不是node项目记录/" data-id="ckcvbtgs5002cysvh7keoyu5v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/07/秋果开发服务器不是node项目记录/" data-id="ckcww1xoe002ehkvhpv3qzs84" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
@@ -776,7 +826,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/27/this-bind-call-apply/" data-id="ckcvbtgqw001rysvhpolzvv8r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/06/27/this-bind-call-apply/" data-id="ckcww1xnq001yhkvhuf2so6qm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -827,65 +877,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/18/宝塔配置记录/" data-id="ckcvbtgr8001xysvhtiqmzsp7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/18/宝塔配置记录/" data-id="ckcww1xnv0021hkvhqob1y7rd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/宝塔/">宝塔</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Git在linux上的一次使用记录" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/16/Git在linux上的一次使用记录/" class="article-date">
-  <time datetime="2020-03-16T06:42:49.000Z" itemprop="datePublished">2020-03-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/16/Git在linux上的一次使用记录/">Git在linux上的一次使用记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="记录一次Git-在-linux的操作过程"><a href="#记录一次Git-在-linux的操作过程" class="headerlink" title="记录一次Git 在 linux的操作过程"></a>记录一次Git 在 linux的操作过程</h2><h5 id="1、linux主机是百度云活动免费试用3个月，是CentOS-。"><a href="#1、linux主机是百度云活动免费试用3个月，是CentOS-。" class="headerlink" title="1、linux主机是百度云活动免费试用3个月，是CentOS 。"></a>1、linux主机是百度云活动免费试用3个月，是CentOS 。</h5><ul>
-<li>系统默认安装的有 git 客户端，键入 git –version 显示 1.8.3.1。我想试试如何在 linux 下试用 git 拉取代码。由于之前我弄过很多次，直接copy 我电脑中的 .ssh\id_rsa | id_rsa.pub 就能用，于是我直接把我ddyg工作的ThinkPad中的id_rsa | id_rsa.pub 移动到 linux ~/.ssh 目录中，我直接执行 git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:andyComeOn/CXADView.git  提示如下：</li>
-</ul>
-<p><img src="http://file.798run.top/img/blog/20200316/know_hosts.jpg" alt="know_hosts"></p>
-<p>我想是不是 linux 不能直接 copy id_rsa.pub文件，于是我想干脆自己生成一对新的 id_rsa 得了。于是在linux 中依次执行如下：</p>
-<p><img src="http://file.798run.top/img/blog/20200316/get_ssh_key.jpg" alt="get_ssh_key"></p>
-<p>再次 clone 依旧是不成功，于是在网上开始找答案，让修改 /etc/ssh/ssh_config文件</p>
-<p><img src="http://file.798run.top/img/blog/20200316/ssh_config.jpg" alt="ssh_config"></p>
-<p>让把啥 ask 改成 no，依旧是不行，后来还让在 ~/.ssh/ 创建 config 文件加上 LogLeval=什么我忘记了，尝试如下</p>
-<p><img src="http://file.798run.top/img/blog/20200316/can_not_remote.jpg" alt="can_not_remote"></p>
-<p>依旧不行，后来想到我在自己电脑上配置的多个git拉取代码，不就是在config 配置的吗？于是我直接把自己的配置的代码修改之后放到我的~/.ssh/config中，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">User andyComeOn  </span><br><span class="line">IdentityFile ~/.ssh/id_rsa_baiduyun</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentitiesOnly yes</span><br></pre></td></tr></table></figure>
-<p>问题解决，网上说也不一定对，自己要摸索！</p>
-<p>补记：我自己想着能不能把我的 gitee 的公钥也配置一下，直接 copy 电脑的 id_rsa_gitee_117 文件，不行，linux下不让这样搞，只能再次生产 ssh-keygen -t rsa -C “<a href="mailto:1174839512@qq.com" target="_blank" rel="noopener">1174839512@qq.com</a>“ ，配置好config 就可以拉取 gitee 仓库的代码了。</p>
-<h5 id="2、记录一下阿里云服务器-git-拉取gitee项目过程"><a href="#2、记录一下阿里云服务器-git-拉取gitee项目过程" class="headerlink" title="2、记录一下阿里云服务器 git 拉取gitee项目过程"></a>2、记录一下阿里云服务器 git 拉取gitee项目过程</h5><ul>
-<li>在20200317这天想把自己本地学习 laravel 项目部署到宝塔上，已经知道 bt 可以自动创建站点，心想自己的项目使用 git 拉取更方便，于是就在自己的阿里云服务器上配置 ssh key，由于服务器默认自带 git ，我就直接执行：<code>git config --local user.name &quot;andyComeOn&quot;</code> 效果：<br><img src="http://file.798run.top/img/blog/20200316/could_not_lock_config.jpg" alt=""><br>后来发现这是我马虎，键入的指令错了，正确的应该是：<code>git config --global user.name &quot;andyComeOn&quot;</code>，键入之后会在 ~/目录下生成一个 <code>.gitconfig</code> 文件，接着说上面的截图错误，如果你在某个目录执行 <code>git config --local user.name &quot;andyComeOn&quot;</code> 必须是该目录下有一个 <code>.git</code> 目录 。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/16/Git在linux上的一次使用记录/" data-id="ckcvbtgo5000gysvhn45xu75l" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git相关/">Git相关</a></li></ul>
 
     </footer>
   </div>
@@ -922,7 +917,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 13.33px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 20px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 13.33px;">layui相关</a> <a href="/tags/宝塔/" style="font-size: 10px;">宝塔</a> <a href="/tags/工具使用总结/" style="font-size: 16.67px;">工具使用总结</a>
+      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 15px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 20px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 15px;">layui相关</a> <a href="/tags/宝塔/" style="font-size: 10px;">宝塔</a> <a href="/tags/工具使用总结/" style="font-size: 20px;">工具使用总结</a>
     </div>
   </div>
 
@@ -944,6 +939,10 @@
       <ul>
         
           <li>
+            <a href="/2020/07/22/dns记录/">dns记录</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/20/数据类型转换/">数据类型转换</a>
           </li>
         
@@ -957,10 +956,6 @@
         
           <li>
             <a href="/2020/07/13/ES6新特性/">ES6新特性</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/10/CSS中背景图片的总结/">CSS中背景图片的总结</a>
           </li>
         
       </ul>

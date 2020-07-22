@@ -62,6 +62,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Git在linux上的一次使用记录" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/16/Git在linux上的一次使用记录/" class="article-date">
+  <time datetime="2020-03-16T06:42:49.000Z" itemprop="datePublished">2020-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/16/Git在linux上的一次使用记录/">Git在linux上的一次使用记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="记录一次Git-在-linux的操作过程"><a href="#记录一次Git-在-linux的操作过程" class="headerlink" title="记录一次Git 在 linux的操作过程"></a>记录一次Git 在 linux的操作过程</h2><h5 id="1、linux主机是百度云活动免费试用3个月，是CentOS-。"><a href="#1、linux主机是百度云活动免费试用3个月，是CentOS-。" class="headerlink" title="1、linux主机是百度云活动免费试用3个月，是CentOS 。"></a>1、linux主机是百度云活动免费试用3个月，是CentOS 。</h5><ul>
+<li>系统默认安装的有 git 客户端，键入 git –version 显示 1.8.3.1。我想试试如何在 linux 下试用 git 拉取代码。由于之前我弄过很多次，直接copy 我电脑中的 .ssh\id_rsa | id_rsa.pub 就能用，于是我直接把我ddyg工作的ThinkPad中的id_rsa | id_rsa.pub 移动到 linux ~/.ssh 目录中，我直接执行 git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:andyComeOn/CXADView.git  提示如下：</li>
+</ul>
+<p><img src="http://file.798run.top/img/blog/20200316/know_hosts.jpg" alt="know_hosts"></p>
+<p>我想是不是 linux 不能直接 copy id_rsa.pub文件，于是我想干脆自己生成一对新的 id_rsa 得了。于是在linux 中依次执行如下：</p>
+<p><img src="http://file.798run.top/img/blog/20200316/get_ssh_key.jpg" alt="get_ssh_key"></p>
+<p>再次 clone 依旧是不成功，于是在网上开始找答案，让修改 /etc/ssh/ssh_config文件</p>
+<p><img src="http://file.798run.top/img/blog/20200316/ssh_config.jpg" alt="ssh_config"></p>
+<p>让把啥 ask 改成 no，依旧是不行，后来还让在 ~/.ssh/ 创建 config 文件加上 LogLeval=什么我忘记了，尝试如下</p>
+<p><img src="http://file.798run.top/img/blog/20200316/can_not_remote.jpg" alt="can_not_remote"></p>
+<p>依旧不行，后来想到我在自己电脑上配置的多个git拉取代码，不就是在config 配置的吗？于是我直接把自己的配置的代码修改之后放到我的~/.ssh/config中，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">User andyComeOn  </span><br><span class="line">IdentityFile ~/.ssh/id_rsa_baiduyun</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentitiesOnly yes</span><br></pre></td></tr></table></figure>
+<p>问题解决，网上说也不一定对，自己要摸索！</p>
+<p>补记：我自己想着能不能把我的 gitee 的公钥也配置一下，直接 copy 电脑的 id_rsa_gitee_117 文件，不行，linux下不让这样搞，只能再次生产 ssh-keygen -t rsa -C “<a href="mailto:1174839512@qq.com" target="_blank" rel="noopener">1174839512@qq.com</a>“ ，配置好config 就可以拉取 gitee 仓库的代码了。</p>
+<h5 id="2、记录一下阿里云服务器-git-拉取gitee项目过程"><a href="#2、记录一下阿里云服务器-git-拉取gitee项目过程" class="headerlink" title="2、记录一下阿里云服务器 git 拉取gitee项目过程"></a>2、记录一下阿里云服务器 git 拉取gitee项目过程</h5><ul>
+<li>在20200317这天想把自己本地学习 laravel 项目部署到宝塔上，已经知道 bt 可以自动创建站点，心想自己的项目使用 git 拉取更方便，于是就在自己的阿里云服务器上配置 ssh key，由于服务器默认自带 git ，我就直接执行：<code>git config --local user.name &quot;andyComeOn&quot;</code> 效果：<br><img src="http://file.798run.top/img/blog/20200316/could_not_lock_config.jpg" alt=""><br>后来发现这是我马虎，键入的指令错了，正确的应该是：<code>git config --global user.name &quot;andyComeOn&quot;</code>，键入之后会在 ~/目录下生成一个 <code>.gitconfig</code> 文件，接着说上面的截图错误，如果你在某个目录执行 <code>git config --local user.name &quot;andyComeOn&quot;</code> 必须是该目录下有一个 <code>.git</code> 目录 。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/16/Git在linux上的一次使用记录/" data-id="ckcww1xlo000lhkvh0ontdy3c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git相关/">Git相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Nodejs一次安装记录" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/08/Nodejs一次安装记录/" class="article-date">
@@ -101,7 +156,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/08/Nodejs一次安装记录/" data-id="ckcvbtgp0000xysvhp7w3uy4a" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/08/Nodejs一次安装记录/" data-id="ckcww1xm4000xhkvhk6ttcezd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nodejs/">Nodejs</a></li></ul>
@@ -140,7 +195,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/03/laravel创建table字段参考表/" data-id="ckcvbtgq7001hysvh79vn6unw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/03/laravel创建table字段参考表/" data-id="ckcww1xnf001rhkvh5qeoi55j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
@@ -224,7 +279,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/18/Form的相关记录/" data-id="ckcvbtgsf002gysvhu43eqi0b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/18/Form的相关记录/" data-id="ckcww1xlh000ghkvh3van2cl1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li></ul>
@@ -268,7 +323,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/11/CSS常用代码/" data-id="ckcvbtgo8000iysvhkko2qs9y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/11/CSS常用代码/" data-id="ckcww1xl5000bhkvhg5fw7y2p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -362,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/12/10/CSS字体换总结行/" data-id="ckcvbtgmf0000ysvh7kuj2xir" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/12/10/CSS字体换总结行/" data-id="ckcww1xkq0006hkvh1hofltfg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -421,7 +476,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/26/PMS中form查询总结/" data-id="ckcvbtgp3000zysvhdcymlx4s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/26/PMS中form查询总结/" data-id="ckcww1xm7000zhkvhgwyefwdr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -481,7 +536,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/25/Git常用命令/" data-id="ckcvbtgnt000dysvhsf4ym7tr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/25/Git常用命令/" data-id="ckcww1xll000ihkvhjndygro2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git相关/">Git相关</a></li></ul>
@@ -525,7 +580,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/07/浏览器加载资源报错/" data-id="ckcvbtgry0028ysvh7dvzc1xb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/07/浏览器加载资源报错/" data-id="ckcww1xok002khkvhvdmfzt7s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -593,97 +648,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/25/table标签相关总结/" data-id="ckcvbtgr1001sysvh52cv5dp6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/25/table标签相关总结/" data-id="ckcww1xnp001xhkvhuub8v82v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Table相关/">Table相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-js日期设置总结" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/17/js日期设置总结/" class="article-date">
-  <time datetime="2019-09-17T08:55:00.000Z" itemprop="datePublished">2019-09-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/17/js日期设置总结/">js日期设置总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>js日期相关处理函数，时间久了就会忘记怎么使用，每次都是临时在网上搜，写个笔记记录一下：</p>
-<hr>
-<h3 id="1、-日期的基本处理。"><a href="#1、-日期的基本处理。" class="headerlink" title="1、 日期的基本处理。"></a>1、 日期的基本处理。</h3><p>一般针对前端而言，后端（PHP、Java）传给你的时间字段，常见的有2种：如1：<code>2018-09-09 00:00:00</code>，如2：<code>1568711273205</code>。 </p>
-<p>情况1是他们处理过，情况2是直接返回的时间戳。情况1中已处理过，可直接用js处理字符串的方法处理成自己所需要的格式。</p>
-<p>情况2直接 <code>new Date(timestamp)</code> 打印之是：<code>Tue Sep 17 2019 17:07:53 GMT+0800 (中国标准时间)</code>。时间戳必须是数字否则提示：<code>Invalid Date</code>。若是想使用其中的年月日信息则可：<code>_data = new Date(timestamp)</code> ，切记月份记得要加 1 ， 若需要月、日都是2位 ，写一个过滤函数处理之即可。过滤器函数如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 月、日是一位数字的补齐2位，若函数名重复可shift用_padding</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_fill</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 使程序更严谨</span></span><br><span class="line">    <span class="keyword">if</span> (arg == <span class="literal">undefined</span> || arg == <span class="string">''</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> re = arg + <span class="string">''</span>;  <span class="comment">// 转为字符串为了使用字符串 length 属性</span></span><br><span class="line">    <span class="keyword">if</span> (re.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        re = <span class="string">'0'</span> + re;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> re;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2、-JS中date日期初始化的几种方法"><a href="#2、-JS中date日期初始化的几种方法" class="headerlink" title="2、 JS中date日期初始化的几种方法"></a>2、 JS中date日期初始化的几种方法</h3><p>在标题1中讲述到一般后端返回的是 <code>timestamp</code>、<code>2018-09-09 00:00:00</code>2种，针对这两种初始化可使用如下5种方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> objDate = <span class="keyword">new</span> <span class="built_in">Date</span>([<span class="built_in">arguments</span> list]);</span><br></pre></td></tr></table></figure>
-<p>1) <code>new Date(&quot;month dd,yyyy hh:mm:ss&quot;);</code><br>2) <code>new Date(&quot;month dd,yyyy&quot;);</code><br>以下情况必须是数字型参数！<br>3) <code>new Date(yyyy, mth, dd, hh, mm, ss);</code><br>4) <code>new Date(yyyy, mth, dd);</code><br>5) <code>new Date(ms);</code></p>
-<p>代码如下：<br>1) <code>new Date(&quot;January 12,2006 22:19:35&quot;);</code><br>2) <code>new Date(&quot;January 12,2006&quot;);</code><br>3) <code>new Date(2006,0,12,22,19,35);</code><br>4) <code>new Date(2006,0,12);</code><br>5) <code>new Date(1137075575000);</code></p>
-<p>上面的5种例子是网上说的，个人感觉不是很实用，一般后台传过来的格式是 <code>2018-09-09 00:00:00</code> ，可以直接 <code>new Date(2018-09-09 00:00:00);</code> 也可以不加 hh:mm:ss。</p>
-<p>但是我在其他帖子上看到 <code>Date.parse()</code> 这种解析方式，如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'2019/09/17'</span>, <span class="built_in">Date</span>.parse(<span class="string">'2019/09/17'</span>), <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.parse(<span class="string">'2019/09/17'</span>))); </span><br><span class="line"><span class="comment">// 2019/09/17 1568649600000 Tue Sep 17 2019 00:00:00 GMT+0800 (中国标准时间)</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'2019-09-17'</span>, <span class="built_in">Date</span>.parse(<span class="string">'2019-09-17'</span>), <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.parse(<span class="string">'2019-09-17'</span>)));</span><br><span class="line"><span class="comment">// 2019-09-17 1568678400000 Tue Sep 17 2019 08:00:00 GMT+0800 (中国标准时间)</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'2019- 9-17'</span>, <span class="built_in">Date</span>.parse(<span class="string">'2019-9-17'</span>), <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">Date</span>.parse(<span class="string">'2019-9-17'</span>)));</span><br><span class="line"><span class="comment">// 2019- 9-17 1568649600000 Tue Sep 17 2019 00:00:00 GMT+0800 (中国标准时间)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面的三种写法，Date.parse 获得的时间戳不一样， 说明了时间格式的最简写、加默认的0 解析的该天的 hh:mm:ss 不一样。如果加上hh:mm:ss 三种写法会保持一致。 也可观察出 '2019-9-17' '2019/09/17' 这2中写法获取到的是该天凌晨的时间戳。</span></span><br></pre></td></tr></table></figure>
-<p>！！！既然<code>new Date()</code> 也可以解析数字字符串，那就没必要使用<code>Date.parse()</code>。何必要多记忆这个方法呢？</p>
-<h3 id="3、-日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。"><a href="#3、-日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。" class="headerlink" title="3、 日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。"></a>3、 日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addDate</span>(<span class="params">date, days</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (days == <span class="literal">undefined</span> || days == <span class="string">''</span>) &#123;</span><br><span class="line">        days = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> _date = <span class="keyword">new</span> <span class="built_in">Date</span>(date);</span><br><span class="line">    <span class="comment">// 这时候 _data 可根据自己需求处理 </span></span><br><span class="line">    _date.setDate(_date.getDate() + days);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面的可以拓展加（减）年、加（间）月</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addYear</span>(<span class="params">date, years</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (years == <span class="literal">undefined</span> || years == <span class="string">''</span>) &#123;</span><br><span class="line">        years = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> _date = <span class="keyword">new</span> <span class="built_in">Date</span>(date);</span><br><span class="line">    <span class="comment">// 这时候 _data 可根据自己需求处理 </span></span><br><span class="line">    _date.setYear(_date.getFullYear() + years);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addMonth</span>(<span class="params">date, months</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (months == <span class="literal">undefined</span> || months == <span class="string">''</span>) &#123;</span><br><span class="line">        months = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> _date = <span class="keyword">new</span> <span class="built_in">Date</span>(date);</span><br><span class="line">    <span class="comment">// 这时候 _data 可根据自己需求处理 </span></span><br><span class="line">    _date.setMonth(_date.getMonth() + months);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>补记一个小细节，看下例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">var</span> dd = d.setDate(d.getDate() + <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(dd); <span class="comment">// 这时候 dd 是一个时间戳</span></span><br></pre></td></tr></table></figure>
-<p>若这样写：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">d.setDate(d.getDate() + <span class="number">1</span>);</span><br><span class="line"><span class="keyword">var</span> dd = d;</span><br><span class="line"><span class="built_in">console</span>.log(dd); <span class="comment">// 这时候 dd 是一个 Date 对象，打印结果是中国标准时间</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="4、-日期之间相差多少天。"><a href="#4、-日期之间相差多少天。" class="headerlink" title="4、 日期之间相差多少天。"></a>4、 日期之间相差多少天。</h3><p>很多的帖子就是直接把startTime endTime 直接转换为时间戳相减之后在取整（或者向下取整）在除以86400000，就是相差的天数。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_subtraction</span> (<span class="params">start, end</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Date</span>(start);</span><br><span class="line">    <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Date</span>(end);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.floor((b - a) / <span class="number">86400000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="5、-有初末日期，获取其中之间的日历（场景：酒店系统-餐费的时间日历选择）"><a href="#5、-有初末日期，获取其中之间的日历（场景：酒店系统-餐费的时间日历选择）" class="headerlink" title="5、 有初末日期，获取其中之间的日历（场景：酒店系统 餐费的时间日历选择）"></a>5、 有初末日期，获取其中之间的日历（场景：酒店系统 餐费的时间日历选择）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectMealDate</span> (<span class="params">s, e</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 月、天不够2位补0</span></span><br><span class="line">    <span class="keyword">this</span>._fill = <span class="function"><span class="keyword">function</span> (<span class="params">arg</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 使程序更严谨</span></span><br><span class="line">        <span class="keyword">if</span> (arg == <span class="literal">undefined</span> || arg == <span class="string">''</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> re = arg + <span class="string">''</span>;  <span class="comment">// 转为字符串为了使用字符串 length 属性</span></span><br><span class="line">        <span class="keyword">if</span> (re.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            re = <span class="string">'0'</span> + re;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> re;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 初末日期相差多少天</span></span><br><span class="line">    <span class="keyword">this</span>._subtraction = <span class="function"><span class="keyword">function</span> (<span class="params">startArg, endArg</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Date</span>(startArg);</span><br><span class="line">        <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="built_in">Date</span>(endArg);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.floor((b - a) / <span class="number">86400000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 抛出的值</span></span><br><span class="line">    <span class="keyword">var</span> _arr = [];</span><br><span class="line">    <span class="comment">// 循环出餐费日历数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="keyword">this</span>._subtraction(s, e); i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> temp = <span class="keyword">new</span> <span class="built_in">Date</span>(s);</span><br><span class="line">        temp.setDate(temp.getDate() + i ); </span><br><span class="line">        _arr.push(temp.getFullYear() + <span class="string">'-'</span>+ <span class="keyword">this</span>._fill(temp.getMonth() + <span class="number">1</span>) + <span class="string">'-'</span> + <span class="keyword">this</span>._fill(temp.getDate()));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> _arr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="6、-参考的链接，未完，相差小时，分钟，秒-继续看参考的帖子"><a href="#6、-参考的链接，未完，相差小时，分钟，秒-继续看参考的帖子" class="headerlink" title="6、 参考的链接，未完，相差小时，分钟，秒 继续看参考的帖子"></a>6、 参考的链接，未完，相差小时，分钟，秒 继续看参考的帖子</h3><p><a href="https://www.cnblogs.com/summer-qd/p/10103984.html" target="_blank" rel="noopener">js 日期相差计算</a><br><a href="http://www.miaoqiyuan.cn/p/date-range" target="_blank" rel="noopener">JS日历循环，指定开始结束日期，自动向后计算</a><br><a href="http://www.runoob.com/js/js-obj-date.html" target="_blank" rel="noopener">JavaScript Date（日期） 对象</a>     </p>
-<h3 id="7、-日期相关补记"><a href="#7、-日期相关补记" class="headerlink" title="7、 日期相关补记"></a>7、 日期相关补记</h3><ol>
-<li><p>一般服务器的时间是很少出错，我们在后台存时间戳其实是不准确的，应为时间戳若是时区不一样，解析的会有误差！可以看这篇帖子 <a href="https://zhuanlan.zhihu.com/p/23663741" target="_blank" rel="noopener">MySQL date、datetime和timestamp类型的区别</a>，在看了帖子：<a href="https://learn.blog.csdn.net/article/details/102728563" target="_blank" rel="noopener">时区是怎么划分的？世界各时区的时间如何统一表达？GMT、UTC、UNIX有什么区别？</a>之后发现一个完善web系统，可以存datetime(它是绝对值是最准确的！)</p>
-</li>
-<li><blockquote>
-<p>用户的浏览器从服务器获取HTML文档，开始翻译解析，解析 “new Date()” 时就是用户系统的时间，也就是你说的用户系统的时间；一般情况下用户操作系统的时间是准确的，但也有不准确的情况，也可以在服务器获取时间，这就有点麻烦了，应该有相应的API吧，没试过。  </p>
-</blockquote>
-</li>
-</ol>
-<p>上面一段说的js是获取本机的系统使劲，我想若不是一个时区，或者用户自己更改自己电脑时间，也会倒置时间不一致！</p>
-<ol start="3">
-<li><p>现在服务器一般是linux 都是使用的是 UTC （世界时间协调），格式： 2019-11-11T00:00:00.000Z 我想数据库也可以这样存，返回给前端之后，前端可使用 <a href="https://www.cnblogs.com/goloving/p/10514914.html" target="_blank" rel="noopener">js处理时间时区问题</a> 中的方法处理！其中的举例很好，公式：其他时区时间 + 其他时区时差 = 本地时间 + 本地时差</p>
-</li>
-<li><p>在网上搜到一个这样的帖子 <a href="https://zhidao.baidu.com/question/1964112958349855060.html" target="_blank" rel="noopener">苹果手机浏览器时区与系统时区不一致</a>  其中的回答综合我理解是没有同步时间！</p>
-</li>
-<li><p>2019-11-11T00:00:00.000Z T 代表是世界标准时间  Z是指偏移量，没有写数值就是指偏移为 0 ，也就是 0 时区。北京在东8区、比GMT要早8小时，写作2019-11-11T08:00:00.000+0800  参考上面帖子，“时区是…”</p>
-</li>
-<li><p>各大语言处理时间函数 <a href="https://www.cnblogs.com/xwdreamer/p/8761825.html" target="_blank" rel="noopener">UTC时间、GMT时间、本地时间、Unix时间戳</a></p>
-</li>
-</ol>
-<h3 id="8、记录一次-iOS-手机上日期使用bug"><a href="#8、记录一次-iOS-手机上日期使用bug" class="headerlink" title="8、记录一次 iOS 手机上日期使用bug"></a>8、记录一次 iOS 手机上日期使用bug</h3><ol>
-<li><p>在微平台的 C 端由于房券使用的逻辑选房日期赋值了这种格式 2020-05-01 06:00:01，进行了 var t = new Date(‘2020-05-01 06:00:01’) 的操作，可是在取 t.getFullYear() 时候一直提示 NaN，搜资料发现 ios 手机上 new Date(param)，该 param 要么是时间戳，要么是这种格式的字符串 ‘2019/09/17 06:01:00’ 才能被 ios 手机解析出来！</p>
-</li>
-<li><p>详见 <a href="https://blog.csdn.net/chelen_jak/article/details/98215109" target="_blank" rel="noopener">解决js newDate()苹果手机日期格式显示NaN</a></p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ckcvbtgqm001mysvhg5qxdzen" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
 
     </footer>
   </div>
@@ -720,7 +688,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 13.33px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 20px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 13.33px;">layui相关</a> <a href="/tags/宝塔/" style="font-size: 10px;">宝塔</a> <a href="/tags/工具使用总结/" style="font-size: 16.67px;">工具使用总结</a>
+      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 15px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 20px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 15px;">layui相关</a> <a href="/tags/宝塔/" style="font-size: 10px;">宝塔</a> <a href="/tags/工具使用总结/" style="font-size: 20px;">工具使用总结</a>
     </div>
   </div>
 
@@ -742,6 +710,10 @@
       <ul>
         
           <li>
+            <a href="/2020/07/22/dns记录/">dns记录</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/20/数据类型转换/">数据类型转换</a>
           </li>
         
@@ -755,10 +727,6 @@
         
           <li>
             <a href="/2020/07/13/ES6新特性/">ES6新特性</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/10/CSS中背景图片的总结/">CSS中背景图片的总结</a>
           </li>
         
       </ul>
