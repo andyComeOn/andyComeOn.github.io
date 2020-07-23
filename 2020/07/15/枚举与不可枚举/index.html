@@ -16,7 +16,7 @@
 <meta property="og:description" content="每次看到枚举，枚举。到底他妈的啥意思，无非就是前辈们翻译过来的一个词而已。翻译的这么高大上，本质就是列举出来之意！今天我们讨论一下此名称在 JS 中的含义！  1. 枚举是什么？ 枚举指对象的属性是否可以遍历出来，简单说，是否可被列举出来。这就是：可枚举性（propertyIsEnumerable），propertyIsEnumerable = true，表示可以被列举，反之，表示不可枚举！pr">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://file.798run.top/img/blog/20200715/object_keys.png">
-<meta property="og:updated_time" content="2020-07-15T10:51:34.029Z">
+<meta property="og:updated_time" content="2020-07-23T07:56:09.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="枚举与不可枚举">
 <meta name="twitter:description" content="每次看到枚举，枚举。到底他妈的啥意思，无非就是前辈们翻译过来的一个词而已。翻译的这么高大上，本质就是列举出来之意！今天我们讨论一下此名称在 JS 中的含义！  1. 枚举是什么？ 枚举指对象的属性是否可以遍历出来，简单说，是否可被列举出来。这就是：可枚举性（propertyIsEnumerable），propertyIsEnumerable = true，表示可以被列举，反之，表示不可枚举！pr">
@@ -132,13 +132,13 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JSON.stringify(fn) // &#123;&quot;a&quot;:&quot;我是对象本身就有的属性&quot;,&quot;c&quot;:&quot;我是通过Object.defineProperty方法添加的可枚举属性&quot;&#125;</span><br></pre></td></tr></table></figure>
 <p>JSON.stringify()方法只能序列化 <strong>实例</strong> 对象本身的属性和通过 Object.defineProperty()添加的可枚举属性为 JSON 对象，即不会序化原型链上的属性</p>
-<h4 id="3、为什么要加上实例二字呢？请看下面"><a href="#3、为什么要加上实例二字呢？请看下面" class="headerlink" title="3、为什么要加上实例二字呢？请看下面"></a>3、为什么要加上实例二字呢？请看下面</h4><p><img src="//file.798run.top/img/blog/20200715/object_keys.png" alt="为什么要加上实例二字？"></p>
+<h4 id="3、为什么要加上实例二字呢？请看下面"><a href="#3、为什么要加上实例二字呢？请看下面" class="headerlink" title="3、为什么要加上实例二字呢？请看下面"></a>3、为什么要加上实例二字呢？请看下面</h4><p><img src="http://file.798run.top/img/blog/20200715/object_keys.png" alt="为什么要加上实例二字？"></p>
 <h4 id="4、参考文档"><a href="#4、参考文档" class="headerlink" title="4、参考文档"></a>4、参考文档</h4><p><a href="https://www.jianshu.com/p/01a8ae8ac62c" target="_blank" rel="noopener">JS 中的枚举和不可枚举</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/15/枚举与不可枚举/" data-id="ckcww1xo8002ahkvhtirep82c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/15/枚举与不可枚举/" data-id="ckcyi6ci7002iw0vhpfp4nvgj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
