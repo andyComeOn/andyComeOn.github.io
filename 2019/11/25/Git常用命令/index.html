@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://file.798run.top/img/blog/20200717/checkout-pull.png">
 <meta property="og:image" content="http://file.798run.top/img/blog/20200717/git-push.png">
 <meta property="og:image" content="http://file.798run.top/img/blog/20200717/set-upstream-vv.png">
-<meta property="og:updated_time" content="2020-07-18T14:15:56.890Z">
+<meta property="og:updated_time" content="2020-08-08T15:27:41.216Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git常用命令">
 <meta name="twitter:description" content="基本的指令每天都在使用，可是新建分支，合并分支使用的相对少一些！现记录一下使用过程中遇到的问题！  1、ums 仓库 默认已创建 master 分支，部署项目（为了给邱双弄 Nginx 接口代理），于是我 git pull 截图如下：   图中看到新增加了 dev 分支。于是我就执行 git checkout -b dev 切换到 dev 分支，随即 git pull，提示如下：  已经不止一次">
@@ -106,12 +106,15 @@
 <p>push 没成功看开我必须要解决提示的问题，于是网上搜，参考：<a href="https://www.jianshu.com/p/f6f7dae0b8b6" target="_blank" rel="noopener">git pull 报错 There is no tracking information for the current branch…</a>。按照文中提示，我执行 <code>git branch --set-upstream-to=origin/dev dev</code>。随后又通过 <code>git branch -vv</code> 确认是否关联。总的截图如下：</p>
 <p><img src="http://file.798run.top/img/blog/20200717/set-upstream-vv.png" alt="set-upstream-vv"></p>
 <p>上图则说明关联成功，git pull 拉下来很多代码！随后我又重复 <code>git add .</code>、<code>git commit -m &quot;修改 .gitignore 文件&quot;</code>、<code>git pull</code>、<code>git push</code>。把我刚才修改的文件 push 到 dev 了！</p>
+<ul>
+<li>20200808 补记：在看方的 express 章节时候，看到其使用 git 执行如下：创建一个本地目录 express-demo-3，随后 git init 则生成一个 .git 目录，执行 <code>git add .</code>、<code>git commit -m init</code> . <code>git remote add orgin git@github.com:FrankFang/express-demo-3.git</code>、<code>git push -u orgin master</code>。最后就 ok 了！并没有遇到我之前的提示啥 upstream 之类的报错，这说明这也是一种方法！但是我又想到我在秋果的 git 仓库是不是没有配置啥钩子才出现这种错误，还是说 github、gitee 等已经给你创建了啥钩子呢？</li>
+</ul>
 <h3 id="2、查看、切换分支"><a href="#2、查看、切换分支" class="headerlink" title="2、查看、切换分支"></a>2、查看、切换分支</h3><ul>
-<li><p>查看分支是 <code>git branch</code> 后面可以加参数 -a （指的是所有的分支） </p>
+<li><p>查看分支是 <code>git branch</code> 后面可以加参数 -a （指的是所有的分支）</p>
 </li>
-<li><p>切换分支  <code>git checkout 分支名</code></p>
+<li><p>切换分支 <code>git checkout 分支名</code></p>
 </li>
-<li><p>创建分支  <code>git checkout -b dev</code>，此指令创建一个 dev 分支，若是 dev 分支已经存在，命令行会有提示：dev has already exists！</p>
+<li><p>创建分支 <code>git checkout -b dev</code>，此指令创建一个 dev 分支，若是 dev 分支已经存在，命令行会有提示：dev has already exists！</p>
 </li>
 <li><p>创建于切换其实是一个指令，仅仅是添加的参数不同！</p>
 </li>
@@ -120,7 +123,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/25/Git常用命令/" data-id="ckcyi6cf4000kw0vhsosglr6m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/25/Git常用命令/" data-id="ckdltaxrt000gawvhh73c7kc4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git相关/">Git相关</a></li></ul>
@@ -162,7 +165,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS相关/">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git相关/">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS相关/">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table相关/">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui相关/">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/宝塔/">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS相关/">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git相关/">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS相关/">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table相关/">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui相关/">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端精进/">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/宝塔/">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
     </div>
   </div>
 
@@ -172,7 +175,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 15px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 20px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 15px;">layui相关</a> <a href="/tags/宝塔/" style="font-size: 10px;">宝塔</a> <a href="/tags/工具使用总结/" style="font-size: 20px;">工具使用总结</a>
+      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 15px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 20px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 15px;">layui相关</a> <a href="/tags/前端精进/" style="font-size: 10px;">前端精进</a> <a href="/tags/宝塔/" style="font-size: 10px;">宝塔</a> <a href="/tags/工具使用总结/" style="font-size: 20px;">工具使用总结</a>
     </div>
   </div>
 
@@ -194,6 +197,10 @@
       <ul>
         
           <li>
+            <a href="/2020/07/28/前端精进/">前端精进</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/22/dns记录/">dns记录</a>
           </li>
         
@@ -207,10 +214,6 @@
         
           <li>
             <a href="/2020/07/15/循环与迭代/">循环与迭代</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/13/ES6新特性/">ES6新特性</a>
           </li>
         
       </ul>

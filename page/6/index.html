@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Andy Zhang&#39;Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Andy Zhang&#39;Hexo">
+<meta property="og:url" content="http://yoursite.com/page/6/index.html">
+<meta property="og:site_name" content="Andy Zhang&#39;Hexo">
+<meta property="og:locale" content="default">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Andy Zhang&#39;Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Andy Zhang&#39;Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Andy Zhang&#39;Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Hexo总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/22/Hexo总结/" class="article-date">
+  <time datetime="2019-01-22T01:59:30.000Z" itemprop="datePublished">2019-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/22/Hexo总结/">Hexo总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="这是我个人对安装hexo的一些总结"><a href="#这是我个人对安装hexo的一些总结" class="headerlink" title="这是我个人对安装hexo的一些总结"></a>这是我个人对安装hexo的一些总结</h4><h5 id="在github上新建仓库时候一定遵循下面的格式："><a href="#在github上新建仓库时候一定遵循下面的格式：" class="headerlink" title="在github上新建仓库时候一定遵循下面的格式："></a>在github上新建仓库时候一定遵循下面的格式：</h5><ul>
+<li><code>{username} github.io</code></li>
+</ul>
+<h5 id="根目录下的-config-yml："><a href="#根目录下的-config-yml：" class="headerlink" title="根目录下的_config.yml："></a>根目录下的<code>_config.yml</code>：</h5><ul>
+<li>要正确的把你的新建的github的仓库地址copy到<code>_config.yml</code>的deploy处 </li>
+</ul>
+<h5 id="网上说的安装方法："><a href="#网上说的安装方法：" class="headerlink" title="网上说的安装方法："></a>网上说的安装方法：</h5><ul>
+<li>有的说<code>npm install hexo -g</code>（我采用）</li>
+<li>有的说<code>npm install hexo-cli -g</code></li>
+<li>在你的Blog目录下执行 hexo init ,会生成很多文件，默认主题landscape</li>
+<li>next 主题 <a href="https://github.com/theme-next" target="_blank" rel="noopener">theme-next</a> <a href="https://github.com/theme-next/hexo-theme-next" target="_blank" rel="noopener">hexo-theme-next</a></li>
+<li>若不追求主题，在_config.yml最后几行配置好你的username.github.io仓库地址</li>
+<li>npm install hexo-deployer-git –save 安装git的插件</li>
+<li>hexo clean 、hexo g 、hexo d，这时候git 会提示你 tell me who u are，记得进入到 .deply_git目录，配置一下git 信息就行了，git config –local user.name “andyComeOn”  git config –local user.email “<a href="mailto:1174839512@qq.com" target="_blank" rel="noopener">1174839512@qq.com</a>“</li>
+</ul>
+<h5 id="一些补充："><a href="#一些补充：" class="headerlink" title="一些补充："></a>一些补充：</h5><ul>
+<li>我配置的hexo就是用的默认主题landscape，没有多余设置其他，该主题默认的给分了几个板块Tags、TAG CLOUD、ARCHIVES、RECENT POSTS，</li>
+<li>若是你使用 next主题，需要配置一下板块执行 hexo new page “tags” （会在你source目录下创建tagsmul）、hexo new page “categories”（会在你的source目录下创建categories目录）、hexo new page “about”，</li>
+</ul>
+<h5 id="按照网上的说法安装完成之后要注意以下几点："><a href="#按照网上的说法安装完成之后要注意以下几点：" class="headerlink" title="按照网上的说法安装完成之后要注意以下几点："></a>按照网上的说法安装完成之后要注意以下几点：</h5><ul>
+<li>每次在根目录下执行<code>hexo clean</code> -&gt; <code>hexo generate (hexo g)</code> -&gt; <code>hexo deploy (hexo d)</code></li>
+<li>后来发现根本不需要执行<code>hexo clean</code></li>
+</ul>
+<h5 id="hexo-怎么新建文章"><a href="#hexo-怎么新建文章" class="headerlink" title="hexo 怎么新建文章"></a>hexo 怎么新建文章</h5><ul>
+<li>网上说的是执行<code>hexo new post &#39;name&#39;</code>,尝试可行。但是我在Hexo自己生成的hello-word.md的文档中发现指令<code>hexo new &#39;name&#39;</code>少写了post。经测试亦可行！</li>
+</ul>
+<h5 id="hexo-怎么删除文章"><a href="#hexo-怎么删除文章" class="headerlink" title="hexo 怎么删除文章"></a>hexo 怎么删除文章</h5><ul>
+<li>先删除本地文件，然后通过生成和部署命令进而将远程仓库中的文件也一并删除。</li>
+<li>具体来说，以最开始默认生成的hello-world.md这篇文章为例：首先进入到source / _post 文件夹中，找到hello-world.md文件，在本地直接执行删除。然后依次执行<code>hexo g</code>，<code>hexo d</code>，即可删除。</li>
+</ul>
+<h5 id="发现的小问题"><a href="#发现的小问题" class="headerlink" title="发现的小问题"></a>发现的小问题</h5><ul>
+<li>本来通过<code>hexo new post demo</code> ，生成的demo.md文件，我后来感觉命名不合理，就直接修改文件名字，发现修改之后标题没有修改过来？原因是忘记了修改了md文件中date时间<img src="https://github.githubassets.com/favicon.ico" alt="图片"></li>
+<li>网上说的新建的md文件不能使用中文命名，经测试可行。</li>
+<li>有的帖子说  npm install hexo-server –save ，安装这个啥用？我在本地测试 hexo s一样可以自动生效啊。</li>
+</ul>
+<hr>
+<h5 id="参考的帖子"><a href="#参考的帖子" class="headerlink" title="参考的帖子"></a>参考的帖子</h5><ul>
+<li><a href="https://www.cnblogs.com/fengxiongZz/p/7707219.html" target="_blank" rel="noopener">使用Hexo+Github一步步搭建属于自己的博客（基础）</a>、<a href="https://www.cnblogs.com/fengxiongZz/p/7707568.html" target="_blank" rel="noopener">使用Hexo+Github一步步搭建属于自己的博客（进阶）</a> 这2个帖子是我最开始参考的。</li>
+<li><a href="https://blog.csdn.net/ainuser/article/details/77609180" target="_blank" rel="noopener">hexo+github搭建个人博客(超详细教程)</a> 这个帖子讲的详细，同时也讲述了安装git的一些info和使用镜像的说明。</li>
+<li><a href="https://blog.csdn.net/qq_32454537/article/details/79482908" target="_blank" rel="noopener">2018最新版hexo+Github搭建个人博客教程（2018-1-22 更新）</a>这个是一个学生写的，写的很细。</li>
+<li><a href="https://blog.csdn.net/qq_32454537/article/details/79482908" target="_blank" rel="noopener">2018最新版hexo+Github搭建个人博客教程（2018-1-22 更新）</a> </li>
+<li><a href="https://blog.csdn.net/weixin_42334475/article/details/101055364?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">GitHub+hexo搭建个人博客（2019新版超详细教程）</a></li>
+<li><a href="https://www.cnblogs.com/penglei-it/category/934299.html" target="_blank" rel="noopener">随笔分类 - Github+Hexo建站系列</a>    <a href="https://www.cnblogs.com/penglei-it/p/hexo_next_baseset.html" target="_blank" rel="noopener">Hexo+NextT基本设置【3】</a></li>
+<li><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">hexo中文文档</a>  <a href="https://zhuanlan.zhihu.com/p/94038688" target="_blank" rel="noopener">hexo next 主题进阶设置</a></li>
+<li><a href="https://blog.newnius.com/" target="_blank" rel="noopener">研究生好博客</a>  <a href="https://www.dazhuanlan.com/life/" target="_blank" rel="noopener">大专栏</a> <a href="http://disixueyuan.com/index.php/article/8.html" target="_blank" rel="noopener">半小时学会做个人博客网站</a></li>
+<li><a href="https://www.v2ex.com/t/548912" target="_blank" rel="noopener">coding pages 杂谈</a></li>
+<li><a href="https://blog.csdn.net/AinUser/article/details/77609180?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">hexo+github搭建个人博客(超详细教程)</a></li>
+</ul>
+<h5 id="需要探究的问题"><a href="#需要探究的问题" class="headerlink" title="需要探究的问题"></a>需要探究的问题</h5><ul>
+<li>就是我在一个电脑上，按照网上的配置在本地配了相应的环境，若我换了电脑，是否再次配置？配置好了之后，之前的历史文章怎么clone到本地，再次edit呢？</li>
+</ul>
+<h5 id="hexo的添加文章目录以及归档"><a href="#hexo的添加文章目录以及归档" class="headerlink" title="hexo的添加文章目录以及归档"></a>hexo的添加文章目录以及归档</h5><ul>
+<li><p>在写博客过程中遇到归档的需求，搜了一篇文章说的如何归档：<a href="https://www.jianshu.com/p/72408c410904" target="_blank" rel="noopener">Hexo站点中添加文章目录以及归档</a></p>
+</li>
+<li><p>hexo 中landscape主题的favicon.ico不能生效，网上给出结局问题的帖子很少，很多都是废话！这个主题直接舍弃了，使用next主图吧。</p>
+</li>
+<li><p>next主题出现这种错误：</p>
+<p><img src="http://file.798run.top/img/blog/20190122/theme-next-err.png" alt=""></p>
+</li>
+<li><p>解决办法：</p>
+</li>
+</ul>
+<p><img src="http://file.798run.top/img/blog/20190122/fixed-err.png" alt=""></p>
+<ul>
+<li>hexo更新后的bug：<a href="https://blog.csdn.net/NULL_thing/article/details/90082690" target="_blank" rel="noopener">hexo生成的静态网页无法找到style.css</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/22/Hexo总结/" data-id="ckdltaxsb000nawvhvh7ckrem" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/22/hello-world/" class="article-date">
+  <time datetime="2019-01-22T01:32:09.981Z" itemprop="datePublished">2019-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/22/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/01/22/hello-world/" data-id="ckdltaxu10014awvh98kgxdci" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS相关/">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form表单相关/">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git相关/">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS相关/">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table相关/">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui相关/">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端精进/">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/宝塔/">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CSS相关/" style="font-size: 20px;">CSS相关</a> <a href="/tags/Form表单相关/" style="font-size: 10px;">Form表单相关</a> <a href="/tags/Git相关/" style="font-size: 15px;">Git相关</a> <a href="/tags/JS相关/" style="font-size: 20px;">JS相关</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/Table相关/" style="font-size: 10px;">Table相关</a> <a href="/tags/layui相关/" style="font-size: 15px;">layui相关</a> <a href="/tags/前端精进/" style="font-size: 10px;">前端精进</a> <a href="/tags/宝塔/" style="font-size: 10px;">宝塔</a> <a href="/tags/工具使用总结/" style="font-size: 20px;">工具使用总结</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/28/前端精进/">前端精进</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/22/dns记录/">dns记录</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/20/数据类型转换/">数据类型转换</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/枚举与不可枚举/">枚举与不可枚举</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/15/循环与迭代/">循环与迭代</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
