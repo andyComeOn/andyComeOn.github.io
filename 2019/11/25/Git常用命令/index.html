@@ -19,7 +19,9 @@
 <meta property="og:image" content="http://file.798run.top/img/blog/20200717/checkout-pull.png">
 <meta property="og:image" content="http://file.798run.top/img/blog/20200717/git-push.png">
 <meta property="og:image" content="http://file.798run.top/img/blog/20200717/set-upstream-vv.png">
-<meta property="og:updated_time" content="2020-08-09T01:10:40.923Z">
+<meta property="og:image" content="http://file.798run.top/img/blog/20200818/git-pull.png">
+<meta property="og:image" content="http://file.798run.top/img/blog/20200818/git-upstream.png">
+<meta property="og:updated_time" content="2020-08-18T12:44:36.843Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git常用命令">
 <meta name="twitter:description" content="基本的指令每天都在使用，可是新建分支，合并分支使用的相对少一些！现记录一下使用过程中遇到的问题！  1、ums 仓库 默认已创建 master 分支，部署项目（为了给邱双弄 Nginx 接口代理），于是我 git pull 截图如下：   图中看到新增加了 dev 分支。于是我就执行 git checkout -b dev 切换到 dev 分支，随即 git pull，提示如下：  已经不止一次">
@@ -109,6 +111,13 @@
 <ul>
 <li>20200808 补记：在看方的 express 章节时候，看到其使用 git 执行如下：创建一个本地目录 express-demo-3，随后 git init 则生成一个 .git 目录。并在他的 github 上新建了 express-demo-3 仓库。随后执行 <code>git add .</code>、<code>git commit -m init</code> 、 <code>git remote add orgin git@github.com:FrankFang/express-demo-3.git</code>、<code>git push -u orgin master</code>。注：最后两个指令是在你初始化了仓库之后，github 上生成的！最后就 ok 了！并没有遇到我之前的提示啥 upstream 之类的报错，这说明这也是一种方法！但是我又想到我在秋果的 git 仓库是不是没有配置啥钩子才出现这种错误，还是说 github、gitee 等已经给你创建了啥钩子呢？</li>
 </ul>
+<ul>
+<li>20200817 在家弄 peter 分配的 CRM 系统，说让参考墨宇的 fms，其项目一直跑不起来有问题：他用 Mac 在 git 上提交了 import ‘@/keren /keren.vue’（不知道为啥竟然能提交，在 Windows 上 vscode 直接回提示你目录不能这样创建）。周一，墨宇说的让删除仓库。重新 init 一个仓库！我初始化 fms.git 仓库之后：在本地新建 a.txt。开始 git add . 之一些列的操作，最后 git pull 出现如下截图：</li>
+</ul>
+<p><img src="http://file.798run.top/img/blog/20200818/git-pull.png" alt="git-pull"></p>
+<p>看到这我还以为是 git 又报啥错了。于是就执行操作如下：</p>
+<p><img src="http://file.798run.top/img/blog/20200818/git-upstream.png" alt="git-pull"></p>
+<p>搜了一堆帖子，发现不行。后来查看自己写的 git 总结文档，发现在新建 dev 分支时候，才需要执行 git branch –set-upstream-to=origin/dev dev<br>于是我就直接 push 了，没啥报错！上的提示是你第一次 pull 默认的提示。</p>
 <h3 id="2、查看、切换分支"><a href="#2、查看、切换分支" class="headerlink" title="2、查看、切换分支"></a>2、查看、切换分支</h3><ul>
 <li><p>查看分支是 <code>git branch</code> 后面可以加参数 -a （指的是所有的分支）</p>
 </li>
@@ -123,7 +132,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/25/Git常用命令/" data-id="ckdtsg9rn000ixcvhyh3nqv69" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/25/Git常用命令/" data-id="ckdzxxmr5000mvkvh61ovx7b8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git相关/">Git相关</a></li></ul>
