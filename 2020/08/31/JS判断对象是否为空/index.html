@@ -5,27 +5,20 @@
   
 
   
-  <title>Nodejs一次安装记录 | Andy Zhang&#39;Hexo</title>
+  <title>JS判断对象是否为空 | Andy Zhang&#39;Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="由于 github 上的博客太慢了，我决定在 gitee 上搭建一份博客！于疫情期间 2020-03-05 在家捯饬，想到我的 hexo 安装的比较早（大概是在 20190122，参考的文档就更早了），就打算找一个最近发布的文档参考！文档中让安装 npm install -g hexo-cli ，于是执行命令效果如下：  我在执行 npm install -g hexo-cli 时候在想我之前应该">
-<meta name="keywords" content="Node.js">
+  <meta name="description" content="JS 判断对象是否为空 在开发会客厅预定逻辑，渲染门店列表时候后台返回的是一个 对象，之前是 数组，后台说自己不好处理，那我就对数据进行二次转换把。首先想到如何判断一个变量是对象还是数组呢？于是就使用最稳妥的办法：const string = Object.prototype.toString.call(var)，在对此结果进行 string.indexOf(&amp;#39;Object&amp;#39;)、s">
+<meta name="keywords" content="JS相关">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nodejs一次安装记录">
-<meta property="og:url" content="http://yoursite.com/2020/03/08/Nodejs一次安装记录/index.html">
+<meta property="og:title" content="JS判断对象是否为空">
+<meta property="og:url" content="http://yoursite.com/2020/08/31/JS判断对象是否为空/index.html">
 <meta property="og:site_name" content="Andy Zhang&#39;Hexo">
-<meta property="og:description" content="由于 github 上的博客太慢了，我决定在 gitee 上搭建一份博客！于疫情期间 2020-03-05 在家捯饬，想到我的 hexo 安装的比较早（大概是在 20190122，参考的文档就更早了），就打算找一个最近发布的文档参考！文档中让安装 npm install -g hexo-cli ，于是执行命令效果如下：  我在执行 npm install -g hexo-cli 时候在想我之前应该">
+<meta property="og:description" content="JS 判断对象是否为空 在开发会客厅预定逻辑，渲染门店列表时候后台返回的是一个 对象，之前是 数组，后台说自己不好处理，那我就对数据进行二次转换把。首先想到如何判断一个变量是对象还是数组呢？于是就使用最稳妥的办法：const string = Object.prototype.toString.call(var)，在对此结果进行 string.indexOf(&amp;#39;Object&amp;#39;)、s">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://file.798run.top/img/blog/20200308/install-hexo-cli.png">
-<meta property="og:image" content="http://file.798run.top/img/blog/20200308/nodejs-install-dir.png">
-<meta property="og:image" content="http://file.798run.top/img/blog/20200308/nodejs-shortcut.png">
-<meta property="og:image" content="http://file.798run.top/img/blog/20200308/roaming.png">
-<meta property="og:image" content="http://file.798run.top/img/blog/20200308/hexo-v-old.png">
-<meta property="og:image" content="http://file.798run.top/img/blog/20200308/hexo-v-new.png">
-<meta property="og:updated_time" content="2020-08-14T05:25:22.459Z">
+<meta property="og:updated_time" content="2020-08-31T08:53:28.421Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nodejs一次安装记录">
-<meta name="twitter:description" content="由于 github 上的博客太慢了，我决定在 gitee 上搭建一份博客！于疫情期间 2020-03-05 在家捯饬，想到我的 hexo 安装的比较早（大概是在 20190122，参考的文档就更早了），就打算找一个最近发布的文档参考！文档中让安装 npm install -g hexo-cli ，于是执行命令效果如下：  我在执行 npm install -g hexo-cli 时候在想我之前应该">
-<meta name="twitter:image" content="http://file.798run.top/img/blog/20200308/install-hexo-cli.png">
+<meta name="twitter:title" content="JS判断对象是否为空">
+<meta name="twitter:description" content="JS 判断对象是否为空 在开发会客厅预定逻辑，渲染门店列表时候后台返回的是一个 对象，之前是 数组，后台说自己不好处理，那我就对数据进行二次转换把。首先想到如何判断一个变量是对象还是数组呢？于是就使用最稳妥的办法：const string = Object.prototype.toString.call(var)，在对此结果进行 string.indexOf(&amp;#39;Object&amp;#39;)、s">
   
     <link rel="alternate" href="/atom.xml" title="Andy Zhang&#39;Hexo" type="application/atom+xml">
   
@@ -72,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Nodejs一次安装记录" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-JS判断对象是否为空" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/03/08/Nodejs一次安装记录/" class="article-date">
-  <time datetime="2020-03-08T12:45:57.000Z" itemprop="datePublished">2020-03-08</time>
+    <a href="/2020/08/31/JS判断对象是否为空/" class="article-date">
+  <time datetime="2020-08-31T08:31:41.000Z" itemprop="datePublished">2020-08-31</time>
 </a>
     
   </div>
@@ -86,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Nodejs一次安装记录
+      JS判断对象是否为空
     </h1>
   
 
@@ -94,27 +87,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>由于 github 上的博客太慢了，我决定在 gitee 上搭建一份博客！于疫情期间 2020-03-05 在家捯饬，想到我的 hexo 安装的比较早（大概是在 20190122，参考的文档就更早了），就打算找一个最近发布的文档参考！文档中让安装 npm install -g hexo-cli ，于是执行命令效果如下：</p>
-<p><img src="http://file.798run.top/img/blog/20200308/install-hexo-cli.png" alt="执行命令效果"></p>
-<p>我在执行 npm install -g hexo-cli 时候在想我之前应该已经执行了类似的全局操作，这次执行会不会覆盖之前的版本？升级 hexo 依赖包不行吗？npm 升级 hexo 包的指令又是啥？带着上面的疑问我 Windows10 系统找到本机 nodejs 安装目录：C:\Program Files\nodejs，截图如下：</p>
-<p><img src="http://file.798run.top/img/blog/20200308/nodejs-install-dir.png" alt="nodejs安装目录"></p>
-<p>看到之后发现怎么是一个快捷方式？该快捷方式地址详情如下：</p>
-<p><img src="http://file.798run.top/img/blog/20200308/nodejs-shortcut.png" alt="快捷方式详情"></p>
-<p>怎么是 user 下 Roaming 的 nvm？nvm 是为了切换当前 nodejs 运行版本安装的一个小工具，难道是 nvm 把 nodejs 安装地址更改了？又找到我本机缓存的目录如下：</p>
-<p><img src="http://file.798run.top/img/blog/20200308/roaming.png" alt=""></p>
-<p>hexo 之前参考的老文档是让安装 npm install hexo –g，新参考文档让安装 npm install hexo-cli –g，老文档中安装完成键入 hexo –v 显示：</p>
-<p><img src="http://file.798run.top/img/blog/20200308/hexo-v-old.png" alt=""></p>
-<p>我在安装了 hexo-cli –g 之后也执行 hexo –v 显示：</p>
-<p><img src="http://file.798run.top/img/blog/20200308/hexo-v-new.png" alt=""></p>
-<p>猜想是不是 hexo 的版本升级，之前安装的指令与现在安装的指令虽有点不太一样，安装完之后功能是一样的，可以在一个新电脑在尝试！</p>
-<h6 id="思考，是不是安装了-nvm-nodejs-的安装目录就是变成了快捷方式，属性值指向了-roaming-下的-nvm-了？"><a href="#思考，是不是安装了-nvm-nodejs-的安装目录就是变成了快捷方式，属性值指向了-roaming-下的-nvm-了？" class="headerlink" title="思考，是不是安装了 nvm nodejs 的安装目录就是变成了快捷方式，属性值指向了 roaming 下的 nvm 了？"></a>思考，是不是安装了 nvm nodejs 的安装目录就是变成了快捷方式，属性值指向了 roaming 下的 nvm 了？</h6>
+        <h2 id="JS-判断对象是否为空"><a href="#JS-判断对象是否为空" class="headerlink" title="JS 判断对象是否为空"></a>JS 判断对象是否为空</h2><ol>
+<li><p>在开发会客厅预定逻辑，渲染门店列表时候后台返回的是一个 <code>对象</code>，之前是 <code>数组</code>，后台说自己不好处理，那我就对数据进行二次转换把。首先想到如何判断一个变量是<code>对象</code>还是<code>数组</code>呢？于是就使用最稳妥的办法：<code>const string = Object.prototype.toString.call(var)</code>，在对此结果进行 <code>string.indexOf(&#39;Object&#39;)</code>、<code>string.indexOf(&#39;Array&#39;)</code>、<code>string.includes(&#39;Object&#39;)</code>、<code>string.includes(&#39;Array&#39;)</code>进行判断！</p>
+</li>
+<li><p>此时我又想到判断数组是否为空可以使用 <code>array.length &gt; 0</code>，那么怎么判断判断一个对象是否为空呢？</p>
+</li>
+<li><p>方法如下：</p>
+</li>
+</ol>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (var i in obj) &#123;</span><br><span class="line">  return true  // 如果不为空，则会执行到这一步，返回true</span><br><span class="line">&#125;</span><br><span class="line">return false // 如果为空,返回 false</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 es6 的方法 <code>Object.keys(var)</code> 该方法返回一个数组，若改数组的长度为 0 这说明为空对象！</p>
+</li>
+<li><p>使用 JSON.stringify()，将 JavaScript 值转换为 JSON 字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (JSON.stringify(data) === &apos;&#123;&#125;&apos;) &#123;</span><br><span class="line">　　return false // 如果为空,返回false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return true // 如果不为空，则会执行到这一步，返回true</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/08/Nodejs一次安装记录/" data-id="ckeiak9830011p0vhjq74frqn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/31/JS判断对象是否为空/" data-id="ckeiak97k000np0vhmo27kun0" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
 
     </footer>
   </div>
@@ -122,19 +119,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/03/16/Git在linux上的一次使用记录/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Git在linux上的一次使用记录
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/03/03/laravel创建table字段参考表/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/07/28/前端精进/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">laravel创建table字段参考表</div>
+      <div class="article-nav-title">前端精进</div>
     </a>
   
 </nav>
