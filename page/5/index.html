@@ -107,7 +107,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/15/CSS字体行高相关/" data-id="ckeiak972000dp0vhmwlfbxoq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/15/CSS字体行高相关/" data-id="ckeianr1d0006dovhm16um255" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -189,7 +189,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/13/layui中相关模块记录/" data-id="ckeiak99p001xp0vhb652r5cd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/13/layui中相关模块记录/" data-id="ckeianr4g0022dovhpmp3crn9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui相关/">layui相关</a></li></ul>
@@ -272,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/html一些不常用标签/" data-id="ckeiak98x001jp0vhrdt1u8gx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/html一些不常用标签/" data-id="ckeianr3f001gdovh2ai9ca5z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -307,10 +307,10 @@
         <h4 id="js默认行为和事件冒泡的几种方法"><a href="#js默认行为和事件冒泡的几种方法" class="headerlink" title="js默认行为和事件冒泡的几种方法"></a>js默认行为和事件冒泡的几种方法</h4><ol>
 <li>js阻止事件冒泡</li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'el'</span>);</span><br><span class="line">el.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event &amp;&amp; event.stopPropagation) &#123;</span><br><span class="line">        <span class="comment">// 如果提供了事件对象，则这是一个非IE浏览器</span></span><br><span class="line">        event.stopPropagation();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 否则，我们需要使用IE的方式来取消事件冒泡 </span></span><br><span class="line">        <span class="built_in">window</span>.event.cancelBubble = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'el'</span>);</span><br><span class="line">el.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event &amp;&amp; event.stopPropagation) &#123;</span><br><span class="line">        <span class="comment">// 如果提供了事件对象，则这是一个非IE浏览器</span></span><br><span class="line">        event.stopPropagation();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 否则，我们需要使用IE的方式来取消事件冒泡</span></span><br><span class="line">        <span class="built_in">window</span>.event.cancelBubble = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li><p>js阻止默认事件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'el'</span>);</span><br><span class="line">el.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">ev</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ev = ev || event;</span><br><span class="line">    <span class="keyword">if</span> (ev &amp;&amp; ev.preventDefault) &#123;</span><br><span class="line">        <span class="comment">// 如果提供了默认事件，则这是一个非IE浏览器</span></span><br><span class="line">        <span class="comment">// w3c阻止默认浏览器动作</span></span><br><span class="line">        ev.preventDefault();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// IE中阻止函数器默认动作的方式 </span></span><br><span class="line">        <span class="built_in">window</span>.event.returnValue = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="built_in">document</span>.getElementById(<span class="string">'el'</span>);</span><br><span class="line">el.onclick = <span class="function"><span class="keyword">function</span> (<span class="params">ev</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ev = ev || event;</span><br><span class="line">    <span class="keyword">if</span> (ev &amp;&amp; ev.preventDefault) &#123;</span><br><span class="line">        <span class="comment">// 如果提供了默认事件，则这是一个非IE浏览器</span></span><br><span class="line">        <span class="comment">// w3c阻止默认浏览器动作</span></span><br><span class="line">        ev.preventDefault();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// IE中阻止函数器默认动作的方式</span></span><br><span class="line">        <span class="built_in">window</span>.event.returnValue = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>jq阻止事件冒泡和默认行为</p>
 </li>
@@ -335,15 +335,17 @@
 </ul>
 <p>这种方法虽是看着简单，但是针对document中已经存在的元素，动态添加的元素是绑定不上click事件的，所以一是养成好习惯，二是为了避免click绑定不上。固<code>$(&#39;el&#39;).on(&#39;click&#39;, function () {})</code>这样写。注：在之前老版本jq是bind关键词，后来改为了on。</p>
 <h4 id="js默认行为有哪些"><a href="#js默认行为有哪些" class="headerlink" title="js默认行为有哪些"></a>js默认行为有哪些</h4><p>很多的网页元素都会有默认的行为，比如说当你点击一下超链接a标签的时候，它会有一个跳转的行为；当你在网页上点鼠标右键时会出现一个右键菜；当你在一个form表单里点击提交按钮时网页会产生提交行为并刷新网页，当你网页上滚动鼠标滚轮时，网页的滚动条会动等等。这些都叫事件的默认行为，如果想把这默认行为取消了，相应的JS代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">el.onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">false</span>;&#125;<span class="comment">//在方法里加个return false，就阻止超链接点击时的跳转行为了</span></span><br><span class="line"><span class="built_in">document</span>.oncontextmenu=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">/* 在这里你还可以加一些代码，实现自定义的右键菜单 */</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 系统自带的右键菜单就失效了</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这样表单就不会产生提交行为了</span></span><br><span class="line">Form.onsubmit=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">false</span>;&#125; </span><br><span class="line"><span class="comment">// IE和chrome的方式，取消鼠标的滚轮的默认行为，网页的滚动条就不会动了</span></span><br><span class="line"><span class="built_in">document</span>.onmousewheel=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">false</span>&#125; </span><br><span class="line"><span class="comment">// 功能同上，火狐的方式。火狐只能用DOM二级的绑定方式，并且用e.preventDefault=true</span></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOMMouseScroll'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;e.preventDefault=<span class="literal">true</span>&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">el.onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">false</span>;&#125;<span class="comment">//在方法里加个return false，就阻止超链接点击时的跳转行为了</span></span><br><span class="line"><span class="built_in">document</span>.oncontextmenu=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">/* 在这里你还可以加一些代码，实现自定义的右键菜单 */</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 系统自带的右键菜单就失效了</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这样表单就不会产生提交行为了</span></span><br><span class="line">Form.onsubmit=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">false</span>;&#125;</span><br><span class="line"><span class="comment">// IE和chrome的方式，取消鼠标的滚轮的默认行为，网页的滚动条就不会动了</span></span><br><span class="line"><span class="built_in">document</span>.onmousewheel=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="literal">false</span>&#125;</span><br><span class="line"><span class="comment">// 功能同上，火狐的方式。火狐只能用DOM二级的绑定方式，并且用e.preventDefault=true</span></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOMMouseScroll'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;e.preventDefault=<span class="literal">true</span>&#125;);</span><br></pre></td></tr></table></figure>
 <p>我们要知道常见的事件默认行为有那些，并且要知道阻止默认行为，只要在绑定到这个行为事件的方法里最后加一句：return false;就可以了。<br>但要强调注意的是：如果你的事件绑定是用addEventListener来实现的，那阻止默认行为必须用e.preventDefault=true。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/js默认行为和事件冒泡/" data-id="ckeiak99i001tp0vhpkxvlslw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/js默认行为和事件冒泡/" data-id="ckeianr6j002ydovhhr5c8i0z" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
+
     </footer>
   </div>
   
@@ -398,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/jqready/" data-id="ckeiak98z001kp0vhk62x49cv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/jqready/" data-id="ckeianr3j001hdovh4c5ymipb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -463,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="ckeiak9ah002fp0vhvwn6jmjg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="ckeianr5e002ndovhntwhk8kh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -510,7 +512,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="ckeiak9au002np0vhni98fy80" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="ckeianr5q002udovhin3upoeb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -695,7 +697,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ckeiak980000zp0vha5opkx4c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ckeianr2f000sdovhd6l733j1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
@@ -741,7 +743,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="ckeiak99y0023p0vhpzu1xfqp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="ckeianr4t002adovh54odhb4f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -800,7 +802,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/23/Shell总结/" data-id="ckeiak98c0016p0vhym5o95yc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/23/Shell总结/" data-id="ckeianr2v0013dovh1v4f680n" class="article-share-link">Share</a>
       
       
     </footer>

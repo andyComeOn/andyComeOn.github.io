@@ -8,6 +8,7 @@
   <title>js中的prototype总结 | Andy Zhang&#39;Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="序： 在看js的几种继承方式相关文档时候，看到原型(prototype)继承，之前也看到有关的prototype的相关知识，看了就忘了，现自己总结一下。  我们大家在平时写代码时候，一般都是：  1function foo() &amp;#123;&amp;#125; 但是在看到一些封装的函数一般是： 1function Foo() &amp;#123;&amp;#125; 后来自己的理解：封装的一些函数，一般是采用的大写命名，">
+<meta name="keywords" content="JS相关">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js中的prototype总结">
 <meta property="og:url" content="http://yoursite.com/2019/04/12/js中的prototype总结/index.html">
@@ -15,7 +16,7 @@
 <meta property="og:description" content="序： 在看js的几种继承方式相关文档时候，看到原型(prototype)继承，之前也看到有关的prototype的相关知识，看了就忘了，现自己总结一下。  我们大家在平时写代码时候，一般都是：  1function foo() &amp;#123;&amp;#125; 但是在看到一些封装的函数一般是： 1function Foo() &amp;#123;&amp;#125; 后来自己的理解：封装的一些函数，一般是采用的大写命名，">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://images2015.cnblogs.com/blog/960109/201607/960109-20160712231541998-1991573736.png">
-<meta property="og:updated_time" content="2019-04-13T09:57:24.885Z">
+<meta property="og:updated_time" content="2020-08-31T09:01:02.383Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js中的prototype总结">
 <meta name="twitter:description" content="序： 在看js的几种继承方式相关文档时候，看到原型(prototype)继承，之前也看到有关的prototype的相关知识，看了就忘了，现自己总结一下。  我们大家在平时写代码时候，一般都是：  1function foo() &amp;#123;&amp;#125; 但是在看到一些封装的函数一般是： 1function Foo() &amp;#123;&amp;#125; 后来自己的理解：封装的一些函数，一般是采用的大写命名，">
@@ -95,7 +96,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>但是在看到一些封装的函数一般是：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>后来自己的理解：封装的一些函数，一般是采用的大写命名，醒目、清晰、大家约定俗称（这里针对js，jq的传统js写法）。自己写的函数一般小写命名，固函数大小写命名区别不大。 </p>
+<p>后来自己的理解：封装的一些函数，一般是采用的大写命名，醒目、清晰、大家约定俗称（这里针对js，jq的传统js写法）。自己写的函数一般小写命名，固函数大小写命名区别不大。</p>
 <p>下面说一下prototype，看代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person(<span class="string">'Byron'</span>);</span><br></pre></td></tr></table></figure>
 <p>我们把p1称为Person的一个实例，new Person(‘Byron’)，可理解为构造函数。 针对Person函数，我们在函数体中写了<br><code>this.name = name;</code>,<code>this.foo = function () {};</code>, 这意思就是给Person声明了2个属性 <code>name</code>、<code>foo</code>（这是我们通过代码增加的属性）；只要Person函数已经声明了，它就有一个属性prototype（是一个对象-包含1个默认的属性<code>constructor</code>）,这个 <code>constructor</code>又指向了Person函数本身！</p>
@@ -111,9 +112,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="ckeiak995001np0vhhdz46ztg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/12/js中的prototype总结/" data-id="ckeianr43001udovh11rx8s43" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
+
     </footer>
   </div>
   
