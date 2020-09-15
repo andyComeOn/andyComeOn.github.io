@@ -122,7 +122,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/25/Git常用命令/" data-id="ckf3qwt66000kvww9b5b22req" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/25/Git常用命令/" data-id="ckf3r7lc0000lrsw9ce91xq5u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git相关/">Git相关</a></li></ul>
@@ -166,7 +166,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/07/浏览器加载资源报错/" data-id="ckf3qwt85002rvww9znyn4fkc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/07/浏览器加载资源报错/" data-id="ckf3r7ldo002nrsw96qimgb8k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -234,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/25/table标签相关总结/" data-id="ckf3qwt7r0024vww9a61qy9bn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/25/table标签相关总结/" data-id="ckf3r7ld70022rsw9trps95tq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Table相关/">Table相关</a></li></ul>
@@ -274,6 +274,9 @@
 <p>情况1是他们处理过，情况2是直接返回的时间戳。情况1中已处理过，可直接用js处理字符串的方法处理成自己所需要的格式。</p>
 <p>情况2直接 <code>new Date(timestamp)</code> 打印之是：<code>Tue Sep 17 2019 17:07:53 GMT+0800 (中国标准时间)</code>。时间戳必须是数字否则提示：<code>Invalid Date</code>。若是想使用其中的年月日信息则可：<code>_data = new Date(timestamp)</code> ，切记月份记得要加 1 ， 若需要月、日都是2位 ，写一个过滤函数处理之即可。过滤器函数如下</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 月、日是一位数字的补齐2位，若函数名重复可shift用_padding</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_fill</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 使程序更严谨</span></span><br><span class="line">    <span class="keyword">if</span> (arg == <span class="literal">undefined</span> || arg == <span class="string">''</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> re = arg + <span class="string">''</span>;  <span class="comment">// 转为字符串为了使用字符串 length 属性</span></span><br><span class="line">    <span class="keyword">if</span> (re.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        re = <span class="string">'0'</span> + re;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> re;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>补记：其实 Date() 有一些封装好的方法，如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> timeString = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">this</span>.data.timestamp).toLocaleString() <span class="comment">// 代码块且命名好</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleString() <span class="comment">// "2020/9/15 下午3:42:04"</span></span><br></pre></td></tr></table></figure>
+<p>展示遵循简单，2020/9/15，切莫追求2020/09/15。</p>
 <h3 id="2、-JS中date日期初始化的几种方法"><a href="#2、-JS中date日期初始化的几种方法" class="headerlink" title="2、 JS中date日期初始化的几种方法"></a>2、 JS中date日期初始化的几种方法</h3><p>在标题1中讲述到一般后端返回的是 <code>timestamp</code>、<code>2018-09-09 00:00:00</code>2种，针对这两种初始化可使用如下5种方法：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> objDate = <span class="keyword">new</span> <span class="built_in">Date</span>([<span class="built_in">arguments</span> list]);</span><br></pre></td></tr></table></figure>
 <p>1) <code>new Date(&quot;month dd,yyyy hh:mm:ss&quot;);</code><br>2) <code>new Date(&quot;month dd,yyyy&quot;);</code><br>以下情况必须是数字型参数！<br>3) <code>new Date(yyyy, mth, dd, hh, mm, ss);</code><br>4) <code>new Date(yyyy, mth, dd);</code><br>5) <code>new Date(ms);</code></p>
@@ -321,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ckf3qwt7o0020vww9486v8tr2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ckf3r7ldx002wrsw9ihnfdo8l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -366,7 +369,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/23/JS杂集 /" data-id="ckf3qwt6g000uvww9rky9170o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/23/JS杂集 /" data-id="ckf3r7lc6000rrsw9ayofxcli" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -447,7 +450,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ckf3qwt87002tvww9yz0gvraz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/02/看冴羽博客笔记/" data-id="ckf3r7ldn002mrsw9dd4csq2d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -531,7 +534,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="ckf3qwt7l001wvww9oivbpw8r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/14/layui中函数使用方法/" data-id="ckf3r7ld3001wrsw9ha55tmg2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui相关/">layui相关</a></li></ul>
@@ -583,7 +586,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="ckf3qwt6m0012vww9565g95n3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/11/Math函数/" data-id="ckf3r7lcb000zrsw9mpg95uod" class="article-share-link">Share</a>
       
       
     </footer>
@@ -638,7 +641,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/10/h5中img标签的边框问题/" data-id="ckf3qwt72001dvww93t4urusz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/06/10/h5中img标签的边框问题/" data-id="ckf3r7lcn001frsw9slru601f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -674,7 +677,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="ckf3qwt5t0007vww92pqxvxks" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/09/CSS的normalize-css的文档说明/" data-id="ckf3r7lbv000drsw9viwp6ipt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>

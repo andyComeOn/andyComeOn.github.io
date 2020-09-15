@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Andy Zhang&#39;Hexo">
 <meta property="og:description" content="js日期相关处理函数，时间久了就会忘记怎么使用，每次都是临时在网上搜，写个笔记记录一下：  1、 日期的基本处理。一般针对前端而言，后端（PHP、Java）传给你的时间字段，常见的有2种：如1：2018-09-09 00:00:00，如2：1568711273205。  情况1是他们处理过，情况2是直接返回的时间戳。情况1中已处理过，可直接用js处理字符串的方法处理成自己所需要的格式。 情况2直接">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-06-27T13:52:21.333Z">
+<meta property="og:updated_time" content="2020-09-15T09:28:22.117Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js日期设置总结">
 <meta name="twitter:description" content="js日期相关处理函数，时间久了就会忘记怎么使用，每次都是临时在网上搜，写个笔记记录一下：  1、 日期的基本处理。一般针对前端而言，后端（PHP、Java）传给你的时间字段，常见的有2种：如1：2018-09-09 00:00:00，如2：1568711273205。  情况1是他们处理过，情况2是直接返回的时间戳。情况1中已处理过，可直接用js处理字符串的方法处理成自己所需要的格式。 情况2直接">
@@ -93,6 +93,9 @@
 <p>情况1是他们处理过，情况2是直接返回的时间戳。情况1中已处理过，可直接用js处理字符串的方法处理成自己所需要的格式。</p>
 <p>情况2直接 <code>new Date(timestamp)</code> 打印之是：<code>Tue Sep 17 2019 17:07:53 GMT+0800 (中国标准时间)</code>。时间戳必须是数字否则提示：<code>Invalid Date</code>。若是想使用其中的年月日信息则可：<code>_data = new Date(timestamp)</code> ，切记月份记得要加 1 ， 若需要月、日都是2位 ，写一个过滤函数处理之即可。过滤器函数如下</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 月、日是一位数字的补齐2位，若函数名重复可shift用_padding</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">_fill</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 使程序更严谨</span></span><br><span class="line">    <span class="keyword">if</span> (arg == <span class="literal">undefined</span> || arg == <span class="string">''</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> re = arg + <span class="string">''</span>;  <span class="comment">// 转为字符串为了使用字符串 length 属性</span></span><br><span class="line">    <span class="keyword">if</span> (re.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        re = <span class="string">'0'</span> + re;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> re;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>补记：其实 Date() 有一些封装好的方法，如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> timeString = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="keyword">this</span>.data.timestamp).toLocaleString() <span class="comment">// 代码块且命名好</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleString() <span class="comment">// "2020/9/15 下午3:42:04"</span></span><br></pre></td></tr></table></figure>
+<p>展示遵循简单，2020/9/15，切莫追求2020/09/15。</p>
 <h3 id="2、-JS中date日期初始化的几种方法"><a href="#2、-JS中date日期初始化的几种方法" class="headerlink" title="2、 JS中date日期初始化的几种方法"></a>2、 JS中date日期初始化的几种方法</h3><p>在标题1中讲述到一般后端返回的是 <code>timestamp</code>、<code>2018-09-09 00:00:00</code>2种，针对这两种初始化可使用如下5种方法：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> objDate = <span class="keyword">new</span> <span class="built_in">Date</span>([<span class="built_in">arguments</span> list]);</span><br></pre></td></tr></table></figure>
 <p>1) <code>new Date(&quot;month dd,yyyy hh:mm:ss&quot;);</code><br>2) <code>new Date(&quot;month dd,yyyy&quot;);</code><br>以下情况必须是数字型参数！<br>3) <code>new Date(yyyy, mth, dd, hh, mm, ss);</code><br>4) <code>new Date(yyyy, mth, dd);</code><br>5) <code>new Date(ms);</code></p>
@@ -140,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ckf3qwt7o0020vww9486v8tr2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/17/js日期设置总结/" data-id="ckf3r7ldx002wrsw9ihnfdo8l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
