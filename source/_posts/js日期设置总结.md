@@ -32,6 +32,14 @@ function _fill(arg) {
 }
 ~~~
 
+补记：其实 Date() 有一些封装好的方法，如：
+
+~~~javascript
+const timeString = new Date(this.data.timestamp).toLocaleString() // 代码块且命名好
+new Date().toLocaleString() // "2020/9/15 下午3:42:04"
+~~~
+展示遵循简单，2020/9/15，切莫追求2020/09/15。
+
 ### 2、 JS中date日期初始化的几种方法
 
 在标题1中讲述到一般后端返回的是 ` timestamp `、` 2018-09-09 00:00:00 `2种，针对这两种初始化可使用如下5种方法：
