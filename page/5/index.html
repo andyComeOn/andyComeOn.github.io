@@ -62,6 +62,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-jq中一些总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/22/jq中一些总结/" class="article-date">
+  <time datetime="2019-02-22T06:40:54.000Z" itemprop="datePublished">2019-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/22/jq中一些总结/">jq中一些总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、标签下的data-总结"><a href="#1、标签下的data-总结" class="headerlink" title="1、标签下的data-**总结"></a>1、标签下的data-**总结</h3><p><strong>写法一：</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"el1"</span> <span class="attr">data-isdata</span> = <span class="string">"1"</span>&gt;</span>标签1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"el2"</span> <span class="attr">data-isData</span> = <span class="string">"2"</span>&gt;</span>标签2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"el3"</span> <span class="attr">data-is_Data</span> = <span class="string">"3"</span>&gt;</span>标签3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log($(<span class="string">'.el1'</span>).data(<span class="string">'isdata'</span>));  <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'.el2'</span>).data(<span class="string">'isData'</span>));  <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'.el3'</span>).data(<span class="string">'isdata'</span>));  <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确的用法</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'.el2'</span>).data(<span class="string">'isdata'</span>)); <span class="comment">// 2</span></span><br><span class="line"><span class="built_in">console</span>.log($(<span class="string">'.el3'</span>).data(<span class="string">'is_data'</span>)); <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 总结就是遇见大写的就转为小写即可</span></span><br></pre></td></tr></table></figure>
+<p>说明：保留几位小数点，参数n设置为几！</p>
+<hr>
+<h3 id="2、简单的分页逻辑"><a href="#2、简单的分页逻辑" class="headerlink" title="2、简单的分页逻辑"></a>2、简单的分页逻辑</h3><p><strong>方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">page</span>(<span class="params">total, pagesize = <span class="number">10</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> tmp = (total / pagesize).toString();</span><br><span class="line">    <span class="keyword">if</span> (tmp.indexOf(<span class="string">'.'</span>) == <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> tmp - <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Math</span>.ceil(tmp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(page(<span class="number">21</span>, <span class="number">22</span>));</span><br></pre></td></tr></table></figure>
+<p>说明：第一个参数是数据的总数量，第二个参数是每页数量，该函数抛出的是总共有几页！</p>
+<hr>
+<h3 id="3、数字字符串转数字"><a href="#3、数字字符串转数字" class="headerlink" title="3、数字字符串转数字"></a>3、数字字符串转数字</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'1'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a - <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(a));</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="4、函数传参"><a href="#4、函数传参" class="headerlink" title="4、函数传参"></a>4、函数传参</h3><p><strong>方法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">todo</span>(<span class="params">a, b = <span class="number">2</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + <span class="string">'|'</span> + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(todo(<span class="number">1</span>, <span class="number">3</span>)); <span class="comment">// '1|3'</span></span><br><span class="line"><span class="built_in">console</span>.log(todo(<span class="number">1</span>)); <span class="comment">// '1|2'</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/02/22/jq中一些总结/" data-id="ckf3tk82w001kbkw9faddf6en" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-设置路由器的一次记录" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/02/15/设置路由器的一次记录/" class="article-date">
@@ -95,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/15/设置路由器的一次记录/" data-id="ckf3tdmxn002vn8w9ci7d8amm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/15/设置路由器的一次记录/" data-id="ckf3tk83u002xbkw9l2oybycm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -150,7 +198,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/15/CSS字体行高相关/" data-id="ckf3tdmvk0006n8w9txlvd8is" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/15/CSS字体行高相关/" data-id="ckf3tk81v0005bkw9ze8qicq3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS相关/">CSS相关</a></li></ul>
@@ -232,7 +280,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/13/layui中相关模块记录/" data-id="ckf3tdmx20022n8w9ial7b2my" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/13/layui中相关模块记录/" data-id="ckf3tk8380023bkw9540ijjzc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui相关/">layui相关</a></li></ul>
@@ -315,7 +363,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/html一些不常用标签/" data-id="ckf3tdmwp001jn8w91vhmkkqg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/html一些不常用标签/" data-id="ckf3tk82x001mbkw9o0211ll0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -384,7 +432,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/js默认行为和事件冒泡/" data-id="ckf3tdmwy001wn8w95b6gc0qc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/js默认行为和事件冒泡/" data-id="ckf3tk83a0025bkw9a6xl371b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -443,7 +491,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/02/12/jqready/" data-id="ckf3tdmws001mn8w9hycdmu1k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/02/12/jqready/" data-id="ckf3tk82z001pbkw9vi70g1zk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -508,7 +556,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="ckf3tdmxm002tn8w9v47wqs2u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/29/浏览器中网址访问过程详解/" data-id="ckf3tk83p002qbkw9403ta9nb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -555,7 +603,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="ckf3tdmxo002wn8w9az4nd8n0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/26/美团2019春节干货/" data-id="ckf3tk83w002zbkw91vzwlolo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -740,55 +788,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ckf3tdmwa000zn8w9jeu46v3j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/Linux一些常用命令总结/" data-id="ckf3tk82f000vbkw9h0bgodlr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具使用总结/">工具使用总结</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-大前端群" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/25/大前端群/" class="article-date">
-  <time datetime="2019-01-25T00:57:23.000Z" itemprop="datePublished">2019-01-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/25/大前端群/">大前端群</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="大前端群的每日资讯"><a href="#大前端群的每日资讯" class="headerlink" title="大前端群的每日资讯"></a>大前端群的每日资讯</h4><ul>
-<li><p>该群中的每日资讯是成员“深圳-阿里巴巴-马跃”整理所发。</p>
-</li>
-<li><p>每天都会有。</p>
-</li>
-<li><p>主页在<a href="http://fe.jskou.com/" target="_blank" rel="noopener">前端艺术家-飞冰早报</a>。</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/大前端群/" data-id="ckf3tdmx70029n8w9n46kpcq9" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -846,6 +850,10 @@
       <ul>
         
           <li>
+            <a href="/2020/09/15/demo/">demo</a>
+          </li>
+        
+          <li>
             <a href="/2020/09/15/hello-world/">Hello World</a>
           </li>
         
@@ -859,10 +867,6 @@
         
           <li>
             <a href="/2020/07/22/dns记录/">dns记录</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/20/数据类型转换/">数据类型转换</a>
           </li>
         
       </ul>
