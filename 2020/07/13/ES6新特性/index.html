@@ -7,20 +7,20 @@
   
   <title>ES6新特性 | Andy Zhang&#39;Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="面试时候，会经常问 ES6 的新特性，现总结一下！  for of 循环 我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下：  12345const digits = [1, 2, 3];for (const index in digits) &amp;#123;  con">
+  <meta name="description" content="1、for of 循环我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下： 12345const digits = [1, 2, 3];for (const index in digits) &amp;#123;  console.log(index, &amp;apos;--&amp;apo">
 <meta name="keywords" content="JS相关">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ES6新特性">
 <meta property="og:url" content="http://yoursite.com/2020/07/13/ES6新特性/index.html">
 <meta property="og:site_name" content="Andy Zhang&#39;Hexo">
-<meta property="og:description" content="面试时候，会经常问 ES6 的新特性，现总结一下！  for of 循环 我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下：  12345const digits = [1, 2, 3];for (const index in digits) &amp;#123;  con">
+<meta property="og:description" content="1、for of 循环我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下： 12345const digits = [1, 2, 3];for (const index in digits) &amp;#123;  console.log(index, &amp;apos;--&amp;apo">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://file.798run.top/img/blog/20200713/forin_proto.png">
 <meta property="og:image" content="http://file.798run.top/img/blog/20200713/for_of.png">
-<meta property="og:updated_time" content="2020-07-16T03:25:47.318Z">
+<meta property="og:updated_time" content="2020-09-16T09:24:04.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6新特性">
-<meta name="twitter:description" content="面试时候，会经常问 ES6 的新特性，现总结一下！  for of 循环 我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下：  12345const digits = [1, 2, 3];for (const index in digits) &amp;#123;  con">
+<meta name="twitter:description" content="1、for of 循环我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下： 12345const digits = [1, 2, 3];for (const index in digits) &amp;#123;  console.log(index, &amp;apos;--&amp;apo">
 <meta name="twitter:image" content="http://file.798run.top/img/blog/20200713/forin_proto.png">
   
     <link rel="alternate" href="/atom.xml" title="Andy Zhang&#39;Hexo" type="application/atom+xml">
@@ -90,19 +90,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>面试时候，会经常问 ES6 的新特性，现总结一下！</p>
-</blockquote>
-<h4 id="for-of-循环"><a href="#for-of-循环" class="headerlink" title="for of 循环"></a>for of 循环</h4><ul>
-<li>我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下：</li>
-</ul>
+        <h2 id="1、for-of-循环"><a href="#1、for-of-循环" class="headerlink" title="1、for of 循环"></a>1、for of 循环</h2><p>我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const digits = [1, 2, 3];</span><br><span class="line"></span><br><span class="line">for (const index in digits) &#123;</span><br><span class="line">  console.log(index, &apos;--&apos;, digits[index]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样一看，for in 挺好啊，对象与数组通吃！但，有一种场景，for in 就会出现问题。场景：开发过程中，你需要给数组中添加额外方法</p>
+<p>这样一看，for in 挺好啊，对象与数组通吃！但，有一种场景 for in 就会出现问题。场景：开发过程中，你需要给数组中添加额外方法，如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.decimalfy = function() &#123;</span><br><span class="line">  for (let i = 0; i &lt; this.length; i++) &#123;</span><br><span class="line">    this[i] = this[i].toFixed(2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>此时循环上面的数组效果如下：</p>
 <p><img src="http://file.798run.top/img/blog/20200713/forin_proto.png" alt="for in 会循环出原型链上的属性"></p>
-<p>forin 直接把原型链上的方法也给循环了。为啥会出现此结果？因为 forin 循环访问所有可枚举的属性！既然 forin 在某些场景下出现我们不期望的结果！那 es6 就推出一个新的循环方法 for of！</p>
-<p>for of 用于循环访问任何可迭代的数据类型，其编写方式和 for…in 循环的基本一样，只是将 in 替换为 of，可以忽略索引。于是我就写下了下面的代码：</p>
+<p>forin 直接把原型链上的方法也给循环了。为啥会出现此结果？因为 forin 循环访问所有可枚举的属性！既然 forin 在某些场景下出现我们不期望的结果！es6 就推出一个新的循环方法 for of！用于循环访问任何可迭代的数据类型，其编写方式和 for…in 循环的基本一样，只是将 in 替换为 of，可以忽略索引。于是我就写下了下面的代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const digits = [11, 12, 13];</span><br><span class="line"></span><br><span class="line">for (const index of digits) &#123;</span><br><span class="line">  console.log(index, &apos;--&apos;, digits[index]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果如下：</p>
 <p><img src="http://file.798run.top/img/blog/20200713/for_of.png" alt="for of 循环效果"></p>
@@ -112,12 +106,18 @@
 <p>此时脑袋中闪出一个想法，for of 既然这么强大，我能不能循环对象呢？于是直接写出下面代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var object = &#123;</span><br><span class="line">  name: &apos;Tom&apos;,</span><br><span class="line">  age: 19</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">for (const iterator of object) &#123;</span><br><span class="line">  console.log(iterator)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>遗憾的是出错了！错误：<code>Uncaught TypeError: object is not iterable</code> object 不是迭代类型。所以我们不能使用之循环 object！具体可细看 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank" rel="noopener">MDN for…of</a></p>
-<p>可枚举的属性</p>
+<p>一直看 MDN 上看到可枚举的属性，这个详细定义在哪？闲了细究！</p>
+<h2 id="2、import、export"><a href="#2、import、export" class="headerlink" title="2、import、export"></a>2、import、export</h2><ul>
+<li><p><strong>export</strong> 写 vue 时候，大家都习惯了 vue 的默认模板，在 script 里面我们直接 <code>export default {}</code>，还可以<code>export default function fn() { return new Date().getTime() }</code>。在项目中配置 api 时习惯这样写：<code>export const exchangeApi = &#39;/api/Toutiao/conversion</code>，我们还可以导出常量如：<code>export const PI = 3.14</code>、<code>export let APP_NAME = &quot;qiuguo&quot;</code>。若我们在一个 js 文件中写最开始声明一个 let host = ‘’，最后对其二次赋值，host = ‘<a href="https://www.baidu.com&#39;，我们可以这样导出" target="_blank" rel="noopener">https://www.baidu.com&#39;，我们可以这样导出</a> <code>export { host }</code>。</p>
+</li>
+<li><p><strong>import</strong> 引入的逻辑简单，有一个场景，在一个文件中有 export default、有非 default 形式。我们可以这样简写：<code>import fn, { name, PI, host } from &quot;../components/demo.js&quot;;</code></p>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/13/ES6新特性/" data-id="ckf4priao0008vww9b8wpu2vk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/13/ES6新特性/" data-id="ckf55hsv7000d64w9ygft94b1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS相关/">JS相关</a></li></ul>
@@ -138,9 +138,9 @@
     </a>
   
   
-    <a href="/2020/07/10/CSS中display总结/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/07/10/CSS中背景图片的总结/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">CSS中display总结</div>
+      <div class="article-nav-title">CSS中背景图片的总结</div>
     </a>
   
 </nav>
