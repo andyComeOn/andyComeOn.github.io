@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-单车系统" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/26/%E5%8D%95%E8%BD%A6%E7%B3%BB%E7%BB%9F/" class="article-date">
+  <time datetime="2020-12-26T08:13:21.000Z" itemprop="datePublished">2020-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/26/%E5%8D%95%E8%BD%A6%E7%B3%BB%E7%BB%9F/">单车系统</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>20201207-20201209 三天</p>
+<h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><p>1、项目使用<a href="mailto:&#118;&#x75;&#101;&#x2d;&#x63;&#x6c;&#105;&#64;&#51;&#46;&#48;">&#118;&#x75;&#101;&#x2d;&#x63;&#x6c;&#105;&#64;&#51;&#46;&#48;</a>搭建，src/server 是后端目录，src/views 是前端目录；前端 vue，后端 node，数据库 mysql；<br>2、针对 mysql 首先 npm i mysql -S 中内地 hxzn 讲到 mysql 的连接池</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">const mysql = require(<span class="string">&quot;mysql&quot;</span>);</span><br><span class="line"><span class="comment"># 连接池</span></span><br><span class="line">const pool = mysql.createPool(&#123;</span><br><span class="line">  host: <span class="string">&quot;localhost&quot;</span>,</span><br><span class="line">  user: <span class="string">&quot;root&quot;</span>,</span><br><span class="line">  password: <span class="string">&quot;123456&quot;</span>,</span><br><span class="line">  database: <span class="string">&quot;my db&quot;</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 传统写法</span></span><br><span class="line"><span class="comment"># const pool = mysql.createConnection(&#123;</span></span><br><span class="line"><span class="comment">#   host: &quot;localhost&quot;,</span></span><br><span class="line"><span class="comment">#   user: &quot;root&quot;,</span></span><br><span class="line"><span class="comment">#   password: &quot;123456&quot;,</span></span><br><span class="line"><span class="comment">#   database: &quot;my db&quot;,</span></span><br><span class="line"><span class="comment"># &#125;);</span></span><br><span class="line"><span class="comment"># pool.connect();</span></span><br><span class="line"><span class="comment"># pool.end();</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const query = <span class="keyword">function</span> (sql, callback) &#123;</span><br><span class="line">  pool.getconnection((err, conn) =&gt; &#123;</span><br><span class="line">    if (err) &#123;</span><br><span class="line">      callback(err, null);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      conn.query(sql, (err, result) =&gt; &#123;</span><br><span class="line">        conn.release();</span><br><span class="line">        callback(err, result);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">module.exports = query;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/26/%E5%8D%95%E8%BD%A6%E7%B3%BB%E7%BB%9F/" data-id="cm6soz0nl004j38vpgjbt1k3v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vue-main-js的一些配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/26/vue-main-js%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2020-12-26T07:31:20.000Z" itemprop="datePublished">2020-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/26/vue-main-js%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/">vue-main.js的一些配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="mainjs"><a href="#mainjs" class="headerlink" title="mainjs"></a><strong>mainjs</strong></h3><p>在使用 vue-cli 2.0 时候，例如我们使用 elementUI，其官网已经给我们全局引入的例子，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># main.js</span></span><br><span class="line"></span><br><span class="line">import Vue from <span class="string">&quot;vue&quot;</span>;</span><br><span class="line">import App from <span class="string">&quot;./App.vue&quot;</span>;</span><br><span class="line"></span><br><span class="line">import ElementUI from <span class="string">&#x27;element-ui&#x27;</span>;</span><br><span class="line">import <span class="string">&#x27;element-ui/lib/theme-chalk/index.css&#x27;</span>;</span><br><span class="line"></span><br><span class="line">Vue.use(ElementUI);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#  对于依赖包，如 echarts，软谋例子如下：</span></span><br><span class="line">import echarts from <span class="string">&#x27;echarts&#x27;</span>;</span><br><span class="line">Vue.prototype.<span class="variable">$echarts</span> = echarts;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># axios 软谋不是挂载到原型链上，而是如下使用：</span></span><br><span class="line">import axios from <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line">import vueaxios from <span class="string">&quot;vue-axios&quot;</span>;</span><br><span class="line">Vue.use(vueaxios, axios);</span><br><span class="line">this.axios.post();</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当然你依然可以挂载到vue原型链上：</span></span><br><span class="line">import axios from <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line">Vue.prototype.<span class="variable">$axios</span> = axios;</span><br><span class="line">this.<span class="variable">$axios</span>.post();</span><br><span class="line"></span><br><span class="line"><span class="comment"># 因为已经挂载到Vue的原型链上了，则在vue文件中可如下使用：</span></span><br><span class="line">this.<span class="variable">$echarts</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 百度map</span></span><br><span class="line">import BaiduMap from <span class="string">&#x27;vue-baidu-map&#x27;</span>;</span><br><span class="line">Vue.use(BaiduMap, &#123;</span><br><span class="line">  ak: fkhahkfhakfhkahkfakj</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Cookie</span></span><br><span class="line">import vuecookie from <span class="string">&#x27;vue-cookie&#x27;</span></span><br><span class="line">Vue.use(vuecookie)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/26/vue-main-js%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/" data-id="cm6soz0na003t38vp1za1ev1g" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-代码文件之Eslint" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/25/%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E4%B9%8BEslint/" class="article-date">
+  <time datetime="2020-12-25T03:16:40.000Z" itemprop="datePublished">2020-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/25/%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E4%B9%8BEslint/">代码片段之Eslint</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="解析器"><a href="#解析器" class="headerlink" title="解析器"></a>解析器</h3><p>解析器有很多，但兼容eslint的解析器有以下几个：</p>
+<ul>
+<li><p>Espree：默认解析器，一个从Esprima中分离出来的解析器，做了一些优化</p>
+</li>
+<li><p>Esprima：js标准解析器</p>
+</li>
+<li><p>Babel-ESLint： 一个对Babel解析器的包装，babel本身也是js解析器的一种（不然怎么能转化为兼容性代码呢？首先需要进行js解析，才能转化）。如果我们的代码需要经过babel转化，则对应使用这个解析器</p>
+</li>
+<li><p>typescript-eslint-parser(实验) - 一个把 TypeScript 转换为 ESTree 兼容格式的解析器</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7b77d6e107e2">链接</a></p>
+<h3 id="extends-与-plugins"><a href="#extends-与-plugins" class="headerlink" title="extends 与 plugins"></a>extends 与 plugins</h3><ul>
+<li><p>个人理解：extends 里面的配置，就是一些人写好的插件，我们不用写了，就直接告诉 eslint 我继承这些规则即可，而 plugins 的场景就是：有些规则不满足你的需求，你想私人定制，于是自己写了插件，在此处配置后 eslint 就会解析你的插件！</p>
+</li>
+<li><p>可共享的配置可以省略包名的前缀 eslint-config-，即实际设置安装的包名是 eslint-config-pkgName</p>
+</li>
+<li><p>从插件中获取的规则，书写规则为 「plugin:插件包名/配置名」如：plugin:vue/essential 是简写，其在 node_modules 里的包名是 eslint-plugin-vue</p>
+</li>
+</ul>
+<h3 id="eslintrc-js（v4-3-prettier）"><a href="#eslintrc-js（v4-3-prettier）" class="headerlink" title=".eslintrc.js（v4.3-prettier）"></a>.eslintrc.js（v4.3-prettier）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下面配置中有 warn off，还有一种写法可以用数字代替 0 表示不处理不限制 1 进行警告 2 直接报错提示，可能程序就直接报错。</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">root</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">env</span>: &#123;</span><br><span class="line">    <span class="attr">node</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">extends</span>: [<span class="string">&quot;plugin:vue/essential&quot;</span>, <span class="string">&quot;eslint:recommended&quot;</span>, <span class="string">&quot;@vue/prettier&quot;</span>],</span><br><span class="line">  <span class="attr">parserOptions</span>: &#123;</span><br><span class="line">    <span class="attr">parser</span>: <span class="string">&quot;babel-eslint&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">rules</span>: &#123;</span><br><span class="line">    <span class="string">&quot;no-console&quot;</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&quot;production&quot;</span> ? <span class="string">&quot;warn&quot;</span> : <span class="string">&quot;off&quot;</span>,</span><br><span class="line">    <span class="string">&quot;no-debugger&quot;</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&quot;production&quot;</span> ? <span class="string">&quot;warn&quot;</span> : <span class="string">&quot;off&quot;</span>,</span><br><span class="line">    <span class="string">&quot;comma-dangle&quot;</span>: [<span class="number">2</span>, <span class="string">&quot;never&quot;</span>], <span class="comment">// 对象字面量项尾不能有逗号</span></span><br><span class="line">    <span class="string">&quot;prettier/prettier&quot;</span>: <span class="string">&quot;off&quot;</span></span><br><span class="line">    <span class="comment">// &quot;prettier/prettier&quot;: [&quot;error&quot;, &#123;&quot;singleQuote&quot;: true, &quot;parser&quot;: &quot;flow&quot;&#125;]</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="eslintrc-js（iocr-frontend）"><a href="#eslintrc-js（iocr-frontend）" class="headerlink" title=".eslintrc.js（iocr-frontend）"></a>.eslintrc.js（iocr-frontend）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下面写了 parserOptions 和 parser，是不是 ennbuilder 在构建时候也是 copy 的配置文件，这2个配置是否重复？还是不同版本导致的配置不同。</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">env</span>: &#123;</span><br><span class="line">    <span class="attr">browser</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">es6</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">extends</span>: <span class="string">&#x27;plugin:vue/essential&#x27;</span>,</span><br><span class="line">  <span class="attr">globals</span>: &#123;</span><br><span class="line">    <span class="title class_">Atomics</span>: <span class="string">&#x27;readonly&#x27;</span>,</span><br><span class="line">    <span class="title class_">SharedArrayBuffer</span>: <span class="string">&#x27;readonly&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">parser</span>: <span class="string">&#x27;vue-eslint-parser&#x27;</span>,</span><br><span class="line">  <span class="attr">parserOptions</span>: &#123;</span><br><span class="line">    <span class="attr">ecmaVersion</span>: <span class="number">2018</span>,</span><br><span class="line">    <span class="attr">sourceType</span>: <span class="string">&#x27;module&#x27;</span>,</span><br><span class="line">    <span class="attr">parser</span>: <span class="string">&#x27;babel-eslint&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="string">&#x27;vue&#x27;</span>],</span><br><span class="line">  <span class="attr">rules</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;no-console&#x27;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&#x27;no-alert&#x27;</span>: <span class="number">1</span>, <span class="comment">//提示alert</span></span><br><span class="line">    <span class="string">&#x27;no-var&#x27;</span>: <span class="number">2</span>, <span class="comment">//禁用var，用let和const代替</span></span><br><span class="line">    <span class="string">&#x27;no-constant-condition&#x27;</span>: <span class="number">2</span>, <span class="comment">//禁止在条件中使用常量表达式 if(true) if(1)</span></span><br><span class="line">    <span class="string">&#x27;no-empty&#x27;</span>: <span class="number">1</span>, <span class="comment">//块语句中的内容不能为空</span></span><br><span class="line">    <span class="string">&#x27;no-irregular-whitespace&#x27;</span>: <span class="number">2</span>, <span class="comment">//不能有不规则的空格</span></span><br><span class="line">    <span class="string">&#x27;no-multi-spaces&#x27;</span>: <span class="number">1</span>, <span class="comment">//不能用多余的空格</span></span><br><span class="line">    <span class="string">&#x27;no-redeclare&#x27;</span>: <span class="number">2</span>, <span class="comment">//禁止重复声明变量</span></span><br><span class="line">    <span class="attr">indent</span>: [</span><br><span class="line">      <span class="number">2</span>,</span><br><span class="line">      <span class="number">2</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="title class_">SwitchCase</span>: <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    ], <span class="comment">// 使用缩进量为2</span></span><br><span class="line">    <span class="attr">semi</span>: [<span class="number">2</span>, <span class="string">&#x27;never&#x27;</span>], <span class="comment">// 不使用分号</span></span><br><span class="line">    <span class="attr">quotes</span>: [<span class="number">2</span>, <span class="string">&#x27;single&#x27;</span>] <span class="comment">// 使用单引号</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E4%B9%8BEslint/" data-id="cm6soz0nc003y38vp4mge0b0h" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-代码片段之HTML" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/" class="article-date">
+  <time datetime="2020-12-25T03:16:40.000Z" itemprop="datePublished">2020-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/">代码片段之HTML</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="link"><a href="#link" class="headerlink" title="link"></a>link</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">html</span></span><br><span class="line">&lt;link rel=&quot;icon&quot; href=&quot;data:;base64,=&quot; /&gt; // 次写法不报favicon.ico 404</span><br><span class="line">&lt;link rel=&quot;shortcut icon&quot; href=/favicon.ico&gt;</span><br><span class="line">&lt;link rel=&quot;shortcut icon&quot; href=/favicon.ico type=&quot;image/x-icon&quot;&gt;</span><br><span class="line">&lt;link rel=&quot;alternate icon&quot; class=&quot;js-site-favicon&quot; type=&quot;image/png&quot; href=&quot;https://github.githubassets.com/favicons/favicon.png&quot;&gt;</span><br><span class="line">&lt;link rel=&quot;icon&quot; class=&quot;js-site-favicon&quot; type=&quot;image/svg+xml&quot; href=&quot;https://github.githubassets.com/favicons/favicon.svg&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;link rel=&quot;dns-prefetch&quot; href=&quot;https://github.githubassets.com&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="viewport"><a href="#viewport" class="headerlink" title="viewport"></a>viewport</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 视窗适配</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># google 新 tab 默认1</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width,viewport-fit=cover&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># google 新 tab 默认2</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;initial-scale=1.0,user-scalable=no,maximum-scale=1,viewport-fit=cover&quot;</span>     media=<span class="string">&quot;(device-height: 568px)&quot;</span> /&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/" data-id="cm6soz0nf004538vp3xkw7yfc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-代码片段之Mixins" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BMixins/" class="article-date">
+  <time datetime="2020-12-25T03:16:03.000Z" itemprop="datePublished">2020-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BMixins/">代码片段之Mixins</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="移动端-cell"><a href="#移动端-cell" class="headerlink" title="移动端 cell"></a><strong>移动端 cell</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># html</span></span><br><span class="line">&lt;div class=<span class="string">&quot;cell&quot;</span>&gt;</span><br><span class="line">  &lt;div class=<span class="string">&quot;item&quot;</span>&gt;</span><br><span class="line">    &lt;div class=<span class="string">&quot;input-wrap&quot;</span>&gt;</span><br><span class="line">      &lt;input</span><br><span class="line">        v-model=<span class="string">&quot;picCodeValue&quot;</span></span><br><span class="line">        <span class="built_in">type</span>=<span class="string">&quot;text&quot;</span></span><br><span class="line">        class=<span class="string">&quot;ipt&quot;</span></span><br><span class="line">        maxlength=<span class="string">&quot;4&quot;</span></span><br><span class="line">        placeholder=<span class="string">&quot;请输入图形验证码&quot;</span></span><br><span class="line">        @focus=<span class="string">&quot;onFocus&quot;</span></span><br><span class="line">        @blur=<span class="string">&quot;onBlur&quot;</span></span><br><span class="line">      /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div style=<span class="string">&quot;width: 10px; height: 40px&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div class=<span class="string">&quot;btn-wrap&quot;</span> @click=<span class="string">&quot;getPicCode&quot;</span>&gt;</span><br><span class="line">      &lt;div class=<span class="string">&quot;btn-pic-code&quot;</span>&gt;</span><br><span class="line">        &lt;div class=<span class="string">&quot;pic-code-img-wrap&quot;</span>&gt;</span><br><span class="line">          &lt;img</span><br><span class="line">            class=<span class="string">&quot;img&quot;</span></span><br><span class="line">            v-if=<span class="string">&quot;picCodeObj.captchaData&quot;</span></span><br><span class="line">            :src=<span class="string">&quot;picCodeObj.captchaData&quot;</span></span><br><span class="line">            alt=<span class="string">&quot;piccode&quot;</span></span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        &lt;div class=<span class="string">&quot;pic-code-text-wrap&quot;</span>&gt;换一换&lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># css</span></span><br><span class="line"></span><br><span class="line">.cell &#123;</span><br><span class="line">  padding: 0 30px;</span><br><span class="line">  margin-bottom: 10px;</span><br><span class="line"></span><br><span class="line">  .item &#123;</span><br><span class="line">    display: flex;</span><br><span class="line"></span><br><span class="line">    .input-wrap &#123;</span><br><span class="line">      flex: 1;</span><br><span class="line">      box-sizing: border-box;</span><br><span class="line">      .ipt &#123;</span><br><span class="line">        width: 100%;</span><br><span class="line">        box-sizing: border-box;</span><br><span class="line">        display: block;</span><br><span class="line">        line-height: 34px;</span><br><span class="line">        padding: 0 10px;</span><br><span class="line">        outline: none;</span><br><span class="line">        border: none;</span><br><span class="line">        font-size: 15px;</span><br><span class="line">        color: <span class="comment">#999;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .btn-wrap &#123;</span><br><span class="line">      flex: 1;</span><br><span class="line">      display: flex;</span><br><span class="line">      box-sizing: border-box;</span><br><span class="line"></span><br><span class="line">      .mybtn &#123;</span><br><span class="line">        display: flex;</span><br><span class="line">        width: 100%;</span><br><span class="line">        height: 100%;</span><br><span class="line">        padding: 0;</span><br><span class="line">        border: none;</span><br><span class="line">        outline: none;</span><br><span class="line">        justify-content: center;</span><br><span class="line">        align-items: center;</span><br><span class="line">        border-radius: 9px;</span><br><span class="line">        background-color: transparent;</span><br><span class="line">        font-size: inherit;</span><br><span class="line">        background-repeat: no-repeat;</span><br><span class="line">        background-size: 100% 100%;</span><br><span class="line">        background-position: center center;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BMixins/" data-id="cm6soz0ni004a38vp031lfpma" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-代码片段之JS" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/" class="article-date">
+  <time datetime="2020-12-25T03:10:40.000Z" itemprop="datePublished">2020-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/">代码片段之JS</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Array(9).fill(null)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env node // shebang</span><br></pre></td></tr></table></figure>
+
+<h3 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Boolean &amp;&amp; <span class="string">&#x27;I am sure&#x27;</span> || <span class="string">&#x27;I am not sure&#x27;</span></span><br><span class="line"></span><br><span class="line">var obj = &#123;</span><br><span class="line">  method: <span class="string">&quot;PUT&quot;</span>,</span><br><span class="line">  body: JSON.stringify(&#123;</span><br><span class="line">    age: 1,</span><br><span class="line">  &#125;),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var rr = obj &amp;&amp; obj.body;</span><br><span class="line">console.log(rr) // <span class="string">&quot;&#123;&quot;</span>age<span class="string">&quot;:1&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="对象合并"><a href="#对象合并" class="headerlink" title="对象合并"></a>对象合并</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object.assign(&#123;&#125;, obj, init);</span><br><span class="line">// 即使 init 是 undefined，则忽略 init 继续合并</span><br><span class="line">// &#123;method: &quot;PUT&quot;, body: &quot;&#123;&quot;age&quot;:1&#125;&quot;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="iOS-input-失焦键盘不消失"><a href="#iOS-input-失焦键盘不消失" class="headerlink" title="iOS input 失焦键盘不消失"></a>iOS input 失焦键盘不消失</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 看到网上有人这样的代码思路，首先是在mounted函数中对某输入框监听</span></span><br><span class="line"><span class="keyword">let</span> beforeIpt = <span class="literal">null</span>;</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;inputId&quot;</span>).<span class="title function_">addEventListener</span>(<span class="string">&quot;focus&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  beforeIpt = <span class="variable language_">this</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(beforeIpt);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在对文档进行监听，若是点击其他空白处，模拟失焦，则键盘自消失</span></span><br><span class="line"><span class="comment">// 使用tap事件可解决此问题</span></span><br><span class="line"><span class="comment">// document.addEventListener(&#x27;touchend&#x27;, function (e) &#123;</span></span><br><span class="line"><span class="comment">//   console.log(&#x27;touchend&#x27;);</span></span><br><span class="line"><span class="comment">//   if (e.target.nodeName.toLowerCase() != &#x27;input&#x27;) &#123;</span></span><br><span class="line"><span class="comment">//     if (beforeIpt) &#123;</span></span><br><span class="line"><span class="comment">//       beforeIpt.blur();</span></span><br><span class="line"><span class="comment">//       beforeIpt = null;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"><span class="comment">// &#125;);</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="移动端在注册或登录页面会出现键盘遮挡-input-输入框的解决办法"><a href="#移动端在注册或登录页面会出现键盘遮挡-input-输入框的解决办法" class="headerlink" title="移动端在注册或登录页面会出现键盘遮挡 input 输入框的解决办法"></a>移动端在注册或登录页面会出现键盘遮挡 input 输入框的解决办法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bfscrolltop = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollTop</span>; <span class="comment">//获取软键盘唤起前浏览器滚动部分的高度</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//设置一个计时器，时间设置与软键盘弹出所需时间相近</span></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollTop</span> = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollHeight</span>; <span class="comment">//获取焦点后将浏览器内所有内容高度赋给浏览器滚动部分高度</span></span><br><span class="line">&#125;, <span class="number">200</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;onFocus&quot;</span>);</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollTop</span> = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollHeight</span>;</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">scrollTop</span> = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollHeight</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cnt = <span class="number">0</span>;</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">timerId</span> = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (cnt &lt; <span class="number">5</span>) &#123;</span><br><span class="line">    cnt++;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">clearInterval</span>(<span class="variable language_">this</span>.<span class="property">timerId</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">timerId</span> = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollTop</span> = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollHeight</span>;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">scrollTop</span> = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollHeight</span>;</span><br><span class="line">&#125;, <span class="number">200</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取-dom-信息"><a href="#获取-dom-信息" class="headerlink" title="获取 dom 信息"></a>获取 dom 信息</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">getDom</span> = (<span class="params">selector, type = <span class="string">&quot;id&quot;</span></span>) =&gt;</span><br><span class="line">  type === <span class="string">&quot;id&quot;</span></span><br><span class="line">    ? <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(selector)</span><br><span class="line">    : <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(selector)[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;app&quot;</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span>Hi<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">getDom</span>(<span class="string">&quot;app&quot;</span>, <span class="string">&quot;class&quot;</span>).<span class="property">innerHTML</span>); <span class="comment">// Hi</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">getDom</span>(<span class="string">&quot;app&quot;</span>).<span class="property">innerHTML</span>); <span class="comment">// Hi</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="下载表格"><a href="#下载表格" class="headerlink" title="下载表格"></a>下载表格</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onDownload</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> hostname = <span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">origin</span></span><br><span class="line">  <span class="keyword">let</span> request_no = <span class="variable language_">this</span>.<span class="property">formItem</span>.<span class="property">orderNumber</span></span><br><span class="line">  <span class="keyword">let</span> channel_name = <span class="variable language_">this</span>.<span class="property">formItem</span>.<span class="property">salesStaff</span></span><br><span class="line">  <span class="keyword">let</span> begin_time = <span class="variable language_">this</span>.<span class="property">formItem</span>.<span class="property">beginTimeTemp</span></span><br><span class="line">  <span class="keyword">let</span> finish_time = <span class="variable language_">this</span>.<span class="property">formItem</span>.<span class="property">endTimeTemp</span></span><br><span class="line">  <span class="keyword">let</span> current_page = <span class="variable language_">this</span>.<span class="property">pagination</span>.<span class="property">pageIndex</span></span><br><span class="line">  <span class="keyword">let</span> limit = <span class="variable language_">this</span>.<span class="property">pagination</span>.<span class="property">limit</span></span><br><span class="line">  <span class="keyword">let</span> downURL = <span class="string">`<span class="subst">$&#123;hostname&#125;</span>/store/Financing/firstOrder?request_no=<span class="subst">$&#123;request_no&#125;</span>&amp;channel_name=<span class="subst">$&#123;channel_name&#125;</span>&amp;begin_time=<span class="subst">$&#123;begin_time&#125;</span>&amp;finish_time=<span class="subst">$&#123;finish_time&#125;</span>&amp;current_page=<span class="subst">$&#123;current_page&#125;</span>&amp;limit=<span class="subst">$&#123;limit&#125;</span>`</span></span><br><span class="line">  <span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span> = downURL</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 页面中创建 a 标签并跳转</span></span><br><span class="line"><span class="title function_">createLabel</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">const</span> link = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;a&#x27;</span>) <span class="comment">// 创建a标签</span></span><br><span class="line">  link.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span> <span class="comment">// 使其隐藏</span></span><br><span class="line">  link.<span class="property">href</span> = url <span class="comment">// 赋予a标签地址</span></span><br><span class="line">  link.<span class="title function_">setAttribute</span>(<span class="string">&#x27;target&#x27;</span>, <span class="string">&#x27;_blank&#x27;</span>)</span><br><span class="line">  link.<span class="title function_">setAttribute</span>(<span class="string">&#x27;rel&#x27;</span>, <span class="string">&#x27;noopener noreferrer&#x27;</span>)</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(link) <span class="comment">// a标签插至页面中</span></span><br><span class="line">  link.<span class="title function_">click</span>() <span class="comment">// 强制触发a标签事件</span></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(link)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="forEach"><a href="#forEach" class="headerlink" title="forEach"></a>forEach</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 操作数组里面item的数据</span></span><br><span class="line"><span class="comment">// 例子1</span></span><br><span class="line">that.<span class="property">dataSource</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">element</span>) =&gt;</span> &#123;</span><br><span class="line">  element.<span class="property">shareToolName</span> = element.<span class="property">shareToolName</span>.<span class="title function_">split</span>(<span class="string">&quot;,&quot;</span>).<span class="title function_">join</span>(<span class="string">&quot;，&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子2</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">recordList</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!!item.<span class="property">fileAddressList</span>) &#123;</span><br><span class="line">    item.<span class="property">fileAddressList</span> = item.<span class="property">fileAddressList</span>.<span class="title function_">map</span>(<span class="function">(<span class="params">m</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// return &#123; fileName: m.fileName, url: `$&#123;window._env_.gatewayUrl&#125;/$&#123;window._env_.APP_ID&#125;/file/get/$&#123;m.fileAddressOrId&#125;` &#125;</span></span><br><span class="line">      <span class="keyword">return</span> &#123; <span class="attr">fileName</span>: m.<span class="property">fileName</span>, <span class="attr">url</span>: m.<span class="property">fileAddressOrId</span> &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="原生-xhr-请求"><a href="#原生-xhr-请求" class="headerlink" title="原生 xhr 请求"></a>原生 xhr 请求</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">downloadLoad</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>()</span><br><span class="line">  xhr.<span class="title function_">open</span>(<span class="string">&#x27;GET&#x27;</span>, <span class="string">`<span class="subst">$&#123;<span class="variable language_">window</span>._env_.gatewayUrl&#125;</span>/<span class="subst">$&#123;<span class="variable language_">window</span>._env_.APP_ID&#125;</span>/reviewRecord/GenerateAllPlan?recordId=<span class="subst">$&#123;<span class="variable language_">this</span>.incentiveSchemesId&#125;</span>`</span>, <span class="literal">true</span>)</span><br><span class="line">  xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;X-GW-AccessKey&#x27;</span>, <span class="variable language_">window</span>.<span class="property">_env_</span>.<span class="property">accessKey</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> loadingInstance = <span class="variable language_">this</span>.$loading(&#123; <span class="attr">text</span>: <span class="string">&#x27;下载中...&#x27;</span> &#125;)</span><br><span class="line">  <span class="comment">// xhr.responseType = &#x27;blob&#x27;</span></span><br><span class="line">  xhr.<span class="property">onload</span> = <span class="function"><span class="params">ev</span> =&gt;</span> &#123;</span><br><span class="line">    loadingInstance.<span class="title function_">close</span>()</span><br><span class="line">    <span class="keyword">if</span> (xhr.<span class="property">status</span> == <span class="number">200</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> response = xhr.<span class="property">response</span></span><br><span class="line">      response = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(response)</span><br><span class="line">      <span class="keyword">if</span> (response.<span class="property">success</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> fname = response.<span class="property">data</span>.<span class="title function_">split</span>(<span class="string">&#x27;/icome-partner-server/&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">handleDownload</span>(response.<span class="property">data</span>, fname)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// const contentDisposition = xhr.getResponseHeader(&#x27;content-disposition&#x27;)</span></span><br><span class="line">      <span class="comment">// const blob = new Blob([response], &#123; type: &#x27;application/zip&#x27; &#125;)</span></span><br><span class="line">      <span class="comment">// const fname = contentDisposition.split(&#x27;filename=&#x27;)[1].split(&#x27;.&#x27;)[0]</span></span><br><span class="line">      <span class="comment">// const el = document.createElement(&#x27;a&#x27;)</span></span><br><span class="line">      <span class="comment">// const href = window.URL.createObjectURL(blob)</span></span><br><span class="line">      <span class="comment">// el.href = href</span></span><br><span class="line">      <span class="comment">// el.download = decodeURIComponent(fname)</span></span><br><span class="line">      <span class="comment">// document.body.appendChild(el)</span></span><br><span class="line">      <span class="comment">// el.click()</span></span><br><span class="line">      <span class="comment">// document.body.removeChild(el)</span></span><br><span class="line">      <span class="comment">// window.URL.revokeObjectURL(href)</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (xhr.<span class="property">status</span> == <span class="number">201</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">$message</span>.<span class="title function_">error</span>(<span class="string">&#x27;请先保存之后下载附件&#x27;</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (xhr.<span class="property">status</span> == <span class="number">401</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">$message</span>.<span class="title function_">error</span>(<span class="string">&#x27;暂无权限&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  xhr.<span class="title function_">send</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="判断是否为-PC-环境"><a href="#判断是否为-PC-环境" class="headerlink" title="判断是否为 PC 环境"></a>判断是否为 PC 环境</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">isPC</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> userAgentInfo = navigator.<span class="property">userAgent</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title class_">Agents</span> = [</span><br><span class="line">    <span class="string">&#x27;Android&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;iPhone&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;SymbianOS&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Windows Phone&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;iPad&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;iPod&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;BlackBerry&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;webOS&#x27;</span>,</span><br><span class="line">  ]</span><br><span class="line">  <span class="keyword">let</span> flagPc = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="title class_">Agents</span>.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (userAgentInfo.<span class="title function_">indexOf</span>(<span class="title class_">Agents</span>[i]) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      flagPc = <span class="literal">false</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> flagPc</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 是 pc 则 todo</span></span><br><span class="line"><span class="keyword">if</span> (<span class="title function_">isPC</span>()) &#123;</span><br><span class="line">  todo</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  other todo</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/" data-id="cm6soz0ng004738vpaa2ncfl1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSS杂记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/25/CSS%E6%9D%82%E8%AE%B0/" class="article-date">
+  <time datetime="2020-12-25T02:48:46.000Z" itemprop="datePublished">2020-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/25/CSS%E6%9D%82%E8%AE%B0/">CSS杂记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="背景色"><a href="#背景色" class="headerlink" title="背景色"></a>背景色</h3><ul>
+<li>默认 body 背景色为 <code>#fff</code></li>
+</ul>
+<h3 id="Margin"><a href="#Margin" class="headerlink" title="Margin"></a>Margin</h3><ul>
+<li>默认 body 元素 <code>margin: 8px;</code></li>
+</ul>
+<h3 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h3><ul>
+<li>暂无</li>
+</ul>
+<h3 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h3><ul>
+<li>在写 e 家农场登录页时，发现一个 cell 下，两个儿子元素设置了<code>flex: 1</code>，却宽度不等！可在儿子元素下包裹一个 div.wrap 即可！</li>
+</ul>
+<h3 id="移动端视窗（针对个人手机）"><a href="#移动端视窗（针对个人手机）" class="headerlink" title="移动端视窗（针对个人手机）"></a>移动端视窗（针对个人手机）</h3><ul>
+<li><p>iPhone8 Plus 414 * 736</p>
+</li>
+<li><p>微信 app title 高度 44，电池栏 20，和是 64，则余下的高度 = (736 - 64 = 672)，JS 获取 innerHeight = 623，则推理出其 tabbar 为 672 - 623 = 49;</p>
+</li>
+<li><p>移动端 Safria app 视窗，JS 获取 innerHeight = 622，则推理出其 tabbar 为 672 - 622 = 50;</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/25/CSS%E6%9D%82%E8%AE%B0/" data-id="cm6soz0lj000b38vpgr8bby19" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-移动端键盘问题记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2020-12-24T08:56:34.000Z" itemprop="datePublished">2020-12-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">移动端键盘问题记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>开发新奥 e 家农场登录页过程中，会遇到很多的坑，记录一下！</p>
+<h3 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h3><p>iOS 上，登录页，input 获焦，则软键盘弹起，可点击空白区域软键盘不消失！input 依旧是在 focus 状态！安卓则无此现象！可查看如下链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/phen/p/7886640.html">IOS 下 H5 的 input/textarea 元素失去焦点时隐藏键盘</a>、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/gd-dql/p/7476330.html">js 控制 ios 端的 input/textarea 元素失去焦点时隐藏键盘</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012038144/article/details/46591607?utm_source=blogxgwz7&utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-2&spm=1001.2101.3001.4242">js 控制 iphone 端的 input/textarea 元素失去焦点时隐藏键盘</a>、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/blackbentel/p/10239886.html">h5 解决 ios 端输入框失去焦点后页面不回弹或者底部留白问题</a></p>
+<h3 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h3><p>iOS、Android 都出现，底部留白！ 详见下图：</p>
+<p><img src="https://file.798run.top/img/blog/20201224/padding-white.png" alt="padding-white"></p>
+<p>为啥会出现此问题？</p>
+<h3 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h3><p>iOS、Android 都出现（前者出现概率小）键盘遮挡 input 输入框问题！在搜索问题过程中，发现其他人的帖子：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Miracle-ZLZ/p/10030608.html">IOS 微信 6.7.4 输入框失去焦点，软键盘关闭后，被撑起的页面无法回退到原来正常的位置</a>。我的登录页没遇到（弹不回去）问题（1、可能微信或者 ios 系统升级修复此 bug 了；2、或者我的场景与帖子中不一致，我的页面高度是 100vh，而帖子中的文档高度大于 100vh）！我最后解决了，在 e 家农场项目中有提现，而网上说的这<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3320b5aa8879">帖子</a>（报存在我的书签 CSS_UI 下）是不正确的！仅<code>document.body.scrollTop</code>就不兼容。我的解决方案：</p>
+<blockquote>
+<p>针对 document.activeElement.scrollIntoView、document.activeElement.scrollIntoViewIfNeeded 最开始在 csdn 偶然看到此文：<a target="_blank" rel="noopener" href="https://blog.csdn.net/jermyo/article/details/107742955%EF%BC%8C%E4%BD%86%E6%AD%A4%E6%96%87%E4%B8%AD%E5%8F%91%E7%8E%B0%E8%BF%98%E9%9C%80%E5%88%A4%E6%96%AD%E5%AE%89%E5%8D%93%E3%80%81ios%EF%BC%8C%E7%BB%86%E6%9F%A5%E4%BA%86%E4%B9%8B%E5%90%8E%E5%8F%91%E4%B8%8B%E5%A4%A7%E5%8F%AF%E4%B8%8D%E5%BF%85%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%98%AF">https://blog.csdn.net/jermyo/article/details/107742955，但此文中发现还需判断安卓、ios，细查了之后发下大可不必，这个是</a> MDN 的一个实验性的 API。最后查博客解决了问题：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yelongsan/p/9086847.html%E3%80%82%E5%90%8E%E6%9D%A5%E6%9F%A5%E8%AF%A2">https://www.cnblogs.com/yelongsan/p/9086847.html。后来查询</a> document.activeElement.scrollIntoView 相关知识，这篇帖子讲的还可以 <a target="_blank" rel="noopener" href="http://caibaojian.com/scrollintoview.html">http://caibaojian.com/scrollintoview.html</a></p>
+</blockquote>
+<h3 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h3><p>iOS 在 input 获焦弹起软键盘，点击页面其他空白区域，则并没有失焦，软键盘也不消失，</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="cm6soz0o3005h38vpa233d213" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-AJAX与JSONP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/17/AJAX%E4%B8%8EJSONP/" class="article-date">
+  <time datetime="2020-12-17T02:05:57.000Z" itemprop="datePublished">2020-12-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/17/AJAX%E4%B8%8EJSONP/">AJAX与JSONP</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>记录以免忘记</p>
+<h3 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a><strong><em>AJAX</em></strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="built_in">type</span>: <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">  beforeSend: <span class="function"><span class="title">function</span></span> () &#123;&#125;,</span><br><span class="line">  dataType: <span class="string">&quot;jsonp&quot;</span>,</span><br><span class="line">  jsonp: <span class="string">&quot;callback&quot;</span>,</span><br><span class="line">  jsonpCallback: <span class="string">&quot;success_jsonpCallback&quot;</span>,</span><br><span class="line">  success: <span class="keyword">function</span> (res) &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">  &#125;,</span><br><span class="line">  error: <span class="keyword">function</span> (err) &#123;</span><br><span class="line">    console.log(<span class="string">&quot;err&quot;</span>, err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="GET"><a href="#GET" class="headerlink" title="GET"></a><strong>GET</strong></h3><p>1、针对 get 请求，我们可在浏览器地址栏键入请求地址，此时浏览器进行了二次封装！为啥这样说，在浏览器控制台 Elements 有元素节点，在 Network 中请求记录中，All 有可现实，使用 xhr 过滤则无记录！同样请求连接键入 Postman，选择 get 请求，则是正常请求！注：测试效果时，禁止 json 格式化等插件，以免造成干扰！在测试请求页的 title 有 favicon.ico。测试 get 请求链接：<code>http://api.map.baidu.com/geocoder?location=38.76623,116.43213&amp;output=json&amp;key=r49TjsbOLT9nkbS4ZljYf1GgnTkecbNQ</code>。</p>
+<h3 id="POST"><a href="#POST" class="headerlink" title="POST"></a><strong>POST</strong></h3><p>1、POST 类型的请求，后台有时候会告诉前端：“不要用 body 方式传递参数，用 param 方式”。为何？猜，是后端框架解析参数方便所致！</p>
+<h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a><strong>JSONP</strong></h3><p>1、JSONP 需要后端配合，jq 对其进行了优化，只要是 jsonp 形式，无论 type 写成 post 与否皆转为 get。注：别忘记添加 <code>dataType: &#39;JSONP&#39;</code>;</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a><strong>参考</strong></h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zxf13598202302/article/details/53489592">说说 JSON 和 JSONP，跨域解决问题</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cm6soz0la000338vp2qgw8iqc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Vue杂集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/11/Vue%E6%9D%82%E9%9B%86/" class="article-date">
+  <time datetime="2020-12-11T08:21:19.000Z" itemprop="datePublished">2020-12-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/11/Vue%E6%9D%82%E9%9B%86/">Vue杂集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>时间长了、很多的东西都会忘记，记录一些 Vue 的相关知识</p>
+<h3 id="vue-cli"><a href="#vue-cli" class="headerlink" title="vue-cli"></a>vue-cli</h3><p>之前有 2.0 后来，3.0 出现之后包名变为 @vue/cli 了，官方文档很详细！我使用 webstorm 创建一个 vue.js 的工程（vue-cli-3.0-by-webstorm）很方便，后来又给 ddyg-crs 比较发现后者增添了很多配置，然我又在 xinao 工作电脑全局安装 yarn global add @vue/cli，自己手动按照提示生成了一个项目 vue-cli-3.0-by-webstorm1 对比二个工程无差别，则全局安装@vue/cli 无必要！</p>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p>1、组件使用很常见，父、子组件都可以自定义事件，子组件点击事件就不举例了，如父组件中的原生事件如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;my-component @click.native=&quot;onClick&quot;&gt;&lt;/my-component&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>此时我们可能想到子组件一般是通过 emit 传递给父组件，父组件接受即可，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div @click=&quot;onClick1&quot;&gt;我是子组件&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">onClick1() &#123;</span><br><span class="line">    this.$emit(&#x27;my-event&#x27;, &#123; age: 17 &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;my-component @my-event=&quot;handleThis&quot;&gt;&lt;/my-component&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>父组件通过接受子组件传递过来的信息，在进行逻辑处理！带着这种模模糊糊的记忆又去看了一下 vue 官网，看到了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 内联语句 --&gt;</span><br><span class="line">&lt;my-component @my-event=&quot;handleThis(123, $event)&quot;&gt;&lt;/my-component&gt;</span><br></pre></td></tr></table></figure>
+
+<p>一看有点蒙，这 <code>$event</code> 是什么？后来自己尝试一下，发现了，123，可以使你自己写的标识，<code>$event</code> 是你子组件 emit 方法穿过来的参数！这使我联想到，123 这种标识，我们可以在循环时候，针对不用的业务类型，把标识打上去。在 methods 中 handleThis 方法，可以打印出组合的参数，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 内联语句 --&gt;</span><br><span class="line">&lt;my-component @my-event=&quot;handleThis(123, $event)&quot;&gt;&lt;/my-component&gt;</span><br><span class="line">handleThis(arg1, arg2) &#123;</span><br><span class="line">    console.log(arg1, arg2); // 123 &#123; age: 17 &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>没事就要温故而知新啊！多写博客！上面总结是我在写新奥 e 家农场的新加的注册登录页时候，进行按钮封装，想到父子组件自定义方法查了<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/api/#v-on">vue 的官网相关 api</a>之后所做！针对小页面我们可以直接在父组件中写 <code>@click</code>就行，父组件中属性传递不同的样式即可！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/11/Vue%E6%9D%82%E9%9B%86/" data-id="cm6soz0mj002838vpg9zcfy8w" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/">代码片段之RegExp</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/">代码片段之ElementUI</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/">npm或yarn安装过程常见的warn及error</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/10/npm%E4%B8%8Eyarn%E5%AF%B9peerDependencies%E5%A4%84%E7%90%86%E7%9A%84%E5%B7%AE%E5%BC%82/">npm与yarn对peerDependencies处理的差异</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/">Nodejs项目使用npm与使用yarn表现效果的一次记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

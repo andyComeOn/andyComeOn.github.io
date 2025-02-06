@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>数据类型转换 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="总结一下数据类型转换  1、数据类型检测常用方法 type of instanceof constructor Object.prototype.toString.call()  2、type of123456type of NaN  &#x2F;&#x2F; &#x3D;&gt; numbertype of function() &amp;#123;&amp;#125;  &#x2F;&#x2F; &#x3D;&gt; functiontype of BigInt(1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据类型转换">
+<meta property="og:url" content="http://example.com/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="总结一下数据类型转换  1、数据类型检测常用方法 type of instanceof constructor Object.prototype.toString.call()  2、type of123456type of NaN  &#x2F;&#x2F; &#x3D;&gt; numbertype of function() &amp;#123;&amp;#125;  &#x2F;&#x2F; &#x3D;&gt; functiontype of BigInt(1">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-20T12:55:25.000Z">
+<meta property="article:modified_time" content="2025-02-06T01:54:41.387Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="JS相关">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-数据类型转换" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="article-date">
+  <time datetime="2020-07-20T12:55:25.000Z" itemprop="datePublished">2020-07-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据类型转换
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>总结一下数据类型转换</p>
+</blockquote>
+<h2 id="1、数据类型检测常用方法"><a href="#1、数据类型检测常用方法" class="headerlink" title="1、数据类型检测常用方法"></a>1、数据类型检测常用方法</h2><ul>
+<li>type of</li>
+<li>instanceof</li>
+<li>constructor</li>
+<li>Object.prototype.toString.call()</li>
+</ul>
+<h2 id="2、type-of"><a href="#2、type-of" class="headerlink" title="2、type of"></a>2、type of</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type of NaN  // =&gt; number</span><br><span class="line"></span><br><span class="line">type of function() &#123;&#125;  // =&gt; function</span><br><span class="line">type of BigInt(10)  // =&gt; bigint</span><br><span class="line">type of null  // =&gt; object 计算机遗留的 bug 存储时候是二进制开始；000默认是对象，</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="3、其他类型转换为-Number-类型"><a href="#3、其他类型转换为-Number-类型" class="headerlink" title="3、其他类型转换为 Number 类型"></a>3、其他类型转换为 Number 类型</h2><ul>
+<li><p>需要特定转换为 Number</p>
+<ul>
+<li><p>Number([val])</p>
+<ul>
+<li>Number(‘’) // 0</li>
+<li>Number(‘10’) // 10</li>
+<li>Number(‘10px’) // NaN 只要出现非数字结果都是 NaN</li>
+<li>Number(true) // 1</li>
+<li>Number(false) // 0</li>
+<li>Number(null) // 0</li>
+<li>Number(undefined) // NaN</li>
+<li>Number(Symbol(10)) // error</li>
+<li>Number(BigInt(10)) // 10</li>
+<li>Number({name: 1}) // NaN 把对象转换为数字，需要隐式依次执行 valueOf、toString、在转换为数字，不满足转换为数字的对象输出 NaN</li>
+</ul>
+</li>
+<li><p>parseInt / parseFloat([val])</p>
+<ul>
+<li>把转换值先转换为字符串</li>
+<li>从字符串左侧第一个字符开始查找，若遇到非有效数字，停止查找。把找到的有效数字字符串转换为数字并返回！若是一个没有找到就返回 NaN</li>
+<li>提了一嘴说：留了一个进阶知识点</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>隐式转换为（浏览器内部先进行 Number 转换）</p>
+<ul>
+<li><p>isNaN([val])，首先走的 Number()</p>
+</li>
+<li><p>数学运算(1+2 =&gt; 3。+出现在字符串前后，该表达式直接变成了字符串拼接，如：’hi’ + 9 =&gt; hi9, 9变成字符串与 ‘hi’ 相加。{age: 20} + 9，对象与数字相加，对象要转换数字（转换为数字之前首先要转换字符串，又变成字符串拼接了），[object Object]9。[‘hi’]+1 =&gt; hi1。[1,2,3]+1 =&gt; “1,2,31”。[{}]+1 =&gt; [object Object]1  </p>
+</li>
+<li><p>注意：针对上面的例子，有 + 号的“算术”表达式，也有特殊的情况。如 {} + 0 =&gt; 0，此时解析器把 {} 当成一个代码块，于是就变成了 +0 =&gt; 0；({} + 0) 会参与到数学运算中，结果是：[object Object]0；0 + {} 这种情况是数学运算，结果是：0[object Object]</p>
+</li>
+<li><p>== 运算（对象==字符串：对象转为字符串在进行比较；*==*都是转为数字在进行比较）</p>
+</li>
+</ul>
+</li>
+<li><p>对象转换为数字：对象 =&gt; str =&gt; number</p>
+</li>
+</ul>
+<h2 id="4、其他类型转换为-String-类型"><a href="#4、其他类型转换为-String-类型" class="headerlink" title="4、其他类型转换为 String 类型"></a>4、其他类型转换为 String 类型</h2><ul>
+<li><p>能使用的方法：<code>toString()</code>、<code>String()</code></p>
+</li>
+<li><p>隐式转换（一般都是调用 <code>toString()</code>）</p>
+<ul>
+<li>String(1) =&gt; “1”</li>
+<li>String(null) =&gt; “null”</li>
+<li>String(undefined) =&gt; “undefined”</li>
+<li>String({}) =&gt; “[object Object]” 此例子调用的是 Object.prototype.toString.call() 方法，不是转换字符串，变成了数据类型检测，({age: 1}).toString() =&gt; “[object Object]”</li>
+<li>String(null) =&gt; “null”</li>
+</ul>
+<ul>
+<li>给予 alert/confirm/prompt/document.write 这些方法输出，都是先转换为 string 在输出</li>
+</ul>
+</li>
+</ul>
+<h2 id="5、其他类型转换为-Boolean-类型"><a href="#5、其他类型转换为-Boolean-类型" class="headerlink" title="5、其他类型转换为 Boolean 类型"></a>5、其他类型转换为 Boolean 类型</h2><ul>
+<li><p>给予一下方式可以把其他类型转化为布尔</p>
+<ul>
+<li>! 转化为布尔值后取反</li>
+<li>!! 转化为布尔</li>
+</ul>
+</li>
+<li><p>隐式转化</p>
+<ul>
+<li>再循环或条件判断中，条件处理的结果都是布尔</li>
+</ul>
+</li>
+<li><p>规则：只有 0、null、false、undefined、’’ 五个值变成 false 其余都是变为 true</p>
+</li>
+</ul>
+<h2 id="6、-比较过程中数据转换规则"><a href="#6、-比较过程中数据转换规则" class="headerlink" title="6、== 比较过程中数据转换规则"></a>6、== 比较过程中数据转换规则</h2><ul>
+<li><p>类型一样的几个特殊情况</p>
+<ul>
+<li>[] == [] // false 比较的是堆内存地址</li>
+<li>{} == {} // false 比较的是堆内存地址</li>
+<li>NaN == NaN // false 比较的是堆内存地址</li>
+</ul>
+</li>
+<li><p>类型不一样的转换规则</p>
+<ul>
+<li>null == undefined =&gt; true，剩下 null / undefined 与其他任何数据类型都不想等</li>
+<li>字符串 == 对象，对象 =&gt; str 在进行比较</li>
+<li>剩下如果 == 两边数据类型不一致，转化为数字在比较</li>
+</ul>
+</li>
+</ul>
+<h2 id="7、特殊情况"><a href="#7、特殊情况" class="headerlink" title="7、特殊情况"></a>7、特殊情况</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let result = 10 + false + undefined + [] + &#x27;Tencent&#x27; + null + true + &#123;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>看到此题，首先还是数学运算的范畴，无非就是有一些特殊情况，那就按照规则来处理。</p>
+</li>
+<li><p>首先 10 + false =&gt; 10 + 0 =&gt; 10</p>
+</li>
+<li><p>其次 10 + undefined，undefined 经过 Number 处理之后变成 NaN，10 + NaN 依旧是 NaN。</p>
+</li>
+<li><p>其次 NaN + []，[] 经过 valueOf 还是 []，在经过 toString()，变成 ‘’，只要 + 左右出现字符串，就是字符串拼接，则结果：NaN</p>
+</li>
+<li><p>其次 NaN + ‘Tencent’ =&gt; ‘NaNTencent’</p>
+</li>
+<li><p>余下都是字符串拼接了 ‘NaNTencent’ + null + true + {} =&gt; “NaNTencentnulltrue[object Object]”</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" data-id="cm6soz0ns004y38vpdzx2c952" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/22/D_N_S%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          D_N_S记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/15/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">枚举与不可枚举</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/">代码片段之RegExp</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/">代码片段之ElementUI</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/">npm或yarn安装过程常见的warn及error</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/10/npm%E4%B8%8Eyarn%E5%AF%B9peerDependencies%E5%A4%84%E7%90%86%E7%9A%84%E5%B7%AE%E5%BC%82/">npm与yarn对peerDependencies处理的差异</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/">Nodejs项目使用npm与使用yarn表现效果的一次记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

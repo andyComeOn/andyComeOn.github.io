@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/7/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-浏览器加载资源报错" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%8A%A5%E9%94%99/" class="article-date">
+  <time datetime="2019-11-07T04:44:53.000Z" itemprop="datePublished">2019-11-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%8A%A5%E9%94%99/">浏览器加载资源报错</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="浏览器加载资源报错"><a href="#浏览器加载资源报错" class="headerlink" title="浏览器加载资源报错"></a>浏览器加载资源报错</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;style/zblib.css&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>详见 testme\browser_err.html，该文件在 Chrome 浏览器报错：</p>
+<p><img src="https://file.798run.top/img/blog/20191107/err.png" alt="err">;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Refused to apply style from &#x27;http://localhost:3000/style/zblib.css&#x27; because its MIME type (&#x27;text/html&#x27;) is not a supported stylesheet MIME type, and strict MIME checking is enabled.</span></span><br></pre></td></tr></table></figure>
+
+<p>在网上搜到了一个相关帖子：<a target="_blank" rel="noopener" href="https://blog.csdn.net/c4jem/article/details/77131422">Refused to execute script from</a>，我自己理解就是文件路径没找到啊，你使用 Java 还是 php，不是有一个静态目录吗？ <strong>STATIC</strong>，路径写全面就可以。帖子上说的是再次配置方法，为啥你不能写全面路径？下面是一个 vue 的涉及到的报错：<a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000016696259">在 vue 项目 index.html 中引入第三方 css 和 js 报 MIME type 问题</a></p>
+<p>总结：出现这样的错误，就是路径没写对!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/11/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%8A%A5%E9%94%99/" data-id="cm6soz0ny005838vpalyi8c4g" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-table标签相关总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/25/table%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2019-09-25T10:59:34.000Z" itemprop="datePublished">2019-09-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/25/table%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">table标签相关总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>table 在后台管理系统中使用很普遍，有时候在使用它时很多属性都记不清，以至于又临时百度，现在总结一下！</p>
+<h4 id="1、table-中属性"><a href="#1、table-中属性" class="headerlink" title="1、table 中属性"></a>1、table 中属性</h4><ul>
+<li>table 一般 html 写法是：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span></span></span><br><span class="line"><span class="tag">  <span class="attr">border</span>=<span class="string">&quot;1&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">width</span>=<span class="string">&quot;400&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">rules</span>=<span class="string">&quot;all&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">cellpadding</span>=<span class="string">&quot;5&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">cellspaceing</span>=<span class="string">&quot;5&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">summary</span>=<span class="string">&quot;各银行的网上银行支付限额总表&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">caption</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>远期客源分析表<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">caption</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">colgroup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> <span class="attr">width</span>=<span class="string">&quot;60px&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> <span class="attr">width</span>=<span class="string">&quot;100px&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">col</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">colgroup</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span>&gt;</span>name<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span>&gt;</span>age<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span>&gt;</span>height<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span>&gt;</span>weight<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>andy<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>18<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>180<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>66<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里面涉及到 html 属性：border、width、rules、cellpadding、cellspaceing、summary 等。20191220 补记 [这里有的属性是表格固有的例如 border，不信你可以在一个 div 上写这个标签属性是不会生效的！在百度百科查的 ASCⅡ 码发现 html 中 对 td 写的标签属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">td</span> <span class="attr">height</span>=<span class="string">&quot;49&quot;</span> <span class="attr">align</span>=<span class="string">&quot;center&quot;</span> <span class="attr">valign</span>=<span class="string">&quot;middle&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;para&quot;</span> <span class="attr">label-module</span>=<span class="string">&quot;para&quot;</span>&gt;</span>Bin<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;para&quot;</span> <span class="attr">label-module</span>=<span class="string">&quot;para&quot;</span>&gt;</span>(二进制)<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>],其中 rules 是我偶然间看别人这样写，该属性是解决 table 中边框的。加上 <code>rules=&quot;all&quot;</code> 效果如下：<br><img src="https://file.798run.top/img/blog/20190925/tab_rules_all.png" alt="tab_rules_all"><br>若是不写该属性，tab 有外边框及每个 td 都有边框，效果很不好看，如下：<br><img src="https://file.798run.top/img/blog/20190925/tab_rules_no.png" alt="tab_rules_no"><br>所以大家一般都加上该属性！场景：你在本地临时想测试 table 问题，没有引入 reset.css 等库，加上该属性，table 效果就好看多了。我在有些 reset.css 库中发现有对 table 加上如下 css 代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">table</span> &#123;</span><br><span class="line">  <span class="comment">/* 重置库添加下面代码 */</span></span><br><span class="line">  <span class="attribute">border-collapse</span>: collapse;</span><br><span class="line">  <span class="comment">/* table中默认的css */</span></span><br><span class="line">  <span class="attribute">border-collapse</span>: separate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>看到上面的 css 代码才知晓 table 默认样式是每个 td 分割的，加上 collapse（塌陷），就是让他“塌陷”，不分割（去掉双边框）！可以理解 <code>border-collapse: collapse;</code>、<code>rules=&quot;all&quot;</code>所起的作用一致。 细查一下 rules 有三种情况：<code>rules=&quot;all&quot;</code>、<code>rules=&quot;rows&quot;</code>、<code>rules=&quot;cols&quot;</code> 在 w3c 文档中显示效过如下：<br><img src="https://file.798run.top/img/blog/20190925/tab_rules_w3c.png" alt="tab_rules_w3c"><br>这与我本地的效果不一样，我理解只要是加上 rules，不论啥属性值，表格最外面都 ok 的。</p>
+<ul>
+<li>caption 是表头标签，一个完整的表格应该有表头。该表头可以理解为是一个 div，里面可以写其他标签。</li>
+<li>colgroup 标签用于对表格中的列进行组合，以便对其进行格式化。 其内部的子标签是 <code>&lt;col span=&quot;2&quot; style=&quot;background-color:red&quot; width=&quot;300px&quot;&gt;</code> 宽度可以不带 px 单位。</li>
+</ul>
+<h4 id="2、table-中-td-合并"><a href="#2、table-中-td-合并" class="headerlink" title="2、table 中 td 合并"></a>2、table 中 td 合并</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/mmzuo-798/p/6732738.html"><table>标签总结（colspan 跨列 ，rowspan 跨行）</a></p>
+<p>20191028 补充，table 中的 td 合并是后台管理系统中最常见，使用频率最高的需求。一直以来，对于前后端没有分离的系统，拿 php 来说，一般是 foreach 循环出的 tr。具体的合并，我们根据原型图需求，并根据后台中的数据结构，巧妙的合并单元格，也可以针对渲染好的返回前端的页面，在用 js 进行单元格二次合并。</p>
+<p>今天在给同事套 reportStatis/forwardSourceStatis 的表格时候，出现了理解偏差问题。原型如下：<br><img src="https://file.798run.top/img/blog/20190925/tab_proto.png" alt="远期客源分析表原型需求图"><br>我本想的是，直接循环出每个 item(tr)，在针对同类型的 item 中的不同的房型进行合并 rowspan，于是给后端写了静态的 tr，后端说这不能使用，没法循环，我们开始交流。后来后端找了一个之前做好的报表（全天收入表 ReportStatis/ondutyIncomeStatisOld），说之前是这样弄的，我就结合浏览器页面效果开始看他们的代码，发现他们写的没有我想象的复杂，使我也认识到 table 渲染可以这样写（这里展示的是 <code>全天收入表</code> 中 tbody 中相关代码）：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">rowspan</span>=<span class="string">&quot;&lt;?php echo count($data[&#x27;receptionArr&#x27;])+1;?&gt;&quot;</span>&gt;</span>前厅<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  &#123;volist name=&quot;data[&#x27;receptionArr&#x27;]&quot; id=&quot;vo&quot;&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.system_name&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.bankcard_amount&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.cash_amount&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.weixin_amount&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.ali_amount&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.zhipiao_amount&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.tire_transfer_amount&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.free_single_amount&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.pay_punch_amount&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.transfer_account_amount&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.sum_total&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  &#123;/volist&#125;</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">rowspan</span>=<span class="string">&quot;&lt;?php echo count($data[&#x27;financeArr&#x27;])+1;?&gt;&quot;</span>&gt;</span>Ar账<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  &#123;volist name=&quot;data[&#x27;financeArr&#x27;]&quot; id=&quot;vo&quot;&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.system_name&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.ar_bankcard_amount&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.ar_cash_amount&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.ar_weixin_amount&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.ar_ali_amount&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.ar_zhipiao_amount&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.ar_tire_transfer_amount&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>&#123;$vo.ar_sum_total&#125;<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  &#123;/volist&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>仔细想了一下，这样写不仅简洁，还把合并表格的任务减轻了。想想后端的数据也是来自于 sql 中查询，后端也不想麻烦进行二次封装，况且他们查出的数据，针对不同的部门，循环各自部门的数据，针对一个部门的数据，数组长度是变化的。直接把该部门名称写死，用一个 tr 包裹，该 tr 下仅有一个 td，至于 td 的 rowspan 的值可以取该部门中数组长度加 1 即可。效果如下：</p>
+<p><img src="https://file.798run.top/img/blog/20190925/tab_all_day.png" alt="全天收入表的效果"></p>
+<p>看图中，一般我们认为是 6 个 tr，其实是 8 个 tr，在红线圈起来的也是 2 个 tr，这样很巧妙！</p>
+<hr>
+<p>接着说上面的需求，由于数据也不好组装，在 29 号一天，后台同事不在工位，我自己尝试写 循环逻辑。后来感觉基本套好了，现在把后台返回的数据的一部分记录一下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Array( [0] =&gt; Array( [和风间] =&gt; Array( [0] =&gt; Array( [team_name] =&gt;</span><br><span class="line">微平台预付AR挂账 [uid] =&gt; 147 [count] =&gt; 0 ) [1] =&gt; Array( [team_name] =&gt;</span><br><span class="line">携程担保 [uid] =&gt; 148 [count] =&gt; 0 ) [2] =&gt; Array( [team_name] =&gt; 美团预付 [uid]</span><br><span class="line">=&gt; 150 [count] =&gt; 0 ) ) [动感影音房] =&gt; Array( [0] =&gt; Array( [team_name] =&gt;</span><br><span class="line">微平台预付AR挂账 [uid] =&gt; 147 [count] =&gt; 0 ) ) ) [1] =&gt; Array( [明星商务间] =&gt;</span><br><span class="line">Array( [0] =&gt; Array( [team_name] =&gt; 微平台预付AR挂账 [uid] =&gt; 147 [count] =&gt; 0 )</span><br><span class="line">) ) )</span><br></pre></td></tr></table></figure>
+
+<p>最外层数组的索引指的是，预定类型，预订类型对应的是 k : val 形式，k 指的是 8 个房型，val 是数组（长度 24，指的是中介）。</p>
+<p>我在使用 php 的 json_encode() 方法转化一下数据，在控制台打印如下效果：</p>
+<p><img src="https://file.798run.top/img/blog/20190925/json_ecncode1.png" alt="远期客源分析表返回的后台数据1"><br><img src="https://file.798run.top/img/blog/20190925/json_ecncode2.png" alt="远期客源分析表返回的后台数据2"></p>
+<hr>
+<h4 id="3、php-的后台返回的数组"><a href="#3、php-的后台返回的数组" class="headerlink" title="3、php 的后台返回的数组"></a>3、php 的后台返回的数组</h4><p>如下是基本的房型数组</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Array ( [0] =&gt; Array ( [id] =&gt; 578 [name] =&gt; 和风间 [is_check] =&gt; 0 ) [1] =&gt;</span><br><span class="line">Array ( [id] =&gt; 579 [name] =&gt; 动感影音房 [is_check] =&gt; 0 ) [2] =&gt; Array ( [id]</span><br><span class="line">=&gt; 580 [name] =&gt; 明星商务间 [is_check] =&gt; 0 ) )</span><br></pre></td></tr></table></figure>
+
+<p>使用 json_encode() 转换之后显示如下：</p>
+<p><img src="https://file.798run.top/img/blog/20190925/json_ecncode3.png" alt="远期客源分析表返回的后台数据2"></p>
+<p>个人理解后台的关联数组，转换为 json 之后，控制台都是显示数组，还是索引数组。可能这就是规范！</p>
+<h4 id="4-table-的固有的标签属性"><a href="#4-table-的固有的标签属性" class="headerlink" title="4. table 的固有的标签属性"></a>4. table 的固有的标签属性</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/09/25/table%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" data-id="cm6soz0n4003e38vpes2l65rm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js日期设置总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/17/js%E6%97%A5%E6%9C%9F%E8%AE%BE%E7%BD%AE%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2019-09-17T08:55:00.000Z" itemprop="datePublished">2019-09-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/17/js%E6%97%A5%E6%9C%9F%E8%AE%BE%E7%BD%AE%E6%80%BB%E7%BB%93/">js日期设置总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>js日期相关处理函数，时间久了就会忘记怎么使用，每次都是临时在网上搜，写个笔记记录一下：</p>
+<hr>
+<h3 id="1、-日期的基本处理。"><a href="#1、-日期的基本处理。" class="headerlink" title="1、 日期的基本处理。"></a>1、 日期的基本处理。</h3><p>一般针对前端而言，后端（PHP、Java）传给你的时间字段，常见的有2种：如1：<code>2018-09-09 00:00:00</code>，如2：<code>1568711273205</code>。 </p>
+<p>情况1是他们处理过，情况2是直接返回的时间戳。情况1中已处理过，可直接用js处理字符串的方法处理成自己所需要的格式。</p>
+<p>情况2直接 <code>new Date(timestamp)</code> 打印之是：<code>Tue Sep 17 2019 17:07:53 GMT+0800 (中国标准时间)</code>。时间戳必须是数字否则提示：<code>Invalid Date</code>。若是想使用其中的年月日信息则可：<code>_data = new Date(timestamp)</code> ，切记月份记得要加 1 ， 若需要月、日都是2位 ，写一个过滤函数处理之即可。过滤器函数如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 月、日是一位数字的补齐2位，若函数名重复可shift用_padding</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">_fill</span>(<span class="params">arg</span>) &#123;</span><br><span class="line">    <span class="comment">// 使程序更严谨</span></span><br><span class="line">    <span class="keyword">if</span> (arg == <span class="literal">undefined</span> || arg == <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> re = arg + <span class="string">&#x27;&#x27;</span>;  <span class="comment">// 转为字符串为了使用字符串 length 属性</span></span><br><span class="line">    <span class="keyword">if</span> (re.<span class="property">length</span> &lt; <span class="number">2</span>) &#123;</span><br><span class="line">        re = <span class="string">&#x27;0&#x27;</span> + re;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> re;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>补记：其实 Date() 有一些封装好的方法，如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> timeString = <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">timestamp</span>).<span class="title function_">toLocaleString</span>() <span class="comment">// 代码块且命名好</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">toLocaleString</span>() <span class="comment">// &quot;2020/9/15 下午3:42:04&quot;</span></span><br></pre></td></tr></table></figure>
+<p>展示遵循简单，2020/9/15，切莫追求2020/09/15。</p>
+<h3 id="2、-JS中date日期初始化的几种方法"><a href="#2、-JS中date日期初始化的几种方法" class="headerlink" title="2、 JS中date日期初始化的几种方法"></a>2、 JS中date日期初始化的几种方法</h3><p>在标题1中讲述到一般后端返回的是 <code>timestamp</code>、<code>2018-09-09 00:00:00</code>2种，针对这两种初始化可使用如下5种方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> objDate = <span class="keyword">new</span> <span class="title class_">Date</span>([<span class="variable language_">arguments</span> list]);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><code>new Date(&quot;month dd,yyyy hh:mm:ss&quot;);</code></li>
+<li><code>new Date(&quot;month dd,yyyy&quot;);</code><br>以下情况必须是数字型参数！</li>
+<li><code>new Date(yyyy, mth, dd, hh, mm, ss);</code></li>
+<li><code>new Date(yyyy, mth, dd);</code></li>
+<li><code>new Date(ms);</code></li>
+</ol>
+<p>代码如下：</p>
+<ol>
+<li><code>new Date(&quot;January 12,2006 22:19:35&quot;);</code></li>
+<li><code>new Date(&quot;January 12,2006&quot;);</code></li>
+<li><code>new Date(2006,0,12,22,19,35);</code></li>
+<li><code>new Date(2006,0,12);</code></li>
+<li><code>new Date(1137075575000);</code></li>
+</ol>
+<p>上面的5种例子是网上说的，个人感觉不是很实用，一般后台传过来的格式是 <code>2018-09-09 00:00:00</code> ，可以直接 <code>new Date(2018-09-09 00:00:00);</code> 也可以不加 hh:mm:ss。</p>
+<p>但是我在其他帖子上看到 <code>Date.parse()</code> 这种解析方式，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;2019/09/17&#x27;</span>, <span class="title class_">Date</span>.<span class="title function_">parse</span>(<span class="string">&#x27;2019/09/17&#x27;</span>), <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Date</span>.<span class="title function_">parse</span>(<span class="string">&#x27;2019/09/17&#x27;</span>))); </span><br><span class="line"><span class="comment">// 2019/09/17 1568649600000 Tue Sep 17 2019 00:00:00 GMT+0800 (中国标准时间)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;2019-09-17&#x27;</span>, <span class="title class_">Date</span>.<span class="title function_">parse</span>(<span class="string">&#x27;2019-09-17&#x27;</span>), <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Date</span>.<span class="title function_">parse</span>(<span class="string">&#x27;2019-09-17&#x27;</span>)));</span><br><span class="line"><span class="comment">// 2019-09-17 1568678400000 Tue Sep 17 2019 08:00:00 GMT+0800 (中国标准时间)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;2019- 9-17&#x27;</span>, <span class="title class_">Date</span>.<span class="title function_">parse</span>(<span class="string">&#x27;2019-9-17&#x27;</span>), <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title class_">Date</span>.<span class="title function_">parse</span>(<span class="string">&#x27;2019-9-17&#x27;</span>)));</span><br><span class="line"><span class="comment">// 2019- 9-17 1568649600000 Tue Sep 17 2019 00:00:00 GMT+0800 (中国标准时间)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面的三种写法，Date.parse 获得的时间戳不一样， 说明了时间格式的最简写、加默认的0 解析的该天的 hh:mm:ss 不一样。如果加上hh:mm:ss 三种写法会保持一致。 也可观察出 &#x27;2019-9-17&#x27; &#x27;2019/09/17&#x27; 这2中写法获取到的是该天凌晨的时间戳。</span></span><br></pre></td></tr></table></figure>
+
+<p>！！！既然<code>new Date()</code> 也可以解析数字字符串，那就没必要使用<code>Date.parse()</code>。何必要多记忆这个方法呢？</p>
+<h3 id="3、-日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。"><a href="#3、-日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。" class="headerlink" title="3、 日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。"></a>3、 日期，在原有日期基础上，增加（减少）days天数，默认增加1天，若是减一天days传负数即可。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">addDate</span>(<span class="params">date, days</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (days == <span class="literal">undefined</span> || days == <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">        days = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> _date = <span class="keyword">new</span> <span class="title class_">Date</span>(date);</span><br><span class="line">    <span class="comment">// 这时候 _data 可根据自己需求处理 </span></span><br><span class="line">    _date.<span class="title function_">setDate</span>(_date.<span class="title function_">getDate</span>() + days);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的可以拓展加（减）年、加（间）月</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">addYear</span>(<span class="params">date, years</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (years == <span class="literal">undefined</span> || years == <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">        years = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> _date = <span class="keyword">new</span> <span class="title class_">Date</span>(date);</span><br><span class="line">    <span class="comment">// 这时候 _data 可根据自己需求处理 </span></span><br><span class="line">    _date.<span class="title function_">setYear</span>(_date.<span class="title function_">getFullYear</span>() + years);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">addMonth</span>(<span class="params">date, months</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (months == <span class="literal">undefined</span> || months == <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">        months = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> _date = <span class="keyword">new</span> <span class="title class_">Date</span>(date);</span><br><span class="line">    <span class="comment">// 这时候 _data 可根据自己需求处理 </span></span><br><span class="line">    _date.<span class="title function_">setMonth</span>(_date.<span class="title function_">getMonth</span>() + months);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>补记一个小细节，看下例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="keyword">var</span> dd = d.<span class="title function_">setDate</span>(d.<span class="title function_">getDate</span>() + <span class="number">1</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(dd); <span class="comment">// 这时候 dd 是一个时间戳</span></span><br></pre></td></tr></table></figure>
+
+<p>若这样写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">d.<span class="title function_">setDate</span>(d.<span class="title function_">getDate</span>() + <span class="number">1</span>);</span><br><span class="line"><span class="keyword">var</span> dd = d;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(dd); <span class="comment">// 这时候 dd 是一个 Date 对象，打印结果是中国标准时间</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4、-日期之间相差多少天。"><a href="#4、-日期之间相差多少天。" class="headerlink" title="4、 日期之间相差多少天。"></a>4、 日期之间相差多少天。</h3><p>很多的帖子就是直接把startTime endTime 直接转换为时间戳相减之后在取整（或者向下取整）在除以86400000，就是相差的天数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">_subtraction</span> (<span class="params">start, end</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="title class_">Date</span>(start);</span><br><span class="line">    <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="title class_">Date</span>(end);</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">floor</span>((b - a) / <span class="number">86400000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="5、-有初末日期，获取其中之间的日历（场景：酒店系统-餐费的时间日历选择）"><a href="#5、-有初末日期，获取其中之间的日历（场景：酒店系统-餐费的时间日历选择）" class="headerlink" title="5、 有初末日期，获取其中之间的日历（场景：酒店系统 餐费的时间日历选择）"></a>5、 有初末日期，获取其中之间的日历（场景：酒店系统 餐费的时间日历选择）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">selectMealDate</span> (<span class="params">s, e</span>) &#123;</span><br><span class="line">    <span class="comment">// 月、天不够2位补0</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_fill</span> = <span class="keyword">function</span> (<span class="params">arg</span>) &#123;</span><br><span class="line">        <span class="comment">// 使程序更严谨</span></span><br><span class="line">        <span class="keyword">if</span> (arg == <span class="literal">undefined</span> || arg == <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> re = arg + <span class="string">&#x27;&#x27;</span>;  <span class="comment">// 转为字符串为了使用字符串 length 属性</span></span><br><span class="line">        <span class="keyword">if</span> (re.<span class="property">length</span> &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            re = <span class="string">&#x27;0&#x27;</span> + re;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> re;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 初末日期相差多少天</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_subtraction</span> = <span class="keyword">function</span> (<span class="params">startArg, endArg</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> a = <span class="keyword">new</span> <span class="title class_">Date</span>(startArg);</span><br><span class="line">        <span class="keyword">var</span> b = <span class="keyword">new</span> <span class="title class_">Date</span>(endArg);</span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">floor</span>((b - a) / <span class="number">86400000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 抛出的值</span></span><br><span class="line">    <span class="keyword">var</span> _arr = [];</span><br><span class="line">    <span class="comment">// 循环出餐费日历数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="variable language_">this</span>.<span class="title function_">_subtraction</span>(s, e); i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> temp = <span class="keyword">new</span> <span class="title class_">Date</span>(s);</span><br><span class="line">        temp.<span class="title function_">setDate</span>(temp.<span class="title function_">getDate</span>() + i ); </span><br><span class="line">        _arr.<span class="title function_">push</span>(temp.<span class="title function_">getFullYear</span>() + <span class="string">&#x27;-&#x27;</span>+ <span class="variable language_">this</span>.<span class="title function_">_fill</span>(temp.<span class="title function_">getMonth</span>() + <span class="number">1</span>) + <span class="string">&#x27;-&#x27;</span> + <span class="variable language_">this</span>.<span class="title function_">_fill</span>(temp.<span class="title function_">getDate</span>()));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> _arr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="6、-参考的链接，未完，相差小时，分钟，秒-继续看参考的帖子"><a href="#6、-参考的链接，未完，相差小时，分钟，秒-继续看参考的帖子" class="headerlink" title="6、 参考的链接，未完，相差小时，分钟，秒 继续看参考的帖子"></a>6、 参考的链接，未完，相差小时，分钟，秒 继续看参考的帖子</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/summer-qd/p/10103984.html">js 日期相差计算</a><br><a target="_blank" rel="noopener" href="http://www.miaoqiyuan.cn/p/date-range">JS日历循环，指定开始结束日期，自动向后计算</a><br><a target="_blank" rel="noopener" href="http://www.runoob.com/js/js-obj-date.html">JavaScript Date（日期） 对象</a>     </p>
+<h3 id="7、-日期相关补记"><a href="#7、-日期相关补记" class="headerlink" title="7、 日期相关补记"></a>7、 日期相关补记</h3><ol>
+<li><p>一般服务器的时间是很少出错，我们在后台存时间戳其实是不准确的，应为时间戳若是时区不一样，解析的会有误差！可以看这篇帖子 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/23663741">MySQL date、datetime和timestamp类型的区别</a>，在看了帖子：<a target="_blank" rel="noopener" href="https://learn.blog.csdn.net/article/details/102728563">时区是怎么划分的？世界各时区的时间如何统一表达？GMT、UTC、UNIX有什么区别？</a>之后发现一个完善web系统，可以存datetime(它是绝对值是最准确的！)</p>
+</li>
+<li><blockquote>
+<p>用户的浏览器从服务器获取HTML文档，开始翻译解析，解析 “new Date()” 时就是用户系统的时间，也就是你说的用户系统的时间；一般情况下用户操作系统的时间是准确的，但也有不准确的情况，也可以在服务器获取时间，这就有点麻烦了，应该有相应的API吧，没试过。  </p>
+</blockquote>
+</li>
+</ol>
+<p>上面一段说的js是获取本机的系统使劲，我想若不是一个时区，或者用户自己更改自己电脑时间，也会倒置时间不一致！</p>
+<ol start="3">
+<li><p>现在服务器一般是linux 都是使用的是 UTC （世界时间协调），格式： 2019-11-11T00:00:00.000Z 我想数据库也可以这样存，返回给前端之后，前端可使用 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/goloving/p/10514914.html">js处理时间时区问题</a> 中的方法处理！其中的举例很好，公式：其他时区时间 + 其他时区时差 = 本地时间 + 本地时差</p>
+</li>
+<li><p>在网上搜到一个这样的帖子 <a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/1964112958349855060.html">苹果手机浏览器时区与系统时区不一致</a>  其中的回答综合我理解是没有同步时间！</p>
+</li>
+<li><p>2019-11-11T00:00:00.000Z T 代表是世界标准时间  Z是指偏移量，没有写数值就是指偏移为 0 ，也就是 0 时区。北京在东8区、比GMT要早8小时，写作2019-11-11T08:00:00.000+0800  参考上面帖子，“时区是…”</p>
+</li>
+<li><p>各大语言处理时间函数 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/xwdreamer/p/8761825.html">UTC时间、GMT时间、本地时间、Unix时间戳</a></p>
+</li>
+</ol>
+<h3 id="8、记录一次-iOS-手机上日期使用bug"><a href="#8、记录一次-iOS-手机上日期使用bug" class="headerlink" title="8、记录一次 iOS 手机上日期使用bug"></a>8、记录一次 iOS 手机上日期使用bug</h3><ol>
+<li><p>在微平台的 C 端由于房券使用的逻辑选房日期赋值了这种格式 2020-05-01 06:00:01，进行了 var t = new Date(‘2020-05-01 06:00:01’) 的操作，可是在取 t.getFullYear() 时候一直提示 NaN，搜资料发现 ios 手机上 new Date(param)，该 param 要么是时间戳，要么是这种格式的字符串 ‘2019/09/17 06:01:00’ 才能被 ios 手机解析出来！</p>
+</li>
+<li><p>详见 <a target="_blank" rel="noopener" href="https://blog.csdn.net/chelen_jak/article/details/98215109">解决js newDate()苹果手机日期格式显示NaN</a></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/09/17/js%E6%97%A5%E6%9C%9F%E8%AE%BE%E7%BD%AE%E6%80%BB%E7%BB%93/" data-id="cm6soz0my002y38vp5jw6b4me" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JS杂集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/23/JS%E6%9D%82%E9%9B%86/" class="article-date">
+  <time datetime="2019-07-23T09:54:05.000Z" itemprop="datePublished">2019-07-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/23/JS%E6%9D%82%E9%9B%86/">JS杂集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、Window-的一些属性"><a href="#1、Window-的一些属性" class="headerlink" title="1、Window 的一些属性"></a><strong>1、Window 的一些属性</strong></h3><ul>
+<li><p>之前 Tom 大叔说过，定义变量只有一种方式：<code>var a = *</code>。若是不写 var，直接写：<code>a = *</code>，这等于说是在 Window 中定义了一个属性 a。</p>
+</li>
+<li><p>定义一个函数 fn（声明式），在 Window 中多了一个属性 fn。</p>
+</li>
+</ul>
+<h3 id="2、window-referrer"><a href="#2、window-referrer" class="headerlink" title="2、window.referrer"></a><strong>2、window.referrer</strong></h3><ul>
+<li>referrer 属性可返回载入当前文档的文档的 URL。举例：当前 A 页 <code>http://localhost:8080/</code>该页有 dom 元素：<code>&lt;a href=&quot;http://localhost:3000/&quot; target=&quot;_blank&quot;&gt;跳转到B&lt;/a&gt;</code> 点击 a 链接，进入 B 页面，控制台键入 <code>document.referrer</code>，打印：<code>http://localhost:8080/</code>，使用 <code>window.location.href</code> 亦如此！</li>
+</ul>
+<h3 id="3、数据合并"><a href="#3、数据合并" class="headerlink" title="3、数据合并"></a><strong>3、数据合并</strong></h3><ul>
+<li>看如下代码：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">  method: &quot;PUT&quot;,</span><br><span class="line">  body: JSON.stringify(&#123;</span><br><span class="line">    age: 1,</span><br><span class="line">  &#125;),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var init;</span><br><span class="line"></span><br><span class="line">var result = Object.assign(&#123;&#125;, obj, init);</span><br><span class="line">// &#123;method: &quot;PUT&quot;, body: &quot;&#123;&quot;age&quot;:1&#125;&quot;&#125;</span><br><span class="line">// 即使 init 是 undefined，也合并了，可能忽略了该变量</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="4、cookie相关"><a href="#4、cookie相关" class="headerlink" title="4、cookie相关"></a><strong>4、cookie相关</strong></h3><p>测试 setCookie(‘loginStatus’, 1); 在获取 getCookie ，值依旧是 string<br>在秋果C端封装了2个cookie相关代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">setCookie</span>(<span class="params">name, value</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="title class_">Days</span> = <span class="number">30</span>;</span><br><span class="line">  <span class="keyword">let</span> exp = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">  exp.<span class="title function_">setTime</span>(exp.<span class="title function_">getTime</span>() + <span class="title class_">Days</span> * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>);</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">cookie</span> =</span><br><span class="line">    name + <span class="string">&#x27;=&#x27;</span> + <span class="built_in">escape</span>(value) + <span class="string">&#x27;;expires=&#x27;</span> + exp.<span class="title function_">toGMTString</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">getCookie</span>(<span class="params">name</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> v = <span class="variable language_">window</span>.<span class="property">document</span>.<span class="property">cookie</span>.<span class="title function_">match</span>(<span class="string">&#x27;(^|;) ?&#x27;</span> + name + <span class="string">&#x27;=([^;]*)(;|$)&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> v ? v[<span class="number">2</span>] : <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取cookie的函数返回的是一个三木写法的表达式，当然有可能返回 null，此时我在e家农场登录页面使用这2个方法时，webstorm一直提示我代码weaking，看代码使用的是!=,而不是!==,后来修改了严谨的===、!==，依旧是提示代码weaking，费了好大一会，看其提示说null与啥都不相等，则我的业务代码中 <code>getCookie(&#39;loginStatus&#39;) === &#39;1&#39; ? &#39;yes&#39; : &#39;no&#39;</code> 三木写法意义不大！(因为null的情况下，很大的概率就是一直取值是no)。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/07/23/JS%E6%9D%82%E9%9B%86/" data-id="cm6soz0m2001438vp6n14911y" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-看冴羽博客笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/02/%E7%9C%8B%E5%86%B4%E7%BE%BD%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2019-07-02T11:11:42.000Z" itemprop="datePublished">2019-07-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/02/%E7%9C%8B%E5%86%B4%E7%BE%BD%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0/">看冴羽博客笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="看冴羽博客自己总结"><a href="#看冴羽博客自己总结" class="headerlink" title="看冴羽博客自己总结"></a>看冴羽博客自己总结</h3><p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">&quot;global scope&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkscope</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> scope = <span class="string">&quot;local scope&quot;</span>;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> scope;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">f</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">checkscope</span>();</span><br></pre></td></tr></table></figure>
+<p>执行过程如下：<br>1.首先是创建一个全局执行上下文，把其压入执行栈中；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ECStack</span> = &#123;</span><br><span class="line">    globalContext</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>创建完，全局执行上下文，随后就会对全局执行上下文进行初始化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">globalContext = &#123;</span><br><span class="line">    <span class="attr">VO</span>: [<span class="variable language_">global</span>],</span><br><span class="line">    <span class="title class_">Scope</span>: [globalContext.<span class="property">VO</span>],</span><br><span class="line">    <span class="attr">this</span>: globalContext.<span class="property">VO</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化全局执行上下文的同时，checkscope函数被创建，保存作用域链到函数的内部属性<code>[[scope]]</code></p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">checkscope.[[scope]]] = [</span><br><span class="line">    globalContext.<span class="property">VO</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><p>执行checkscope函数之前，创建该函数的执行上下文，并把该函数上下文压入执行上下文栈中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ECStack</span> = [</span><br><span class="line">    checkscopeContext,</span><br><span class="line">    globalContext</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>checkscope函数执行上下文开始初始化：</p>
+<ul>
+<li>复制函数属性[[scope]]创建作用域链</li>
+<li>用arguments创建活动对象AO</li>
+<li>初始化AO，即加入形参、函数声明、变量声明</li>
+<li>将活动对象压入checkscope作用域链的顶端</li>
+</ul>
+</li>
+</ol>
+<p>初始化之后AO的结果是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">checkscopeContext = &#123;</span><br><span class="line">    <span class="attr">AO</span>: &#123;</span><br><span class="line">        <span class="attr">arguments</span>: &#123;</span><br><span class="line">            <span class="attr">length</span>: <span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">scope</span>: <span class="literal">undefined</span>,</span><br><span class="line">        <span class="attr">f</span>: <span class="title class_">Reference</span> <span class="title function_">f</span> () &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title class_">Scope</span>: [globalContext.<span class="property">VO</span>],</span><br><span class="line">    <span class="attr">this</span>: <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将活动对象压入checkscope作用域链的顶端:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">checkscopeContext = &#123;</span><br><span class="line">    <span class="attr">AO</span>: &#123;</span><br><span class="line">        <span class="attr">arguments</span>: &#123;</span><br><span class="line">            <span class="attr">length</span>: <span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">scope</span>: <span class="literal">undefined</span>,</span><br><span class="line">        <span class="attr">f</span>: <span class="title class_">Reference</span> <span class="title function_">f</span> () &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title class_">Scope</span>: [<span class="variable constant_">AO</span>, globalContext.<span class="property">VO</span>],</span><br><span class="line">    <span class="attr">this</span>: <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li><p>checkscope函数的解析就结束了，随后就解析f函数，同理：创建f函数执行上下文 - 把f函数执行上下文压入执行上下文栈这时候执行栈变成了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="title class_">ECStack</span> = [</span><br><span class="line">    fContext,</span><br><span class="line">    checkscopeContext,</span><br><span class="line">    globalContext</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>f函数执行上下文初始化的步骤与checkscope函数是同理的。最终f函数的执行上下文初始化之后的结果是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fContext = &#123;</span><br><span class="line">    <span class="attr">AO</span>: &#123;</span><br><span class="line">        <span class="attr">arguments</span>: &#123;</span><br><span class="line">            <span class="attr">length</span>: <span class="number">0</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title class_">Scope</span>: [<span class="variable constant_">AO</span>, checkscopeContext.<span class="property">AO</span>, globalContext.<span class="property">VO</span>],</span><br><span class="line">    <span class="attr">this</span>: <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>f函数的执行上下文也初始化完成之后，就开始执行函数了，当然执行栈是按照自上而下的方式执行，于是首先执行f函数，因为f函数return了scope这时候f函数就沿着他的作用域链找scope的变量声明，首先在它自己的活动对象找scope没找到，就去checkscopeContext.AO找,发现该处的AO中scope被赋值为local scope，所以执行结果就是local scope。</p>
+</li>
+<li><p>f函数执行完毕，f函数上下文从ECStack弹出，checkscope函数执行完毕，checkscope执行上下文也会从ECStack弹出，最终ECStack变成：</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ECStack</span> = [</span><br><span class="line">    globalContext</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ol start="9">
+<li><p>最终页面关闭时候，全局执行上下文，也会弹出。</p>
+</li>
+<li><p>参考链接：<a target="_blank" rel="noopener" href="https://github.com/mqyqingfeng/Blog/issues/8">JavaScript深入之执行上下文</a>;</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/07/02/%E7%9C%8B%E5%86%B4%E7%BE%BD%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0/" data-id="cm6soz0o1005d38vp11dd1nh6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-layui中函数使用方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/14/layui%E4%B8%AD%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="article-date">
+  <time datetime="2019-06-14T02:10:16.000Z" itemprop="datePublished">2019-06-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/14/layui%E4%B8%AD%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">layui中函数使用方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="总结一下layui的函数使用方法"><a href="#总结一下layui的函数使用方法" class="headerlink" title="总结一下layui的函数使用方法"></a>总结一下layui的函数使用方法</h4><ol>
+<li><p>针对声明函数如 <code>onclick=myClick()</code>，可在layui.use([], function(){})中写但是必须是window.myClick = function () {}，这能声明成功，但是有时候我们常常使用jq中的 <code>$(this)</code>，这时候this指向不是我们想要的当前元素，而是window。贤心在一篇帖子中回答使用此方法。</p>
+</li>
+<li><p>还有一种就是使用jq绑定事件写在layui.use([], function(){})中，视情况而定。当然你也可以放到layui.use([], function(){})外面，但是你记得要引入jQuery，否则会报错： Uncaught ReferenceError: $ is not defined。个人感觉就直接写在layui.use之间就可以。</p>
+</li>
+<li><p>有关table监听有一下几种用法</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这下面的 fiterTabname 是指table标签中lay-filter=&quot;fiterTabname&quot;</span></span><br><span class="line">table.<span class="title function_">on</span>(<span class="string">&#x27;edit(fiterTabname)&#x27;</span>; <span class="comment">// table中的input输入</span></span><br><span class="line">table.<span class="title function_">on</span>(<span class="string">&#x27;checkbox(fiterTabname)&#x27;</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line">table.<span class="title function_">on</span>(<span class="string">&#x27;radio(fiterTabname)&#x27;</span>; <span class="comment">// 点击radio</span></span><br><span class="line">table.<span class="title function_">on</span>(<span class="string">&#x27;tool(fiterTabname)&#x27;</span>; <span class="comment">// 这是操作按钮（一般在table中最后一列，通过templet的标识，如：templet: &#x27;#barDemo&#x27;。针对barDemo是script渲染标签的id，详见下例：）</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/html&quot;</span> <span class="attr">id</span>=<span class="string">&quot;barDemo&quot;</span>&gt;</span><span class="language-handlebars"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;layui-btn layui-btn-primary layui-btn-xs&quot;</span> <span class="attr">lay-event</span>=<span class="string">&quot;read&quot;</span>&gt;</span>读卡<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;layui-btn layui-btn-danger layui-btn-xs&quot;</span> <span class="attr">lay-event</span>=<span class="string">&quot;del&quot;</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span></span><br><span class="line"><span class="language-xml"><span class="language-handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 还要注意table标签中的id=&quot;table1&quot;一般是渲染table时候使用，用法如下：</span></span><br><span class="line">table.<span class="title function_">render</span>(&#123;</span><br><span class="line">    <span class="attr">elem</span>: <span class="string">&quot;#table1&quot;</span>,</span><br><span class="line">    <span class="attr">data</span>: [],</span><br><span class="line">    <span class="attr">cols</span>: []</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>有关form监听有一下几种用法<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">form.<span class="title function_">on</span>(<span class="string">&#x27;edit(fiterFormname)&#x27;</span>; <span class="comment">// table中的input输入</span></span><br><span class="line">form.<span class="title function_">on</span>(<span class="string">&#x27;tool(fiterFormname)&#x27;</span>; <span class="comment">// 这是操作按钮</span></span><br><span class="line"></span><br><span class="line">form.<span class="title function_">on</span>(<span class="string">&#x27;checkbox(fiterFormname)&#x27;</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line">form.<span class="title function_">on</span>(<span class="string">&#x27;radio(fiterFormname)&#x27;</span>; <span class="comment">// 点击checkbox</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 说明一下，针对上面form监听的几种用法，笔记写的比较早，现在19/09/18发现，有不合理的地方？ ` form.on(&#x27;tool(***)&#x27;) `， ` form.on(&#x27;edit(***)&#x27;) ` 怎么没发现使用场景？ 在一个页面中form监听常用方法： </span></span><br><span class="line"></span><br><span class="line">form.<span class="title function_">on</span>(<span class="string">&#x27;checkbox(fiterCheckboxName)&#x27;</span>);</span><br><span class="line">form.<span class="title function_">on</span>(<span class="string">&#x27;radio(fiterRadioName)&#x27;</span>);</span><br><span class="line">form.<span class="title function_">on</span>(<span class="string">&#x27;select(fiterSelectName)&#x27;</span>);</span><br><span class="line">form.<span class="title function_">on</span>(<span class="string">&#x27;submit(fiterSubmitName)&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 细想checkbox使用form监听的场景也很少，本身他就是多选框，就是记录一个状态！场景：选择多标签时候，选择标签数量超过设定数量，禁止点击。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// radio点击之后，切换大状态，改变页面中对应展示！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在pms添加消费时候，餐费日期选择，使用jq插入节点，要再次渲染form.render(&#x27;checkbox&#x27;);</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="5">
+<li>layui中的css的默认样式<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">button</span>, <span class="selector-tag">input</span>, <span class="selector-tag">optgroup</span>, <span class="selector-tag">option</span>, <span class="selector-tag">select</span>, <span class="selector-tag">textarea</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: inherit;</span><br><span class="line">    <span class="attribute">font-size</span>: inherit;</span><br><span class="line">    <span class="attribute">font-style</span>: inherit;</span><br><span class="line">    <span class="attribute">font-weight</span>: inherit;</span><br><span class="line">    <span class="attribute">outline</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.layui-form</span> <span class="selector-tag">input</span><span class="selector-attr">[type=checkbox]</span>, <span class="selector-class">.layui-form</span> <span class="selector-tag">input</span><span class="selector-attr">[type=radio]</span>, <span class="selector-class">.layui-form</span> <span class="selector-tag">select</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.layui-inline</span>, <span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.layui-btn</span>, <span class="selector-class">.layui-input</span>, <span class="selector-class">.layui-select</span>, <span class="selector-class">.layui-textarea</span>, <span class="selector-class">.layui-upload-button</span> &#123;</span><br><span class="line">    <span class="attribute">outline</span>: <span class="number">0</span>;</span><br><span class="line">    -webkit-<span class="attribute">appearance</span>: none;</span><br><span class="line">    <span class="attribute">transition</span>: all .<span class="number">3s</span>;</span><br><span class="line">    -webkit-<span class="attribute">transition</span>: all .<span class="number">3s</span>;</span><br><span class="line">    <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.layui-btn</span>, <span class="selector-class">.layui-disabled</span>, <span class="selector-class">.layui-icon</span>, <span class="selector-class">.layui-unselect</span> &#123;</span><br><span class="line">    -webkit-<span class="attribute">user-select</span>: none;</span><br><span class="line">    -ms-<span class="attribute">user-select</span>: none;</span><br><span class="line">    -moz-<span class="attribute">user-select</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.layui-btn</span>, <span class="selector-class">.layui-edge</span>, <span class="selector-class">.layui-inline</span>, <span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>针对 <code>layui-form-item</code>，layui中对其写了一个伪类</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.layui-form-item</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&#x27;\20&#x27;</span>;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">    *<span class="attribute">zoom</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>layui-form-label</code>为啥是38px，因为其内部样式写了行高是20px，其padding添加了9px 15px。具体代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.layui-form-label</span> &#123;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">9px</span> <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">80px</span>;</span><br><span class="line">    <span class="attribute">font-weight</span>: <span class="number">400</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在room_pre\的addOccTeamInfo.php 中客户保留了pad-bottom0 pad-top0 lh30，开始估计是不统一，才临时加的css，后来就直接copy 全部嫁接了。</p>
+<hr>
+<p>在 pms 中的弹框大多是由 <code>iframe</code> 形式，在一些弹框中的最后提交的按钮的那一栏 <code>layui-form-item</code> 好像不知道谁加入一个 layui-main 样式类，是这个class 有宽度 width: 1140px; margin: 0 auto; 导致弹框出现横向滚动条！如下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-form-item layui-main&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-input-block&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;layui-btn&quot;</span> <span class="attr">lay-submit</span> <span class="attr">lay-filter</span>=<span class="string">&quot;PostSubmit&quot;</span>&gt;</span>立即提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;layui-btn layui-btn-primary&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;closeUpWin()&quot;</span>&gt;</span>返回<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;do&quot;</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">value</span>=<span class="string">&quot;dosubmit&quot;</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;$StoreInfo.id&#125;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="6">
+<li>layui模块使用的demo</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// layui的模块备份</span></span><br><span class="line">layui.<span class="title function_">use</span>([<span class="string">&#x27;element&#x27;</span>,<span class="string">&#x27;table&#x27;</span>,<span class="string">&#x27;laydate&#x27;</span>,<span class="string">&#x27;form&#x27;</span>], <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> element = layui.<span class="property">element</span>;</span><br><span class="line">    <span class="keyword">var</span> laydate = layui.<span class="property">laydate</span>;</span><br><span class="line">    <span class="keyword">var</span> layedit = layui.<span class="property">layedit</span>;</span><br><span class="line">    <span class="keyword">var</span> laypage = layui.<span class="property">laypage</span>;</span><br><span class="line">    <span class="keyword">var</span> table = layui.<span class="property">table</span>;</span><br><span class="line">    <span class="keyword">var</span> form = layui.<span class="property">form</span>;</span><br><span class="line">    <span class="keyword">var</span> $ = layui.<span class="property">$</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>在这里补充一下：之前一直理解的是layer，不用引入该模块也可使用，但自己测试 <code>layui.use([], function()&#123; layer.msg(123) &#125;)</code> 会提示 layer is not defined，所以可以推理layer是钳在其他模块中，也可理解为use要有模块名字，layer可不写确能使用。偶然间测出了，use table可以不写form，但是只是引入form，不能使用table。猜想是table模块中包含了form逻辑，具体细究。</p>
+<ol start="7">
+<li>layui的弹框有3个大项：</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-layer-move&quot;</span> <span class="attr">style</span>=<span class="string">&quot;cursor: move; display: none;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-layer-shade&quot;</span> <span class="attr">id</span>=<span class="string">&quot;layui-layer-shade4&quot;</span> <span class="attr">times</span>=<span class="string">&quot;4&quot;</span> <span class="attr">style</span>=<span class="string">&quot;z-index: 19891017; background-color: rgb(0, 0, 0); opacity: 0.5;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-layer layui-layer-iframe&quot;</span> <span class="attr">id</span>=<span class="string">&quot;layui-layer4&quot;</span> <span class="attr">type</span>=<span class="string">&quot;iframe&quot;</span> <span class="attr">times</span>=<span class="string">&quot;4&quot;</span> <span class="attr">showtime</span>=<span class="string">&quot;0&quot;</span> <span class="attr">contype</span>=<span class="string">&quot;string&quot;</span> <span class="attr">style</span>=<span class="string">&quot;z-index: 19891018; width: 90%; height: 90%; top: 17px; left: 58.5px;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>layui中的html使用demo</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-row&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-col-md3&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;div class=&quot;grid-demo&quot;&gt; --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-form-item&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-inline&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;layui-form-label&quot;</span>&gt;</span>姓名：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-input-block select_after&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;nam&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;user_name&quot;</span> <span class="attr">class</span>=<span class="string">&quot;layui-input&quot;</span> <span class="attr">value</span>=<span class="string">&quot;value值&quot;</span> <span class="attr">lay-verify</span>=<span class="string">&quot;nullStr&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- &lt;/div&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>&lt;div class=&quot;grid-demo&quot;&gt;&lt;/div&gt;</code>这个是官网给的例子，在css中这个class无体现！</p>
+<ol start="9">
+<li>layui中的icon的记录</li>
+</ol>
+<p>icon:<br>    1绿色对号<br>    2红色X号<br>    3黄色问好<br>    4暗灰色加锁<br>    5生气小红脸<br>    6开心小绿脸<br>    7黄色感叹号</p>
+<p>layer.msg(‘暂无当前日期前7天数据’, {icon: 2});</p>
+<ol start="10">
+<li>layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）。 若你采用layer.open({type: 1})方式调用，则type为必填项（信息框除外）</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/14/layui%E4%B8%AD%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-id="cm6soz0n0003638vpfqy58k9n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Math函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/11/Math%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2019-06-11T09:25:00.000Z" itemprop="datePublished">2019-06-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/11/Math%E5%87%BD%E6%95%B0/">Math函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="总结一下Math相关函数"><a href="#总结一下Math相关函数" class="headerlink" title="总结一下Math相关函数"></a>总结一下Math相关函数</h3><ol>
+<li>我们在写涉及到钱业务逻辑前端页面时，会有保留2位小数的场景，后台一般返回钱数相关字段的值是字符串，如：<code>3.00</code>，但是有时候页面需要计算钱数，如 3.00 + 5.00 = &gt; 8，这时候8转为8.00比较符合场景，这时候可能会使用到toFixed(2)。</li>
+</ol>
+<p>toFixed用法 ： </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">NumberObject</span>.<span class="title function_">toFixed</span>(num);</span><br></pre></td></tr></table></figure>
+<p>上面意思是针对Number型，才能使用 <code>toFixed()</code>, 切记这个也是满足四舍五入的数学规则。</p>
+<ol start="2">
+<li>Math.ceil(num))，是只是向上取整数，但是若是3.00之类的数还是3 如下： <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Math</span>.<span class="title function_">ceil</span>(<span class="number">3.12</span>))   <span class="comment">// 4</span></span><br><span class="line"><span class="title class_">Math</span>.<span class="title function_">ceil</span>(<span class="number">3.00</span>))   <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>同理Math.floor()也是如此。</p>
+<ol start="3">
+<li>toString() 也是针对Number。但是它好像是有2进制的作用</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/11/Math%E5%87%BD%E6%95%B0/" data-id="cm6soz0m6001h38vpbttrbw0a" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-h5中img标签的边框问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2019-06-10T05:22:11.000Z" itemprop="datePublished">2019-06-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/">h5中img标签的边框问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="总结一下-h5-中-img-标签的边框问题"><a href="#总结一下-h5-中-img-标签的边框问题" class="headerlink" title="总结一下 h5 中 img 标签的边框问题"></a>总结一下 h5 中 img 标签的边框问题</h3><p>我们常在一些重置 css 如：reset.css、normaize.css 看到：<code>border-style: none; border: 0;</code>。在网页中搜到 img 标签的边框问题。自己总结如下：</p>
+<ol>
+<li>网上说 img 有边框问题，我在 chrome（版本 74.0.3729.169（正式版本） （64 位））中测试无发现此 bug。</li>
+<li>网上说解决边框问题方法：</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span><span class="selector-attr">[src=<span class="string">&quot;&quot;</span>]</span>,</span><br><span class="line"><span class="selector-tag">img</span><span class="selector-pseudo">:not</span>(<span class="selector-attr">[src]</span>) &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>确实可以解决部门场景的 img 边框，但这是有条件的。上面 css 代码指：该 img 标签无 src 属性或 src 属性值为空。试想一下写前端代码的小伙伴谁会忘记写 src 属性？若忘记写 src 属性，则图片渲染不出来，Ta 也会发现该 bug！若开发小伙伴就是如下写法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.imgWrap</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">background</span>: antiquewhite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.imgSrc</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;imgWrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;imgSrc&quot;</span> <span class="attr">src</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>渲染效果：<br><img src="https://file.798run.top/img/blog/20190610/img_src1.jpg" alt="opacity=0效果"></p>
+<p>确实 img 图片无渲染，无边框。opacity:0;把 img 占位区的透明度给置为 0，所以不展示边框。</p>
+<hr>
+<ol start="3">
+<li>正常情况，对 img 写了 src 属性，可是图片没有加载过来，2 中的解决方法依然是有边框。代码如下：</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.imgWrap</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">background</span>: antiquewhite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.imgSrc</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;imgWrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;imgSrc&quot;</span> <span class="attr">src</span>=<span class="string">&quot;favicon.ic&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>网上说的方法大多不行，自己思考你给图片写了宽高，但图片没有加载出来， 浏览器就按照你写的宽高给 img 添加默认的边框。<br><img src="https://file.798run.top/img/blog/20190610/img_src2.jpg" alt="无加载出图片依旧有边框"></p>
+<p>默认的没有加载出的图片大小是 16x16：<br><img src="https://file.798run.top/img/blog/20190610/img_src3.jpg" alt="无加载出默认图片大小"></p>
+<p>但是一般情况大家都会对图片写宽高啊! 最后得出：只对图片写宽（刚好图片有一个机制是宽度确认高自己是适配），加载不出来，也有一个默认 16x16 的图片提示，本来浏览器就是这样提示用户的，设计、产品、老板就只顾着说，哈哈。 最后得出网上所谓的方法也是鸡肋办法，不实用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/" data-id="cm6soz0mo002j38vphaqhd5e6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSS的normalize-css的文档说明" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time datetime="2019-05-09T07:32:46.000Z" itemprop="datePublished">2019-05-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/">CSS的normalize.css的文档说明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/" data-id="cm6soz0ll000d38vp5r8oeiou" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js数组排序去重等" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/15/js%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%8E%BB%E9%87%8D%E7%AD%89/" class="article-date">
+  <time datetime="2019-04-15T02:32:19.000Z" itemprop="datePublished">2019-04-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/15/js%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%8E%BB%E9%87%8D%E7%AD%89/">js数组排序去重等</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>针对js数组排序，有几种方法，现总结一下，以免自己忘记。</p>
+<h4 id="1-js数组的排序之sort-方法"><a href="#1-js数组的排序之sort-方法" class="headerlink" title="1. js数组的排序之sort()方法"></a>1. js数组的排序之sort()方法</h4><ul>
+<li>数组有一个sort()方法，可用之简单排序，如下代码：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmpArr = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">2</span>];</span><br><span class="line">functon <span class="title function_">sortMethod</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (a &gt; b) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a &lt; b) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="number">0</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( tmpArr.<span class="title function_">sort</span>(sortMethod) );</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>可满足从小到大排序。</p>
+<ul>
+<li>若需要是从大到小排序，则可以改造为：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmpArr = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">2</span>];</span><br><span class="line">functon <span class="title function_">sortMethod</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (a &gt; b) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a &lt; b) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="number">0</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( tmpArr.<span class="title function_">sort</span>(sortMethod) );</span><br></pre></td></tr></table></figure>
+
+<p>无意中看到一篇关于 sort 的帖子，本来在我的微信悬浮中，现在用博客记录一下链接：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/lVPKNh6SCdf9EDHQPzjLaQ">为什么使用sort()不是不是真正意义的乱序呢？</a></p>
+<h4 id="2-冒泡排序"><a href="#2-冒泡排序" class="headerlink" title="2. 冒泡排序"></a>2. 冒泡排序</h4><ul>
+<li>冒泡的含义，来源于生活，是一个形象的比喻，就像是锅中烧水，小泡在下面，大炮在上面，小泡慢慢从下面升起来跑到上面。 所谓的冒泡排序就是从最开始的第一个数arr[0]，与他临近的arr[1]比较，若arr[0] &gt; arr[1]，对调位置（类似于冒泡）。这时候新的arr[1]继续与arr[2]比较，若满足条件对调位置，知道把数据循环一遍。循环一遍结束后，这只是把arr[0]与其他元素做了比较，这时候要对新的arr[1]与他之后的元素依次比较，所以这会有双重循环。 看代码：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmpArr = [<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, -<span class="number">1</span>];</span><br><span class="line">functon <span class="title function_">bubbleSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">    <span class="comment">// 第一次循环，针对每一个元素分别走一遍，让他开始冒泡</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.<span class="property">length</span> - <span class="number">1</span>; i++ ) &#123;</span><br><span class="line">        <span class="comment">// 第二次循环，每一个元素分别比较之后，继续与他右边元素比较，一直到循环到头</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; arr.<span class="property">length</span> - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j+<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">var</span> tmp = arr[j];</span><br><span class="line">                arr[j] = arr[j+<span class="number">1</span>];</span><br><span class="line">                arr[j+<span class="number">1</span>] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="title function_">bubbleSort</span>(tmpArr) );</span><br></pre></td></tr></table></figure>
+<p>解释一下这里的代码含义，为什么是 arr.length - 1 ，arr.length - 1 - i主要是内层的循环，为了代码不进行多余的循环，还有一个重要的原因，上面的代码中有arr[j+1]，要是不限制，有可能数组越界。 第二次循环若是 &lt; 4,则j 有可能等于3，则arr[j+1] 既是arr[4]，所以这是不合理的。</p>
+<h4 id="3-数组去重"><a href="#3-数组去重" class="headerlink" title="3. 数组去重"></a>3. 数组去重</h4><ul>
+<li>数组去重，一般是想到使用indexOf(‘el’)找到其索引，在直接对数组使用 arr.splice(index, ‘el’)即可！我在集团端crs中direct_hotel\room_status.php中使用到数组去重逻辑，具体如下：很多房型是form中的input type=”checkbox”，每次选中或者取消checkbox要实时获取数组中有效房型。具体代码：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> roomTypeArr = [];</span><br><span class="line">form.<span class="title function_">on</span>(<span class="string">&#x27;checkbox(filterRoomType)&#x27;</span>, <span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="property">value</span>);</span><br><span class="line">    <span class="keyword">if</span> (data.<span class="property">elem</span>.<span class="property">checked</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (roomTypeArr.<span class="title function_">indexOf</span>(data.<span class="property">value</span>) == -<span class="number">1</span>) &#123;</span><br><span class="line">            roomTypeArr.<span class="title function_">push</span>(data.<span class="property">value</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> ind = roomTypeArr.<span class="title function_">indexOf</span>(data.<span class="property">value</span>);</span><br><span class="line">        <span class="keyword">if</span> (ind != -<span class="number">1</span>) &#123;</span><br><span class="line">            roomTypeArr.<span class="title function_">splice</span>(ind, <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(roomTypeArr);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>原生jq点击事件，针对checkbox模拟上面的场景</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;hobbyWrap&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;hobby[]&quot;</span> <span class="attr">value</span>=<span class="string">&quot;看书&quot;</span> <span class="attr">id</span>=<span class="string">&quot;checkbox1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">label</span></span></span><br><span class="line"><span class="tag">            <span class="attr">for</span>=<span class="string">&quot;checkbox1&quot;</span>&gt;</span>看书<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;hobby[]&quot;</span> <span class="attr">value</span>=<span class="string">&quot;写字&quot;</span> <span class="attr">id</span>=<span class="string">&quot;checkbox2&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;checkbox2&quot;</span>&gt;</span>写字<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;hobby[]&quot;</span> <span class="attr">value</span>=<span class="string">&quot;学习&quot;</span> <span class="attr">id</span>=<span class="string">&quot;checkbox3&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;checkbox3&quot;</span>&gt;</span>学习<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hobbyArr = [];</span><br><span class="line">$(<span class="string">&#x27;.hobbyWrap&#x27;</span>).<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>, <span class="string">&#x27;:checkbox&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> v = $(<span class="variable language_">this</span>).<span class="title function_">val</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(v, $(<span class="variable language_">this</span>).<span class="title function_">prop</span>(<span class="string">&quot;checked&quot;</span>));</span><br><span class="line">    <span class="keyword">if</span> ($(<span class="variable language_">this</span>).<span class="title function_">prop</span>(<span class="string">&quot;checked&quot;</span>)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (hobbyArr.<span class="title function_">indexOf</span>(v) == -<span class="number">1</span>) &#123;</span><br><span class="line">            hobbyArr.<span class="title function_">push</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> ind = hobbyArr.<span class="title function_">indexOf</span>(v);</span><br><span class="line">        <span class="keyword">if</span> (ind != -<span class="number">1</span>) &#123;</span><br><span class="line">            hobbyArr.<span class="title function_">splice</span>(ind, <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(hobbyArr, hobbyArr.<span class="title function_">join</span>(<span class="string">&#x27;,&#x27;</span>));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>在网页上也看到过对Array的原型链上绑定一个方法，直接可以使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">remove</span> = <span class="keyword">function</span> (<span class="params">v</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="variable language_">this</span>.<span class="title function_">indexOf</span>(v);</span><br><span class="line">    <span class="keyword">if</span> (i &gt; -<span class="number">1</span>) <span class="variable language_">this</span>.<span class="title function_">splice</span>(i, v);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.<span class="title function_">remove</span>(<span class="number">3</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/04/15/js%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%8E%BB%E9%87%8D%E7%AD%89/" data-id="cm6soz0mw002w38vpa3sj9mds" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/6/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/8/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/">代码片段之RegExp</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/">代码片段之ElementUI</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/">npm或yarn安装过程常见的warn及error</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/10/npm%E4%B8%8Eyarn%E5%AF%B9peerDependencies%E5%A4%84%E7%90%86%E7%9A%84%E5%B7%AE%E5%BC%82/">npm与yarn对peerDependencies处理的差异</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/">Nodejs项目使用npm与使用yarn表现效果的一次记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

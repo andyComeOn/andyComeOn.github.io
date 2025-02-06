@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-webstorm杂记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/11/webstorm%E6%9D%82%E8%AE%B0/" class="article-date">
+  <time datetime="2021-01-11T03:56:54.000Z" itemprop="datePublished">2021-01-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/11/webstorm%E6%9D%82%E8%AE%B0/">webstorm杂记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><ul>
+<li>可自己配置缩进，若项目中有 .editorconfig 文件自动读取，但不要禁止 editorconfig。</li>
+<li>看下面代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  document.addEventListener(&#x27;DOMContentLoaded&#x27;, () =&gt; &#123;</span><br><span class="line">    console.log(2);</span><br><span class="line"></span><br><span class="line">    console.log($(&#x27;div&#x27;).html());</span><br><span class="line"></span><br><span class="line">    console.log($(&#x27;.app&#x27;).text());</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  console.log(1);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  console.log(3);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">webstorm 会提示你可以 merge script，这说明尽可能要减少 script 标签的数量，毕竟解析也需要时间！</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>webstorm 有一特点就是，你故意空很多行，在格式化时候，会把多余空行删除，但会保留 2行</li>
+</ul>
+<h3 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wodexk/p/10279143.html">Webstorm 操作 HTML 文件时的快捷键</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/11/webstorm%E6%9D%82%E8%AE%B0/" data-id="cm6soz0nb003v38vpfydh9snt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-服务端杂集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/08/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9D%82%E9%9B%86/" class="article-date">
+  <time datetime="2021-01-08T08:18:19.000Z" itemprop="datePublished">2021-01-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/08/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9D%82%E9%9B%86/">服务端杂集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="http-状态码"><a href="#http-状态码" class="headerlink" title="http 状态码"></a>http 状态码</h3><p>204 (from disk cache)，在查看简书控制台时候发现：No Content。（此<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ace12639bfc0">链接</a>的<a target="_blank" rel="noopener" href="https://www.jianshu.com/shakespeare/notes/ace12639bfc0/mark_viewed">接口</a>）<br>401 (Unauthorized) 在开发创值回顾 2.0 项目 时候一直提示 token 无效，即无授权，状态码是 401<br>403 (forbidden) 禁止访问<br>50* 服务器问题</p>
+<h3 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h3><ul>
+<li>curl https:<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> (带有请求头)</li>
+<li>curl https:<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> -s (去掉请求头)</li>
+<li>curl 在 gitbash 中不会出现中文乱码</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/08/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9D%82%E9%9B%86/" data-id="cm6soz0nu005138vph2iv24sf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/" rel="tag">Server</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JS之defer-async" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/08/JS%E4%B9%8Bdefer-async/" class="article-date">
+  <time datetime="2021-01-08T06:12:29.000Z" itemprop="datePublished">2021-01-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/08/JS%E4%B9%8Bdefer-async/">JS之defer-async</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>现代的网站中，脚本往往比 HTML 更“重”：它们的大小通常更大，处理时间也更长。</p>
+<p>当浏览器加载 HTML 时遇到 <script>...</script> 标签，浏览器就不能继续构建 DOM。它必须立刻执行此脚本。对于外部脚本 <script src="..."></script> 也是一样的：浏览器必须等脚本下载完，并执行结束，之后才能继续处理剩余的页面。</p>
+<p>这会导致两个重要的问题：</p>
+<ul>
+<li>脚本不能访问到位于它们下面的 DOM 元素，因此，脚本无法给它们添加处理程序等。</li>
+<li>如果页面顶部有一个笨重的脚本，它会“阻塞页面”。在该脚本下载并执行结束前，用户都不能看到页面内容：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;...content before script...&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src=&quot;https://javascript.info/article/script-async-defer/long.js?speed=1&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- This isn&#x27;t visible until the script loads --&gt;</span><br><span class="line">&lt;p&gt;...content after script...&lt;/p&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>于是 script 中有了 2 个属性 defer async！</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><p>平时大家写 <code>&lt;script src=&quot;http://libs.baidu.com/jquery/2.0.0/jquery.min.js&quot;&gt;</code>，此情况默认就是顺序执行，有些场景下严重影响用户体验！</p>
+</li>
+<li><p>若加了 <code>async = true</code> 动态脚本的行为是“异步”的。也就是说“不要阻塞页面”，此属性可添加在广告、统计、计数器的远程脚本中，如谷歌分析脚本：<code>&lt;script async src=&quot;https://google-analytics.com/analytics.js&quot;&gt;&lt;/script&gt;</code></p>
+</li>
+<li><p>若加了 <code>defer</code>，亦是告诉浏览器“不要阻塞页面”，只是他有顺序执行特点，如下：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script defer src=&quot;https://javascript.info/article/script-async-defer/long.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script defer src=&quot;https://javascript.info/article/script-async-defer/small.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>两个脚本是并行下载的。small.js 可能会先下载完成。因此，即使 small.js 先加载完成，它也需要等到 long.js 执行结束才会被执行。当我们需要先加载 JavaScript 库，然后再加载依赖于它的脚本时，这可能会很有用。如下场景：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script defer src=&quot;http://libs.baidu.com/jquery/2.0.0/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script defer src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.x.x/js/swiper.jquery.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>书归正传，我想到场景，加入我们的 jQuery.js 是网络请求的，我们可以在其对其脚本添加 defer，同时我们在本地的文件中这样写：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">document.addEventListener(&#x27;DOMContentLoaded&#x27;, () =&gt; &#123;</span><br><span class="line">  $(&#x27;#app&#x27;).html(&#x27;我是app容器里面的内容&#x27;);</span><br><span class="line">  // 此时我也想到了，JQ中不是有$.ready()、是不是他们就是做了这些事情！以后细究</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://zh.javascript.info/script-async-defer#defer">脚本：async，defer</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/08/JS%E4%B9%8Bdefer-async/" data-id="cm6soz0ly000x38vphtaw6ek6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-React之路由" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/07/React%E4%B9%8B%E8%B7%AF%E7%94%B1/" class="article-date">
+  <time datetime="2021-01-07T03:11:42.000Z" itemprop="datePublished">2021-01-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/07/React%E4%B9%8B%E8%B7%AF%E7%94%B1/">React之路由</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>react 的路由非常灵活，与 vue 的路由有区别（需要一个 router-view 来作为宿主容器），react 则不需要宿主容器，在 m-b2b-wechat 项目中是在主入口文件 src/index.tsx （类似于 Vue 中的 App.vue）中，在该文件中定义了一个变量 <code>const = D2CWechat = () =&gt; (&lt;Provider&gt;&lt;/Provider&gt;)</code>，其中 Provider 是来自 react-redux，在该容器里面就是<code>&lt;Router&gt;&lt;/Router&gt;</code>，Router 下面就是 Route，我在自己的 react-cli 项目中 src/pages/use-route/index.js 中有代码片段，这是我在 react router 的官网上找到的。所以我们可以理解为，这就是官方给的使用示例！其中 m-b2b-wechat 项目中 route 及其他代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route component=&#123;Container&#125;/&gt;</span><br><span class="line">class Container extends React.Component&lt;any, any&gt; &#123;&#125;</span><br><span class="line">ReactDOM.render(&lt;D2CWechat/&gt;, document.getElementById(<span class="string">&#x27;app&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>注：Route 可 <code>&lt;Route component=&#123;Container&#125;/&gt;</code>，也可像我的 react-cli 项目中，<code>&lt;Route path=&quot;/&quot;&gt;&lt;Home /&gt;&lt;/Route&gt;</code>，<code>function Home() &#123; return &lt;h2&gt;Home&lt;/h2&gt; &#125;</code> 这样写！接着说，在我自己练习的项目 react-cli 中，是在脚手架主入口 index.js 中引入 page 的某个页面，其实是大同小异！在 index.js 中引入 import UseRouteWithNested from “@/pages/use-route-with-nested/“; 针对 use-route-with-nested/index.js 中我配置了路由信息！使用 Route、Router 时候要记得引入依赖：import { Route, Router } from ‘react-router-dom’; react-router-dom 是针对浏览器单独整合的，react-router 是一个大包，react-native 也需要，后来才有 react-router-dom 小依赖包。我在 use-route-with-nested/index.js 的路由引入写法是在 react-router 官网上看到其例子如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123;</span><br><span class="line">  BrowserRouter as Router,</span><br><span class="line">  Switch,</span><br><span class="line">  Route,</span><br><span class="line">  Link,</span><br><span class="line">  useRouteMatch,</span><br><span class="line">  useParams,</span><br><span class="line">&#125; from <span class="string">&quot;react-router-dom&quot;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注：<code>import ReactDOM from &quot;react-dom&quot;</code>; 主要是在主入口使用 <code>ReactDOM.render(&lt;App /&gt;, document.getElementById(&quot;root&quot;));</code></p>
+<p>导出 class 有 2 中写法：<code>import React from &quot;react&quot;;</code> 随后写 <code>export default class Goods React.Component &#123;&#125;;</code> 或 <code>import &#123;React, Component &#125; from &quot;react&quot;;</code> 随后写 <code>export default class Goods extends Component &#123;&#125;;</code></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/07/React%E4%B9%8B%E8%B7%AF%E7%94%B1/" data-id="cm6soz0mf001z38vpful1b8mj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-React之css" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/06/React%E4%B9%8Bcss/" class="article-date">
+  <time datetime="2021-01-06T08:43:03.000Z" itemprop="datePublished">2021-01-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/06/React%E4%B9%8Bcss/">React之CSS</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><p><strong>react 的样式管理是比较弱的，官方是建议把 style 直接写到 jsx 标签里</strong>，请参考：<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv6964874/">React 系列十一 - React 中的 CSS</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/06/React%E4%B9%8Bcss/" data-id="cm6soz0me001w38vp4i2qcit6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Github杂记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/04/Github%E6%9D%82%E8%AE%B0/" class="article-date">
+  <time datetime="2021-01-04T08:46:04.000Z" itemprop="datePublished">2021-01-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/04/Github%E6%9D%82%E8%AE%B0/">Github杂记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h3><p>在查看 github 上项目中某个文件代码时，在文件头部会出现对该文件的简介，例如：22 lines (22 sloc)  400 Bytes。22 lines 意思是 22 行；22 sloc 意思是 22 代码行，SLOC(single line of code)，代码行 LOC 的基本单位之一；400 Bytes 意思是 400 字节。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/04/Github%E6%9D%82%E8%AE%B0/" data-id="cm6soz0ls000n38vp5xbpeeef" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ejs文档" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/04/ejs%E6%96%87%E6%A1%A3/" class="article-date">
+  <time datetime="2021-01-04T08:33:08.000Z" itemprop="datePublished">2021-01-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/04/ejs%E6%96%87%E6%A1%A3/">ejs文档</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="三种标签"><a href="#三种标签" class="headerlink" title="三种标签"></a>三种标签</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;% code %&gt; // JavaScript 代码。</span><br><span class="line">&lt;%= code %&gt; // 显示替换过 HTML 特殊字符的内容。</span><br><span class="line">&lt;%- code %&gt; // 显示原始 HTML 内容。</span><br></pre></td></tr></table></figure>
+
+<h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34310785/article/details/85592235">nodejs express template (模版)的使用 (ejs + express)</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhongweiv/tag/ejs/">ejs 系列</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/04/ejs%E6%96%87%E6%A1%A3/" data-id="cm6soz0ml002c38vp77lxgxh1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-gitignore" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/31/gitignore/" class="article-date">
+  <time datetime="2020-12-31T08:13:41.000Z" itemprop="datePublished">2020-12-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/31/gitignore/">gitignore</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>针对不同语言的工程，其脚手架中的 .gitignore 已经做了部分的封装，项目在开始之前最好是编辑好此文件，避免后期麻烦！在我的 gitee 中的 files 仓库，有此模板文件！</p>
+<h3 id="格式规范"><a href="#格式规范" class="headerlink" title="格式规范"></a>格式规范</h3><p>1、所有空行或者以注释符号 ＃ 开头的行都会被 Git 忽略<br>2、可以使用标准的 glob 模式匹配<br>3、匹配模式最后跟斜杠(/)说明要忽略的是目录<br>4、要忽略指定模式以外的文件或目录，可以在模式前加上感叹号(!)进行取反</p>
+<h3 id="glob-模式"><a href="#glob-模式" class="headerlink" title="glob 模式"></a>glob 模式</h3><p>所谓的 glob 模式是指 shell 所使用的简化了的正则表达式，匹配规则如下：</p>
+<ul>
+<li><code>*</code> 星号匹配零个或多个任意字符</li>
+<li><code>[]</code> 匹配任何一个列在方括号中的字符，如[ab]匹配 a 或者匹配 b</li>
+<li><code>?</code> 问号匹配一个任意字符</li>
+<li><code>[n-m]</code> 匹配所有在这两个字符范围内的字符，如[0-9]表示匹配所有 0 到 9 的数字</li>
+</ul>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><ul>
+<li><code>logs/</code> 忽略当前路径下的 logs 目录，包含 logs 下的所有子目录和文件，注：并不局限于根目录下 logs</li>
+<li><code>/logs.txt</code> 忽略根目录下的 logs.txt 文件</li>
+<li><code>*.class</code> 忽略所有后缀为 .class 的文件</li>
+<li><code>!/classes/a.class</code> 不忽略跟目录下 classes 目录下的 a.class 文件</li>
+<li><code>tmp/*.txt</code> 只忽略 tmp 目录下的 .txt 文件</li>
+<li><code>**/foo</code> 可以忽略/foo, a/foo, a/b/foo 等</li>
+</ul>
+<h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><p>写 node_modules/ 与 node_modules 效果是一样。都是直接忽略了目录下的所有文件、目录。我 gitee 仓库中的 stream2 项目中的 .gitignore 有体现！</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>在我的 ddyg-crs 中 .gitignore 已添加 /dist/ 但修改 dist 下的文件，git 依然会记录，此时需执行 <code>git rm -r --cached .</code>，<code>git add .</code>，<code>git commit -m &#39;update.gitignore&#39;</code> 即可</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/699ed86028c2">.gitignore</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/31/gitignore/" data-id="cm6soz0mn002h38vp3ofh5ywe" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ts笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/31/ts%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2020-12-31T07:01:16.000Z" itemprop="datePublished">2020-12-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/31/ts%E7%AC%94%E8%AE%B0/">ts笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="杂记"><a href="#杂记" class="headerlink" title="杂记"></a>杂记</h3><ul>
+<li>1、若自己搭建项目，执行 tsc –init，前提需：&gt; npm install -g typescript</li>
+</ul>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 变量</span></span><br><span class="line"><span class="built_in">let</span> a: string = <span class="string">&#x27;hi&#x27;</span>;</span><br><span class="line"><span class="built_in">let</span> b:boolean = <span class="literal">true</span>;</span><br><span class="line"><span class="comment"># 函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="built_in">sum</span>(a: number, b:number): number &#123;</span><br><span class="line">  <span class="built_in">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用字面量进行类型声明</span></span><br><span class="line"><span class="built_in">let</span> d: 10; // 只能是 d = 10，这样感觉也没有意义</span><br><span class="line"><span class="built_in">let</span> gender: <span class="string">&#x27;male&#x27;</span> | <span class="string">&#x27;female&#x27;</span>; // 这样使用场景不多，但很巧妙</span><br><span class="line"><span class="built_in">let</span> c: string | boolean; // 言外之意，c可赋值为<span class="string">&#x27;hello&#x27;</span>，也可赋值为 <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># any 不建议使用</span></span><br><span class="line"><span class="built_in">let</span> e:any; // 显式</span><br><span class="line"><span class="built_in">let</span> e; // 隐式</span><br><span class="line">e = 10;</span><br><span class="line">e = <span class="literal">true</span>;</span><br><span class="line">e = <span class="string">&#x27;hi&#x27;</span>;</span><br><span class="line">// any不好，如：<span class="built_in">let</span> f: string; f = e; 这样编辑器无红色警告，这说明any跟谁沾边恶心谁。这种情况下最好使用unknown</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># unknown</span></span><br><span class="line"><span class="built_in">let</span> e:unknown; // 隐式</span><br><span class="line">e = <span class="string">&#x27;hi&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">let</span> g:string;</span><br><span class="line">g = e;</span><br><span class="line">// 提示报错，虽然此时e是字符串hi，但是此时解析器看的是e的类型，unknown不能赋值给string，unknown实际上就是一个类型安全的any，不能直接赋值给其他变量，解决办法有2种方法如下：</span><br><span class="line"></span><br><span class="line">// 方法一</span><br><span class="line"><span class="keyword">if</span> (typeof e === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">  g = e</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 方法二</span><br><span class="line">g = e as string</span><br><span class="line">g = &lt;string&gt; e</span><br><span class="line"></span><br><span class="line"><span class="comment"># +++++++++++++++++++++++++++</span></span><br><span class="line"><span class="comment"># 针对断言</span></span><br><span class="line">var foo = &lt;foo&gt;bar;</span><br><span class="line">// 这里断言bar变量是foo类型的。 因为TypeScript也使用尖括号来表示类型断言，在结合JSX的语法后将带来解析上的困难。因此，TypeScript在.tsx文件里禁用了使用尖括号的类型断言。所以我们使用 as 作为断言多一些</span><br><span class="line"></span><br><span class="line"><span class="comment"># +++++++++++++++++++++++++++</span></span><br><span class="line"><span class="comment"># void 针对的是函数没有返回值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> fn():void&#123;</span><br><span class="line">  // <span class="built_in">return</span></span><br><span class="line">  // <span class="built_in">return</span> null</span><br><span class="line">  // <span class="built_in">return</span> undefined</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># never 是针对上面函数返回的 void 所言，是从来都不会返回，这种函数是用来提示报错的</span></span><br><span class="line"><span class="keyword">function</span> fn2():never&#123;</span><br><span class="line">  throw new Error(<span class="string">&#x27;err&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 声明对象类型，因为在js中一切皆为对象，所以下面的声明没有意义</span></span><br><span class="line"><span class="built_in">let</span> j: object</span><br><span class="line">j = &#123;&#125;;</span><br><span class="line">j = <span class="function"><span class="title">function</span></span> () &#123;&#125;;</span><br><span class="line"></span><br><span class="line">// 为此我们若对对象声明可以有如下写法：</span><br><span class="line">// 语法：&#123;属性：属性值,属性?：属性值&#125;</span><br><span class="line">// 在属性值后面加?,表示属性可选</span><br><span class="line"><span class="built_in">let</span> j:&#123;&#125;</span><br><span class="line">j=&#123;age:18&#125;</span><br><span class="line"><span class="built_in">let</span> k:&#123;name: string, age?number&#125;</span><br><span class="line">k=&#123;name: <span class="string">&#x27;bo&#x27;</span>,age:18&#125;</span><br><span class="line"></span><br><span class="line">// [propName: string]: any 表示任意的属性，都可</span><br><span class="line"><span class="built_in">let</span> m: &#123; name: string, [propName: string]: any &#125;</span><br><span class="line">m = &#123;name: <span class="string">&#x27;zb&#x27;</span>, age: 18, height: 180&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 函数</span></span><br><span class="line"><span class="built_in">let</span> f: (a: number, b: number) =&gt; number</span><br><span class="line">// 设置函数结构类型声明：</span><br><span class="line">//      语法：（形参：类型，形参：类型）=&gt; 返回值类型</span><br><span class="line"><span class="built_in">let</span> f: (a: number, b: number) =&gt; number</span><br><span class="line">f = (a, b): number =&gt; &#123;</span><br><span class="line">    <span class="built_in">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line">// 在m-sbc-supplier发现 @types/react/index.d.ts 这样写的的</span><br><span class="line"><span class="comment"># componentWillReceiveProps?(nextProps: Readonly&lt;P&gt;, nextContext: any): void;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数组</span></span><br><span class="line">// 数组</span><br><span class="line"><span class="built_in">let</span> e: string[]</span><br><span class="line">e = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">let</span> num: number[]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 元组</span></span><br><span class="line">// 元组：就是固定长度的数组</span><br><span class="line"><span class="built_in">let</span> h: [string, number]</span><br><span class="line">h = [<span class="string">&#x27;hi&#x27;</span>, 2]</span><br></pre></td></tr></table></figure>
+
+<h3 id="笔记-之前自己总结"><a href="#笔记-之前自己总结" class="headerlink" title="笔记(之前自己总结)"></a>笔记(之前自己总结)</h3><p>在 TypeScript 中，可以使用  null  和  undefined  来定义这两个原始数据类型：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let u: undefined = undefined;</span><br><span class="line">let n: null = null;</span><br></pre></td></tr></table></figure>
+
+<p>与   void   的区别是，undefined   和   null   是所有类型的子类型。也就是说   undefined   类型的变量，可以赋值给  number  类型的变量，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 这样不会报错</span><br><span class="line"><span class="built_in">let</span> num: number = undefined;</span><br><span class="line"></span><br><span class="line">// 这样也不会报错</span><br><span class="line"><span class="built_in">let</span> u: undefined;</span><br><span class="line"><span class="built_in">let</span> num: number = u;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">interface DeprecatedLifecycle&lt;P, S&gt;</span><br><span class="line"></span><br><span class="line"><span class="built_in">declare</span> namespace cats &#123;</span><br><span class="line">  interface KittySettings &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>写法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/31/ts%E7%AC%94%E8%AE%B0/" data-id="cm6soz0n7003j38vpbjdkfe47" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-软谋nodejs三天集训" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/26/%E8%BD%AF%E8%B0%8Bnodejs%E4%B8%89%E5%A4%A9%E9%9B%86%E8%AE%AD/" class="article-date">
+  <time datetime="2020-12-26T08:19:14.000Z" itemprop="datePublished">2020-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/26/%E8%BD%AF%E8%B0%8Bnodejs%E4%B8%89%E5%A4%A9%E9%9B%86%E8%AE%AD/">软谋nodejs三天集训</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>20211203-20211205 三天</p>
+<h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><p>20211203-20211205 三天</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/26/%E8%BD%AF%E8%B0%8Bnodejs%E4%B8%89%E5%A4%A9%E9%9B%86%E8%AE%AD/" data-id="cm6soz0o7005m38vp2j1y0pmj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/">代码片段之RegExp</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/">代码片段之ElementUI</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/">npm或yarn安装过程常见的warn及error</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/10/npm%E4%B8%8Eyarn%E5%AF%B9peerDependencies%E5%A4%84%E7%90%86%E7%9A%84%E5%B7%AE%E5%BC%82/">npm与yarn对peerDependencies处理的差异</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/">Nodejs项目使用npm与使用yarn表现效果的一次记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

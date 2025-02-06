@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/10/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-MarkDown总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/22/MarkDown%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2019-01-22T04:45:27.000Z" itemprop="datePublished">2019-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/22/MarkDown%E6%80%BB%E7%BB%93/">MarkDown总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="基本总结"><a href="#基本总结" class="headerlink" title="基本总结"></a>基本总结</h3><ol>
+<li>markdown 的文件格式是<code>**.md</code>这种，我们可以在软件<strong>Typora</strong>中编辑也可在编辑器中写 md 文档。</li>
+<li>个人感觉在既然有对应的软件<strong>Typora</strong>，使用它应该更方便写文档。</li>
+<li>md 文档可以在浏览器中访问这个感觉是很好的，它还可以写代码，对于技术文档更清晰。</li>
+</ol>
+<hr>
+<h3 id="常用的一些方法"><a href="#常用的一些方法" class="headerlink" title="常用的一些方法"></a>常用的一些方法</h3><ol>
+<li>起标题大小是按照#的数量来区分，有 6 个等级类似于 html 中的 h1-h6。主标题我感觉可以居中但是我没有找到具体的设置方法。是不是需要导入外部的 css 呢？我自己在写的 md 文档都是使用的 h4 作为该文章的主标题即 4 个####号。副标题使用 5 个#号，有序列表是：数字+空格+.。无序列表是：*+空格即可（一般我是最常用这种）。在有序列表下可使用无须列表，可以有序列表下面空 4 格在按照无序列表语法写就成了空心小圆。具体可参考我的“Shell 总结.md”。</li>
+<li>使用 Typora 软件写文档发现一个小问题是，你写完一个标题之后想换行，直接在键盘上按下 enter 之后光标换行，但是在 vscode 中打开 md 文件发现换行换的不止是一行。猜想可能在 Typora 软件的换 1 行，可能在 md 文件中换的不止 1 行。 不过最后 hexo 在把你的 md 文档转换为 html 会过滤多余空行。</li>
+<li><strong>加粗</strong>在段落中某个想加粗的文本使用<strong>4 个*</strong>来加粗提示，具体操作是把你想要加粗强调的文本放到他们中间。</li>
+<li><strong><em>倾斜</em></strong>在段落中某个想倾斜的文本使用<strong>2 个*</strong>来倾斜提示，具体操作是把你想要加粗强调的文本放到他们中间。</li>
+<li><strong>分割线</strong>的具体操作：是直接新启一行在首段键入 3 个以上*或者是-即可，如下所示。</li>
+<li><strong>下划线</strong>是使用 ctrl+U 快捷键可以实现，例如：<u>下划线</u>。</li>
+<li><strong>删除线</strong>是键入四个~，例如：<del>删除</del>。</li>
+<li><strong>高亮</strong>是键入四个=，例如：==高亮==，但是这个是我在网页上搜到的，不起作用。</li>
+<li><strong>块状提示</strong>是我在 hexo 部署时候，新建的 demo 中看到的效果，就是键入 3 个连字符“-”之后，写你的文本，在随后再键入 3 个连字符“-”结束即可。</li>
+<li>若不想使用默认的有序列表，进行换行，可在段落最后键入 2 个空字符，在回车换一行，即可达到“2 个段落之前空一行之效果”</li>
+</ol>
+<hr>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><ol>
+<li>有序列表：具体操作是按下数字 1 再按下.再按下空格即可。</li>
+<li>无序列表：具体操作是按下+再按下空格即可||按下-再按下空格即可||按下*再按下空格即可。</li>
+</ol>
+<hr>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><ol>
+<li>图片是有三个符号组成：! 、[]、() 。他们在一块使用即可。[]中的是 image 的 alt 属性，()之内的的 image 的地址。例如：<img src="https://cn.vuejs.org/images/logo.png" alt="这是vue官网的logo"></li>
+<li>网页上说这个地址也可以是本地的地址，但是我感觉一般的 md 文件都是在浏览器访问，弄成本地的没有意义（其实有时候你发送给你的同事一个文件夹目录（有 md 文件，assets 可以放图片资源，本地打开也很方便））。</li>
+<li>vscode、webstorm 都有自带的预览 md 文件，前者快捷键是 <code>Ctrl + Shift + v</code>，开始我以为 vscode 不能打卡图片预览呢，打开一个允许访问 http 请求，预览即可显示图片！</li>
+</ol>
+<hr>
+<h3 id="超链"><a href="#超链" class="headerlink" title="超链"></a>超链</h3><ul>
+<li>这个与图片很类似，具体操作是按下[]、()即可。例如：<a href="www.baidu.com">百度</a>。我在写文档时候，主要参考了一下几个链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangruishi/article/details/70768923">Typora 学习笔记</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/mingzhuo_126/article/details/79941450">初识 Typora</a>等。</li>
+</ul>
+<hr>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>在技术文档中针对代码写 demo 很重要，下面介绍一下 md 代码具体怎么操作。</p>
+<ol>
+<li>在文本中输入 2 个反斜杠，在其中加入代码即可，这种一般适应于一句话的代码或者是具体的代码的某个属性关键词。如：<code>line-height: 30px;</code>，<code>height</code>，<code>color</code>。</li>
+<li>还有一种是针对代码块的，这种一般在语句中出现。它有 2 中方式：输入 3 个~按 enter 即可选择语言||输入三个`按 enter 即可选择语言。下面是 2 种方式实现的代码块，但是我在写该文档时候发现一个问题是 hexo 不能很好的识别第二种写法，在网上也搜到了有人发的帖子 <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues/2400">无法渲染代码段</a>，这里我避开了有问题的写法。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">3</span>;</span><br><span class="line">a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> c = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> d = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<p>补充，在 vue、react 等脚手架发现，代码，直接是使用 bash 声明，我想这样更好记忆！</p>
+<h3 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续~"></a>未完待续~</h3><ol>
+<li><p>若是没有服务器可以使用下面的帖子：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/cxint/p/7200164.html">关于 markdown 文件插入图片遇到的小问题和解决办法</a> 的方法存放图片，进而进行 md 的书写。最近在看大强给的视频讲解 Restful 看到讲课老师使用 typora 工具，截图的图片直接粘到该软件里面会在该 MD 文件目录下新建 assets 目录单独给你存放图片。</p>
+</li>
+<li><p>md 文档 标题使用 # 会默认在标题文本下面加下划线！## 、### 之后的级别标题就不行。</p>
+</li>
+<li><p>直接使用 typora 写可以直接看到效果效率高、小改动使用 IDE 编辑（亦可预览）。</p>
+</li>
+<li><p>在 vue 脚手架的 README.md 中发现，bash 中使用了 # 作为注释，注释文字最终的展示的效果是倾斜体，美观且效果 nice</p>
+</li>
+<li><p>此 <a target="_blank" rel="noopener" href="https://github.com/postcss/postcss-load-config">MD 文档</a> 可参考</p>
+</li>
+</ol>
+<h3 id="MarkDown-能否嵌入视频，参考链接"><a href="#MarkDown-能否嵌入视频，参考链接" class="headerlink" title="MarkDown 能否嵌入视频，参考链接"></a>MarkDown 能否嵌入视频，参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhouie/p/8955797.html">链接</a></h3><div class="andy_md_video">
+  <iframe
+    height=450
+    width=800
+    src='http://player.youku.com/embed/XMzMxMjE0MjY4NA=='
+    frameborder=0
+    'allowfullscreen'>
+  </iframe>
+</div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/01/22/MarkDown%E6%80%BB%E7%BB%93/" data-id="cm6soz0m6001f38vp6zgi2rc9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Hexo杂集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/22/Hexo%E6%9D%82%E9%9B%86/" class="article-date">
+  <time datetime="2019-01-22T01:59:30.000Z" itemprop="datePublished">2019-01-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/22/Hexo%E6%9D%82%E9%9B%86/">Hexo杂集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="hexo-初始化生成的-hello-word-md-文件"><a href="#hexo-初始化生成的-hello-word-md-文件" class="headerlink" title="hexo 初始化生成的 hello-word.md 文件"></a><strong><em>hexo 初始化生成的 hello-word.md 文件</em></strong></h3><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/deployment.html">Deployment</a></p>
+<hr>
+<h2 id="这是我个人对安装-hexo-的一些总结"><a href="#这是我个人对安装-hexo-的一些总结" class="headerlink" title="这是我个人对安装 hexo 的一些总结"></a>这是我个人对安装 hexo 的一些总结</h2><h3 id="在-github-上新建仓库时候一定遵循下面的格式："><a href="#在-github-上新建仓库时候一定遵循下面的格式：" class="headerlink" title="在 github 上新建仓库时候一定遵循下面的格式："></a>在 github 上新建仓库时候一定遵循下面的格式：</h3><ul>
+<li><code>&#123;username&#125; github.io</code></li>
+</ul>
+<h3 id="根目录下的-config-yml："><a href="#根目录下的-config-yml：" class="headerlink" title="根目录下的_config.yml："></a>根目录下的<code>_config.yml</code>：</h3><ul>
+<li>要正确的把你的新建的 github 的仓库地址 copy 到<code> _config.yml</code>的 deploy 处</li>
+</ul>
+<h3 id="网上说的安装方法："><a href="#网上说的安装方法：" class="headerlink" title="网上说的安装方法："></a>网上说的安装方法：</h3><ul>
+<li>有的说<code>npm install hexo -g</code>（我采用）</li>
+<li>有的说<code>npm install hexo-cli -g</code></li>
+<li>在你的 Blog 目录下执行 hexo init ,会生成很多文件，默认主题 landscape</li>
+<li>next 主题 <a target="_blank" rel="noopener" href="https://github.com/theme-next">theme-next</a> <a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">hexo-theme-next</a></li>
+<li>若不追求主题，在_config.yml 最后几行配置好你的 username.github.io 仓库地址</li>
+<li>npm install hexo-deployer-git –save 安装 git 的插件</li>
+<li>hexo clean 、hexo g 、hexo d，这时候 git 会提示你 tell me who u are，记得进入到 .deply_git 目录，配置一下 git 信息就行了，git config –local user.name “andyComeOn” git config –local user.email “<a href="mailto:&#49;&#49;&#55;&#52;&#x38;&#x33;&#x39;&#x35;&#49;&#x32;&#x40;&#113;&#113;&#x2e;&#x63;&#111;&#109;">&#49;&#49;&#55;&#52;&#x38;&#x33;&#x39;&#x35;&#49;&#x32;&#x40;&#113;&#113;&#x2e;&#x63;&#111;&#109;</a>“</li>
+</ul>
+<h3 id="一些补充："><a href="#一些补充：" class="headerlink" title="一些补充："></a>一些补充：</h3><ul>
+<li>我配置的 hexo 就是用的默认主题 landscape，没有多余设置其他，该主题默认的给分了几个板块 Tags、TAG CLOUD、ARCHIVES、RECENT POSTS，</li>
+<li>若是你使用 next 主题，需要配置一下板块执行 hexo new page “tags” （会在你 source 目录下创建 tagsmul）、hexo new page “categories”（会在你的 source 目录下创建 categories 目录）、hexo new page “about”，</li>
+</ul>
+<h3 id="按照网上的说法安装完成之后要注意以下几点："><a href="#按照网上的说法安装完成之后要注意以下几点：" class="headerlink" title="按照网上的说法安装完成之后要注意以下几点："></a>按照网上的说法安装完成之后要注意以下几点：</h3><ul>
+<li>每次在根目录下执行<code>hexo clean</code> -&gt; <code>hexo generate (hexo g)</code> -&gt; <code>hexo deploy (hexo d)</code></li>
+<li>后来发现根本不需要执行<code>hexo clean</code></li>
+</ul>
+<h3 id="hexo-怎么新建文章"><a href="#hexo-怎么新建文章" class="headerlink" title="hexo 怎么新建文章"></a>hexo 怎么新建文章</h3><ul>
+<li>网上说的是执行<code>hexo new post &#39;name&#39;</code>,尝试可行。但是我在 Hexo 自己生成的 hello-word.md 的文档中发现指令<code>hexo new &#39;name&#39;</code>少写了 post。经测试亦可行！</li>
+</ul>
+<h3 id="hexo-怎么删除文章"><a href="#hexo-怎么删除文章" class="headerlink" title="hexo 怎么删除文章"></a>hexo 怎么删除文章</h3><ul>
+<li>先删除本地文件，然后通过生成和部署命令进而将远程仓库中的文件也一并删除。</li>
+<li>具体来说，以最开始默认生成的 hello-world.md 这篇文章为例：首先进入到 source / _post 文件夹中，找到 hello-world.md 文件，在本地直接执行删除。然后依次执行<code>hexo g</code>，<code>hexo d</code>，即可删除。</li>
+</ul>
+<h3 id="发现的小问题"><a href="#发现的小问题" class="headerlink" title="发现的小问题"></a>发现的小问题</h3><ul>
+<li>本来通过<code> hexo new post demo</code> ，生成的 demo.md 文件，我后来感觉命名不合理，就直接修改文件名字，发现修改之后标题没有修改过来？原因是忘记了修改了 md 文件中 date 时间<img src="https://github.githubassets.com/favicon.ico" alt="图片"></li>
+<li>网上说的新建的 md 文件不能使用中文命名，经测试可行。</li>
+<li>有的帖子说 npm install hexo-server –save ，安装这个啥用？我在本地测试 hexo s 一样可以自动生效啊。</li>
+</ul>
+<hr>
+<h3 id="参考的帖子"><a href="#参考的帖子" class="headerlink" title="参考的帖子"></a>参考的帖子</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fengxiongZz/p/7707219.html">使用 Hexo+Github 一步步搭建属于自己的博客（基础）</a>、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/fengxiongZz/p/7707568.html">使用 Hexo+Github 一步步搭建属于自己的博客（进阶）</a> 这 2 个帖子是我最开始参考的。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ainuser/article/details/77609180">hexo+github 搭建个人博客(超详细教程)</a> 这个帖子讲的详细，同时也讲述了安装 git 的一些 info 和使用镜像的说明。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32454537/article/details/79482908">2018 最新版 hexo+Github 搭建个人博客教程（2018-1-22 更新）</a>这个是一个学生写的，写的很细。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32454537/article/details/79482908">2018 最新版 hexo+Github 搭建个人博客教程（2018-1-22 更新）</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42334475/article/details/101055364?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task">GitHub+hexo 搭建个人博客（2019 新版超详细教程）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/penglei-it/category/934299.html">随笔分类 - Github+Hexo 建站系列</a> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/penglei-it/p/hexo_next_baseset.html">Hexo+NextT 基本设置【3】</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/index.html">hexo 中文文档</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/94038688">hexo next 主题进阶设置</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.newnius.com/">研究生好博客</a> <a target="_blank" rel="noopener" href="https://www.dazhuanlan.com/life/">大专栏</a> <a target="_blank" rel="noopener" href="http://disixueyuan.com/index.php/article/8.html">半小时学会做个人博客网站</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.v2ex.com/t/548912">coding pages 杂谈</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/AinUser/article/details/77609180?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task">hexo+github 搭建个人博客(超详细教程)</a></li>
+</ul>
+<h3 id="需要探究的问题"><a href="#需要探究的问题" class="headerlink" title="需要探究的问题"></a>需要探究的问题</h3><ul>
+<li>就是我在一个电脑上，按照网上的配置在本地配了相应的环境，若我换了电脑，是否再次配置？配置好了之后，之前的历史文章怎么 clone 到本地，再次 edit 呢？</li>
+</ul>
+<h3 id="hexo-的添加文章目录以及归档"><a href="#hexo-的添加文章目录以及归档" class="headerlink" title="hexo 的添加文章目录以及归档"></a>hexo 的添加文章目录以及归档</h3><ul>
+<li><p>在写博客过程中遇到归档的需求，搜了一篇文章说的如何归档：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/72408c410904">Hexo 站点中添加文章目录以及归档</a></p>
+</li>
+<li><p>hexo 中 landscape 主题的 favicon.ico 不能生效，网上给出结局问题的帖子很少，很多都是废话！这个主题直接舍弃了，使用 next 主图吧。</p>
+</li>
+<li><p>next 主题出现这种错误：</p>
+<p><img src="https://file.798run.top/img/blog/20190122/theme-next-err.png"></p>
+</li>
+<li><p>解决办法：</p>
+</li>
+</ul>
+<p><img src="https://file.798run.top/img/blog/20190122/fixed-err.png"></p>
+<ul>
+<li>hexo 更新后的 bug：<a target="_blank" rel="noopener" href="https://blog.csdn.net/NULL_thing/article/details/90082690">hexo 生成的静态网页无法找到 style.css</a></li>
+</ul>
+<h3 id="在-vscode-中查看刚编辑的-md-文档：Ctrl-Shift-V"><a href="#在-vscode-中查看刚编辑的-md-文档：Ctrl-Shift-V" class="headerlink" title="在 vscode 中查看刚编辑的 md 文档：Ctrl + Shift + V"></a>在 vscode 中查看刚编辑的 md 文档：Ctrl + Shift + V</h3><h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>在 202102 过年期间，在公司配置电脑上，打算 deploy 我的 hexo，可一直出现如下 err：<br><img src="https://file.798run.top/img/blog/20210214/hexo-d-err.jpg" alt="hexo d err"></p>
+<p>网上搜到很多方法，最后执行了 git config –local core.autocrlf false，可发布，参考<a target="_blank" rel="noopener" href="https://1187100546.github.io/2019/11/24/spawn-failed/">文章</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/01/22/Hexo%E6%9D%82%E9%9B%86/" data-id="cm6soz0lw000u38vpe8kg75nz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/9/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/">代码片段之RegExp</a>
+          </li>
+        
+          <li>
+            <a href="/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/">代码片段之ElementUI</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/">npm或yarn安装过程常见的warn及error</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/10/npm%E4%B8%8Eyarn%E5%AF%B9peerDependencies%E5%A4%84%E7%90%86%E7%9A%84%E5%B7%AE%E5%BC%82/">npm与yarn对peerDependencies处理的差异</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/">Nodejs项目使用npm与使用yarn表现效果的一次记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
