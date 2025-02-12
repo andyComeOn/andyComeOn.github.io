@@ -64,6 +64,158 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-PMS中form查询总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/26/PMS%E4%B8%ADform%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2019-11-26T06:51:58.000Z" itemprop="datePublished">2019-11-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/26/PMS%E4%B8%ADform%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/">PMS中form查询总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>写在前面：空格缩进、代码换行、注释描述、结构清晰、 一个系统面对的是形形色色的用户，不要想当然啥，例如loading的添加。最终趋势还是前后端分离！</p>
+<p>PMS在很多页面都是查询数据为主，为此在该项目中，前同事封装了一些查询的方法。这里做一些总结！</p>
+<h3 id="1、页面布局最好遵循下面的说明"><a href="#1、页面布局最好遵循下面的说明" class="headerlink" title="1、页面布局最好遵循下面的说明"></a>1、页面布局最好遵循下面的说明</h3><p>页面body中有一个根容器 <code>&lt;div class=&quot;layui-row pad10&quot;&gt;&lt;/div&gt;</code>，紧接着是form标签，下面就是table标签。Form是用来提交数据这里面包含查询条件等，table中若有表格名字、一些信息，可看情况写在table中的<code>&lt;caption&gt;&lt;h1&gt;*表&lt;/h1&gt;&lt;div&gt;&lt;/div&gt;&lt;/caption&gt;</code>。当然这种表格头部信息写法的前提是表格已经存在了，就是最普通的表格，在html上已经全部渲染好了。若是使用下文中table.render方法（此时table字标签还没有渲染好），那就在table标签上面写div，写清楚table表头相关信息即可！</p>
+<h3 id="2、需要-layui-form-verify-验证"><a href="#2、需要-layui-form-verify-验证" class="headerlink" title="2、需要 layui form.verify 验证"></a>2、需要 layui form.verify 验证</h3><p>这种场景：需要验证form-item中input的name值。所以需写成layui中lay-submit的形式！这样才能很好的使用layui中封装的form.verify方法和效果。补充：使用form.on(‘submit’)，就要阻止 form默认提交，可在form.on(‘submit’)函数中末尾加return false、可把button的type默认提交修改为按钮类型。</p>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 验证 满足什么条件</span></span><br><span class="line">form.<span class="title function_">verify</span>(&#123;</span><br><span class="line">    <span class="attr">verifyAddtime</span>: <span class="keyword">function</span> (<span class="params">value</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> temp = value.<span class="title function_">split</span>(<span class="string">&#x27; , &#x27;</span>); </span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">date_subtraction</span>(temp[<span class="number">0</span>], temp[<span class="number">1</span>]) &gt; <span class="number">90</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;查询时间间隔不能超过 3 个月，请重新选择时间段！&#x27;</span>;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交</span></span><br><span class="line">form.<span class="title function_">on</span>(<span class="string">&#x27;submit(filterSubmit)&#x27;</span>, <span class="keyword">function</span>(<span class="params">data</span>) &#123; </span><br><span class="line">	table.<span class="title function_">reload</span>(<span class="string">&#x27;lists&#x27;</span>, &#123;</span><br><span class="line">    	<span class="attr">where</span>: data.<span class="property">field</span>,</span><br><span class="line">        <span class="attr">page</span>: &#123;</span><br><span class="line">            <span class="attr">curr</span>: <span class="number">1</span> </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;) </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="3、提交使用commonjs中封装的-getListData-return-false-的情况"><a href="#3、提交使用commonjs中封装的-getListData-return-false-的情况" class="headerlink" title="3、提交使用commonjs中封装的 getListData(); return false;的情况"></a>3、提交使用commonjs中封装的 <code>getListData(); return false;</code>的情况</h3><ul>
+<li>对于这种情况，不能一概而论，要看场景的需要，归根到底就是form的原生提交与否，是否使用layui中的verify的效果和方法。每次后台套页面之后提交了，测试人员看到，告诉前端时间段要验证，这是事后诸葛亮的表现，事先可以规划好。使用 getListData 也许之前是封装的一个方法，可是没有细究，有些小问题没考虑到。还要注意的是 form 中的默认提交问题，有的是需要使用默认的提交，有的不需要（此种情况，一定要给与阻止！）。对于规则的表格最好是使用 <code>&lt;table class=&quot;layui-table&quot; id=&quot;lists&quot; lay-filter=&quot;filterLists&quot;&gt;&lt;/table&gt;</code>。在js中使用渲染的方式！</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">table.<span class="title function_">render</span>(&#123;</span><br><span class="line">    <span class="attr">elem</span>: <span class="string">&#x27;#lists&#x27;</span>,</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;/ReportStatis/forwardEarningsStatis&#x27;</span>,</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;远期收益分析表&#x27;</span>, <span class="comment">// 发现这个title不起作用！</span></span><br><span class="line">    <span class="attr">totalRow</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">cols</span>: [[</span><br><span class="line">        &#123;<span class="attr">field</span>: <span class="string">&#x27;business_time&#x27;</span>, <span class="attr">title</span>: <span class="string">&#x27;日期&#x27;</span>, <span class="attr">align</span>:<span class="string">&#x27;center&#x27;</span>, <span class="attr">totalRowText</span>: <span class="string">&#x27;合计&#x27;</span>&#125;,</span><br><span class="line">        &#123;<span class="attr">field</span>: <span class="string">&#x27;week&#x27;</span>, <span class="attr">title</span>: <span class="string">&#x27;星期&#x27;</span>, <span class="attr">align</span>:<span class="string">&#x27;center&#x27;</span>&#125;,</span><br><span class="line">        &#123;<span class="attr">field</span>:<span class="string">&#x27; usable_room_num&#x27;</span>, <span class="attr">title</span>:<span class="string">&#x27;可用房数&#x27;</span>, <span class="attr">align</span>:<span class="string">&#x27;center&#x27;</span>, <span class="attr">totalRow</span>:<span class="literal">true</span>&#125;,</span><br><span class="line">    ]],</span><br><span class="line">    <span class="attr">response</span>:&#123;</span><br><span class="line">        <span class="attr">statusName</span>:<span class="string">&#x27;status&#x27;</span>,</span><br><span class="line">        <span class="attr">statusCode</span>:<span class="number">1</span>,</span><br><span class="line">        <span class="attr">msgName</span>:<span class="string">&#x27;msg&#x27;</span>,</span><br><span class="line">        <span class="attr">countName</span>:<span class="string">&#x27;total&#x27;</span>,</span><br><span class="line">        <span class="attr">dataName</span>:<span class="string">&#x27;data&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">page</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// limit: 0,</span></span><br><span class="line">    <span class="attr">limit</span>: <span class="title class_">Number</span>.<span class="property">MAX_VALUE</span>,</span><br><span class="line">    <span class="attr">done</span>: <span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">        <span class="comment">// 取消分页展示</span></span><br><span class="line">        $(<span class="string">&#x27;.layui-table-page&#x27;</span>).<span class="title function_">hide</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>切记只有这种第一次页面已经使用render方法的表格，才能使用<code>table.reload()</code>函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">table.<span class="title function_">reload</span>(<span class="string">&#x27;lists&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">where</span>: data.<span class="property">field</span>,</span><br><span class="line">    <span class="attr">page</span>: &#123;</span><br><span class="line">        <span class="attr">curr</span>: <span class="number">1</span> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为什么要使用 <code>&lt;table lay-data=&quot;&#123;&#125;&quot;&gt; ... &lt;/table&gt;</code>这种方式？官网上说此种写法是为了 SEO 优化，PMS一般是功能软件，需要SEO优化吗？况且使用这种方式，格式也没有对齐，即使对齐占用很大的篇幅，在done中写回调代码也不高亮！</p>
+</li>
+<li><p>这种最常见的情况（后台也是最快做出页面）阻止了form默认提交，在页面加载完之后，再次输入查询条件，点击查询按钮执行的函数就是commonjs中的getListData方法。getListData是一个封装好的方法，很多页面都在使用，这时候要是测试让前端人员修改verify逻辑怎么办，原方法不能动，只能在该页面重新写，所以我认为慢慢全部把这些东西解耦，说明开始封装的方法有的地方不合适！所以该场景，测试若要验证form，就在页面中单独写逻辑。</p>
+</li>
+</ul>
+<h3 id="4、使用原生form提交，table是灌好的数据（report-statis-forwardSourceStatis-远期客源分析表）"><a href="#4、使用原生form提交，table是灌好的数据（report-statis-forwardSourceStatis-远期客源分析表）" class="headerlink" title="4、使用原生form提交，table是灌好的数据（report_statis/forwardSourceStatis 远期客源分析表）"></a>4、使用原生form提交，table是灌好的数据（report_statis/forwardSourceStatis 远期客源分析表）</h3><p>该例子使用form原生提交，应用了lay-verify验证，数据及页面结构在后台已经渲染好（我写的后台循环），结构清晰，可做模板使用。注：此类型表格是一个统计表格无分页场景。就是要应用原生form的提交功能。layui中lay-submit应该是封装了，只要是不满足verify，即使是type是默认提交，也不会给你提交！</p>
+<h3 id="5、筛选条件：按钮-form"><a href="#5、筛选条件：按钮-form" class="headerlink" title="5、筛选条件：按钮 + form"></a>5、筛选条件：按钮 + form</h3><p>查询条件：按钮选择 + form中的input筛选条件，在测试ar_account/rechargeList页面时候，测试要添加时间段区间验证，把getListData方法删除，直接写。发现按钮区的逻辑依然是正常。20191127补记，就拿rechargeList.php来说，上面有按钮，点击按钮的逻辑：在commonjs中写好的按钮绑定函数（处理样式和筛选出data-name值2个大逻辑），获取到data-name的值之后，再次与form中的input name值组合，进而where查询。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/11/26/PMS%E4%B8%ADform%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/" data-id="cm71lhu76001wt0vp8mv9aq0a" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Git常用命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/25/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time datetime="2019-11-25T09:11:19.000Z" itemprop="datePublished">2019-11-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/25/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Git常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1"></a>示例 1</h3><ul>
+<li>ums 仓库默认已创建 master 分支，部署项目（为了给邱双弄 Nginx 接口代理），于是我 <code>git pull</code> 截图如下：</li>
+</ul>
+<p><img src="https://file.798run.top/img/blog/20200717/ums-git-pull.png" alt="ums-git-pull"></p>
+<p>图中看到新增加了 dev 分支(其他同事创建)。于是我就执行 <code>git checkout -b dev</code> 切换到 dev 分支，随即 <code>git pull</code>，提示如下：</p>
+<p><img src="https://file.798run.top/img/blog/20200717/checkout-pull.png" alt="checkout-pull"></p>
+<p>已不止一次看到上面截图提示！心想先不管它，先干活。我就在 dev 分支上修改了一个文件，于是 <code>git status</code>、<code>git add .</code>、<code>git commit -m &quot;修改 .gitignore 文件&quot;</code>、<code>git pull</code>、<code>git push</code>。push 的时候出现提示如下：</p>
+<p><img src="https://file.798run.top/img/blog/20200717/git-push.png" alt="git-push"></p>
+<p>push 没成功，则必须要解决图中提示的问题，于是找到：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f6f7dae0b8b6">git pull 报错 There is no tracking information for the current branch…</a>。按照文中提示，我执行 <code>git branch --set-upstream-to=origin/dev dev</code>。随后又通过 <code>git branch -vv</code> 确认是否关联。总的截图如下：</p>
+<p><img src="https://file.798run.top/img/blog/20200717/set-upstream-vv.png" alt="set-upstream-vv"></p>
+<p>上图则说明关联成功，git pull 拉下来很多代码！随后我又重复 <code>git add .</code>、<code>git commit -m &quot;修改 .gitignore 文件&quot;</code>、<code>git pull</code>、<code>git push</code>。把我刚才修改的文件 push 到 dev 了！此场景提示，说明在切换新的分支之后，若想使用简单明了 git pull 、git push，这必须事先把该分支，与远程的分支进行关联。否则，只能把指令写完整 git pull origin dev、git push origin dev。</p>
+<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2"></a>示例 2</h3><p>下图是又一次遇到上面场景：</p>
+<p><img src="https://file.798run.top/img/blog/20210127/git-branch--set-upstream-to=.jpg" alt="git branch--set-upstream-to="></p>
+<p>可查看<a target="_blank" rel="noopener" href="https://blog.csdn.net/nonfuxinyang/article/details/77206479">此文</a></p>
+<ul>
+<li>20200808 补记：在看方的 express 章节时候，看到其使用 git 执行如下：创建一个本地目录 express-demo-3，随后 git init 则生成一个 .git 目录。并在他的 github 上新建了 express-demo-3 仓库。随后执行 <code>git add .</code>、<code>git commit -m init</code> 、 <code>git remote add orgin git@github.com:FrankFang/express-demo-3.git</code>、<code>git push -u orgin master</code>。注：最后两个指令是在你初始化了仓库之后，github 上生成的！并没有遇到我之前的提示啥 upstream 之类的报错，这说明这也是一种方法！但是我思考在秋果 git 仓库是不是没有配置啥钩子才出现这种错误，还是说 github、gitee 等已经给你创建了啥钩子呢？</li>
+</ul>
+<ul>
+<li>20200817 在家弄 peter 分配的 CRM 系统，说让参考墨宇的 fms，其项目一直跑不起来有问题：他用 Mac 在 git 上提交了 import ‘@/keren /keren.vue’（不知道为啥竟然能提交，在 Windows 上 vscode 直接回提示你目录不能这样创建）。周一，墨宇说的让删除仓库。重新 init 一个仓库！我初始化 fms.git 仓库之后：在本地新建 a.txt。开始 git add . 之一些列的操作，最后 git pull 出现如下截图：</li>
+</ul>
+<p><img src="https://file.798run.top/img/blog/20200818/git-pull.png" alt="git-pull"></p>
+<p>看到这我还以为是 git 又报啥错了。于是就执行操作如下：</p>
+<p><img src="https://file.798run.top/img/blog/20200818/git-upstream.png" alt="git-pull"></p>
+<p>搜了一堆帖子，发现不行。后来查看自己写的 git 总结文档，发现在新建 dev 分支时候，才需要执行 git branch –set-upstream-to=origin/dev dev<br>于是我就直接 push 了，没啥报错！上的提示是你第一次 pull 默认的提示。</p>
+<h3 id="2、查看、切换分支"><a href="#2、查看、切换分支" class="headerlink" title="2、查看、切换分支"></a>2、查看、切换分支</h3><ul>
+<li><p>查看分支是 <code>git branch</code> 后面可以加参数 -a （指的是所有的分支）</p>
+</li>
+<li><p>切换分支 <code>git checkout 分支名</code></p>
+</li>
+<li><p>创建分支 <code>git checkout -b dev</code>，此指令创建一个 dev 分支，若是 dev 分支已经存在，命令行会有提示：dev has already exists！</p>
+</li>
+<li><p>创建于切换其实是一个指令，仅仅是添加的参数不同！</p>
+</li>
+</ul>
+<h3 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h3><ul>
+<li>使用 webstorm 自带 git 工具 commit 时，提示如下：</li>
+</ul>
+<p><img src="https://file.798run.top/img/blog/20210131/webstorm-git-commit-warning.png" alt="webstorm-git-commit-warning"></p>
+<p>意思：让我配置 crlf 自动转换，也就是说，本地的文格式是 crlf，git 远程仓库格式 lf，你本地的文件提交远程仓库需要转换！于是在该目录下执行了：<code>git config --local core.autocrlf true</code>，再次 commit 时候不在提示。</p>
+<ul>
+<li>在我的 files 项目，我在 commit 时候提示如下：</li>
+</ul>
+<p><img src="https://file.798run.top/img/blog/20210131/vscode-git-commit-warning.png" alt="vscode-git-commit-warning"></p>
+<p>意思：将会被 autocrlf，不让我 commit，于是我执行 <code>git config --local core.autocrlf false</code>，vscode，webstorm 怎么提示的设置的不一样？原因：新建了 baby.html(其格式是 crlf)，然 git commit 默认将文件转为 lf，可是本地项目没有对该仓库进行配置，所以提示。若是大的工程项目，其下有一个.editorconfig 文件（在此文件中我们设置 end_of_line = lf），则在 git commit 时不会有警告！由这两种情况我们可得出，针对一个仓库若配置 end_of_line = lf，IDE 在 commit 时，也不会出现警告；若是简单小项目则可对该仓库设置：<code>git config --local core.autocrlf true</code>也不会出现警告；与其针对每个仓库执行上面的配置，我们可全局配置 <code>git config --global core.autocrlf true</code>。按理说，我们大概率将 core.autocrlf 设置为 true，可在部署 hexo 博客时候，只有设置为 core.autocrlf false 才让发布，具体 err 详情在“Hexo 杂集”博客中有提现。</p>
+<ul>
+<li>在项目 <code>file.798run.top</code> 项目中，我在 xshell 中，git pull 提示如下：</li>
+</ul>
+<p><img src="https://file.798run.top/img/blog/20210131/git-pull-warning.jpg" alt="git-pull-warning"></p>
+<p>于是我执行了<code>git config --global pull.rebase false</code>，参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/hongdada/p/9549506.html">文档</a></p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/outs/p/6909567.html">Git 中的 core.autocrlf 选项含义</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b03ad01acd69">CRLF、CR、LF 详解</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/11/25/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cm71lhu6m000rt0vp3ge9dseq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-浏览器加载资源报错" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/11/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%8A%A5%E9%94%99/" class="article-date">
@@ -98,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/11/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%8A%A5%E9%94%99/" data-id="cm6soz0ny005838vpalyi8c4g" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/11/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%8A%A5%E9%94%99/" data-id="cm71lhu92005et0vp1ltz8ubg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -173,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/09/25/table%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" data-id="cm6soz0n4003e38vpes2l65rm" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/09/25/table%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" data-id="cm71lhu84003lt0vpfg4k85l0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li></ul>
@@ -287,7 +439,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/09/17/js%E6%97%A5%E6%9C%9F%E8%AE%BE%E7%BD%AE%E6%80%BB%E7%BB%93/" data-id="cm6soz0my002y38vp5jw6b4me" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/09/17/js%E6%97%A5%E6%9C%9F%E8%AE%BE%E7%BD%AE%E6%80%BB%E7%BB%93/" data-id="cm71lhu7u0036t0vpcgpifft5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -342,7 +494,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/07/23/JS%E6%9D%82%E9%9B%86/" data-id="cm6soz0m2001438vp6n14911y" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/07/23/JS%E6%9D%82%E9%9B%86/" data-id="cm71lhu6s0013t0vp8du49v3i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -431,7 +583,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/07/02/%E7%9C%8B%E5%86%B4%E7%BE%BD%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0/" data-id="cm6soz0o1005d38vp11dd1nh6" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/07/02/%E7%9C%8B%E5%86%B4%E7%BE%BD%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0/" data-id="cm71lhu95005jt0vp0ioqaigu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -530,7 +682,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/06/14/layui%E4%B8%AD%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-id="cm6soz0n0003638vpfqy58k9n" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/06/14/layui%E4%B8%AD%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-id="cm71lhu7y003et0vpb6e7dnbq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li></ul>
@@ -583,7 +735,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/06/11/Math%E5%87%BD%E6%95%B0/" data-id="cm6soz0m6001h38vpbttrbw0a" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/06/11/Math%E5%87%BD%E6%95%B0/" data-id="cm71lhu6y001ht0vp9p6bguvt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -644,114 +796,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/" data-id="cm6soz0mo002j38vphaqhd5e6" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/" data-id="cm71lhu7l002mt0vp8p0vea8j" class="article-share-link">Share</a>
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-CSS的normalize-css的文档说明" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/" class="article-date">
-  <time datetime="2019-05-09T07:32:46.000Z" itemprop="datePublished">2019-05-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/">CSS的normalize.css的文档说明</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/" data-id="cm6soz0ll000d38vp5r8oeiou" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-js数组排序去重等" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/15/js%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%8E%BB%E9%87%8D%E7%AD%89/" class="article-date">
-  <time datetime="2019-04-15T02:32:19.000Z" itemprop="datePublished">2019-04-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/15/js%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%8E%BB%E9%87%8D%E7%AD%89/">js数组排序去重等</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>针对js数组排序，有几种方法，现总结一下，以免自己忘记。</p>
-<h4 id="1-js数组的排序之sort-方法"><a href="#1-js数组的排序之sort-方法" class="headerlink" title="1. js数组的排序之sort()方法"></a>1. js数组的排序之sort()方法</h4><ul>
-<li>数组有一个sort()方法，可用之简单排序，如下代码：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmpArr = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">2</span>];</span><br><span class="line">functon <span class="title function_">sortMethod</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (a &gt; b) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a &lt; b) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="number">0</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( tmpArr.<span class="title function_">sort</span>(sortMethod) );</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>可满足从小到大排序。</p>
-<ul>
-<li>若需要是从大到小排序，则可以改造为：</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmpArr = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">2</span>];</span><br><span class="line">functon <span class="title function_">sortMethod</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (a &gt; b) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a &lt; b) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="number">0</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( tmpArr.<span class="title function_">sort</span>(sortMethod) );</span><br></pre></td></tr></table></figure>
-
-<p>无意中看到一篇关于 sort 的帖子，本来在我的微信悬浮中，现在用博客记录一下链接：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/lVPKNh6SCdf9EDHQPzjLaQ">为什么使用sort()不是不是真正意义的乱序呢？</a></p>
-<h4 id="2-冒泡排序"><a href="#2-冒泡排序" class="headerlink" title="2. 冒泡排序"></a>2. 冒泡排序</h4><ul>
-<li>冒泡的含义，来源于生活，是一个形象的比喻，就像是锅中烧水，小泡在下面，大炮在上面，小泡慢慢从下面升起来跑到上面。 所谓的冒泡排序就是从最开始的第一个数arr[0]，与他临近的arr[1]比较，若arr[0] &gt; arr[1]，对调位置（类似于冒泡）。这时候新的arr[1]继续与arr[2]比较，若满足条件对调位置，知道把数据循环一遍。循环一遍结束后，这只是把arr[0]与其他元素做了比较，这时候要对新的arr[1]与他之后的元素依次比较，所以这会有双重循环。 看代码：</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmpArr = [<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, -<span class="number">1</span>];</span><br><span class="line">functon <span class="title function_">bubbleSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">    <span class="comment">// 第一次循环，针对每一个元素分别走一遍，让他开始冒泡</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.<span class="property">length</span> - <span class="number">1</span>; i++ ) &#123;</span><br><span class="line">        <span class="comment">// 第二次循环，每一个元素分别比较之后，继续与他右边元素比较，一直到循环到头</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; arr.<span class="property">length</span> - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j+<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">var</span> tmp = arr[j];</span><br><span class="line">                arr[j] = arr[j+<span class="number">1</span>];</span><br><span class="line">                arr[j+<span class="number">1</span>] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="title function_">bubbleSort</span>(tmpArr) );</span><br></pre></td></tr></table></figure>
-<p>解释一下这里的代码含义，为什么是 arr.length - 1 ，arr.length - 1 - i主要是内层的循环，为了代码不进行多余的循环，还有一个重要的原因，上面的代码中有arr[j+1]，要是不限制，有可能数组越界。 第二次循环若是 &lt; 4,则j 有可能等于3，则arr[j+1] 既是arr[4]，所以这是不合理的。</p>
-<h4 id="3-数组去重"><a href="#3-数组去重" class="headerlink" title="3. 数组去重"></a>3. 数组去重</h4><ul>
-<li>数组去重，一般是想到使用indexOf(‘el’)找到其索引，在直接对数组使用 arr.splice(index, ‘el’)即可！我在集团端crs中direct_hotel\room_status.php中使用到数组去重逻辑，具体如下：很多房型是form中的input type=”checkbox”，每次选中或者取消checkbox要实时获取数组中有效房型。具体代码：</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> roomTypeArr = [];</span><br><span class="line">form.<span class="title function_">on</span>(<span class="string">&#x27;checkbox(filterRoomType)&#x27;</span>, <span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="property">value</span>);</span><br><span class="line">    <span class="keyword">if</span> (data.<span class="property">elem</span>.<span class="property">checked</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (roomTypeArr.<span class="title function_">indexOf</span>(data.<span class="property">value</span>) == -<span class="number">1</span>) &#123;</span><br><span class="line">            roomTypeArr.<span class="title function_">push</span>(data.<span class="property">value</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> ind = roomTypeArr.<span class="title function_">indexOf</span>(data.<span class="property">value</span>);</span><br><span class="line">        <span class="keyword">if</span> (ind != -<span class="number">1</span>) &#123;</span><br><span class="line">            roomTypeArr.<span class="title function_">splice</span>(ind, <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(roomTypeArr);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>原生jq点击事件，针对checkbox模拟上面的场景</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;hobbyWrap&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;hobby[]&quot;</span> <span class="attr">value</span>=<span class="string">&quot;看书&quot;</span> <span class="attr">id</span>=<span class="string">&quot;checkbox1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">label</span></span></span><br><span class="line"><span class="tag">            <span class="attr">for</span>=<span class="string">&quot;checkbox1&quot;</span>&gt;</span>看书<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;hobby[]&quot;</span> <span class="attr">value</span>=<span class="string">&quot;写字&quot;</span> <span class="attr">id</span>=<span class="string">&quot;checkbox2&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;checkbox2&quot;</span>&gt;</span>写字<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;hobby[]&quot;</span> <span class="attr">value</span>=<span class="string">&quot;学习&quot;</span> <span class="attr">id</span>=<span class="string">&quot;checkbox3&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;checkbox3&quot;</span>&gt;</span>学习<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hobbyArr = [];</span><br><span class="line">$(<span class="string">&#x27;.hobbyWrap&#x27;</span>).<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>, <span class="string">&#x27;:checkbox&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> v = $(<span class="variable language_">this</span>).<span class="title function_">val</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(v, $(<span class="variable language_">this</span>).<span class="title function_">prop</span>(<span class="string">&quot;checked&quot;</span>));</span><br><span class="line">    <span class="keyword">if</span> ($(<span class="variable language_">this</span>).<span class="title function_">prop</span>(<span class="string">&quot;checked&quot;</span>)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (hobbyArr.<span class="title function_">indexOf</span>(v) == -<span class="number">1</span>) &#123;</span><br><span class="line">            hobbyArr.<span class="title function_">push</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> ind = hobbyArr.<span class="title function_">indexOf</span>(v);</span><br><span class="line">        <span class="keyword">if</span> (ind != -<span class="number">1</span>) &#123;</span><br><span class="line">            hobbyArr.<span class="title function_">splice</span>(ind, <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(hobbyArr, hobbyArr.<span class="title function_">join</span>(<span class="string">&#x27;,&#x27;</span>));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>在网页上也看到过对Array的原型链上绑定一个方法，直接可以使用。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">remove</span> = <span class="keyword">function</span> (<span class="params">v</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="variable language_">this</span>.<span class="title function_">indexOf</span>(v);</span><br><span class="line">    <span class="keyword">if</span> (i &gt; -<span class="number">1</span>) <span class="variable language_">this</span>.<span class="title function_">splice</span>(i, v);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.<span class="title function_">remove</span>(<span class="number">3</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/04/15/js%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%8E%BB%E9%87%8D%E7%AD%89/" data-id="cm6soz0mw002w38vpa3sj9mds" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
-
     </footer>
   </div>
   
@@ -787,7 +834,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -800,6 +847,14 @@
       <ul>
         
           <li>
+            <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
+          </li>
+        
+          <li>
+            <a href="/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/">js一些代码块</a>
+          </li>
+        
+          <li>
             <a href="/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/">代码片段之RegExp</a>
           </li>
         
@@ -809,14 +864,6 @@
         
           <li>
             <a href="/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/">npm或yarn安装过程常见的warn及error</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/10/npm%E4%B8%8Eyarn%E5%AF%B9peerDependencies%E5%A4%84%E7%90%86%E7%9A%84%E5%B7%AE%E5%BC%82/">npm与yarn对peerDependencies处理的差异</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/">Nodejs项目使用npm与使用yarn表现效果的一次记录</a>
           </li>
         
       </ul>

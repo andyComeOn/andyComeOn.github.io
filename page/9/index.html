@@ -64,6 +64,103 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-jq中一些总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/22/jq%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2019-02-22T06:40:54.000Z" itemprop="datePublished">2019-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/22/jq%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/">jq中一些总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、标签下的data-总结"><a href="#1、标签下的data-总结" class="headerlink" title="1、标签下的data-**总结"></a>1、标签下的data-**总结</h3><p><strong>写法一：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;el1&quot;</span> <span class="attr">data-isdata</span> = <span class="string">&quot;1&quot;</span>&gt;</span>标签1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;el2&quot;</span> <span class="attr">data-isData</span> = <span class="string">&quot;2&quot;</span>&gt;</span>标签2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;el3&quot;</span> <span class="attr">data-is_Data</span> = <span class="string">&quot;3&quot;</span>&gt;</span>标签3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>($(<span class="string">&#x27;.el1&#x27;</span>).<span class="title function_">data</span>(<span class="string">&#x27;isdata&#x27;</span>));  <span class="comment">// 1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>($(<span class="string">&#x27;.el2&#x27;</span>).<span class="title function_">data</span>(<span class="string">&#x27;isData&#x27;</span>));  <span class="comment">// undefined</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>($(<span class="string">&#x27;.el3&#x27;</span>).<span class="title function_">data</span>(<span class="string">&#x27;isdata&#x27;</span>));  <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确的用法</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>($(<span class="string">&#x27;.el2&#x27;</span>).<span class="title function_">data</span>(<span class="string">&#x27;isdata&#x27;</span>)); <span class="comment">// 2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>($(<span class="string">&#x27;.el3&#x27;</span>).<span class="title function_">data</span>(<span class="string">&#x27;is_data&#x27;</span>)); <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 总结就是遇见大写的就转为小写即可</span></span><br></pre></td></tr></table></figure>
+
+<p>说明：保留几位小数点，参数n设置为几！</p>
+<hr>
+<h3 id="2、简单的分页逻辑"><a href="#2、简单的分页逻辑" class="headerlink" title="2、简单的分页逻辑"></a>2、简单的分页逻辑</h3><p><strong>方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">page</span>(<span class="params">total, pagesize = <span class="number">10</span></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> tmp = (total / pagesize).<span class="title function_">toString</span>();</span><br><span class="line">    <span class="keyword">if</span> (tmp.<span class="title function_">indexOf</span>(<span class="string">&#x27;.&#x27;</span>) == -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> tmp - <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">ceil</span>(tmp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">page</span>(<span class="number">21</span>, <span class="number">22</span>));</span><br></pre></td></tr></table></figure>
+<p>说明：第一个参数是数据的总数量，第二个参数是每页数量，该函数抛出的是总共有几页！</p>
+<hr>
+<h3 id="3、数字字符串转数字"><a href="#3、数字字符串转数字" class="headerlink" title="3、数字字符串转数字"></a>3、数字字符串转数字</h3><p><strong>方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a - <span class="number">0</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Number</span>(a));</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4、函数传参"><a href="#4、函数传参" class="headerlink" title="4、函数传参"></a>4、函数传参</h3><p><strong>方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">todo</span>(<span class="params">a, b = <span class="number">2</span></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + <span class="string">&#x27;|&#x27;</span> + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">todo</span>(<span class="number">1</span>, <span class="number">3</span>)); <span class="comment">// &#x27;1|3&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">todo</span>(<span class="number">1</span>)); <span class="comment">// &#x27;1|2&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/02/22/jq%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/" data-id="cm71lhu7q002wt0vpca57hhvn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-设置路由器的一次记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/15/%E8%AE%BE%E7%BD%AE%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2019-02-15T13:18:08.000Z" itemprop="datePublished">2019-02-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/15/%E8%AE%BE%E7%BD%AE%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/">设置路由器的一次记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="记录一次路由器的设置的过程"><a href="#记录一次路由器的设置的过程" class="headerlink" title="记录一次路由器的设置的过程"></a>记录一次路由器的设置的过程</h4><ul>
+<li><p>网络已不能连接，点击路由器小按钮（一般是一个小孔，用卡针之类扎一下），这时候其已复位，连接其默认WiFi，找到其背面的标签写的：用户名、密码，进去。输入你的的宽带账号密码（运营商给你的）之后选择动态获取（联通电话技术支持说是PPPoe）。看到光猫的Internet灯只要亮说明就已经连接成功了。在连接上路由器进行密码设置即可。</p>
+</li>
+<li><p>还有一个疑问是，师傅直接操作路由器，能否直接操作光猫呢？我在设置时候一开始没弄好，就试着把光猫的网线插到电脑上这样行吗？后来师傅弄好之后，登录路由器的登录页面访问网址变成了192.168.0.1，光猫的变成了192.168.1.1。最开始路由器的登录页面访问网址是192.168.1.1。</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/iview/iview-admin/releases"><img src="https://img.shields.io/github/release/iview/iview-admin.svg"></a><br><a target="_blank" rel="noopener" href="https://travis-ci.org/iview/iview-admin"><img src="https://img.shields.io/travis/iview/iview-admin.svg?style=flat-square"></a><br><a target="_blank" rel="noopener" href="https://github.com/vuejs/vue"><img src="https://img.shields.io/badge/vue-2.5.17-brightgreen.svg?style=flat-square" alt="vue"></a><br><a target="_blank" rel="noopener" href="https://github.com/iview/iview"><img src="https://img.shields.io/badge/iview-3.2.2-brightgreen.svg?style=flat-square" alt="iview ui"></a><br><a href=""><img src="https://img.shields.io/npm/l/express.svg" alt="npm"></a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/02/15/%E8%AE%BE%E7%BD%AE%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/" data-id="cm71lhu99005pt0vp8106fdt5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CSS字体行高相关" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/02/15/CSS%E5%AD%97%E4%BD%93%E8%A1%8C%E9%AB%98%E7%9B%B8%E5%85%B3/" class="article-date">
@@ -109,7 +206,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/02/15/CSS%E5%AD%97%E4%BD%93%E8%A1%8C%E9%AB%98%E7%9B%B8%E5%85%B3/" data-id="cm6soz0li000838vp8k70gjmv" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/02/15/CSS%E5%AD%97%E4%BD%93%E8%A1%8C%E9%AB%98%E7%9B%B8%E5%85%B3/" data-id="cm71lhu660008t0vpaktlextu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -202,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/02/13/layui%E4%B8%AD%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97%E8%AE%B0%E5%BD%95/" data-id="cm6soz0n1003938vpfp7ifn2l" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/02/13/layui%E4%B8%AD%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97%E8%AE%B0%E5%BD%95/" data-id="cm71lhu80003gt0vp106rdcc4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li></ul>
@@ -295,7 +392,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/02/12/html%E4%B8%80%E4%BA%9B%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" data-id="cm6soz0mp002l38vp54kv0m3k" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/02/12/html%E4%B8%80%E4%BA%9B%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" data-id="cm71lhu7m002ot0vpemxlhecm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li></ul>
@@ -369,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/02/12/js%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1/" data-id="cm6soz0mz003238vpagxx59tv" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/02/12/js%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1/" data-id="cm71lhu7x003at0vpdxshbydt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -437,7 +534,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/02/12/jqready/" data-id="cm6soz0mq002n38vpf9or6vah" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/02/12/jqready/" data-id="cm71lhu7n002qt0vpakhx7srk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -502,7 +599,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%BD%91%E5%9D%80%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/" data-id="cm6soz0nw005638vp2lyc0ehz" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%BD%91%E5%9D%80%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/" data-id="cm71lhu8w0056t0vpdgwl4vtp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -549,7 +646,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/26/%E7%BE%8E%E5%9B%A22019%E6%98%A5%E8%8A%82%E5%B9%B2%E8%B4%A7/" data-id="cm6soz0o4005j38vpddej0oft" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/26/%E7%BE%8E%E5%9B%A22019%E6%98%A5%E8%8A%82%E5%B9%B2%E8%B4%A7/" data-id="cm71lhu9j005ut0vpdg85guxu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -624,8 +721,8 @@
 <li>cp -a dir1 dir2：● 复制 dir1（包括 dir1 下边的所有目录和文件）到 dir2</li>
 <li>cp -a dir1/* dir2：● 复制 dir1 下边的所有目录和文件到 dir2</li>
 <li>cp -rf ${project_path}”/dist”/* ./standby-pre</li>
-<li>scp -r ./standby-pre <a href="mailto:&#x72;&#x6f;&#111;&#116;&#x40;&#x33;&#57;&#x2e;&#49;&#48;&#55;&#46;&#53;&#x39;&#46;&#x34;&#x34;">&#x72;&#x6f;&#111;&#116;&#x40;&#x33;&#57;&#x2e;&#49;&#48;&#55;&#46;&#53;&#x39;&#46;&#x34;&#x34;</a>:/root(针对整个目录，在我的 git bash、cmd 可顺利上传，可不加 -r)</li>
-<li>scp -r 456.html <a href="mailto:&#x72;&#111;&#x6f;&#x74;&#64;&#51;&#57;&#x2e;&#49;&#x30;&#55;&#46;&#x35;&#x39;&#x2e;&#x34;&#52;">&#x72;&#111;&#x6f;&#x74;&#64;&#51;&#57;&#x2e;&#49;&#x30;&#55;&#46;&#x35;&#x39;&#x2e;&#x34;&#52;</a>:/root (针对文件，在我的 git bash、cmd 可顺利上传，可不加 -r)</li>
+<li>scp -r ./standby-pre <a href="mailto:&#114;&#x6f;&#x6f;&#116;&#x40;&#51;&#x39;&#46;&#x31;&#x30;&#55;&#46;&#x35;&#57;&#x2e;&#x34;&#x34;">&#114;&#x6f;&#x6f;&#116;&#x40;&#51;&#x39;&#46;&#x31;&#x30;&#55;&#46;&#x35;&#57;&#x2e;&#x34;&#x34;</a>:/root(针对整个目录，在我的 git bash、cmd 可顺利上传，可不加 -r)</li>
+<li>scp -r 456.html <a href="mailto:&#114;&#111;&#x6f;&#x74;&#x40;&#x33;&#x39;&#46;&#49;&#48;&#55;&#x2e;&#53;&#57;&#x2e;&#52;&#52;">&#114;&#111;&#x6f;&#x74;&#x40;&#x33;&#x39;&#46;&#49;&#48;&#55;&#x2e;&#53;&#57;&#x2e;&#52;&#52;</a>:/root (针对文件，在我的 git bash、cmd 可顺利上传，可不加 -r)</li>
 <li>scp -r ./dir/* root@39.107.59.44:/root (针对目录下多个文件，在我的 git bash、cmd 可顺利上传，可不加 -r)</li>
 </ul>
 <hr>
@@ -754,7 +851,7 @@
 </li>
 </ul>
 <h4 id="20、连接远程服务器"><a href="#20、连接远程服务器" class="headerlink" title="20、连接远程服务器"></a>20、连接远程服务器</h4><ul>
-<li>ssh -p 22 <a href="mailto:&#114;&#111;&#x6f;&#116;&#64;&#51;&#57;&#46;&#x31;&#x30;&#x37;&#46;&#53;&#57;&#46;&#52;&#52;">&#114;&#111;&#x6f;&#116;&#64;&#51;&#57;&#46;&#x31;&#x30;&#x37;&#46;&#53;&#57;&#46;&#52;&#52;</a><br>连接服务器，可使用 xshell，Windows 也可使用 git bash、powershell 连接，我看到此文章讲的很清楚！想到 Mac 上的默认终端也是可以方便连接！我随后又花了几分钟测试，Windows10 啥终端都可以远程连接服务器！！！注：仅仅能连接远程服务器，可查看一基本的目录及文件，但是上传文件不便！</li>
+<li>ssh -p 22 <a href="mailto:&#x72;&#x6f;&#x6f;&#116;&#x40;&#x33;&#x39;&#x2e;&#x31;&#48;&#x37;&#46;&#53;&#57;&#x2e;&#x34;&#x34;">&#x72;&#x6f;&#x6f;&#116;&#x40;&#x33;&#x39;&#x2e;&#x31;&#48;&#x37;&#46;&#53;&#57;&#x2e;&#x34;&#x34;</a><br>连接服务器，可使用 xshell，Windows 也可使用 git bash、powershell 连接，我看到此文章讲的很清楚！想到 Mac 上的默认终端也是可以方便连接！我随后又花了几分钟测试，Windows10 啥终端都可以远程连接服务器！！！注：仅仅能连接远程服务器，可查看一基本的目录及文件，但是上传文件不便！</li>
 </ul>
 <h4 id="21、linux-下执行-sh-脚本"><a href="#21、linux-下执行-sh-脚本" class="headerlink" title="21、linux 下执行 sh 脚本"></a>21、linux 下执行 sh 脚本</h4><ul>
 <li><p>开发业问时候，发现有 autopublish.sh 脚本，偶然发现了<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/4uu5Y0Aglfvgco4mfUk93w">干货 | Shell 脚本进阶的经典用法</a>，于是就是自己弄了一个 testshell.sh，放在我的服务器 /root 下。执行一直报错如下：<br><img src="https://file.798run.top/img/blog/20210528/linux-execute-shell-err.jpg" alt="linux-execute-shell-err">，于是直接百度，发现<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangzikui/article/details/91411111">解决 Linux sh 脚本无法执行的问题</a>，执行 dos2unix filename，随后可正确执行。</p>
@@ -771,114 +868,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/25/Linux%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" data-id="cm6soz0m4001a38vp4fq17zte" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/25/Linux%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" data-id="cm71lhu6v001at0vpg4hc5twx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-大前端群" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/25/%E5%A4%A7%E5%89%8D%E7%AB%AF%E7%BE%A4/" class="article-date">
-  <time datetime="2019-01-25T00:57:23.000Z" itemprop="datePublished">2019-01-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/25/%E5%A4%A7%E5%89%8D%E7%AB%AF%E7%BE%A4/">大前端群</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="大前端群的每日资讯"><a href="#大前端群的每日资讯" class="headerlink" title="大前端群的每日资讯"></a>大前端群的每日资讯</h4><ul>
-<li><p>该群中的每日资讯是成员“深圳-阿里巴巴-马跃”整理所发。</p>
-</li>
-<li><p>每天都会有。</p>
-</li>
-<li><p>主页在<a target="_blank" rel="noopener" href="http://fe.jskou.com/">前端艺术家-飞冰早报</a>。</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/25/%E5%A4%A7%E5%89%8D%E7%AB%AF%E7%BE%A4/" data-id="cm6soz0nn004m38vp4cz5dtb8" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Shell总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/23/Shell%E6%80%BB%E7%BB%93/" class="article-date">
-  <time datetime="2019-01-23T05:12:37.000Z" itemprop="datePublished">2019-01-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/23/Shell%E6%80%BB%E7%BB%93/">Shell总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>由于开发人员多多少少会给 shell 打交道，自己总结一下 shell 的相关文档</p>
-<h4 id="1、界面"><a href="#1、界面" class="headerlink" title="1、界面"></a>1、界面</h4><p>大家在使用 windows 电脑时候，多多少少都会给 shell 打交道，我们进行的<code>cmd</code>命令、以及 windows 自带的</p>
-<p><img src="//39.106.63.190/img/blog/20190123/Windows-PowerShell0.png" alt="Windows-PowerShell"></p>
-<p>打开的界面如下：<br><img src="//39.106.63.190/img/blog/20190123/Windows-PowerShell1.png" alt="Windows-PowerShell-GUI"><br>还有大家常用的<br><img src="//39.106.63.190/img/blog/20190123/ConEum.png" alt="ConEum"><br>ConEum 终端相比 windows 自带增加了一些键盘复制粘贴等常用功能；还有大家在 windows 上安装的 git，它自带也有一个 git bush（它相比前面介绍的终端增加了很多 linux 命令行指令）。</p>
-<h4 id="2、远程-shell-设置记录"><a href="#2、远程-shell-设置记录" class="headerlink" title="2、远程 shell 设置记录"></a>2、远程 shell 设置记录</h4><p>最近买了一个腾讯云的服务器，打算使用 shell 来远程控制服务器，在腾讯云的文档上介绍了 2 种方式，首先介绍密码登录<code>Linux</code>实例</p>
-<ul>
-<li><p>使用远程登录软件 ，采用密码登录<code>Linux</code>实例，它选择使用<code>PuTTY</code>做了介绍。</p>
-</li>
-<li><p>登录<code>PuTTY</code>的<a target="_blank" rel="noopener" href="https://www.putty.org/">官网</a>，页面如下：<br><img src="https://file.798run.top/img/blog/20190123/PuTTY-org.jpg" alt="PuTTY"><br>在网上搜了一下，大致的意思是这里有 3 种的下载版本，第一种是最官方的、第二种是在官方安装包的基础上（二次开发增加了实用的功能）、第三种不是很清楚。我是直接下载的第一种安装包。很快安装完成，之后弹出来一个<code>README.txt</code>，由于在桌面上没找到快捷方式，感觉很懵。只好硬着头皮看<code>README.txt</code>，该文件告诉我们安装目录在<code>C:\Program Files\PuTTY</code>，该目录截图如下：<br><img src="https://file.798run.top/img/blog/20190123/PuTTY-dir.jpg" alt="PuTTY-dir"><br>于是明白 PuTTY 的很多功能入口在该目录！</p>
-</li>
-<li><p>接着说腾讯云的操作文档（采用密码登录<code>Linux</code>实例），在刚才的目录下找到<code>putty.exe</code>文件打开是一个<code>GUI</code>， 如图：<br><img src="https://file.798run.top/img/blog/20190123/PuTTY-Configuration.jpg" alt="PuTTY-Configuration"><br>按照提示输入你自己买的服务器地址，最后点击 Open 按妞。弹出 GUI 如下：<br><img src="https://file.798run.top/img/blog/20190123/PuTTY-exe-GUI.jpg" alt="PuTTY-exe-GUI"><br>这时候输入密码（注输入密码时候不显示小黑点一定要小心）就连接上了，默认是根目录。</p>
-</li>
-<li><p>上面介绍了使用账号密码的登录方式，但是这种方式有一个不友好的操作，就是每次都要重新输入密码，这对于开发人员来说很麻烦。怎么解决？这时候就有了 SSH 的免密的配置。</p>
-</li>
-</ul>
-<h4 id="3、-使用远程登录软件采用-SSH-密钥登录。"><a href="#3、-使用远程登录软件采用-SSH-密钥登录。" class="headerlink" title="3、 使用远程登录软件采用 SSH 密钥登录。"></a>3、 使用远程登录软件采用 SSH 密钥登录。</h4><ul>
-<li><p>ssh 是什么？ 这是 20190923 补记。 ssh（secure shell，安全外壳协议）。该协议有 2 个常用的作用：远程连接、远程文件传输。协议使用端口号：默认是 22。但是该端口号是可以被修改的，如果需要修改，则需要修改 ssh 服务的配置文件如下：<br><img src="https://file.798run.top/img/blog/20190123/ssh_config.png" alt="ssh_config">;</p>
-</li>
-<li><p>采用 SSH 密钥登录，首先是在目录<code>C:\Program Files\PuTTY</code>中找到<code>puttygen.exe</code>，双击打开如图：<br><img src="https://file.798run.top/img/blog/20190123/puttygen-GUI.jpg" alt="puttygen-GUI"><br>点击<code>Generate</code>，效果如下：<br><img src="https://file.798run.top/img/blog/20190123/puttygen-GUI-Generate.jpg" alt="puttygen-GUI-Generate"><br>完成之后点击<code>Save private key</code>，则会把文件保存在本地（我在保存时候，想保存到<code>C:\Program Files\PuTTY</code>下）但是好像提示什么需要管理员权限，默认给我保存到了<code>C:\Users\user</code>。</p>
-</li>
-<li><p>再次回到<br><img src="https://file.798run.top/img/blog/20190123/PuTTY-Configuration-noEdit.jpg" alt="PuTTY-Configuration-noEdit"><br>找到<code>Connection-SSH-Auth</code><br><img src="https://file.798run.top/img/blog/20190123/Connection-SSH-Auth.jpg" alt="Connection-SSH-Auth"><br>点击 Browser，找到你的刚才存的 ppk 文件，再回到<br><img src="https://file.798run.top/img/blog/20190123/Connection-SSH-Auth.jpg" alt="Connection-SSH-Auth"><br>Session 项输入你的服务器地址。</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/23/Shell%E6%80%BB%E7%BB%93/" data-id="cm6soz0mh002438vp40jh4ev9" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -914,7 +908,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -927,6 +921,14 @@
       <ul>
         
           <li>
+            <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
+          </li>
+        
+          <li>
+            <a href="/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/">js一些代码块</a>
+          </li>
+        
+          <li>
             <a href="/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/">代码片段之RegExp</a>
           </li>
         
@@ -936,14 +938,6 @@
         
           <li>
             <a href="/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/">npm或yarn安装过程常见的warn及error</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/10/npm%E4%B8%8Eyarn%E5%AF%B9peerDependencies%E5%A4%84%E7%90%86%E7%9A%84%E5%B7%AE%E5%BC%82/">npm与yarn对peerDependencies处理的差异</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/">Nodejs项目使用npm与使用yarn表现效果的一次记录</a>
           </li>
         
       </ul>

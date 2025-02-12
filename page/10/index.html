@@ -64,6 +64,109 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-大前端群" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/25/%E5%A4%A7%E5%89%8D%E7%AB%AF%E7%BE%A4/" class="article-date">
+  <time datetime="2019-01-25T00:57:23.000Z" itemprop="datePublished">2019-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/25/%E5%A4%A7%E5%89%8D%E7%AB%AF%E7%BE%A4/">大前端群</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="大前端群的每日资讯"><a href="#大前端群的每日资讯" class="headerlink" title="大前端群的每日资讯"></a>大前端群的每日资讯</h4><ul>
+<li><p>该群中的每日资讯是成员“深圳-阿里巴巴-马跃”整理所发。</p>
+</li>
+<li><p>每天都会有。</p>
+</li>
+<li><p>主页在<a target="_blank" rel="noopener" href="http://fe.jskou.com/">前端艺术家-飞冰早报</a>。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/01/25/%E5%A4%A7%E5%89%8D%E7%AB%AF%E7%BE%A4/" data-id="cm71lhu8t0052t0vp5sl50n5w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Shell总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/23/Shell%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2019-01-23T05:12:37.000Z" itemprop="datePublished">2019-01-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/23/Shell%E6%80%BB%E7%BB%93/">Shell总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于开发人员多多少少会给 shell 打交道，自己总结一下 shell 的相关文档</p>
+<h4 id="1、界面"><a href="#1、界面" class="headerlink" title="1、界面"></a>1、界面</h4><p>大家在使用 windows 电脑时候，多多少少都会给 shell 打交道，我们进行的<code>cmd</code>命令、以及 windows 自带的</p>
+<p><img src="//39.106.63.190/img/blog/20190123/Windows-PowerShell0.png" alt="Windows-PowerShell"></p>
+<p>打开的界面如下：<br><img src="//39.106.63.190/img/blog/20190123/Windows-PowerShell1.png" alt="Windows-PowerShell-GUI"><br>还有大家常用的<br><img src="//39.106.63.190/img/blog/20190123/ConEum.png" alt="ConEum"><br>ConEum 终端相比 windows 自带增加了一些键盘复制粘贴等常用功能；还有大家在 windows 上安装的 git，它自带也有一个 git bush（它相比前面介绍的终端增加了很多 linux 命令行指令）。</p>
+<h4 id="2、远程-shell-设置记录"><a href="#2、远程-shell-设置记录" class="headerlink" title="2、远程 shell 设置记录"></a>2、远程 shell 设置记录</h4><p>最近买了一个腾讯云的服务器，打算使用 shell 来远程控制服务器，在腾讯云的文档上介绍了 2 种方式，首先介绍密码登录<code>Linux</code>实例</p>
+<ul>
+<li><p>使用远程登录软件 ，采用密码登录<code>Linux</code>实例，它选择使用<code>PuTTY</code>做了介绍。</p>
+</li>
+<li><p>登录<code>PuTTY</code>的<a target="_blank" rel="noopener" href="https://www.putty.org/">官网</a>，页面如下：<br><img src="https://file.798run.top/img/blog/20190123/PuTTY-org.jpg" alt="PuTTY"><br>在网上搜了一下，大致的意思是这里有 3 种的下载版本，第一种是最官方的、第二种是在官方安装包的基础上（二次开发增加了实用的功能）、第三种不是很清楚。我是直接下载的第一种安装包。很快安装完成，之后弹出来一个<code>README.txt</code>，由于在桌面上没找到快捷方式，感觉很懵。只好硬着头皮看<code>README.txt</code>，该文件告诉我们安装目录在<code>C:\Program Files\PuTTY</code>，该目录截图如下：<br><img src="https://file.798run.top/img/blog/20190123/PuTTY-dir.jpg" alt="PuTTY-dir"><br>于是明白 PuTTY 的很多功能入口在该目录！</p>
+</li>
+<li><p>接着说腾讯云的操作文档（采用密码登录<code>Linux</code>实例），在刚才的目录下找到<code>putty.exe</code>文件打开是一个<code>GUI</code>， 如图：<br><img src="https://file.798run.top/img/blog/20190123/PuTTY-Configuration.jpg" alt="PuTTY-Configuration"><br>按照提示输入你自己买的服务器地址，最后点击 Open 按妞。弹出 GUI 如下：<br><img src="https://file.798run.top/img/blog/20190123/PuTTY-exe-GUI.jpg" alt="PuTTY-exe-GUI"><br>这时候输入密码（注输入密码时候不显示小黑点一定要小心）就连接上了，默认是根目录。</p>
+</li>
+<li><p>上面介绍了使用账号密码的登录方式，但是这种方式有一个不友好的操作，就是每次都要重新输入密码，这对于开发人员来说很麻烦。怎么解决？这时候就有了 SSH 的免密的配置。</p>
+</li>
+</ul>
+<h4 id="3、-使用远程登录软件采用-SSH-密钥登录。"><a href="#3、-使用远程登录软件采用-SSH-密钥登录。" class="headerlink" title="3、 使用远程登录软件采用 SSH 密钥登录。"></a>3、 使用远程登录软件采用 SSH 密钥登录。</h4><ul>
+<li><p>ssh 是什么？ 这是 20190923 补记。 ssh（secure shell，安全外壳协议）。该协议有 2 个常用的作用：远程连接、远程文件传输。协议使用端口号：默认是 22。但是该端口号是可以被修改的，如果需要修改，则需要修改 ssh 服务的配置文件如下：<br><img src="https://file.798run.top/img/blog/20190123/ssh_config.png" alt="ssh_config">;</p>
+</li>
+<li><p>采用 SSH 密钥登录，首先是在目录<code>C:\Program Files\PuTTY</code>中找到<code>puttygen.exe</code>，双击打开如图：<br><img src="https://file.798run.top/img/blog/20190123/puttygen-GUI.jpg" alt="puttygen-GUI"><br>点击<code>Generate</code>，效果如下：<br><img src="https://file.798run.top/img/blog/20190123/puttygen-GUI-Generate.jpg" alt="puttygen-GUI-Generate"><br>完成之后点击<code>Save private key</code>，则会把文件保存在本地（我在保存时候，想保存到<code>C:\Program Files\PuTTY</code>下）但是好像提示什么需要管理员权限，默认给我保存到了<code>C:\Users\user</code>。</p>
+</li>
+<li><p>再次回到<br><img src="https://file.798run.top/img/blog/20190123/PuTTY-Configuration-noEdit.jpg" alt="PuTTY-Configuration-noEdit"><br>找到<code>Connection-SSH-Auth</code><br><img src="https://file.798run.top/img/blog/20190123/Connection-SSH-Auth.jpg" alt="Connection-SSH-Auth"><br>点击 Browser，找到你的刚才存的 ppk 文件，再回到<br><img src="https://file.798run.top/img/blog/20190123/Connection-SSH-Auth.jpg" alt="Connection-SSH-Auth"><br>Session 项输入你的服务器地址。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/01/23/Shell%E6%80%BB%E7%BB%93/" data-id="cm71lhu7c0026t0vpfak73trp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-MarkDown总结" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/22/MarkDown%E6%80%BB%E7%BB%93/" class="article-date">
@@ -153,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/22/MarkDown%E6%80%BB%E7%BB%93/" data-id="cm6soz0m6001f38vp6zgi2rc9" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/22/MarkDown%E6%80%BB%E7%BB%93/" data-id="cm71lhu6x001ft0vpfvbc4k13" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -214,7 +317,7 @@
 <li>next 主题 <a target="_blank" rel="noopener" href="https://github.com/theme-next">theme-next</a> <a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">hexo-theme-next</a></li>
 <li>若不追求主题，在_config.yml 最后几行配置好你的 username.github.io 仓库地址</li>
 <li>npm install hexo-deployer-git –save 安装 git 的插件</li>
-<li>hexo clean 、hexo g 、hexo d，这时候 git 会提示你 tell me who u are，记得进入到 .deply_git 目录，配置一下 git 信息就行了，git config –local user.name “andyComeOn” git config –local user.email “<a href="mailto:&#49;&#49;&#55;&#52;&#x38;&#x33;&#x39;&#x35;&#49;&#x32;&#x40;&#113;&#113;&#x2e;&#x63;&#111;&#109;">&#49;&#49;&#55;&#52;&#x38;&#x33;&#x39;&#x35;&#49;&#x32;&#x40;&#113;&#113;&#x2e;&#x63;&#111;&#109;</a>“</li>
+<li>hexo clean 、hexo g 、hexo d，这时候 git 会提示你 tell me who u are，记得进入到 .deply_git 目录，配置一下 git 信息就行了，git config –local user.name “andyComeOn” git config –local user.email “<a href="mailto:&#49;&#x31;&#x37;&#x34;&#56;&#51;&#x39;&#x35;&#x31;&#x32;&#x40;&#x71;&#x71;&#x2e;&#x63;&#111;&#x6d;">&#49;&#x31;&#x37;&#x34;&#56;&#51;&#x39;&#x35;&#x31;&#x32;&#x40;&#x71;&#x71;&#x2e;&#x63;&#111;&#x6d;</a>“</li>
 </ul>
 <h3 id="一些补充："><a href="#一些补充：" class="headerlink" title="一些补充："></a>一些补充：</h3><ul>
 <li>我配置的 hexo 就是用的默认主题 landscape，没有多余设置其他，该主题默认的给分了几个板块 Tags、TAG CLOUD、ARCHIVES、RECENT POSTS，</li>
@@ -273,7 +376,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/22/Hexo%E6%9D%82%E9%9B%86/" data-id="cm6soz0lw000u38vpe8kg75nz" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/22/Hexo%E6%9D%82%E9%9B%86/" data-id="cm71lhu6o000tt0vpcd1l23ry" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -313,7 +416,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -326,6 +429,14 @@
       <ul>
         
           <li>
+            <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
+          </li>
+        
+          <li>
+            <a href="/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/">js一些代码块</a>
+          </li>
+        
+          <li>
             <a href="/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/">代码片段之RegExp</a>
           </li>
         
@@ -335,14 +446,6 @@
         
           <li>
             <a href="/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/">npm或yarn安装过程常见的warn及error</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/10/npm%E4%B8%8Eyarn%E5%AF%B9peerDependencies%E5%A4%84%E7%90%86%E7%9A%84%E5%B7%AE%E5%BC%82/">npm与yarn对peerDependencies处理的差异</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/">Nodejs项目使用npm与使用yarn表现效果的一次记录</a>
           </li>
         
       </ul>

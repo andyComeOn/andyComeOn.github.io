@@ -64,6 +64,105 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-js循环迭代" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/" class="article-date">
+  <time datetime="2025-02-12T05:00:05.000Z" itemprop="datePublished">2025-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="常见的循环"><a href="#常见的循环" class="headerlink" title="常见的循环"></a><strong>常见的循环</strong></h3><p>一些官方文档(MDN)介绍的的常见的循环有：<code>for</code>、<code>while</code>，<code>do while</code> 等。<code>for</code> 循环是一个最常见的，其中 js 针对 for 循环衍生出了 for in、for of。for 循环的基本语法如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (begin; condition; step) &#123;</span><br><span class="line">  <span class="comment">// 循环体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>很多小伙伴，使用 for 习惯了，使用 while 的相少一些，其语法如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (condition) &#123;</span><br><span class="line">  <span class="comment">// 代码</span></span><br><span class="line">  <span class="comment">// 所谓循环体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只有满足了 condition 条件，while 循环体语句才会执行！举例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">while</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">  i--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那 do while 用法是啥？举例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> flag = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  i++;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">  <span class="keyword">if</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    flag = <span class="literal">false</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    flag = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">while</span> (flag);</span><br></pre></td></tr></table></figure>
+
+<p>do while 有一个不好的现象是，无论 while 中的条件是 true 或 false 其 do 里面的循环体都会执行一次！！！这一点在使用时要格外注意！</p>
+<h3 id="常冒排序"><a href="#常冒排序" class="headerlink" title="常冒排序"></a><strong>常冒排序</strong></h3><p>这个冒泡排序，在网上一搜很多代码片段，但是说的不是很清楚，我把自己理解的记录下来。为啥叫冒泡，来源于生活中，我们在烧水壶里面烧水时，眼睛看到随着不断的加热，水壶里的小水泡，从壶底不断网上冒，小水泡在壶底时体积还很小，可是水泡在往上冒的时候，越来越大，好像是有规律的逐渐变大了，这就是生活中的冒泡，我们说的冒泡排序，其实就是类比小水泡，我们把数组中的相邻的数字进行比较，即：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// array[0] 与 array[1] 比较</span></span><br><span class="line"><span class="comment">// array[1] 与 array[2] 比较</span></span><br><span class="line"><span class="comment">// array[2] 与 array[3] 比较</span></span><br><span class="line"><span class="comment">// 这些元素都是相邻的进行比较</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 例，下面的代码。我当时也不知道自己为啥这样写，下面的代码有 bug。</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bubbleSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> len = arr.<span class="property">length</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (j = i; j &lt; len; j++) &#123;</span><br><span class="line">      <span class="comment">// 既然是相邻的元素相比较，那就是 arr[j] 与 arr【j+1】之间的比较</span></span><br><span class="line">      <span class="comment">// 于是我写了如代码</span></span><br><span class="line">      <span class="keyword">if</span> (arr[j] &lt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">const</span> tmp = arr[j];</span><br><span class="line">        arr[j] = arr[j + <span class="number">1</span>];</span><br><span class="line">        arr[j + <span class="number">1</span>] = tmp;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 举例 ：arr = [3, 6, 9]</span></span><br><span class="line"><span class="comment">// arr =&gt; [6, 3, 9] 当 i=0 j=0 时</span></span><br><span class="line"><span class="comment">// arr =&gt; [6, 9, 3] 当 i=0 j=1 时</span></span><br><span class="line"><span class="comment">// arr =&gt; [6, 9, 3] ? 当 i=0 j=2 时，此处有一个数组越界的问题，j=2 那么 arr[j+1] 就是 arr[3] 哪有这个值！所以上面写的第二次循环应该有 bug，也就是 j 的范围要进一步缩小。还有一个问题就是最后数组变成了 [6, 9, 3]，也不符合我们的预期啊，我们的预期是数组变成9,6,3这样的降序的形式！那是不是第二层的for循环j的开始条件不对呢？，应该是j=0开始呢?</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 改造代码如下：</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bubbleSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> len = arr.<span class="property">length</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; len - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &lt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">const</span> tmp = arr[j];</span><br><span class="line">        arr[j] = arr[j + <span class="number">1</span>];</span><br><span class="line">        arr[j + <span class="number">1</span>] = tmp;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">bubbleSort</span>([<span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>])); <span class="comment">// [9, 6, 3] 排序结果正确</span></span><br></pre></td></tr></table></figure>
+
+<p>有了上面的例子，我们其实可对排序函数继续完善，加入一个参数，是升序还是降序需求！如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// asc升序 desc降序</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bubbleSort</span>(<span class="params">arr, type = <span class="string">&#x27;asc&#x27;</span></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> len = arr.<span class="property">length</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; len - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">      <span class="comment">// 升序</span></span><br><span class="line">      <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (type === <span class="string">&#x27;asc&#x27;</span>) &#123;</span><br><span class="line">          <span class="comment">// 直接解构,代码简洁，无需定义中间变量</span></span><br><span class="line">          [arr[j], arr[j + <span class="number">1</span>]] = [arr[j + <span class="number">1</span>], arr[j]];</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (type === <span class="string">&#x27;desc&#x27;</span>) &#123;</span><br><span class="line">          [arr[j], arr[j + <span class="number">1</span>]] = [arr[j + <span class="number">1</span>], arr[j]];</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// console.log(bubbleSort([6, 3, 9])); // 默认升序 3,6,9</span></span><br><span class="line"><span class="comment">// console.log(bubbleSort([6, 3, 9], &#x27;desc&#x27;)); // 降序 9,6,3</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/" data-id="cm71lhu7t0032t0vp2ty88qo0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js一些代码块" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/" class="article-date">
+  <time datetime="2025-02-10T01:26:05.000Z" itemprop="datePublished">2025-02-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/">js一些代码块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="延迟多少毫秒执行"><a href="#延迟多少毫秒执行" class="headerlink" title="延迟多少毫秒执行"></a><strong>延迟多少毫秒执行</strong></h3><p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">delay</span> = ms =&gt; <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> <span class="built_in">setTimeout</span>(resolve, ms));</span><br></pre></td></tr></table></figure>
+
+<h3 id="js-中-class-语法糖用法"><a href="#js-中-class-语法糖用法" class="headerlink" title="js 中 class 语法糖用法"></a><strong>js 中 class 语法糖用法</strong></h3><p>示例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1 先定义一个类(一般类名大写)</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2 在类里面定义一个构造函数</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">value = <span class="number">0</span></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">value</span> = value;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">add</span>(<span class="params">num</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">value</span> += num;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">value</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3 把该类导出方便我们调用</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">value = <span class="number">0</span></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">value</span> = value;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">add</span>(<span class="params">num</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">value</span> += num;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">value</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/" data-id="cm71lhu7p002ut0vpe0dc1qgr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-代码片段之RegExp" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/" class="article-date">
@@ -91,7 +190,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/" data-id="cm6soz0nj004c38vp9t2m1hxg" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/" data-id="cm71lhu8m004mt0vpdn7l60go" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -141,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/" data-id="cm6soz0ne004338vp7bi615da" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/" data-id="cm71lhu8g004ct0vp5s1a316l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -180,13 +279,13 @@
 </li>
 <li><p>UNMET PEER DEPENDENCY typescript@&gt;=2.7  未满足对等依赖项</p>
 </li>
-<li><p>npm ERR! peer dep missing: typescript@*, required by <a href="mailto:&#116;&#x73;&#45;&#110;&#x6f;&#100;&#x65;&#x2d;&#x64;&#101;&#x76;&#64;&#49;&#46;&#49;&#x2e;&#49;">&#116;&#x73;&#45;&#110;&#x6f;&#100;&#x65;&#x2d;&#x64;&#101;&#x76;&#64;&#49;&#46;&#49;&#x2e;&#49;</a></p>
+<li><p>npm ERR! peer dep missing: typescript@*, required by <a href="mailto:&#116;&#115;&#x2d;&#110;&#111;&#x64;&#x65;&#x2d;&#x64;&#101;&#118;&#64;&#x31;&#x2e;&#49;&#x2e;&#x31;">&#116;&#115;&#x2d;&#110;&#111;&#x64;&#x65;&#x2d;&#x64;&#101;&#118;&#64;&#x31;&#x2e;&#49;&#x2e;&#x31;</a></p>
 </li>
-<li><p>npm ERR! peer dep missing: typescript@&gt;=2.7, required by <a href="mailto:&#x74;&#115;&#45;&#x6e;&#111;&#100;&#x65;&#64;&#x39;&#x2e;&#49;&#x2e;&#x31;">&#x74;&#115;&#45;&#x6e;&#111;&#100;&#x65;&#64;&#x39;&#x2e;&#49;&#x2e;&#x31;</a></p>
+<li><p>npm ERR! peer dep missing: typescript@&gt;=2.7, required by <a href="mailto:&#x74;&#x73;&#x2d;&#x6e;&#111;&#100;&#101;&#64;&#57;&#x2e;&#49;&#46;&#x31;">&#x74;&#x73;&#x2d;&#x6e;&#111;&#100;&#101;&#64;&#57;&#x2e;&#49;&#46;&#x31;</a></p>
 </li>
 <li><p> ws@7.5.5 requires a peer of bufferutil@^4.0.1 but none is installed. You must install peer dependencies yourself.</p>
 </li>
-<li><p><a href="mailto:&#x77;&#x73;&#x40;&#55;&#46;&#x35;&#46;&#x35;">&#x77;&#x73;&#x40;&#55;&#46;&#x35;&#46;&#x35;</a> requires a peer of utf-8-validate@^5.0.2 but none is installed. You must install peer dependencies yourself.</p>
+<li><p><a href="mailto:&#119;&#115;&#x40;&#x37;&#x2e;&#x35;&#46;&#53;">&#119;&#115;&#x40;&#x37;&#x2e;&#x35;&#46;&#53;</a> requires a peer of utf-8-validate@^5.0.2 but none is installed. You must install peer dependencies yourself.</p>
 </li>
 <li><p>npm ERR! Unexpected end of JSON input while parsing near 遇到此报错，需要执行：npm cache clean –force</p>
 </li>
@@ -204,7 +303,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/" data-id="cm6soz0n3003b38vp0oj06uzl" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/" data-id="cm71lhu82003it0vpbqekah7f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -243,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/10/npm%E4%B8%8Eyarn%E5%AF%B9peerDependencies%E5%A4%84%E7%90%86%E7%9A%84%E5%B7%AE%E5%BC%82/" data-id="cm6soz0n2003a38vp06w482t7" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/09/10/npm%E4%B8%8Eyarn%E5%AF%B9peerDependencies%E5%A4%84%E7%90%86%E7%9A%84%E5%B7%AE%E5%BC%82/" data-id="cm71lhu81003ht0vp48or9k5u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -316,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/" data-id="cm6soz0mc001r38vphgds27aw" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/" data-id="cm71lhu75001tt0vpc8lbegkp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -379,7 +478,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/05/04/Jenkins%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cm6soz0m3001838vp95n5537f" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/05/04/Jenkins%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cm71lhu6u0018t0vp2mhj2i3c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -444,7 +543,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/31/vue-cli%E6%9D%82%E9%9B%86/" data-id="cm6soz0n9003q38vp2zjmbosm" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/31/vue-cli%E6%9D%82%E9%9B%86/" data-id="cm71lhu8a0040t0vp9t0kglev" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
@@ -490,137 +589,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" data-id="cm6soz0m2001638vpf74oc0j3" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" data-id="cm71lhu6t0015t0vpghh65grb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-修改hosts" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/02/14/%E4%BF%AE%E6%94%B9hosts/" class="article-date">
-  <time datetime="2021-02-14T06:49:33.000Z" itemprop="datePublished">2021-02-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/14/%E4%BF%AE%E6%94%B9hosts/">修改hosts</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1、 打开 Windows 左下角 “开始” ，找到 powershell，记得使用管理员模式打开！如下图：</p>
-<p><img src="https://file.798run.top/img/blog/20210214/powershell-modify-hosts.png" alt="powershell-modify-hosts"></p>
-<p>打开 powershell 之后，找到 hosts 所在目录：<code>C:\windows\system32\drivers\etc\</code>，可直接键入：<code>cd C:\windows\system32\drivers\etc\</code>，在该目录下键入：<code>notepad hosts</code>，则 hosts 会以记事本的形式打开，可进行编辑并保存。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/14/%E4%BF%AE%E6%94%B9hosts/" data-id="cm6soz0nk004f38vpemt84mf7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Webpack记录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/01/30/Webpack%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2021-01-30T13:25:30.000Z" itemprop="datePublished">2021-01-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/30/Webpack%E8%AE%B0%E5%BD%95/">Webpack记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h3><p>简单使用 webpack，只需在一个空目录下执行 <code>npm init -y</code>，随即安装 <code>npm i webpack -D webpack webpack-cli</code>即可，一定不能忘记安装 webpack-cli（这样我们才能在 package.json 的脚本使用 webpack）</p>
-<h3 id="2、基本配置"><a href="#2、基本配置" class="headerlink" title="2、基本配置"></a>2、基本配置</h3><ul>
-<li><p>一般在项目根目录新建 webpack.config.js 文件，我们在使用脚本时候，自动会读取该文件的配置项！该文件一般会引入一些 path 之类的依赖包方便项目配置。</p>
-</li>
-<li><p>输出 module.exports = {}</p>
-</li>
-<li><p>入口 entry: 一般项目入口仅有一个，我们可以简写如下：</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">entry: &#x27;./src/index.js&#x27;  // 简写</span><br><span class="line">entry: path.resolve(__dirname, &#x27;./src/index.js) // 健壮写法</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>但是其实 entry 可以配置为一个如下对象：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 下面是vue-cli2.0的入口配置</span><br><span class="line">entry: &#123;</span><br><span class="line">  app: &#x27;./src/main.js&#x27;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>最后注意 <code>./src/index.js</code>文件格式不能省略（否则报错！），怎么解决此错误，就是我们可增添配置项：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">  extensions: [&#x27;.ts&#x27;, &#x27;.js&#x27;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>output 出口：同理可以得出，其也可配置为一个如下对象：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">output:</span><br><span class="line">  // 输出的目录</span><br><span class="line">  // path: &quot;./dist&quot;,  // 此写法不灵活</span><br><span class="line">  path: path.resolve(__dirname, &#x27;dist&#x27;), // 此写法灵活</span><br><span class="line">  filename: &quot;bundle.js&quot;, // 输出的文件名字</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>module：指定 webpack 在打包时候使用的模块，其配置也是一个对象，如下：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">  // rules是一个数组，则说明可以配置多个。数组里可接受简单配置的字符串，也可接受配置一个对象。（大多数的数组配置都是这样的风格）</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.ts$/,  // 规则生效的文件类型，一般使用正则表达式描述</span><br><span class="line">      loader: &#x27;babel-loader&#x27;, // 注意早期的webpack版本是使用loader配置（vue-cli2.0有提现），后期的使用下面的use</span><br><span class="line">      use: &#x27;ts-loader&#x27;, // 就是使用什么加载器来打包上面的文件</span><br><span class="line">      exclude: /node_modules/  // 想要排除的文件</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>webpack-test</code> 项目例子。在我的码云项目 <code>webpack-test</code> 我在进行键盘配置之后，我执行了脚本 <code>npm run build</code>，提示如下：<br><img src="https://file.798run.top/img/blog/20210130/webpack-warning.png" alt="webpack-warning"><br>原来提示是 mode 没有配置，于是在网上搜到<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wendj/p/10069882.html">帖子</a>中讲到可在脚本中配置，这使我联想到 public-project 项目中配置的静态站点，执行脚本配置如下:</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;serve:si&quot;: &quot;vue-cli-service serve --mode si&quot;,</span><br><span class="line">&quot;serve:st&quot;: &quot;vue-cli-service serve --mode st&quot;,</span><br><span class="line">&quot;serve:pro&quot;: &quot;vue-cli-service serve --mode pro&quot;,</span><br><span class="line">&quot;build:si&quot;: &quot;vue-cli-service build --mode si&quot;,</span><br><span class="line">&quot;build:st&quot;: &quot;vue-cli-service build --mode st&quot;,</span><br><span class="line">&quot;build:pro&quot;: &quot;vue-cli-service build --mode pro&quot;,</span><br></pre></td></tr></table></figure>
-
-<p>于是我在自己 demo 项目写入：<code>&quot;build&quot;: &quot;webpack --mode production&quot;</code>，则警告消除。</p>
-<ul>
-<li><p>针对 webpack-test 项目，已基本配置了 webpack，打包后也已经输出 dist/bundle.js，此时在项目下新建一个 index.html 文件，我们可在该 html 文件新建 <code>&lt;script src=&quot;dist/bundle.js&quot;&gt;&lt;/script&gt;</code>，怎么一看也能满足需求，但：1、这需要我们手动引入比较麻烦，2、以后我们要是有 css 文件，其他 js 文件难道还是要每次手动引入吗？这样不优雅！此时我们希望我们的 html 文件 webpack 能给自动创建这样该多方便！这时候有一个 html-webpack-plugin 插件可以帮助我们解决此问题！</p>
-</li>
-<li><p>html-webpack-plugin 首先要安装，在 webpack.config.js 引入<code>const HTMLWebpackPlugin = require(&#39;html-webpack-plugin&#39;)</code>，此时需配置文件中与 module 平级，配置该插件：</p>
-</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">插件配置是一个数组</span><br><span class="line">plugins: [</span><br><span class="line">  new HTMLWebpackPlugin() // 此写法，该插件会自己在配置的 dist 目录下生成一个index.html。默认的title是Webpack APP，我们可自己传入一个对象进而自定义title。</span><br><span class="line"></span><br><span class="line">  // 传入一个对象进而自定义title。</span><br><span class="line">  new HTMLWebpackPlugin(&#123;</span><br><span class="line">    // title: &quot;123&quot;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  // 若是还不能满足我们的需求，我们可自己配置一个模板html（自定义好），写法如下：</span><br><span class="line">  new HTMLWebpackPlugin(&#123;</span><br><span class="line">    // template: &quot;./src/index.html&quot;</span><br><span class="line">  &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<p>— webpack-dev-server 安装此插件，随后修改指令为：<code>&quot;build&quot;: &quot;webpack serve --mode production --open chrome.exe&quot;</code>即可。</p>
-<p>— clean-webpack-plugin 我们现在打包每次都是生成相同文件，进而覆盖之前的文件，该插件首先把我们的 dist 目录清空，在打包新的文件，这样会避免漏文件！使用如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">const &#123; CleanWebpackPlugin &#125; = require(&#x27;clean-webpack-plugin&#x27;)</span><br><span class="line">plugins: [</span><br><span class="line">  new CleanWebpackPlugin(),</span><br><span class="line">],</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ul>
-<li>可细看 vue-cli2.0 || 3.0、public-project 其 webpack 配置，</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/30/Webpack%E8%AE%B0%E5%BD%95/" data-id="cm6soz0mk002a38vp0jw1hqiv" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
 
     </footer>
   </div>
@@ -657,7 +629,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -670,6 +642,14 @@
       <ul>
         
           <li>
+            <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
+          </li>
+        
+          <li>
+            <a href="/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/">js一些代码块</a>
+          </li>
+        
+          <li>
             <a href="/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/">代码片段之RegExp</a>
           </li>
         
@@ -679,14 +659,6 @@
         
           <li>
             <a href="/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/">npm或yarn安装过程常见的warn及error</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/10/npm%E4%B8%8Eyarn%E5%AF%B9peerDependencies%E5%A4%84%E7%90%86%E7%9A%84%E5%B7%AE%E5%BC%82/">npm与yarn对peerDependencies处理的差异</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/">Nodejs项目使用npm与使用yarn表现效果的一次记录</a>
           </li>
         
       </ul>
