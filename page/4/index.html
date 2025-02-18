@@ -64,6 +64,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-移动端键盘问题记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2020-12-24T08:56:34.000Z" itemprop="datePublished">2020-12-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">移动端键盘问题记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>开发新奥 e 家农场登录页过程中，会遇到很多的坑，记录一下！</p>
+<h3 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h3><p>iOS 上，登录页，input 获焦，则软键盘弹起，可点击空白区域软键盘不消失！input 依旧是在 focus 状态！安卓则无此现象！可查看如下链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/phen/p/7886640.html">IOS 下 H5 的 input/textarea 元素失去焦点时隐藏键盘</a>、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/gd-dql/p/7476330.html">js 控制 ios 端的 input/textarea 元素失去焦点时隐藏键盘</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012038144/article/details/46591607?utm_source=blogxgwz7&utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-2&spm=1001.2101.3001.4242">js 控制 iphone 端的 input/textarea 元素失去焦点时隐藏键盘</a>、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/blackbentel/p/10239886.html">h5 解决 ios 端输入框失去焦点后页面不回弹或者底部留白问题</a></p>
+<h3 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h3><p>iOS、Android 都出现，底部留白！ 详见下图：</p>
+<p><img src="https://file.798run.top/img/blog/20201224/padding-white.png" alt="padding-white"></p>
+<p>为啥会出现此问题？</p>
+<h3 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h3><p>iOS、Android 都出现（前者出现概率小）键盘遮挡 input 输入框问题！在搜索问题过程中，发现其他人的帖子：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Miracle-ZLZ/p/10030608.html">IOS 微信 6.7.4 输入框失去焦点，软键盘关闭后，被撑起的页面无法回退到原来正常的位置</a>。我的登录页没遇到（弹不回去）问题（1、可能微信或者 ios 系统升级修复此 bug 了；2、或者我的场景与帖子中不一致，我的页面高度是 100vh，而帖子中的文档高度大于 100vh）！我最后解决了，在 e 家农场项目中有提现，而网上说的这<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3320b5aa8879">帖子</a>（报存在我的书签 CSS_UI 下）是不正确的！仅<code>document.body.scrollTop</code>就不兼容。我的解决方案：</p>
+<blockquote>
+<p>针对 document.activeElement.scrollIntoView、document.activeElement.scrollIntoViewIfNeeded 最开始在 csdn 偶然看到此文：<a target="_blank" rel="noopener" href="https://blog.csdn.net/jermyo/article/details/107742955%EF%BC%8C%E4%BD%86%E6%AD%A4%E6%96%87%E4%B8%AD%E5%8F%91%E7%8E%B0%E8%BF%98%E9%9C%80%E5%88%A4%E6%96%AD%E5%AE%89%E5%8D%93%E3%80%81ios%EF%BC%8C%E7%BB%86%E6%9F%A5%E4%BA%86%E4%B9%8B%E5%90%8E%E5%8F%91%E4%B8%8B%E5%A4%A7%E5%8F%AF%E4%B8%8D%E5%BF%85%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%98%AF">https://blog.csdn.net/jermyo/article/details/107742955，但此文中发现还需判断安卓、ios，细查了之后发下大可不必，这个是</a> MDN 的一个实验性的 API。最后查博客解决了问题：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yelongsan/p/9086847.html%E3%80%82%E5%90%8E%E6%9D%A5%E6%9F%A5%E8%AF%A2">https://www.cnblogs.com/yelongsan/p/9086847.html。后来查询</a> document.activeElement.scrollIntoView 相关知识，这篇帖子讲的还可以 <a target="_blank" rel="noopener" href="http://caibaojian.com/scrollintoview.html">http://caibaojian.com/scrollintoview.html</a></p>
+</blockquote>
+<h3 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h3><p>iOS 在 input 获焦弹起软键盘，点击页面其他空白区域，则并没有失焦，软键盘也不消失，</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="cm7a8n5re005qtkvpakpq3vx8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-AJAX与JSONP" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/17/AJAX%E4%B8%8EJSONP/" class="article-date">
@@ -97,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cm71lhu5r0001t0vpffre7wq3" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cm7a8n5nk0001tkvp8r7k2224" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -150,7 +198,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/11/Vue%E6%9D%82%E9%9B%86/" data-id="cm71lhu7f002bt0vp72vigqj1" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/11/Vue%E6%9D%82%E9%9B%86/" data-id="cm7a8n5p8002dtkvpceplckun" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
@@ -194,17 +242,17 @@
 <p>7、打开环境变量配置文件，命令 vim /etc/profile ，在底部加上 Git 相关配置信息：PATH=$PATH:/usr/local/git/bin export PATH 然后保存，退出！  </p>
 <p>8、输入命令 git –version ，查看安装的 git 版本，校验通过，安装成功，截图如下：</p>
 <p><img src="https://file.798run.top/img/blog/20201208/git-version.jpg" alt="git --version"></p>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>1、在 linux 上依次设置：git config –global user.name “zhangbo” git config –global user.email “<a href="mailto:&#49;&#x31;&#55;&#52;&#56;&#51;&#x39;&#x35;&#x31;&#x32;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#49;&#x31;&#55;&#52;&#56;&#51;&#x39;&#x35;&#x31;&#x32;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a>“  </p>
-<p>2、ssh-keygen -t rsa -C “<a href="mailto:&#x31;&#49;&#55;&#52;&#x38;&#51;&#x39;&#x35;&#49;&#50;&#x40;&#x71;&#x71;&#46;&#99;&#111;&#109;">&#x31;&#49;&#55;&#52;&#x38;&#51;&#x39;&#x35;&#49;&#50;&#x40;&#x71;&#x71;&#46;&#99;&#111;&#109;</a>“ 提示：-bash: ssh-keygen -t rsa -C <a href="mailto:&#x31;&#49;&#55;&#x34;&#56;&#x33;&#x39;&#x35;&#x31;&#50;&#64;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;">&#x31;&#49;&#55;&#x34;&#56;&#x33;&#x39;&#x35;&#x31;&#50;&#64;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;</a>: command not found  </p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>1、在 linux 上依次设置：git config –global user.name “zhangbo” git config –global user.email “<a href="mailto:&#49;&#x31;&#55;&#x34;&#56;&#51;&#57;&#x35;&#49;&#x32;&#64;&#113;&#x71;&#46;&#x63;&#x6f;&#109;">&#49;&#x31;&#55;&#x34;&#56;&#51;&#57;&#x35;&#49;&#x32;&#64;&#113;&#x71;&#46;&#x63;&#x6f;&#109;</a>“  </p>
+<p>2、ssh-keygen -t rsa -C “<a href="mailto:&#49;&#x31;&#x37;&#52;&#56;&#x33;&#x39;&#x35;&#x31;&#50;&#64;&#113;&#113;&#x2e;&#99;&#111;&#109;">&#49;&#x31;&#x37;&#52;&#56;&#x33;&#x39;&#x35;&#x31;&#50;&#64;&#113;&#113;&#x2e;&#99;&#111;&#109;</a>“ 提示：-bash: ssh-keygen -t rsa -C <a href="mailto:&#x31;&#49;&#55;&#52;&#x38;&#51;&#x39;&#x35;&#x31;&#50;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#x31;&#49;&#55;&#52;&#x38;&#51;&#x39;&#x35;&#x31;&#50;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a>: command not found  </p>
 <p>3、一顿搜索啊，找到了<a target="_blank" rel="noopener" href="https://www.shangmayuan.com/a/5bc94047236246f2a01aa795.html">解决 bash: ssh-keygen: command not found</a>  </p>
-<p>4、按照上面帖子执行：yum install openssh，可是还是不行啊，Google 了很多，后来我发现有一个指令：ssh-keygen -t rsa -b 2048 -C “<a href="mailto:&#49;&#x31;&#55;&#52;&#56;&#x33;&#57;&#53;&#49;&#50;&#x40;&#113;&#x71;&#x2e;&#x63;&#x6f;&#x6d;">&#49;&#x31;&#55;&#52;&#56;&#x33;&#57;&#53;&#49;&#50;&#x40;&#113;&#x71;&#x2e;&#x63;&#x6f;&#x6d;</a>“ 与我的有道云笔记报错（ssh-keygen -t rsa -C “<a href="mailto:&#x31;&#49;&#x37;&#x34;&#x38;&#51;&#x39;&#x35;&#x31;&#x32;&#x40;&#x71;&#x71;&#46;&#x63;&#x6f;&#x6d;">&#x31;&#49;&#x37;&#x34;&#x38;&#51;&#x39;&#x35;&#x31;&#x32;&#x40;&#x71;&#x71;&#46;&#x63;&#x6f;&#x6d;</a>“ ）的内容不一样！后来就死马当成活马医！结果可以了！  </p>
-<p>5、接着说解决上面问题的过程：既然是一直提示<code>-bash: ssh-keygen -t rsa -C 1174839512@qq.com: command not found</code>，那我就键入 ssh 看提示啥，效果如下：<br><img src="https://file.798run.top/img/blog/20201208/linux-ssh.png" alt="linux-ssh"><br>细看一下，没有 -C 的选项，但是第二个指令也有 -C，那我就先试试这个：ssh-keygen -t rsa -b 2048 -C “<a href="mailto:&#x31;&#x31;&#55;&#x34;&#x38;&#51;&#x39;&#53;&#49;&#x32;&#64;&#x71;&#x71;&#46;&#99;&#111;&#109;">&#x31;&#x31;&#55;&#x34;&#x38;&#51;&#x39;&#53;&#49;&#x32;&#64;&#x71;&#x71;&#46;&#99;&#111;&#109;</a>“，竟然可以了！猜想：linux 下必须要设置 -b 吧！Windows 估计是读取的默认的配置！问题解决！  </p>
+<p>4、按照上面帖子执行：yum install openssh，可是还是不行啊，Google 了很多，后来我发现有一个指令：ssh-keygen -t rsa -b 2048 -C “<a href="mailto:&#x31;&#x31;&#x37;&#x34;&#x38;&#51;&#x39;&#x35;&#x31;&#x32;&#64;&#113;&#113;&#46;&#99;&#111;&#109;">&#x31;&#x31;&#x37;&#x34;&#x38;&#51;&#x39;&#x35;&#x31;&#x32;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a>“ 与我的有道云笔记报错（ssh-keygen -t rsa -C “<a href="mailto:&#x31;&#49;&#55;&#52;&#56;&#x33;&#57;&#x35;&#x31;&#x32;&#64;&#113;&#113;&#x2e;&#99;&#111;&#109;">&#x31;&#49;&#55;&#52;&#56;&#x33;&#57;&#x35;&#x31;&#x32;&#64;&#113;&#113;&#x2e;&#99;&#111;&#109;</a>“ ）的内容不一样！后来就死马当成活马医！结果可以了！  </p>
+<p>5、接着说解决上面问题的过程：既然是一直提示<code>-bash: ssh-keygen -t rsa -C 1174839512@qq.com: command not found</code>，那我就键入 ssh 看提示啥，效果如下：<br><img src="https://file.798run.top/img/blog/20201208/linux-ssh.png" alt="linux-ssh"><br>细看一下，没有 -C 的选项，但是第二个指令也有 -C，那我就先试试这个：ssh-keygen -t rsa -b 2048 -C “<a href="mailto:&#x31;&#x31;&#x37;&#x34;&#56;&#51;&#x39;&#53;&#49;&#50;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#x31;&#x31;&#x37;&#x34;&#56;&#51;&#x39;&#53;&#49;&#50;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a>“，竟然可以了！猜想：linux 下必须要设置 -b 吧！Windows 估计是读取的默认的配置！问题解决！  </p>
 <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/imyalost/p/8715688.html">环境部署（三）：Linux 下安装 Git</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" data-id="cm71lhu6w001ct0vp6yi812c3" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" data-id="cm7a8n5oo001atkvpfelfh0fq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
@@ -252,7 +300,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="cm71lhu72001pt0vpbo2u8b52" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="cm7a8n5ot001mtkvp9eh019e3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -302,7 +350,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="cm71lhu7a0023t0vpfzmi87z7" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="cm7a8n5p40026tkvp6oudd3mu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
@@ -375,7 +423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/03/Nodejs%E4%B9%8BYarn/" data-id="cm71lhu72001mt0vpetp303j4" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/03/Nodejs%E4%B9%8BYarn/" data-id="cm7a8n5ou001ptkvp8ex9cwvo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -414,7 +462,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" data-id="cm71lhu87003st0vpew3y0b5j" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" data-id="cm7a8n5pz003qtkvpa9xubbsh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
@@ -478,7 +526,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/vscode%E6%9D%82%E8%AE%B0/" data-id="cm71lhu88003vt0vp58dw66av" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/02/vscode%E6%9D%82%E8%AE%B0/" data-id="cm7a8n5q0003vtkvpgycz1n10" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
@@ -526,49 +574,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9D%82%E8%AE%B0/" data-id="cm71lhu8s0050t0vp3gp08j9f" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/02/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9D%82%E8%AE%B0/" data-id="cm7a8n5qu0051tkvp4y7m7m0n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-用户体验讨论" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/30/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E8%AE%A8%E8%AE%BA/" class="article-date">
-  <time datetime="2020-11-30T14:58:12.000Z" itemprop="datePublished">2020-11-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/30/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E8%AE%A8%E8%AE%BA/">用户体验讨论</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1、建议选择是：确保核心功能的正常使用和基本的用户体验。至于说“保存页面”这样锦上添花的功能，可以调查下用户的看法，万一不是大众需要的，费精力去做，就不太划算了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/30/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E8%AE%A8%E8%AE%BA/" data-id="cm71lhu94005ht0vpgnzqg3ip" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
 
     </footer>
   </div>
@@ -618,6 +627,10 @@
       <ul>
         
           <li>
+            <a href="/2025/02/18/onblur_onfocusout/">onblur、onfocus、onfocusout记录</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
           </li>
         
@@ -631,10 +644,6 @@
         
           <li>
             <a href="/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/">代码片段之ElementUI</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/">npm或yarn安装过程常见的warn及error</a>
           </li>
         
       </ul>

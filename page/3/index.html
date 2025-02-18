@@ -64,6 +64,66 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-gitignore" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/31/gitignore/" class="article-date">
+  <time datetime="2020-12-31T08:13:41.000Z" itemprop="datePublished">2020-12-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/31/gitignore/">gitignore</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>针对不同语言的工程，其脚手架中的 .gitignore 已经做了部分的封装，项目在开始之前最好是编辑好此文件，避免后期麻烦！在我的 gitee 中的 files 仓库，有此模板文件！</p>
+<h3 id="格式规范"><a href="#格式规范" class="headerlink" title="格式规范"></a>格式规范</h3><p>1、所有空行或者以注释符号 ＃ 开头的行都会被 Git 忽略<br>2、可以使用标准的 glob 模式匹配<br>3、匹配模式最后跟斜杠(/)说明要忽略的是目录<br>4、要忽略指定模式以外的文件或目录，可以在模式前加上感叹号(!)进行取反</p>
+<h3 id="glob-模式"><a href="#glob-模式" class="headerlink" title="glob 模式"></a>glob 模式</h3><p>所谓的 glob 模式是指 shell 所使用的简化了的正则表达式，匹配规则如下：</p>
+<ul>
+<li><code>*</code> 星号匹配零个或多个任意字符</li>
+<li><code>[]</code> 匹配任何一个列在方括号中的字符，如[ab]匹配 a 或者匹配 b</li>
+<li><code>?</code> 问号匹配一个任意字符</li>
+<li><code>[n-m]</code> 匹配所有在这两个字符范围内的字符，如[0-9]表示匹配所有 0 到 9 的数字</li>
+</ul>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><ul>
+<li><code>logs/</code> 忽略当前路径下的 logs 目录，包含 logs 下的所有子目录和文件，注：并不局限于根目录下 logs</li>
+<li><code>/logs.txt</code> 忽略根目录下的 logs.txt 文件</li>
+<li><code>*.class</code> 忽略所有后缀为 .class 的文件</li>
+<li><code>!/classes/a.class</code> 不忽略跟目录下 classes 目录下的 a.class 文件</li>
+<li><code>tmp/*.txt</code> 只忽略 tmp 目录下的 .txt 文件</li>
+<li><code>**/foo</code> 可以忽略/foo, a/foo, a/b/foo 等</li>
+</ul>
+<h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><p>写 node_modules/ 与 node_modules 效果是一样。都是直接忽略了目录下的所有文件、目录。我 gitee 仓库中的 stream2 项目中的 .gitignore 有体现！</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>在我的 ddyg-crs 中 .gitignore 已添加 /dist/ 但修改 dist 下的文件，git 依然会记录，此时需执行 <code>git rm -r --cached .</code>，<code>git add .</code>，<code>git commit -m &#39;update.gitignore&#39;</code> 即可</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/699ed86028c2">.gitignore</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/31/gitignore/" data-id="cm7a8n5pd002ltkvp7ejnekki" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-ts笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/31/ts%E7%AC%94%E8%AE%B0/" class="article-date">
@@ -105,7 +165,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/31/ts%E7%AC%94%E8%AE%B0/" data-id="cm71lhu84003nt0vpdvvv997x" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/31/ts%E7%AC%94%E8%AE%B0/" data-id="cm7a8n5pz003ttkvp3l9349wp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -145,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/26/%E8%BD%AF%E8%B0%8Bnodejs%E4%B8%89%E5%A4%A9%E9%9B%86%E8%AE%AD/" data-id="cm71lhu9a005rt0vp2urbcs3r" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/26/%E8%BD%AF%E8%B0%8Bnodejs%E4%B8%89%E5%A4%A9%E9%9B%86%E8%AE%AD/" data-id="cm7a8n5rn005utkvpenn6cav5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
@@ -180,13 +240,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>20201207-20201209 三天</p>
-<h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><p>1、项目使用<a href="mailto:&#118;&#x75;&#101;&#45;&#99;&#108;&#105;&#64;&#51;&#x2e;&#x30;">&#118;&#x75;&#101;&#45;&#99;&#108;&#105;&#64;&#51;&#x2e;&#x30;</a>搭建，src/server 是后端目录，src/views 是前端目录；前端 vue，后端 node，数据库 mysql；<br>2、针对 mysql 首先 npm i mysql -S 中内地 hxzn 讲到 mysql 的连接池</p>
+<h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><p>1、项目使用<a href="mailto:&#118;&#117;&#101;&#45;&#99;&#x6c;&#105;&#x40;&#x33;&#x2e;&#48;">&#118;&#117;&#101;&#45;&#99;&#x6c;&#105;&#x40;&#x33;&#x2e;&#48;</a>搭建，src/server 是后端目录，src/views 是前端目录；前端 vue，后端 node，数据库 mysql；<br>2、针对 mysql 首先 npm i mysql -S 中内地 hxzn 讲到 mysql 的连接池</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">const mysql = require(<span class="string">&quot;mysql&quot;</span>);</span><br><span class="line"><span class="comment"># 连接池</span></span><br><span class="line">const pool = mysql.createPool(&#123;</span><br><span class="line">  host: <span class="string">&quot;localhost&quot;</span>,</span><br><span class="line">  user: <span class="string">&quot;root&quot;</span>,</span><br><span class="line">  password: <span class="string">&quot;123456&quot;</span>,</span><br><span class="line">  database: <span class="string">&quot;my db&quot;</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 传统写法</span></span><br><span class="line"><span class="comment"># const pool = mysql.createConnection(&#123;</span></span><br><span class="line"><span class="comment">#   host: &quot;localhost&quot;,</span></span><br><span class="line"><span class="comment">#   user: &quot;root&quot;,</span></span><br><span class="line"><span class="comment">#   password: &quot;123456&quot;,</span></span><br><span class="line"><span class="comment">#   database: &quot;my db&quot;,</span></span><br><span class="line"><span class="comment"># &#125;);</span></span><br><span class="line"><span class="comment"># pool.connect();</span></span><br><span class="line"><span class="comment"># pool.end();</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const query = <span class="keyword">function</span> (sql, callback) &#123;</span><br><span class="line">  pool.getconnection((err, conn) =&gt; &#123;</span><br><span class="line">    if (err) &#123;</span><br><span class="line">      callback(err, null);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      conn.query(sql, (err, result) =&gt; &#123;</span><br><span class="line">        conn.release();</span><br><span class="line">        callback(err, result);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">module.exports = query;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/26/%E5%8D%95%E8%BD%A6%E7%B3%BB%E7%BB%9F/" data-id="cm71lhu8o004qt0vp46ead88h" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/26/%E5%8D%95%E8%BD%A6%E7%B3%BB%E7%BB%9F/" data-id="cm7a8n5qj004ntkvpg5js380m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
@@ -226,10 +286,51 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/26/vue-main-js%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/" data-id="cm71lhu89003xt0vpcr7f6s59" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/26/vue-main-js%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/" data-id="cm7a8n5q20040tkvp4nm99p09" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-代码片段之HTML" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/" class="article-date">
+  <time datetime="2020-12-25T03:16:40.000Z" itemprop="datePublished">2020-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/">代码片段之HTML</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="link"><a href="#link" class="headerlink" title="link"></a>link</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">html</span></span><br><span class="line">&lt;link rel=&quot;icon&quot; href=&quot;data:;base64,=&quot; /&gt; // 次写法不报favicon.ico 404</span><br><span class="line">&lt;link rel=&quot;shortcut icon&quot; href=/favicon.ico&gt;</span><br><span class="line">&lt;link rel=&quot;shortcut icon&quot; href=/favicon.ico type=&quot;image/x-icon&quot;&gt;</span><br><span class="line">&lt;link rel=&quot;alternate icon&quot; class=&quot;js-site-favicon&quot; type=&quot;image/png&quot; href=&quot;https://github.githubassets.com/favicons/favicon.png&quot;&gt;</span><br><span class="line">&lt;link rel=&quot;icon&quot; class=&quot;js-site-favicon&quot; type=&quot;image/svg+xml&quot; href=&quot;https://github.githubassets.com/favicons/favicon.svg&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;link rel=&quot;dns-prefetch&quot; href=&quot;https://github.githubassets.com&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="viewport"><a href="#viewport" class="headerlink" title="viewport"></a>viewport</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 视窗适配</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># google 新 tab 默认1</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width,viewport-fit=cover&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># google 新 tab 默认2</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;initial-scale=1.0,user-scalable=no,maximum-scale=1,viewport-fit=cover&quot;</span>     media=<span class="string">&quot;(device-height: 568px)&quot;</span> /&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/" data-id="cm7a8n5q80049tkvpgktcbeku" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
 
     </footer>
   </div>
@@ -287,48 +388,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E4%B9%8BEslint/" data-id="cm71lhu8c0045t0vp0axk1f7x" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-代码片段之HTML" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/" class="article-date">
-  <time datetime="2020-12-25T03:16:40.000Z" itemprop="datePublished">2020-12-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/">代码片段之HTML</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="link"><a href="#link" class="headerlink" title="link"></a>link</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">html</span></span><br><span class="line">&lt;link rel=&quot;icon&quot; href=&quot;data:;base64,=&quot; /&gt; // 次写法不报favicon.ico 404</span><br><span class="line">&lt;link rel=&quot;shortcut icon&quot; href=/favicon.ico&gt;</span><br><span class="line">&lt;link rel=&quot;shortcut icon&quot; href=/favicon.ico type=&quot;image/x-icon&quot;&gt;</span><br><span class="line">&lt;link rel=&quot;alternate icon&quot; class=&quot;js-site-favicon&quot; type=&quot;image/png&quot; href=&quot;https://github.githubassets.com/favicons/favicon.png&quot;&gt;</span><br><span class="line">&lt;link rel=&quot;icon&quot; class=&quot;js-site-favicon&quot; type=&quot;image/svg+xml&quot; href=&quot;https://github.githubassets.com/favicons/favicon.svg&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;link rel=&quot;dns-prefetch&quot; href=&quot;https://github.githubassets.com&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="viewport"><a href="#viewport" class="headerlink" title="viewport"></a>viewport</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 视窗适配</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># google 新 tab 默认1</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width,viewport-fit=cover&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># google 新 tab 默认2</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;initial-scale=1.0,user-scalable=no,maximum-scale=1,viewport-fit=cover&quot;</span>     media=<span class="string">&quot;(device-height: 568px)&quot;</span> /&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/" data-id="cm71lhu8f004at0vpb9endg37" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E4%B9%8BEslint/" data-id="cm7a8n5qa004btkvp7pi80l8o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -367,7 +427,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BMixins/" data-id="cm71lhu8j004ht0vp8ysp1ie0" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BMixins/" data-id="cm7a8n5qe004ftkvp7m4c9v97" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -432,7 +492,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/" data-id="cm71lhu8h004et0vpgntrhi2h" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/" data-id="cm7a8n5qd004dtkvp9y6a2zm7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -490,58 +550,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/CSS%E6%9D%82%E8%AE%B0/" data-id="cm71lhu68000bt0vpg5cce4id" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/CSS%E6%9D%82%E8%AE%B0/" data-id="cm7a8n5o2000btkvp9ydp50ne" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-移动端键盘问题记录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2020-12-24T08:56:34.000Z" itemprop="datePublished">2020-12-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">移动端键盘问题记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>开发新奥 e 家农场登录页过程中，会遇到很多的坑，记录一下！</p>
-<h3 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h3><p>iOS 上，登录页，input 获焦，则软键盘弹起，可点击空白区域软键盘不消失！input 依旧是在 focus 状态！安卓则无此现象！可查看如下链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/phen/p/7886640.html">IOS 下 H5 的 input/textarea 元素失去焦点时隐藏键盘</a>、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/gd-dql/p/7476330.html">js 控制 ios 端的 input/textarea 元素失去焦点时隐藏键盘</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012038144/article/details/46591607?utm_source=blogxgwz7&utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-2&spm=1001.2101.3001.4242">js 控制 iphone 端的 input/textarea 元素失去焦点时隐藏键盘</a>、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/blackbentel/p/10239886.html">h5 解决 ios 端输入框失去焦点后页面不回弹或者底部留白问题</a></p>
-<h3 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h3><p>iOS、Android 都出现，底部留白！ 详见下图：</p>
-<p><img src="https://file.798run.top/img/blog/20201224/padding-white.png" alt="padding-white"></p>
-<p>为啥会出现此问题？</p>
-<h3 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h3><p>iOS、Android 都出现（前者出现概率小）键盘遮挡 input 输入框问题！在搜索问题过程中，发现其他人的帖子：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Miracle-ZLZ/p/10030608.html">IOS 微信 6.7.4 输入框失去焦点，软键盘关闭后，被撑起的页面无法回退到原来正常的位置</a>。我的登录页没遇到（弹不回去）问题（1、可能微信或者 ios 系统升级修复此 bug 了；2、或者我的场景与帖子中不一致，我的页面高度是 100vh，而帖子中的文档高度大于 100vh）！我最后解决了，在 e 家农场项目中有提现，而网上说的这<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3320b5aa8879">帖子</a>（报存在我的书签 CSS_UI 下）是不正确的！仅<code>document.body.scrollTop</code>就不兼容。我的解决方案：</p>
-<blockquote>
-<p>针对 document.activeElement.scrollIntoView、document.activeElement.scrollIntoViewIfNeeded 最开始在 csdn 偶然看到此文：<a target="_blank" rel="noopener" href="https://blog.csdn.net/jermyo/article/details/107742955%EF%BC%8C%E4%BD%86%E6%AD%A4%E6%96%87%E4%B8%AD%E5%8F%91%E7%8E%B0%E8%BF%98%E9%9C%80%E5%88%A4%E6%96%AD%E5%AE%89%E5%8D%93%E3%80%81ios%EF%BC%8C%E7%BB%86%E6%9F%A5%E4%BA%86%E4%B9%8B%E5%90%8E%E5%8F%91%E4%B8%8B%E5%A4%A7%E5%8F%AF%E4%B8%8D%E5%BF%85%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%98%AF">https://blog.csdn.net/jermyo/article/details/107742955，但此文中发现还需判断安卓、ios，细查了之后发下大可不必，这个是</a> MDN 的一个实验性的 API。最后查博客解决了问题：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yelongsan/p/9086847.html%E3%80%82%E5%90%8E%E6%9D%A5%E6%9F%A5%E8%AF%A2">https://www.cnblogs.com/yelongsan/p/9086847.html。后来查询</a> document.activeElement.scrollIntoView 相关知识，这篇帖子讲的还可以 <a target="_blank" rel="noopener" href="http://caibaojian.com/scrollintoview.html">http://caibaojian.com/scrollintoview.html</a></p>
-</blockquote>
-<h3 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h3><p>iOS 在 input 获焦弹起软键盘，点击页面其他空白区域，则并没有失焦，软键盘也不消失，</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="cm71lhu98005nt0vp71y8b1x7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li></ul>
 
     </footer>
   </div>
@@ -591,6 +603,10 @@
       <ul>
         
           <li>
+            <a href="/2025/02/18/onblur_onfocusout/">onblur、onfocus、onfocusout记录</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
           </li>
         
@@ -604,10 +620,6 @@
         
           <li>
             <a href="/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/">代码片段之ElementUI</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/">npm或yarn安装过程常见的warn及error</a>
           </li>
         
       </ul>

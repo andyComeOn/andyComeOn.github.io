@@ -64,6 +64,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-onblur_onfocusout" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2025/02/18/onblur_onfocusout/" class="article-date">
+  <time datetime="2025-02-18T06:13:52.000Z" itemprop="datePublished">2025-02-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2025/02/18/onblur_onfocusout/">onblur、onfocus、onfocusout记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="html-标签中的失焦、聚焦事件"><a href="#html-标签中的失焦、聚焦事件" class="headerlink" title="html 标签中的失焦、聚焦事件"></a>html 标签中的失焦、聚焦事件</h3><ul>
+<li>onfocus 事件，顾名思义就是聚焦事件，一般在 input 标签元素中，用户点击了 input 输入框，使其边框高亮或一些信息。会用到 onfocus 事件。具体代码如下：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">onfocus</span>=<span class="string">&quot;onfocus()&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">onfocus</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Input focused&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注！！！上的代码我打算新建一个 html 文件，在浏览器中，看下效果，但是出现了一个匪夷所思的报错如下：</p>
+<p><img src="image.png" alt="栈溢出报错截图"></p>
+<p>百思不得其解，为啥出现“栈溢出”的报错，记得之前就是这样写的啊！后来发现是函数名为 <code>function onfocus() &#123;&#125;</code>，与 input 标签的属性名重复了。现，修改代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">onfocus</span>=<span class="string">&quot;onfocusFn()&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">onfocusFn</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Input focused&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样就不报错了。</p>
+<ul>
+<li>onblur 事件与 onfocus 刚好是相反，就是失去焦点事件。发现了一个 onfocusout 属性，很少用这个属性，查资料之后发现，这个 onfocusout 最初是 IE 的事件，但现代浏览器已普遍支持。onfocusout 与 onblur 啥区别，就是 onblur 不支持冒泡，而 onfocusout 支持冒泡！如下例子：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span> <span class="attr">onfocusout</span>=<span class="string">&quot;console.log(&#x27;Div captured blur!&#x27;)&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">    <span class="attr">type</span>=<span class="string">&quot;text&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">onfocus</span>=<span class="string">&quot;onfocusFn()&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">onfocusout</span>=<span class="string">&quot;console.log(&#x27;input 失焦&#x27;)&quot;</span></span></span><br><span class="line"><span class="tag">  /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">onfocusFn</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Input focused&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>也就是说，上面的代码 input 标签失焦之后，input 标签的 onfocusout 属性对应的属性值函数执行完之后，其父元素 box 标签中的 onfocusout 属性对应的属性值函数也会执行，反之，onblur 不会执行。我在浏览器中都试了，发现效果是一样的，是浏览器升级后，解决了这个问题吗？deepseek 也是说 onblur 不支持冒泡，onfocusout 支持冒泡！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/02/18/onblur_onfocusout/" data-id="cm7a8n5pt003ftkvp3kv25bwg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-js循环迭代" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/" class="article-date">
@@ -108,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/" data-id="cm71lhu7t0032t0vp2ty88qo0" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/" data-id="cm7a8n5pl0030tkvpbe1i5e1a" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -151,7 +206,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/" data-id="cm71lhu7p002ut0vpe0dc1qgr" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/" data-id="cm7a8n5pk002wtkvpd15aan3y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -190,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/" data-id="cm71lhu8m004mt0vpdn7l60go" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/" data-id="cm7a8n5qg004itkvp1phy42k2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -240,7 +295,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/" data-id="cm71lhu8g004ct0vp5s1a316l" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/" data-id="cm7a8n5q40044tkvpaqs661nn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -279,13 +334,13 @@
 </li>
 <li><p>UNMET PEER DEPENDENCY typescript@&gt;=2.7  未满足对等依赖项</p>
 </li>
-<li><p>npm ERR! peer dep missing: typescript@*, required by <a href="mailto:&#116;&#115;&#x2d;&#110;&#111;&#x64;&#x65;&#x2d;&#x64;&#101;&#118;&#64;&#x31;&#x2e;&#49;&#x2e;&#x31;">&#116;&#115;&#x2d;&#110;&#111;&#x64;&#x65;&#x2d;&#x64;&#101;&#118;&#64;&#x31;&#x2e;&#49;&#x2e;&#x31;</a></p>
+<li><p>npm ERR! peer dep missing: typescript@*, required by <a href="mailto:&#x74;&#115;&#45;&#x6e;&#x6f;&#x64;&#x65;&#45;&#x64;&#101;&#x76;&#x40;&#49;&#46;&#x31;&#x2e;&#49;">&#x74;&#115;&#45;&#x6e;&#x6f;&#x64;&#x65;&#45;&#x64;&#101;&#x76;&#x40;&#49;&#46;&#x31;&#x2e;&#49;</a></p>
 </li>
-<li><p>npm ERR! peer dep missing: typescript@&gt;=2.7, required by <a href="mailto:&#x74;&#x73;&#x2d;&#x6e;&#111;&#100;&#101;&#64;&#57;&#x2e;&#49;&#46;&#x31;">&#x74;&#x73;&#x2d;&#x6e;&#111;&#100;&#101;&#64;&#57;&#x2e;&#49;&#46;&#x31;</a></p>
+<li><p>npm ERR! peer dep missing: typescript@&gt;=2.7, required by <a href="mailto:&#116;&#115;&#x2d;&#x6e;&#111;&#x64;&#x65;&#64;&#57;&#x2e;&#x31;&#46;&#49;">&#116;&#115;&#x2d;&#x6e;&#111;&#x64;&#x65;&#64;&#57;&#x2e;&#x31;&#46;&#49;</a></p>
 </li>
 <li><p> ws@7.5.5 requires a peer of bufferutil@^4.0.1 but none is installed. You must install peer dependencies yourself.</p>
 </li>
-<li><p><a href="mailto:&#119;&#115;&#x40;&#x37;&#x2e;&#x35;&#46;&#53;">&#119;&#115;&#x40;&#x37;&#x2e;&#x35;&#46;&#53;</a> requires a peer of utf-8-validate@^5.0.2 but none is installed. You must install peer dependencies yourself.</p>
+<li><p><a href="mailto:&#119;&#115;&#x40;&#55;&#46;&#53;&#46;&#x35;">&#119;&#115;&#x40;&#55;&#46;&#53;&#46;&#x35;</a> requires a peer of utf-8-validate@^5.0.2 but none is installed. You must install peer dependencies yourself.</p>
 </li>
 <li><p>npm ERR! Unexpected end of JSON input while parsing near 遇到此报错，需要执行：npm cache clean –force</p>
 </li>
@@ -303,7 +358,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/" data-id="cm71lhu82003it0vpbqekah7f" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/" data-id="cm7a8n5pw003ktkvp1xzw2jcg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -342,7 +397,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/10/npm%E4%B8%8Eyarn%E5%AF%B9peerDependencies%E5%A4%84%E7%90%86%E7%9A%84%E5%B7%AE%E5%BC%82/" data-id="cm71lhu81003ht0vp48or9k5u" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/09/10/npm%E4%B8%8Eyarn%E5%AF%B9peerDependencies%E5%A4%84%E7%90%86%E7%9A%84%E5%B7%AE%E5%BC%82/" data-id="cm7a8n5ps003etkvpfmy4e6k4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -415,7 +470,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/" data-id="cm71lhu75001tt0vpc8lbegkp" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/" data-id="cm7a8n5ov001ttkvp8t6cdue3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -478,7 +533,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/05/04/Jenkins%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cm71lhu6u0018t0vp2mhj2i3c" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/05/04/Jenkins%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cm7a8n5on0018tkvphxpqf7mi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -543,56 +598,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/31/vue-cli%E6%9D%82%E9%9B%86/" data-id="cm71lhu8a0040t0vp9t0kglev" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/31/vue-cli%E6%9D%82%E9%9B%86/" data-id="cm7a8n5q30041tkvpcvehho82" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JS精度问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" class="article-date">
-  <time datetime="2021-02-20T15:37:40.000Z" itemprop="datePublished">2021-02-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">JS精度问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、js-处理进度使用菜鸟上推荐的库，其自己的数学的处理精度的问题，全部都不准备。"><a href="#1、js-处理进度使用菜鸟上推荐的库，其自己的数学的处理精度的问题，全部都不准备。" class="headerlink" title="1、js 处理进度使用菜鸟上推荐的库，其自己的数学的处理精度的问题，全部都不准备。"></a>1、js 处理进度使用菜鸟上推荐的库，其自己的数学的处理精度的问题，全部都不准备。</h3><h3 id="2、针对一个浮点型数，保留几位小数（符合四舍五入）的方法（之前的写的代码，现在看来不是很准确）"><a href="#2、针对一个浮点型数，保留几位小数（符合四舍五入）的方法（之前的写的代码，现在看来不是很准确）" class="headerlink" title="2、针对一个浮点型数，保留几位小数（符合四舍五入）的方法（之前的写的代码，现在看来不是很准确）"></a>2、针对一个浮点型数，保留几位小数（符合四舍五入）的方法（之前的写的代码，现在看来不是很准确）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fixto</span>(<span class="params">number, n = <span class="number">2</span></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = number.<span class="title function_">toString</span>();</span><br><span class="line">    <span class="keyword">const</span> arr = result.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> integer = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> decimal = arr[<span class="number">1</span>];</span><br><span class="line">    result = integer + <span class="string">&#x27;.&#x27;</span> + decimal.<span class="title function_">substr</span>(<span class="number">0</span>, n);</span><br><span class="line">    <span class="keyword">const</span> last = decimal.<span class="title function_">substr</span>(n, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 四舍五入，转换为整数再处理，避免浮点数精度的损失</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(last, <span class="number">10</span>) &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> x = <span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">10</span>, n);</span><br><span class="line">        result = ((<span class="built_in">parseFloat</span>(result) * x) + <span class="number">1</span>) / x;</span><br><span class="line">        result = result.<span class="title function_">toFixed</span>(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>说明：保留几位小数点，参数 n 设置为几！</p>
-<h3 id="3、在调试泛能运营经理管理记录"><a href="#3、在调试泛能运营经理管理记录" class="headerlink" title="3、在调试泛能运营经理管理记录"></a>3、在调试泛能运营经理管理记录</h3><p>拉取区域 list 接口，其区域 id 是 number 型。数据如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;list&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;defaultManager&quot;: &quot;魏秀涛&quot;,</span><br><span class="line">      &quot;defaultManagerAccount&quot;: &quot;&quot;,</span><br><span class="line">      &quot;provinceCodeStr&quot;: &quot;120000、130000&quot;,</span><br><span class="line">      &quot;provinceNameStr&quot;: &quot;天津市、河北省&quot;,</span><br><span class="line">      &quot;regionId&quot;: 812352198852055040,</span><br><span class="line">      &quot;regionName&quot;: &quot;京津冀区&quot;,</span><br><span class="line">      &quot;totalEnt&quot;: 74,</span><br><span class="line">      &quot;totalManager&quot;: 1,</span><br><span class="line">      &quot;totalProject&quot;: 69</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;defaultManager&quot;: &quot;吴冰&quot;,</span><br><span class="line">      &quot;defaultManagerAccount&quot;: &quot;&quot;,</span><br><span class="line">      &quot;provinceCodeStr&quot;: &quot;820000&quot;,</span><br><span class="line">      &quot;provinceNameStr&quot;: &quot;澳门特别行政区&quot;,</span><br><span class="line">      &quot;regionId&quot;: 812692729802227712,</span><br><span class="line">      &quot;regionName&quot;: &quot;澳门区 &quot;,</span><br><span class="line">      &quot;totalEnt&quot;: 1,</span><br><span class="line">      &quot;totalManager&quot;: 2,</span><br><span class="line">      &quot;totalProject&quot;: 1</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在点击 table 操作项，编辑是路由传的 regionId=812352198852055040，可是浏览器会把后面 2 位给给字动转为 00，进而变为 regionId=812352198852055000。解决办法是：后端把 regionId 设置为 string 类型。</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://my.oschina.net/lcfblogs/blog/4425879">关于浏览器接口 Preview 中的数值和 postman 中获取到的不一致问题</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33270001/article/details/82887084">关于浏览器响应数据 long 型超长自动转换精度丢失的坑</a>、<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000009599204">如何在 JavaScript 中实现一个 Long 型——Long.js 源码学习与分析</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" data-id="cm71lhu6t0015t0vpghh65grb" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
 
     </footer>
   </div>
@@ -642,6 +651,10 @@
       <ul>
         
           <li>
+            <a href="/2025/02/18/onblur_onfocusout/">onblur、onfocus、onfocusout记录</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
           </li>
         
@@ -655,10 +668,6 @@
         
           <li>
             <a href="/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/">代码片段之ElementUI</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/">npm或yarn安装过程常见的warn及error</a>
           </li>
         
       </ul>

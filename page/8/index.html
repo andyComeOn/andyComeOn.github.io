@@ -64,6 +64,67 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-h5中img标签的边框问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2019-06-10T05:22:11.000Z" itemprop="datePublished">2019-06-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/">h5中img标签的边框问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="总结一下-h5-中-img-标签的边框问题"><a href="#总结一下-h5-中-img-标签的边框问题" class="headerlink" title="总结一下 h5 中 img 标签的边框问题"></a>总结一下 h5 中 img 标签的边框问题</h3><p>我们常在一些重置 css 如：reset.css、normaize.css 看到：<code>border-style: none; border: 0;</code>。在网页中搜到 img 标签的边框问题。自己总结如下：</p>
+<ol>
+<li>网上说 img 有边框问题，我在 chrome（版本 74.0.3729.169（正式版本） （64 位））中测试无发现此 bug。</li>
+<li>网上说解决边框问题方法：</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span><span class="selector-attr">[src=<span class="string">&quot;&quot;</span>]</span>,</span><br><span class="line"><span class="selector-tag">img</span><span class="selector-pseudo">:not</span>(<span class="selector-attr">[src]</span>) &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>确实可以解决部门场景的 img 边框，但这是有条件的。上面 css 代码指：该 img 标签无 src 属性或 src 属性值为空。试想一下写前端代码的小伙伴谁会忘记写 src 属性？若忘记写 src 属性，则图片渲染不出来，Ta 也会发现该 bug！若开发小伙伴就是如下写法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.imgWrap</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">background</span>: antiquewhite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.imgSrc</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;imgWrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;imgSrc&quot;</span> <span class="attr">src</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>渲染效果：<br><img src="https://file.798run.top/img/blog/20190610/img_src1.jpg" alt="opacity=0效果"></p>
+<p>确实 img 图片无渲染，无边框。opacity:0;把 img 占位区的透明度给置为 0，所以不展示边框。</p>
+<hr>
+<ol start="3">
+<li>正常情况，对 img 写了 src 属性，可是图片没有加载过来，2 中的解决方法依然是有边框。代码如下：</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.imgWrap</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">background</span>: antiquewhite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.imgSrc</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;imgWrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;imgSrc&quot;</span> <span class="attr">src</span>=<span class="string">&quot;favicon.ic&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>网上说的方法大多不行，自己思考你给图片写了宽高，但图片没有加载出来， 浏览器就按照你写的宽高给 img 添加默认的边框。<br><img src="https://file.798run.top/img/blog/20190610/img_src2.jpg" alt="无加载出图片依旧有边框"></p>
+<p>默认的没有加载出的图片大小是 16x16：<br><img src="https://file.798run.top/img/blog/20190610/img_src3.jpg" alt="无加载出默认图片大小"></p>
+<p>但是一般情况大家都会对图片写宽高啊! 最后得出：只对图片写宽（刚好图片有一个机制是宽度确认高自己是适配），加载不出来，也有一个默认 16x16 的图片提示，本来浏览器就是这样提示用户的，设计、产品、老板就只顾着说，哈哈。 最后得出网上所谓的方法也是鸡肋办法，不实用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/" data-id="cm7a8n5ph002qtkvpbgp557b5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CSS的normalize-css的文档说明" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/" class="article-date">
@@ -90,7 +151,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/" data-id="cm71lhu69000ct0vp97prgn4o" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/" data-id="cm7a8n5o3000ctkvp17mq7amw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -157,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/04/15/js%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%8E%BB%E9%87%8D%E7%AD%89/" data-id="cm71lhu7t0034t0vp7rvm276o" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/04/15/js%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%8E%BB%E9%87%8D%E7%AD%89/" data-id="cm7a8n5pn0032tkvp00r83ckk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -218,7 +279,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/04/12/js%E4%B8%AD%E7%9A%84prototype%E6%80%BB%E7%BB%93/" data-id="cm71lhu7q002yt0vpctxee6s7" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/04/12/js%E4%B8%AD%E7%9A%84prototype%E6%80%BB%E7%BB%93/" data-id="cm7a8n5pk002ytkvp94x0h5pi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -306,7 +367,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/04/11/js%20function%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" data-id="cm71lhu7o002tt0vp63frdbrc" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/04/11/js%20function%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" data-id="cm7a8n5pi002ttkvpef0ob6lk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -353,7 +414,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/04/11/js%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF/" data-id="cm71lhu7v0038t0vp5y1sf2fu" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/04/11/js%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF/" data-id="cm7a8n5po0036tkvp47plfz8k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -436,7 +497,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/03/15/eval%E6%80%BB%E7%BB%93/" data-id="cm71lhu7i002ht0vp310279pr" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/03/15/eval%E6%80%BB%E7%BB%93/" data-id="cm7a8n5pb002htkvph7lze97f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -484,7 +545,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/03/14/js%E4%B8%AD%E7%9A%84%E9%80%97%E5%8F%B7/" data-id="cm71lhu7r0030t0vpc69p97b3" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/03/14/js%E4%B8%AD%E7%9A%84%E9%80%97%E5%8F%B7/" data-id="cm7a8n5pj002utkvp75061lpt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -542,7 +603,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/02/28/%E6%95%85%E4%BA%8B%E7%9B%AE%E5%BD%95%E5%BA%8F/" data-id="cm71lhu8v0054t0vph3dbdm63" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/02/28/%E6%95%85%E4%BA%8B%E7%9B%AE%E5%BD%95%E5%BA%8F/" data-id="cm7a8n5qr004ztkvphc1fg739" class="article-share-link">Share</a>
       
       
     </footer>
@@ -603,69 +664,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/02/26/Vuex%E6%80%BB%E7%BB%93/" data-id="cm71lhu7d0028t0vpfi1gbpnv" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/02/26/Vuex%E6%80%BB%E7%BB%93/" data-id="cm7a8n5p20023tkvp5cd40zb4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JS封装备份" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/02/22/JS%E5%B0%81%E8%A3%85%E5%A4%87%E4%BB%BD/" class="article-date">
-  <time datetime="2019-02-22T06:40:54.000Z" itemprop="datePublished">2019-02-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/22/JS%E5%B0%81%E8%A3%85%E5%A4%87%E4%BB%BD/">JS封装备份及一些表达式写法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法"><a href="#1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法" class="headerlink" title="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法"></a>1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法</h3><p><strong>方法：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fixto</span>(<span class="params">number, n = <span class="number">2</span></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = number.<span class="title function_">toString</span>();</span><br><span class="line">    <span class="keyword">const</span> arr = result.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> integer = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> decimal = arr[<span class="number">1</span>];</span><br><span class="line">    result = integer + <span class="string">&#x27;.&#x27;</span> + decimal.<span class="title function_">substr</span>(<span class="number">0</span>, n);</span><br><span class="line">    <span class="keyword">const</span> last = decimal.<span class="title function_">substr</span>(n, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 四舍五入，转换为整数再处理，避免浮点数精度的损失</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(last, <span class="number">10</span>) &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> x = <span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">10</span>, n);</span><br><span class="line">        result = ((<span class="built_in">parseFloat</span>(result) * x) + <span class="number">1</span>) / x;</span><br><span class="line">        result = result.<span class="title function_">toFixed</span>(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>说明：保留几位小数点，参数 n 设置为几！</p>
-<hr>
-<h3 id="2、简单的分页逻辑"><a href="#2、简单的分页逻辑" class="headerlink" title="2、简单的分页逻辑"></a>2、简单的分页逻辑</h3><p><strong>方法：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">page</span>(<span class="params">total, pagesize = <span class="number">10</span></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> tmp = (total / pagesize).<span class="title function_">toString</span>();</span><br><span class="line">  <span class="keyword">if</span> (tmp.<span class="title function_">indexOf</span>(<span class="string">&quot;.&quot;</span>) == -<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> tmp - <span class="number">0</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">ceil</span>(tmp);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">page</span>(<span class="number">21</span>, <span class="number">22</span>));</span><br></pre></td></tr></table></figure>
-
-<p>说明：第一个参数是数据的总数量，第二个参数是每页数量，该函数抛出的是总共有几页！</p>
-<hr>
-<h3 id="3、数字字符串转数字"><a href="#3、数字字符串转数字" class="headerlink" title="3、数字字符串转数字"></a>3、数字字符串转数字</h3><p><strong>方法：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">&quot;1&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a - <span class="number">0</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Number</span>(a));</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="4、函数传参"><a href="#4、函数传参" class="headerlink" title="4、函数传参"></a>4、函数传参</h3><p><strong>方法：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">todo</span>(<span class="params">a, b = <span class="number">2</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> a + <span class="string">&quot;|&quot;</span> + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">todo</span>(<span class="number">1</span>, <span class="number">3</span>)); <span class="comment">// &#x27;1|3&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">todo</span>(<span class="number">1</span>)); <span class="comment">// &#x27;1|2&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="5、巧妙写法"><a href="#5、巧妙写法" class="headerlink" title="5、巧妙写法"></a>5、巧妙写法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 逻辑与：</span><br><span class="line">mood &amp;&amp; 0</span><br><span class="line">若是 mood 在经过Boolean转换后为假，则直接就是短路取mood的值，看下面例子：</span><br><span class="line">1、&#x27;&#x27; &amp;&amp; 0 =&gt; &#x27;&#x27;</span><br><span class="line">2、0 &amp;&amp; 0 =&gt; 0</span><br><span class="line">3、false &amp;&amp; 0 =&gt; 0</span><br><span class="line"></span><br><span class="line">// +++++++++++++++++</span><br><span class="line"></span><br><span class="line">// 逻辑或 取得是后面的</span><br><span class="line">mood || 0</span><br><span class="line">1、&#x27;&#x27; || 0 =&gt; 0</span><br><span class="line">2、0 || 0 =&gt; 0</span><br><span class="line">3、false || 0 =&gt; 0</span><br><span class="line"></span><br><span class="line">return mood &amp;&amp; &quot;I like this&quot; || &quot;I don&#x27;t like this&quot;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="6、try-catch-finally"><a href="#6、try-catch-finally" class="headerlink" title="6、try catch finally"></a>6、try catch finally</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line"></span><br><span class="line">&#125; finally &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">try &#123;</span><br><span class="line"></span><br><span class="line">&#125; catch (error) &#123;</span><br><span class="line"></span><br><span class="line">&#125; finally &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/02/22/JS%E5%B0%81%E8%A3%85%E5%A4%87%E4%BB%BD/" data-id="cm71lhu6r0010t0vp08ru8wbs" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
 
     </footer>
   </div>
@@ -715,6 +717,10 @@
       <ul>
         
           <li>
+            <a href="/2025/02/18/onblur_onfocusout/">onblur、onfocus、onfocusout记录</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
           </li>
         
@@ -728,10 +734,6 @@
         
           <li>
             <a href="/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/">代码片段之ElementUI</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/">npm或yarn安装过程常见的warn及error</a>
           </li>
         
       </ul>

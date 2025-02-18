@@ -64,6 +64,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS精度问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2021-02-20T15:37:40.000Z" itemprop="datePublished">2021-02-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">JS精度问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、js-处理进度使用菜鸟上推荐的库，其自己的数学的处理精度的问题，全部都不准备。"><a href="#1、js-处理进度使用菜鸟上推荐的库，其自己的数学的处理精度的问题，全部都不准备。" class="headerlink" title="1、js 处理进度使用菜鸟上推荐的库，其自己的数学的处理精度的问题，全部都不准备。"></a>1、js 处理进度使用菜鸟上推荐的库，其自己的数学的处理精度的问题，全部都不准备。</h3><h3 id="2、针对一个浮点型数，保留几位小数（符合四舍五入）的方法（之前的写的代码，现在看来不是很准确）"><a href="#2、针对一个浮点型数，保留几位小数（符合四舍五入）的方法（之前的写的代码，现在看来不是很准确）" class="headerlink" title="2、针对一个浮点型数，保留几位小数（符合四舍五入）的方法（之前的写的代码，现在看来不是很准确）"></a>2、针对一个浮点型数，保留几位小数（符合四舍五入）的方法（之前的写的代码，现在看来不是很准确）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fixto</span>(<span class="params">number, n = <span class="number">2</span></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = number.<span class="title function_">toString</span>();</span><br><span class="line">    <span class="keyword">const</span> arr = result.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> integer = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> decimal = arr[<span class="number">1</span>];</span><br><span class="line">    result = integer + <span class="string">&#x27;.&#x27;</span> + decimal.<span class="title function_">substr</span>(<span class="number">0</span>, n);</span><br><span class="line">    <span class="keyword">const</span> last = decimal.<span class="title function_">substr</span>(n, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 四舍五入，转换为整数再处理，避免浮点数精度的损失</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(last, <span class="number">10</span>) &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> x = <span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">10</span>, n);</span><br><span class="line">        result = ((<span class="built_in">parseFloat</span>(result) * x) + <span class="number">1</span>) / x;</span><br><span class="line">        result = result.<span class="title function_">toFixed</span>(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>说明：保留几位小数点，参数 n 设置为几！</p>
+<h3 id="3、在调试泛能运营经理管理记录"><a href="#3、在调试泛能运营经理管理记录" class="headerlink" title="3、在调试泛能运营经理管理记录"></a>3、在调试泛能运营经理管理记录</h3><p>拉取区域 list 接口，其区域 id 是 number 型。数据如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;list&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;defaultManager&quot;: &quot;魏秀涛&quot;,</span><br><span class="line">      &quot;defaultManagerAccount&quot;: &quot;&quot;,</span><br><span class="line">      &quot;provinceCodeStr&quot;: &quot;120000、130000&quot;,</span><br><span class="line">      &quot;provinceNameStr&quot;: &quot;天津市、河北省&quot;,</span><br><span class="line">      &quot;regionId&quot;: 812352198852055040,</span><br><span class="line">      &quot;regionName&quot;: &quot;京津冀区&quot;,</span><br><span class="line">      &quot;totalEnt&quot;: 74,</span><br><span class="line">      &quot;totalManager&quot;: 1,</span><br><span class="line">      &quot;totalProject&quot;: 69</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;defaultManager&quot;: &quot;吴冰&quot;,</span><br><span class="line">      &quot;defaultManagerAccount&quot;: &quot;&quot;,</span><br><span class="line">      &quot;provinceCodeStr&quot;: &quot;820000&quot;,</span><br><span class="line">      &quot;provinceNameStr&quot;: &quot;澳门特别行政区&quot;,</span><br><span class="line">      &quot;regionId&quot;: 812692729802227712,</span><br><span class="line">      &quot;regionName&quot;: &quot;澳门区 &quot;,</span><br><span class="line">      &quot;totalEnt&quot;: 1,</span><br><span class="line">      &quot;totalManager&quot;: 2,</span><br><span class="line">      &quot;totalProject&quot;: 1</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在点击 table 操作项，编辑是路由传的 regionId=812352198852055040，可是浏览器会把后面 2 位给给字动转为 00，进而变为 regionId=812352198852055000。解决办法是：后端把 regionId 设置为 string 类型。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://my.oschina.net/lcfblogs/blog/4425879">关于浏览器接口 Preview 中的数值和 postman 中获取到的不一致问题</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33270001/article/details/82887084">关于浏览器响应数据 long 型超长自动转换精度丢失的坑</a>、<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000009599204">如何在 JavaScript 中实现一个 Long 型——Long.js 源码学习与分析</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" data-id="cm7a8n5om0015tkvp0bxd6ko0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-修改hosts" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/02/14/%E4%BF%AE%E6%94%B9hosts/" class="article-date">
@@ -93,7 +139,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/14/%E4%BF%AE%E6%94%B9hosts/" data-id="cm71lhu8k004jt0vp4wan1uac" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/02/14/%E4%BF%AE%E6%94%B9hosts/" data-id="cm7a8n5qh004ktkvp61jw2b25" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -179,7 +225,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/30/Webpack%E8%AE%B0%E5%BD%95/" data-id="cm71lhu7g002dt0vp8rz2918q" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/30/Webpack%E8%AE%B0%E5%BD%95/" data-id="cm7a8n5p7002btkvpfowy9zme" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -228,7 +274,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/11/webstorm%E6%9D%82%E8%AE%B0/" data-id="cm71lhu8b0042t0vp43qiajhy" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/11/webstorm%E6%9D%82%E8%AE%B0/" data-id="cm7a8n5q1003xtkvpeepmh5lg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
@@ -272,7 +318,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/08/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9D%82%E9%9B%86/" data-id="cm71lhu8y0058t0vpds2t88g0" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/08/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9D%82%E9%9B%86/" data-id="cm7a8n5r30057tkvp7y95buca" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/" rel="tag">Server</a></li></ul>
@@ -341,7 +387,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/08/JS%E4%B9%8Bdefer-async/" data-id="cm71lhu6p000vt0vp6zc75ora" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/08/JS%E4%B9%8Bdefer-async/" data-id="cm7a8n5oj000ytkvpdyvz326d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -387,7 +433,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/07/React%E4%B9%8B%E8%B7%AF%E7%94%B1/" data-id="cm71lhu790021t0vp15mefaw1" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/07/React%E4%B9%8B%E8%B7%AF%E7%94%B1/" data-id="cm7a8n5p10021tkvp7v33emw8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -426,7 +472,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/06/React%E4%B9%8Bcss/" data-id="cm71lhu77001yt0vpdw93e4uz" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/06/React%E4%B9%8Bcss/" data-id="cm7a8n5ox001wtkvp2yqk5riw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
@@ -465,7 +511,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/04/Github%E6%9D%82%E8%AE%B0/" data-id="cm71lhu6i000kt0vpgacdcb8g" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/04/Github%E6%9D%82%E8%AE%B0/" data-id="cm7a8n5ob000mtkvp33o1gqla" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -511,70 +557,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/04/ejs%E6%96%87%E6%A1%A3/" data-id="cm71lhu7h002ft0vpehgo0j5r" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/04/ejs%E6%96%87%E6%A1%A3/" data-id="cm7a8n5p9002ftkvp8gwrfgu9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-gitignore" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/31/gitignore/" class="article-date">
-  <time datetime="2020-12-31T08:13:41.000Z" itemprop="datePublished">2020-12-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/31/gitignore/">gitignore</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>针对不同语言的工程，其脚手架中的 .gitignore 已经做了部分的封装，项目在开始之前最好是编辑好此文件，避免后期麻烦！在我的 gitee 中的 files 仓库，有此模板文件！</p>
-<h3 id="格式规范"><a href="#格式规范" class="headerlink" title="格式规范"></a>格式规范</h3><p>1、所有空行或者以注释符号 ＃ 开头的行都会被 Git 忽略<br>2、可以使用标准的 glob 模式匹配<br>3、匹配模式最后跟斜杠(/)说明要忽略的是目录<br>4、要忽略指定模式以外的文件或目录，可以在模式前加上感叹号(!)进行取反</p>
-<h3 id="glob-模式"><a href="#glob-模式" class="headerlink" title="glob 模式"></a>glob 模式</h3><p>所谓的 glob 模式是指 shell 所使用的简化了的正则表达式，匹配规则如下：</p>
-<ul>
-<li><code>*</code> 星号匹配零个或多个任意字符</li>
-<li><code>[]</code> 匹配任何一个列在方括号中的字符，如[ab]匹配 a 或者匹配 b</li>
-<li><code>?</code> 问号匹配一个任意字符</li>
-<li><code>[n-m]</code> 匹配所有在这两个字符范围内的字符，如[0-9]表示匹配所有 0 到 9 的数字</li>
-</ul>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><ul>
-<li><code>logs/</code> 忽略当前路径下的 logs 目录，包含 logs 下的所有子目录和文件，注：并不局限于根目录下 logs</li>
-<li><code>/logs.txt</code> 忽略根目录下的 logs.txt 文件</li>
-<li><code>*.class</code> 忽略所有后缀为 .class 的文件</li>
-<li><code>!/classes/a.class</code> 不忽略跟目录下 classes 目录下的 a.class 文件</li>
-<li><code>tmp/*.txt</code> 只忽略 tmp 目录下的 .txt 文件</li>
-<li><code>**/foo</code> 可以忽略/foo, a/foo, a/b/foo 等</li>
-</ul>
-<h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><p>写 node_modules/ 与 node_modules 效果是一样。都是直接忽略了目录下的所有文件、目录。我 gitee 仓库中的 stream2 项目中的 .gitignore 有体现！</p>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>在我的 ddyg-crs 中 .gitignore 已添加 /dist/ 但修改 dist 下的文件，git 依然会记录，此时需执行 <code>git rm -r --cached .</code>，<code>git add .</code>，<code>git commit -m &#39;update.gitignore&#39;</code> 即可</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/699ed86028c2">.gitignore</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/31/gitignore/" data-id="cm71lhu7j002kt0vpgf1bbeap" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
 
     </footer>
   </div>
@@ -624,6 +610,10 @@
       <ul>
         
           <li>
+            <a href="/2025/02/18/onblur_onfocusout/">onblur、onfocus、onfocusout记录</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
           </li>
         
@@ -637,10 +627,6 @@
         
           <li>
             <a href="/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/">代码片段之ElementUI</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/">npm或yarn安装过程常见的warn及error</a>
           </li>
         
       </ul>
