@@ -5,22 +5,22 @@
   
 
   
-  <title>React之路由 | Hexo</title>
+  <title>React之路由 | 我的点滴记录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="说明react 的路由非常灵活，与 vue 的路由有区别（需要一个 router-view 来作为宿主容器），react 则不需要宿主容器，在 m-b2b-wechat 项目中是在主入口文件 src&#x2F;index.tsx （类似于 Vue 中的 App.vue）中，在该文件中定义了一个变量 const &#x3D; D2CWechat &#x3D; () &#x3D;&gt; (&lt;Provider&gt;&lt;&#x2F;Prov">
+  <meta name="description" content="说明 react 的路由非常灵活，与 vue 的路由有区别（需要一个 router-view 来作为宿主容器），react 则不需要宿主容器，在 m-b2b-wechat 项目中是在主入口文件 src&#x2F;index.tsx （类似于 Vue 中的 App.vue）中，在该文件中定义了一个变量 const &#x3D; D2CWechat &#x3D; () &#x3D;&gt; (&lt;Provider&gt;&lt;&#x2F;Pro">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React之路由">
 <meta property="og:url" content="http://example.com/2021/01/07/React%E4%B9%8B%E8%B7%AF%E7%94%B1/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="说明react 的路由非常灵活，与 vue 的路由有区别（需要一个 router-view 来作为宿主容器），react 则不需要宿主容器，在 m-b2b-wechat 项目中是在主入口文件 src&#x2F;index.tsx （类似于 Vue 中的 App.vue）中，在该文件中定义了一个变量 const &#x3D; D2CWechat &#x3D; () &#x3D;&gt; (&lt;Provider&gt;&lt;&#x2F;Prov">
+<meta property="og:site_name" content="我的点滴记录">
+<meta property="og:description" content="说明 react 的路由非常灵活，与 vue 的路由有区别（需要一个 router-view 来作为宿主容器），react 则不需要宿主容器，在 m-b2b-wechat 项目中是在主入口文件 src&#x2F;index.tsx （类似于 Vue 中的 App.vue）中，在该文件中定义了一个变量 const &#x3D; D2CWechat &#x3D; () &#x3D;&gt; (&lt;Provider&gt;&lt;&#x2F;Pro">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-07T03:11:42.000Z">
-<meta property="article:modified_time" content="2025-02-06T01:54:41.269Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2025-02-21T06:11:24.754Z">
+<meta property="article:author" content="Andy Zhang">
 <meta property="article:tag" content="Node.js">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -41,7 +41,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">我的点滴记录</a>
       </h1>
       
     </div>
@@ -52,6 +52,10 @@
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
         
       </nav>
       <nav id="sub-nav">
@@ -89,19 +93,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>react 的路由非常灵活，与 vue 的路由有区别（需要一个 router-view 来作为宿主容器），react 则不需要宿主容器，在 m-b2b-wechat 项目中是在主入口文件 src/index.tsx （类似于 Vue 中的 App.vue）中，在该文件中定义了一个变量 <code>const = D2CWechat = () =&gt; (&lt;Provider&gt;&lt;/Provider&gt;)</code>，其中 Provider 是来自 react-redux，在该容器里面就是<code>&lt;Router&gt;&lt;/Router&gt;</code>，Router 下面就是 Route，我在自己的 react-cli 项目中 src/pages/use-route/index.js 中有代码片段，这是我在 react router 的官网上找到的。所以我们可以理解为，这就是官方给的使用示例！其中 m-b2b-wechat 项目中 route 及其他代码如下：</p>
+        <h3 id="说明">说明</h3>
+<p>react 的路由非常灵活，与 vue 的路由有区别（需要一个 router-view 来作为宿主容器），react 则不需要宿主容器，在 m-b2b-wechat 项目中是在主入口文件 src/index.tsx （类似于 Vue 中的 App.vue）中，在该文件中定义了一个变量 <code>const = D2CWechat = () =&gt; (&lt;Provider&gt;&lt;/Provider&gt;)</code>，其中 Provider 是来自 react-redux，在该容器里面就是<code>&lt;Router&gt;&lt;/Router&gt;</code>，Router 下面就是 Route，我在自己的 react-cli 项目中 src/pages/use-route/index.js 中有代码片段，这是我在 react router 的官网上找到的。所以我们可以理解为，这就是官方给的使用示例！其中 m-b2b-wechat 项目中 route 及其他代码如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route component=&#123;Container&#125;/&gt;</span><br><span class="line">class Container extends React.Component&lt;any, any&gt; &#123;&#125;</span><br><span class="line">ReactDOM.render(&lt;D2CWechat/&gt;, document.getElementById(<span class="string">&#x27;app&#x27;</span>));</span><br></pre></td></tr></table></figure>
-
-<p>注：Route 可 <code>&lt;Route component=&#123;Container&#125;/&gt;</code>，也可像我的 react-cli 项目中，<code>&lt;Route path=&quot;/&quot;&gt;&lt;Home /&gt;&lt;/Route&gt;</code>，<code>function Home() &#123; return &lt;h2&gt;Home&lt;/h2&gt; &#125;</code> 这样写！接着说，在我自己练习的项目 react-cli 中，是在脚手架主入口 index.js 中引入 page 的某个页面，其实是大同小异！在 index.js 中引入 import UseRouteWithNested from “@/pages/use-route-with-nested/“; 针对 use-route-with-nested/index.js 中我配置了路由信息！使用 Route、Router 时候要记得引入依赖：import { Route, Router } from ‘react-router-dom’; react-router-dom 是针对浏览器单独整合的，react-router 是一个大包，react-native 也需要，后来才有 react-router-dom 小依赖包。我在 use-route-with-nested/index.js 的路由引入写法是在 react-router 官网上看到其例子如下：</p>
+<p>注：Route 可 <code>&lt;Route component=&#123;Container&#125;/&gt;</code>，也可像我的 react-cli 项目中，<code>&lt;Route path=&quot;/&quot;&gt;&lt;Home /&gt;&lt;/Route&gt;</code>，<code>function Home() &#123; return &lt;h2&gt;Home&lt;/h2&gt; &#125;</code> 这样写！接着说，在我自己练习的项目 react-cli 中，是在脚手架主入口 index.js 中引入 page 的某个页面，其实是大同小异！在 index.js 中引入 import UseRouteWithNested from “@/pages/use-route-with-nested/”; 针对 use-route-with-nested/index.js 中我配置了路由信息！使用 Route、Router 时候要记得引入依赖：import { Route, Router } from ‘react-router-dom’; react-router-dom 是针对浏览器单独整合的，react-router 是一个大包，react-native 也需要，后来才有 react-router-dom 小依赖包。我在 use-route-with-nested/index.js 的路由引入写法是在 react-router 官网上看到其例子如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123;</span><br><span class="line">  BrowserRouter as Router,</span><br><span class="line">  Switch,</span><br><span class="line">  Route,</span><br><span class="line">  Link,</span><br><span class="line">  useRouteMatch,</span><br><span class="line">  useParams,</span><br><span class="line">&#125; from <span class="string">&quot;react-router-dom&quot;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>注：<code>import ReactDOM from &quot;react-dom&quot;</code>; 主要是在主入口使用 <code>ReactDOM.render(&lt;App /&gt;, document.getElementById(&quot;root&quot;));</code></p>
 <p>导出 class 有 2 中写法：<code>import React from &quot;react&quot;;</code> 随后写 <code>export default class Goods React.Component &#123;&#125;;</code> 或 <code>import &#123;React, Component &#125; from &quot;react&quot;;</code> 随后写 <code>export default class Goods extends Component &#123;&#125;;</code></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3>
+<h3 id="参考">参考</h3>
+<h3 id="任务">任务</h3>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/07/React%E4%B9%8B%E8%B7%AF%E7%94%B1/" data-id="cm7a8n5p10021tkvp7v33emw8" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/07/React%E4%B9%8B%E8%B7%AF%E7%94%B1/" data-id="cm7egel12001yr0vp6qro547f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -143,7 +148,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
     </div>
   </div>
 
@@ -197,7 +202,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2025 John Doe<br>
+      &copy; 2025 Andy Zhang<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -208,6 +213,10 @@
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
   
 </nav>
     

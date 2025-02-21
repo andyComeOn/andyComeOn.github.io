@@ -5,26 +5,26 @@
   
 
   
-  <title>Linux下安装git | Hexo</title>
+  <title>Linux下安装git | 我的点滴记录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言早几年时候买的阿里云或腾讯云的服务器，默认的 centos 的版本自带的有 git，现买的服务器系统中没有自带 git，又想使用高版本 git 只能手动安装了！现记录一下安装步骤！ 内容1、安装包下载 wget -c https:&#x2F;&#x2F;github.com&#x2F;git&#x2F;git&#x2F;archive&#x2F;v2.29.0.tar.gz2、压缩包解压 tar -zxvf v2.29.0.tar.gz3、安装编译源码">
+  <meta name="description" content="前言 早几年时候买的阿里云或腾讯云的服务器，默认的 centos 的版本自带的有 git，现买的服务器系统中没有自带 git，又想使用高版本 git 只能手动安装了！现记录一下安装步骤！ 内容 1、安装包下载 wget -c https:&#x2F;&#x2F;github.com&#x2F;git&#x2F;git&#x2F;archive&#x2F;v2.29.0.tar.gz 2、压缩包解压 tar -zxvf v2.29.0.tar.gz 3、安装">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux下安装git">
 <meta property="og:url" content="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="前言早几年时候买的阿里云或腾讯云的服务器，默认的 centos 的版本自带的有 git，现买的服务器系统中没有自带 git，又想使用高版本 git 只能手动安装了！现记录一下安装步骤！ 内容1、安装包下载 wget -c https:&#x2F;&#x2F;github.com&#x2F;git&#x2F;git&#x2F;archive&#x2F;v2.29.0.tar.gz2、压缩包解压 tar -zxvf v2.29.0.tar.gz3、安装编译源码">
+<meta property="og:site_name" content="我的点滴记录">
+<meta property="og:description" content="前言 早几年时候买的阿里云或腾讯云的服务器，默认的 centos 的版本自带的有 git，现买的服务器系统中没有自带 git，又想使用高版本 git 只能手动安装了！现记录一下安装步骤！ 内容 1、安装包下载 wget -c https:&#x2F;&#x2F;github.com&#x2F;git&#x2F;git&#x2F;archive&#x2F;v2.29.0.tar.gz 2、压缩包解压 tar -zxvf v2.29.0.tar.gz 3、安装">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://file.798run.top/img/blog/20201208/install-compile-git-pkg.png">
 <meta property="og:image" content="https://file.798run.top/img/blog/20201208/git-version.jpg">
 <meta property="og:image" content="https://file.798run.top/img/blog/20201208/linux-ssh.png">
 <meta property="article:published_time" content="2020-12-08T03:57:50.000Z">
-<meta property="article:modified_time" content="2025-02-06T01:54:41.223Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2025-02-21T06:11:24.749Z">
+<meta property="article:author" content="Andy Zhang">
 <meta property="article:tag" content="Git相关">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://file.798run.top/img/blog/20201208/install-compile-git-pkg.png">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -45,7 +45,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">我的点滴记录</a>
       </h1>
       
     </div>
@@ -56,6 +56,10 @@
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
         
       </nav>
       <nav id="sub-nav">
@@ -93,27 +97,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>早几年时候买的阿里云或腾讯云的服务器，默认的 centos 的版本自带的有 git，现买的服务器系统中没有自带 git，又想使用高版本 git 只能手动安装了！现记录一下安装步骤！</p>
-<h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><p>1、安装包下载 wget -c <a target="_blank" rel="noopener" href="https://github.com/git/git/archive/v2.29.0.tar.gz">https://github.com/git/git/archive/v2.29.0.tar.gz</a><br>2、压缩包解压 tar -zxvf v2.29.0.tar.gz<br>3、安装编译源码所需依赖 yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker 但：我执行之后出现提示如下：</p>
+        <h3 id="前言">前言</h3>
+<p>早几年时候买的阿里云或腾讯云的服务器，默认的 centos 的版本自带的有 git，现买的服务器系统中没有自带 git，又想使用高版本 git 只能手动安装了！现记录一下安装步骤！</p>
+<h3 id="内容">内容</h3>
+<p>1、安装包下载 wget -c <a target="_blank" rel="noopener" href="https://github.com/git/git/archive/v2.29.0.tar.gz">https://github.com/git/git/archive/v2.29.0.tar.gz</a><br>
+2、压缩包解压 tar -zxvf v2.29.0.tar.gz<br>
+3、安装编译源码所需依赖 yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker 但：我执行之后出现提示如下：</p>
 <p><img src="https://file.798run.top/img/blog/20201208/install-compile-git-pkg.png" alt="install-compile-git-pkg"></p>
-<p>这说明系统有这些依赖。  </p>
-<p>4、安装依赖时，yum 自动安装了 Git，需要卸载旧版本 Git，命令为： yum remove git 出现提示输入 y 即可！注：我的 linux 上执行了上面的第三步骤，并没有 git  </p>
-<p>5、进入解压后的文件夹，命令 cd git-2.29.0 ，然后执行编译，命令为 make prefix=/usr/local/git all 耐心等待编译即可；  </p>
-<p>6、安装 Git 至/usr/local/git 路径，命令为 make prefix=/usr/local/git install  </p>
-<p>7、打开环境变量配置文件，命令 vim /etc/profile ，在底部加上 Git 相关配置信息：PATH=$PATH:/usr/local/git/bin export PATH 然后保存，退出！  </p>
-<p>8、输入命令 git –version ，查看安装的 git 版本，校验通过，安装成功，截图如下：</p>
+<p>这说明系统有这些依赖。</p>
+<p>4、安装依赖时，yum 自动安装了 Git，需要卸载旧版本 Git，命令为： yum remove git 出现提示输入 y 即可！注：我的 linux 上执行了上面的第三步骤，并没有 git</p>
+<p>5、进入解压后的文件夹，命令 cd git-2.29.0 ，然后执行编译，命令为 make prefix=/usr/local/git all 耐心等待编译即可；</p>
+<p>6、安装 Git 至/usr/local/git 路径，命令为 make prefix=/usr/local/git install</p>
+<p>7、打开环境变量配置文件，命令 vim /etc/profile ，在底部加上 Git 相关配置信息：PATH=$PATH:/usr/local/git/bin export PATH 然后保存，退出！</p>
+<p>8、输入命令 git --version ，查看安装的 git 版本，校验通过，安装成功，截图如下：</p>
 <p><img src="https://file.798run.top/img/blog/20201208/git-version.jpg" alt="git --version"></p>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>1、在 linux 上依次设置：git config –global user.name “zhangbo” git config –global user.email “<a href="mailto:&#49;&#x31;&#55;&#x34;&#56;&#51;&#57;&#x35;&#49;&#x32;&#64;&#113;&#x71;&#46;&#x63;&#x6f;&#109;">&#49;&#x31;&#55;&#x34;&#56;&#51;&#57;&#x35;&#49;&#x32;&#64;&#113;&#x71;&#46;&#x63;&#x6f;&#109;</a>“  </p>
-<p>2、ssh-keygen -t rsa -C “<a href="mailto:&#49;&#x31;&#x37;&#52;&#56;&#x33;&#x39;&#x35;&#x31;&#50;&#64;&#113;&#113;&#x2e;&#99;&#111;&#109;">&#49;&#x31;&#x37;&#52;&#56;&#x33;&#x39;&#x35;&#x31;&#50;&#64;&#113;&#113;&#x2e;&#99;&#111;&#109;</a>“ 提示：-bash: ssh-keygen -t rsa -C <a href="mailto:&#x31;&#49;&#55;&#52;&#x38;&#51;&#x39;&#x35;&#x31;&#50;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#x31;&#49;&#55;&#52;&#x38;&#51;&#x39;&#x35;&#x31;&#50;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a>: command not found  </p>
-<p>3、一顿搜索啊，找到了<a target="_blank" rel="noopener" href="https://www.shangmayuan.com/a/5bc94047236246f2a01aa795.html">解决 bash: ssh-keygen: command not found</a>  </p>
-<p>4、按照上面帖子执行：yum install openssh，可是还是不行啊，Google 了很多，后来我发现有一个指令：ssh-keygen -t rsa -b 2048 -C “<a href="mailto:&#x31;&#x31;&#x37;&#x34;&#x38;&#51;&#x39;&#x35;&#x31;&#x32;&#64;&#113;&#113;&#46;&#99;&#111;&#109;">&#x31;&#x31;&#x37;&#x34;&#x38;&#51;&#x39;&#x35;&#x31;&#x32;&#64;&#113;&#113;&#46;&#99;&#111;&#109;</a>“ 与我的有道云笔记报错（ssh-keygen -t rsa -C “<a href="mailto:&#x31;&#49;&#55;&#52;&#56;&#x33;&#57;&#x35;&#x31;&#x32;&#64;&#113;&#113;&#x2e;&#99;&#111;&#109;">&#x31;&#49;&#55;&#52;&#56;&#x33;&#57;&#x35;&#x31;&#x32;&#64;&#113;&#113;&#x2e;&#99;&#111;&#109;</a>“ ）的内容不一样！后来就死马当成活马医！结果可以了！  </p>
-<p>5、接着说解决上面问题的过程：既然是一直提示<code>-bash: ssh-keygen -t rsa -C 1174839512@qq.com: command not found</code>，那我就键入 ssh 看提示啥，效果如下：<br><img src="https://file.798run.top/img/blog/20201208/linux-ssh.png" alt="linux-ssh"><br>细看一下，没有 -C 的选项，但是第二个指令也有 -C，那我就先试试这个：ssh-keygen -t rsa -b 2048 -C “<a href="mailto:&#x31;&#x31;&#x37;&#x34;&#56;&#51;&#x39;&#53;&#49;&#50;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#x31;&#x31;&#x37;&#x34;&#56;&#51;&#x39;&#53;&#49;&#50;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a>“，竟然可以了！猜想：linux 下必须要设置 -b 吧！Windows 估计是读取的默认的配置！问题解决！  </p>
-<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/imyalost/p/8715688.html">环境部署（三）：Linux 下安装 Git</a></p>
+<h3 id="问题">问题</h3>
+<p>1、在 linux 上依次设置：git config --global <a target="_blank" rel="noopener" href="http://user.name">user.name</a> “zhangbo” git config --global user.email “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>”</p>
+<p>2、ssh-keygen -t rsa -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>” 提示：-bash: ssh-keygen -t rsa -C <a href="mailto:1174839512@qq.com">1174839512@qq.com</a>: command not found</p>
+<p>3、一顿搜索啊，找到了<a target="_blank" rel="noopener" href="https://www.shangmayuan.com/a/5bc94047236246f2a01aa795.html">解决 bash: ssh-keygen: command not found</a></p>
+<p>4、按照上面帖子执行：yum install openssh，可是还是不行啊，Google 了很多，后来我发现有一个指令：ssh-keygen -t rsa -b 2048 -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>” 与我的有道云笔记报错（ssh-keygen -t rsa -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>” ）的内容不一样！后来就死马当成活马医！结果可以了！</p>
+<p>5、接着说解决上面问题的过程：既然是一直提示<code>-bash: ssh-keygen -t rsa -C 1174839512@qq.com: command not found</code>，那我就键入 ssh 看提示啥，效果如下：<br>
+<img src="https://file.798run.top/img/blog/20201208/linux-ssh.png" alt="linux-ssh"><br>
+细看一下，没有 -C 的选项，但是第二个指令也有 -C，那我就先试试这个：ssh-keygen -t rsa -b 2048 -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>”，竟然可以了！猜想：linux 下必须要设置 -b 吧！Windows 估计是读取的默认的配置！问题解决！</p>
+<h3 id="参考链接">参考链接</h3>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/imyalost/p/8715688.html">环境部署（三）：Linux 下安装 Git</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" data-id="cm7a8n5oo001atkvpfelfh0fq" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" data-id="cm7egel0t001cr0vpdkfz11fc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
@@ -155,7 +167,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
     </div>
   </div>
 
@@ -209,7 +221,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2025 John Doe<br>
+      &copy; 2025 Andy Zhang<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -220,6 +232,10 @@
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
   
 </nav>
     

@@ -5,21 +5,21 @@
   
 
   
-  <title>浏览器中网址访问过程详解 | Hexo</title>
+  <title>浏览器中网址访问过程详解 | 我的点滴记录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这个md是记录浏览器访问网页的一个过程 主要参考一下的2个帖子：  浏览器中网址访问过程详解 用户用浏览器访问一个网站，发生了什么 用户用浏览器访问一个网站的时候背后的过程与步骤是怎样的？   没事可以常看看  温故而知新   一直在搜后台接到前端的接口请求是怎么一个处理过程，搜的结果不是自己想要的，但是发现了nginx是如何处理请求的，这篇帖子我理解，在访问接口（刨除寻找主机的过程）时，首先是N">
+  <meta name="description" content="这个md是记录浏览器访问网页的一个过程   主要参考一下的2个帖子：  浏览器中网址访问过程详解 用户用浏览器访问一个网站，发生了什么 用户用浏览器访问一个网站的时候背后的过程与步骤是怎样的？    没事可以常看看  温故而知新    一直在搜后台接到前端的接口请求是怎么一个处理过程，搜的结果不是自己想要的，但是发现了nginx是如何处理请求的，这篇帖子我理解，在访问接口（刨除寻找主机的过程）时，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浏览器中网址访问过程详解">
 <meta property="og:url" content="http://example.com/2019/01/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%BD%91%E5%9D%80%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="这个md是记录浏览器访问网页的一个过程 主要参考一下的2个帖子：  浏览器中网址访问过程详解 用户用浏览器访问一个网站，发生了什么 用户用浏览器访问一个网站的时候背后的过程与步骤是怎样的？   没事可以常看看  温故而知新   一直在搜后台接到前端的接口请求是怎么一个处理过程，搜的结果不是自己想要的，但是发现了nginx是如何处理请求的，这篇帖子我理解，在访问接口（刨除寻找主机的过程）时，首先是N">
+<meta property="og:site_name" content="我的点滴记录">
+<meta property="og:description" content="这个md是记录浏览器访问网页的一个过程   主要参考一下的2个帖子：  浏览器中网址访问过程详解 用户用浏览器访问一个网站，发生了什么 用户用浏览器访问一个网站的时候背后的过程与步骤是怎样的？    没事可以常看看  温故而知新    一直在搜后台接到前端的接口请求是怎么一个处理过程，搜的结果不是自己想要的，但是发现了nginx是如何处理请求的，这篇帖子我理解，在访问接口（刨除寻找主机的过程）时，">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-01-29T03:03:28.000Z">
-<meta property="article:modified_time" content="2025-02-06T01:54:41.388Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2025-02-21T06:11:24.786Z">
+<meta property="article:author" content="Andy Zhang">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -40,7 +40,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">我的点滴记录</a>
       </h1>
       
     </div>
@@ -51,6 +51,10 @@
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
         
       </nav>
       <nav id="sub-nav">
@@ -88,40 +92,47 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="这个md是记录浏览器访问网页的一个过程"><a href="#这个md是记录浏览器访问网页的一个过程" class="headerlink" title="这个md是记录浏览器访问网页的一个过程"></a>这个md是记录浏览器访问网页的一个过程</h4><ol>
-<li><p>主要参考一下的2个帖子：</p>
+        <h4 id="这个md是记录浏览器访问网页的一个过程">这个md是记录浏览器访问网页的一个过程</h4>
+<ol>
+<li>
+<p>主要参考一下的2个帖子：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m_buddy/article/details/77800998">浏览器中网址访问过程详解</a></li>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/mengnizizi/article/details/78529738">用户用浏览器访问一个网站，发生了什么</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20513729">用户用浏览器访问一个网站的时候背后的过程与步骤是怎样的？</a></li>
 </ul>
 </li>
-<li><p>没事可以常看看</p>
+<li>
+<p>没事可以常看看</p>
 <ul>
 <li>温故而知新</li>
 </ul>
 </li>
-<li><p>一直在搜后台接到前端的接口请求是怎么一个处理过程，搜的结果不是自己想要的，但是发现了<a target="_blank" rel="noopener" href="https://blog.csdn.net/lp09160206/article/details/72964893">nginx是如何处理请求的</a>，这篇帖子我理解，在访问接口（刨除寻找主机的过程）时，首先是Nginx处理逻辑，因为我在文档中发现Nginx的配置代码：</p>
+<li>
+<p>一直在搜后台接到前端的接口请求是怎么一个处理过程，搜的结果不是自己想要的，但是发现了<a target="_blank" rel="noopener" href="https://blog.csdn.net/lp09160206/article/details/72964893">nginx是如何处理请求的</a>，这篇帖子我理解，在访问接口（刨除寻找主机的过程）时，首先是Nginx处理逻辑，因为我在文档中发现Nginx的配置代码：</p>
 </li>
 </ol>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>      <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> example.org www.example.org;</span><br><span class="line">    <span class="attribute">root</span>        /data/www;</span><br><span class="line">     </span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">index</span>   index.html index.php;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="section">location</span> <span class="regexp">~* \.(gif|jpg|png)$</span> &#123;</span><br><span class="line">        <span class="attribute">expires</span> <span class="number">30d</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="section">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span>  localhost:<span class="number">9000</span>;</span><br><span class="line">        <span class="attribute">fastcgi_param</span> SCRIPT_FILENAME;</span><br><span class="line">        $<span class="attribute">document_root</span> <span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">        <span class="attribute">include</span>  fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>虽然我不是太懂Nginx的配置的意思，我自己猜想不一定对，若是网页请求的是静态的图片就走的<code>location ~* \.(gif|jpg|png)$</code>通道，直接返回目录下的静态资源。若是带有参数接口请求，会走<code>location ~ \.php$</code>，进而在去查sql，查好了进行数据的包装，在return到前端。大致就是这个过程。</p>
 <ol start="4">
-<li><p>本地的机器上在配置网络时都会填写DNS</p>
+<li>
+<p>本地的机器上在配置网络时都会填写DNS</p>
 <ul>
 <li>在网上看到这句话，我个人理解就是你的个人电脑在连接wifi热点或者使用网线自己就接入了公网，这个公网有自己所在的区域DNS（即是：本地的机器上在配置网络时都会填写DNS）。</li>
 </ul>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lycsmzl/p/5225809.html">一个http请求发送到后端的详细过程</a></p>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lycsmzl/p/5225809.html">一个http请求发送到后端的详细过程</a></p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/foohack/p/5053084.html">用javascript向一个网页连接接口发送请求，并接收该接口返回的json串</a></p>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/foohack/p/5053084.html">用javascript向一个网页连接接口发送请求，并接收该接口返回的json串</a></p>
 </li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%BD%91%E5%9D%80%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/" data-id="cm7a8n5r40059tkvp1w1l8rgr" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%BD%91%E5%9D%80%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/" data-id="cm7egel31005fr0vpfbtwejt5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -161,7 +172,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
     </div>
   </div>
 
@@ -215,7 +226,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2025 John Doe<br>
+      &copy; 2025 Andy Zhang<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -226,6 +237,10 @@
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
   
 </nav>
     

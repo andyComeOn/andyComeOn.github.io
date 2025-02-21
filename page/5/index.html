@@ -5,17 +5,17 @@
   
 
   
-  <title>Hexo</title>
+  <title>我的点滴记录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="我的点滴记录">
 <meta property="og:url" content="http://example.com/page/5/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="我的点滴记录">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Andy Zhang">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -36,7 +36,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">我的点滴记录</a>
       </h1>
       
     </div>
@@ -47,6 +47,10 @@
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
         
       </nav>
       <nav id="sub-nav">
@@ -63,45 +67,6 @@
 </header>
       <div class="outer">
         <section id="main">
-  
-    <article id="post-用户体验讨论" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/11/30/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E8%AE%A8%E8%AE%BA/" class="article-date">
-  <time datetime="2020-11-30T14:58:12.000Z" itemprop="datePublished">2020-11-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/30/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E8%AE%A8%E8%AE%BA/">用户体验讨论</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1、建议选择是：确保核心功能的正常使用和基本的用户体验。至于说“保存页面”这样锦上添花的功能，可以调查下用户的看法，万一不是大众需要的，费精力去做，就不太划算了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/30/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E8%AE%A8%E8%AE%BA/" data-id="cm7a8n5ra005htkvpavh20t6k" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
   
     <article id="post-小程序canvas记录" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -128,13 +93,14 @@
         <blockquote>
 <p>最近在开发分销小程序，使用了 wx 的 canvas，现记录一下！</p>
 </blockquote>
-<p>场景就是：点击分享按钮，弹出一个 modal，效果如下：<br><img src="https://file.798run.top/img/blog/20201130/UI.png" alt="设计稿">，这里面使用了 canvas 绘图，小程序的 canvas 有很多的诡异的地方，之前的项目的旧代码，copy 之后不能用，只能在网上搜搜找答案，在之前席鹏飞弄的营业厅小程序有使用的场景如下：</p>
+<p>场景就是：点击分享按钮，弹出一个 modal，效果如下：<br>
+<img src="https://file.798run.top/img/blog/20201130/UI.png" alt="设计稿">，这里面使用了 canvas 绘图，小程序的 canvas 有很多的诡异的地方，之前的项目的旧代码，copy 之后不能用，只能在网上搜搜找答案，在之前席鹏飞弄的营业厅小程序有使用的场景如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">drawPoster</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="title class_">Promise</span>.<span class="title function_">all</span>([</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">getBgImageInfo</span>(<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">currentImgurl</span>),</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">getBgImageInfo</span>(<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">avatar</span>),</span><br><span class="line">    ]).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> canvas2d = wx.<span class="title function_">createCanvasContext</span>(<span class="string">&quot;posterCanvas&quot;</span>);</span><br><span class="line">        <span class="keyword">const</span> paddingSize = <span class="number">40</span>; <span class="comment">// 海报中左边、右边的留白</span></span><br><span class="line">        <span class="keyword">const</span> primaryImgSize = <span class="number">670</span>; <span class="comment">// 封面图尺寸</span></span><br><span class="line">        <span class="keyword">const</span> maxWidth = <span class="number">670</span>;</span><br><span class="line">        <span class="keyword">const</span> primaryImgBottom = <span class="number">20</span>; <span class="comment">// 封面图下面marginBottom尺寸为20</span></span><br><span class="line">        <span class="comment">// const titleFontSize = 34; // 标题的字号为34；注：canvas绘图文字，y轴的起点要把自身的高度算进去，再次设计稿中得出，文字的行高是10+34+10=54。</span></span><br><span class="line">        <span class="keyword">const</span> titleBottom = <span class="number">20</span>; <span class="comment">// title下面有30的</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> titleHeight = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">const</span> priceSize = <span class="number">44</span>; <span class="comment">// 价格这一行的高度是32</span></span><br><span class="line">        <span class="keyword">const</span> priceBottom = <span class="number">40</span>; <span class="comment">// 价格这一行下面有40</span></span><br><span class="line">        <span class="keyword">let</span> priceBox = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">const</span> footerAvatarMarginTop = <span class="number">80</span>; <span class="comment">// 头像距离footer容器上边框的距离</span></span><br><span class="line">        <span class="keyword">const</span> footerQRMarginTop = <span class="number">20</span>; <span class="comment">// 头像距离footer容器上边框的距离</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1、首先绘制整个白板</span></span><br><span class="line">        canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;#ffffff&quot;</span>;</span><br><span class="line">        canvas2d.<span class="title function_">fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">750</span>, <span class="number">1200</span>);</span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2、绘制sku图片</span></span><br><span class="line"></span><br><span class="line">        canvas2d.<span class="title function_">drawImage</span>(</span><br><span class="line">          res[<span class="number">0</span>].<span class="property">path</span>,</span><br><span class="line">          paddingSize,</span><br><span class="line">          paddingSize,</span><br><span class="line">          primaryImgSize,</span><br><span class="line">          primaryImgSize</span><br><span class="line">        );</span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3、绘制标题</span></span><br><span class="line">        canvas2d.<span class="property">font</span> = <span class="string">&quot;normal bold 34px PingFangSC-Regular&quot;</span>;</span><br><span class="line">        canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;black&quot;</span>; <span class="comment">// 黑色需要写</span></span><br><span class="line">        <span class="comment">// canvas2d.fillText(`$&#123;this.data.currentTitle&#125;`, 40, 784, 670);</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">const</span> str = <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">currentTitle</span>;</span><br><span class="line">        <span class="keyword">let</span> row1Index = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">let</span> row2Index = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">let</span> row3Index = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> k = <span class="number">0</span>; k &lt; str.<span class="property">length</span>; k++) &#123;</span><br><span class="line">          <span class="keyword">const</span> temp = canvas2d.<span class="title function_">measureText</span>(str.<span class="title function_">slice</span>(<span class="number">0</span>, k)).<span class="property">width</span>;</span><br><span class="line">          <span class="comment">// 1行文字</span></span><br><span class="line">          <span class="keyword">if</span> (temp &lt;= maxWidth) &#123;</span><br><span class="line">            row1Index = k;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 1行半文字</span></span><br><span class="line">          <span class="keyword">if</span> (temp &gt; maxWidth &amp;&amp; temp &lt;= maxWidth * <span class="number">2</span>) &#123;</span><br><span class="line">            row2Index = k;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 2行文字之多</span></span><br><span class="line">          <span class="keyword">if</span> (temp &gt; maxWidth * <span class="number">2</span>) &#123;</span><br><span class="line">            row3Index = k;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (row3Index &amp;&amp; row2Index) &#123;</span><br><span class="line">          canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">            str.<span class="title function_">slice</span>(<span class="number">0</span>, row1Index),</span><br><span class="line">            paddingSize,</span><br><span class="line">            <span class="string">`<span class="subst">$&#123;paddingSize + primaryImgSize + primaryImgBottom + <span class="number">54</span>&#125;</span>`</span>,</span><br><span class="line">            maxWidth</span><br><span class="line">          );</span><br><span class="line"></span><br><span class="line">          canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">            str.<span class="title function_">slice</span>(row1Index, row2Index - <span class="number">2</span>) + <span class="string">&quot;...&quot;</span>,</span><br><span class="line">            paddingSize,</span><br><span class="line">            <span class="string">`<span class="subst">$&#123;paddingSize + primaryImgSize + primaryImgBottom + <span class="number">108</span>&#125;</span>`</span>,</span><br><span class="line">            maxWidth</span><br><span class="line">          );</span><br><span class="line"></span><br><span class="line">          titleHeight = <span class="number">108</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!row3Index &amp;&amp; row2Index) &#123;</span><br><span class="line">          canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">            str.<span class="title function_">slice</span>(<span class="number">0</span>, row1Index),</span><br><span class="line">            paddingSize,</span><br><span class="line">            <span class="string">`<span class="subst">$&#123;paddingSize + primaryImgSize + primaryImgBottom + <span class="number">54</span>&#125;</span>`</span>,</span><br><span class="line">            maxWidth</span><br><span class="line">          );</span><br><span class="line"></span><br><span class="line">          canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">            str.<span class="title function_">slice</span>(row1Index, row2Index + <span class="number">1</span>),</span><br><span class="line">            paddingSize,</span><br><span class="line">            <span class="string">`<span class="subst">$&#123;paddingSize + primaryImgSize + primaryImgBottom + <span class="number">108</span>&#125;</span>`</span>,</span><br><span class="line">            maxWidth</span><br><span class="line">          );</span><br><span class="line"></span><br><span class="line">          titleHeight = <span class="number">108</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!row3Index &amp;&amp; !row2Index) &#123;</span><br><span class="line">          canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">            str.<span class="title function_">slice</span>(<span class="number">0</span>, row1Index + <span class="number">1</span>),</span><br><span class="line">            paddingSize,</span><br><span class="line">            <span class="string">`<span class="subst">$&#123;paddingSize + primaryImgSize + primaryImgBottom + <span class="number">54</span>&#125;</span>`</span>,</span><br><span class="line">            maxWidth</span><br><span class="line">          );</span><br><span class="line"></span><br><span class="line">          titleHeight = <span class="number">54</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4、绘制价格（文字描述下面有20px的留白，所以Y=690）</span></span><br><span class="line">        <span class="comment">// 仅e家集市海报中才有价格绘制</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="title class_">Number</span>(<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">type</span>) === <span class="number">1001</span>) &#123;</span><br><span class="line">          <span class="comment">// 打折价格</span></span><br><span class="line">          canvas2d.<span class="property">font</span> = <span class="string">&quot;44px PingFangSC-Regular&quot;</span>;</span><br><span class="line">          canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;#ec1500&quot;</span>;</span><br><span class="line">          canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">            <span class="string">`¥<span class="subst">$&#123;<span class="variable language_">this</span>.data.currentActivityPrice&#125;</span>`</span>,</span><br><span class="line">            paddingSize,</span><br><span class="line">            <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">              paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">              primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">              primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">              titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">              titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">              priceSize</span></span></span><br><span class="line"><span class="subst"><span class="string">            &#125;</span>`</span>,</span><br><span class="line">            maxWidth</span><br><span class="line">          );</span><br><span class="line">          canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 历史价格（如果价格为0，不绘图）</span></span><br><span class="line">          <span class="keyword">if</span> (<span class="title class_">Number</span>(<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">currentMarketPrice</span>) != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> currentMarketPriceLeft =</span><br><span class="line">              paddingSize +</span><br><span class="line">              <span class="title class_">Number</span>(</span><br><span class="line">                canvas2d.<span class="title function_">measureText</span>(<span class="string">`¥<span class="subst">$&#123;<span class="variable language_">this</span>.data.currentActivityPrice&#125;</span>`</span>).<span class="property">width</span></span><br><span class="line">              ) +</span><br><span class="line">              <span class="number">20</span>;</span><br><span class="line">            canvas2d.<span class="property">font</span> = <span class="string">&quot;30px PingFangSC-Regular&quot;</span>;</span><br><span class="line">            canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;#acacac&quot;</span>;</span><br><span class="line">            canvas2d.<span class="title function_">setStrokeStyle</span>(<span class="string">&quot;#acacac&quot;</span>);</span><br><span class="line">            canvas2d.<span class="title function_">moveTo</span>(</span><br><span class="line">              currentMarketPriceLeft,</span><br><span class="line">              <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">                paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">                primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">                primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">                titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">                titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">                priceSize -</span></span></span><br><span class="line"><span class="subst"><span class="string">                <span class="number">8</span></span></span></span><br><span class="line"><span class="subst"><span class="string">              &#125;</span>`</span></span><br><span class="line">            );</span><br><span class="line">            canvas2d.<span class="title function_">lineTo</span>(</span><br><span class="line">              currentMarketPriceLeft +</span><br><span class="line">                <span class="title class_">Number</span>(</span><br><span class="line">                  canvas2d.<span class="title function_">measureText</span>(<span class="string">`¥<span class="subst">$&#123;<span class="variable language_">this</span>.data.currentMarketPrice&#125;</span>`</span>).<span class="property">width</span></span><br><span class="line">                ),</span><br><span class="line">              <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">                paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">                primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">                primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">                titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">                titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">                priceSize -</span></span></span><br><span class="line"><span class="subst"><span class="string">                <span class="number">8</span></span></span></span><br><span class="line"><span class="subst"><span class="string">              &#125;</span>`</span></span><br><span class="line">            );</span><br><span class="line">            canvas2d.<span class="title function_">stroke</span>();</span><br><span class="line"></span><br><span class="line">            canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">              <span class="string">`¥<span class="subst">$&#123;<span class="variable language_">this</span>.data.currentMarketPrice&#125;</span>`</span>,</span><br><span class="line">              currentMarketPriceLeft,</span><br><span class="line">              <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">                paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">                primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">                primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">                titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">                titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">                priceSize</span></span></span><br><span class="line"><span class="subst"><span class="string">              &#125;</span>`</span>,</span><br><span class="line">              maxWidth</span><br><span class="line">            );</span><br><span class="line">            canvas2d.<span class="title function_">save</span>();</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          priceBox = priceSize + priceBottom;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          priceBox = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5、绘制底部信息</span></span><br><span class="line">        <span class="comment">// 绘制底部信息矩形区域</span></span><br><span class="line">        canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;#fffaf5&quot;</span>;</span><br><span class="line">        canvas2d.<span class="title function_">fillRect</span>(</span><br><span class="line">          paddingSize,</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">            paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            priceBox</span></span></span><br><span class="line"><span class="subst"><span class="string">          &#125;</span>`</span>,</span><br><span class="line">          maxWidth,</span><br><span class="line">          <span class="number">250</span></span><br><span class="line">        ); <span class="comment">// 886</span></span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绘制底部信息的logo 886+80=966</span></span><br><span class="line">        canvas2d.<span class="title function_">drawImage</span>(</span><br><span class="line">          res[<span class="number">1</span>].<span class="property">path</span>,</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;paddingSize + <span class="number">30</span>&#125;</span>`</span>,</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">            paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            priceBox +</span></span></span><br><span class="line"><span class="subst"><span class="string">            footerAvatarMarginTop</span></span></span><br><span class="line"><span class="subst"><span class="string">          &#125;</span>`</span>,</span><br><span class="line">          <span class="number">90</span>,</span><br><span class="line">          <span class="number">90</span></span><br><span class="line">        ); <span class="comment">// 绘制logo</span></span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绘制底部信息：微信昵称、tips</span></span><br><span class="line">        canvas2d.<span class="property">font</span> = <span class="string">&quot;bold 28px PingFangSC-Regular&quot;</span>;</span><br><span class="line">        canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;black&quot;</span>;</span><br><span class="line">        canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;<span class="variable language_">this</span>.data.nickName&#125;</span>`</span>,</span><br><span class="line">          <span class="number">180</span>,</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">            paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            priceBox +</span></span></span><br><span class="line"><span class="subst"><span class="string">            footerAvatarMarginTop +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">12</span> +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">28</span></span></span></span><br><span class="line"><span class="subst"><span class="string">          &#125;</span>`</span></span><br><span class="line">        );</span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line">        canvas2d.<span class="property">font</span> = <span class="string">&quot;24px PingFangSC-Regular&quot;</span>;</span><br><span class="line">        canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;#666&quot;</span>;</span><br><span class="line">        canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">          <span class="string">&quot;推荐您享受e城e家优惠&quot;</span>,</span><br><span class="line">          <span class="number">180</span>,</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">            paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            priceBox +</span></span></span><br><span class="line"><span class="subst"><span class="string">            footerAvatarMarginTop +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">12</span> +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">28</span> +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">15</span> +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">24</span></span></span></span><br><span class="line"><span class="subst"><span class="string">          &#125;</span>`</span></span><br><span class="line">        ); <span class="comment">// 1040=1006+10+24</span></span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绘制底部信息：二维码,886+20=906</span></span><br><span class="line">        canvas2d.<span class="title function_">drawImage</span>(</span><br><span class="line">          <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">handleQRTempPath</span>,</span><br><span class="line">          <span class="number">510</span>,</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">            paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            priceBox +</span></span></span><br><span class="line"><span class="subst"><span class="string">            footerQRMarginTop</span></span></span><br><span class="line"><span class="subst"><span class="string">          &#125;</span>`</span>,</span><br><span class="line">          <span class="number">180</span>,</span><br><span class="line">          <span class="number">180</span></span><br><span class="line">        ); <span class="comment">// 绘制二维码</span></span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line">        canvas2d.<span class="property">font</span> = <span class="string">&quot;22px PingFangSC-Regular&quot;</span>;</span><br><span class="line">        canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;#666&quot;</span>; <span class="comment">// 默认是黑色可不写</span></span><br><span class="line">        canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">          <span class="string">&quot;长按识别&quot;</span>,</span><br><span class="line">          <span class="number">556</span>,</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">            paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            priceBox +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">20</span> +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">180</span> +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">10</span> +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">22</span></span></span></span><br><span class="line"><span class="subst"><span class="string">          &#125;</span>`</span></span><br><span class="line">        ); <span class="comment">// 1118=footer的Y轴+20+180+10</span></span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">        canvas2d.<span class="title function_">draw</span>(</span><br><span class="line">          <span class="literal">true</span>,</span><br><span class="line">          <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">canvasToTempFilePath</span>();</span><br><span class="line">          &#125;, <span class="number">400</span>)</span><br><span class="line">        );</span><br><span class="line">      &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    ).<span class="title function_">catch</span>(<span class="function">(<span class="params">catchErr</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(catchErr);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/30/%E5%B0%8F%E7%A8%8B%E5%BA%8Fcanvas%E8%AE%B0%E5%BD%95/" data-id="cm7a8n5qq004xtkvpdnwz3mgm" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/11/30/%E5%B0%8F%E7%A8%8B%E5%BA%8Fcanvas%E8%AE%B0%E5%BD%95/" data-id="cm7egel2k004zr0vp8ny9882l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
@@ -168,46 +134,77 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="杂集"><a href="#杂集" class="headerlink" title="杂集"></a>杂集</h3><p>1、在初建项目时，针对 Windows 我们可在根目录下执行 <code>type null&gt;.babelrc</code> 会生成该文件；还有一种针对 Windows 的方法，手动新建 babelrc.txt，执行 <code>ren babelrc.txt .babelrc</code> 针对 linux、git bash 可执行 touch .babelrc；<br>2、Ctrl + D 直接退出 node 命令行，也可执行两次 Ctrl + C<br>3、npm config ls === npm config list<br>4、为啥你能直接使用 npm -v node-v npx -v；npm node 指令在目录 D:\Program Files\Nodejs\ 中，而此目录已经添加了环境变量！C:\Users\admin\AppData\Roaming\npm 目录，也添加了环境变量，在该目录下有很多的使用 npm 全局安装的依赖，如 hexo browser-sync tsc nrm yarn，所以我们键入 yarn –version; hexo -v 才能显示出相关信息！<br>5、针对依赖，在我的项目 yaya，我通过 npm install pkg，则在项目的 node*modules 目录下，会下载 pkg 包，那加入我门全局安装了 pkg ，在 yaya 项目下怎么使用？答：需在系统环境变量添加 <code>NODE_PATH: C:\Users\zhangboba\AppData\Roaming\npm\node_modules</code>！参考：<a target="_blank" rel="noopener" href="https://www.html.cn/qa/node-js/12207.html">如何配置 node 全局依赖包？</a>。具体测试过程：npm i lodash -g，我新建一个极简项目，目录下创建 index.js，写入代码：<code>const * = require(&quot;lodash&quot;);</code> <code>console.log(\_.chunk([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;], 2));</code> 执行：<code>node index.js</code>，无报错则说明测试通过，否则系统报错！</p>
-<p>6、<code>import Home from &quot;@/views/Home.vue&quot;;</code> <code>import Home from &#39;../views/Home&#39;</code>在 IDE(WebStorm) 中<code>Ctrl + 点击 Home</code>，前者可打开文件，后者不能打开！</p>
+        <h3 id="杂集">杂集</h3>
+<p>1、在初建项目时，针对 Windows 我们可在根目录下执行 <code>type null&gt;.babelrc</code> 会生成该文件；还有一种针对 Windows 的方法，手动新建 babelrc.txt，执行 <code>ren babelrc.txt .babelrc</code> 针对 linux、git bash 可执行 touch .babelrc；<br>
+2、Ctrl + D 直接退出 node 命令行，也可执行两次 Ctrl + C<br>
+3、npm config ls === npm config list<br>
+4、为啥你能直接使用 npm -v node-v npx -v；npm node 指令在目录 D:\Program Files\Nodejs\ 中，而此目录已经添加了环境变量！C:\Users\admin\AppData\Roaming\npm 目录，也添加了环境变量，在该目录下有很多的使用 npm 全局安装的依赖，如 hexo browser-sync tsc nrm yarn，所以我们键入 yarn --version; hexo -v 才能显示出相关信息！<br>
+5、针对依赖，在我的项目 yaya，我通过 npm install pkg，则在项目的 node*modules 目录下，会下载 pkg 包，那加入我门全局安装了 pkg ，在 yaya 项目下怎么使用？答：需在系统环境变量添加 <code>NODE_PATH: C:\Users\zhangboba\AppData\Roaming\npm\node_modules</code>！参考：<a target="_blank" rel="noopener" href="https://www.html.cn/qa/node-js/12207.html">如何配置 node 全局依赖包？</a>。具体测试过程：npm i lodash -g，我新建一个极简项目，目录下创建 index.js，写入代码：<code>const * = require(&quot;lodash&quot;);</code> <code>console.log(\_.chunk([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;], 2));</code> 执行：<code>node index.js</code>，无报错则说明测试通过，否则系统报错！</p>
+<p>6、<code>import Home from &quot;@/views/Home.vue&quot;;</code> <code>import Home from '../views/Home'</code>在 IDE(WebStorm) 中<code>Ctrl + 点击 Home</code>，前者可打开文件，后者不能打开！</p>
 <p>7、在 vue-cli 2.0 版本中，<code>npm run dev </code>走的脚本是 <code>webpack-dev-server ...</code>，build 使用的 <code>node build/build.js</code>，本地开发环境启动服务过程，在查阅了相关资料之后总结： 在 node_modules/.bin/webpack-dev-server（这里有 2 个执行脚本一个针对 Linux 的 shell、一个是针对 Windows 的 bat 脚本）， 该脚本代码里有这句代码：<code>\webpack-dev-server\bin\webpack-dev-server.js&quot;</code>此意就是执行<code>webpack-dev-server/.bin/webpack-dev-server.js</code>，至于怎么串起来的这些，就是 <code>shebang #!/bin/sh #!/usr/bin/env node</code>。</p>
-<p>8、20200803 下午（不忙），看 vuepress 中文文档，使用 yarn 安装，提示如下：<br><img src="https://file.798run.top/img/blog/20201231/node-tips.png" alt="node-tips"><br>无奈，想到切换 nvm use 10.15.0，使用 yarn 安装时候，提示 yarn 不是命令，这说明我的很多全局命令安装到 node v8.10.0 上了。</p>
-<p>9、dependencies 和  devDependencies <strong><em>相同的地方：</em></strong> 就是在你或者别人  clone  这个库进行开发调试的时候，可以通过  npm install  一键安装这两个目录下所有的依赖，而不用去一行行找你到底在文件中引用了那些依赖。<strong><em>不同的地方在于：</em></strong> 当某个项目依赖了你的   mylib，那么在安装的时候会链式地安装  mylib  这个项目中  dependencies  配置声明的依赖，因为根据约定，npm  认为这是项目运行时需要的依赖。而  devDependencies  则是开发时需要的依赖。  如果你输入  npm install –production  指令，就只会安装  dependencies  目录下的依赖，在一些服务端自动构建的过程中或者在一些特殊的需求下，可能会用到这个指令。以上总结缘由是，场景一：针对 node-ruanmou 项目中，在其 package.json 中仅有 <code>&quot;dependencies&quot;: &#123;&quot;express&quot;: &quot;^4.17.1&quot;&#125;</code> 于是 npm i，在 node_modules 下有许多的依赖包，我于是找到了 D:\Application\node\node-ruanmou\node_modules\express\package.json，发现其 dependencies 中仅有依赖数量 30 个，可是我的 D:\Application\node\node-ruanmou\node_modules 下面的依赖包除了 .bin 目录 express 还有 48 个包，这说明 express\package.json 下的 dependencies 中的依赖包，也依赖了其他包，在执行 npm i 时候一并下载了！场景二：我在 vue-cli-raw 中故意安装 ElementUI 依赖到 devDenpendencies，页面中仅使用了 el-button，构建之后，在 dist 目录下起服务，按钮效果完好展示。带着这种疑问找到了上面的解答！</p>
+<p>8、20200803 下午（不忙），看 vuepress 中文文档，使用 yarn 安装，提示如下：<br>
+<img src="https://file.798run.top/img/blog/20201231/node-tips.png" alt="node-tips"><br>
+无奈，想到切换 nvm use 10.15.0，使用 yarn 安装时候，提示 yarn 不是命令，这说明我的很多全局命令安装到 node v8.10.0 上了。</p>
+<p>9、dependencies 和  devDependencies <strong><em>相同的地方：</em></strong> 就是在你或者别人  clone  这个库进行开发调试的时候，可以通过  npm install  一键安装这两个目录下所有的依赖，而不用去一行行找你到底在文件中引用了那些依赖。<strong><em>不同的地方在于：</em></strong> 当某个项目依赖了你的   mylib，那么在安装的时候会链式地安装  mylib  这个项目中  dependencies  配置声明的依赖，因为根据约定，npm  认为这是项目运行时需要的依赖。而  devDependencies  则是开发时需要的依赖。  如果你输入  npm install --production  指令，就只会安装  dependencies  目录下的依赖，在一些服务端自动构建的过程中或者在一些特殊的需求下，可能会用到这个指令。以上总结缘由是，场景一：针对 node-ruanmou 项目中，在其 package.json 中仅有 <code>&quot;dependencies&quot;: &#123;&quot;express&quot;: &quot;^4.17.1&quot;&#125;</code> 于是 npm i，在 node_modules 下有许多的依赖包，我于是找到了 D:\Application\node\node-ruanmou\node_modules\express\package.json，发现其 dependencies 中仅有依赖数量 30 个，可是我的 D:\Application\node\node-ruanmou\node_modules 下面的依赖包除了 .bin 目录 express 还有 48 个包，这说明 express\package.json 下的 dependencies 中的依赖包，也依赖了其他包，在执行 npm i 时候一并下载了！场景二：我在 vue-cli-raw 中故意安装 ElementUI 依赖到 devDenpendencies，页面中仅使用了 el-button，构建之后，在 dist 目录下起服务，按钮效果完好展示。带着这种疑问找到了上面的解答！</p>
 <p>10、process 是 node 中的一个变量，在你执行脚本的时候如： npm run dev，时 node 就会产生一个 process，如果你的 npm run dev 对应的脚步没有声明 process.env.NODE_ENV，就会取默认的值，我在 vue-cli 2.0 看到在打包时候，再次声明了 process.env.NODE_ENV = ‘production’</p>
 <p>11、20210111 下午在处理 D:\Application\node\node-demo 项目（by webstorm），项目仅有一个 fs.readFile 功能，IDE 波浪线提示，于是在项目添加 nodejs 环境，后来发现：C:\Users\zhangboba\AppData\Roaming\JetBrains\WebStorm2020.1\javascript\nodejs\12.18.3\node-typings 目录是新生成的，个人理解这是 IDE 添加的 Node 环境超链！</p>
-<h3 id="指令、工具"><a href="#指令、工具" class="headerlink" title="指令、工具"></a>指令、工具</h3><p>1、<code>npm ls</code> 查看具体项目下，依赖包的关系<br>2、<code>npm ls -g --depth 0</code> 查看全局安装的依赖包的关系。<code>npm config ls [-g]</code> 查看 npm 的一些基本配置：</p>
+<h3 id="指令、工具">指令、工具</h3>
+<p>1、<code>npm ls</code> 查看具体项目下，依赖包的关系<br>
+2、<code>npm ls -g --depth 0</code> 查看全局安装的依赖包的关系。<code>npm config ls [-g]</code> 查看 npm 的一些基本配置：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">npm config list</span><br><span class="line">; cli configs</span><br><span class="line">metrics-registry = &quot;https://registry.npm.taobao.org/&quot;</span><br><span class="line">scope = &quot;&quot;</span><br><span class="line">user-agent = &quot;npm/6.14.6 node/v12.18.3 win32 x64&quot;</span><br><span class="line"></span><br><span class="line">; userconfig C:\Users\ThinkPad\.npmrc</span><br><span class="line">disturl = &quot;https://npm.taobao.org/dist&quot;</span><br><span class="line">home = &quot;https://npm.taobao.org&quot;</span><br><span class="line">registry = &quot;https://registry.npm.taobao.org/&quot;</span><br><span class="line">sass-binary-site = &quot;http://npm.taobao.org/mirrors/node-sass&quot;</span><br><span class="line"></span><br><span class="line">; builtin config undefined</span><br><span class="line">prefix = &quot;C:\\Users\\ThinkPad\\AppData\\Roaming\\npm&quot;</span><br><span class="line"></span><br><span class="line">; node bin location = D:\Program Files\Nodejs\node.exe</span><br><span class="line">; cwd = C:\Users\ThinkPad\Desktop\457</span><br><span class="line">; HOME = C:\Users\ThinkPad</span><br><span class="line">; &quot;npm config ls -l&quot; to show all defaults.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>3、<code>npm root -g</code> 查看本机 node 全局安装的 node_modules 的位置<br>4、<code>yarn list</code> 查看具体项目下，依赖包的关系<br>5、<code>yarn global list</code> 看本机全局依赖包列表，<code>yarn config list</code> 查看本机中 yarn 的一些基本配置，显示如下:</p>
+<p>3、<code>npm root -g</code> 查看本机 node 全局安装的 node_modules 的位置<br>
+4、<code>yarn list</code> 查看具体项目下，依赖包的关系<br>
+5、<code>yarn global list</code> 看本机全局依赖包列表，<code>yarn config list</code> 查看本机中 yarn 的一些基本配置，显示如下:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">yarn config list</span><br><span class="line">yarn config v1.22.11</span><br><span class="line">info yarn config</span><br><span class="line">&#123;</span><br><span class="line">  &#x27;version-tag-prefix&#x27;: &#x27;v&#x27;,</span><br><span class="line">  &#x27;version-git-tag&#x27;: true,</span><br><span class="line">  &#x27;version-commit-hooks&#x27;: true,</span><br><span class="line">  &#x27;version-git-sign&#x27;: false,</span><br><span class="line">  &#x27;version-git-message&#x27;: &#x27;v%s&#x27;,</span><br><span class="line">  &#x27;init-version&#x27;: &#x27;1.0.0&#x27;,</span><br><span class="line">  &#x27;init-license&#x27;: &#x27;MIT&#x27;,</span><br><span class="line">  &#x27;save-prefix&#x27;: &#x27;^&#x27;,</span><br><span class="line">  &#x27;bin-links&#x27;: true,</span><br><span class="line">  &#x27;ignore-scripts&#x27;: false,</span><br><span class="line">  &#x27;ignore-optional&#x27;: false,</span><br><span class="line">  registry: &#x27;https://registry.npm.taobao.org/&#x27;,</span><br><span class="line">  &#x27;strict-ssl&#x27;: true,</span><br><span class="line">  &#x27;user-agent&#x27;: &#x27;yarn/1.22.11 npm/? node/v12.18.3 win32 x64&#x27;,</span><br><span class="line">  lastUpdateCheck: 1631502351834,</span><br><span class="line">  &#x27;network-timeout&#x27;: 6000000,</span><br><span class="line">  &#x27;sass-binary-site&#x27;: &#x27;http://npm.taobao.org/mirrors/node-sass&#x27;</span><br><span class="line">&#125;</span><br><span class="line">info npm config</span><br><span class="line">&#123;</span><br><span class="line">  registry: &#x27;https://registry.npm.taobao.org/&#x27;,</span><br><span class="line">  home: &#x27;https://npm.taobao.org&#x27;,</span><br><span class="line">  disturl: &#x27;https://npm.taobao.org/dist&#x27;,</span><br><span class="line">  &#x27;sass-binary-site&#x27;: &#x27;http://npm.taobao.org/mirrors/node-sass&#x27;</span><br><span class="line">&#125;</span><br><span class="line">Done in 0.10s.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>6、注：在具体项目中使用 <code>yarn</code> ，查看依赖包关系，则不能使用 <code>npm ls</code>，不能混用！但发现，yarn 项目，亦可用 npm ls<br>7、<code>browser-sync</code> 查看版本 browser-sync –version 有时候遇到不能自动 reload 页面，解决方法：h5 等元素要放在 body 标签下：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/480c707cd553">https://www.jianshu.com/p/480c707cd553</a><br>8、<code>nrm</code> 次依赖包安装指令：npm i nrm -g。nrm -v 查看其版本。nrm ls 查看当前 node 有多少镜像源！<code>nrm use taobao</code> || <code>nrm use npm</code> 遇到问题记录：执行了 nvm use 10.15.0 ，为了 开启 fms 项目服务。此场景下我执行 nrm 提示（’nrm’ 不是内部或外部命令，也不是可运行的程序或批处理文件。）结论：安装的 nrm 只是针对当前 node 版本有效！我在 node v10.15.0 也全局安装了 npm install -g nrm。<a target="_blank" rel="noopener" href="https://www.cnblogs.com/YMaster/p/6810339.html">链接</a>。20210430 在自买的 ThinkPad 上全局安装了 nrm，在执行 nrm ls 后报错及后续解决问题，可参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/S_aitama/article/details/113706339">帖子</a><br>9、<code>node-dev</code> 开发 node 服务时、可不用重启 node 热刷新代码。<code>nodemon</code> 与之功能类似<br>10、<code>ts-node</code> <code>ts-node-dev</code> 与上面的 node-dev 类似，只是为 ts 开发的 node 服务而已<br>11、<code>nvm</code> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/gaozejie/p/10689742.html">链接</a></p>
+<p>6、注：在具体项目中使用 <code>yarn</code> ，查看依赖包关系，则不能使用 <code>npm ls</code>，不能混用！但发现，yarn 项目，亦可用 npm ls<br>
+7、<code>browser-sync</code> 查看版本 browser-sync --version 有时候遇到不能自动 reload 页面，解决方法：h5 等元素要放在 body 标签下：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/480c707cd553">https://www.jianshu.com/p/480c707cd553</a><br>
+8、<code>nrm</code> 次依赖包安装指令：npm i nrm -g。nrm -v 查看其版本。nrm ls 查看当前 node 有多少镜像源！<code>nrm use taobao</code> || <code>nrm use npm</code> 遇到问题记录：执行了 nvm use 10.15.0 ，为了 开启 fms 项目服务。此场景下我执行 nrm 提示（‘nrm’ 不是内部或外部命令，也不是可运行的程序或批处理文件。）结论：安装的 nrm 只是针对当前 node 版本有效！我在 node v10.15.0 也全局安装了 npm install -g nrm。<a target="_blank" rel="noopener" href="https://www.cnblogs.com/YMaster/p/6810339.html">链接</a>。20210430 在自买的 ThinkPad 上全局安装了 nrm，在执行 nrm ls 后报错及后续解决问题，可参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/S_aitama/article/details/113706339">帖子</a><br>
+9、<code>node-dev</code> 开发 node 服务时、可不用重启 node 热刷新代码。<code>nodemon</code> 与之功能类似<br>
+10、<code>ts-node</code> <code>ts-node-dev</code> 与上面的 node-dev 类似，只是为 ts 开发的 node 服务而已<br>
+11、<code>nvm</code> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/gaozejie/p/10689742.html">链接</a></p>
 <p><img src="https://file.798run.top/img/blog/20201231/nvm-installing.png" alt="nvm-installing"></p>
 <p>补记：nvm 是 node 版本切换的一个工具，之前在秋果时候安装到工作电脑了，今天 2022.03.04 执行了 npm i nvm -g，在 cmd 下运行一直提示：<code>&quot;This is not the package you are looking for: please go to http://nvm.sh&quot;</code>。还有一个针对 node 版本切换的工具包名称是 n，我执行了 npm i n -g ，提示本机是 win32 不支持！<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/962773a0aa9e">参考 1</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/g_eorge/article/details/51379347">参考 2</a>。补记：针对 Windows 安装 nvm 使用 npm i nvm -g 指令，最后好像不好使，直接手动安装。<a target="_blank" rel="noopener" href="https://www.mintimate.cn/2021/07/26/nvmNode/">参考</a>这个就行了。上面帖子是在 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12h411z7Kq">B 站</a>时候发现的。B 站上此<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1j44y1H7YF?spm_id_from=333.337.search-card.all.click">视频</a>也讲解了如何安装,背景音乐很好听！</p>
 <p>12、<code>nvm</code> 本机安装此依赖包，可以切换 node 版本，（场景：有一些老项目是 node8.*版本，有 bug 了需要排除，但是开发电脑上大多数项目都是高版本的 node10 以上），固需要此依赖包进行切换 node 版本调试</p>
 <p>13、<code>nvm</code> 安装就按照第 11 条的地址即可，cmd 命令下，执行 nrm 显示命令 options。补充：<code>nvm ls</code>： 展示本机 has installed node list；<code>nvm ls available</code>：展示的是官方已发布的 node 版本列表，node 官网上<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/package-manager/#windows">下载</a>的教程，感觉不是很友好！</p>
-<h3 id="yarn-npm-list-区别"><a href="#yarn-npm-list-区别" class="headerlink" title="yarn npm list 区别"></a>yarn npm list 区别</h3><p>1、如下图：<br><img src="https://file.798run.top/img/blog/20201225/compare-yarn-npm-list.png" alt="compare-yarn-npm-list"><br>2、我个人理解 npm list、yarn list 首先读取项目内的 package-lock.json、yarn-lock.json 文件进而把依赖结构树展示出来。疑问：为啥我在 vue-cli-raw 项目（有农场登陆使用 yarn）中使用 npm ls 没有罗列出依赖树，但是我单独下载一下 vue-cli-raw，即使使用了 yarn，执行 npm ls 也可以罗列出依赖结构？</p>
-<h3 id="linux-上-node-杂集"><a href="#linux-上-node-杂集" class="headerlink" title="linux 上 node 杂集"></a>linux 上 node 杂集</h3><p>1、设置 npm 淘宝镜像源 npm config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org/</a><br>2、设置 npm 官网镜像源 npm config set registry <a target="_blank" rel="noopener" href="https://registry.npmjs.org/">https://registry.npmjs.org/</a><br>3、设置 yarn 淘宝镜像源 yarn config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org/</a><br>4、设置 yarn 淘宝镜像源 yarn config set registry <a target="_blank" rel="noopener" href="https://registry.npmjs.org/">https://registry.npmjs.org/</a><br>5、在 Linux 上查找 .npmrc 文件地址 find / -name .npmrc 查询到 2 个：/root/nodejs12.18.3/lib/node_modules/npm/.npmrc || /root/.npmrc<br>6、在 Linux 上查找 .yarnrc 文件地址 find / -name .yarnrc =&gt; /usr/local/share/.yarnrc</p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>1、一般大家都是喜欢设置为淘宝镜像，进而修改了<code>~/.npmrc</code>、<code>~/.yarnrc</code> 但在 git clone 公司项目后，需查看一下 yarn.lock 中用的是什么镜像源，否则就会把整个 yarn.lock 文件修改，这样导致本地与公司的配置文件不一致！</p>
-<h3 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h3><ul>
-<li><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/dpGN0ra3Tj2_TjlRouDISA">聊聊 CommonJS 与 ES6 Module 的使用与区别</a></p>
+<h3 id="yarn-npm-list-区别">yarn npm list 区别</h3>
+<p>1、如下图：<br>
+<img src="https://file.798run.top/img/blog/20201225/compare-yarn-npm-list.png" alt="compare-yarn-npm-list"><br>
+2、我个人理解 npm list、yarn list 首先读取项目内的 package-lock.json、yarn-lock.json 文件进而把依赖结构树展示出来。疑问：为啥我在 vue-cli-raw 项目（有农场登陆使用 yarn）中使用 npm ls 没有罗列出依赖树，但是我单独下载一下 vue-cli-raw，即使使用了 yarn，执行 npm ls 也可以罗列出依赖结构？</p>
+<h3 id="linux-上-node-杂集">linux 上 node 杂集</h3>
+<p>1、设置 npm 淘宝镜像源 npm config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org/</a><br>
+2、设置 npm 官网镜像源 npm config set registry <a target="_blank" rel="noopener" href="https://registry.npmjs.org/">https://registry.npmjs.org/</a><br>
+3、设置 yarn 淘宝镜像源 yarn config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org/</a><br>
+4、设置 yarn 淘宝镜像源 yarn config set registry <a target="_blank" rel="noopener" href="https://registry.npmjs.org/">https://registry.npmjs.org/</a><br>
+5、在 Linux 上查找 .npmrc 文件地址 find / -name .npmrc 查询到 2 个：/root/nodejs12.18.3/lib/node_modules/npm/.npmrc || /root/.npmrc<br>
+6、在 Linux 上查找 .yarnrc 文件地址 find / -name .yarnrc =&gt; /usr/local/share/.yarnrc</p>
+<h3 id="注意事项">注意事项</h3>
+<p>1、一般大家都是喜欢设置为淘宝镜像，进而修改了<code>~/.npmrc</code>、<code>~/.yarnrc</code> 但在 git clone 公司项目后，需查看一下 yarn.lock 中用的是什么镜像源，否则就会把整个 yarn.lock 文件修改，这样导致本地与公司的配置文件不一致！</p>
+<h3 id="相关文档">相关文档</h3>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/dpGN0ra3Tj2_TjlRouDISA">聊聊 CommonJS 与 ES6 Module 的使用与区别</a></p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/foreverlin/p/10189069.html">favicon.ico 请求处理</a></p>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/foreverlin/p/10189069.html">favicon.ico 请求处理</a></p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011781521/article/details/53526737">NodeJS 搭建博客系统(四)使用模版引擎(node+express+ejs 做的一个 demo)</a></p>
+<li>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011781521/article/details/53526737">NodeJS 搭建博客系统(四)使用模版引擎(node+express+ejs 做的一个 demo)</a></p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/40e0fc8ca371">Node.js 从白痴到入门(四)：Express 和 EJS</a></p>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/40e0fc8ca371">Node.js 从白痴到入门(四)：Express 和 EJS</a></p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/rubylouvre/p/3421805.html">nodejs express template (模版)的使用 (ejs + express) 司徒正美</a></p>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/rubylouvre/p/3421805.html">nodejs express template (模版)的使用 (ejs + express) 司徒正美</a></p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24145735/article/details/50351132">该贴原生手写 node 的请求可查看其写法</a></p>
+<li>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24145735/article/details/50351132">该贴原生手写 node 的请求可查看其写法</a></p>
 </li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/12/Nodejs%E6%9D%82%E9%9B%86/" data-id="cm7a8n5ov001rtkvp8bhi4752" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/12/Nodejs%E6%9D%82%E9%9B%86/" data-id="cm7egel0z001tr0vp60pu2q2w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -241,21 +238,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="JS-判断对象是否为空"><a href="#JS-判断对象是否为空" class="headerlink" title="JS 判断对象是否为空"></a>JS 判断对象是否为空</h2><ol>
-<li><p>在开发会客厅预定逻辑，渲染门店列表时候后台返回的是一个 <code>对象</code>，之前是 <code>数组</code>，后台说自己不好处理，那我就对数据进行二次转换把。首先想到如何判断一个变量是<code>对象</code>还是<code>数组</code>呢？于是就使用最稳妥的办法：<code>const string = Object.prototype.toString.call(var)</code>，在对此结果进行 <code>string.indexOf(&#39;Object&#39;)</code>、<code>string.indexOf(&#39;Array&#39;)</code>、<code>string.includes(&#39;Object&#39;)</code>、<code>string.includes(&#39;Array&#39;)</code>进行判断！</p>
+        <h2 id="JS-判断对象是否为空">JS 判断对象是否为空</h2>
+<ol>
+<li>
+<p>在开发会客厅预定逻辑，渲染门店列表时候后台返回的是一个 <code>对象</code>，之前是 <code>数组</code>，后台说自己不好处理，那我就对数据进行二次转换把。首先想到如何判断一个变量是<code>对象</code>还是<code>数组</code>呢？于是就使用最稳妥的办法：<code>const string = Object.prototype.toString.call(var)</code>，在对此结果进行 <code>string.indexOf('Object')</code>、<code>string.indexOf('Array')</code>、<code>string.includes('Object')</code>、<code>string.includes('Array')</code>进行判断！</p>
 </li>
-<li><p>此时我又想到判断数组是否为空可以使用 <code>array.length &gt; 0</code>，那么怎么判断判断一个对象是否为空呢？</p>
+<li>
+<p>此时我又想到判断数组是否为空可以使用 <code>array.length &gt; 0</code>，那么怎么判断判断一个对象是否为空呢？</p>
 </li>
-<li><p>方法如下：</p>
+<li>
+<p>方法如下：</p>
 </li>
 </ol>
 <ul>
-<li><p>代码示例</p>
+<li>
+<p>代码示例</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (var i in obj) &#123;</span><br><span class="line">  return true  // 如果不为空，则会执行到这一步，返回true</span><br><span class="line">&#125;</span><br><span class="line">return false // 如果为空,返回 false</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>使用 es6 的方法 <code>Object.keys(var)</code> 该方法返回一个数组，若改数组的长度为 0 这说明为空对象！</p>
+<li>
+<p>使用 es6 的方法 <code>Object.keys(var)</code> 该方法返回一个数组，若改数组的长度为 0 这说明为空对象！</p>
 </li>
-<li><p>使用 JSON.stringify()，将 JavaScript 值转换为 JSON 字符串</p>
+<li>
+<p>使用 JSON.stringify()，将 JavaScript 值转换为 JSON 字符串</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (JSON.stringify(data) === &#x27;&#123;&#125;&#x27;) &#123;</span><br><span class="line">　　return false // 如果为空,返回false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return true // 如果不为空，则会执行到这一步，返回true</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -263,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/08/31/JS%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA/" data-id="cm7a8n5oh000vtkvp5ecu68ln" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/08/31/JS%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA/" data-id="cm7egel0n000yr0vpgh5xdmz6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -297,29 +301,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="4、Node-js-技术架构"><a href="#4、Node-js-技术架构" class="headerlink" title="4、Node.js 技术架构"></a>4、Node.js 技术架构</h2><ul>
+        <h2 id="4、Node-js-技术架构">4、Node.js 技术架构</h2>
+<ul>
 <li>0 课程简介</li>
 <li>1 JS 如何调用 C++</li>
 </ul>
-<h2 id="5、文件模块"><a href="#5、文件模块" class="headerlink" title="5、文件模块"></a>5、文件模块</h2><ul>
-<li><p>0 课程简介 √</p>
+<h2 id="5、文件模块">5、文件模块</h2>
+<ul>
+<li>
+<p>0 课程简介 √</p>
 </li>
-<li><p>1 本课目标 √</p>
+<li>
+<p>1 本课目标 √</p>
 </li>
-<li><p>2 创建 Node.js 命令行项目 √</p>
+<li>
+<p>2 创建 Node.js 命令行项目 √</p>
 </li>
-<li><p>3 实现创建功能 √</p>
+<li>
+<p>3 实现创建功能 √</p>
 </li>
-<li><p>3 封装优化代码 ×</p>
+<li>
+<p>3 封装优化代码 ×</p>
 </li>
 </ul>
-<h2 id="6、单元测试之文件模块"><a href="#6、单元测试之文件模块" class="headerlink" title="6、单元测试之文件模块"></a>6、单元测试之文件模块</h2><ul>
+<h2 id="6、单元测试之文件模块">6、单元测试之文件模块</h2>
+<ul>
 <li>0 课程简介</li>
 </ul>
-<h2 id="7、调试-Node-js-程序"><a href="#7、调试-Node-js-程序" class="headerlink" title="7、调试 Node.js 程序"></a>7、调试 Node.js 程序</h2><ul>
+<h2 id="7、调试-Node-js-程序">7、调试 Node.js 程序</h2>
+<ul>
 <li>0 课程简介</li>
 </ul>
-<h2 id="8、静态服务器"><a href="#8、静态服务器" class="headerlink" title="8、静态服务器"></a>8、静态服务器</h2><ul>
+<h2 id="8、静态服务器">8、静态服务器</h2>
+<ul>
 <li>0 课程简介</li>
 <li>1 代码 1</li>
 <li>2 配置 WebStorm 和 VSCode</li>
@@ -334,9 +348,14 @@
 <li>11 免费用 WebStorm 的途径</li>
 <li>12 客观题： http 模块</li>
 </ul>
-<h2 id="9、命令行翻译工具"><a href="#9、命令行翻译工具" class="headerlink" title="9、命令行翻译工具"></a>9、命令行翻译工具</h2><h2 id="10、操作数据库"><a href="#10、操作数据库" class="headerlink" title="10、操作数据库"></a>10、操作数据库</h2><h2 id="11、数据库基础知识"><a href="#11、数据库基础知识" class="headerlink" title="11、数据库基础知识"></a>11、数据库基础知识</h2><h2 id="12、Stream-流"><a href="#12、Stream-流" class="headerlink" title="12、Stream 流"></a>12、Stream 流</h2><ul>
+<h2 id="9、命令行翻译工具">9、命令行翻译工具</h2>
+<h2 id="10、操作数据库">10、操作数据库</h2>
+<h2 id="11、数据库基础知识">11、数据库基础知识</h2>
+<h2 id="12、Stream-流">12、Stream 流</h2>
+<ul>
 <li>0 课程简介</li>
-<li>1 三个例子了解 Stream<ul>
+<li>1 三个例子了解 Stream
+<ul>
 <li>1）例一讲解中使用了 ls -lh 显示文件大小，我在本地使用 git bash 没有显示出大小！</li>
 <li>2）第二个例子中 node 本身就占用了 8M 内存中又增加了 110M 一共就是 120M 左右，这一个请求就占用了 120M ，要是很多请求，内存就不够用了！所以此方法不是最佳方法，就引入了 stream 的概念。</li>
 <li>3）测试例子发现内存使用不超过 30M</li>
@@ -349,7 +368,10 @@
 <li>6 Transform 流举例</li>
 <li>7 总结</li>
 </ul>
-<h2 id="13、child-process"><a href="#13、child-process" class="headerlink" title="13、child_process"></a>13、child_process</h2><h2 id="14、总结"><a href="#14、总结" class="headerlink" title="14、总结"></a>14、总结</h2><h2 id="15、【Node-js-Web】Express-核心"><a href="#15、【Node-js-Web】Express-核心" class="headerlink" title="15、【Node.js Web】Express 核心"></a>15、【Node.js Web】Express 核心</h2><ul>
+<h2 id="13、child-process">13、child_process</h2>
+<h2 id="14、总结">14、总结</h2>
+<h2 id="15、【Node-js-Web】Express-核心">15、【Node.js Web】Express 核心</h2>
+<ul>
 <li>0 课程简介</li>
 <li>1 Web 框架的功能</li>
 <li>2 Hello Express</li>
@@ -362,23 +384,28 @@
 <li>9 错误处理</li>
 <li>10 客观题：Express 核心</li>
 </ul>
-<h2 id="16、【Node-js-Web】Express-全解"><a href="#16、【Node-js-Web】Express-全解" class="headerlink" title="16、【Node.js Web】Express 全解"></a>16、【Node.js Web】Express 全解</h2><ul>
+<h2 id="16、【Node-js-Web】Express-全解">16、【Node.js Web】Express 全解</h2>
+<ul>
 <li>0 课程简介</li>
 <li>1 Express.js 全解</li>
-<li>2 express.xxx API 讲解</li>
-<li>3 app.xxx API 讲解</li>
-<li>4 req.xxx API 讲解</li>
+<li>2 <a target="_blank" rel="noopener" href="http://express.xxx">express.xxx</a> API 讲解</li>
+<li>3 <a target="_blank" rel="noopener" href="http://app.xxx">app.xxx</a> API 讲解</li>
+<li>4 <a target="_blank" rel="noopener" href="http://req.xxx">req.xxx</a> API 讲解</li>
 <li>5 req.range 原理介绍</li>
 <li>6 选看：看老司机入坑如何自救</li>
-<li>7 res.xxx API 讲解</li>
-<li>8 router.xxx API 讲解</li>
+<li>7 <a target="_blank" rel="noopener" href="http://res.xxx">res.xxx</a> API 讲解</li>
+<li>8 <a target="_blank" rel="noopener" href="http://router.xxx">router.xxx</a> API 讲解</li>
 <li>9 总结 ＆ 系统学习法</li>
 <li>10 主观题：博客：Express API 总结</li>
 </ul>
-<h2 id="17、【Node-js-Web】Koa-全解"><a href="#17、【Node-js-Web】Koa-全解" class="headerlink" title="17、【Node.js Web】Koa 全解"></a>17、【Node.js Web】Koa 全解</h2><h2 id="33、【JS-专精】JS-代码规范"><a href="#33、【JS-专精】JS-代码规范" class="headerlink" title="33、【JS 专精】JS 代码规范"></a>33、【JS 专精】JS 代码规范</h2><ol>
-<li><p>无歧义 &gt; 简洁</p>
+<h2 id="17、【Node-js-Web】Koa-全解">17、【Node.js Web】Koa 全解</h2>
+<h2 id="33、【JS-专精】JS-代码规范">33、【JS 专精】JS 代码规范</h2>
+<ol>
+<li>
+<p>无歧义 &gt; 简洁</p>
 </li>
-<li><p>绝对不要用</p>
+<li>
+<p>绝对不要用</p>
 <ul>
 <li>全局变量</li>
 <li>var 声明</li>
@@ -386,19 +413,22 @@
 <li>包装类型 String / Boolean</li>
 </ul>
 </li>
-<li><p>有些人不用</p>
+<li>
+<p>有些人不用</p>
 <ul>
 <li>class / new / this</li>
 <li>比如 ReactHooks 那帮人</li>
 </ul>
 </li>
-<li><p>用的人不多的，尽量少用</p>
+<li>
+<p>用的人不多的，尽量少用</p>
 <ul>
 <li>symbol / generator / iterator</li>
 <li>反射</li>
 </ul>
 </li>
-<li><p>一定要用</p>
+<li>
+<p>一定要用</p>
 <ul>
 <li>===</li>
 <li>…原算符</li>
@@ -408,7 +438,8 @@
 <li>Promise await</li>
 </ul>
 </li>
-<li><p>可以使用</p>
+<li>
+<p>可以使用</p>
 <ul>
 <li>class</li>
 <li>getter / setter</li>
@@ -416,31 +447,45 @@
 <li>Proxy</li>
 </ul>
 </li>
-<li><p>存在问题但可用</p>
+<li>
+<p>存在问题但可用</p>
 <ul>
 <li>箭头函数</li>
 <li>数组 Api + Polyfill</li>
 </ul>
 </li>
-<li><p>存在问题但可用</p>
+<li>
+<p>存在问题但可用</p>
 <ul>
-<li>对代码进行翻译的注释 ×</li>
-<li>对代码进行总结的注释 × （时间推移，注释与业务逻辑不匹配从而引起歧义）</li>
-<li>对代 bug 进行分析的注释 √</li>
-<li>对参考来源的注释 √</li>
-<li>对潜在问题的警告的注释 √</li>
-<li>发泄情绪的注释 ×</li>
+<li>
+<p>对代码进行翻译的注释 ×</p>
+</li>
+<li>
+<p>对代码进行总结的注释 × （时间推移，注释与业务逻辑不匹配从而引起歧义）</p>
+</li>
+<li>
+<p>对代 bug 进行分析的注释 √</p>
+</li>
+<li>
+<p>对参考来源的注释 √</p>
+</li>
+<li>
+<p>对潜在问题的警告的注释 √</p>
+</li>
+<li>
+<p>发泄情绪的注释 ×</p>
+</li>
+<li>
+<p>数组 Api + Polyfill</p>
+</li>
 </ul>
 </li>
 </ol>
-<ul>
-<li>数组 Api + Polyfill</li>
-</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/28/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" data-id="cm7a8n5ql004ptkvp74oq0v8z" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/28/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" data-id="cm7egel2f004qr0vpgu5v45qo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li></ul>
@@ -477,21 +522,23 @@
         <blockquote>
 <p>记录一次有关 D_N_S 范畴的知识</p>
 </blockquote>
-<h2 id="1、github-不能打开部分图片"><a href="#1、github-不能打开部分图片" class="headerlink" title="1、github 不能打开部分图片"></a>1、github 不能打开部分图片</h2><p>在访问 github 时候，一些图片一直打不开看着很难受，在没有 <code>crosss the greate wall</code> 情况下，于是找到的方法是：配置 host 。于是配置如下：</p>
+<h2 id="1、github-不能打开部分图片">1、github 不能打开部分图片</h2>
+<p>在访问 github 时候，一些图片一直打不开看着很难受，在没有 <code>crosss the greate wall</code> 情况下，于是找到的方法是：配置 host 。于是配置如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">172.217.160.0	www.google.com.hk</span><br><span class="line"></span><br><span class="line">199.232.68.133 raw.githubusercontent.com</span><br><span class="line"></span><br><span class="line">151.101.56.133 avatars0.githubusercontent.com</span><br><span class="line">151.101.56.133 avatars1.githubusercontent.com</span><br><span class="line">151.101.56.133 avatars2.githubusercontent.com</span><br><span class="line">151.101.56.133 avatars3.githubusercontent.com</span><br><span class="line">151.101.56.133	avatars4.githubusercontent.com</span><br><span class="line"></span><br><span class="line">151.101.56.133	avatars5.githubusercontent.com</span><br><span class="line">151.101.56.133	avatars6.githubusercontent.com</span><br><span class="line">151.101.56.133	avatars7.githubusercontent.com</span><br><span class="line">151.101.56.133	avatars8.githubusercontent.com</span><br></pre></td></tr></table></figure>
-
 <p>图片不能打开的问题已解决！但发现 <a target="_blank" rel="noopener" href="https://api.github.com/_private/browser/stats">https://api.github.com/_private/browser/stats</a> 链接不能访问，一直提示 403 rate limit exceeded。很少见！</p>
-<h2 id="2、思考-api-github-com-不能访问的原因"><a href="#2、思考-api-github-com-不能访问的原因" class="headerlink" title="2、思考 api.github.com 不能访问的原因"></a>2、思考 api.github.com 不能访问的原因</h2><p>我直接配置 host 不就完事了， 于是:</p>
+<h2 id="2、思考-api-github-com-不能访问的原因">2、思考 <a target="_blank" rel="noopener" href="http://api.github.com">api.github.com</a> 不能访问的原因</h2>
+<p>我直接配置 host 不就完事了， 于是:</p>
 <p><img src="https://file.798run.top/img/blog/20200722/api.github.png" alt="api.github.png"></p>
 <p>随后配置 D_N_S 依然是没用！于是打开访问助手，直接访问 <a target="_blank" rel="noopener" href="https://api.github.com/_private/browser/stats">https://api.github.com/_private/browser/stats</a> ，看到返回的信息中有一个 ip，接着配置 host ，依然是不行！查到原因是：<a target="_blank" rel="noopener" href="https://www.errorvault.com/en/troubleshooting/runtime-errors/google-inc/picasa/error-403_rate-limit-exceeded">How to fix the Runtime Error 403 Rate-limit exceeded</a>、<a target="_blank" rel="noopener" href="https://bugxia.com/1234.html">解决 gdrive 报错 Error 403: Rate Limit Exceeded</a></p>
-<h2 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h2><ul>
-<li>访问助手使用，还没有我配置 host =&gt; 151.101.56.133 avatars0.githubusercontent.com 访问快！还想收费这也太不要脸了！</li>
+<h2 id="3、总结">3、总结</h2>
+<ul>
+<li>访问助手使用，还没有我配置 host =&gt; 151.101.56.133 <a target="_blank" rel="noopener" href="http://avatars0.githubusercontent.com">avatars0.githubusercontent.com</a> 访问快！还想收费这也太不要脸了！</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/22/D_N_S%E8%AE%B0%E5%BD%95/" data-id="cm7a8n5o7000ftkvpacauhlqp" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/22/D_N_S%E8%AE%B0%E5%BD%95/" data-id="cm7egel0c000hr0vp6u5k7lmj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -528,18 +575,22 @@
         <blockquote>
 <p>总结一下数据类型转换</p>
 </blockquote>
-<h2 id="1、数据类型检测常用方法"><a href="#1、数据类型检测常用方法" class="headerlink" title="1、数据类型检测常用方法"></a>1、数据类型检测常用方法</h2><ul>
+<h2 id="1、数据类型检测常用方法">1、数据类型检测常用方法</h2>
+<ul>
 <li>type of</li>
 <li>instanceof</li>
 <li>constructor</li>
 <li>Object.prototype.toString.call()</li>
 </ul>
-<h2 id="2、type-of"><a href="#2、type-of" class="headerlink" title="2、type of"></a>2、type of</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type of NaN  // =&gt; number</span><br><span class="line"></span><br><span class="line">type of function() &#123;&#125;  // =&gt; function</span><br><span class="line">type of BigInt(10)  // =&gt; bigint</span><br><span class="line">type of null  // =&gt; object 计算机遗留的 bug 存储时候是二进制开始；000默认是对象，</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="3、其他类型转换为-Number-类型"><a href="#3、其他类型转换为-Number-类型" class="headerlink" title="3、其他类型转换为 Number 类型"></a>3、其他类型转换为 Number 类型</h2><ul>
-<li><p>需要特定转换为 Number</p>
+<h2 id="2、type-of">2、type of</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type of NaN  // =&gt; number</span><br><span class="line"></span><br><span class="line">type of function() &#123;&#125;  // =&gt; function</span><br><span class="line">type of BigInt(10)  // =&gt; bigint</span><br><span class="line">type of null  // =&gt; object 计算机遗留的 bug 存储时候是二进制开始；000默认是对象，</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="3、其他类型转换为-Number-类型">3、其他类型转换为 Number 类型</h2>
 <ul>
-<li><p>Number([val])</p>
+<li>
+<p>需要特定转换为 Number</p>
+<ul>
+<li>
+<p>Number([val])</p>
 <ul>
 <li>Number(‘’) // 0</li>
 <li>Number(‘10’) // 10</li>
@@ -553,7 +604,8 @@
 <li>Number({name: 1}) // NaN 把对象转换为数字，需要隐式依次执行 valueOf、toString、在转换为数字，不满足转换为数字的对象输出 NaN</li>
 </ul>
 </li>
-<li><p>parseInt / parseFloat([val])</p>
+<li>
+<p>parseInt / parseFloat([val])</p>
 <ul>
 <li>把转换值先转换为字符串</li>
 <li>从字符串左侧第一个字符开始查找，若遇到非有效数字，停止查找。把找到的有效数字字符串转换为数字并返回！若是一个没有找到就返回 NaN</li>
@@ -562,25 +614,34 @@
 </li>
 </ul>
 </li>
-<li><p>隐式转换为（浏览器内部先进行 Number 转换）</p>
+<li>
+<p>隐式转换为（浏览器内部先进行 Number 转换）</p>
 <ul>
-<li><p>isNaN([val])，首先走的 Number()</p>
+<li>
+<p>isNaN([val])，首先走的 Number()</p>
 </li>
-<li><p>数学运算(1+2 =&gt; 3。+出现在字符串前后，该表达式直接变成了字符串拼接，如：’hi’ + 9 =&gt; hi9, 9变成字符串与 ‘hi’ 相加。{age: 20} + 9，对象与数字相加，对象要转换数字（转换为数字之前首先要转换字符串，又变成字符串拼接了），[object Object]9。[‘hi’]+1 =&gt; hi1。[1,2,3]+1 =&gt; “1,2,31”。[{}]+1 =&gt; [object Object]1  </p>
+<li>
+<p>数学运算(1+2 =&gt; 3。+出现在字符串前后，该表达式直接变成了字符串拼接，如：‘hi’ + 9 =&gt; hi9, 9变成字符串与 ‘hi’ 相加。{age: 20} + 9，对象与数字相加，对象要转换数字（转换为数字之前首先要转换字符串，又变成字符串拼接了），[object Object]9。[‘hi’]+1 =&gt; hi1。[1,2,3]+1 =&gt; “1,2,31”。[{}]+1 =&gt; [object Object]1</p>
 </li>
-<li><p>注意：针对上面的例子，有 + 号的“算术”表达式，也有特殊的情况。如 {} + 0 =&gt; 0，此时解析器把 {} 当成一个代码块，于是就变成了 +0 =&gt; 0；({} + 0) 会参与到数学运算中，结果是：[object Object]0；0 + {} 这种情况是数学运算，结果是：0[object Object]</p>
+<li>
+<p>注意：针对上面的例子，有 + 号的“算术”表达式，也有特殊的情况。如 {} + 0 =&gt; 0，此时解析器把 {} 当成一个代码块，于是就变成了 +0 =&gt; 0；({} + 0) 会参与到数学运算中，结果是：[object Object]0；0 + {} 这种情况是数学运算，结果是：0[object Object]</p>
 </li>
-<li><p>== 运算（对象==字符串：对象转为字符串在进行比较；*==*都是转为数字在进行比较）</p>
+<li>
+<p>== 运算（对象==字符串：对象转为字符串在进行比较；*==*都是转为数字在进行比较）</p>
 </li>
 </ul>
 </li>
-<li><p>对象转换为数字：对象 =&gt; str =&gt; number</p>
+<li>
+<p>对象转换为数字：对象 =&gt; str =&gt; number</p>
 </li>
 </ul>
-<h2 id="4、其他类型转换为-String-类型"><a href="#4、其他类型转换为-String-类型" class="headerlink" title="4、其他类型转换为 String 类型"></a>4、其他类型转换为 String 类型</h2><ul>
-<li><p>能使用的方法：<code>toString()</code>、<code>String()</code></p>
+<h2 id="4、其他类型转换为-String-类型">4、其他类型转换为 String 类型</h2>
+<ul>
+<li>
+<p>能使用的方法：<code>toString()</code>、<code>String()</code></p>
 </li>
-<li><p>隐式转换（一般都是调用 <code>toString()</code>）</p>
+<li>
+<p>隐式转换（一般都是调用 <code>toString()</code>）</p>
 <ul>
 <li>String(1) =&gt; “1”</li>
 <li>String(null) =&gt; “null”</li>
@@ -593,30 +654,37 @@
 </ul>
 </li>
 </ul>
-<h2 id="5、其他类型转换为-Boolean-类型"><a href="#5、其他类型转换为-Boolean-类型" class="headerlink" title="5、其他类型转换为 Boolean 类型"></a>5、其他类型转换为 Boolean 类型</h2><ul>
-<li><p>给予一下方式可以把其他类型转化为布尔</p>
+<h2 id="5、其他类型转换为-Boolean-类型">5、其他类型转换为 Boolean 类型</h2>
+<ul>
+<li>
+<p>给予一下方式可以把其他类型转化为布尔</p>
 <ul>
 <li>! 转化为布尔值后取反</li>
 <li>!! 转化为布尔</li>
 </ul>
 </li>
-<li><p>隐式转化</p>
+<li>
+<p>隐式转化</p>
 <ul>
 <li>再循环或条件判断中，条件处理的结果都是布尔</li>
 </ul>
 </li>
-<li><p>规则：只有 0、null、false、undefined、’’ 五个值变成 false 其余都是变为 true</p>
+<li>
+<p>规则：只有 0、null、false、undefined、‘’ 五个值变成 false 其余都是变为 true</p>
 </li>
 </ul>
-<h2 id="6、-比较过程中数据转换规则"><a href="#6、-比较过程中数据转换规则" class="headerlink" title="6、== 比较过程中数据转换规则"></a>6、== 比较过程中数据转换规则</h2><ul>
-<li><p>类型一样的几个特殊情况</p>
+<h2 id="6、-比较过程中数据转换规则">6、== 比较过程中数据转换规则</h2>
+<ul>
+<li>
+<p>类型一样的几个特殊情况</p>
 <ul>
 <li>[] == [] // false 比较的是堆内存地址</li>
 <li>{} == {} // false 比较的是堆内存地址</li>
 <li>NaN == NaN // false 比较的是堆内存地址</li>
 </ul>
 </li>
-<li><p>类型不一样的转换规则</p>
+<li>
+<p>类型不一样的转换规则</p>
 <ul>
 <li>null == undefined =&gt; true，剩下 null / undefined 与其他任何数据类型都不想等</li>
 <li>字符串 == 对象，对象 =&gt; str 在进行比较</li>
@@ -624,26 +692,33 @@
 </ul>
 </li>
 </ul>
-<h2 id="7、特殊情况"><a href="#7、特殊情况" class="headerlink" title="7、特殊情况"></a>7、特殊情况</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let result = 10 + false + undefined + [] + &#x27;Tencent&#x27; + null + true + &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="7、特殊情况">7、特殊情况</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let result = 10 + false + undefined + [] + &#x27;Tencent&#x27; + null + true + &#123;&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>看到此题，首先还是数学运算的范畴，无非就是有一些特殊情况，那就按照规则来处理。</p>
+<li>
+<p>看到此题，首先还是数学运算的范畴，无非就是有一些特殊情况，那就按照规则来处理。</p>
 </li>
-<li><p>首先 10 + false =&gt; 10 + 0 =&gt; 10</p>
+<li>
+<p>首先 10 + false =&gt; 10 + 0 =&gt; 10</p>
 </li>
-<li><p>其次 10 + undefined，undefined 经过 Number 处理之后变成 NaN，10 + NaN 依旧是 NaN。</p>
+<li>
+<p>其次 10 + undefined，undefined 经过 Number 处理之后变成 NaN，10 + NaN 依旧是 NaN。</p>
 </li>
-<li><p>其次 NaN + []，[] 经过 valueOf 还是 []，在经过 toString()，变成 ‘’，只要 + 左右出现字符串，就是字符串拼接，则结果：NaN</p>
+<li>
+<p>其次 NaN + []，[] 经过 valueOf 还是 []，在经过 toString()，变成 ‘’，只要 + 左右出现字符串，就是字符串拼接，则结果：NaN</p>
 </li>
-<li><p>其次 NaN + ‘Tencent’ =&gt; ‘NaNTencent’</p>
+<li>
+<p>其次 NaN + ‘Tencent’ =&gt; ‘NaNTencent’</p>
 </li>
-<li><p>余下都是字符串拼接了 ‘NaNTencent’ + null + true + {} =&gt; “NaNTencentnulltrue[object Object]”</p>
+<li>
+<p>余下都是字符串拼接了 ‘NaNTencent’ + null + true + {} =&gt; “NaNTencentnulltrue[object Object]”</p>
 </li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" data-id="cm7a8n5qz0054tkvp1yd89vhx" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" data-id="cm7egel2w0058r0vpa2hz401k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -680,14 +755,16 @@
         <blockquote>
 <p>每次看到枚举，枚举。到底他妈的啥意思，无非就是前辈们翻译过来的一个词而已。翻译的这么高大上，本质就是列举出来之意！今天我们讨论一下此名称在 JS 中的含义！</p>
 </blockquote>
-<h4 id="1-枚举是什么？"><a href="#1-枚举是什么？" class="headerlink" title="1. 枚举是什么？"></a>1. 枚举是什么？</h4><ul>
-<li><p>枚举指对象的属性是否可以遍历出来，简单说，是否可被列举出来。这就是：可枚举性（<code>propertyIsEnumerable</code>），propertyIsEnumerable = true，表示可以被列举，反之，表示不可枚举！propertyIsEnumerable 决定了这个属性能否被 for…in 查找遍历到。</p>
+<h4 id="1-枚举是什么？">1. 枚举是什么？</h4>
+<ul>
+<li>
+<p>枚举指对象的属性是否可以遍历出来，简单说，是否可被列举出来。这就是：可枚举性（<code>propertyIsEnumerable</code>），propertyIsEnumerable = true，表示可以被列举，反之，表示不可枚举！propertyIsEnumerable 决定了这个属性能否被 for…in 查找遍历到。</p>
 </li>
-<li><p>JS 中基本包装类型（Boolean,Number 和 String）的原型属性是不可枚举的。基本包装类型还可以像引用类型一样通过对象的方法访问它自带的一些方法，但是不能像引用类型那样自定义方法。看代码：</p>
+<li>
+<p>JS 中基本包装类型（Boolean,Number 和 String）的原型属性是不可枚举的。基本包装类型还可以像引用类型一样通过对象的方法访问它自带的一些方法，但是不能像引用类型那样自定义方法。看代码：</p>
 </li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var num = new Number(123);</span><br><span class="line">for(var pro in num) &#123;</span><br><span class="line">    console.log(&quot;num.&quot; + pro + &quot; = &quot; + num[pro]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>打印效果是空白，因为 Number 中内置的属性是不可枚举的。但是文档有一点的不准确，new String(‘hello’)，有打印结果！</p>
 <ul>
 <li>判断一个属性是否可枚举，用 <code>Object.propertyIsEnumerable()</code> 来判断。注意：如果需要判断的属性在 object 的原型链上不管它是否可枚举，<code>Object.propertyIsEnumerable()</code> 始终返回 false。</li>
@@ -695,8 +772,10 @@
 <blockquote>
 <p><code>propertyIsEnumerable()</code> 方法返回一个布尔值，表示指定的属性是否可枚举。但是在原型链上 propertyIsEnumerable 不被考虑。<code>hasOwnProperty()</code> 方法会返回一个布尔值，指示对象自身属性中是否具有指定的属性。</p>
 </blockquote>
-<h4 id="2-枚举性的作用"><a href="#2-枚举性的作用" class="headerlink" title="2. 枚举性的作用"></a>2. 枚举性的作用</h4><ul>
-<li><p>属性的枚举性会影响以下三个函数的结果：</p>
+<h4 id="2-枚举性的作用">2. 枚举性的作用</h4>
+<ul>
+<li>
+<p>属性的枚举性会影响以下三个函数的结果：</p>
 <ul>
 <li>for in</li>
 <li>Object.keys()</li>
@@ -706,32 +785,30 @@
 </ul>
 <p>例子：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function enumer()&#123;</span><br><span class="line">    this.a = &#x27;我是对象本身就有的属性&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">enumer.prototype.b = &#x27;我是通过对象原型挂载的属性&#x27;</span><br><span class="line"></span><br><span class="line">let fn = new enumer()</span><br><span class="line"></span><br><span class="line">Object.defineProperty(fn,&#x27;c&#x27;,&#123;</span><br><span class="line">    value:&#x27;我是通过Object.defineProperty方法添加的可枚举属性&#x27;,</span><br><span class="line">    enumerable:true</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>for in 执行的结果是：</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (const key in fn) &#123;</span><br><span class="line">    console.log(key) // a b c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>for…in 循环可以枚举(遍历)出对象本身具有的属性，通过 Object.defineProperty()方法加的可枚举属性，或者通过原型对象绑定的可以枚举属性</p>
 <ul>
 <li>Object.keys() 执行的结果是：</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object.keys(fn) //  [a c]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>Object.keys()方法可以枚举 <strong>实例</strong> 对象本身的属性和通过 Object.defineProperty()添加的可枚举属性，即不会枚举原型链上的属性</p>
 <ul>
 <li>JSON.stringify() 执行的结果是：</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JSON.stringify(fn) // &#123;&quot;a&quot;:&quot;我是对象本身就有的属性&quot;,&quot;c&quot;:&quot;我是通过Object.defineProperty方法添加的可枚举属性&quot;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>JSON.stringify()方法只能序列化 <strong>实例</strong> 对象本身的属性和通过 Object.defineProperty()添加的可枚举属性为 JSON 对象，即不会序化原型链上的属性</p>
-<h4 id="3、为什么要加上实例二字呢？请看下面"><a href="#3、为什么要加上实例二字呢？请看下面" class="headerlink" title="3、为什么要加上实例二字呢？请看下面"></a>3、为什么要加上实例二字呢？请看下面</h4><p><img src="https://file.798run.top/img/blog/20200715/object_keys.png" alt="为什么要加上实例二字？"></p>
-<h4 id="4、参考文档"><a href="#4、参考文档" class="headerlink" title="4、参考文档"></a>4、参考文档</h4><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/01a8ae8ac62c">JS 中的枚举和不可枚举</a></p>
+<h4 id="3、为什么要加上实例二字呢？请看下面">3、为什么要加上实例二字呢？请看下面</h4>
+<p><img src="https://file.798run.top/img/blog/20200715/object_keys.png" alt="为什么要加上实例二字？"></p>
+<h4 id="4、参考文档">4、参考文档</h4>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/01a8ae8ac62c">JS 中的枚举和不可枚举</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/15/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE/" data-id="cm7a8n5r6005ctkvpf0j2287n" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/15/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE/" data-id="cm7egel2z005dr0vp61o7586s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -769,37 +846,50 @@
 <p>我在写 for in 与 for of 的区别文档时候，在 MDN 上看到一直在迭代、枚举其官方定义不是很清楚，现总结一下“循环与迭代”的相关文档</p>
 </blockquote>
 <ul>
-<li><ol>
+<li>
+<ol>
 <li>首先打开 MDN 找到 [循环与迭代])(<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration</a>) 的讲解！讲解分了两个大类：循环、迭代！</li>
 </ol>
 </li>
 </ul>
 <ul>
-<li><ol start="2">
+<li>
+<ol start="2">
 <li>循环。在 JS 中循环语句有：</li>
 </ol>
 <ul>
-<li><p>for 语句</p>
+<li>
+<p>for 语句</p>
 </li>
-<li><p>do…while 语句</p>
+<li>
+<p>do…while 语句</p>
 </li>
-<li><p>while 语句</p>
+<li>
+<p>while 语句</p>
 </li>
-<li><p>labeled 语句</p>
+<li>
+<p>labeled 语句</p>
 </li>
-<li><p>break 语句</p>
+<li>
+<p>break 语句</p>
 </li>
-<li><p>continue 语句</p>
+<li>
+<p>continue 语句</p>
 </li>
-<li><p>for…in 语句</p>
+<li>
+<p>for…in 语句</p>
 </li>
-<li><p>for…of 语句</p>
+<li>
+<p>for…of 语句</p>
 <ul>
-<li><p>但是我脑子里想到一个 forEach 方法，为啥 MDN 没有列举出来，自查一下，原来该方法是 Array、Set 等对象原型上的挂载的一个方法！</p>
+<li>
+<p>但是我脑子里想到一个 forEach 方法，为啥 MDN 没有列举出来，自查一下，原来该方法是 Array、Set 等对象原型上的挂载的一个方法！</p>
 </li>
-<li><p>在文档说到：for…in 语句循环一个指定的变量来循环一个对象所有可枚举的属性。JavaScript 会为每一个不同的属性执行指定的语句。虽然使用 for…in 来迭代数组 Array 元素听起来很诱人，但是它返回的东西除了数字索引外，还有可能是你自定义的属性名字。</p>
+<li>
+<p>在文档说到：for…in 语句循环一个指定的变量来循环一个对象所有可枚举的属性。JavaScript 会为每一个不同的属性执行指定的语句。虽然使用 for…in 来迭代数组 Array 元素听起来很诱人，但是它返回的东西除了数字索引外，还有可能是你自定义的属性名字。</p>
 </li>
-<li><p>for…of 语句在可迭代对象（包括 Array、Map、Set、arguments 等等）上创建了一个循环，对值的每一个独特属性调用一次迭代。</p>
+<li>
+<p>for…of 语句在可迭代对象（包括 Array、Map、Set、arguments 等等）上创建了一个循环，对值的每一个独特属性调用一次迭代。</p>
 </li>
 </ul>
 <ul>
@@ -817,7 +907,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/15/%E5%BE%AA%E7%8E%AF%E4%B8%8E%E8%BF%AD%E4%BB%A3/" data-id="cm7a8n5qy0053tkvpfgxp72yg" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/15/%E5%BE%AA%E7%8E%AF%E4%B8%8E%E8%BF%AD%E4%BB%A3/" data-id="cm7egel2t0054r0vp87h6046o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -851,39 +941,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1、for-of-循环"><a href="#1、for-of-循环" class="headerlink" title="1、for of 循环"></a>1、for of 循环</h2><p>我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下：</p>
+        <h2 id="1、for-of-循环">1、for of 循环</h2>
+<p>我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const digits = [1, 2, 3];</span><br><span class="line"></span><br><span class="line">for (const index in digits) &#123;</span><br><span class="line">  console.log(index, &#x27;--&#x27;, digits[index]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>这样一看，for in 挺好啊，对象与数组通吃！但，有一种场景 for in 就会出现问题。场景：开发过程中，你需要给数组中添加额外方法，如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.decimalfy = function() &#123;</span><br><span class="line">  for (let i = 0; i &lt; this.length; i++) &#123;</span><br><span class="line">    this[i] = this[i].toFixed(2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>此时循环上面的数组效果如下：</p>
 <p><img src="https://file.798run.top/img/blog/20200713/forin_proto.png" alt="for in 会循环出原型链上的属性"></p>
 <p>forin 直接把原型链上的方法也给循环了。为啥会出现此结果？因为 forin 循环访问所有可枚举的属性！既然 forin 在某些场景下出现我们不期望的结果！es6 就推出一个新的循环方法 for of！用于循环访问任何可迭代的数据类型，其编写方式和 for…in 循环的基本一样，只是将 in 替换为 of，可以忽略索引。于是我就写下了下面的代码：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const digits = [11, 12, 13];</span><br><span class="line"></span><br><span class="line">for (const index of digits) &#123;</span><br><span class="line">  console.log(index, &#x27;--&#x27;, digits[index]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>效果如下：</p>
 <p><img src="https://file.798run.top/img/blog/20200713/for_of.png" alt="for of 循环效果"></p>
 <p>这一看好怪！ 怎么有 undefined，index 怎么分别是 11, 12, 13。于是我想是不是我写的语法不对？我就直接在 MDN 上查，人家举例：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const array1 = [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;];</span><br><span class="line"></span><br><span class="line">for (const element of array1) &#123;</span><br><span class="line">  console.log(element);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// expected output: &quot;a&quot;</span><br><span class="line">// expected output: &quot;b&quot;</span><br><span class="line">// expected output: &quot;c&quot;</span><br></pre></td></tr></table></figure>
-
 <p>我发现自己理解错了，MDN 上 for of 的例子，压根就没有啥 index，人家直接使用的就是 element，恍然大悟明白，for of 就是直接给你把数组中的成员取出来了！所以我们也要按照 MDN 上写法使用该方法！</p>
 <p>此时脑袋中闪出一个想法，for of 既然这么强大，我能不能循环对象呢？于是直接写出下面代码：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var object = &#123;</span><br><span class="line">  name: &#x27;Tom&#x27;,</span><br><span class="line">  age: 19</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">for (const iterator of object) &#123;</span><br><span class="line">  console.log(iterator)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>遗憾的是出错了！错误：<code>Uncaught TypeError: object is not iterable</code> object 不是迭代类型。所以我们不能使用之循环 object！具体可细看 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of">MDN for…of</a></p>
 <p>一直看 MDN 上看到可枚举的属性，这个详细定义在哪？闲了细究！</p>
-<h2 id="2、import、export"><a href="#2、import、export" class="headerlink" title="2、import、export"></a>2、import、export</h2><ul>
-<li><p><strong>export</strong> 写 vue 时候，大家都习惯了 vue 的默认模板，在 script 里面我们直接 <code>export default &#123;&#125;</code>，还可以<code>export default function fn() &#123; return new Date().getTime() &#125;</code>。在项目中配置 api 时习惯这样写：<code>export const exchangeApi = &#39;/api/Toutiao/conversion</code>，我们还可以导出常量如：<code>export const PI = 3.14</code>、<code>export let APP_NAME = &quot;qiuguo&quot;</code>。若我们在一个 js 文件中写最开始声明一个 let host = ‘’，最后对其二次赋值，host = ‘<a target="_blank" rel="noopener" href="https://www.baidu.com&/#39;%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E8%BF%99%E6%A0%B7%E5%AF%BC%E5%87%BA">https://www.baidu.com&#39;，我们可以这样导出</a> <code>export &#123; host &#125;</code>。</p>
+<h2 id="2、import、export">2、import、export</h2>
+<ul>
+<li>
+<p><strong>export</strong> 写 vue 时候，大家都习惯了 vue 的默认模板，在 script 里面我们直接 <code>export default &#123;&#125;</code>，还可以<code>export default function fn() &#123; return new Date().getTime() &#125;</code>。在项目中配置 api 时习惯这样写：<code>export const exchangeApi = '/api/Toutiao/conversion</code>，我们还可以导出常量如：<code>export const PI = 3.14</code>、<code>export let APP_NAME = &quot;qiuguo&quot;</code>。若我们在一个 js 文件中写最开始声明一个 let host = ‘’，最后对其二次赋值，host = ‘<a target="_blank" rel="noopener" href="https://www.baidu.com">https://www.baidu.com</a>’，我们可以这样导出 <code>export &#123; host &#125;</code>。</p>
 </li>
-<li><p><strong>import</strong> 引入的逻辑简单，有一个场景，在一个文件中有 export default、有非 default 形式。我们可以这样简写：<code>import fn, &#123; name, PI, host &#125; from &quot;../components/demo.js&quot;;</code></p>
+<li>
+<p><strong>import</strong> 引入的逻辑简单，有一个场景，在一个文件中有 export default、有非 default 形式。我们可以这样简写：<code>import fn, &#123; name, PI, host &#125; from &quot;../components/demo.js&quot;;</code></p>
 </li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/13/ES6%E6%96%B0%E7%89%B9%E6%80%A7/" data-id="cm7a8n5o8000htkvpg44th8rv" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/13/ES6%E6%96%B0%E7%89%B9%E6%80%A7/" data-id="cm7egel0b000fr0vpddi9bs0t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -895,11 +984,148 @@
 
 
   
+    <article id="post-CSS中display总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-07-10T15:27:23.000Z" itemprop="datePublished">2020-07-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/">CSS中display总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<h3 id="CSS-中-display-有很多的属性值。记录一下">CSS 中 display 有很多的属性值。记录一下 !!!</h3>
+</blockquote>
+<h4 id="display-在-css-中包含很多属性。我们合理使用之能带来很好的效果。">display 在 css 中包含很多属性。我们合理使用之能带来很好的效果。</h4>
+<ul>
+<li>
+<ol>
+<li>display 的最常用的 none、block 就不在记录了。</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>display 在开发过程中，看到在写 gddyg crs 欢迎页时候使用 <code>display: flex</code> 时候，发现了 display: -webkit-box，很是疑问（缘由是项目中有 normalize.css 自动给加上 -webkit-box 了）于是查资料发下：</li>
+</ol>
+<ul>
+<li>
+<p>flex 是 2012 年的语法，也将是以后标准的语法，大部分浏览器已经实现了无前缀版本。</p>
+</li>
+<li>
+<p>box 是 2009 年的语法，已经过时，是需要加上对应前缀的。</p>
+</li>
+<li>
+<p>所以兼容性的代码，大致如下：</p>
+</li>
+</ul>
+<p>display: -webkit-box; /_ Chrome 4+, Safari 3.1, iOS Safari 3.2+ <em>/<br>
+display: -moz-box; /</em> Firefox 17- <em>/<br>
+display: -webkit-flex; /</em> Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 <em>/<br>
+display: -moz-flex; /</em> Firefox 18+ <em>/<br>
+display: -ms-flexbox; /</em> IE 10 <em>/<br>
+display: flex; /</em> Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ _/</p>
+<ul>
+<li>
+<p>都是当时各阶段草案命名。</p>
+</li>
+<li>
+<p>既然后出现的 flex 浏览器已经支持，个人感觉就没有必要在使用 box 了，再说 normalize.css 已经帮我们做了！</p>
+</li>
+<li>
+<p>参考博文 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/websmile/p/11607884.html">display：flex 和 display：box 有什么区别</a>！</p>
+</li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>flex 一些用法</li>
+</ol>
+<ul>
+<li>
+<p><strong>父元素的属性</strong></p>
+</li>
+<li>
+<p>妈的很容易忘记。不理会特殊复杂的情况。flex-direction 就是你的 item 排列方向。默认是水平排列，就别贱贱的写代码。若想主轴是垂直排列：写上 <code>flex-direction: column</code></p>
+</li>
+<li>
+<p>justify-content 属性：定义项目在主轴上的对齐方式。切记是主轴！<code>justify-content: flex-start | flex-end | center | left | right | space-between（两端对齐，项目之间间隔相等，C 端订房入住、离店、几晚可使用此属性值） | space-around（每个项目两侧的间隔相等，即使是first、last与父元素都有间隔） |</code> 这个还有很多，没写完但是不常用！</p>
+</li>
+<li>
+<p>align-items 属性：定义在交叉轴上的对齐方式，这个有一个单词是 items，可能认为是不止一个 item 所以加 items。<code>align-items: flex-start | flex-end | center | baseline | stretch;</code></p>
+</li>
+<li>
+<p>align-content 属性：定义多根轴线的对齐方式（如果项目只有一根轴线，该属性不起作用。所以容器必须设置 flex-wrap，flex-wrap 是写在父元素上的，一般也是不常用！<code>flex-wrap: nowrap | wrap | wrap-reverse;</code>）</p>
+</li>
+<li>
+<p>flex 中的子元素还有一个 order 写法，就是直接可以使用 order: 1。css 把子元素的位置按照你写的 order 顺序排列！个个感觉也没多大的用处，妈的不会把 子元素 顺序写好吗？非得要使用 order 吗？</p>
+</li>
+<li>
+<p><strong>子元素的属性</strong></p>
+</li>
+<li>
+<p>设置在项目上的属性也有 6 个。<br>
+order<br>
+flex-grow<br>
+flex-shrink<br>
+flex-basis<br>
+flex<br>
+align-sel</p>
+</li>
+<li>
+<p><strong>补记</strong>，在开发业问时遇到情况了，父元素写了 display: flex; 子元素默认 flex-shrink: 1，一般大家都是给子元素进行写了宽度，所以要给子元素添加 flex-shrink: 0；具体参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/cblx/p/12272729.html">帖子</a></p>
+</li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li>个人总结</li>
+</ol>
+<ul>
+<li>其实很多场景下我们就是简单的运用。例如我们在一个容易，想快速把里面一个图片垂直水平居中，直接就写了管它啥轴不轴的，直接：<code>justify-content: center; align-items: center;</code> 就完事了。</li>
+</ul>
+</li>
+<li>
+<ol start="5">
+<li>参考了解 [前端布局神器 display:flex] (<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qingchunshiguang/p/8011103.html">https://www.cnblogs.com/qingchunshiguang/p/8011103.html</a>)</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/" data-id="cm7egekzw0003r0vp9st83eh8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
 
 
   <nav id="page-nav">
+    <!-- &laquo; -->
+    <!-- &raquo; -->
     
-    <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">Next &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">Next</a>
   </nav>
 
 </section>
@@ -913,7 +1139,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
     </div>
   </div>
 
@@ -967,7 +1193,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2025 John Doe<br>
+      &copy; 2025 Andy Zhang<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -978,6 +1204,10 @@
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
   
 </nav>
     

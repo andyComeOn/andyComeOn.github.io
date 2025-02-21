@@ -5,13 +5,13 @@
   
 
   
-  <title>CSS字体换行总结 | Hexo</title>
+  <title>CSS字体换行总结 | 我的点滴记录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="在一些 UI 框架如 layui 的 col 中有默认的换行样式，主要是取决于 CSS 的三个属性 white-space 、word-break 、word-wrap(overflow-wrap) 下面分别记录一下。  HTML 中 white-space 问题总结  首先看下面的 html 代码： 1234567&lt;div id&#x3D;&quot;box&quot;&gt;  Hi&amp;nb">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS字体换行总结">
 <meta property="og:url" content="http://example.com/2019/12/10/CSS%E5%AD%97%E4%BD%93%E6%8D%A2%E6%80%BB%E7%BB%93%E8%A1%8C/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="我的点滴记录">
 <meta property="og:description" content="在一些 UI 框架如 layui 的 col 中有默认的换行样式，主要是取决于 CSS 的三个属性 white-space 、word-break 、word-wrap(overflow-wrap) 下面分别记录一下。  HTML 中 white-space 问题总结  首先看下面的 html 代码： 1234567&lt;div id&#x3D;&quot;box&quot;&gt;  Hi&amp;nb">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://file.798run.top/img/blog/20191210/ic_0.jpg">
@@ -23,13 +23,13 @@
 <meta property="og:image" content="https://file.798run.top/img/blog/20191210/ic_item2_2.jpg">
 <meta property="og:image" content="https://file.798run.top/img/blog/20191210/ic_item3_1.jpg">
 <meta property="article:published_time" content="2019-12-10T08:19:45.000Z">
-<meta property="article:modified_time" content="2025-02-06T01:54:41.212Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2025-02-21T06:11:24.739Z">
+<meta property="article:author" content="Andy Zhang">
 <meta property="article:tag" content="CSS相关">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://file.798run.top/img/blog/20191210/ic_0.jpg">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -50,7 +50,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">我的点滴记录</a>
       </h1>
       
     </div>
@@ -61,6 +61,10 @@
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
         
       </nav>
       <nav id="sub-nav">
@@ -104,7 +108,6 @@
 </blockquote>
 <p>首先看下面的 html 代码：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  Hi<span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span>,</span><br><span class="line">  This     is a incomprehensibilities long word.</span><br><span class="line">  <span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">  你好<span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span>，</span><br><span class="line">  这   是一个不可思议的长单词</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>我们要清楚，我们的浏览器都有一些默认的 CSS 样式，若我们对某个标签写了 CSS 样式，刚好覆盖着浏览器的默认样式，则浏览器会按照我们写的 CSS 进行渲染。上面代码我们只对 box 容器加宽加边框。其渲染效果：遇到 <code>&lt;br&gt;</code> 会换行，遇到 <code>&amp;nbsp;</code> 会保留一个空格，注 代码中我们故意在文字之间多敲上几个空格，但渲染效果还是按照一个空格渲染！如下图：</p>
 <p><img src="https://file.798run.top/img/blog/20191210/ic_0.jpg" alt="white-space默认值效果"></p>
 <p>接下来我们看下， 给它上面三个 css 属性赋值后会出现什么变化。</p>
@@ -136,12 +139,12 @@
 <p><code>word-break: keep-all;</code> 效果如下：</p>
 <p><img src="https://file.798run.top/img/blog/20191210/ic_item2_1.jpg" alt="word-break: keep-all 效果"></p>
 <ol>
-<li>解释：你写的 &nbsp; 继续给你渲染，但是它会根据你在文本中按下的空格（1 个或多个空格都按一个空格处理）把你的文本拆分不同文字段给你渲染，你的文字段若是有点大，会给你继续渲染即使超过了容器宽度也不换行。</li>
+<li>解释：你写的   继续给你渲染，但是它会根据你在文本中按下的空格（1 个或多个空格都按一个空格处理）把你的文本拆分不同文字段给你渲染，你的文字段若是有点大，会给你继续渲染即使超过了容器宽度也不换行。</li>
 </ol>
 <p><code>word-break: break-all;</code> 效果如下：</p>
 <p><img src="https://file.798run.top/img/blog/20191210/ic_item2_2.jpg" alt="word-break: break-all 效果"></p>
 <ol start="2">
-<li>解释：你写的 &nbsp; 继续给你渲染，其他的不管是英文单词还是中文、日韩文字都是直接给你截断。空格直接不渲染。这种方式有点粗暴，若是英文单词直接截断换行渲染阅读效果很差！但是我想在一个小容器中要是标签内容都是长数字、长中文，不影响阅读，使用这个属性也没啥不可以！</li>
+<li>解释：你写的   继续给你渲染，其他的不管是英文单词还是中文、日韩文字都是直接给你截断。空格直接不渲染。这种方式有点粗暴，若是英文单词直接截断换行渲染阅读效果很差！但是我想在一个小容器中要是标签内容都是长数字、长中文，不影响阅读，使用这个属性也没啥不可以！</li>
 </ol>
 <blockquote>
 <p>HTML 中 word-wrap(overflow-wrap) 问题总结</p>
@@ -159,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/10/CSS%E5%AD%97%E4%BD%93%E6%8D%A2%E6%80%BB%E7%BB%93%E8%A1%8C/" data-id="cm7a8n5nx0006tkvpfeg3a5ot" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/12/10/CSS%E5%AD%97%E4%BD%93%E6%8D%A2%E6%80%BB%E7%BB%93%E8%A1%8C/" data-id="cm7egel040007r0vpdbsj0cyf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -201,7 +204,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
     </div>
   </div>
 
@@ -255,7 +258,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2025 John Doe<br>
+      &copy; 2025 Andy Zhang<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -266,6 +269,10 @@
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
   
 </nav>
     

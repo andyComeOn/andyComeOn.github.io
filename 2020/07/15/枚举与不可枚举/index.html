@@ -5,24 +5,24 @@
   
 
   
-  <title>枚举与不可枚举 | Hexo</title>
+  <title>枚举与不可枚举 | 我的点滴记录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="每次看到枚举，枚举。到底他妈的啥意思，无非就是前辈们翻译过来的一个词而已。翻译的这么高大上，本质就是列举出来之意！今天我们讨论一下此名称在 JS 中的含义！  1. 枚举是什么？ 枚举指对象的属性是否可以遍历出来，简单说，是否可被列举出来。这就是：可枚举性（propertyIsEnumerable），propertyIsEnumerable &#x3D; true，表示可以被列举，反之，表示不可枚举！pr">
+  <meta name="description" content="每次看到枚举，枚举。到底他妈的啥意思，无非就是前辈们翻译过来的一个词而已。翻译的这么高大上，本质就是列举出来之意！今天我们讨论一下此名称在 JS 中的含义！  1. 枚举是什么？   枚举指对象的属性是否可以遍历出来，简单说，是否可被列举出来。这就是：可枚举性（propertyIsEnumerable），propertyIsEnumerable &#x3D; true，表示可以被列举，反之，表示不可枚举！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="枚举与不可枚举">
 <meta property="og:url" content="http://example.com/2020/07/15/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="每次看到枚举，枚举。到底他妈的啥意思，无非就是前辈们翻译过来的一个词而已。翻译的这么高大上，本质就是列举出来之意！今天我们讨论一下此名称在 JS 中的含义！  1. 枚举是什么？ 枚举指对象的属性是否可以遍历出来，简单说，是否可被列举出来。这就是：可枚举性（propertyIsEnumerable），propertyIsEnumerable &#x3D; true，表示可以被列举，反之，表示不可枚举！pr">
+<meta property="og:site_name" content="我的点滴记录">
+<meta property="og:description" content="每次看到枚举，枚举。到底他妈的啥意思，无非就是前辈们翻译过来的一个词而已。翻译的这么高大上，本质就是列举出来之意！今天我们讨论一下此名称在 JS 中的含义！  1. 枚举是什么？   枚举指对象的属性是否可以遍历出来，简单说，是否可被列举出来。这就是：可枚举性（propertyIsEnumerable），propertyIsEnumerable &#x3D; true，表示可以被列举，反之，表示不可枚举！">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://file.798run.top/img/blog/20200715/object_keys.png">
 <meta property="article:published_time" content="2020-07-15T08:30:16.000Z">
-<meta property="article:modified_time" content="2025-02-06T01:54:41.387Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2025-02-21T06:11:24.785Z">
+<meta property="article:author" content="Andy Zhang">
 <meta property="article:tag" content="JS相关">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://file.798run.top/img/blog/20200715/object_keys.png">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -43,7 +43,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">我的点滴记录</a>
       </h1>
       
     </div>
@@ -54,6 +54,10 @@
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
         
       </nav>
       <nav id="sub-nav">
@@ -94,14 +98,16 @@
         <blockquote>
 <p>每次看到枚举，枚举。到底他妈的啥意思，无非就是前辈们翻译过来的一个词而已。翻译的这么高大上，本质就是列举出来之意！今天我们讨论一下此名称在 JS 中的含义！</p>
 </blockquote>
-<h4 id="1-枚举是什么？"><a href="#1-枚举是什么？" class="headerlink" title="1. 枚举是什么？"></a>1. 枚举是什么？</h4><ul>
-<li><p>枚举指对象的属性是否可以遍历出来，简单说，是否可被列举出来。这就是：可枚举性（<code>propertyIsEnumerable</code>），propertyIsEnumerable = true，表示可以被列举，反之，表示不可枚举！propertyIsEnumerable 决定了这个属性能否被 for…in 查找遍历到。</p>
+<h4 id="1-枚举是什么？">1. 枚举是什么？</h4>
+<ul>
+<li>
+<p>枚举指对象的属性是否可以遍历出来，简单说，是否可被列举出来。这就是：可枚举性（<code>propertyIsEnumerable</code>），propertyIsEnumerable = true，表示可以被列举，反之，表示不可枚举！propertyIsEnumerable 决定了这个属性能否被 for…in 查找遍历到。</p>
 </li>
-<li><p>JS 中基本包装类型（Boolean,Number 和 String）的原型属性是不可枚举的。基本包装类型还可以像引用类型一样通过对象的方法访问它自带的一些方法，但是不能像引用类型那样自定义方法。看代码：</p>
+<li>
+<p>JS 中基本包装类型（Boolean,Number 和 String）的原型属性是不可枚举的。基本包装类型还可以像引用类型一样通过对象的方法访问它自带的一些方法，但是不能像引用类型那样自定义方法。看代码：</p>
 </li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var num = new Number(123);</span><br><span class="line">for(var pro in num) &#123;</span><br><span class="line">    console.log(&quot;num.&quot; + pro + &quot; = &quot; + num[pro]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>打印效果是空白，因为 Number 中内置的属性是不可枚举的。但是文档有一点的不准确，new String(‘hello’)，有打印结果！</p>
 <ul>
 <li>判断一个属性是否可枚举，用 <code>Object.propertyIsEnumerable()</code> 来判断。注意：如果需要判断的属性在 object 的原型链上不管它是否可枚举，<code>Object.propertyIsEnumerable()</code> 始终返回 false。</li>
@@ -109,8 +115,10 @@
 <blockquote>
 <p><code>propertyIsEnumerable()</code> 方法返回一个布尔值，表示指定的属性是否可枚举。但是在原型链上 propertyIsEnumerable 不被考虑。<code>hasOwnProperty()</code> 方法会返回一个布尔值，指示对象自身属性中是否具有指定的属性。</p>
 </blockquote>
-<h4 id="2-枚举性的作用"><a href="#2-枚举性的作用" class="headerlink" title="2. 枚举性的作用"></a>2. 枚举性的作用</h4><ul>
-<li><p>属性的枚举性会影响以下三个函数的结果：</p>
+<h4 id="2-枚举性的作用">2. 枚举性的作用</h4>
+<ul>
+<li>
+<p>属性的枚举性会影响以下三个函数的结果：</p>
 <ul>
 <li>for in</li>
 <li>Object.keys()</li>
@@ -120,32 +128,30 @@
 </ul>
 <p>例子：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function enumer()&#123;</span><br><span class="line">    this.a = &#x27;我是对象本身就有的属性&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">enumer.prototype.b = &#x27;我是通过对象原型挂载的属性&#x27;</span><br><span class="line"></span><br><span class="line">let fn = new enumer()</span><br><span class="line"></span><br><span class="line">Object.defineProperty(fn,&#x27;c&#x27;,&#123;</span><br><span class="line">    value:&#x27;我是通过Object.defineProperty方法添加的可枚举属性&#x27;,</span><br><span class="line">    enumerable:true</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>for in 执行的结果是：</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (const key in fn) &#123;</span><br><span class="line">    console.log(key) // a b c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>for…in 循环可以枚举(遍历)出对象本身具有的属性，通过 Object.defineProperty()方法加的可枚举属性，或者通过原型对象绑定的可以枚举属性</p>
 <ul>
 <li>Object.keys() 执行的结果是：</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object.keys(fn) //  [a c]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>Object.keys()方法可以枚举 <strong>实例</strong> 对象本身的属性和通过 Object.defineProperty()添加的可枚举属性，即不会枚举原型链上的属性</p>
 <ul>
 <li>JSON.stringify() 执行的结果是：</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JSON.stringify(fn) // &#123;&quot;a&quot;:&quot;我是对象本身就有的属性&quot;,&quot;c&quot;:&quot;我是通过Object.defineProperty方法添加的可枚举属性&quot;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>JSON.stringify()方法只能序列化 <strong>实例</strong> 对象本身的属性和通过 Object.defineProperty()添加的可枚举属性为 JSON 对象，即不会序化原型链上的属性</p>
-<h4 id="3、为什么要加上实例二字呢？请看下面"><a href="#3、为什么要加上实例二字呢？请看下面" class="headerlink" title="3、为什么要加上实例二字呢？请看下面"></a>3、为什么要加上实例二字呢？请看下面</h4><p><img src="https://file.798run.top/img/blog/20200715/object_keys.png" alt="为什么要加上实例二字？"></p>
-<h4 id="4、参考文档"><a href="#4、参考文档" class="headerlink" title="4、参考文档"></a>4、参考文档</h4><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/01a8ae8ac62c">JS 中的枚举和不可枚举</a></p>
+<h4 id="3、为什么要加上实例二字呢？请看下面">3、为什么要加上实例二字呢？请看下面</h4>
+<p><img src="https://file.798run.top/img/blog/20200715/object_keys.png" alt="为什么要加上实例二字？"></p>
+<h4 id="4、参考文档">4、参考文档</h4>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/01a8ae8ac62c">JS 中的枚举和不可枚举</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/15/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE/" data-id="cm7a8n5r6005ctkvpf0j2287n" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/15/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE/" data-id="cm7egel2z005dr0vp61o7586s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -187,7 +193,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
     </div>
   </div>
 
@@ -241,7 +247,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2025 John Doe<br>
+      &copy; 2025 Andy Zhang<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -252,6 +258,10 @@
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
   
 </nav>
     

@@ -5,22 +5,22 @@
   
 
   
-  <title>CSS中背景图片的总结 | Hexo</title>
+  <title>CSS中背景图片的总结 | 我的点滴记录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、background 在 css 中其实是一个复合属性。我们合理使用之能带来很好的效果。 很多后台只会使用 img 不知道使用 bg （王柳）。  background 的 size 属性，菜鸟上介绍：background-size: length|percentage|cover|contain;    length： 设置背景图片高度和宽度。第一个值设置宽度，第二个值设置的高度。如果只给出">
+  <meta name="description" content="一、background 在 css 中其实是一个复合属性。我们合理使用之能带来很好的效果。   很多后台只会使用 img 不知道使用 bg （王柳）。   background 的 size 属性，菜鸟上介绍：background-size: length|percentage|cover|contain;     length： 设置背景图片高度和宽度。第一个值设置宽度，第二个值设置的高度。如">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS中背景图片的总结">
 <meta property="og:url" content="http://example.com/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、background 在 css 中其实是一个复合属性。我们合理使用之能带来很好的效果。 很多后台只会使用 img 不知道使用 bg （王柳）。  background 的 size 属性，菜鸟上介绍：background-size: length|percentage|cover|contain;    length： 设置背景图片高度和宽度。第一个值设置宽度，第二个值设置的高度。如果只给出">
+<meta property="og:site_name" content="我的点滴记录">
+<meta property="og:description" content="一、background 在 css 中其实是一个复合属性。我们合理使用之能带来很好的效果。   很多后台只会使用 img 不知道使用 bg （王柳）。   background 的 size 属性，菜鸟上介绍：background-size: length|percentage|cover|contain;     length： 设置背景图片高度和宽度。第一个值设置宽度，第二个值设置的高度。如">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-10T15:27:23.000Z">
-<meta property="article:modified_time" content="2025-02-06T01:54:41.211Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2025-02-21T06:11:24.738Z">
+<meta property="article:author" content="Andy Zhang">
 <meta property="article:tag" content="CSS相关">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -41,7 +41,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">我的点滴记录</a>
       </h1>
       
     </div>
@@ -52,6 +52,10 @@
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
         
       </nav>
       <nav id="sub-nav">
@@ -89,45 +93,60 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="一、background-在-css-中其实是一个复合属性。我们合理使用之能带来很好的效果。"><a href="#一、background-在-css-中其实是一个复合属性。我们合理使用之能带来很好的效果。" class="headerlink" title="一、background 在 css 中其实是一个复合属性。我们合理使用之能带来很好的效果。"></a>一、background 在 css 中其实是一个复合属性。我们合理使用之能带来很好的效果。</h3><ol>
-<li><p>很多后台只会使用 img 不知道使用 bg （王柳）。</p>
+        <h3 id="一、background-在-css-中其实是一个复合属性。我们合理使用之能带来很好的效果。">一、background 在 css 中其实是一个复合属性。我们合理使用之能带来很好的效果。</h3>
+<ol>
+<li>
+<p>很多后台只会使用 img 不知道使用 bg （王柳）。</p>
 </li>
-<li><p>background 的 size 属性，菜鸟上介绍：background-size: length|percentage|cover|contain;</p>
+<li>
+<p>background 的 size 属性，菜鸟上介绍：background-size: length|percentage|cover|contain;</p>
 </li>
 </ol>
 <ul>
-<li><p>length： 设置背景图片高度和宽度。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为 auto(自动)。如：<code>background-size: 80px 60px</code></p>
+<li>
+<p>length： 设置背景图片高度和宽度。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为 auto(自动)。如：<code>background-size: 80px 60px</code></p>
 </li>
-<li><p>percentage：将计算相对于背景定位区域的百分比。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为”auto(自动)”。如： <code>background-size: 100%</code></p>
+<li>
+<p>percentage：将计算相对于背景定位区域的百分比。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为&quot;auto(自动)&quot;。如： <code>background-size: 100%</code></p>
 </li>
-<li><p>cover：此时会保持图像的纵横比并将图像缩放成将完全覆盖背景定位区域的最小大小。如： <code>background-size: cover</code></p>
+<li>
+<p>cover：此时会保持图像的纵横比并将图像缩放成将完全覆盖背景定位区域的最小大小。如： <code>background-size: cover</code></p>
 </li>
-<li><p>contain：此时会保持图像的纵横比并将图像缩放成将适合背景定位区域的最大大小。如：<code>background-size: contain</code></p>
+<li>
+<p>contain：此时会保持图像的纵横比并将图像缩放成将适合背景定位区域的最大大小。如：<code>background-size: contain</code></p>
 </li>
 </ul>
 <ol start="3">
 <li>谈谈自己理解</li>
 </ol>
 <ul>
-<li><p>100% 100% 就是你的背景图会给你的容器大小一致，很容易出现背景图拉伸变形。在项目中一般针对矩形容器背景图也是做的和矩形一样大！</p>
+<li>
+<p>100% 100% 就是你的背景图会给你的容器大小一致，很容易出现背景图拉伸变形。在项目中一般针对矩形容器背景图也是做的和矩形一样大！</p>
 </li>
-<li><p>方形容器背景图一般 UI 给的也是方形的！</p>
+<li>
+<p>方形容器背景图一般 UI 给的也是方形的！</p>
 </li>
-<li><p>针对一个大的矩形容器，UI 给了一张背景图也是矩形的但是没有容器大，（再说，容器很可能是自己显示器大小，UI 也不可能兼顾这么多），我们可以不写 size 属性。发现 size 属性值是 inherit，大小就是 UI 背景图的大小！（我在写 DDYG crs 系统时候的欢迎页就是使用的该模式）</p>
+<li>
+<p>针对一个大的矩形容器，UI 给了一张背景图也是矩形的但是没有容器大，（再说，容器很可能是自己显示器大小，UI 也不可能兼顾这么多），我们可以不写 size 属性。发现 size 属性值是 inherit，大小就是 UI 背景图的大小！（我在写 DDYG crs 系统时候的欢迎页就是使用的该模式）</p>
 </li>
-<li><p>一个原则：不想出现变形，那就最好让 UI 搞一下等比例的 bg 图！</p>
+<li>
+<p>一个原则：不想出现变形，那就最好让 UI 搞一下等比例的 bg 图！</p>
 </li>
-<li><p>cover contain 菜鸟说的不是很易理解，可按照字面意思，cover 是覆盖（背景图把你的容器全部覆盖）， contain 是包含之意（容器会包含你的背景图，就是说你的背景图可能比你的容器小，容器有空白！）</p>
+<li>
+<p>cover contain 菜鸟说的不是很易理解，可按照字面意思，cover 是覆盖（背景图把你的容器全部覆盖）， contain 是包含之意（容器会包含你的背景图，就是说你的背景图可能比你的容器小，容器有空白！）</p>
 </li>
-<li><p>网上总结：两者均以保持图像宽高比的形式缩放来适合背景容器的大小。区别如下:</p>
+<li>
+<p>网上总结：两者均以保持图像宽高比的形式缩放来适合背景容器的大小。区别如下:</p>
 <ul>
-<li><p>在 no-repeat 的情况下：</p>
+<li>
+<p>在 no-repeat 的情况下：</p>
 <ul>
 <li>cover:图片宽高比不变,铺满整个容器的宽高,图片多出来的部分会裁掉</li>
 <li>contain:图片宽高比不变 ,缩放至图片完全展示出来,所以会有留白区域</li>
 </ul>
 </li>
-<li><p>在 repeat 情况下</p>
+<li>
+<p>在 repeat 情况下</p>
 <ul>
 <li>cover:图片宽高比不变,铺满整个容器的宽高,图片多出来的部分会裁掉</li>
 <li>contain:容器至少有一张完整的图,留白区域则平铺背景图,铺不下的再裁掉</li>
@@ -140,7 +159,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/" data-id="cm7a8n5nz0008tkvp2vki6rqo" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/" data-id="cm7egel030006r0vp6d6ggr4c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -182,7 +201,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
     </div>
   </div>
 
@@ -236,7 +255,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2025 John Doe<br>
+      &copy; 2025 Andy Zhang<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -247,6 +266,10 @@
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
   
 </nav>
     

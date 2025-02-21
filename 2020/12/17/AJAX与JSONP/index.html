@@ -5,22 +5,22 @@
   
 
   
-  <title>AJAX与JSONP | Hexo</title>
+  <title>AJAX与JSONP | 我的点滴记录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言记录以免忘记 AJAX123456789101112131415$.ajax(&amp;#123;  url: &quot;&quot;,  type: &quot;GET&quot;,  beforeSend: function () &amp;#123;&amp;#125;,  dataType: &quot;jsonp&quot;,  jsonp: &quot;callback&quot;,  jsonpCal">
+  <meta name="description" content="前言 记录以免忘记 AJAX 123456789101112131415$.ajax(&amp;#123;  url: &quot;&quot;,  type: &quot;GET&quot;,  beforeSend: function () &amp;#123;&amp;#125;,  dataType: &quot;jsonp&quot;,  jsonp: &quot;callback&quot;,  jsonpC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AJAX与JSONP">
 <meta property="og:url" content="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="前言记录以免忘记 AJAX123456789101112131415$.ajax(&amp;#123;  url: &quot;&quot;,  type: &quot;GET&quot;,  beforeSend: function () &amp;#123;&amp;#125;,  dataType: &quot;jsonp&quot;,  jsonp: &quot;callback&quot;,  jsonpCal">
+<meta property="og:site_name" content="我的点滴记录">
+<meta property="og:description" content="前言 记录以免忘记 AJAX 123456789101112131415$.ajax(&amp;#123;  url: &quot;&quot;,  type: &quot;GET&quot;,  beforeSend: function () &amp;#123;&amp;#125;,  dataType: &quot;jsonp&quot;,  jsonp: &quot;callback&quot;,  jsonpC">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-12-17T02:05:57.000Z">
-<meta property="article:modified_time" content="2025-02-06T01:54:41.210Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2025-02-21T06:11:24.737Z">
+<meta property="article:author" content="Andy Zhang">
 <meta property="article:tag" content="JS相关">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -41,7 +41,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">我的点滴记录</a>
       </h1>
       
     </div>
@@ -52,6 +52,10 @@
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
         
       </nav>
       <nav id="sub-nav">
@@ -89,18 +93,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>记录以免忘记</p>
-<h3 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a><strong><em>AJAX</em></strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="built_in">type</span>: <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">  beforeSend: <span class="function"><span class="title">function</span></span> () &#123;&#125;,</span><br><span class="line">  dataType: <span class="string">&quot;jsonp&quot;</span>,</span><br><span class="line">  jsonp: <span class="string">&quot;callback&quot;</span>,</span><br><span class="line">  jsonpCallback: <span class="string">&quot;success_jsonpCallback&quot;</span>,</span><br><span class="line">  success: <span class="keyword">function</span> (res) &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">  &#125;,</span><br><span class="line">  error: <span class="keyword">function</span> (err) &#123;</span><br><span class="line">    console.log(<span class="string">&quot;err&quot;</span>, err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="GET"><a href="#GET" class="headerlink" title="GET"></a><strong>GET</strong></h3><p>1、针对 get 请求，我们可在浏览器地址栏键入请求地址，此时浏览器进行了二次封装！为啥这样说，在浏览器控制台 Elements 有元素节点，在 Network 中请求记录中，All 有可现实，使用 xhr 过滤则无记录！同样请求连接键入 Postman，选择 get 请求，则是正常请求！注：测试效果时，禁止 json 格式化等插件，以免造成干扰！在测试请求页的 title 有 favicon.ico。测试 get 请求链接：<code>http://api.map.baidu.com/geocoder?location=38.76623,116.43213&amp;output=json&amp;key=r49TjsbOLT9nkbS4ZljYf1GgnTkecbNQ</code>。</p>
-<h3 id="POST"><a href="#POST" class="headerlink" title="POST"></a><strong>POST</strong></h3><p>1、POST 类型的请求，后台有时候会告诉前端：“不要用 body 方式传递参数，用 param 方式”。为何？猜，是后端框架解析参数方便所致！</p>
-<h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a><strong>JSONP</strong></h3><p>1、JSONP 需要后端配合，jq 对其进行了优化，只要是 jsonp 形式，无论 type 写成 post 与否皆转为 get。注：别忘记添加 <code>dataType: &#39;JSONP&#39;</code>;</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a><strong>参考</strong></h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zxf13598202302/article/details/53489592">说说 JSON 和 JSONP，跨域解决问题</a></p>
+        <h3 id="前言">前言</h3>
+<p>记录以免忘记</p>
+<h3 id="AJAX"><strong><em>AJAX</em></strong></h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="built_in">type</span>: <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">  beforeSend: <span class="function"><span class="title">function</span></span> () &#123;&#125;,</span><br><span class="line">  dataType: <span class="string">&quot;jsonp&quot;</span>,</span><br><span class="line">  jsonp: <span class="string">&quot;callback&quot;</span>,</span><br><span class="line">  jsonpCallback: <span class="string">&quot;success_jsonpCallback&quot;</span>,</span><br><span class="line">  success: <span class="keyword">function</span> (res) &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">  &#125;,</span><br><span class="line">  error: <span class="keyword">function</span> (err) &#123;</span><br><span class="line">    console.log(<span class="string">&quot;err&quot;</span>, err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="GET"><strong>GET</strong></h3>
+<p>1、针对 get 请求，我们可在浏览器地址栏键入请求地址，此时浏览器进行了二次封装！为啥这样说，在浏览器控制台 Elements 有元素节点，在 Network 中请求记录中，All 有可现实，使用 xhr 过滤则无记录！同样请求连接键入 Postman，选择 get 请求，则是正常请求！注：测试效果时，禁止 json 格式化等插件，以免造成干扰！在测试请求页的 title 有 favicon.ico。测试 get 请求链接：<code>http://api.map.baidu.com/geocoder?location=38.76623,116.43213&amp;output=json&amp;key=r49TjsbOLT9nkbS4ZljYf1GgnTkecbNQ</code>。</p>
+<h3 id="POST"><strong>POST</strong></h3>
+<p>1、POST 类型的请求，后台有时候会告诉前端：“不要用 body 方式传递参数，用 param 方式”。为何？猜，是后端框架解析参数方便所致！</p>
+<h3 id="JSONP"><strong>JSONP</strong></h3>
+<p>1、JSONP 需要后端配合，jq 对其进行了优化，只要是 jsonp 形式，无论 type 写成 post 与否皆转为 get。注：别忘记添加 <code>dataType: 'JSONP'</code>;</p>
+<h3 id="参考"><strong>参考</strong></h3>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zxf13598202302/article/details/53489592">说说 JSON 和 JSONP，跨域解决问题</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cm7a8n5nk0001tkvp8r7k2224" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cm7egekzn0001r0vp4e5n231x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -142,7 +151,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E8%B0%8B/" rel="tag">软谋</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
     </div>
   </div>
 
@@ -196,7 +205,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2025 John Doe<br>
+      &copy; 2025 Andy Zhang<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
@@ -207,6 +216,10 @@
     <a href="/" class="mobile-nav-link">Home</a>
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
   
 </nav>
     
