@@ -68,6 +68,141 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CSS中display总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-07-10T15:27:23.000Z" itemprop="datePublished">2020-07-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/">CSS中display总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<h3 id="CSS-中-display-有很多的属性值。记录一下">CSS 中 display 有很多的属性值。记录一下 !!!</h3>
+</blockquote>
+<h4 id="display-在-css-中包含很多属性。我们合理使用之能带来很好的效果。">display 在 css 中包含很多属性。我们合理使用之能带来很好的效果。</h4>
+<ul>
+<li>
+<ol>
+<li>display 的最常用的 none、block 就不在记录了。</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>display 在开发过程中，看到在写 gddyg crs 欢迎页时候使用 <code>display: flex</code> 时候，发现了 display: -webkit-box，很是疑问（缘由是项目中有 normalize.css 自动给加上 -webkit-box 了）于是查资料发下：</li>
+</ol>
+<ul>
+<li>
+<p>flex 是 2012 年的语法，也将是以后标准的语法，大部分浏览器已经实现了无前缀版本。</p>
+</li>
+<li>
+<p>box 是 2009 年的语法，已经过时，是需要加上对应前缀的。</p>
+</li>
+<li>
+<p>所以兼容性的代码，大致如下：</p>
+</li>
+</ul>
+<p>display: -webkit-box; /_ Chrome 4+, Safari 3.1, iOS Safari 3.2+ <em>/<br>
+display: -moz-box; /</em> Firefox 17- <em>/<br>
+display: -webkit-flex; /</em> Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 <em>/<br>
+display: -moz-flex; /</em> Firefox 18+ <em>/<br>
+display: -ms-flexbox; /</em> IE 10 <em>/<br>
+display: flex; /</em> Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ _/</p>
+<ul>
+<li>
+<p>都是当时各阶段草案命名。</p>
+</li>
+<li>
+<p>既然后出现的 flex 浏览器已经支持，个人感觉就没有必要在使用 box 了，再说 normalize.css 已经帮我们做了！</p>
+</li>
+<li>
+<p>参考博文 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/websmile/p/11607884.html">display：flex 和 display：box 有什么区别</a>！</p>
+</li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>flex 一些用法</li>
+</ol>
+<ul>
+<li>
+<p><strong>父元素的属性</strong></p>
+</li>
+<li>
+<p>妈的很容易忘记。不理会特殊复杂的情况。flex-direction 就是你的 item 排列方向。默认是水平排列，就别贱贱的写代码。若想主轴是垂直排列：写上 <code>flex-direction: column</code></p>
+</li>
+<li>
+<p>justify-content 属性：定义项目在主轴上的对齐方式。切记是主轴！<code>justify-content: flex-start | flex-end | center | left | right | space-between（两端对齐，项目之间间隔相等，C 端订房入住、离店、几晚可使用此属性值） | space-around（每个项目两侧的间隔相等，即使是first、last与父元素都有间隔） |</code> 这个还有很多，没写完但是不常用！</p>
+</li>
+<li>
+<p>align-items 属性：定义在交叉轴上的对齐方式，这个有一个单词是 items，可能认为是不止一个 item 所以加 items。<code>align-items: flex-start | flex-end | center | baseline | stretch;</code></p>
+</li>
+<li>
+<p>align-content 属性：定义多根轴线的对齐方式（如果项目只有一根轴线，该属性不起作用。所以容器必须设置 flex-wrap，flex-wrap 是写在父元素上的，一般也是不常用！<code>flex-wrap: nowrap | wrap | wrap-reverse;</code>）</p>
+</li>
+<li>
+<p>flex 中的子元素还有一个 order 写法，就是直接可以使用 order: 1。css 把子元素的位置按照你写的 order 顺序排列！个个感觉也没多大的用处，妈的不会把 子元素 顺序写好吗？非得要使用 order 吗？</p>
+</li>
+<li>
+<p><strong>子元素的属性</strong></p>
+</li>
+<li>
+<p>设置在项目上的属性也有 6 个。<br>
+order<br>
+flex-grow<br>
+flex-shrink<br>
+flex-basis<br>
+flex<br>
+align-sel</p>
+</li>
+<li>
+<p><strong>补记</strong>，在开发业问时遇到情况了，父元素写了 display: flex; 子元素默认 flex-shrink: 1，一般大家都是给子元素进行写了宽度，所以要给子元素添加 flex-shrink: 0；具体参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/cblx/p/12272729.html">帖子</a></p>
+</li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li>个人总结</li>
+</ol>
+<ul>
+<li>其实很多场景下我们就是简单的运用。例如我们在一个容易，想快速把里面一个图片垂直水平居中，直接就写了管它啥轴不轴的，直接：<code>justify-content: center; align-items: center;</code> 就完事了。</li>
+</ul>
+</li>
+<li>
+<ol start="5">
+<li>参考了解 [前端布局神器 display:flex] (<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qingchunshiguang/p/8011103.html">https://www.cnblogs.com/qingchunshiguang/p/8011103.html</a>)</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/" data-id="cm7ii7oi20003sgvpehinazp2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CSS中背景图片的总结" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/" class="article-date">
@@ -156,7 +291,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/" data-id="cm7egel030006r0vp6d6ggr4c" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/" data-id="cm7ii7oi70006sgvp2d81d3o8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -202,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/07/%E7%A7%8B%E6%9E%9C%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2node%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/" data-id="cm7egel36005or0vpdhp1ayki" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/07/%E7%A7%8B%E6%9E%9C%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2node%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/" data-id="cm7ii7ol3005osgvpbvzif22e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -297,7 +432,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/06/27/this-bind-call-apply/" data-id="cm7egel20003qr0vpb7m80qli" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/06/27/this-bind-call-apply/" data-id="cm7ii7ok6003usgvpehct5i2o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -354,7 +489,7 @@ display_errors = On display_startup_errors = On 是不行的！其根本原因�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/18/%E5%AE%9D%E5%A1%94%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/" data-id="cm7egel2j004xr0vp0xdy96gl" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/03/18/%E5%AE%9D%E5%A1%94%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/" data-id="cm7ii7okq0050sgvp82ryhakb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li></ul>
@@ -414,7 +549,7 @@ display_errors = On display_startup_errors = On 是不行的！其根本原因�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/16/Git%E5%9C%A8linux%E4%B8%8A%E7%9A%84%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" data-id="cm7egel0i000pr0vpe45shinc" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/03/16/Git%E5%9C%A8linux%E4%B8%8A%E7%9A%84%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" data-id="cm7ii7oik000msgvp1ehwcxah" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
@@ -466,7 +601,7 @@ display_errors = On display_startup_errors = On 是不行的！其根本原因�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/08/Nodejs%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cm7egel0w001kr0vp9b7i8222" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/03/08/Nodejs%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cm7ii7oj2001isgvp9lfbdj0s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -548,7 +683,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/03/laravel%E5%88%9B%E5%BB%BAtable%E5%AD%97%E6%AE%B5%E5%8F%82%E8%80%83%E8%A1%A8/" data-id="cm7egel1r003br0vpe3nja0ga" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/03/03/laravel%E5%88%9B%E5%BB%BAtable%E5%AD%97%E6%AE%B5%E5%8F%82%E8%80%83%E8%A1%A8/" data-id="cm7ii7ok0003gsgvp8n4sc0jv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
@@ -636,7 +771,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/18/Form%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/" data-id="cm7egel0e000kr0vpejap20nv" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/12/18/Form%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/" data-id="cm7ii7oj3001ksgvp6p3zg7qw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li></ul>
@@ -706,104 +841,10 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/11/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BCSS/" data-id="cm7egel280049r0vpbf7hc0ks" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/12/11/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BCSS/" data-id="cm7ii7okd004bsgvp5i6kfb94" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-CSS字体换总结行" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/10/CSS%E5%AD%97%E4%BD%93%E6%8D%A2%E6%80%BB%E7%BB%93%E8%A1%8C/" class="article-date">
-  <time datetime="2019-12-10T08:19:45.000Z" itemprop="datePublished">2019-12-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/10/CSS%E5%AD%97%E4%BD%93%E6%8D%A2%E6%80%BB%E7%BB%93%E8%A1%8C/">CSS字体换行总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在一些 UI 框架如 layui 的 col 中有默认的换行样式，主要是取决于 CSS 的三个属性 <code>white-space</code> <code>、word-break</code> <code>、word-wrap(overflow-wrap)</code> 下面分别记录一下。</p>
-<blockquote>
-<p>HTML 中 white-space 问题总结</p>
-</blockquote>
-<p>首先看下面的 html 代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  Hi<span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span>,</span><br><span class="line">  This     is a incomprehensibilities long word.</span><br><span class="line">  <span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">  你好<span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span>，</span><br><span class="line">  这   是一个不可思议的长单词</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>我们要清楚，我们的浏览器都有一些默认的 CSS 样式，若我们对某个标签写了 CSS 样式，刚好覆盖着浏览器的默认样式，则浏览器会按照我们写的 CSS 进行渲染。上面代码我们只对 box 容器加宽加边框。其渲染效果：遇到 <code>&lt;br&gt;</code> 会换行，遇到 <code>&amp;nbsp;</code> 会保留一个空格，注 代码中我们故意在文字之间多敲上几个空格，但渲染效果还是按照一个空格渲染！如下图：</p>
-<p><img src="https://file.798run.top/img/blog/20191210/ic_0.jpg" alt="white-space默认值效果"></p>
-<p>接下来我们看下， 给它上面三个 css 属性赋值后会出现什么变化。</p>
-<p><code>white-space</code> 按照其字面意思来理解，即空白之意、控制空白字符的显示的，同时还能控制是否自动换行。它有五个值：normal | nowrap | pre | pre-wrap | pre-line。因为默认是 normal，所以我们主要研究下其它四种值时的展现情况。</p>
-<ol>
-<li>nowrap 意思不换行。加上 <code>white-space: nowrap;</code> 就是告诉浏览器不要给我换行。效果如下：</li>
-</ol>
-<p><img src="https://file.798run.top/img/blog/20191210/ic_item1_nowrap.jpg" alt="white-space: nowrap; 效果"></p>
-<p>原文本的自动换行没了！只有</br>才换行！所以这个属性值我们可以理解为永不换行，即使超出容器宽度也会渲染。</p>
-<hr>
-<ol start="2">
-<li><code>pre</code> 是预定义之意，是 predefined 的简写，指预定义。作用：保留空格、换行等。也就可以了理解是你写的是什么结构的 html 代码他就给你展示啥样。加上 <code>white-space: pre;</code> 浏览器会按照原样的代码结构给你展示，也就是说你的代码的每一个小方块，给该小方块上下左右都给你加留白（就是原样展示）。应用场景：后台工作人员查看他们返回前端的数据，在输出 echo 打印时加上一对 <code>&lt;pre&gt;&lt;/pre&gt;</code> 标签，结果很清晰！效果如下：</li>
-</ol>
-<p><img src="https://file.798run.top/img/blog/20191210/ic_item1_pre.jpg" alt="white-space: pre; 效果"></p>
-<hr>
-<ol start="3">
-<li><code>pre-wrap</code> 可理解为在 pre 的基础上加上换行：</li>
-</ol>
-<p><img src="https://file.798run.top/img/blog/20191210/ic_item1_pre_wrap.jpg" alt="white-space: pre-wrap; 效果"></p>
-<ol start="4">
-<li><code>pre-line</code> 可理解为在 pre 的基础上左右的留白给你去掉了，当然也换行，应为我们没有写换行的属性值，浏览器默认排版都是换行的：</li>
-</ol>
-<p><img src="https://file.798run.top/img/blog/20191210/ic_item1_pre_line.jpg" alt="white-space: pre-line; 效果"></p>
-<hr>
-<blockquote>
-<p>HTML 中 word-break 问题总结</p>
-</blockquote>
-<p>从这个名字可以知道，这个属性是控制单词如何被拆分换行的。它有三个值：normal | break-all | keep-all。</p>
-<p><code>word-break: keep-all;</code> 效果如下：</p>
-<p><img src="https://file.798run.top/img/blog/20191210/ic_item2_1.jpg" alt="word-break: keep-all 效果"></p>
-<ol>
-<li>解释：你写的   继续给你渲染，但是它会根据你在文本中按下的空格（1 个或多个空格都按一个空格处理）把你的文本拆分不同文字段给你渲染，你的文字段若是有点大，会给你继续渲染即使超过了容器宽度也不换行。</li>
-</ol>
-<p><code>word-break: break-all;</code> 效果如下：</p>
-<p><img src="https://file.798run.top/img/blog/20191210/ic_item2_2.jpg" alt="word-break: break-all 效果"></p>
-<ol start="2">
-<li>解释：你写的   继续给你渲染，其他的不管是英文单词还是中文、日韩文字都是直接给你截断。空格直接不渲染。这种方式有点粗暴，若是英文单词直接截断换行渲染阅读效果很差！但是我想在一个小容器中要是标签内容都是长数字、长中文，不影响阅读，使用这个属性也没啥不可以！</li>
-</ol>
-<blockquote>
-<p>HTML 中 word-wrap(overflow-wrap) 问题总结</p>
-</blockquote>
-<p>word-wrap 又叫做 overflow-wrap：</p>
-<p>word-wrap 属性原本属于微软的一个私有属性，在 CSS3 现在的文本规范草案中已经被重名为 overflow-wrap 。 word-wrap 现在被当作 overflow-wrap 的 “别名”。 稳定的谷歌 Chrome 和 Opera 浏览器版本支持这种新语法。</p>
-<p>这个属性也是控制单词如何被拆分换行的，实际上是作为 word-break 的互补，它只有两个值：normal | break-word，那我们看下 break-word：</p>
-<p><code>word-wrap: break-word; overflow-wrap: break-word;</code> 效果如下：</p>
-<p><img src="https://file.798run.top/img/blog/20191210/ic_item3_1.jpg" alt="overflow-wrap: break-word 效果"></p>
-<p>解释：这种场景是为了解决，break-all 属性值不管啥都是直接截断，针对一个长单词如 incomprehensibilities，如 容器宽度小于这个单词宽度，直接在 incom 下一个字母 p 截断了，当前行最后显示 incom 下一行显示 prehensibilities，这在英文场合下，很不友好，若该长单词新起一行，在新的一行中也显示不了，在换行，这种情况效果比上面“硬换行”效果好一些，我理解，W3C 设置该属性就解决此类问题！</p>
-<p>补充：（其实前面的 word-break 属性除了列出的那三个值外，也有个 break-word 值，效果跟这里的 word-wrap: break-word 一样，然而只有 Chrome、Safari 等部分浏览器支持）</p>
-<p>具体的 html 测试文件在 testme 目录下的 white_space.html</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dfyg-xiaoxiao/p/9640422.html">参考链接</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/10/CSS%E5%AD%97%E4%BD%93%E6%8D%A2%E6%80%BB%E7%BB%93%E8%A1%8C/" data-id="cm7egel040007r0vpdbsj0cyf" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
 
     </footer>
   </div>
@@ -842,7 +883,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -867,11 +908,11 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
           </li>
         
           <li>
-            <a href="/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/">代码片段之RegExp</a>
+            <a href="/2024/12/07/MD%E8%AE%B0%E5%BD%95/">MD记录</a>
           </li>
         
           <li>
-            <a href="/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/">代码片段之ElementUI</a>
+            <a href="/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/">代码片段之RegExp</a>
           </li>
         
       </ul>

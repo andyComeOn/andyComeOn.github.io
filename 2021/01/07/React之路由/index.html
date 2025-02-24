@@ -5,19 +5,19 @@
   
 
   
-  <title>React之路由 | 我的点滴记录</title>
+  <title>React细节 | 我的点滴记录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="说明 react 的路由非常灵活，与 vue 的路由有区别（需要一个 router-view 来作为宿主容器），react 则不需要宿主容器，在 m-b2b-wechat 项目中是在主入口文件 src&#x2F;index.tsx （类似于 Vue 中的 App.vue）中，在该文件中定义了一个变量 const &#x3D; D2CWechat &#x3D; () &#x3D;&gt; (&lt;Provider&gt;&lt;&#x2F;Pro">
+  <meta name="description" content="路由 react 的路由非常灵活，与 vue 的路由有区别（需要一个 router-view 来作为宿主容器），react 则不需要宿主容器，在 m-b2b-wechat 项目中是在主入口文件 src&#x2F;index.tsx （类似于 Vue 中的 App.vue）中，在该文件中定义了一个变量 const &#x3D; D2CWechat &#x3D; () &#x3D;&gt; (&lt;Provider&gt;&lt;&#x2F;Pro">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React之路由">
+<meta property="og:title" content="React细节">
 <meta property="og:url" content="http://example.com/2021/01/07/React%E4%B9%8B%E8%B7%AF%E7%94%B1/index.html">
 <meta property="og:site_name" content="我的点滴记录">
-<meta property="og:description" content="说明 react 的路由非常灵活，与 vue 的路由有区别（需要一个 router-view 来作为宿主容器），react 则不需要宿主容器，在 m-b2b-wechat 项目中是在主入口文件 src&#x2F;index.tsx （类似于 Vue 中的 App.vue）中，在该文件中定义了一个变量 const &#x3D; D2CWechat &#x3D; () &#x3D;&gt; (&lt;Provider&gt;&lt;&#x2F;Pro">
+<meta property="og:description" content="路由 react 的路由非常灵活，与 vue 的路由有区别（需要一个 router-view 来作为宿主容器），react 则不需要宿主容器，在 m-b2b-wechat 项目中是在主入口文件 src&#x2F;index.tsx （类似于 Vue 中的 App.vue）中，在该文件中定义了一个变量 const &#x3D; D2CWechat &#x3D; () &#x3D;&gt; (&lt;Provider&gt;&lt;&#x2F;Pro">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-01-07T03:11:42.000Z">
-<meta property="article:modified_time" content="2025-02-21T06:11:24.754Z">
+<meta property="article:modified_time" content="2025-02-24T00:26:16.394Z">
 <meta property="article:author" content="Andy Zhang">
-<meta property="article:tag" content="Node.js">
+<meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
@@ -85,7 +85,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      React之路由
+      React细节
     </h1>
   
 
@@ -93,23 +93,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="说明">说明</h3>
+        <h3 id="路由">路由</h3>
 <p>react 的路由非常灵活，与 vue 的路由有区别（需要一个 router-view 来作为宿主容器），react 则不需要宿主容器，在 m-b2b-wechat 项目中是在主入口文件 src/index.tsx （类似于 Vue 中的 App.vue）中，在该文件中定义了一个变量 <code>const = D2CWechat = () =&gt; (&lt;Provider&gt;&lt;/Provider&gt;)</code>，其中 Provider 是来自 react-redux，在该容器里面就是<code>&lt;Router&gt;&lt;/Router&gt;</code>，Router 下面就是 Route，我在自己的 react-cli 项目中 src/pages/use-route/index.js 中有代码片段，这是我在 react router 的官网上找到的。所以我们可以理解为，这就是官方给的使用示例！其中 m-b2b-wechat 项目中 route 及其他代码如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route component=&#123;Container&#125;/&gt;</span><br><span class="line">class Container extends React.Component&lt;any, any&gt; &#123;&#125;</span><br><span class="line">ReactDOM.render(&lt;D2CWechat/&gt;, document.getElementById(<span class="string">&#x27;app&#x27;</span>));</span><br></pre></td></tr></table></figure>
 <p>注：Route 可 <code>&lt;Route component=&#123;Container&#125;/&gt;</code>，也可像我的 react-cli 项目中，<code>&lt;Route path=&quot;/&quot;&gt;&lt;Home /&gt;&lt;/Route&gt;</code>，<code>function Home() &#123; return &lt;h2&gt;Home&lt;/h2&gt; &#125;</code> 这样写！接着说，在我自己练习的项目 react-cli 中，是在脚手架主入口 index.js 中引入 page 的某个页面，其实是大同小异！在 index.js 中引入 import UseRouteWithNested from “@/pages/use-route-with-nested/”; 针对 use-route-with-nested/index.js 中我配置了路由信息！使用 Route、Router 时候要记得引入依赖：import { Route, Router } from ‘react-router-dom’; react-router-dom 是针对浏览器单独整合的，react-router 是一个大包，react-native 也需要，后来才有 react-router-dom 小依赖包。我在 use-route-with-nested/index.js 的路由引入写法是在 react-router 官网上看到其例子如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123;</span><br><span class="line">  BrowserRouter as Router,</span><br><span class="line">  Switch,</span><br><span class="line">  Route,</span><br><span class="line">  Link,</span><br><span class="line">  useRouteMatch,</span><br><span class="line">  useParams,</span><br><span class="line">&#125; from <span class="string">&quot;react-router-dom&quot;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>注：<code>import ReactDOM from &quot;react-dom&quot;</code>; 主要是在主入口使用 <code>ReactDOM.render(&lt;App /&gt;, document.getElementById(&quot;root&quot;));</code></p>
 <p>导出 class 有 2 中写法：<code>import React from &quot;react&quot;;</code> 随后写 <code>export default class Goods React.Component &#123;&#125;;</code> 或 <code>import &#123;React, Component &#125; from &quot;react&quot;;</code> 随后写 <code>export default class Goods extends Component &#123;&#125;;</code></p>
-<h3 id="参考">参考</h3>
+<h3 id="杂记-2025-02-23-记录">杂记(2025.02.23 记录)</h3>
+<p>在我创建的 vite-react 项目中的，有使用 hooks 的例子，使用的是函数式组件，而非 class 类组件！普通写法(class 写法)如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span> <span class="keyword">extends</span> <span class="title class_">Components</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  state = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">0</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面的代码其实 state 中的 name 与 age 就是 App 类中的属性而已，所以针对函数式写法(使用hooks)，这个 name 与 age 也应该是 App 中的属性，写法如下：</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">App</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [name, setName] = <span class="title function_">useState</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// button 事件中，想要把 state 中 name 的值改变，可使用 hooks，一般来说我们用 hooks 中 useState 函数，进行解构之后，来对 name 的值进行更改。xyx setXyz 这两个是 useState 函数执行后解构出来的两个 “对象”！</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">handleName</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">setName</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (<span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleName&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="任务">任务</h3>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/07/React%E4%B9%8B%E8%B7%AF%E7%94%B1/" data-id="cm7egel12001yr0vp6qro547f" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/07/React%E4%B9%8B%E8%B7%AF%E7%94%B1/" data-id="cm7ii7oj90021sgvp52x42ps8" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
 
     </footer>
   </div>
@@ -158,7 +160,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -183,11 +185,11 @@
           </li>
         
           <li>
-            <a href="/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/">代码片段之RegExp</a>
+            <a href="/2024/12/07/MD%E8%AE%B0%E5%BD%95/">MD记录</a>
           </li>
         
           <li>
-            <a href="/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/">代码片段之ElementUI</a>
+            <a href="/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/">代码片段之RegExp</a>
           </li>
         
       </ul>
