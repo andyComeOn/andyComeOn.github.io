@@ -7,15 +7,15 @@
   
   <title>数据类型转换 | 我的点滴记录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="总结一下数据类型转换  1、数据类型检测常用方法  type of instanceof constructor Object.prototype.toString.call()  2、type of 123456type of NaN  &#x2F;&#x2F; &#x3D;&gt; numbertype of function() &amp;#123;&amp;#125;  &#x2F;&#x2F; &#x3D;&gt; functiontype of BigInt">
+  <meta name="description" content="1、数据类型检测常用方法  type of instanceof constructor Object.prototype.toString.call()  2、type of 123456type of NaN  &#x2F;&#x2F; &#x3D;&gt; numbertype of function() &amp;#123;&amp;#125;  &#x2F;&#x2F; &#x3D;&gt; functiontype of BigInt(10)  &#x2F;&#x2F; &#x3D;&amp;gt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据类型转换">
 <meta property="og:url" content="http://example.com/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/index.html">
 <meta property="og:site_name" content="我的点滴记录">
-<meta property="og:description" content="总结一下数据类型转换  1、数据类型检测常用方法  type of instanceof constructor Object.prototype.toString.call()  2、type of 123456type of NaN  &#x2F;&#x2F; &#x3D;&gt; numbertype of function() &amp;#123;&amp;#125;  &#x2F;&#x2F; &#x3D;&gt; functiontype of BigInt">
+<meta property="og:description" content="1、数据类型检测常用方法  type of instanceof constructor Object.prototype.toString.call()  2、type of 123456type of NaN  &#x2F;&#x2F; &#x3D;&gt; numbertype of function() &amp;#123;&amp;#125;  &#x2F;&#x2F; &#x3D;&gt; functiontype of BigInt(10)  &#x2F;&#x2F; &#x3D;&amp;gt">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-20T12:55:25.000Z">
-<meta property="article:modified_time" content="2025-02-21T06:11:24.784Z">
+<meta property="article:modified_time" content="2025-02-27T02:57:24.956Z">
 <meta property="article:author" content="Andy Zhang">
 <meta property="article:tag" content="JS相关">
 <meta name="twitter:card" content="summary">
@@ -93,10 +93,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>总结一下数据类型转换</p>
-</blockquote>
-<h2 id="1、数据类型检测常用方法">1、数据类型检测常用方法</h2>
+        <h2 id="1、数据类型检测常用方法">1、数据类型检测常用方法</h2>
 <ul>
 <li>type of</li>
 <li>instanceof</li>
@@ -142,7 +139,7 @@
 <p>isNaN([val])，首先走的 Number()</p>
 </li>
 <li>
-<p>数学运算(1+2 =&gt; 3。+出现在字符串前后，该表达式直接变成了字符串拼接，如：‘hi’ + 9 =&gt; hi9, 9变成字符串与 ‘hi’ 相加。{age: 20} + 9，对象与数字相加，对象要转换数字（转换为数字之前首先要转换字符串，又变成字符串拼接了），[object Object]9。[‘hi’]+1 =&gt; hi1。[1,2,3]+1 =&gt; “1,2,31”。[{}]+1 =&gt; [object Object]1</p>
+<p>数学运算(1+2 =&gt; 3。+出现在字符串前后，该表达式直接变成了字符串拼接，如：‘hi’ + 9 =&gt; hi9, 9 变成字符串与 ‘hi’ 相加。{age: 20} + 9，对象与数字相加，对象要转换数字（转换为数字之前首先要转换字符串，又变成字符串拼接了），[object Object]9。[‘hi’]+1 =&gt; hi1。[1,2,3]+1 =&gt; “1,2,31”。[{}]+1 =&gt; [object Object]1</p>
 </li>
 <li>
 <p>注意：针对上面的例子，有 + 号的“算术”表达式，也有特殊的情况。如 {} + 0 =&gt; 0，此时解析器把 {} 当成一个代码块，于是就变成了 +0 =&gt; 0；({} + 0) 会参与到数学运算中，结果是：[object Object]0；0 + {} 这种情况是数学运算，结果是：0[object Object]</p>
@@ -239,7 +236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" data-id="cm7mlio0p005bfkvp5waj9k6z" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" data-id="cm7mthbjp005fc8vp74so01i9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
