@@ -68,6 +68,88 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-laravel创建table字段参考表" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/03/laravel%E5%88%9B%E5%BB%BAtable%E5%AD%97%E6%AE%B5%E5%8F%82%E8%80%83%E8%A1%A8/" class="article-date">
+  <time datetime="2020-03-03T04:44:06.000Z" itemprop="datePublished">2020-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/03/laravel%E5%88%9B%E5%BB%BAtable%E5%AD%97%E6%AE%B5%E5%8F%82%E8%80%83%E8%A1%A8/">laravel创建table字段参考表</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>$table-&gt;bigIncrements(‘id’);   自增ID，类型为bigint<br>
+$table-&gt;bigInteger(‘votes’);   等同于数据库中的BIGINT类型<br>
+$table-&gt;binary(‘data’);    等同于数据库中的BLOB类型<br>
+$table-&gt;boolean(‘confirmed’);  等同于数据库中的BOOLEAN类型<br>
+$table-&gt;char(‘name’, 4);   等同于数据库中的CHAR类型<br>
+$table-&gt;date(‘created_at’);    等同于数据库中的DATE类型<br>
+$table-&gt;dateTime(‘created_at’);    等同于数据库中的DATETIME类型<br>
+$table-&gt;dateTimeTz(‘created_at’);  等同于数据库中的DATETIME类型（带时区）<br>
+$table-&gt;decimal(‘amount’, 5, 2);   等同于数据库中的DECIMAL类型，带一个精度和范围<br>
+$table-&gt;double(‘column’, 15, 8);   等同于数据库中的DOUBLE类型，带精度, 总共15位数字，小数点后8位.<br>
+$table-&gt;enum(‘choices’, [‘foo’, ‘bar’]);   等同于数据库中的 ENUM类型<br>
+$table-&gt;float(‘amount’);   等同于数据库中的 FLOAT 类型<br>
+$table-&gt;increments(‘id’);  数据库主键自增ID<br>
+$table-&gt;integer(‘votes’);  等同于数据库中的 INTEGER 类型<br>
+$table-&gt;ipAddress(‘visitor’);  等同于数据库中的 IP 地址<br>
+$table-&gt;json(‘options’);   等同于数据库中的 JSON 类型<br>
+$table-&gt;jsonb(‘options’);  等同于数据库中的 JSONB 类型<br>
+$table-&gt;longText(‘description’);   等同于数据库中的 LONGTEXT 类型<br>
+$table-&gt;macAddress(‘device’);  等同于数据库中的 MAC 地址<br>
+$table-&gt;mediumIncrements(‘id’);    自增ID，类型为无符号的mediumint<br>
+$table-&gt;mediumInteger(‘numbers’);  等同于数据库中的 MEDIUMINT类型<br>
+$table-&gt;mediumText(‘description’); 等同于数据库中的 MEDIUMTEXT类型<br>
+$table-&gt;morphs(‘taggable’);    添加一个 INTEGER类型的 taggable_id 列和一个 STRING类型的 taggable_type列<br>
+$table-&gt;nullableTimestamps();  和 timestamps()一样但允许 NULL值.<br>
+$table-&gt;rememberToken();   添加一个 remember_token 列： VARCHAR(100) NULL.<br>
+$table-&gt;smallIncrements(‘id’); 自增ID，类型为无符号的smallint<br>
+$table-&gt;smallInteger(‘votes’); 等同于数据库中的 SMALLINT 类型<br>
+$table-&gt;softDeletes(); 新增一个 deleted_at 列 用于软删除.<br>
+$table-&gt;string(‘email’);   等同于数据库中的 VARCHAR 列  .<br>
+$table-&gt;string(‘name’, 100);   等同于数据库中的 VARCHAR，带一个长度<br>
+$table-&gt;text(‘description’);   等同于数据库中的 TEXT 类型<br>
+$table-&gt;time(‘sunrise’);   等同于数据库中的 TIME类型<br>
+$table-&gt;timeTz(‘sunrise’); 等同于数据库中的 TIME 类型（带时区）<br>
+$table-&gt;tinyInteger(‘numbers’);    等同于数据库中的 TINYINT 类型<br>
+$table-&gt;timestamp(‘added_on’); 等同于数据库中的 TIMESTAMP 类型<br>
+$table-&gt;timestampTz(‘added_on’);   等同于数据库中的 TIMESTAMP 类型（带时区）<br>
+$table-&gt;timestamps();  添加 created_at 和 updated_at列<br>
+$table-&gt;timestampsTz();    添加 created_at 和 updated_at列（带时区）<br>
+$table-&gt;unsignedBigInteger(‘votes’);   等同于数据库中无符号的 BIGINT 类型<br>
+$table-&gt;unsignedInteger(‘votes’);  等同于数据库中无符号的 INT 类型<br>
+$table-&gt;unsignedMediumInteger(‘votes’);    等同于数据库中无符号的 MEDIUMINT 类型<br>
+$table-&gt;unsignedSmallInteger(‘votes’); 等同于数据库中无符号的 SMALLINT 类型<br>
+$table-&gt;unsignedTinyInteger(‘votes’);  等同于数据库中无符号的 TINYINT 类型<br>
+$table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/03/03/laravel%E5%88%9B%E5%BB%BAtable%E5%AD%97%E6%AE%B5%E5%8F%82%E8%80%83%E8%A1%A8/" data-id="cm7mlinzi003hfkvp5n6l6ehu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Form的相关记录" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/18/Form%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/" class="article-date">
@@ -144,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/18/Form%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/" data-id="cm7kloidn000k2cvp9ykmg8aq" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/12/18/Form%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/" data-id="cm7mliny3000ffkvp5m5wbuwv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li></ul>
@@ -214,7 +296,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/11/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BCSS/" data-id="cm7kloiic004e2cvp47px8i64" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/12/11/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BCSS/" data-id="cm7mlio07004jfkvp19h1fx69" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -308,7 +390,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/10/CSS%E5%AD%97%E4%BD%93%E6%8D%A2%E6%80%BB%E7%BB%93%E8%A1%8C/" data-id="cm7kloid100072cvp7qqleiaz" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/12/10/CSS%E5%AD%97%E4%BD%93%E6%8D%A2%E6%80%BB%E7%BB%93%E8%A1%8C/" data-id="cm7mlinxv0006fkvpchpcfsvx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -375,7 +457,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/11/26/PMS%E4%B8%ADform%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/" data-id="cm7kloifi001y2cvpgmhe493j" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/11/26/PMS%E4%B8%ADform%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/" data-id="cm7mlinyv0020fkvpd72dckk1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -478,7 +560,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/11/25/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cm7kloie9000r2cvp6aey784n" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/11/25/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cm7mlinyb000rfkvph7bx8qz8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
@@ -523,7 +605,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/11/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%8A%A5%E9%94%99/" data-id="cm7kloikc005m2cvp5lgjdjhv" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/11/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%8A%A5%E9%94%99/" data-id="cm7mlio0v005ofkvp5s2iabrw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -605,7 +687,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/09/25/table%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" data-id="cm7kloihj003s2cvpfx8q3sqo" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/09/25/table%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" data-id="cm7mlinzq003yfkvpeprp3zua" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li></ul>
@@ -728,7 +810,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/09/17/js%E6%97%A5%E6%9C%9F%E8%AE%BE%E7%BD%AE%E6%80%BB%E7%BB%93/" data-id="cm7kloigv003b2cvp68fwbnuk" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/09/17/js%E6%97%A5%E6%9C%9F%E8%AE%BE%E7%BD%AE%E6%80%BB%E7%BB%93/" data-id="cm7mlinzg003dfkvpc8b2dqn0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -789,102 +871,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/07/23/JS%E6%9D%82%E9%9B%86/" data-id="cm7kloiel00152cvpdq3u2cdz" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/07/23/JS%E6%9D%82%E9%9B%86/" data-id="cm7mlinyg0012fkvpgj904ae5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-看冴羽博客笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/07/02/%E7%9C%8B%E5%86%B4%E7%BE%BD%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2019-07-02T11:11:42.000Z" itemprop="datePublished">2019-07-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/02/%E7%9C%8B%E5%86%B4%E7%BE%BD%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0/">看冴羽博客笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="看冴羽博客自己总结">看冴羽博客自己总结</h3>
-<p>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">&quot;global scope&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkscope</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> scope = <span class="string">&quot;local scope&quot;</span>;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> scope;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">f</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">checkscope</span>();</span><br></pre></td></tr></table></figure>
-<p>执行过程如下：<br>
-1.首先是创建一个全局执行上下文，把其压入执行栈中；</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ECStack</span> = &#123;</span><br><span class="line">    globalContext</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>创建完，全局执行上下文，随后就会对全局执行上下文进行初始化</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">globalContext = &#123;</span><br><span class="line">    <span class="attr">VO</span>: [<span class="variable language_">global</span>],</span><br><span class="line">    <span class="title class_">Scope</span>: [globalContext.<span class="property">VO</span>],</span><br><span class="line">    <span class="attr">this</span>: globalContext.<span class="property">VO</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>初始化全局执行上下文的同时，checkscope函数被创建，保存作用域链到函数的内部属性<code>[[scope]]</code></li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">checkscope.[[scope]]] = [</span><br><span class="line">    globalContext.<span class="property">VO</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>执行checkscope函数之前，创建该函数的执行上下文，并把该函数上下文压入执行上下文栈中</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ECStack</span> = [</span><br><span class="line">    checkscopeContext,</span><br><span class="line">    globalContext</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>checkscope函数执行上下文开始初始化：
-<ul>
-<li>复制函数属性[[scope]]创建作用域链</li>
-<li>用arguments创建活动对象AO</li>
-<li>初始化AO，即加入形参、函数声明、变量声明</li>
-<li>将活动对象压入checkscope作用域链的顶端</li>
-</ul>
-</li>
-</ol>
-<p>初始化之后AO的结果是：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">checkscopeContext = &#123;</span><br><span class="line">    <span class="attr">AO</span>: &#123;</span><br><span class="line">        <span class="attr">arguments</span>: &#123;</span><br><span class="line">            <span class="attr">length</span>: <span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">scope</span>: <span class="literal">undefined</span>,</span><br><span class="line">        <span class="attr">f</span>: <span class="title class_">Reference</span> <span class="title function_">f</span> () &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title class_">Scope</span>: [globalContext.<span class="property">VO</span>],</span><br><span class="line">    <span class="attr">this</span>: <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>将活动对象压入checkscope作用域链的顶端:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">checkscopeContext = &#123;</span><br><span class="line">    <span class="attr">AO</span>: &#123;</span><br><span class="line">        <span class="attr">arguments</span>: &#123;</span><br><span class="line">            <span class="attr">length</span>: <span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">scope</span>: <span class="literal">undefined</span>,</span><br><span class="line">        <span class="attr">f</span>: <span class="title class_">Reference</span> <span class="title function_">f</span> () &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title class_">Scope</span>: [<span class="variable constant_">AO</span>, globalContext.<span class="property">VO</span>],</span><br><span class="line">    <span class="attr">this</span>: <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="6">
-<li>checkscope函数的解析就结束了，随后就解析f函数，同理：创建f函数执行上下文 - 把f函数执行上下文压入执行上下文栈这时候执行栈变成了：</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="title class_">ECStack</span> = [</span><br><span class="line">    fContext,</span><br><span class="line">    checkscopeContext,</span><br><span class="line">    globalContext</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>f函数执行上下文初始化的步骤与checkscope函数是同理的。最终f函数的执行上下文初始化之后的结果是：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fContext = &#123;</span><br><span class="line">    <span class="attr">AO</span>: &#123;</span><br><span class="line">        <span class="attr">arguments</span>: &#123;</span><br><span class="line">            <span class="attr">length</span>: <span class="number">0</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title class_">Scope</span>: [<span class="variable constant_">AO</span>, checkscopeContext.<span class="property">AO</span>, globalContext.<span class="property">VO</span>],</span><br><span class="line">    <span class="attr">this</span>: <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="7">
-<li>
-<p>f函数的执行上下文也初始化完成之后，就开始执行函数了，当然执行栈是按照自上而下的方式执行，于是首先执行f函数，因为f函数return了scope这时候f函数就沿着他的作用域链找scope的变量声明，首先在它自己的活动对象找scope没找到，就去checkscopeContext.AO找,发现该处的AO中scope被赋值为local scope，所以执行结果就是local scope。</p>
-</li>
-<li>
-<p>f函数执行完毕，f函数上下文从ECStack弹出，checkscope函数执行完毕，checkscope执行上下文也会从ECStack弹出，最终ECStack变成：</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ECStack</span> = [</span><br><span class="line">    globalContext</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<ol start="9">
-<li>
-<p>最终页面关闭时候，全局执行上下文，也会弹出。</p>
-</li>
-<li>
-<p>参考链接：<a target="_blank" rel="noopener" href="https://github.com/mqyqingfeng/Blog/issues/8">JavaScript深入之执行上下文</a>;</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/07/02/%E7%9C%8B%E5%86%B4%E7%BE%BD%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0/" data-id="cm7kloiki005u2cvp7cgb4cwq" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -935,6 +926,10 @@
       <ul>
         
           <li>
+            <a href="/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/">React类组件函数组件对props及state及ref使用</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/25/React%E8%AD%A6%E5%91%8A%E5%8F%8A%E6%8A%A5%E9%94%99/">React警告及报错</a>
           </li>
         
@@ -948,10 +943,6 @@
         
           <li>
             <a href="/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/">js一些代码块</a>
-          </li>
-        
-          <li>
-            <a href="/2024/12/07/MD%E8%AE%B0%E5%BD%95/">MD记录</a>
           </li>
         
       </ul>

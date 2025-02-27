@@ -68,6 +68,90 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vscode杂记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/02/vscode%E6%9D%82%E8%AE%B0/" class="article-date">
+  <time datetime="2020-12-02T05:34:28.000Z" itemprop="datePublished">2020-12-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/02/vscode%E6%9D%82%E8%AE%B0/">vscode杂记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前言：vscode 使用很广泛，记一些笔记</p>
+<h3 id="快捷键">快捷键</h3>
+<p>1、md 文件，键入 Ctrl + Shift + v 可预览</p>
+<p>▲ 放大缩小字体 Ctrl + (+/-)<br>
+▲ 显示/隐藏底部控制台：Ctrl + Shift + Y || Ctrl + ` 二则区别：前者是在 调试控制台 Tab 后者是在 终端 Tab<br>
+▲ 格式代码 =&gt; Shift + Alt + F<br>
+▲ 命令模式 =&gt; Ctrl + Shift + P （这里面可重载窗口、可选择 node_modules 插件查询下面的依赖包）<br>
+▲ 打开最近文件列表 =&gt; Ctrl + P || Ctrl + E<br>
+▲ 打开最近打开项目 =&gt; Ctrl + R ，按住 Ctrl 在鼠标点击项目，直接新窗口打开该项目</p>
+<p>▲vscode 中添加很多项目时，鼠标选中某目录，直接 Shift + Alt + F 可直接检索出该目录下的检索词<br>
+▲ 资源管理器 =&gt; Ctrl + Shift + E 资源管理器(文件编辑区)<br>
+▲ 项目搜索 =&gt; Ctrl + Shift + F 项目搜索<br>
+▲ 在某文件搜索 =&gt; Ctrl + F 在某文件搜索<br>
+vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
+<p>重启 IDE CTRL + SHITF + P 键入 Reload Window</p>
+<p>▲ 快捷键文档<br>
+<a target="_blank" rel="noopener" href="https://www.cnblogs.com/schut/p/10461840.html">https://www.cnblogs.com/schut/p/10461840.html</a><br>
+<a target="_blank" rel="noopener" href="https://www.cnblogs.com/sufaith/p/vscode-key-text-transform-case.html">https://www.cnblogs.com/sufaith/p/vscode-key-text-transform-case.html</a></p>
+<p>▲ 打开外部终端：你在编辑某个项目的文件时候，按下 Ctrl + Shift + C 会弹出该项目为根目录的 Windows 的 cmd</p>
+<p>▲VS Code 集成终端字体修改 &amp; 字体颜色、大小修改方法<br>
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/donaldsy/article/details/94474600">https://blog.csdn.net/donaldsy/article/details/94474600</a></p>
+<p>▲Ctrl + K 在按下 Ctrl + T 就可以更换主题</p>
+<p>▲ 快速复制某行 =&gt; Shift + Alt + 下箭头 / 上箭头<br>
+▲ p<em>2 、li</em>2、div*2、.el 回车、#el 回车</p>
+<p>▲VsCode 中使用 Emmet 神器快速编写 HTML 代码<br>
+<a target="_blank" rel="noopener" href="https://www.cnblogs.com/summit7ca/p/6944215.html">https://www.cnblogs.com/summit7ca/p/6944215.html</a></p>
+<h3 id="插件">插件</h3>
+<p>1、在写 react demo 时，使用 vscode 自带的 shift + alt + f ，直接把我的 react 代码弄得很乱，后来发现格式化代码是使用插件 beautify 来弄的！后来才知道，针对 vscode 你可以安装 eslint prettier 这是为了你单独开发普通项目，你可以美化代码、校验语法，在 vue react 脚手架有的 package.json 自带给你配置了 eslint ，所以可在教手架中关闭！</p>
+<p>2、.editorconfig 文件，此文件就是对编码方式的声明，前提是要在 IDE 中安装此插件！以前还以为 .editorconfig 是不是给 webstorm 读取的啊？后来知它是给 IDE 一个声明，让编辑器知道我的代码（无论是何种语言）风格都是按照 .editorconfig 配置。根目录建立.editorconfig 配置。这个的作用是为项目统一编辑器的实时格式。简单来说就是它负责敲代码那一刻的格式，prettier 负责保存代码那一刻的格式。两者统一体验更好。20201110 我在新奥开发分销小程序时候，发现我加了 .editorconfig 格式化就不生效了！</p>
+<p>3、之前安装的插件集，仅记录如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201202/plugin1.png" alt="plugin1"></p>
+<p><img src="https://file.798run.top/img/blog/20201202/plugin2.png" alt="plugin2"></p>
+<p><img src="https://file.798run.top/img/blog/20201202/plugin3.png" alt="plugin3"></p>
+<p>4、疑问，vscode 真对刚导入的项目，会提示你是否使用 eslint 检测，一旦你点击运行，针对项目下文件会报红色（若是你的代码本身不符合 eslint 规范），针对此场景，如何取消烦人的红色提示？<br>
+红色提示记录：</p>
+<p><img src="https://file.798run.top/img/blog/20210426/vscode_eslint_err.png" alt="vscode_eslint_err"></p>
+<h3 id="多项目">多项目</h3>
+<p>1、vscode 可以添加多项目，鼠标选中某目录，直接 Shift + Alt + F 可直接检索出该目录下的检索词。</p>
+<h3 id="杂项">杂项</h3>
+<p>1、安装了该软件，或者是任意一个工程软件，一般会在你的 Users/user 目录 （不在此目录，安装在其他目录也不合适呀） 下生成一个配置目录 .vscode ，查看之，发现安装的 vscode 插件 list 都在这！</p>
+<p>2、用户可以根据自己需要配置 settings.json ，此文件也是类似于工程软件，一般会在你的机器用户名下的 AppData\Roaming 目录下，我个人的完整目录在 C:\Users\Andy_Zhang\AppData\Roaming\Code\User\settings.json，当然了针对你的各个不同的项目，也可单独配置，我理解：vscode 首先是读取你的项目的 .vscode\settings.json 文件，进而在读取你的系统的配置文件，属性相同的配置，合并之。若无此文件，就直接就取你系统的文件！</p>
+<p>3、settings.json 配置了粘贴自动保存，弄巧成拙！</p>
+<p>4、离开秋果后使用 Hasee ，vscode 在 testme 项目中写 demo ，发现格式化效果不好（注释的代码不会对齐）细看自己没有安装 prettier 插件，于是安装之，再次格式化 html 代码，提示选择格式化的程序（有一个默认的格式化程序、还一个是就是刚刚安装的 prettier ，选择之，格式化 OK！）</p>
+<p>5、在 VSCode 中使用 Remote Workspace 进行远程文件管理 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3a18568ffa92">https://www.jianshu.com/p/3a18568ffa92</a><br>
+关于 VSCode 中工作区的讲解与使用工作区还你一个轻量的 VSCode <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/25706af1f6a7">https://www.jianshu.com/p/25706af1f6a7</a></p>
+<p>6、20200820 CRS 针对 js 文件一直提示要是有分号，Google 之后发现，发现在 .eslintrc.js 中这样写 semi: [2], =&gt; semi: [0], 即可，参考：<a target="_blank" rel="noopener" href="https://juejin.im/post/6844903854379630599">https://juejin.im/post/6844903854379630599</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/02/vscode%E6%9D%82%E8%AE%B0/" data-id="cm7mlinzr0040fkvpao97foec" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-小程序杂记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/02/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9D%82%E8%AE%B0/" class="article-date">
@@ -107,7 +191,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9D%82%E8%AE%B0/" data-id="cm7kloijw00522cvp86ri4xii" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/02/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9D%82%E8%AE%B0/" data-id="cm7mlio0k0052fkvpg0hy70bk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
@@ -146,7 +230,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/30/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E8%AE%A8%E8%AE%BA/" data-id="cm7kloike005o2cvp4ktf46th" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/11/30/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E8%AE%A8%E8%AE%BA/" data-id="cm7mlio0x005ufkvpge43495j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -190,7 +274,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/30/%E5%B0%8F%E7%A8%8B%E5%BA%8Fcanvas%E8%AE%B0%E5%BD%95/" data-id="cm7kloijy00542cvp8sqxhle1" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/11/30/%E5%B0%8F%E7%A8%8B%E5%BA%8Fcanvas%E8%AE%B0%E5%BD%95/" data-id="cm7mlio0s005gfkvpfwv575z0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
@@ -294,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/12/Nodejs%E6%9D%82%E9%9B%86/" data-id="cm7kloifj00202cvpgtevc4da" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/12/Nodejs%E6%9D%82%E9%9B%86/" data-id="cm7mlinys001tfkvp5l44012i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -357,7 +441,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/08/31/JS%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA/" data-id="cm7kloieb000t2cvpdg4fhhjl" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/08/31/JS%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA/" data-id="cm7mlinyd000vfkvp1s9c8wg7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -575,7 +659,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/28/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" data-id="cm7kloijg004v2cvpev8waswc" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/28/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" data-id="cm7mlio0d004sfkvp0tp613vv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li></ul>
@@ -628,7 +712,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/22/D_N_S%E8%AE%B0%E5%BD%95/" data-id="cm7kloidh000f2cvp2kc2ats5" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/22/D_N_S%E8%AE%B0%E5%BD%95/" data-id="cm7mliny6000kfkvpa5zqbbyo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -808,7 +892,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" data-id="cm7kloik4005d2cvp7c22ahz7" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" data-id="cm7mlio0p005bfkvp5waj9k6z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -898,106 +982,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/15/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE/" data-id="cm7kloikb005k2cvpb7e07o8w" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-循环与迭代" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/15/%E5%BE%AA%E7%8E%AF%E4%B8%8E%E8%BF%AD%E4%BB%A3/" class="article-date">
-  <time datetime="2020-07-15T04:12:43.000Z" itemprop="datePublished">2020-07-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/%E5%BE%AA%E7%8E%AF%E4%B8%8E%E8%BF%AD%E4%BB%A3/">循环与迭代</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>我在写 for in 与 for of 的区别文档时候，在 MDN 上看到一直在迭代、枚举其官方定义不是很清楚，现总结一下“循环与迭代”的相关文档</p>
-</blockquote>
-<ul>
-<li>
-<ol>
-<li>首先打开 MDN 找到 [循环与迭代])(<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Loops_and_iteration</a>) 的讲解！讲解分了两个大类：循环、迭代！</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li>
-<ol start="2">
-<li>循环。在 JS 中循环语句有：</li>
-</ol>
-<ul>
-<li>
-<p>for 语句</p>
-</li>
-<li>
-<p>do…while 语句</p>
-</li>
-<li>
-<p>while 语句</p>
-</li>
-<li>
-<p>labeled 语句</p>
-</li>
-<li>
-<p>break 语句</p>
-</li>
-<li>
-<p>continue 语句</p>
-</li>
-<li>
-<p>for…in 语句</p>
-</li>
-<li>
-<p>for…of 语句</p>
-<ul>
-<li>
-<p>但是我脑子里想到一个 forEach 方法，为啥 MDN 没有列举出来，自查一下，原来该方法是 Array、Set 等对象原型上的挂载的一个方法！</p>
-</li>
-<li>
-<p>在文档说到：for…in 语句循环一个指定的变量来循环一个对象所有可枚举的属性。JavaScript 会为每一个不同的属性执行指定的语句。虽然使用 for…in 来迭代数组 Array 元素听起来很诱人，但是它返回的东西除了数字索引外，还有可能是你自定义的属性名字。</p>
-</li>
-<li>
-<p>for…of 语句在可迭代对象（包括 Array、Map、Set、arguments 等等）上创建了一个循环，对值的每一个独特属性调用一次迭代。</p>
-</li>
-</ul>
-<ul>
-<li>迭代，迭代 单词是 iterator 艹既然有这个单词，说明它与循环 forloop 不是一个概念！</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Enumerability_and_ownership_of_properties">属性的可枚举性和所有权</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/348391864/answer/840460894">javascript 对象属性为什么要区分可枚举和不可枚举？</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/strongfan/p/6244422.html">对象可枚举和不可枚举属性</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0534746020a2">JavaScript 中的各种迭代</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/15/%E5%BE%AA%E7%8E%AF%E4%B8%8E%E8%BF%AD%E4%BB%A3/" data-id="cm7kloik100592cvp5t34abpe" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/15/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE/" data-id="cm7mlio0u005nfkvp5du212gc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -1052,6 +1037,10 @@
       <ul>
         
           <li>
+            <a href="/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/">React类组件函数组件对props及state及ref使用</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/25/React%E8%AD%A6%E5%91%8A%E5%8F%8A%E6%8A%A5%E9%94%99/">React警告及报错</a>
           </li>
         
@@ -1065,10 +1054,6 @@
         
           <li>
             <a href="/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/">js一些代码块</a>
-          </li>
-        
-          <li>
-            <a href="/2024/12/07/MD%E8%AE%B0%E5%BD%95/">MD记录</a>
           </li>
         
       </ul>

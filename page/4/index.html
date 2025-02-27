@@ -68,6 +68,69 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-代码片段之JS" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/" class="article-date">
+  <time datetime="2020-12-25T03:10:40.000Z" itemprop="datePublished">2020-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/">代码片段之JS</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Array">Array</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Array(9).fill(null)</span><br></pre></td></tr></table></figure>
+<h3 id="Node">Node</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env node // shebang</span><br></pre></td></tr></table></figure>
+<h3 id="逻辑">逻辑</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Boolean &amp;&amp; <span class="string">&#x27;I am sure&#x27;</span> || <span class="string">&#x27;I am not sure&#x27;</span></span><br><span class="line"></span><br><span class="line">var obj = &#123;</span><br><span class="line">  method: <span class="string">&quot;PUT&quot;</span>,</span><br><span class="line">  body: JSON.stringify(&#123;</span><br><span class="line">    age: 1,</span><br><span class="line">  &#125;),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var rr = obj &amp;&amp; obj.body;</span><br><span class="line">console.log(rr) // <span class="string">&quot;&#123;&quot;</span>age<span class="string">&quot;:1&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="对象合并">对象合并</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object.assign(&#123;&#125;, obj, init);</span><br><span class="line">// 即使 init 是 undefined，则忽略 init 继续合并</span><br><span class="line">// &#123;method: &quot;PUT&quot;, body: &quot;&#123;&quot;age&quot;:1&#125;&quot;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="iOS-input-失焦键盘不消失">iOS input 失焦键盘不消失</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 看到网上有人这样的代码思路，首先是在mounted函数中对某输入框监听</span></span><br><span class="line"><span class="keyword">let</span> beforeIpt = <span class="literal">null</span>;</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;inputId&quot;</span>).<span class="title function_">addEventListener</span>(<span class="string">&quot;focus&quot;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  beforeIpt = <span class="variable language_">this</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(beforeIpt);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在对文档进行监听，若是点击其他空白处，模拟失焦，则键盘自消失</span></span><br><span class="line"><span class="comment">// 使用tap事件可解决此问题</span></span><br><span class="line"><span class="comment">// document.addEventListener(&#x27;touchend&#x27;, function (e) &#123;</span></span><br><span class="line"><span class="comment">//   console.log(&#x27;touchend&#x27;);</span></span><br><span class="line"><span class="comment">//   if (e.target.nodeName.toLowerCase() != &#x27;input&#x27;) &#123;</span></span><br><span class="line"><span class="comment">//     if (beforeIpt) &#123;</span></span><br><span class="line"><span class="comment">//       beforeIpt.blur();</span></span><br><span class="line"><span class="comment">//       beforeIpt = null;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"><span class="comment">// &#125;);</span></span><br></pre></td></tr></table></figure>
+<h3 id="移动端在注册或登录页面会出现键盘遮挡-input-输入框的解决办法">移动端在注册或登录页面会出现键盘遮挡 input 输入框的解决办法</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bfscrolltop = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollTop</span>; <span class="comment">//获取软键盘唤起前浏览器滚动部分的高度</span></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">//设置一个计时器，时间设置与软键盘弹出所需时间相近</span></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollTop</span> = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollHeight</span>; <span class="comment">//获取焦点后将浏览器内所有内容高度赋给浏览器滚动部分高度</span></span><br><span class="line">&#125;, <span class="number">200</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;onFocus&quot;</span>);</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollTop</span> = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollHeight</span>;</span><br><span class="line"><span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">scrollTop</span> = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollHeight</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cnt = <span class="number">0</span>;</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">timerId</span> = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (cnt &lt; <span class="number">5</span>) &#123;</span><br><span class="line">    cnt++;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">clearInterval</span>(<span class="variable language_">this</span>.<span class="property">timerId</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">timerId</span> = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollTop</span> = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollHeight</span>;</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">scrollTop</span> = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollHeight</span>;</span><br><span class="line">&#125;, <span class="number">200</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="获取-dom-信息">获取 dom 信息</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">getDom</span> = (<span class="params">selector, type = <span class="string">&quot;id&quot;</span></span>) =&gt;</span><br><span class="line">  type === <span class="string">&quot;id&quot;</span></span><br><span class="line">    ? <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(selector)</span><br><span class="line">    : <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(selector)[<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;app&quot;</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span>Hi<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">getDom</span>(<span class="string">&quot;app&quot;</span>, <span class="string">&quot;class&quot;</span>).<span class="property">innerHTML</span>); <span class="comment">// Hi</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">getDom</span>(<span class="string">&quot;app&quot;</span>).<span class="property">innerHTML</span>); <span class="comment">// Hi</span></span><br></pre></td></tr></table></figure>
+<h3 id="下载表格">下载表格</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onDownload</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> hostname = <span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">origin</span></span><br><span class="line">  <span class="keyword">let</span> request_no = <span class="variable language_">this</span>.<span class="property">formItem</span>.<span class="property">orderNumber</span></span><br><span class="line">  <span class="keyword">let</span> channel_name = <span class="variable language_">this</span>.<span class="property">formItem</span>.<span class="property">salesStaff</span></span><br><span class="line">  <span class="keyword">let</span> begin_time = <span class="variable language_">this</span>.<span class="property">formItem</span>.<span class="property">beginTimeTemp</span></span><br><span class="line">  <span class="keyword">let</span> finish_time = <span class="variable language_">this</span>.<span class="property">formItem</span>.<span class="property">endTimeTemp</span></span><br><span class="line">  <span class="keyword">let</span> current_page = <span class="variable language_">this</span>.<span class="property">pagination</span>.<span class="property">pageIndex</span></span><br><span class="line">  <span class="keyword">let</span> limit = <span class="variable language_">this</span>.<span class="property">pagination</span>.<span class="property">limit</span></span><br><span class="line">  <span class="keyword">let</span> downURL = <span class="string">`<span class="subst">$&#123;hostname&#125;</span>/store/Financing/firstOrder?request_no=<span class="subst">$&#123;request_no&#125;</span>&amp;channel_name=<span class="subst">$&#123;channel_name&#125;</span>&amp;begin_time=<span class="subst">$&#123;begin_time&#125;</span>&amp;finish_time=<span class="subst">$&#123;finish_time&#125;</span>&amp;current_page=<span class="subst">$&#123;current_page&#125;</span>&amp;limit=<span class="subst">$&#123;limit&#125;</span>`</span></span><br><span class="line">  <span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span> = downURL</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 页面中创建 a 标签并跳转</span></span><br><span class="line"><span class="title function_">createLabel</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">const</span> link = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;a&#x27;</span>) <span class="comment">// 创建a标签</span></span><br><span class="line">  link.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span> <span class="comment">// 使其隐藏</span></span><br><span class="line">  link.<span class="property">href</span> = url <span class="comment">// 赋予a标签地址</span></span><br><span class="line">  link.<span class="title function_">setAttribute</span>(<span class="string">&#x27;target&#x27;</span>, <span class="string">&#x27;_blank&#x27;</span>)</span><br><span class="line">  link.<span class="title function_">setAttribute</span>(<span class="string">&#x27;rel&#x27;</span>, <span class="string">&#x27;noopener noreferrer&#x27;</span>)</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(link) <span class="comment">// a标签插至页面中</span></span><br><span class="line">  link.<span class="title function_">click</span>() <span class="comment">// 强制触发a标签事件</span></span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(link)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="forEach">forEach</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 操作数组里面item的数据</span></span><br><span class="line"><span class="comment">// 例子1</span></span><br><span class="line">that.<span class="property">dataSource</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">element</span>) =&gt;</span> &#123;</span><br><span class="line">  element.<span class="property">shareToolName</span> = element.<span class="property">shareToolName</span>.<span class="title function_">split</span>(<span class="string">&quot;,&quot;</span>).<span class="title function_">join</span>(<span class="string">&quot;，&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 例子2</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">recordList</span>.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!!item.<span class="property">fileAddressList</span>) &#123;</span><br><span class="line">    item.<span class="property">fileAddressList</span> = item.<span class="property">fileAddressList</span>.<span class="title function_">map</span>(<span class="function">(<span class="params">m</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// return &#123; fileName: m.fileName, url: `$&#123;window._env_.gatewayUrl&#125;/$&#123;window._env_.APP_ID&#125;/file/get/$&#123;m.fileAddressOrId&#125;` &#125;</span></span><br><span class="line">      <span class="keyword">return</span> &#123; <span class="attr">fileName</span>: m.<span class="property">fileName</span>, <span class="attr">url</span>: m.<span class="property">fileAddressOrId</span> &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="原生-xhr-请求">原生 xhr 请求</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">downloadLoad</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>()</span><br><span class="line">  xhr.<span class="title function_">open</span>(<span class="string">&#x27;GET&#x27;</span>, <span class="string">`<span class="subst">$&#123;<span class="variable language_">window</span>._env_.gatewayUrl&#125;</span>/<span class="subst">$&#123;<span class="variable language_">window</span>._env_.APP_ID&#125;</span>/reviewRecord/GenerateAllPlan?recordId=<span class="subst">$&#123;<span class="variable language_">this</span>.incentiveSchemesId&#125;</span>`</span>, <span class="literal">true</span>)</span><br><span class="line">  xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;X-GW-AccessKey&#x27;</span>, <span class="variable language_">window</span>.<span class="property">_env_</span>.<span class="property">accessKey</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> loadingInstance = <span class="variable language_">this</span>.$loading(&#123; <span class="attr">text</span>: <span class="string">&#x27;下载中...&#x27;</span> &#125;)</span><br><span class="line">  <span class="comment">// xhr.responseType = &#x27;blob&#x27;</span></span><br><span class="line">  xhr.<span class="property">onload</span> = <span class="function"><span class="params">ev</span> =&gt;</span> &#123;</span><br><span class="line">    loadingInstance.<span class="title function_">close</span>()</span><br><span class="line">    <span class="keyword">if</span> (xhr.<span class="property">status</span> == <span class="number">200</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> response = xhr.<span class="property">response</span></span><br><span class="line">      response = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(response)</span><br><span class="line">      <span class="keyword">if</span> (response.<span class="property">success</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> fname = response.<span class="property">data</span>.<span class="title function_">split</span>(<span class="string">&#x27;/icome-partner-server/&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">handleDownload</span>(response.<span class="property">data</span>, fname)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// const contentDisposition = xhr.getResponseHeader(&#x27;content-disposition&#x27;)</span></span><br><span class="line">      <span class="comment">// const blob = new Blob([response], &#123; type: &#x27;application/zip&#x27; &#125;)</span></span><br><span class="line">      <span class="comment">// const fname = contentDisposition.split(&#x27;filename=&#x27;)[1].split(&#x27;.&#x27;)[0]</span></span><br><span class="line">      <span class="comment">// const el = document.createElement(&#x27;a&#x27;)</span></span><br><span class="line">      <span class="comment">// const href = window.URL.createObjectURL(blob)</span></span><br><span class="line">      <span class="comment">// el.href = href</span></span><br><span class="line">      <span class="comment">// el.download = decodeURIComponent(fname)</span></span><br><span class="line">      <span class="comment">// document.body.appendChild(el)</span></span><br><span class="line">      <span class="comment">// el.click()</span></span><br><span class="line">      <span class="comment">// document.body.removeChild(el)</span></span><br><span class="line">      <span class="comment">// window.URL.revokeObjectURL(href)</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (xhr.<span class="property">status</span> == <span class="number">201</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">$message</span>.<span class="title function_">error</span>(<span class="string">&#x27;请先保存之后下载附件&#x27;</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (xhr.<span class="property">status</span> == <span class="number">401</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">$message</span>.<span class="title function_">error</span>(<span class="string">&#x27;暂无权限&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  xhr.<span class="title function_">send</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="判断是否为-PC-环境">判断是否为 PC 环境</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">isPC</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> userAgentInfo = navigator.<span class="property">userAgent</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title class_">Agents</span> = [</span><br><span class="line">    <span class="string">&#x27;Android&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;iPhone&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;SymbianOS&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Windows Phone&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;iPad&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;iPod&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;BlackBerry&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;webOS&#x27;</span>,</span><br><span class="line">  ]</span><br><span class="line">  <span class="keyword">let</span> flagPc = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="title class_">Agents</span>.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (userAgentInfo.<span class="title function_">indexOf</span>(<span class="title class_">Agents</span>[i]) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      flagPc = <span class="literal">false</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> flagPc</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 是 pc 则 todo</span></span><br><span class="line"><span class="keyword">if</span> (<span class="title function_">isPC</span>()) &#123;</span><br><span class="line">  todo</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  other todo</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/" data-id="cm7mlio0a004nfkvp1ada2cbz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CSS杂记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/25/CSS%E6%9D%82%E8%AE%B0/" class="article-date">
@@ -122,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/CSS%E6%9D%82%E8%AE%B0/" data-id="cm7kloid6000b2cvp6ouf3g5q" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/CSS%E6%9D%82%E8%AE%B0/" data-id="cm7mlinxz000bfkvp317vhx0m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -175,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="cm7kloikf005q2cvphg88fa1y" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="cm7mlio0x005vfkvpbfnsgm4g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li></ul>
@@ -225,7 +288,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cm7kloic100012cvp8nfmbxsm" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cm7mlinxk0001fkvpe0aa06rj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -277,7 +340,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/11/Vue%E6%9D%82%E9%9B%86/" data-id="cm7kloifz002f2cvp90qjfgyy" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/11/Vue%E6%9D%82%E9%9B%86/" data-id="cm7mlinz1002ifkvpdv1ie1ot" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
@@ -339,7 +402,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" data-id="cm7kloiet001c2cvpafdr0hmq" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" data-id="cm7mlinyn001lfkvp3eylblam" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
@@ -395,7 +458,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="cm7kloif9001t2cvphjz613wm" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="cm7mlinyq001ofkvp3933cpy2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -447,7 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="cm7kloifq00252cvp0lkr98gf" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="cm7mlinyz002afkvp2d5kcsud" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
@@ -525,7 +588,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/03/Nodejs%E4%B9%8BYarn/" data-id="cm7kloif7001r2cvphieuhsuk" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/03/Nodejs%E4%B9%8BYarn/" data-id="cm7mlinyr001qfkvpbtj0c0li" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -568,91 +631,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" data-id="cm7kloihx00402cvp6t03fywr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-vscode杂记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/02/vscode%E6%9D%82%E8%AE%B0/" class="article-date">
-  <time datetime="2020-12-02T05:34:28.000Z" itemprop="datePublished">2020-12-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/02/vscode%E6%9D%82%E8%AE%B0/">vscode杂记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前言：vscode 使用很广泛，记一些笔记</p>
-<h3 id="快捷键">快捷键</h3>
-<p>1、md 文件，键入 Ctrl + Shift + v 可预览</p>
-<p>▲ 放大缩小字体 Ctrl + (+/-)<br>
-▲ 显示/隐藏底部控制台：Ctrl + Shift + Y || Ctrl + ` 二则区别：前者是在 调试控制台 Tab 后者是在 终端 Tab<br>
-▲ 格式代码 =&gt; Shift + Alt + F<br>
-▲ 命令模式 =&gt; Ctrl + Shift + P （这里面可重载窗口、可选择 node_modules 插件查询下面的依赖包）<br>
-▲ 打开最近文件列表 =&gt; Ctrl + P || Ctrl + E<br>
-▲ 打开最近打开项目 =&gt; Ctrl + R ，按住 Ctrl 在鼠标点击项目，直接新窗口打开该项目</p>
-<p>▲vscode 中添加很多项目时，鼠标选中某目录，直接 Shift + Alt + F 可直接检索出该目录下的检索词<br>
-▲ 资源管理器 =&gt; Ctrl + Shift + E 资源管理器(文件编辑区)<br>
-▲ 项目搜索 =&gt; Ctrl + Shift + F 项目搜索<br>
-▲ 在某文件搜索 =&gt; Ctrl + F 在某文件搜索<br>
-vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
-<p>重启 IDE CTRL + SHITF + P 键入 Reload Window</p>
-<p>▲ 快捷键文档<br>
-<a target="_blank" rel="noopener" href="https://www.cnblogs.com/schut/p/10461840.html">https://www.cnblogs.com/schut/p/10461840.html</a><br>
-<a target="_blank" rel="noopener" href="https://www.cnblogs.com/sufaith/p/vscode-key-text-transform-case.html">https://www.cnblogs.com/sufaith/p/vscode-key-text-transform-case.html</a></p>
-<p>▲ 打开外部终端：你在编辑某个项目的文件时候，按下 Ctrl + Shift + C 会弹出该项目为根目录的 Windows 的 cmd</p>
-<p>▲VS Code 集成终端字体修改 &amp; 字体颜色、大小修改方法<br>
-<a target="_blank" rel="noopener" href="https://blog.csdn.net/donaldsy/article/details/94474600">https://blog.csdn.net/donaldsy/article/details/94474600</a></p>
-<p>▲Ctrl + K 在按下 Ctrl + T 就可以更换主题</p>
-<p>▲ 快速复制某行 =&gt; Shift + Alt + 下箭头 / 上箭头<br>
-▲ p<em>2 、li</em>2、div*2、.el 回车、#el 回车</p>
-<p>▲VsCode 中使用 Emmet 神器快速编写 HTML 代码<br>
-<a target="_blank" rel="noopener" href="https://www.cnblogs.com/summit7ca/p/6944215.html">https://www.cnblogs.com/summit7ca/p/6944215.html</a></p>
-<h3 id="插件">插件</h3>
-<p>1、在写 react demo 时，使用 vscode 自带的 shift + alt + f ，直接把我的 react 代码弄得很乱，后来发现格式化代码是使用插件 beautify 来弄的！后来才知道，针对 vscode 你可以安装 eslint prettier 这是为了你单独开发普通项目，你可以美化代码、校验语法，在 vue react 脚手架有的 package.json 自带给你配置了 eslint ，所以可在教手架中关闭！</p>
-<p>2、.editorconfig 文件，此文件就是对编码方式的声明，前提是要在 IDE 中安装此插件！以前还以为 .editorconfig 是不是给 webstorm 读取的啊？后来知它是给 IDE 一个声明，让编辑器知道我的代码（无论是何种语言）风格都是按照 .editorconfig 配置。根目录建立.editorconfig 配置。这个的作用是为项目统一编辑器的实时格式。简单来说就是它负责敲代码那一刻的格式，prettier 负责保存代码那一刻的格式。两者统一体验更好。20201110 我在新奥开发分销小程序时候，发现我加了 .editorconfig 格式化就不生效了！</p>
-<p>3、之前安装的插件集，仅记录如下：</p>
-<p><img src="https://file.798run.top/img/blog/20201202/plugin1.png" alt="plugin1"></p>
-<p><img src="https://file.798run.top/img/blog/20201202/plugin2.png" alt="plugin2"></p>
-<p><img src="https://file.798run.top/img/blog/20201202/plugin3.png" alt="plugin3"></p>
-<p>4、疑问，vscode 真对刚导入的项目，会提示你是否使用 eslint 检测，一旦你点击运行，针对项目下文件会报红色（若是你的代码本身不符合 eslint 规范），针对此场景，如何取消烦人的红色提示？<br>
-红色提示记录：</p>
-<p><img src="https://file.798run.top/img/blog/20210426/vscode_eslint_err.png" alt="vscode_eslint_err"></p>
-<h3 id="多项目">多项目</h3>
-<p>1、vscode 可以添加多项目，鼠标选中某目录，直接 Shift + Alt + F 可直接检索出该目录下的检索词。</p>
-<h3 id="杂项">杂项</h3>
-<p>1、安装了该软件，或者是任意一个工程软件，一般会在你的 Users/user 目录 （不在此目录，安装在其他目录也不合适呀） 下生成一个配置目录 .vscode ，查看之，发现安装的 vscode 插件 list 都在这！</p>
-<p>2、用户可以根据自己需要配置 settings.json ，此文件也是类似于工程软件，一般会在你的机器用户名下的 AppData\Roaming 目录下，我个人的完整目录在 C:\Users\Andy_Zhang\AppData\Roaming\Code\User\settings.json，当然了针对你的各个不同的项目，也可单独配置，我理解：vscode 首先是读取你的项目的 .vscode\settings.json 文件，进而在读取你的系统的配置文件，属性相同的配置，合并之。若无此文件，就直接就取你系统的文件！</p>
-<p>3、settings.json 配置了粘贴自动保存，弄巧成拙！</p>
-<p>4、离开秋果后使用 Hasee ，vscode 在 testme 项目中写 demo ，发现格式化效果不好（注释的代码不会对齐）细看自己没有安装 prettier 插件，于是安装之，再次格式化 html 代码，提示选择格式化的程序（有一个默认的格式化程序、还一个是就是刚刚安装的 prettier ，选择之，格式化 OK！）</p>
-<p>5、在 VSCode 中使用 Remote Workspace 进行远程文件管理 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3a18568ffa92">https://www.jianshu.com/p/3a18568ffa92</a><br>
-关于 VSCode 中工作区的讲解与使用工作区还你一个轻量的 VSCode <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/25706af1f6a7">https://www.jianshu.com/p/25706af1f6a7</a></p>
-<p>6、20200820 CRS 针对 js 文件一直提示要是有分号，Google 之后发现，发现在 .eslintrc.js 中这样写 semi: [2], =&gt; semi: [0], 即可，参考：<a target="_blank" rel="noopener" href="https://juejin.im/post/6844903854379630599">https://juejin.im/post/6844903854379630599</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/vscode%E6%9D%82%E8%AE%B0/" data-id="cm7kloii000422cvpcc8xfaxq" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" data-id="cm7mlinzs0045fkvp2o9m1mbr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
@@ -707,6 +686,10 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       <ul>
         
           <li>
+            <a href="/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/">React类组件函数组件对props及state及ref使用</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/25/React%E8%AD%A6%E5%91%8A%E5%8F%8A%E6%8A%A5%E9%94%99/">React警告及报错</a>
           </li>
         
@@ -720,10 +703,6 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
         
           <li>
             <a href="/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/">js一些代码块</a>
-          </li>
-        
-          <li>
-            <a href="/2024/12/07/MD%E8%AE%B0%E5%BD%95/">MD记录</a>
           </li>
         
       </ul>

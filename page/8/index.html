@@ -68,6 +68,97 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-看冴羽博客笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/02/%E7%9C%8B%E5%86%B4%E7%BE%BD%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2019-07-02T11:11:42.000Z" itemprop="datePublished">2019-07-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/02/%E7%9C%8B%E5%86%B4%E7%BE%BD%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0/">看冴羽博客笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="看冴羽博客自己总结">看冴羽博客自己总结</h3>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> scope = <span class="string">&quot;global scope&quot;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkscope</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> scope = <span class="string">&quot;local scope&quot;</span>;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">f</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> scope;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">f</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">checkscope</span>();</span><br></pre></td></tr></table></figure>
+<p>执行过程如下：<br>
+1.首先是创建一个全局执行上下文，把其压入执行栈中；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ECStack</span> = &#123;</span><br><span class="line">    globalContext</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建完，全局执行上下文，随后就会对全局执行上下文进行初始化</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">globalContext = &#123;</span><br><span class="line">    <span class="attr">VO</span>: [<span class="variable language_">global</span>],</span><br><span class="line">    <span class="title class_">Scope</span>: [globalContext.<span class="property">VO</span>],</span><br><span class="line">    <span class="attr">this</span>: globalContext.<span class="property">VO</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>初始化全局执行上下文的同时，checkscope函数被创建，保存作用域链到函数的内部属性<code>[[scope]]</code></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">checkscope.[[scope]]] = [</span><br><span class="line">    globalContext.<span class="property">VO</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>执行checkscope函数之前，创建该函数的执行上下文，并把该函数上下文压入执行上下文栈中</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ECStack</span> = [</span><br><span class="line">    checkscopeContext,</span><br><span class="line">    globalContext</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>checkscope函数执行上下文开始初始化：
+<ul>
+<li>复制函数属性[[scope]]创建作用域链</li>
+<li>用arguments创建活动对象AO</li>
+<li>初始化AO，即加入形参、函数声明、变量声明</li>
+<li>将活动对象压入checkscope作用域链的顶端</li>
+</ul>
+</li>
+</ol>
+<p>初始化之后AO的结果是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">checkscopeContext = &#123;</span><br><span class="line">    <span class="attr">AO</span>: &#123;</span><br><span class="line">        <span class="attr">arguments</span>: &#123;</span><br><span class="line">            <span class="attr">length</span>: <span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">scope</span>: <span class="literal">undefined</span>,</span><br><span class="line">        <span class="attr">f</span>: <span class="title class_">Reference</span> <span class="title function_">f</span> () &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title class_">Scope</span>: [globalContext.<span class="property">VO</span>],</span><br><span class="line">    <span class="attr">this</span>: <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将活动对象压入checkscope作用域链的顶端:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">checkscopeContext = &#123;</span><br><span class="line">    <span class="attr">AO</span>: &#123;</span><br><span class="line">        <span class="attr">arguments</span>: &#123;</span><br><span class="line">            <span class="attr">length</span>: <span class="number">0</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">scope</span>: <span class="literal">undefined</span>,</span><br><span class="line">        <span class="attr">f</span>: <span class="title class_">Reference</span> <span class="title function_">f</span> () &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title class_">Scope</span>: [<span class="variable constant_">AO</span>, globalContext.<span class="property">VO</span>],</span><br><span class="line">    <span class="attr">this</span>: <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>checkscope函数的解析就结束了，随后就解析f函数，同理：创建f函数执行上下文 - 把f函数执行上下文压入执行上下文栈这时候执行栈变成了：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="title class_">ECStack</span> = [</span><br><span class="line">    fContext,</span><br><span class="line">    checkscopeContext,</span><br><span class="line">    globalContext</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>f函数执行上下文初始化的步骤与checkscope函数是同理的。最终f函数的执行上下文初始化之后的结果是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fContext = &#123;</span><br><span class="line">    <span class="attr">AO</span>: &#123;</span><br><span class="line">        <span class="attr">arguments</span>: &#123;</span><br><span class="line">            <span class="attr">length</span>: <span class="number">0</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title class_">Scope</span>: [<span class="variable constant_">AO</span>, checkscopeContext.<span class="property">AO</span>, globalContext.<span class="property">VO</span>],</span><br><span class="line">    <span class="attr">this</span>: <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>
+<p>f函数的执行上下文也初始化完成之后，就开始执行函数了，当然执行栈是按照自上而下的方式执行，于是首先执行f函数，因为f函数return了scope这时候f函数就沿着他的作用域链找scope的变量声明，首先在它自己的活动对象找scope没找到，就去checkscopeContext.AO找,发现该处的AO中scope被赋值为local scope，所以执行结果就是local scope。</p>
+</li>
+<li>
+<p>f函数执行完毕，f函数上下文从ECStack弹出，checkscope函数执行完毕，checkscope执行上下文也会从ECStack弹出，最终ECStack变成：</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ECStack</span> = [</span><br><span class="line">    globalContext</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>
+<p>最终页面关闭时候，全局执行上下文，也会弹出。</p>
+</li>
+<li>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://github.com/mqyqingfeng/Blog/issues/8">JavaScript深入之执行上下文</a>;</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/07/02/%E7%9C%8B%E5%86%B4%E7%BE%BD%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0/" data-id="cm7mlio0w005sfkvpemb07akz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-layui中函数使用方法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/06/14/layui%E4%B8%AD%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="article-date">
@@ -154,7 +245,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/06/14/layui%E4%B8%AD%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-id="cm7kloih4003h2cvp3yq02pa5" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/06/14/layui%E4%B8%AD%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-id="cm7mlinzo003ufkvp30bdaxbp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li></ul>
@@ -207,7 +298,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/06/11/Math%E5%87%BD%E6%95%B0/" data-id="cm7kloiez001k2cvpe84ifsmg" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/06/11/Math%E5%87%BD%E6%95%B0/" data-id="cm7mlinym001gfkvpcd17225d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -267,7 +358,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/" data-id="cm7kloigc002r2cvp14jjgr7j" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/" data-id="cm7mlinz4002pfkvpd8587uwh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -303,7 +394,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/" data-id="cm7kloid8000c2cvpcb3642ei" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/" data-id="cm7mliny0000cfkvpbpa493nf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -369,7 +460,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/04/15/js%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%8E%BB%E9%87%8D%E7%AD%89/" data-id="cm7kloigr00372cvphyfv34x3" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/04/15/js%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%8E%BB%E9%87%8D%E7%AD%89/" data-id="cm7mlinze0037fkvp426yec9r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -463,7 +554,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/04/11/js%20function%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" data-id="cm7kloigj002y2cvpdmkhgqim" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/04/11/js%20function%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" data-id="cm7mlinza0030fkvpbsbr9egt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -509,7 +600,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/04/11/js%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF/" data-id="cm7kloih1003d2cvpcyzbf3eb" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/04/11/js%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF/" data-id="cm7mlinzg003bfkvp11rihhhl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -599,7 +690,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/03/15/eval%E6%80%BB%E7%BB%93/" data-id="cm7kloig7002m2cvpdp449c1y" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/03/15/eval%E6%80%BB%E7%BB%93/" data-id="cm7mlinz3002nfkvp5hgxbi09" class="article-share-link">Share</a>
       
       
     </footer>
@@ -651,74 +742,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/03/14/js%E4%B8%AD%E7%9A%84%E9%80%97%E5%8F%B7/" data-id="cm7kloigt00392cvp64ldbpgh" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/03/14/js%E4%B8%AD%E7%9A%84%E9%80%97%E5%8F%B7/" data-id="cm7mlinzf0039fkvp8qmbfryg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-故事目录序" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/02/28/%E6%95%85%E4%BA%8B%E7%9B%AE%E5%BD%95%E5%BA%8F/" class="article-date">
-  <time datetime="2019-02-28T07:09:46.000Z" itemprop="datePublished">2019-02-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/28/%E6%95%85%E4%BA%8B%E7%9B%AE%E5%BD%95%E5%BA%8F/">故事目录序</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>记录故事点滴，缅怀逝去青春，展望未来生活</p>
-<ol>
-<li>
-<p>童年的回忆</p>
-<ul>
-<li>主要讲述了自己小时候在村庄玩耍的点滴，坝上，冬天到水沟边点枯草，江湾里玩。</li>
-</ul>
-</li>
-<li>
-<p>前后一起长大的村庄小伙伴的点滴</p>
-</li>
-<li>
-<p>北京的辛酸、快乐、充实的经历</p>
-</li>
-<li>
-<p>父亲在十堰打工睡在山坡上的辛酸会议[20190227]</p>
-</li>
-<li>
-<p>初中至高中至上大学的短回忆[20190228]</p>
-</li>
-<li>
-<p>大学的小回忆[20190301]</p>
-</li>
-<li>
-<p>张新班主任读的那篇潸然泪下的作文[20190302]</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/02/28/%E6%95%85%E4%BA%8B%E7%9B%AE%E5%BD%95%E5%BA%8F/" data-id="cm7kloik2005a2cvp6ewd2nan" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -769,6 +797,10 @@
       <ul>
         
           <li>
+            <a href="/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/">React类组件函数组件对props及state及ref使用</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/25/React%E8%AD%A6%E5%91%8A%E5%8F%8A%E6%8A%A5%E9%94%99/">React警告及报错</a>
           </li>
         
@@ -782,10 +814,6 @@
         
           <li>
             <a href="/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/">js一些代码块</a>
-          </li>
-        
-          <li>
-            <a href="/2024/12/07/MD%E8%AE%B0%E5%BD%95/">MD记录</a>
           </li>
         
       </ul>
