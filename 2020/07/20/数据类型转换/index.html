@@ -7,15 +7,15 @@
   
   <title>数据类型转换 | 我的点滴记录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、数据类型检测常用方法  type of instanceof constructor Object.prototype.toString.call()  2、type of 123456type of NaN  &#x2F;&#x2F; &#x3D;&gt; numbertype of function() &amp;#123;&amp;#125;  &#x2F;&#x2F; &#x3D;&gt; functiontype of BigInt(10)  &#x2F;&#x2F; &#x3D;&amp;gt">
+  <meta name="description" content="对象转数字，对象转字符串，首先都是进行 Object.prototype.toString.call(this, obj) 1、数据类型检测常用方法  type of instanceof constructor Object.prototype.toString.call()  2、type of 12345type of NaN  &#x2F;&#x2F; &#x3D;&gt; numbertype of function">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据类型转换">
 <meta property="og:url" content="http://example.com/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/index.html">
 <meta property="og:site_name" content="我的点滴记录">
-<meta property="og:description" content="1、数据类型检测常用方法  type of instanceof constructor Object.prototype.toString.call()  2、type of 123456type of NaN  &#x2F;&#x2F; &#x3D;&gt; numbertype of function() &amp;#123;&amp;#125;  &#x2F;&#x2F; &#x3D;&gt; functiontype of BigInt(10)  &#x2F;&#x2F; &#x3D;&amp;gt">
+<meta property="og:description" content="对象转数字，对象转字符串，首先都是进行 Object.prototype.toString.call(this, obj) 1、数据类型检测常用方法  type of instanceof constructor Object.prototype.toString.call()  2、type of 12345type of NaN  &#x2F;&#x2F; &#x3D;&gt; numbertype of function">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-20T12:55:25.000Z">
-<meta property="article:modified_time" content="2025-02-27T02:57:24.956Z">
+<meta property="article:modified_time" content="2025-02-27T23:59:47.918Z">
 <meta property="article:author" content="Andy Zhang">
 <meta property="article:tag" content="JS相关">
 <meta name="twitter:card" content="summary">
@@ -93,7 +93,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1、数据类型检测常用方法">1、数据类型检测常用方法</h2>
+        <p>对象转数字，对象转字符串，首先都是进行 Object.prototype.toString.call(this, obj)</p>
+<h2 id="1、数据类型检测常用方法">1、数据类型检测常用方法</h2>
 <ul>
 <li>type of</li>
 <li>instanceof</li>
@@ -101,7 +102,7 @@
 <li>Object.prototype.toString.call()</li>
 </ul>
 <h2 id="2、type-of">2、type of</h2>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type of NaN  // =&gt; number</span><br><span class="line"></span><br><span class="line">type of function() &#123;&#125;  // =&gt; function</span><br><span class="line">type of BigInt(10)  // =&gt; bigint</span><br><span class="line">type of null  // =&gt; object 计算机遗留的 bug 存储时候是二进制开始；000默认是对象，</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">type <span class="keyword">of</span> <span class="title class_">NaN</span>  <span class="comment">// =&gt; number</span></span><br><span class="line">type <span class="keyword">of</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;&#125;  <span class="comment">// =&gt; function</span></span><br><span class="line">type <span class="keyword">of</span> <span class="title class_">BigInt</span>(<span class="number">10</span>)  <span class="comment">// =&gt; bigint</span></span><br><span class="line">type <span class="keyword">of</span> <span class="literal">null</span>  <span class="comment">// =&gt; object 计算机遗留的 bug 存储时候是二进制开始；000默认是对象，</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="3、其他类型转换为-Number-类型">3、其他类型转换为 Number 类型</h2>
 <ul>
 <li>
@@ -117,6 +118,7 @@
 <li>Number(false) // 0</li>
 <li>Number(null) // 0</li>
 <li>Number(undefined) // NaN</li>
+<li>Number(NaN) // NaN</li>
 <li>Number(Symbol(10)) // error</li>
 <li>Number(BigInt(10)) // 10</li>
 <li>Number({name: 1}) // NaN 把对象转换为数字，需要隐式依次执行 valueOf、toString、在转换为数字，不满足转换为数字的对象输出 NaN</li>
@@ -152,6 +154,9 @@
 <li>
 <p>对象转换为数字：对象 =&gt; str =&gt; number</p>
 </li>
+<li>
+<p>总结(25.02.28)：引用类型 + 0 这种，就是引用类型进行 toPrimitive 转换为 str 给 0(也被转换为 str 形式的 0) 相加，就唯一一个特殊的是 解析器吧 {} 当成代码块处理了。注注注！我测试了 <code>&#123;&#125; + 0</code> 发现浏览器纠正过来了，其值为 [object Object]0</p>
+</li>
 </ul>
 <h2 id="4、其他类型转换为-String-类型">4、其他类型转换为 String 类型</h2>
 <ul>
@@ -165,7 +170,6 @@
 <li>String(null) =&gt; “null”</li>
 <li>String(undefined) =&gt; “undefined”</li>
 <li>String({}) =&gt; “[object Object]” 此例子调用的是 Object.prototype.toString.call() 方法，不是转换字符串，变成了数据类型检测，({age: 1}).toString() =&gt; “[object Object]”</li>
-<li>String(null) =&gt; “null”</li>
 </ul>
 <ul>
 <li>给予 alert/confirm/prompt/document.write 这些方法输出，都是先转换为 string 在输出</li>
@@ -210,8 +214,34 @@
 </ul>
 </li>
 </ul>
-<h2 id="7、特殊情况">7、特殊情况</h2>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let result = 10 + false + undefined + [] + &#x27;Tencent&#x27; + null + true + &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="加号运算符计算规则">加号运算符计算规则</h2>
+<p>首先执行代码，调用 ToPrimitive 方法得到原始值</p>
+<ul>
+<li>
+<p>如果原始值是两个数字，则直接相加得出结果。</p>
+</li>
+<li>
+<p>如果两个原始值都是字符串，把第二个字符串连接到第一个上，也就是相当于调用 concat 方法。</p>
+</li>
+<li>
+<p>如果只有一个原始值是字符串，调用 ToString 方法把另一个运算数转换成字符串，结果是两个字符串连接成的字符串</p>
+</li>
+<li>
+<p>{}的两种解读</p>
+<ul>
+<li>① 当{}的前面有运算符号的时候，+，-，*，/,()等等，{}都会被解析成对象字面量，这无可争议。</li>
+<li>② 当{}前面没有运算符时候但有;结尾的时候，或者浏览器的自动分号插入机制给{}后面插入分号(;)时候，此时{}都会被解析成代码块。</li>
+<li>③ 如果{}前面什么运算符都没有，{}后面也没有分号(;)结尾，Firefox 会始终如一的解析为代码块，而 chrome 有细微的差别，chrome 会解析为对象字面量。</li>
+</ul>
+</li>
+<li>
+<p>运算表达式中，有一些细节，如空数组，空对象，在被参与运算，首先他们要转为基本类型(基本类型就 5 种，Undefined、Null、Number、String、Boolean)，调的方法是 toPrimitive()，这个函数具体执行过程其规则，<a target="_blank" rel="noopener" href="https://www.yuque.com/xiumubai/fe/mm96abud1mcd1ay0#5ff6bd67">点我</a>查看。该帖子中说的只有 <code>Date</code> 比较特殊，toPrimitive 中的第二个参数会被当成 String，也就是先执行 toString 方法，在执行 valueOf 方法。具体如下：</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="title class_">ToPrimitive</span>(obj,preferredType)</span><br><span class="line"></span><br><span class="line"><span class="variable constant_">JS</span>引擎内部转换为原始值<span class="title class_">ToPrimitive</span>(obj,preferredType)函数接受两个参数，第一个obj为被转换的对象，第二个</span><br><span class="line">preferredType为希望转换成的类型（默认为空，接受的值为<span class="title class_">Number</span>或<span class="title class_">String</span>）</span><br><span class="line"></span><br><span class="line">在执行<span class="title class_">ToPrimitive</span>(obj,preferredType)时如果第二个参数为空并且obj为<span class="title class_">Date</span>的事例时，此时preferredType会</span><br><span class="line">被设置为<span class="title class_">String</span>，其他情况下 preferredType 都会被设置为 <span class="title class_">Number</span> 如果 preferredType 为 <span class="title class_">Number</span>，<span class="title class_">ToPrimitive</span> 执</span><br><span class="line">行过程如下：</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> 如果obj为原始值，直接返回；</span><br><span class="line"><span class="number">2.</span> 否则调用 obj.<span class="title function_">valueOf</span>()，如果执行结果是原始值，返回之；</span><br><span class="line"><span class="number">3.</span> 否则调用 obj.<span class="title function_">toString</span>()，如果执行结果是原始值，返回之；</span><br><span class="line"><span class="number">4.</span> 否则抛异常。</span><br><span class="line"></span><br><span class="line">如果preferredType为<span class="title class_">String</span>，将上面的第<span class="number">2</span>步和第<span class="number">3</span>步调换，即：</span><br><span class="line"><span class="number">1.</span> 如果obj为原始值，直接返回；</span><br><span class="line"><span class="number">2.</span> 否则调用 obj.<span class="title function_">toString</span>()，如果执行结果是原始值，返回之；</span><br><span class="line"><span class="number">3.</span> 否则调用 obj.<span class="title function_">valueOf</span>()，如果执行结果是原始值，返回之；</span><br><span class="line"><span class="number">4.</span> 否则抛异常。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>针对 valueOf 函数，处理一些数据类型转化规则，可<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1338005">参看</a></p>
+<h2 id="例子">例子</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="number">10</span> + <span class="literal">false</span> + <span class="literal">undefined</span> + [] + <span class="string">&#x27;Tencent&#x27;</span> + <span class="literal">null</span> + <span class="literal">true</span> + &#123;&#125;;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>
 <p>看到此题，首先还是数学运算的范畴，无非就是有一些特殊情况，那就按照规则来处理。</p>
@@ -232,11 +262,29 @@
 <p>余下都是字符串拼接了 ‘NaNTencent’ + null + true + {} =&gt; “NaNTencentnulltrue[object Object]”</p>
 </li>
 </ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">++[[]][+[]] + [+[]] == <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>上面的例子，先拆分，看加号，左边一部分为：++[[]][+[]]，右边一部分为 [+[]]。</p>
+</li>
+<li>
+<p>左边根据优先级，先算一元运算符，也就是 [+[]]， +[] 开始运算，[] 经过 valueOf 还是 [], 没有变成原始数据类型，接着进行 toString 之后变成了 ‘’，+ ‘’ 就变成了 0，此时左边变成了 ++[[]][0]，根据优先级先处理 [[]][0]，这就变成了取数组下标，于是就变成了 ++[]，[] 处理过程就是上面说的，先 valueOf，在 toString 又变成了 ‘’, ++‘’ 其中 ‘’ 经过 Number 处理变成 0，++0 先加，就变成了 number 的 1，</p>
+</li>
+<li>
+<p>右边同理 [+[]] 变成 [0],</p>
+</li>
+<li>
+<p>左边＋右边就变成了 1 + [0], 一个是 number 一个是引用的数字，都转字符串吧，1 变成 ‘1’, [0] 经过 valueOf 依旧是 [0]，经过 toString 变成 ‘0’，则 ‘1’ + ‘0’ =&gt; ‘10’</p>
+</li>
+<li>
+<p>‘10’ == 10，则 true</p>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" data-id="cm7mthbjp005fc8vp74so01i9" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" data-id="cm7o0clki005c84vp35mk8k2q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
