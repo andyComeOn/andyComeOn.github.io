@@ -68,6 +68,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Nodejs一次安装记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/08/Nodejs%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2020-03-08T12:45:57.000Z" itemprop="datePublished">2020-03-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/08/Nodejs%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/">Nodejs一次安装记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于 github 上的博客太慢了，我决定在 gitee 上搭建一份博客！于疫情期间 2020-03-05 在家捯饬，想到我的 hexo 安装的比较早（大概是在 20190122，参考的文档就更早了），就打算找一个最近发布的文档参考！文档中让安装 npm install -g hexo-cli ，于是执行命令效果如下：</p>
+<p><img src="https://file.798run.top/img/blog/20200308/install-hexo-cli.png" alt="执行命令效果"></p>
+<p>我在执行 npm install -g hexo-cli 时候在想我之前应该已经执行了类似的全局操作，这次执行会不会覆盖之前的版本？升级 hexo 依赖包不行吗？npm 升级 hexo 包的指令又是啥？带着上面的疑问我 Windows10 系统找到本机 nodejs 安装目录：C:\Program Files\nodejs，截图如下：</p>
+<p><img src="https://file.798run.top/img/blog/20200308/nodejs-install-dir.png" alt="nodejs安装目录"></p>
+<p>看到之后发现怎么是一个快捷方式？该快捷方式地址详情如下：</p>
+<p><img src="https://file.798run.top/img/blog/20200308/nodejs-shortcut.png" alt="快捷方式详情"></p>
+<p>怎么是 user 下 Roaming 的 nvm？nvm 是为了切换当前 nodejs 运行版本安装的一个小工具，难道是 nvm 把 nodejs 安装地址更改了？又找到我本机缓存的目录如下：</p>
+<p><img src="https://file.798run.top/img/blog/20200308/roaming.png" alt=""></p>
+<p>hexo 之前参考的老文档是让安装 npm install hexo –g，新参考文档让安装 npm install hexo-cli –g，老文档中安装完成键入 hexo –v 显示：</p>
+<p><img src="https://file.798run.top/img/blog/20200308/hexo-v-old.png" alt=""></p>
+<p>我在安装了 hexo-cli –g 之后也执行 hexo –v 显示：</p>
+<p><img src="https://file.798run.top/img/blog/20200308/hexo-v-new.png" alt=""></p>
+<p>猜想是不是 hexo 的版本升级，之前安装的指令与现在安装的指令虽有点不太一样，安装完之后功能是一样的，可以在一个新电脑在尝试！</p>
+<h6 id="思考，是不是安装了-nvm-nodejs-的安装目录就是变成了快捷方式，属性值指向了-roaming-下的-nvm-了？">思考，是不是安装了 nvm nodejs 的安装目录就是变成了快捷方式，属性值指向了 roaming 下的 nvm 了？</h6>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/03/08/Nodejs%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cm7oknznt001jx0vp6rmn00r8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-laravel创建table字段参考表" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/03/laravel%E5%88%9B%E5%BB%BAtable%E5%AD%97%E6%AE%B5%E5%8F%82%E8%80%83%E8%A1%A8/" class="article-date">
@@ -138,7 +190,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/03/laravel%E5%88%9B%E5%BB%BAtable%E5%AD%97%E6%AE%B5%E5%8F%82%E8%80%83%E8%A1%A8/" data-id="cm7o857ku003hy8vpc8hxewxe" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/03/03/laravel%E5%88%9B%E5%BB%BAtable%E5%AD%97%E6%AE%B5%E5%8F%82%E8%80%83%E8%A1%A8/" data-id="cm7oknzon003ex0vp2gok0tp6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
@@ -226,7 +278,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/18/Form%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/" data-id="cm7o857jc000ky8vpfnto7fme" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/12/18/Form%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/" data-id="cm7oknzn6000lx0vp5vtnadki" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li></ul>
@@ -296,7 +348,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/11/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BCSS/" data-id="cm7o857lf004iy8vpgpy91czk" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/12/11/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BCSS/" data-id="cm7oknzpa004jx0vpbn4f86n3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -390,7 +442,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/10/CSS%E5%AD%97%E4%BD%93%E6%8D%A2%E6%80%BB%E7%BB%93%E8%A1%8C/" data-id="cm7o857ip0007y8vp5hweeweu" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/12/10/CSS%E5%AD%97%E4%BD%93%E6%8D%A2%E6%80%BB%E7%BB%93%E8%A1%8C/" data-id="cm7oknzmu0007x0vp01uuek7s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -457,7 +509,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/11/26/PMS%E4%B8%ADform%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/" data-id="cm7o857k5001yy8vp2ky6hx92" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/11/26/PMS%E4%B8%ADform%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/" data-id="cm7oknznz0022x0vpbw7n3x9v" class="article-share-link">Share</a>
       
       
     </footer>
@@ -560,7 +612,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/11/25/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cm7o857jh000ry8vp89cn7stn" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/11/25/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cm7oknzng000sx0vp4m7b3n8j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
@@ -605,7 +657,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/11/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%8A%A5%E9%94%99/" data-id="cm7o857lt005jy8vp4lctb40q" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/11/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%8A%A5%E9%94%99/" data-id="cm7oknzpn005kx0vpawxga64p" class="article-share-link">Share</a>
       
       
     </footer>
@@ -687,7 +739,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/09/25/table%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" data-id="cm7o857kz003ty8vp4ofabcx5" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/09/25/table%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" data-id="cm7oknzov003tx0vp3edohdhc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li></ul>
@@ -810,68 +862,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/09/17/js%E6%97%A5%E6%9C%9F%E8%AE%BE%E7%BD%AE%E6%80%BB%E7%BB%93/" data-id="cm7o857kt003fy8vpd15f8w3g" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JS杂集" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/07/23/JS%E6%9D%82%E9%9B%86/" class="article-date">
-  <time datetime="2019-07-23T09:54:05.000Z" itemprop="datePublished">2019-07-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/23/JS%E6%9D%82%E9%9B%86/">JS杂集</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、Window-的一些属性"><strong>1、Window 的一些属性</strong></h3>
-<ul>
-<li>
-<p>之前 Tom 大叔说过，定义变量只有一种方式：<code>var a = *</code>。若是不写 var，直接写：<code>a = *</code>，这等于说是在 Window 中定义了一个属性 a。</p>
-</li>
-<li>
-<p>定义一个函数 fn（声明式），在 Window 中多了一个属性 fn。</p>
-</li>
-</ul>
-<h3 id="2、window-referrer"><strong>2、window.referrer</strong></h3>
-<ul>
-<li>referrer 属性可返回载入当前文档的文档的 URL。举例：当前 A 页 <code>http://localhost:8080/</code>该页有 dom 元素：<code>&lt;a href=&quot;http://localhost:3000/&quot; target=&quot;_blank&quot;&gt;跳转到B&lt;/a&gt;</code> 点击 a 链接，进入 B 页面，控制台键入 <code>document.referrer</code>，打印：<code>http://localhost:8080/</code>，使用 <code>window.location.href</code> 亦如此！</li>
-</ul>
-<h3 id="3、数据合并"><strong>3、数据合并</strong></h3>
-<ul>
-<li>看如下代码：</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">  method: &quot;PUT&quot;,</span><br><span class="line">  body: JSON.stringify(&#123;</span><br><span class="line">    age: 1,</span><br><span class="line">  &#125;),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var init;</span><br><span class="line"></span><br><span class="line">var result = Object.assign(&#123;&#125;, obj, init);</span><br><span class="line">// &#123;method: &quot;PUT&quot;, body: &quot;&#123;&quot;age&quot;:1&#125;&quot;&#125;</span><br><span class="line">// 即使 init 是 undefined，也合并了，可能忽略了该变量</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="4、cookie相关"><strong>4、cookie相关</strong></h3>
-<p>测试 setCookie(‘loginStatus’, 1); 在获取 getCookie ，值依旧是 string<br>
-在秋果C端封装了2个cookie相关代码如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">setCookie</span>(<span class="params">name, value</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="title class_">Days</span> = <span class="number">30</span>;</span><br><span class="line">  <span class="keyword">let</span> exp = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">  exp.<span class="title function_">setTime</span>(exp.<span class="title function_">getTime</span>() + <span class="title class_">Days</span> * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>);</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">cookie</span> =</span><br><span class="line">    name + <span class="string">&#x27;=&#x27;</span> + <span class="built_in">escape</span>(value) + <span class="string">&#x27;;expires=&#x27;</span> + exp.<span class="title function_">toGMTString</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">getCookie</span>(<span class="params">name</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> v = <span class="variable language_">window</span>.<span class="property">document</span>.<span class="property">cookie</span>.<span class="title function_">match</span>(<span class="string">&#x27;(^|;) ?&#x27;</span> + name + <span class="string">&#x27;=([^;]*)(;|$)&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> v ? v[<span class="number">2</span>] : <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>获取cookie的函数返回的是一个三木写法的表达式，当然有可能返回 null，此时我在e家农场登录页面使用这2个方法时，webstorm一直提示我代码weaking，看代码使用的是!=,而不是!==,后来修改了严谨的===、!==，依旧是提示代码weaking，费了好大一会，看其提示说null与啥都不相等，则我的业务代码中 <code>getCookie('loginStatus') === '1' ? 'yes' : 'no'</code> 三木写法意义不大！(因为null的情况下，很大的概率就是一直取值是no)。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/07/23/JS%E6%9D%82%E9%9B%86/" data-id="cm7o857jp0010y8vp24rk0o6v" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/09/17/js%E6%97%A5%E6%9C%9F%E8%AE%BE%E7%BD%AE%E6%80%BB%E7%BB%93/" data-id="cm7oknzom003ax0vpbdrnbbo9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -926,6 +917,10 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       <ul>
         
           <li>
+            <a href="/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/">React脚手架细节</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/">React类组件函数组件对props及state及ref使用</a>
           </li>
         
@@ -939,10 +934,6 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
         
           <li>
             <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/">js一些代码块</a>
           </li>
         
       </ul>

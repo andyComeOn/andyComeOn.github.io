@@ -68,6 +68,94 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-枚举与不可枚举" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/15/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE/" class="article-date">
+  <time datetime="2020-07-15T08:30:16.000Z" itemprop="datePublished">2020-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/15/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE/">枚举与不可枚举</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>每次看到枚举，枚举。到底啥意思，后来发现无非就是一个词而已。英文单词 <code>enumerate</code> 就是枚举意思，e 是 ex 的缩写就是向外之意，numer 是 number 的简写，在加上 ate 表示动词，就是向外一一的数出来，也就是列举，枚举的意思！今天我们讨论一下此名称在 JS 中的含义！</p>
+<h3 id="1-枚举是什么？">1. 枚举是什么？</h3>
+<ul>
+<li>枚举指对象的属性是否可以遍历出来，简单说，是否可被列举出来。这就是：可枚举性（<code>propertyIsEnumerable</code>），propertyIsEnumerable = true，表示可以被列举，反之，表示不可枚举！看例子：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">age</span>: <span class="number">18</span> &#125;;</span><br><span class="line">obj.<span class="title function_">propertyIsEnumerable</span>(<span class="string">&#x27;age&#x27;</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p><code>propertyIsEnumerable</code> 决定了这个属性能否被 <code>for…in</code> 查找遍历到。</p>
+<ul>
+<li>JS 中基本包装类型（Boolean,Number 和 String）的原型属性是不可枚举的。基本包装类型还可以像引用类型一样通过对象的方法访问它自带的一些方法，但是不能像引用类型那样自定义方法。看代码：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="keyword">new</span> <span class="title class_">Number</span>(<span class="number">123</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> pro <span class="keyword">in</span> num) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;num.&#x27;</span> + pro + <span class="string">&#x27; = &#x27;</span> + num[pro]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>无打印效果。因为 Number 中内置的属性是不可枚举的。但是文档有一点的不准确，new String(‘hello’)，有打印结果！</p>
+<ul>
+<li>判断一个属性是否可枚举，用 <code>obj.propertyIsEnumerable()</code> 来判断。注意：如果需要判断的属性在 object 的原型链上不管它是否可枚举，<code>obj.propertyIsEnumerable()</code> 始终返回 false。<code>propertyIsEnumerable()</code> 方法返回一个布尔值，表示指定的属性是否可枚举。但是在原型链上 <code>propertyIsEnumerable</code> 不被考虑。<code>hasOwnProperty()</code> 方法会返回一个布尔值，指示对象自身属性中是否具有指定的属性。有时候记不住 api 可用一个最笨的方法，就是直接打印：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>);</span><br></pre></td></tr></table></figure>
+<p>就可看到所有的 api，找到你所需的 <code>propertyIsEnumerable</code> 即可！</p>
+<h3 id="2-枚举性的作用">2. 枚举性的作用</h3>
+<ul>
+<li>
+<p>属性的枚举性会影响以下三个函数的结果：</p>
+<ul>
+<li>for in</li>
+<li>Object.keys()</li>
+<li>JSON.stringify()</li>
+</ul>
+</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里enumer可理解为一个对象，在js中一切皆为对象</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">enumer</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">a</span> = <span class="string">&#x27;我是对象本身就有的属性&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">enumer.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">b</span> = <span class="string">&#x27;我是通过对象原型挂载的属性&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> fn = <span class="keyword">new</span> <span class="title function_">enumer</span>();</span><br><span class="line"></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">defineProperty</span>(fn, <span class="string">&#x27;c&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">value</span>: <span class="string">&#x27;我是通过Object.defineProperty方法添加的可枚举属性&#x27;</span>,</span><br><span class="line">  <span class="attr">enumerable</span>: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>for in 执行的结果是：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> fn) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key); <span class="comment">// a c b</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>for…in 循环可以枚举(遍历)出对象本身具有的<strong>属性</strong>，通过原型对象绑定的属性(也就是 属性 b，它是通过在 prototype 新加的一些属性，fn.propertyIsEnumerable(‘b’)=false)，及通过 <code>Object.defineProperty()</code> 方法添加的 <code>enumerable</code> 可枚举属性。</p>
+<ul>
+<li>Object.keys() 执行的结果是：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>(fn); <span class="comment">// [a c]</span></span><br></pre></td></tr></table></figure>
+<p>Object.keys()方法可以枚举 <strong>实例</strong> 对象本身的属性和通过 Object.defineProperty()添加的可枚举属性，即不会枚举原型链上的属性(个人理解这种在原型链上新加的属性默认是不可枚举的。)</p>
+<ul>
+<li>JSON.stringify() 执行的结果是：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">JSON</span>.<span class="title function_">stringify</span>(fn); <span class="comment">// &#123;&quot;a&quot;:&quot;我是对象本身就有的属性&quot;,&quot;c&quot;:&quot;我是通过Object.defineProperty方法添加的可枚举属性&quot;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>JSON.stringify() 方法只能序列化 <strong>实例</strong> 对象本身的属性和通过 Object.defineProperty()添加的可枚举属性为 JSON 对象，即不会序化原型链上的属性</p>
+<h3 id="3、为什么要加上实例二字呢？请看下面">3、为什么要加上实例二字呢？请看下面</h3>
+<p><img src="https://file.798run.top/img/blog/20200715/object_keys.png" alt="为什么要加上实例二字？"></p>
+<h3 id="4、参考文档">4、参考文档</h3>
+<p><a target="_blank" rel="noopener" href="https://andycomeon.github.io/2020/07/15/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE/">JS 中的枚举和不可枚举</a><br>
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/Jet_Lover/article/details/130176103">JS 中 Object 方法大全</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/15/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE/" data-id="cm7oknzpo005lx0vp6c38gqho" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-循环与迭代" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/15/%E5%BE%AA%E7%8E%AF%E4%B8%8E%E8%BF%AD%E4%BB%A3/" class="article-date">
@@ -155,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/15/%E5%BE%AA%E7%8E%AF%E4%B8%8E%E8%BF%AD%E4%BB%A3/" data-id="cm7o857lo0053y8vpd78vdk87" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/15/%E5%BE%AA%E7%8E%AF%E4%B8%8E%E8%BF%AD%E4%BB%A3/" data-id="cm7oknzpj0054x0vp15fr3pdt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -220,7 +308,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/13/ES6%E6%96%B0%E7%89%B9%E6%80%A7/" data-id="cm7o857ja000hy8vp6pm4aflt" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/13/ES6%E6%96%B0%E7%89%B9%E6%80%A7/" data-id="cm7oknzn3000ix0vpdkml4d03" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -355,7 +443,7 @@ align-sel</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/" data-id="cm7o857ij0003y8vp64bmdnkj" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/" data-id="cm7oknzmi0001x0vpavon84fx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -455,7 +543,7 @@ align-sel</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/" data-id="cm7o857in0006y8vp861f4k2z" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/" data-id="cm7oknzms0006x0vp6rugf6kh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -501,7 +589,7 @@ align-sel</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/07/%E7%A7%8B%E6%9E%9C%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2node%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/" data-id="cm7o857lx005ty8vpbsc0hs0g" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/07/%E7%A7%8B%E6%9E%9C%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2node%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/" data-id="cm7oknzpq005qx0vp5x5cawie" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -616,7 +704,7 @@ JS 中使用同一个构造函数创建的对象，我们称为一类对象，�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/06/27/this-bind-call-apply-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-id="cm7o857l6003yy8vpc8gbeki8" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/06/27/this-bind-call-apply-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-id="cm7oknzow003vx0vp6m5ud1hi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -701,7 +789,7 @@ JS 中使用同一个构造函数创建的对象，我们称为一类对象，�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/04/12/js%E4%B8%AD%E7%9A%84prototype%E6%80%BB%E7%BB%93/" data-id="cm7o857kp0035y8vpheuh3k77" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/04/12/js%E4%B8%AD%E7%9A%84prototype%E6%80%BB%E7%BB%93/" data-id="cm7oknzoh0032x0vp3ud4d0xx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -758,7 +846,7 @@ display_errors = On display_startup_errors = On 是不行的！其根本原因�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/18/%E5%AE%9D%E5%A1%94%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/" data-id="cm7o857ls005ey8vp9rk68h6j" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/03/18/%E5%AE%9D%E5%A1%94%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/" data-id="cm7oknzph004xx0vpgspk1znh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li></ul>
@@ -818,62 +906,10 @@ display_errors = On display_startup_errors = On 是不行的！其根本原因�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/16/Git%E5%9C%A8linux%E4%B8%8A%E7%9A%84%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" data-id="cm7o857jg000py8vpg2md679l" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/03/16/Git%E5%9C%A8linux%E4%B8%8A%E7%9A%84%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" data-id="cm7oknzn8000px0vp5i0e8n36" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Nodejs一次安装记录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/08/Nodejs%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2020-03-08T12:45:57.000Z" itemprop="datePublished">2020-03-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/08/Nodejs%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/">Nodejs一次安装记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>由于 github 上的博客太慢了，我决定在 gitee 上搭建一份博客！于疫情期间 2020-03-05 在家捯饬，想到我的 hexo 安装的比较早（大概是在 20190122，参考的文档就更早了），就打算找一个最近发布的文档参考！文档中让安装 npm install -g hexo-cli ，于是执行命令效果如下：</p>
-<p><img src="https://file.798run.top/img/blog/20200308/install-hexo-cli.png" alt="执行命令效果"></p>
-<p>我在执行 npm install -g hexo-cli 时候在想我之前应该已经执行了类似的全局操作，这次执行会不会覆盖之前的版本？升级 hexo 依赖包不行吗？npm 升级 hexo 包的指令又是啥？带着上面的疑问我 Windows10 系统找到本机 nodejs 安装目录：C:\Program Files\nodejs，截图如下：</p>
-<p><img src="https://file.798run.top/img/blog/20200308/nodejs-install-dir.png" alt="nodejs安装目录"></p>
-<p>看到之后发现怎么是一个快捷方式？该快捷方式地址详情如下：</p>
-<p><img src="https://file.798run.top/img/blog/20200308/nodejs-shortcut.png" alt="快捷方式详情"></p>
-<p>怎么是 user 下 Roaming 的 nvm？nvm 是为了切换当前 nodejs 运行版本安装的一个小工具，难道是 nvm 把 nodejs 安装地址更改了？又找到我本机缓存的目录如下：</p>
-<p><img src="https://file.798run.top/img/blog/20200308/roaming.png" alt=""></p>
-<p>hexo 之前参考的老文档是让安装 npm install hexo –g，新参考文档让安装 npm install hexo-cli –g，老文档中安装完成键入 hexo –v 显示：</p>
-<p><img src="https://file.798run.top/img/blog/20200308/hexo-v-old.png" alt=""></p>
-<p>我在安装了 hexo-cli –g 之后也执行 hexo –v 显示：</p>
-<p><img src="https://file.798run.top/img/blog/20200308/hexo-v-new.png" alt=""></p>
-<p>猜想是不是 hexo 的版本升级，之前安装的指令与现在安装的指令虽有点不太一样，安装完之后功能是一样的，可以在一个新电脑在尝试！</p>
-<h6 id="思考，是不是安装了-nvm-nodejs-的安装目录就是变成了快捷方式，属性值指向了-roaming-下的-nvm-了？">思考，是不是安装了 nvm nodejs 的安装目录就是变成了快捷方式，属性值指向了 roaming 下的 nvm 了？</h6>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/08/Nodejs%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cm7o857k0001ky8vp9gdaftsc" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
 
     </footer>
   </div>
@@ -925,6 +961,10 @@ display_errors = On display_startup_errors = On 是不行的！其根本原因�
       <ul>
         
           <li>
+            <a href="/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/">React脚手架细节</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/">React类组件函数组件对props及state及ref使用</a>
           </li>
         
@@ -938,10 +978,6 @@ display_errors = On display_startup_errors = On 是不行的！其根本原因�
         
           <li>
             <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/">js一些代码块</a>
           </li>
         
       </ul>

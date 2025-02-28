@@ -68,6 +68,46 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-代码片段之Mixins" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BMixins/" class="article-date">
+  <time datetime="2020-12-25T03:16:03.000Z" itemprop="datePublished">2020-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BMixins/">代码片段之Mixins</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="移动端-cell"><strong>移动端 cell</strong></h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># html</span></span><br><span class="line">&lt;div class=<span class="string">&quot;cell&quot;</span>&gt;</span><br><span class="line">  &lt;div class=<span class="string">&quot;item&quot;</span>&gt;</span><br><span class="line">    &lt;div class=<span class="string">&quot;input-wrap&quot;</span>&gt;</span><br><span class="line">      &lt;input</span><br><span class="line">        v-model=<span class="string">&quot;picCodeValue&quot;</span></span><br><span class="line">        <span class="built_in">type</span>=<span class="string">&quot;text&quot;</span></span><br><span class="line">        class=<span class="string">&quot;ipt&quot;</span></span><br><span class="line">        maxlength=<span class="string">&quot;4&quot;</span></span><br><span class="line">        placeholder=<span class="string">&quot;请输入图形验证码&quot;</span></span><br><span class="line">        @focus=<span class="string">&quot;onFocus&quot;</span></span><br><span class="line">        @blur=<span class="string">&quot;onBlur&quot;</span></span><br><span class="line">      /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div style=<span class="string">&quot;width: 10px; height: 40px&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div class=<span class="string">&quot;btn-wrap&quot;</span> @click=<span class="string">&quot;getPicCode&quot;</span>&gt;</span><br><span class="line">      &lt;div class=<span class="string">&quot;btn-pic-code&quot;</span>&gt;</span><br><span class="line">        &lt;div class=<span class="string">&quot;pic-code-img-wrap&quot;</span>&gt;</span><br><span class="line">          &lt;img</span><br><span class="line">            class=<span class="string">&quot;img&quot;</span></span><br><span class="line">            v-if=<span class="string">&quot;picCodeObj.captchaData&quot;</span></span><br><span class="line">            :src=<span class="string">&quot;picCodeObj.captchaData&quot;</span></span><br><span class="line">            alt=<span class="string">&quot;piccode&quot;</span></span><br><span class="line">          /&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        &lt;div class=<span class="string">&quot;pic-code-text-wrap&quot;</span>&gt;换一换&lt;/div&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># css</span></span><br><span class="line"></span><br><span class="line">.cell &#123;</span><br><span class="line">  padding: 0 30px;</span><br><span class="line">  margin-bottom: 10px;</span><br><span class="line"></span><br><span class="line">  .item &#123;</span><br><span class="line">    display: flex;</span><br><span class="line"></span><br><span class="line">    .input-wrap &#123;</span><br><span class="line">      flex: 1;</span><br><span class="line">      box-sizing: border-box;</span><br><span class="line">      .ipt &#123;</span><br><span class="line">        width: 100%;</span><br><span class="line">        box-sizing: border-box;</span><br><span class="line">        display: block;</span><br><span class="line">        line-height: 34px;</span><br><span class="line">        padding: 0 10px;</span><br><span class="line">        outline: none;</span><br><span class="line">        border: none;</span><br><span class="line">        font-size: 15px;</span><br><span class="line">        color: <span class="comment">#999;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    .btn-wrap &#123;</span><br><span class="line">      flex: 1;</span><br><span class="line">      display: flex;</span><br><span class="line">      box-sizing: border-box;</span><br><span class="line"></span><br><span class="line">      .mybtn &#123;</span><br><span class="line">        display: flex;</span><br><span class="line">        width: 100%;</span><br><span class="line">        height: 100%;</span><br><span class="line">        padding: 0;</span><br><span class="line">        border: none;</span><br><span class="line">        outline: none;</span><br><span class="line">        justify-content: center;</span><br><span class="line">        align-items: center;</span><br><span class="line">        border-radius: 9px;</span><br><span class="line">        background-color: transparent;</span><br><span class="line">        font-size: inherit;</span><br><span class="line">        background-repeat: no-repeat;</span><br><span class="line">        background-size: 100% 100%;</span><br><span class="line">        background-position: center center;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BMixins/" data-id="cm7oknzpc004nx0vp8t7t54pj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-代码片段之JS" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/" class="article-date">
@@ -119,7 +159,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/" data-id="cm7o857lh004ky8vpas0a5tnt" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/" data-id="cm7oknzpb004kx0vph7b3bgof" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -185,7 +225,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/CSS%E6%9D%82%E8%AE%B0/" data-id="cm7o857iu000by8vp78iq160l" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/CSS%E6%9D%82%E8%AE%B0/" data-id="cm7oknzmx000bx0vp6avpcwt9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -238,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="cm7o857lw005ry8vp6pwbcv5e" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="cm7oknzpr005sx0vp2hyvc73y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li></ul>
@@ -288,7 +328,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cm7o857ib0001y8vp5vfz53sj" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cm7oknzmn0003x0vp7qad02ez" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -340,7 +380,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/11/Vue%E6%9D%82%E9%9B%86/" data-id="cm7o857ke002jy8vpf14he74r" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/11/Vue%E6%9D%82%E9%9B%86/" data-id="cm7oknzoa002jx0vpeb5qgixl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
@@ -402,7 +442,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" data-id="cm7o857jx001fy8vp2jocdfue" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" data-id="cm7oknznr001cx0vp85n03sh7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
@@ -458,7 +498,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="cm7o857k2001ry8vp99h98kir" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="cm7oknznw001qx0vpcp995aq9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -510,7 +550,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="cm7o857k80022y8vpglad2qiq" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="cm7oknznz001zx0vp467b83dd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
@@ -588,53 +628,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/03/Nodejs%E4%B9%8BYarn/" data-id="cm7o857k1001py8vp71qt3rfq" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/03/Nodejs%E4%B9%8BYarn/" data-id="cm7oknznv001ox0vpbub3180n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-vscode之PHP配置" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" class="article-date">
-  <time datetime="2020-12-02T06:29:43.000Z" itemprop="datePublished">2020-12-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/">vscode之PHP配置</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="杂项">杂项</h4>
-<p>1、PHP Intelephense 插件直接格式化 php 代码不需要啥配置安装即可<br>
-2、配置 PHP 开发环境  <a target="_blank" rel="noopener" href="https://blog.csdn.net/Vezn_King/article/details/75453717">https://blog.csdn.net/Vezn_King/article/details/75453717</a><br>
-3、配置 php <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/languages/php">https://code.visualstudio.com/docs/languages/php</a><br>
-4、PHP copy 变量前面的 $，<a target="_blank" rel="noopener" href="https://www.v2ex.com/t/520357">https://www.v2ex.com/t/520357</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" data-id="cm7o857l80041y8vp68574ale" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
 
     </footer>
   </div>
@@ -686,6 +683,10 @@
       <ul>
         
           <li>
+            <a href="/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/">React脚手架细节</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/">React类组件函数组件对props及state及ref使用</a>
           </li>
         
@@ -699,10 +700,6 @@
         
           <li>
             <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/">js一些代码块</a>
           </li>
         
       </ul>
