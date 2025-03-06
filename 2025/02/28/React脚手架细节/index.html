@@ -15,7 +15,7 @@
 <meta property="og:description" content="创建过程 打开官方文档，看文档执行：npx create-react-app@latest my-app，此时会在本地生成一个目录为 my-app 的项目(js 项目)。若是想创建 ts 版，执行：npx create-react-app my-app --template typescript。以上仅仅是创建了一个简单工程，sass、antd、react-router-dom 等基本的包都没安装">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-02-28T07:11:42.000Z">
-<meta property="article:modified_time" content="2025-02-28T09:28:24.925Z">
+<meta property="article:modified_time" content="2025-03-06T08:04:46.833Z">
 <meta property="article:author" content="Andy Zhang">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
@@ -173,11 +173,16 @@ CRA 已经内置了 ESLint，并且通过 eslint-config-react-app 配置了基�
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm i prettier -D</span><br><span class="line">npm i eslint-config-prettier -D</span><br><span class="line">npm i eslint-plugin-prettier -D</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>还有把 <code>package.json</code> 中的如下代码删了，因为已有 .eslintrc.js 文件。</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;eslintConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;extends&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;react-app&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;react-app/jest&quot;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+<hr>
+<hr>
+<hr>
+<p>上面说的是使用 cra 创建项目，但是个人感觉麻烦，无 eslint 配置文件、为啥不用 vite 构建项目，于是直接看<a target="_blank" rel="noopener" href="https://vite.dev/guide/">帖子</a>中让使用如下命令：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">npm create vite@latest <span class="comment">// 此情况可以自己一步步选择如下：</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">Select</span> a <span class="attr">framework</span>:</span><br><span class="line">  <span class="title class_">React</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">Select</span> a <span class="attr">variant</span>:</span><br><span class="line">  <span class="title class_">TypeScript</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面的一步步选择的效果与下面的效果一样！！！</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 下面的是用模版的写法</span></span><br><span class="line">npm create vite@latest my-vue-app -- --template react</span><br><span class="line">npm create vite@latest my-vue-app -- --template react-ts</span><br><span class="line"></span><br><span class="line"><span class="comment">// 所以直接使用 vite 创建 react-ts 项目，非常不错。</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/" data-id="cm7oknzo00024x0vpc8o88wos" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/" data-id="cm7x2d16h00257gvpa37n2ysz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
