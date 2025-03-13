@@ -68,6 +68,114 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-layui中相关模块记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/13/layui%E4%B8%AD%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2019-02-13T02:47:10.000Z" itemprop="datePublished">2019-02-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/13/layui%E4%B8%AD%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97%E8%AE%B0%E5%BD%95/">layui中相关模块记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>写在前面：此文档是在使用 <code>layui</code> 过程的一些总结！</p>
+<h3 id="1-layui-的模块化和非模块化使用">1. layui 的模块化和非模块化使用</h3>
+<p>下面这个帖子<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qlqwjy/p/8975931.html">layui 的模块化和非模块化使用</a>，着重介绍了 layui 中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：<br>
+<img src="https://file.798run.top/img/blog/20190213/layui-on-err.jpg" alt="layui-on-err"></p>
+<p>我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的 js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的 2 种模式只是用户的使用方式，但是我发现使用非模块化（只引入 layui.all.js）在页面中即使这样写了<code>required lay-verify=&quot;&quot;</code>出现不了下面这个效果：</p>
+<p><img src="https://file.798run.top/img/blog/20190213/verify-tips.jpg" alt="verify-tips"></p>
+<p>这感觉不合理！</p>
+<h4 id="2-模块加载问题">2. 模块加载问题</h4>
+<p>layui 只 use layer 打印 form table 是 undefined<br>
+layui 只 use table 打印 form table 是 OK 的<br>
+layui 只 use form 打印 form table 仅 form 是 OK 的</p>
+<p>得出结论，只要 use 使用的有模块，layer 就能使用（全局的），只 use table，form 也能使用；只 ues form，table 不能使用；table 逻辑嵌入了 form 逻辑。</p>
+<h4 id="3-form-的验证问题">3. form 的验证问题</h4>
+<p><code>&lt;div class=&quot;layui-form-item&quot; style=&quot;display: none;&quot;&gt;</code><br>
+即使对这种隐藏的元素，<code>layui</code>也进行了验证，这种情况会让用户看着很懵，这是我在 pms 的底部“办理入住”看代码逻辑：</p>
+<p><img src="https://file.798run.top/img/blog/20190124/layui-form.jpg" alt="代码逻辑"><br>
+验证问题在修改 862bug 时效果如下：<br>
+<img src="https://file.798run.top/img/blog/20190213/verify-tips.jpg" alt="verify-tips"> 这个提示是在验证时候加了<code>required lay-verify=&quot;&quot;</code>属性，出现此效果还要额外引入<code>layui.js</code>。若这样写<code>required lay-verify=&quot;required&quot;</code>只会提示下面的效果：<img src="https://file.798run.top/img/blog/20190213/required-tips.jpg" alt="required-tips"><br>
+针对 verify 官方上说是可以串联写：<code>lay-verify=&quot;required|verifyAddtime&quot;</code>注：这里面别出现空格！</p>
+<h4 id="4-filter-相关">4. filter 相关</h4>
+<p>filter，为 class=“layui-form” 所在元素的 lay-filter=“” 的值。你可以借助该参数，对表单完成局部更新。<br>
+如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-form&quot;</span> <span class="attr">lay-filter</span>=<span class="string">&quot;test1&quot;</span>&gt;</span>…<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-form&quot;</span> <span class="attr">lay-filter</span>=<span class="string">&quot;test2&quot;</span>&gt;</span>…<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">form.<span class="title function_">render</span>(<span class="literal">null</span>, <span class="string">&quot;test1&quot;</span>); <span class="comment">// 更新 lay-filter=&quot;test1&quot; 所在容器内的全部表单状态</span></span><br><span class="line">form.<span class="title function_">render</span>(<span class="string">&quot;select&quot;</span>, <span class="string">&quot;test2&quot;</span>); <span class="comment">// 更新 lay-filter=&quot;test2&quot; 所在容器内的全部 select 状态</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-layui-input-相关">5. layui-input 相关</h4>
+<p>form 中 layui-input 默认是 width: 100%; display: block; 官网中给的有一个价格输入，他是针对 input 标签又包括了一个标签<code>&lt;div class=&quot;layui-input-inline&quot; style=&quot;width: 100px;&quot;&gt;&lt;/div&gt;</code>，我在开发 crs 中的新版房态页涉及到修改房价 dialog 中有加减按钮和 input 在一行的效果，我想到官网的该例子，后来想到何必在加一对标签呢？况且加了一对标签（layui-input-inline）该标签默认左浮动。综合考虑直接在 input 添加 display: inline; 加上一个宽度即可，input 左侧与右侧的按钮该怎么写就怎么写！</p>
+<p>20191028 补充，记忆中 <code>.layui-input-inline</code>是 <code>float: left;</code> 但是在今天的 ReportStatis/ondutyIncomeStatisOld 页面中发现使用的 layui-input-inline 并没左浮动。细查发现如下 css：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.layui-form-item</span> <span class="selector-class">.layui-input-inline</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">190px</span>;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.layui-input-inline</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只有在 layui-form-item 包裹下的 html，才有上面的 css，具体效果见：testme/layui/form_module_room_status.html</p>
+<h4 id="6-laydate">6. laydate</h4>
+<p>laydate 应用场景：一般是在 input 中起一个 id，在 js 中，进行渲染。如下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 日期的初始化赋值</span></span><br><span class="line">laydate.<span class="title function_">render</span>(&#123;</span><br><span class="line">  <span class="attr">elem</span>: <span class="string">&quot;#dateArea&quot;</span>,</span><br><span class="line">  <span class="attr">range</span>: <span class="string">&quot;至&quot;</span>,</span><br><span class="line">  <span class="attr">value</span>: <span class="string">&quot;2019-09-26 至 2019-09-26&quot;</span>,</span><br><span class="line">  <span class="comment">// done: function (value, startDate, endDate) &#123;</span></span><br><span class="line">  <span class="comment">// 	$(&#x27;input[name=business_time]&#x27;).val(value);</span></span><br><span class="line">  <span class="comment">// 	console.log(value);</span></span><br><span class="line">  <span class="comment">// 	console.log(&#x27;startDate&#x27;, startDate);</span></span><br><span class="line">  <span class="comment">// 	console.log(&#x27;endDate&#x27;, endDate);</span></span><br><span class="line">  <span class="comment">// &#125;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在 laydate 中添加 range 属性，laydate 默认就是给你一个日期选择范围，若不写 range 属性，默认就是一个单日历，若<code>range: '至'</code>，那么你 value 中赋值就要符合格式，正确的格式如：<code>value: '2019-09-26 至 2019-09-26'</code>，当然了欧美国家一般设置为<code>value: '2019-09-26 , 2019-09-26'</code>。注：单日历赋值 2019-9-1、2019-09-01 都能识别。</p>
+<hr>
+<p>上面所述的是简单的使用方法，有一些非简单的场景如下：</p>
+<ul>
+<li>
+<p>select 联动场景 参考链接 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43939956/article/details/90749302">laydate 日期选择器类型切换</a> 具体使用实例：在 pms 的报表-营业数据表。</p>
+</li>
+<li>
+<p>2 个时间段限制场景 <a target="_blank" rel="noopener" href="https://blog.csdn.net/cherry_11qianqian/article/details/82259704">layui 中 laydate 的使用——设置动态时间范围限制、重置时间范围（清空动态限制）</a></p>
+</li>
+</ul>
+<h4 id="7-关于-form-的思考">7. 关于 form 的思考</h4>
+<p>最早时候网页很简单，就是一些静态页，后来有了简单的 form 提交数据，这就是原生的 <code>&lt;form&gt; ... &lt;/form&gt;</code>，前后端没有分离，都是写在一块，直接使用原生 form 提交数据，后来技术发展前后端分离之后，使用接口的形式拉取数据。上面的 layui 中的 form 模块是写好的美观的 form，在业务复杂情况下也可以直接写元素 form 的标签，form 中原生标签如：input=radio 、button、select、input=checkbox、textarea 都是可以写 css 的，也可以写的符合业务要求。注：个人测试 select（css 生效）下的 option（写 css 不生效）！</p>
+<h4 id="8-layui-的-form-是直接按照其官网的写法即可：">8. layui 的 form 是直接按照其官网的写法即可：</h4>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;layui-form&quot;</span> <span class="attr">action</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-form-item&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;layui-form-label&quot;</span>&gt;</span>输入框<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-input-block&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">        <span class="attr">type</span>=<span class="string">&quot;text&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">name</span>=<span class="string">&quot;title&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">required</span></span></span><br><span class="line"><span class="tag">        <span class="attr">lay-verify</span>=<span class="string">&quot;required&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">placeholder</span>=<span class="string">&quot;请输入标题&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">autocomplete</span>=<span class="string">&quot;off&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">&quot;layui-input&quot;</span></span></span><br><span class="line"><span class="tag">      /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-form-item&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-input-block&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;layui-btn&quot;</span> <span class="attr">lay-submit</span> <span class="attr">lay-filter</span>=<span class="string">&quot;formDemo&quot;</span>&gt;</span></span><br><span class="line">        立即提交</span><br><span class="line">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">class</span>=<span class="string">&quot;layui-btn layui-btn-primary&quot;</span>&gt;</span>重置<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>别忘了 form 中要加上<code>form.layui-form</code>，form 的每一个项是<code>&lt;div class=&quot;layui-form-item&quot;&gt;&lt;/div&gt;</code>，其中<code>lay-verify=&quot;required&quot;</code>这是验证用的，在 input 的 html 代码中加入了 required 属性，当用户的鼠标放到这个 input 输入框时候会有一个提示，这个在“layui 中 form <a target="_blank" rel="noopener" href="http://xn--w2ty92cu4o6b846h.md">的验证记录.md</a>”文档中有提现。<code>lay-filter=&quot;formDemo&quot;</code>中的 lay-filter 是提交的对数据的过滤。若你想传哪个字段如 desc 字段，要如下写法：</p>
+<p>在 input 中的 name 属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">&quot;text&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">name</span>=<span class="string">&quot;desc&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">required</span></span></span><br><span class="line"><span class="tag">  <span class="attr">lay-verify</span>=<span class="string">&quot;required&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">placeholder</span>=<span class="string">&quot;请输入标题&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">autocomplete</span>=<span class="string">&quot;off&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">class</span>=<span class="string">&quot;layui-input&quot;</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>对 layui 中的循环出来的 input（集团端的循环出来的门店），一般是不加 name，用一个 input type=hidden 的 name 来接（隐藏作用域），针对 radio 这种（认为浏览器自己内部封装的有，你点击之后，name 就是获取你当前触发的那个 input 的 value）</p>
+<p>layui 中的<input type="checkbox" name="switch" lay-skin="switch">这个开关不开，在 form 中 data.field 是不会打印 switch 的，也许这个是 layui 的二次封装，radio 也是一样，没有默认选中，是不会提交该 radio 对应的 name 字段的值。</p>
+<hr>
+<p>layui 中的 select ，若是其下的 option 比较多，可以在 select 标签上加上属性 <code>lay-search</code> 在 pms 中看到在 form 中加的 class 类 search-form，查资料没发现有该 class 对应的 css 效果，可理解为是 开发人员自己写的！还回忆起提交按钮查询时候，加了一些不认识的 class 类，估计这也是工作人员 copy 的。</p>
+<h4 id="9-layui-的-margin、padding-重置-css">9. layui 的 margin、padding 重置 css</h4>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">blockquote</span>,</span><br><span class="line"><span class="selector-tag">body</span>,</span><br><span class="line"><span class="selector-tag">button</span>,</span><br><span class="line"><span class="selector-tag">dd</span>,</span><br><span class="line"><span class="selector-tag">div</span>,</span><br><span class="line"><span class="selector-tag">dl</span>,</span><br><span class="line"><span class="selector-tag">dt</span>,</span><br><span class="line"><span class="selector-tag">form</span>,</span><br><span class="line"><span class="selector-tag">h1</span>,</span><br><span class="line"><span class="selector-tag">h2</span>,</span><br><span class="line"><span class="selector-tag">h3</span>,</span><br><span class="line"><span class="selector-tag">h4</span>,</span><br><span class="line"><span class="selector-tag">h5</span>,</span><br><span class="line"><span class="selector-tag">h6</span>,</span><br><span class="line"><span class="selector-tag">input</span>,</span><br><span class="line"><span class="selector-tag">li</span>,</span><br><span class="line"><span class="selector-tag">ol</span>,</span><br><span class="line"><span class="selector-tag">p</span>,</span><br><span class="line">pre,</span><br><span class="line"><span class="selector-tag">td</span>,</span><br><span class="line"><span class="selector-tag">textarea</span>,</span><br><span class="line"><span class="selector-tag">th</span>,</span><br><span class="line"><span class="selector-tag">ul</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  -webkit-tap-highlight-<span class="attribute">color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="10-layui-的报错记录">10. layui 的报错记录</h4>
+<ul>
+<li>使用 layer 时报错：<code>layui s.parents is not a function</code>，我是在使用 <code>layer.msg</code> 时报错，这是应为 layer.msg(msg, {icon: 1}) 输出的 msg 值为 Object 类型（对象），导致报错。详见下链接：<br>
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/Radish999/article/details/88737483">layui s.parents is not a function</a><br>
+注：layer.alert() 里面的内容也不能是 obj。</li>
+</ul>
+<h4 id="11-layer-的-confirm">11. layer 的 confirm</h4>
+<p>是给的例子是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">layer.confirm(&#x27;未到离店日期，请修改离店日期再退房&#x27;, &#123; title: &quot;&quot; &#125;, function (index) &#123;</span><br><span class="line">   // layer.close(index);</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<p>不选择 title 效果如下</p>
+<p><img src="https://file.798run.top/img/blog/20191223/confirm_no_title.jpg" alt="confirm无标题"></p>
+<p>若是配置了 title，效果如下</p>
+<p><img src="https://file.798run.top/img/blog/20191223/confirm_has_title.jpg" alt="confirm有标题"></p>
+<p>看自己展示需求进行配置。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/02/13/layui%E4%B8%AD%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97%E8%AE%B0%E5%BD%95/" data-id="cm87htjgq003tfgvpa0lrc6v7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-html一些不常用标签" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/02/12/html%E4%B8%80%E4%BA%9B%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" class="article-date">
@@ -147,7 +255,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/02/12/html%E4%B8%80%E4%BA%9B%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" data-id="cm86t9fvx0033t4vphgj94fu9" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/02/12/html%E4%B8%80%E4%BA%9B%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" data-id="cm87htjge0032fgvpfxx6dggk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li></ul>
@@ -224,7 +332,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/02/12/js%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1/" data-id="cm86t9fw5003nt4vpcxn683ek" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/02/12/js%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1/" data-id="cm87htjgm003mfgvp96lr9dlf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -288,7 +396,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/02/12/jqready/" data-id="cm86t9fvy0035t4vp2e24gdb3" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/02/12/jqready/" data-id="cm87htjgg0036fgvp0fu0egde" class="article-share-link">Share</a>
       
       
     </footer>
@@ -360,7 +468,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%BD%91%E5%9D%80%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/" data-id="cm86t9fx6005wt4vp3xipcgad" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%BD%91%E5%9D%80%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/" data-id="cm87htjhm005sfgvpgjck0u56" class="article-share-link">Share</a>
       
       
     </footer>
@@ -408,7 +516,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/26/%E7%BE%8E%E5%9B%A22019%E6%98%A5%E8%8A%82%E5%B9%B2%E8%B4%A7/" data-id="cm86t9fxa0065t4vphv3k9m5o" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/26/%E7%BE%8E%E5%9B%A22019%E6%98%A5%E8%8A%82%E5%B9%B2%E8%B4%A7/" data-id="cm87htjhs0064fgvp5re4eqyx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -682,7 +790,7 @@ CMD：command，显示进程的名称或者位置</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/25/Linux%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" data-id="cm86t9fv40019t4vpe0fkfcrr" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/25/Linux%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" data-id="cm87htjfo001afgvpar9afaux" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
@@ -732,7 +840,7 @@ CMD：command，显示进程的名称或者位置</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/25/%E5%A4%A7%E5%89%8D%E7%AB%AF%E7%BE%A4/" data-id="cm86t9fwy0059t4vp249ubkos" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/25/%E5%A4%A7%E5%89%8D%E7%AB%AF%E7%BE%A4/" data-id="cm87htjhf0058fgvpg92p03la" class="article-share-link">Share</a>
       
       
     </footer>
@@ -824,7 +932,7 @@ Session 项输入你的服务器地址。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/23/Shell%E6%80%BB%E7%BB%93/" data-id="cm86t9fvo002kt4vp4abte2f1" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/23/Shell%E6%80%BB%E7%BB%93/" data-id="cm87htjg7002kfgvp6krs68h2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -935,148 +1043,7 @@ Session 项输入你的服务器地址。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/22/MarkDown%E6%80%BB%E7%BB%93/" data-id="cm86t9fv5001bt4vp0f3z1z6h" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Hexo杂集" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/22/Hexo%E6%9D%82%E9%9B%86/" class="article-date">
-  <time datetime="2019-01-22T01:59:30.000Z" itemprop="datePublished">2019-01-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/22/Hexo%E6%9D%82%E9%9B%86/">Hexo杂集</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="hexo-初始化生成的-hello-word-md-文件"><strong><em>hexo 初始化生成的 <a target="_blank" rel="noopener" href="http://hello-word.md">hello-word.md</a> 文件</em></strong></h3>
-<p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start">Quick Start</h2>
-<h3 id="Create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/deployment.html">Deployment</a></p>
-<hr>
-<h2 id="这是我个人对安装-hexo-的一些总结">这是我个人对安装 hexo 的一些总结</h2>
-<h3 id="在-github-上新建仓库时候一定遵循下面的格式：">在 github 上新建仓库时候一定遵循下面的格式：</h3>
-<ul>
-<li><code>&#123;username&#125; github.io</code></li>
-</ul>
-<h3 id="根目录下的-config-yml：">根目录下的<code>_config.yml</code>：</h3>
-<ul>
-<li>要正确的把你的新建的 github 的仓库地址 copy 到<code> _config.yml</code>的 deploy 处</li>
-</ul>
-<h3 id="网上说的安装方法：">网上说的安装方法：</h3>
-<ul>
-<li>有的说<code>npm install hexo -g</code>（我采用）</li>
-<li>有的说<code>npm install hexo-cli -g</code></li>
-<li>在你的 Blog 目录下执行 hexo init ,会生成很多文件，默认主题 landscape</li>
-<li>next 主题 <a target="_blank" rel="noopener" href="https://github.com/theme-next">theme-next</a> <a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">hexo-theme-next</a></li>
-<li>若不追求主题，在_config.yml 最后几行配置好你的 <a target="_blank" rel="noopener" href="http://username.github.io">username.github.io</a> 仓库地址</li>
-<li>npm install hexo-deployer-git --save 安装 git 的插件</li>
-<li>hexo clean 、hexo g 、hexo d，这时候 git 会提示你 tell me who u are，记得进入到 .deply_git 目录，配置一下 git 信息就行了，git config --local <a target="_blank" rel="noopener" href="http://user.name">user.name</a> “andyComeOn” git config --local user.email “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>”</li>
-</ul>
-<h3 id="一些补充：">一些补充：</h3>
-<ul>
-<li>我配置的 hexo 就是用的默认主题 landscape，没有多余设置其他，该主题默认的给分了几个板块 Tags、TAG CLOUD、ARCHIVES、RECENT POSTS，</li>
-<li>若是你使用 next 主题，需要配置一下板块执行 hexo new page “tags” （会在你 source 目录下创建 tagsmul）、hexo new page “categories”（会在你的 source 目录下创建 categories 目录）、hexo new page “about”，</li>
-</ul>
-<h3 id="按照网上的说法安装完成之后要注意以下几点：">按照网上的说法安装完成之后要注意以下几点：</h3>
-<ul>
-<li>每次在根目录下执行<code>hexo clean</code> -&gt; <code>hexo generate (hexo g)</code> -&gt; <code>hexo deploy (hexo d)</code></li>
-<li>后来发现根本不需要执行<code>hexo clean</code></li>
-</ul>
-<h3 id="hexo-怎么新建文章">hexo 怎么新建文章</h3>
-<ul>
-<li>网上说的是执行<code>hexo new post 'name'</code>,尝试可行。但是我在 Hexo 自己生成的 <a target="_blank" rel="noopener" href="http://hello-word.md">hello-word.md</a> 的文档中发现指令<code>hexo new 'name'</code>少写了 post。经测试亦可行！</li>
-</ul>
-<h3 id="hexo-怎么删除文章">hexo 怎么删除文章</h3>
-<ul>
-<li>先删除本地文件，然后通过生成和部署命令进而将远程仓库中的文件也一并删除。</li>
-<li>具体来说，以最开始默认生成的 <a target="_blank" rel="noopener" href="http://hello-world.md">hello-world.md</a> 这篇文章为例：首先进入到 source / _post 文件夹中，找到 <a target="_blank" rel="noopener" href="http://hello-world.md">hello-world.md</a> 文件，在本地直接执行删除。然后依次执行<code>hexo g</code>，<code>hexo d</code>，即可删除。</li>
-</ul>
-<h3 id="发现的小问题">发现的小问题</h3>
-<ul>
-<li>本来通过<code> hexo new post demo</code> ，生成的 <a target="_blank" rel="noopener" href="http://demo.md">demo.md</a> 文件，我后来感觉命名不合理，就直接修改文件名字，发现修改之后标题没有修改过来？原因是忘记了修改了 md 文件中 date 时间<img src="https://github.githubassets.com/favicon.ico" alt="图片"></li>
-<li>网上说的新建的 md 文件不能使用中文命名，经测试可行。</li>
-<li>有的帖子说 npm install hexo-server --save ，安装这个啥用？我在本地测试 hexo s 一样可以自动生效啊。</li>
-</ul>
-<hr>
-<h3 id="参考的帖子">参考的帖子</h3>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fengxiongZz/p/7707219.html">使用 Hexo+Github 一步步搭建属于自己的博客（基础）</a>、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/fengxiongZz/p/7707568.html">使用 Hexo+Github 一步步搭建属于自己的博客（进阶）</a> 这 2 个帖子是我最开始参考的。</li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ainuser/article/details/77609180">hexo+github 搭建个人博客(超详细教程)</a> 这个帖子讲的详细，同时也讲述了安装 git 的一些 info 和使用镜像的说明。</li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32454537/article/details/79482908">2018 最新版 hexo+Github 搭建个人博客教程（2018-1-22 更新）</a>这个是一个学生写的，写的很细。</li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32454537/article/details/79482908">2018 最新版 hexo+Github 搭建个人博客教程（2018-1-22 更新）</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42334475/article/details/101055364?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task">GitHub+hexo 搭建个人博客（2019 新版超详细教程）</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/penglei-it/category/934299.html">随笔分类 - Github+Hexo 建站系列</a> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/penglei-it/p/hexo_next_baseset.html">Hexo+NextT 基本设置【3】</a></li>
-<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/index.html">hexo 中文文档</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/94038688">hexo next 主题进阶设置</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.newnius.com/">研究生好博客</a> <a target="_blank" rel="noopener" href="https://www.dazhuanlan.com/life/">大专栏</a> <a target="_blank" rel="noopener" href="http://disixueyuan.com/index.php/article/8.html">半小时学会做个人博客网站</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.v2ex.com/t/548912">coding pages 杂谈</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/AinUser/article/details/77609180?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task">hexo+github 搭建个人博客(超详细教程)</a></li>
-</ul>
-<h3 id="需要探究的问题">需要探究的问题</h3>
-<ul>
-<li>就是我在一个电脑上，按照网上的配置在本地配了相应的环境，若我换了电脑，是否再次配置？配置好了之后，之前的历史文章怎么 clone 到本地，再次 edit 呢？</li>
-</ul>
-<h3 id="hexo-的添加文章目录以及归档">hexo 的添加文章目录以及归档</h3>
-<ul>
-<li>
-<p>在写博客过程中遇到归档的需求，搜了一篇文章说的如何归档：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/72408c410904">Hexo 站点中添加文章目录以及归档</a></p>
-</li>
-<li>
-<p>hexo 中 landscape 主题的 favicon.ico 不能生效，网上给出结局问题的帖子很少，很多都是废话！这个主题直接舍弃了，使用 next 主图吧。</p>
-</li>
-<li>
-<p>next 主题出现这种错误：</p>
-<p><img src="https://file.798run.top/img/blog/20190122/theme-next-err.png" alt=""></p>
-</li>
-<li>
-<p>解决办法：</p>
-</li>
-</ul>
-<p><img src="https://file.798run.top/img/blog/20190122/fixed-err.png" alt=""></p>
-<ul>
-<li>hexo 更新后的 bug：<a target="_blank" rel="noopener" href="https://blog.csdn.net/NULL_thing/article/details/90082690">hexo 生成的静态网页无法找到 style.css</a></li>
-</ul>
-<h3 id="在-vscode-中查看刚编辑的-md-文档：Ctrl-Shift-V">在 vscode 中查看刚编辑的 md 文档：Ctrl + Shift + V</h3>
-<h3 id="遇到的问题">遇到的问题</h3>
-<p>在 202102 过年期间，在公司配置电脑上，打算 deploy 我的 hexo，可一直出现如下 err：<br>
-<img src="https://file.798run.top/img/blog/20210214/hexo-d-err.jpg" alt="hexo d err"></p>
-<p>网上搜到很多方法，最后执行了 git config --local core.autocrlf false，可发布，参考<a target="_blank" rel="noopener" href="https://1187100546.github.io/2019/11/24/spawn-failed/">文章</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/22/Hexo%E6%9D%82%E9%9B%86/" data-id="cm86t9fux000tt4vp3d3xbxgm" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/22/MarkDown%E6%80%BB%E7%BB%93/" data-id="cm87htjfr001hfgvpec3kf6io" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -1094,7 +1061,7 @@ Session 项输入你的服务器地址。</p>
     <!-- &laquo; -->
     <!-- &raquo; -->
     
-    <a class="extend prev" rel="prev" href="/page/9/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span>
+    <a class="extend prev" rel="prev" href="/page/9/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/11/">Next</a>
   </nav>
 
 </section>
@@ -1108,7 +1075,7 @@ Session 项输入你的服务器地址。</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
     </div>
   </div>
 
@@ -1131,6 +1098,10 @@ Session 项输入你的服务器地址。</p>
       <ul>
         
           <li>
+            <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
+          </li>
+        
+          <li>
             <a href="/2025/03/12/React%E4%B8%ADStore%E8%AE%B0%E5%BD%95/">React中Store记录</a>
           </li>
         
@@ -1144,10 +1115,6 @@ Session 项输入你的服务器地址。</p>
         
           <li>
             <a href="/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/">React类组件函数组件对props及state及ref使用</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/25/React%E8%AD%A6%E5%91%8A%E5%8F%8A%E6%8A%A5%E9%94%99/">React警告及报错</a>
           </li>
         
       </ul>

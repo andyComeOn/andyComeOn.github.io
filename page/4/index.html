@@ -68,6 +68,47 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vue-main-js的一些配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/26/vue-main-js%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2020-12-26T07:31:20.000Z" itemprop="datePublished">2020-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/26/vue-main-js%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/">vue-main.js的一些配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="mainjs"><strong>mainjs</strong></h3>
+<p>在使用 vue-cli 2.0 时候，例如我们使用 elementUI，其官网已经给我们全局引入的例子，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># main.js</span></span><br><span class="line"></span><br><span class="line">import Vue from <span class="string">&quot;vue&quot;</span>;</span><br><span class="line">import App from <span class="string">&quot;./App.vue&quot;</span>;</span><br><span class="line"></span><br><span class="line">import ElementUI from <span class="string">&#x27;element-ui&#x27;</span>;</span><br><span class="line">import <span class="string">&#x27;element-ui/lib/theme-chalk/index.css&#x27;</span>;</span><br><span class="line"></span><br><span class="line">Vue.use(ElementUI);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#  对于依赖包，如 echarts，软谋例子如下：</span></span><br><span class="line">import echarts from <span class="string">&#x27;echarts&#x27;</span>;</span><br><span class="line">Vue.prototype.<span class="variable">$echarts</span> = echarts;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># axios 软谋不是挂载到原型链上，而是如下使用：</span></span><br><span class="line">import axios from <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line">import vueaxios from <span class="string">&quot;vue-axios&quot;</span>;</span><br><span class="line">Vue.use(vueaxios, axios);</span><br><span class="line">this.axios.post();</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当然你依然可以挂载到vue原型链上：</span></span><br><span class="line">import axios from <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line">Vue.prototype.<span class="variable">$axios</span> = axios;</span><br><span class="line">this.<span class="variable">$axios</span>.post();</span><br><span class="line"></span><br><span class="line"><span class="comment"># 因为已经挂载到Vue的原型链上了，则在vue文件中可如下使用：</span></span><br><span class="line">this.<span class="variable">$echarts</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 百度map</span></span><br><span class="line">import BaiduMap from <span class="string">&#x27;vue-baidu-map&#x27;</span>;</span><br><span class="line">Vue.use(BaiduMap, &#123;</span><br><span class="line">  ak: fkhahkfhakfhkahkfakj</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Cookie</span></span><br><span class="line">import vuecookie from <span class="string">&#x27;vue-cookie&#x27;</span></span><br><span class="line">Vue.use(vuecookie)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/26/vue-main-js%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/" data-id="cm87htjh4004ffgvpf0sl5wp6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-代码文件之Eslint" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/25/%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E4%B9%8BEslint/" class="article-date">
@@ -127,7 +168,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E4%B9%8BEslint/" data-id="cm86t9fwo004kt4vpfiki5122" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E4%B9%8BEslint/" data-id="cm87htjh7004kfgvp06wtemce" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -169,7 +210,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/" data-id="cm86t9fwr004rt4vpchkvhya5" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/" data-id="cm87htjha004rfgvphrbh31on" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -209,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BMixins/" data-id="cm86t9fwu004wt4vpdsld5gc8" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BMixins/" data-id="cm87htjhb004wfgvp29122vst" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -272,7 +313,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/" data-id="cm86t9fwv004yt4vp973wdavj" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/" data-id="cm87htjha004tfgvpc040aoin" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -338,7 +379,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/CSS%E6%9D%82%E8%AE%B0/" data-id="cm86t9fuf0007t4vp1to9eny5" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/CSS%E6%9D%82%E8%AE%B0/" data-id="cm87htjf2000bfgvp5tth7clr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -391,7 +432,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="cm86t9fx80061t4vp5pl2azvz" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="cm87htjhq0062fgvp265w718g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li></ul>
@@ -441,7 +482,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cm86t9fu30001t4vpd12v1j0d" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cm87htjeh0001fgvpf3ed3aw8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -493,7 +534,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/11/Vue%E6%9D%82%E9%9B%86/" data-id="cm86t9fvr002pt4vpc62mfsz1" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/11/Vue%E6%9D%82%E9%9B%86/" data-id="cm87htjg9002ofgvp9yoz3lh6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
@@ -555,66 +596,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" data-id="cm86t9fv6001et4vp6jjlebho" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" data-id="cm87htjfp001cfgvpfflibyfg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Nodejs如何在linux上安装" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" class="article-date">
-  <time datetime="2020-12-07T06:25:38.000Z" itemprop="datePublished">2020-12-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/">Nodejs如何在linux上安装</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="前言">前言</h4>
-<p>虽然一直在使用 nodejs 启动 spa 项目，但是在服务器上部署 nodejs 作为后端，做的很少，记录一下步骤！</p>
-<h4 id="内容">内容</h4>
-<p>1、本地机器、公司的 Jenkins 发版的机器记得保持版本号一直！<br>
-2、直接打开<a target="_blank" rel="noopener" href="https://nodejs.org/">官网</a>，可切换中文查看文档（就没有必要使用<a target="_blank" rel="noopener" href="http://nodejs.cn/">nodejs 中文网</a>地址了）。在站点找到：下载 =&gt; 以往的版本 =&gt; version list（找自己的 Linux 对应的版本）=&gt; 我本地机器是（Win10 v12.18.3）</p>
-<p>Linux 对应的版本截图如下：</p>
-<p><img src="https://file.798run.top/img/blog/20201207/node-version-list-fragment.jpg" alt="node-version-list-fragment"></p>
-<p>点击下载，详情如下：<br>
-<img src="https://file.798run.top/img/blog/20201207/node-version-list.jpg" alt="node-version-list"></p>
-<p>找到具体版本对应的平台包，如 v12.18.3 对应的 Linux 平台的包：<code>node-v12.18.3-linux-x64.tar.xz</code>，注意针对上面的红色框圈出来的文件，不要点击，要单击鼠标右键，找到“复制链接地址”，如下图所示：<br>
-<img src="https://file.798run.top/img/blog/20201207/see-nodejs-download-url.jpg" alt="see-nodejs-download-url"></p>
-<p>我在自己的服务器上切换到目录为：<code>~</code></p>
-<p>这时候执行：<code> wget -c https://nodejs.org/download/release/v12.18.3/node-v12.18.3-linux-x64.tar.xz</code>，随后提取文件：<code>tar -xvf node-v12.18.3-linux-x64.tar.xz</code>，修改名字：<code>mv node-v12.18.3-linux-x64 ~/nodejs12.18.3</code>。然而，这种方式安装的 Nodejs 并不完美。首先，Nodejs 的命令 node 和 npm 并不能在全局使用。为了解决这个问题，我们需要建立两个软链接：<code>ln -s ~/nodejs12.18.3/bin/node /usr/local/bin/node</code>、<code>ln -s ~/nodejs12.18.3/bin/npm /usr/local/bin/npm</code>。这时候我们执行：<code>npm -v</code>、<code>node -v</code>，就可以显示 npm node 的版本信息了！</p>
-<p>趁热打铁就随便安装一下 yarn 吧，我本机、公司安装的都是 1.22.4。于是我执行：<code>npm i yarn@1.22.4 -g</code>。安装效果如下：<br>
-<img src="https://file.798run.top/img/blog/20201207/linux-install-yarn.png" alt="linux-install-yarn"><br>
-此时的 yarn 不能用，因为没有配置环境变量！这时候我想起来了，我的 Windows 上 yarn 安装在<code>C:\Users\zhangboba\AppData\Local\Yarn\bin</code>下，我把该目录添加到了我的环境变量！那我的 Linux 安装的 yarn 是不是需要添加环境变量啊，查资料之后，得知添加环境变量方法：找到 <code>vim /etc/profile</code>，添加：<code>export NODE_HOME=~/nodejs12.18.3/bin</code>、<code>export PATH=$NODE_HOME:$PATH</code>，保存退出即可！至此 node 安装完毕！</p>
-<h4 id="参考链接">参考链接</h4>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012297511">（小白指南）在 Linux 服务器上安装 Nodejs、Nginx 以及部署 Web 应用</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="cm86t9fvh0023t4vp4et6c96b" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
 
     </footer>
   </div>
@@ -629,7 +614,7 @@
     <!-- &laquo; -->
     <!-- &raquo; -->
     
-    <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/3/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/">Next</a>
   </nav>
 
 </section>
@@ -643,7 +628,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
     </div>
   </div>
 
@@ -666,6 +651,10 @@
       <ul>
         
           <li>
+            <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
+          </li>
+        
+          <li>
             <a href="/2025/03/12/React%E4%B8%ADStore%E8%AE%B0%E5%BD%95/">React中Store记录</a>
           </li>
         
@@ -679,10 +668,6 @@
         
           <li>
             <a href="/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/">React类组件函数组件对props及state及ref使用</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/25/React%E8%AD%A6%E5%91%8A%E5%8F%8A%E6%8A%A5%E9%94%99/">React警告及报错</a>
           </li>
         
       </ul>

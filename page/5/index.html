@@ -68,6 +68,62 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Nodejs如何在linux上安装" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" class="article-date">
+  <time datetime="2020-12-07T06:25:38.000Z" itemprop="datePublished">2020-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/">Nodejs如何在linux上安装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="前言">前言</h4>
+<p>虽然一直在使用 nodejs 启动 spa 项目，但是在服务器上部署 nodejs 作为后端，做的很少，记录一下步骤！</p>
+<h4 id="内容">内容</h4>
+<p>1、本地机器、公司的 Jenkins 发版的机器记得保持版本号一直！<br>
+2、直接打开<a target="_blank" rel="noopener" href="https://nodejs.org/">官网</a>，可切换中文查看文档（就没有必要使用<a target="_blank" rel="noopener" href="http://nodejs.cn/">nodejs 中文网</a>地址了）。在站点找到：下载 =&gt; 以往的版本 =&gt; version list（找自己的 Linux 对应的版本）=&gt; 我本地机器是（Win10 v12.18.3）</p>
+<p>Linux 对应的版本截图如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201207/node-version-list-fragment.jpg" alt="node-version-list-fragment"></p>
+<p>点击下载，详情如下：<br>
+<img src="https://file.798run.top/img/blog/20201207/node-version-list.jpg" alt="node-version-list"></p>
+<p>找到具体版本对应的平台包，如 v12.18.3 对应的 Linux 平台的包：<code>node-v12.18.3-linux-x64.tar.xz</code>，注意针对上面的红色框圈出来的文件，不要点击，要单击鼠标右键，找到“复制链接地址”，如下图所示：<br>
+<img src="https://file.798run.top/img/blog/20201207/see-nodejs-download-url.jpg" alt="see-nodejs-download-url"></p>
+<p>我在自己的服务器上切换到目录为：<code>~</code></p>
+<p>这时候执行：<code> wget -c https://nodejs.org/download/release/v12.18.3/node-v12.18.3-linux-x64.tar.xz</code>，随后提取文件：<code>tar -xvf node-v12.18.3-linux-x64.tar.xz</code>，修改名字：<code>mv node-v12.18.3-linux-x64 ~/nodejs12.18.3</code>。然而，这种方式安装的 Nodejs 并不完美。首先，Nodejs 的命令 node 和 npm 并不能在全局使用。为了解决这个问题，我们需要建立两个软链接：<code>ln -s ~/nodejs12.18.3/bin/node /usr/local/bin/node</code>、<code>ln -s ~/nodejs12.18.3/bin/npm /usr/local/bin/npm</code>。这时候我们执行：<code>npm -v</code>、<code>node -v</code>，就可以显示 npm node 的版本信息了！</p>
+<p>趁热打铁就随便安装一下 yarn 吧，我本机、公司安装的都是 1.22.4。于是我执行：<code>npm i yarn@1.22.4 -g</code>。安装效果如下：<br>
+<img src="https://file.798run.top/img/blog/20201207/linux-install-yarn.png" alt="linux-install-yarn"><br>
+此时的 yarn 不能用，因为没有配置环境变量！这时候我想起来了，我的 Windows 上 yarn 安装在<code>C:\Users\zhangboba\AppData\Local\Yarn\bin</code>下，我把该目录添加到了我的环境变量！那我的 Linux 安装的 yarn 是不是需要添加环境变量啊，查资料之后，得知添加环境变量方法：找到 <code>vim /etc/profile</code>，添加：<code>export NODE_HOME=~/nodejs12.18.3/bin</code>、<code>export PATH=$NODE_HOME:$PATH</code>，保存退出即可！至此 node 安装完毕！</p>
+<h4 id="参考链接">参考链接</h4>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012297511">（小白指南）在 Linux 服务器上安装 Nodejs、Nginx 以及部署 Web 应用</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="cm87htjfv001rfgvp06b1e6ys" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-React生命周期" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="article-date">
@@ -108,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="cm86t9fvf001yt4vp0k3g49hn" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="cm87htjg20028fgvp447tdbtd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
@@ -186,7 +242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/03/Nodejs%E4%B9%8BYarn/" data-id="cm86t9fva001ot4vp1nfg0ux0" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/03/Nodejs%E4%B9%8BYarn/" data-id="cm87htjfu001ofgvpbxipbslx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -229,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" data-id="cm86t9fwj0047t4vp7atda8yv" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" data-id="cm87htjgz0048fgvp7vzdhzcm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
@@ -313,7 +369,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/vscode%E6%9D%82%E8%AE%B0/" data-id="cm86t9fwj0045t4vpg9894i72" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/02/vscode%E6%9D%82%E8%AE%B0/" data-id="cm87htjh1004afgvpehvfgnsl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
@@ -364,7 +420,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9D%82%E8%AE%B0/" data-id="cm86t9fx0005gt4vp9994e309" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/02/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9D%82%E8%AE%B0/" data-id="cm87htjhi005ffgvpfxhe9xyq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
@@ -403,7 +459,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/30/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E8%AE%A8%E8%AE%BA/" data-id="cm86t9fx6005yt4vpazg12vac" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/11/30/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E8%AE%A8%E8%AE%BA/" data-id="cm87htjho005xfgvpal5bfzuh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -447,7 +503,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/30/%E5%B0%8F%E7%A8%8B%E5%BA%8Fcanvas%E8%AE%B0%E5%BD%95/" data-id="cm86t9fx0005dt4vp7epbhekx" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/11/30/%E5%B0%8F%E7%A8%8B%E5%BA%8Fcanvas%E8%AE%B0%E5%BD%95/" data-id="cm87htjhg005cfgvp04rj9lsb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
@@ -551,7 +607,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/12/Nodejs%E6%9D%82%E9%9B%86/" data-id="cm86t9fva001qt4vpdi1p0xtk" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/12/Nodejs%E6%9D%82%E9%9B%86/" data-id="cm87htjfw001tfgvp96nehqr3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -614,228 +670,10 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/08/31/JS%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA/" data-id="cm86t9fuy000vt4vp7d5rg0ut" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/08/31/JS%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA/" data-id="cm87htjfj000yfgvp5jt4fkh1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-前端精进" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/28/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" class="article-date">
-  <time datetime="2020-07-28T06:27:59.000Z" itemprop="datePublished">2020-07-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/28/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/">前端精进</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="4、Node-js-技术架构">4、Node.js 技术架构</h2>
-<ul>
-<li>0 课程简介</li>
-<li>1 JS 如何调用 C++</li>
-</ul>
-<h2 id="5、文件模块">5、文件模块</h2>
-<ul>
-<li>
-<p>0 课程简介 √</p>
-</li>
-<li>
-<p>1 本课目标 √</p>
-</li>
-<li>
-<p>2 创建 Node.js 命令行项目 √</p>
-</li>
-<li>
-<p>3 实现创建功能 √</p>
-</li>
-<li>
-<p>3 封装优化代码 ×</p>
-</li>
-</ul>
-<h2 id="6、单元测试之文件模块">6、单元测试之文件模块</h2>
-<ul>
-<li>0 课程简介</li>
-</ul>
-<h2 id="7、调试-Node-js-程序">7、调试 Node.js 程序</h2>
-<ul>
-<li>0 课程简介</li>
-</ul>
-<h2 id="8、静态服务器">8、静态服务器</h2>
-<ul>
-<li>0 课程简介</li>
-<li>1 代码 1</li>
-<li>2 配置 WebStorm 和 VSCode</li>
-<li>3 创建项目</li>
-<li>4 request 对象</li>
-<li>5 如何得到请求消息体</li>
-<li>6 response 对象</li>
-<li>7 完成目标 1</li>
-<li>8 完成目标 2</li>
-<li>9 完成目标 3 和 4</li>
-<li>10 完成其他目标</li>
-<li>11 免费用 WebStorm 的途径</li>
-<li>12 客观题： http 模块</li>
-</ul>
-<h2 id="9、命令行翻译工具">9、命令行翻译工具</h2>
-<h2 id="10、操作数据库">10、操作数据库</h2>
-<h2 id="11、数据库基础知识">11、数据库基础知识</h2>
-<h2 id="12、Stream-流">12、Stream 流</h2>
-<ul>
-<li>0 课程简介</li>
-<li>1 三个例子了解 Stream
-<ul>
-<li>1）例一讲解中使用了 ls -lh 显示文件大小，我在本地使用 git bash 没有显示出大小！</li>
-<li>2）第二个例子中 node 本身就占用了 8M 内存中又增加了 110M 一共就是 120M 左右，这一个请求就占用了 120M ，要是很多请求，内存就不够用了！所以此方法不是最佳方法，就引入了 stream 的概念。</li>
-<li>3）测试例子发现内存使用不超过 30M</li>
-</ul>
-</li>
-<li>2 Stream 对象的原型、事件</li>
-<li>3 Stream 的分类共 4 种</li>
-<li>4 Readable 和 Writable 的特点</li>
-<li>5 创建自己的流</li>
-<li>6 Transform 流举例</li>
-<li>7 总结</li>
-</ul>
-<h2 id="13、child-process">13、child_process</h2>
-<h2 id="14、总结">14、总结</h2>
-<h2 id="15、【Node-js-Web】Express-核心">15、【Node.js Web】Express 核心</h2>
-<ul>
-<li>0 课程简介</li>
-<li>1 Web 框架的功能</li>
-<li>2 Hello Express</li>
-<li>3 Hello TypeScript</li>
-<li>4 Express 的 app 对象是什么</li>
-<li>5 Express 脚手架</li>
-<li>6 用 TypeScript 开发 Express 应用</li>
-<li>7 app.use 与 Express 编程模型</li>
-<li>8 中间件与路由</li>
-<li>9 错误处理</li>
-<li>10 客观题：Express 核心</li>
-</ul>
-<h2 id="16、【Node-js-Web】Express-全解">16、【Node.js Web】Express 全解</h2>
-<ul>
-<li>0 课程简介</li>
-<li>1 Express.js 全解</li>
-<li>2 <a target="_blank" rel="noopener" href="http://express.xxx">express.xxx</a> API 讲解</li>
-<li>3 <a target="_blank" rel="noopener" href="http://app.xxx">app.xxx</a> API 讲解</li>
-<li>4 <a target="_blank" rel="noopener" href="http://req.xxx">req.xxx</a> API 讲解</li>
-<li>5 req.range 原理介绍</li>
-<li>6 选看：看老司机入坑如何自救</li>
-<li>7 <a target="_blank" rel="noopener" href="http://res.xxx">res.xxx</a> API 讲解</li>
-<li>8 <a target="_blank" rel="noopener" href="http://router.xxx">router.xxx</a> API 讲解</li>
-<li>9 总结 ＆ 系统学习法</li>
-<li>10 主观题：博客：Express API 总结</li>
-</ul>
-<h2 id="17、【Node-js-Web】Koa-全解">17、【Node.js Web】Koa 全解</h2>
-<h2 id="33、【JS-专精】JS-代码规范">33、【JS 专精】JS 代码规范</h2>
-<ol>
-<li>
-<p>无歧义 &gt; 简洁</p>
-</li>
-<li>
-<p>绝对不要用</p>
-<ul>
-<li>全局变量</li>
-<li>var 声明</li>
-<li>== 运算符</li>
-<li>包装类型 String / Boolean</li>
-</ul>
-</li>
-<li>
-<p>有些人不用</p>
-<ul>
-<li>class / new / this</li>
-<li>比如 ReactHooks 那帮人</li>
-</ul>
-</li>
-<li>
-<p>用的人不多的，尽量少用</p>
-<ul>
-<li>symbol / generator / iterator</li>
-<li>反射</li>
-</ul>
-</li>
-<li>
-<p>一定要用</p>
-<ul>
-<li>===</li>
-<li>…原算符</li>
-<li>import export</li>
-<li>let const</li>
-<li>解构赋值</li>
-<li>Promise await</li>
-</ul>
-</li>
-<li>
-<p>可以使用</p>
-<ul>
-<li>class</li>
-<li>getter / setter</li>
-<li>WeakMap</li>
-<li>Proxy</li>
-</ul>
-</li>
-<li>
-<p>存在问题但可用</p>
-<ul>
-<li>箭头函数</li>
-<li>数组 Api + Polyfill</li>
-</ul>
-</li>
-<li>
-<p>存在问题但可用</p>
-<ul>
-<li>
-<p>对代码进行翻译的注释 ×</p>
-</li>
-<li>
-<p>对代码进行总结的注释 × （时间推移，注释与业务逻辑不匹配从而引起歧义）</p>
-</li>
-<li>
-<p>对代 bug 进行分析的注释 √</p>
-</li>
-<li>
-<p>对参考来源的注释 √</p>
-</li>
-<li>
-<p>对潜在问题的警告的注释 √</p>
-</li>
-<li>
-<p>发泄情绪的注释 ×</p>
-</li>
-<li>
-<p>数组 Api + Polyfill</p>
-</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/28/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" data-id="cm86t9fww0052t4vp6yp97kh5" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li></ul>
 
     </footer>
   </div>
@@ -850,7 +688,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
     <!-- &laquo; -->
     <!-- &raquo; -->
     
-    <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/6/">Next</a>
   </nav>
 
 </section>
@@ -864,7 +702,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
     </div>
   </div>
 
@@ -887,6 +725,10 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       <ul>
         
           <li>
+            <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
+          </li>
+        
+          <li>
             <a href="/2025/03/12/React%E4%B8%ADStore%E8%AE%B0%E5%BD%95/">React中Store记录</a>
           </li>
         
@@ -900,10 +742,6 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
         
           <li>
             <a href="/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/">React类组件函数组件对props及state及ref使用</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/25/React%E8%AD%A6%E5%91%8A%E5%8F%8A%E6%8A%A5%E9%94%99/">React警告及报错</a>
           </li>
         
       </ul>
