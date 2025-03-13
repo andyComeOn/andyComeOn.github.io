@@ -68,6 +68,136 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-React生命周期" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="article-date">
+  <time datetime="2020-12-07T03:25:42.000Z" itemprop="datePublished">2020-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">React生命周期</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="用法">用法</h3>
+<p>1、使用 react 时要注意其生命周期，最开始初始化 defaultProps、state。我们可以在组件的生命周期钩子函数中写相关逻辑来满足我们的业务需求。</p>
+<p>2、<code>componentWillMount</code>：最初该钩子是为了异步的获取数据，现在官方已不赞成使用（在 ssr 场景下，服务端与客户端都会渲染一遍，浪费资源！）</p>
+<p>3、<code>componentDidMount</code>：该组件是渲染完毕之后会触发！此时页面中已经有相关的 DOM，我们可以进行 DOM 的相关操作（思考：我们使用了 MVVM 之后还会操作 DOM 吗？）</p>
+<p>4、我们在 componentDidMount 中可以己写一些逻辑。如：有一个 banner，我们需要给它动态设置 height，而 height 则是根据 width 而来，此时 dom 也已经渲染完了，我们可以获取该元素的 width，进而满足设置 height 的目的，最后在通过 setState 把 height 的值更新；若是组件的父组件的 prop 改变了，此时，就会走到 componentWillReceiveProps(newProps)，此钩子接受一个参数!</p>
+<p>5、<code>componentWillReceiveProps(newProps, newState)</code>：我们可以在此函数中进行判断，如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">shouldComponentUpdate(newProps, newState) &#123;</span><br><span class="line">  <span class="keyword">if</span> (newProps.number &lt; 5) <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="built_in">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line">// 该钩子函数可以接收到两个参数，新的属性和状态，返回`<span class="literal">true</span>/false`来控制组件是否需要更新。</span><br></pre></td></tr></table></figure>
+<p>我们使用这个生命周期一般用于优化，有的时候，我们在界面上只需要更新一个很小的组件，而一个父组件的更新会造成整个子组件都进行渲染，形成一个崭新的虚拟 DOM，但是这样的话，会造成资源的浪费，我们可以根据实际的开发情况在 shouldComponentUpdate()生命周期加入条件，来进行性能的优化。</p>
+<p>6、上面的钩子返回 true 接着走 componentWillUpdate（组件即将被更新时触发，丢弃），在这个生命周期使用 setState，会导致重新跑回到 updata 的生命周期，然后在跑到 componentWillUpdate，如果不慎用的话，会导致反复的执行。</p>
+<p>7、接着再次 render()，在接着是 componentDidUpdate，最后当离开页面时候，触发 componentWillUnMount，我们可以在 componentWillUnMount 中写清除定时器之类的操作！</p>
+<h3 id="参考">参考</h3>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/46022f1cbbb3">React 生命周期的图解</a></p>
+<h3 id="任务">任务</h3>
+<p>有空细看这篇文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b331d0e4b398">React 生命周期</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="cm86t9fvf001yt4vp0k3g49hn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Nodejs之Yarn" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/03/Nodejs%E4%B9%8BYarn/" class="article-date">
+  <time datetime="2020-12-03T02:35:06.000Z" itemprop="datePublished">2020-12-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/03/Nodejs%E4%B9%8BYarn/">Nodejs之Yarn</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言">前言</h3>
+<p>yarn 安装有三种方式（官网说），最便捷的还是使用 <code>npm i yarn@1.22.4 -g</code>，默认安装目录：<code>C:\Users\admin\AppData\Roaming\npm\yarn</code>（Win 下执行 where yarn 可知）。yarn 诞生就是为了解决 npm 早期依赖包比较混乱的问题，伴随着 node 的升级，npm 版本也随之升级，针对依赖包已经做的很好了，详情可<a target="_blank" rel="noopener" href="https://fanyi.baidu.com/">点击</a>我。</p>
+<h3 id="疑问">疑问</h3>
+<p>网上的文章几乎是千篇一律，你可以修改 yarn 的默认仓库，那么 yarn 的默认的仓库是啥，网上很少有人说！是不是有一个默认的 .yarnrc 文件？它在何处？于是我开始了寻找这个默认的 .yarnrc 文件（尽管他可能不存在）。开搞，cmd 下，执行 yarn config，于是出现如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-config.jpg" alt="yarn-config"></p>
+<p>这里面提示我们，我们可以在键入 yarn config 时候配上选项啊，于是我执行 yarn config current，得到效果如下:</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-config-current.jpg" alt="yarn-config-current"></p>
+<p>上面截图中（针对我本机）globalFolder、linkFolder 咋找不到地址！是啥原因？猜想：我还没有使用 yarn 全局安装过一个依赖导致，该目录没有生成！再此之前我一直执行 yarn config list ，如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-config-list.jpg" alt="yarn-config-list"></p>
+<p>这样也仅展示相关的基本信息，一直没找到默认配置文件的目录地址！带着上面的疑问，我决定使用 yarn 全局安装一下 webpack，于是执行 <code> yarn global add webpack</code>，最终效果如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-global-add-webpack.jpg" alt="yarn-global-add-webpack"></p>
+<p>红色标记是新增的一个目录。结论：你使用 yarn 全局安装依赖，默认会在 *\AppData\Local\Yarn\ 下新增一个 Data 目录。Data 目录展开如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-global-add-webpack-Data-sub-direct.jpg" alt="yarn-global-add-webpack-Data-sub-direct"></p>
+<p>这不就是网上千篇一律说的修改 yarn 全局安装的默认 global 目录吗？记在最后：我没有找到 “默认的 .yarnrc 文件”，也许是它是以脚本的形式写在了 yarn.cmd 中，等后续在细究吧！</p>
+<h3 id="指令">指令</h3>
+<p>1、根据上面疑问版块的内容，可知，yarn 指令有：</p>
+<ul>
+<li><code>yarn add pkgName</code></li>
+<li><code>yarn add pkgName@1.22.4</code></li>
+<li><code>yarn remove pkgName</code></li>
+<li><code>yarn global add pkgName</code></li>
+<li><code>yarn global remove pkgName</code></li>
+<li><code>yarn config ls</code></li>
+<li><code>yarn global ls</code></li>
+</ul>
+<p>2、通用指令：</p>
+<ul>
+<li><code>yarn config [options]</code></li>
+<li><code>yarn global [options]</code></li>
+</ul>
+<p>其实很多的指令其实就是通用指令加上子命令而来！假如我们记不清楚指令了，我们可键入 yarn global 会提示你缺少子命令，同时把相关常用的子命令给你罗列出来！截图如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-global.jpg" alt="yarn-global"></p>
+<p>看到上面的截图中的子命令有 bin ，执行 yarn global bin =&gt; C:\Users\admin\AppData\Local\Yarn\bin，结论：把此目录添加到环境变量，则使用 yarn 安装的全局依赖，在任意 cmd 下，就能使用了！</p>
+<p>3、yarn upgrade 仅更新 yarn.lock、package.json 不更新，参考：<a target="_blank" rel="noopener" href="https://classic.yarnpkg.com/zh-Hans/docs/cli/upgrade/">升级包到它们基于规范范围的最新版本</a>、<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017014622">yarn upgrade 更新依赖包时 yarn.lock 更新但 package.json 不同步更新版本信息</a></p>
+<h3 id="杂记">杂记</h3>
+<p>1、20201230 看到之前使用 yarn 安装过 webpack，于是 yarn global remove webpack，我的 yarn 全局安装的指令在如下目录：</p>
+<p><img src="https://file.798run.top/img/blog/20201230/yarn-global-remove-webpack.jpg" alt="yarn-global-remove-webpack"></p>
+<p>但原本此目录仅有 node-dev、webpack 但刚执行了 yarn global remove webpack，多了 semver、which。这是何缘故？不知，反正就是 which 也能使用了（我理解的 which 仅在 linux 上可以使用，windows 上可使用 where）。</p>
+<h3 id="问题">问题</h3>
+<p>1、在使用 yarn 安装依赖时候，一直提示：There appears to be trouble with your network connection. Retrying… 后来 Google 一下，看到一个<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/51508364/yarn-there-appears-to-be-trouble-with-your-network-connection-retrying">帖子</a>说的很好，总结原因：Ⅰ、网速不好，yarn 认为你有超时可能，于是提示你。Ⅱ、说执行 yarn config delete https-proxy &amp;&amp; yarn config delete proxy。我认为是第一种原因最大，我已经在自己目录 ~ 下，创建 .yarnrc 文件，并设置为：network-timeout 600000，问题解决！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/03/Nodejs%E4%B9%8BYarn/" data-id="cm86t9fva001ot4vp1nfg0ux0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-vscode之PHP配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" class="article-date">
@@ -99,7 +229,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" data-id="cm7x2d18m00447gvp0tkiba18" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" data-id="cm86t9fwj0047t4vp7atda8yv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
@@ -183,7 +313,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/vscode%E6%9D%82%E8%AE%B0/" data-id="cm7x2d18n00467gvp9wgt3veb" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/02/vscode%E6%9D%82%E8%AE%B0/" data-id="cm86t9fwj0045t4vpg9894i72" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
@@ -234,7 +364,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9D%82%E8%AE%B0/" data-id="cm7x2d19d005b7gvp12gy4gkn" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/02/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9D%82%E8%AE%B0/" data-id="cm86t9fx0005gt4vp9994e309" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
@@ -273,7 +403,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/30/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E8%AE%A8%E8%AE%BA/" data-id="cm7x2d19k005s7gvp5g2u0oej" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/11/30/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E8%AE%A8%E8%AE%BA/" data-id="cm86t9fx6005yt4vpazg12vac" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -317,7 +447,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/30/%E5%B0%8F%E7%A8%8B%E5%BA%8Fcanvas%E8%AE%B0%E5%BD%95/" data-id="cm7x2d19b00587gvp05js8d4n" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/11/30/%E5%B0%8F%E7%A8%8B%E5%BA%8Fcanvas%E8%AE%B0%E5%BD%95/" data-id="cm86t9fx0005dt4vp7epbhekx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
@@ -421,7 +551,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/12/Nodejs%E6%9D%82%E9%9B%86/" data-id="cm7x2d15x001t7gvpbo8f3aw8" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/12/Nodejs%E6%9D%82%E9%9B%86/" data-id="cm86t9fva001qt4vpdi1p0xtk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -484,7 +614,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/08/31/JS%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA/" data-id="cm7x2d15g000y7gvpd7tr246u" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/08/31/JS%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA/" data-id="cm86t9fuy000vt4vp7d5rg0ut" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -702,291 +832,10 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/28/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" data-id="cm7x2d195004z7gvp9xtle1i1" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/28/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" data-id="cm86t9fww0052t4vp6yp97kh5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-D_N_S记录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/22/D_N_S%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2020-07-22T04:36:46.000Z" itemprop="datePublished">2020-07-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/D_N_S%E8%AE%B0%E5%BD%95/">D_N_S记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>记录一次有关 D_N_S 范畴的知识</p>
-</blockquote>
-<h2 id="1、github-不能打开部分图片">1、github 不能打开部分图片</h2>
-<p>在访问 github 时候，一些图片一直打不开看着很难受，在没有 <code>crosss the greate wall</code> 情况下，于是找到的方法是：配置 host 。于是配置如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">172.217.160.0	www.google.com.hk</span><br><span class="line"></span><br><span class="line">199.232.68.133 raw.githubusercontent.com</span><br><span class="line"></span><br><span class="line">151.101.56.133 avatars0.githubusercontent.com</span><br><span class="line">151.101.56.133 avatars1.githubusercontent.com</span><br><span class="line">151.101.56.133 avatars2.githubusercontent.com</span><br><span class="line">151.101.56.133 avatars3.githubusercontent.com</span><br><span class="line">151.101.56.133	avatars4.githubusercontent.com</span><br><span class="line"></span><br><span class="line">151.101.56.133	avatars5.githubusercontent.com</span><br><span class="line">151.101.56.133	avatars6.githubusercontent.com</span><br><span class="line">151.101.56.133	avatars7.githubusercontent.com</span><br><span class="line">151.101.56.133	avatars8.githubusercontent.com</span><br></pre></td></tr></table></figure>
-<p>图片不能打开的问题已解决！但发现 <a target="_blank" rel="noopener" href="https://api.github.com/_private/browser/stats">https://api.github.com/_private/browser/stats</a> 链接不能访问，一直提示 403 rate limit exceeded。很少见！</p>
-<h2 id="2、思考-api-github-com-不能访问的原因">2、思考 <a target="_blank" rel="noopener" href="http://api.github.com">api.github.com</a> 不能访问的原因</h2>
-<p>我直接配置 host 不就完事了， 于是:</p>
-<p><img src="https://file.798run.top/img/blog/20200722/api.github.png" alt="api.github.png"></p>
-<p>随后配置 D_N_S 依然是没用！于是打开访问助手，直接访问 <a target="_blank" rel="noopener" href="https://api.github.com/_private/browser/stats">https://api.github.com/_private/browser/stats</a> ，看到返回的信息中有一个 ip，接着配置 host ，依然是不行！查到原因是：<a target="_blank" rel="noopener" href="https://www.errorvault.com/en/troubleshooting/runtime-errors/google-inc/picasa/error-403_rate-limit-exceeded">How to fix the Runtime Error 403 Rate-limit exceeded</a>、<a target="_blank" rel="noopener" href="https://bugxia.com/1234.html">解决 gdrive 报错 Error 403: Rate Limit Exceeded</a></p>
-<h2 id="3、总结">3、总结</h2>
-<ul>
-<li>访问助手使用，还没有我配置 host =&gt; 151.101.56.133 <a target="_blank" rel="noopener" href="http://avatars0.githubusercontent.com">avatars0.githubusercontent.com</a> 访问快！还想收费这也太不要脸了！</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/22/D_N_S%E8%AE%B0%E5%BD%95/" data-id="cm7x2d14z000f7gvpex13eltm" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-数据类型转换" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" class="article-date">
-  <time datetime="2020-07-20T12:55:25.000Z" itemprop="datePublished">2020-07-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">数据类型转换</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>对象转数字，对象转字符串，首先都是进行 Object.prototype.toString.call(this, obj)</p>
-<h2 id="1、数据类型检测常用方法">1、数据类型检测常用方法</h2>
-<ul>
-<li>type of</li>
-<li>instanceof</li>
-<li>constructor</li>
-<li>Object.prototype.toString.call()</li>
-</ul>
-<h2 id="2、type-of">2、type of</h2>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">type <span class="keyword">of</span> <span class="title class_">NaN</span>  <span class="comment">// =&gt; number</span></span><br><span class="line">type <span class="keyword">of</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;&#125;  <span class="comment">// =&gt; function</span></span><br><span class="line">type <span class="keyword">of</span> <span class="title class_">BigInt</span>(<span class="number">10</span>)  <span class="comment">// =&gt; bigint</span></span><br><span class="line">type <span class="keyword">of</span> <span class="literal">null</span>  <span class="comment">// =&gt; object 计算机遗留的 bug 存储时候是二进制开始；000默认是对象，</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="3、其他类型转换为-Number-类型">3、其他类型转换为 Number 类型</h2>
-<ul>
-<li>
-<p>需要特定转换为 Number</p>
-<ul>
-<li>
-<p>Number([val])</p>
-<ul>
-<li>Number(‘’) // 0</li>
-<li>Number(‘10’) // 10</li>
-<li>Number(‘10px’) // NaN 只要出现非数字结果都是 NaN</li>
-<li>Number(true) // 1</li>
-<li>Number(false) // 0</li>
-<li>Number(null) // 0</li>
-<li>Number(undefined) // NaN</li>
-<li>Number(NaN) // NaN</li>
-<li>Number(Symbol(10)) // error</li>
-<li>Number(BigInt(10)) // 10</li>
-<li>Number({name: 1}) // NaN 把对象转换为数字，需要隐式依次执行 valueOf、toString、在转换为数字，不满足转换为数字的对象输出 NaN</li>
-</ul>
-</li>
-<li>
-<p>parseInt / parseFloat([val])</p>
-<ul>
-<li>把转换值先转换为字符串</li>
-<li>从字符串左侧第一个字符开始查找，若遇到非有效数字，停止查找。把找到的有效数字字符串转换为数字并返回！若是一个没有找到就返回 NaN</li>
-<li>提了一嘴说：留了一个进阶知识点</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>隐式转换为（浏览器内部先进行 Number 转换）</p>
-<ul>
-<li>
-<p>isNaN([val])，首先走的 Number()</p>
-</li>
-<li>
-<p>数学运算(1+2 =&gt; 3。+出现在字符串前后，该表达式直接变成了字符串拼接，如：‘hi’ + 9 =&gt; hi9, 9 变成字符串与 ‘hi’ 相加。{age: 20} + 9，对象与数字相加，对象要转换数字（转换为数字之前首先要转换字符串，又变成字符串拼接了），[object Object]9。[‘hi’]+1 =&gt; hi1。[1,2,3]+1 =&gt; “1,2,31”。[{}]+1 =&gt; [object Object]1</p>
-</li>
-<li>
-<p>注意：针对上面的例子，有 + 号的“算术”表达式，也有特殊的情况。如 {} + 0 =&gt; 0，此时解析器把 {} 当成一个代码块，于是就变成了 +0 =&gt; 0；({} + 0) 会参与到数学运算中，结果是：[object Object]0；0 + {} 这种情况是数学运算，结果是：0[object Object]</p>
-</li>
-<li>
-<p>== 运算（对象==字符串：对象转为字符串在进行比较；*==*都是转为数字在进行比较）</p>
-</li>
-</ul>
-</li>
-<li>
-<p>对象转换为数字：对象 =&gt; str =&gt; number</p>
-</li>
-<li>
-<p>总结(25.02.28)：引用类型 + 0 这种，就是引用类型进行 toPrimitive 转换为 str 给 0(也被转换为 str 形式的 0) 相加，就唯一一个特殊的是 解析器吧 {} 当成代码块处理了。注注注！我测试了 <code>&#123;&#125; + 0</code> 发现浏览器纠正过来了，其值为 [object Object]0</p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/x15514104477/article/details/139752921">js 运算符</a></p>
-</li>
-</ul>
-<h2 id="4、其他类型转换为-String-类型">4、其他类型转换为 String 类型</h2>
-<ul>
-<li>
-<p>能使用的方法：<code>toString()</code>、<code>String()</code></p>
-</li>
-<li>
-<p>隐式转换（一般都是调用 <code>toString()</code>）</p>
-<ul>
-<li>String(1) =&gt; “1”</li>
-<li>String(null) =&gt; “null”</li>
-<li>String(undefined) =&gt; “undefined”</li>
-<li>String({}) =&gt; “[object Object]” 此例子调用的是 Object.prototype.toString.call() 方法，不是转换字符串，变成了数据类型检测，({age: 1}).toString() =&gt; “[object Object]”</li>
-</ul>
-<ul>
-<li>给予 alert/confirm/prompt/document.write 这些方法输出，都是先转换为 string 在输出</li>
-</ul>
-</li>
-</ul>
-<h2 id="5、其他类型转换为-Boolean-类型">5、其他类型转换为 Boolean 类型</h2>
-<ul>
-<li>
-<p>给予一下方式可以把其他类型转化为布尔</p>
-<ul>
-<li>! 转化为布尔值后取反</li>
-<li>!! 转化为布尔</li>
-</ul>
-</li>
-<li>
-<p>隐式转化</p>
-<ul>
-<li>再循环或条件判断中，条件处理的结果都是布尔</li>
-</ul>
-</li>
-<li>
-<p>规则：只有 0、null、false、undefined、‘’ 五个值变成 false 其余都是变为 true</p>
-</li>
-</ul>
-<h2 id="6、-比较过程中数据转换规则">6、== 比较过程中数据转换规则</h2>
-<ul>
-<li>
-<p>类型一样的几个特殊情况</p>
-<ul>
-<li>[] == [] // false 比较的是堆内存地址</li>
-<li>{} == {} // false 比较的是堆内存地址</li>
-<li>NaN == NaN // false 比较的是堆内存地址</li>
-</ul>
-</li>
-<li>
-<p>类型不一样的转换规则</p>
-<ul>
-<li>null == undefined =&gt; true，剩下 null / undefined 与其他任何数据类型都不想等</li>
-<li>字符串 == 对象，对象 =&gt; str 在进行比较</li>
-<li>剩下如果 == 两边数据类型不一致，转化为数字在比较</li>
-</ul>
-</li>
-</ul>
-<h2 id="加号运算符计算规则">加号运算符计算规则</h2>
-<p>首先执行代码，调用 ToPrimitive 方法得到原始值</p>
-<ul>
-<li>
-<p>如果原始值是两个数字，则直接相加得出结果。</p>
-</li>
-<li>
-<p>如果两个原始值都是字符串，把第二个字符串连接到第一个上，也就是相当于调用 concat 方法。</p>
-</li>
-<li>
-<p>如果只有一个原始值是字符串，调用 ToString 方法把另一个运算数转换成字符串，结果是两个字符串连接成的字符串</p>
-</li>
-<li>
-<p>{}的两种解读</p>
-<ul>
-<li>① 当{}的前面有运算符号的时候，+，-，*，/,()等等，{}都会被解析成对象字面量，这无可争议。</li>
-<li>② 当{}前面没有运算符时候但有;结尾的时候，或者浏览器的自动分号插入机制给{}后面插入分号(;)时候，此时{}都会被解析成代码块。</li>
-<li>③ 如果{}前面什么运算符都没有，{}后面也没有分号(;)结尾，Firefox 会始终如一的解析为代码块，而 chrome 有细微的差别，chrome 会解析为对象字面量。</li>
-</ul>
-</li>
-<li>
-<p>运算表达式中，有一些细节，如空数组，空对象，在被参与运算，首先他们要转为基本类型(基本类型就 5 种，Undefined、Null、Number、String、Boolean)，调的方法是 toPrimitive()，这个函数具体执行过程其规则，<a target="_blank" rel="noopener" href="https://www.yuque.com/xiumubai/fe/mm96abud1mcd1ay0#5ff6bd67">点我</a>查看。该帖子中说的只有 <code>Date</code> 比较特殊，toPrimitive 中的第二个参数会被当成 String，也就是先执行 toString 方法，在执行 valueOf 方法。具体如下：</p>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="title class_">ToPrimitive</span>(obj,preferredType)</span><br><span class="line"></span><br><span class="line"><span class="variable constant_">JS</span>引擎内部转换为原始值<span class="title class_">ToPrimitive</span>(obj,preferredType)函数接受两个参数，第一个obj为被转换的对象，第二个</span><br><span class="line">preferredType为希望转换成的类型（默认为空，接受的值为<span class="title class_">Number</span>或<span class="title class_">String</span>）</span><br><span class="line"></span><br><span class="line">在执行<span class="title class_">ToPrimitive</span>(obj,preferredType)时如果第二个参数为空并且obj为<span class="title class_">Date</span>的事例时，此时preferredType会</span><br><span class="line">被设置为<span class="title class_">String</span>，其他情况下 preferredType 都会被设置为 <span class="title class_">Number</span> 如果 preferredType 为 <span class="title class_">Number</span>，<span class="title class_">ToPrimitive</span> 执</span><br><span class="line">行过程如下：</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> 如果obj为原始值，直接返回；</span><br><span class="line"><span class="number">2.</span> 否则调用 obj.<span class="title function_">valueOf</span>()，如果执行结果是原始值，返回之；</span><br><span class="line"><span class="number">3.</span> 否则调用 obj.<span class="title function_">toString</span>()，如果执行结果是原始值，返回之；</span><br><span class="line"><span class="number">4.</span> 否则抛异常。</span><br><span class="line"></span><br><span class="line">如果preferredType为<span class="title class_">String</span>，将上面的第<span class="number">2</span>步和第<span class="number">3</span>步调换，即：</span><br><span class="line"><span class="number">1.</span> 如果obj为原始值，直接返回；</span><br><span class="line"><span class="number">2.</span> 否则调用 obj.<span class="title function_">toString</span>()，如果执行结果是原始值，返回之；</span><br><span class="line"><span class="number">3.</span> 否则调用 obj.<span class="title function_">valueOf</span>()，如果执行结果是原始值，返回之；</span><br><span class="line"><span class="number">4.</span> 否则抛异常。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>针对 valueOf 函数，处理一些数据类型转化规则，可<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1338005">参看</a></p>
-<h2 id="例子">例子</h2>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = <span class="number">10</span> + <span class="literal">false</span> + <span class="literal">undefined</span> + [] + <span class="string">&#x27;Tencent&#x27;</span> + <span class="literal">null</span> + <span class="literal">true</span> + &#123;&#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>
-<p>看到此题，首先还是数学运算的范畴，无非就是有一些特殊情况，那就按照规则来处理。</p>
-</li>
-<li>
-<p>首先 10 + false =&gt; 10 + 0 =&gt; 10</p>
-</li>
-<li>
-<p>其次 10 + undefined，undefined 经过 Number 处理之后变成 NaN，10 + NaN 依旧是 NaN。</p>
-</li>
-<li>
-<p>其次 NaN + []，[] 经过 valueOf 还是 []，在经过 toString()，变成 ‘’，只要 + 左右出现字符串，就是字符串拼接，则结果：NaN</p>
-</li>
-<li>
-<p>其次 NaN + ‘Tencent’ =&gt; ‘NaNTencent’</p>
-</li>
-<li>
-<p>余下都是字符串拼接了 ‘NaNTencent’ + null + true + {} =&gt; “NaNTencentnulltrue[object Object]”</p>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">++[[]][+[]] + [+[]] == <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>
-<p>上面的例子，先拆分，看加号，左边一部分为：++[[]][+[]]，右边一部分为 [+[]]。</p>
-</li>
-<li>
-<p>左边根据优先级，先算一元运算符，也就是 [+[]]， +[] 开始运算，[] 经过 valueOf 还是 [], 没有变成原始数据类型，接着进行 toString 之后变成了 ‘’，+ ‘’ 就变成了 0，此时左边变成了 ++[[]][0]，根据优先级先处理 [[]][0]，这就变成了取数组下标，于是就变成了 ++[]，[] 处理过程就是上面说的，先 valueOf，在 toString 又变成了 ‘’, ++‘’ 其中 ‘’ 经过 Number 处理变成 0，++0 先加，就变成了 number 的 1，</p>
-</li>
-<li>
-<p>右边同理 [+[]] 变成 [0],</p>
-</li>
-<li>
-<p>左边＋右边就变成了 1 + [0], 一个是 number 一个是引用的数字，都转字符串吧，1 变成 ‘1’, [0] 经过 valueOf 依旧是 [0]，经过 toString 变成 ‘0’，则 ‘1’ + ‘0’ =&gt; ‘10’</p>
-</li>
-<li>
-<p>‘10’ == 10，则 true</p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" data-id="cm7x2d19e005e7gvp2hea4sq3" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
 
     </footer>
   </div>
@@ -1025,7 +874,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -1038,6 +887,14 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       <ul>
         
           <li>
+            <a href="/2025/03/12/React%E4%B8%ADStore%E8%AE%B0%E5%BD%95/">React中Store记录</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/07/React%E4%B8%ADHook%E8%AE%B0%E5%BD%95/">React中Hook记录</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/">React脚手架细节</a>
           </li>
         
@@ -1047,14 +904,6 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
         
           <li>
             <a href="/2025/02/25/React%E8%AD%A6%E5%91%8A%E5%8F%8A%E6%8A%A5%E9%94%99/">React警告及报错</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/18/onblur_onfocusout/">onblur、onfocus、onfocusout记录</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
           </li>
         
       </ul>

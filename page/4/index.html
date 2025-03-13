@@ -68,6 +68,119 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-代码文件之Eslint" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/25/%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E4%B9%8BEslint/" class="article-date">
+  <time datetime="2020-12-25T03:16:40.000Z" itemprop="datePublished">2020-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/25/%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E4%B9%8BEslint/">代码片段之Eslint</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="解析器">解析器</h3>
+<p>解析器有很多，但兼容eslint的解析器有以下几个：</p>
+<ul>
+<li>
+<p>Espree：默认解析器，一个从Esprima中分离出来的解析器，做了一些优化</p>
+</li>
+<li>
+<p>Esprima：js标准解析器</p>
+</li>
+<li>
+<p>Babel-ESLint： 一个对Babel解析器的包装，babel本身也是js解析器的一种（不然怎么能转化为兼容性代码呢？首先需要进行js解析，才能转化）。如果我们的代码需要经过babel转化，则对应使用这个解析器</p>
+</li>
+<li>
+<p>typescript-eslint-parser(实验) - 一个把 TypeScript 转换为 ESTree 兼容格式的解析器</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7b77d6e107e2">链接</a></p>
+<h3 id="extends-与-plugins">extends 与 plugins</h3>
+<ul>
+<li>
+<p>个人理解：extends 里面的配置，就是一些人写好的插件，我们不用写了，就直接告诉 eslint 我继承这些规则即可，而 plugins 的场景就是：有些规则不满足你的需求，你想私人定制，于是自己写了插件，在此处配置后 eslint 就会解析你的插件！</p>
+</li>
+<li>
+<p>可共享的配置可以省略包名的前缀 eslint-config-，即实际设置安装的包名是 eslint-config-pkgName</p>
+</li>
+<li>
+<p>从插件中获取的规则，书写规则为 「plugin:插件包名/配置名」如：plugin:vue/essential 是简写，其在 node_modules 里的包名是 eslint-plugin-vue</p>
+</li>
+</ul>
+<h3 id="eslintrc-js（v4-3-prettier）">.eslintrc.js（v4.3-prettier）</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下面配置中有 warn off，还有一种写法可以用数字代替 0 表示不处理不限制 1 进行警告 2 直接报错提示，可能程序就直接报错。</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">root</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">env</span>: &#123;</span><br><span class="line">    <span class="attr">node</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">extends</span>: [<span class="string">&quot;plugin:vue/essential&quot;</span>, <span class="string">&quot;eslint:recommended&quot;</span>, <span class="string">&quot;@vue/prettier&quot;</span>],</span><br><span class="line">  <span class="attr">parserOptions</span>: &#123;</span><br><span class="line">    <span class="attr">parser</span>: <span class="string">&quot;babel-eslint&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">rules</span>: &#123;</span><br><span class="line">    <span class="string">&quot;no-console&quot;</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&quot;production&quot;</span> ? <span class="string">&quot;warn&quot;</span> : <span class="string">&quot;off&quot;</span>,</span><br><span class="line">    <span class="string">&quot;no-debugger&quot;</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&quot;production&quot;</span> ? <span class="string">&quot;warn&quot;</span> : <span class="string">&quot;off&quot;</span>,</span><br><span class="line">    <span class="string">&quot;comma-dangle&quot;</span>: [<span class="number">2</span>, <span class="string">&quot;never&quot;</span>], <span class="comment">// 对象字面量项尾不能有逗号</span></span><br><span class="line">    <span class="string">&quot;prettier/prettier&quot;</span>: <span class="string">&quot;off&quot;</span></span><br><span class="line">    <span class="comment">// &quot;prettier/prettier&quot;: [&quot;error&quot;, &#123;&quot;singleQuote&quot;: true, &quot;parser&quot;: &quot;flow&quot;&#125;]</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="eslintrc-js（iocr-frontend）">.eslintrc.js（iocr-frontend）</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下面写了 parserOptions 和 parser，是不是 ennbuilder 在构建时候也是 copy 的配置文件，这2个配置是否重复？还是不同版本导致的配置不同。</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">env</span>: &#123;</span><br><span class="line">    <span class="attr">browser</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">es6</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">extends</span>: <span class="string">&#x27;plugin:vue/essential&#x27;</span>,</span><br><span class="line">  <span class="attr">globals</span>: &#123;</span><br><span class="line">    <span class="title class_">Atomics</span>: <span class="string">&#x27;readonly&#x27;</span>,</span><br><span class="line">    <span class="title class_">SharedArrayBuffer</span>: <span class="string">&#x27;readonly&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">parser</span>: <span class="string">&#x27;vue-eslint-parser&#x27;</span>,</span><br><span class="line">  <span class="attr">parserOptions</span>: &#123;</span><br><span class="line">    <span class="attr">ecmaVersion</span>: <span class="number">2018</span>,</span><br><span class="line">    <span class="attr">sourceType</span>: <span class="string">&#x27;module&#x27;</span>,</span><br><span class="line">    <span class="attr">parser</span>: <span class="string">&#x27;babel-eslint&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="string">&#x27;vue&#x27;</span>],</span><br><span class="line">  <span class="attr">rules</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;no-console&#x27;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&#x27;no-alert&#x27;</span>: <span class="number">1</span>, <span class="comment">//提示alert</span></span><br><span class="line">    <span class="string">&#x27;no-var&#x27;</span>: <span class="number">2</span>, <span class="comment">//禁用var，用let和const代替</span></span><br><span class="line">    <span class="string">&#x27;no-constant-condition&#x27;</span>: <span class="number">2</span>, <span class="comment">//禁止在条件中使用常量表达式 if(true) if(1)</span></span><br><span class="line">    <span class="string">&#x27;no-empty&#x27;</span>: <span class="number">1</span>, <span class="comment">//块语句中的内容不能为空</span></span><br><span class="line">    <span class="string">&#x27;no-irregular-whitespace&#x27;</span>: <span class="number">2</span>, <span class="comment">//不能有不规则的空格</span></span><br><span class="line">    <span class="string">&#x27;no-multi-spaces&#x27;</span>: <span class="number">1</span>, <span class="comment">//不能用多余的空格</span></span><br><span class="line">    <span class="string">&#x27;no-redeclare&#x27;</span>: <span class="number">2</span>, <span class="comment">//禁止重复声明变量</span></span><br><span class="line">    <span class="attr">indent</span>: [</span><br><span class="line">      <span class="number">2</span>,</span><br><span class="line">      <span class="number">2</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="title class_">SwitchCase</span>: <span class="number">1</span></span><br><span class="line">      &#125;</span><br><span class="line">    ], <span class="comment">// 使用缩进量为2</span></span><br><span class="line">    <span class="attr">semi</span>: [<span class="number">2</span>, <span class="string">&#x27;never&#x27;</span>], <span class="comment">// 不使用分号</span></span><br><span class="line">    <span class="attr">quotes</span>: [<span class="number">2</span>, <span class="string">&#x27;single&#x27;</span>] <span class="comment">// 使用单引号</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E4%B9%8BEslint/" data-id="cm86t9fwo004kt4vpfiki5122" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-代码片段之HTML" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/" class="article-date">
+  <time datetime="2020-12-25T03:16:40.000Z" itemprop="datePublished">2020-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/">代码片段之HTML</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="link">link</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">html</span></span><br><span class="line">&lt;link rel=&quot;icon&quot; href=&quot;data:;base64,=&quot; /&gt; // 次写法不报favicon.ico 404</span><br><span class="line">&lt;link rel=&quot;shortcut icon&quot; href=/favicon.ico&gt;</span><br><span class="line">&lt;link rel=&quot;shortcut icon&quot; href=/favicon.ico type=&quot;image/x-icon&quot;&gt;</span><br><span class="line">&lt;link rel=&quot;alternate icon&quot; class=&quot;js-site-favicon&quot; type=&quot;image/png&quot; href=&quot;https://github.githubassets.com/favicons/favicon.png&quot;&gt;</span><br><span class="line">&lt;link rel=&quot;icon&quot; class=&quot;js-site-favicon&quot; type=&quot;image/svg+xml&quot; href=&quot;https://github.githubassets.com/favicons/favicon.svg&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;link rel=&quot;dns-prefetch&quot; href=&quot;https://github.githubassets.com&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="viewport">viewport</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 视窗适配</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># google 新 tab 默认1</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width,viewport-fit=cover&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># google 新 tab 默认2</span></span><br><span class="line">&lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;initial-scale=1.0,user-scalable=no,maximum-scale=1,viewport-fit=cover&quot;</span>     media=<span class="string">&quot;(device-height: 568px)&quot;</span> /&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/" data-id="cm86t9fwr004rt4vpchkvhya5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-代码片段之Mixins" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BMixins/" class="article-date">
@@ -96,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BMixins/" data-id="cm7x2d192004s7gvpe58fc1b7" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BMixins/" data-id="cm86t9fwu004wt4vpdsld5gc8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -159,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/" data-id="cm7x2d191004p7gvpeptb9838" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/" data-id="cm86t9fwv004yt4vp973wdavj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -225,7 +338,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/CSS%E6%9D%82%E8%AE%B0/" data-id="cm7x2d14t000b7gvp0kw4d48u" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/CSS%E6%9D%82%E8%AE%B0/" data-id="cm86t9fuf0007t4vp1to9eny5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -278,7 +391,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="cm7x2d19n005y7gvp1h2z3tie" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="cm86t9fx80061t4vp5pl2azvz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li></ul>
@@ -328,7 +441,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cm7x2d14400017gvp1y8de6om" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cm86t9fu30001t4vpd12v1j0d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -380,7 +493,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/11/Vue%E6%9D%82%E9%9B%86/" data-id="cm7x2d16n002f7gvpgu5290wd" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/11/Vue%E6%9D%82%E9%9B%86/" data-id="cm86t9fvr002pt4vpc62mfsz1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
@@ -442,7 +555,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" data-id="cm7x2d15o001a7gvp3x7426iu" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" data-id="cm86t9fv6001et4vp6jjlebho" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
@@ -498,137 +611,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="cm7x2d15w001r7gvpcv5i7ry2" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-React生命周期" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="article-date">
-  <time datetime="2020-12-07T03:25:42.000Z" itemprop="datePublished">2020-12-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">React生命周期</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="用法">用法</h3>
-<p>1、使用 react 时要注意其生命周期，最开始初始化 defaultProps、state。我们可以在组件的生命周期钩子函数中写相关逻辑来满足我们的业务需求。</p>
-<p>2、<code>componentWillMount</code>：最初该钩子是为了异步的获取数据，现在官方已不赞成使用（在 ssr 场景下，服务端与客户端都会渲染一遍，浪费资源！）</p>
-<p>3、<code>componentDidMount</code>：该组件是渲染完毕之后会触发！此时页面中已经有相关的 DOM，我们可以进行 DOM 的相关操作（思考：我们使用了 MVVM 之后还会操作 DOM 吗？）</p>
-<p>4、我们在 componentDidMount 中可以己写一些逻辑。如：有一个 banner，我们需要给它动态设置 height，而 height 则是根据 width 而来，此时 dom 也已经渲染完了，我们可以获取该元素的 width，进而满足设置 height 的目的，最后在通过 setState 把 height 的值更新；若是组件的父组件的 prop 改变了，此时，就会走到 componentWillReceiveProps(newProps)，此钩子接受一个参数!</p>
-<p>5、<code>componentWillReceiveProps(newProps, newState)</code>：我们可以在此函数中进行判断，如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">shouldComponentUpdate(newProps, newState) &#123;</span><br><span class="line">  <span class="keyword">if</span> (newProps.number &lt; 5) <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="built_in">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line">// 该钩子函数可以接收到两个参数，新的属性和状态，返回`<span class="literal">true</span>/false`来控制组件是否需要更新。</span><br></pre></td></tr></table></figure>
-<p>我们使用这个生命周期一般用于优化，有的时候，我们在界面上只需要更新一个很小的组件，而一个父组件的更新会造成整个子组件都进行渲染，形成一个崭新的虚拟 DOM，但是这样的话，会造成资源的浪费，我们可以根据实际的开发情况在 shouldComponentUpdate()生命周期加入条件，来进行性能的优化。</p>
-<p>6、上面的钩子返回 true 接着走 componentWillUpdate（组件即将被更新时触发，丢弃），在这个生命周期使用 setState，会导致重新跑回到 updata 的生命周期，然后在跑到 componentWillUpdate，如果不慎用的话，会导致反复的执行。</p>
-<p>7、接着再次 render()，在接着是 componentDidUpdate，最后当离开页面时候，触发 componentWillUnMount，我们可以在 componentWillUnMount 中写清除定时器之类的操作！</p>
-<h3 id="参考">参考</h3>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/46022f1cbbb3">React 生命周期的图解</a></p>
-<h3 id="任务">任务</h3>
-<p>有空细看这篇文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b331d0e4b398">React 生命周期</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="cm7x2d16f00237gvp9r6cfthq" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Nodejs之Yarn" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/03/Nodejs%E4%B9%8BYarn/" class="article-date">
-  <time datetime="2020-12-03T02:35:06.000Z" itemprop="datePublished">2020-12-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/03/Nodejs%E4%B9%8BYarn/">Nodejs之Yarn</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言">前言</h3>
-<p>yarn 安装有三种方式（官网说），最便捷的还是使用 <code>npm i yarn@1.22.4 -g</code>，默认安装目录：<code>C:\Users\admin\AppData\Roaming\npm\yarn</code>（Win 下执行 where yarn 可知）。yarn 诞生就是为了解决 npm 早期依赖包比较混乱的问题，伴随着 node 的升级，npm 版本也随之升级，针对依赖包已经做的很好了，详情可<a target="_blank" rel="noopener" href="https://fanyi.baidu.com/">点击</a>我。</p>
-<h3 id="疑问">疑问</h3>
-<p>网上的文章几乎是千篇一律，你可以修改 yarn 的默认仓库，那么 yarn 的默认的仓库是啥，网上很少有人说！是不是有一个默认的 .yarnrc 文件？它在何处？于是我开始了寻找这个默认的 .yarnrc 文件（尽管他可能不存在）。开搞，cmd 下，执行 yarn config，于是出现如下：</p>
-<p><img src="https://file.798run.top/img/blog/20201203/yarn-config.jpg" alt="yarn-config"></p>
-<p>这里面提示我们，我们可以在键入 yarn config 时候配上选项啊，于是我执行 yarn config current，得到效果如下:</p>
-<p><img src="https://file.798run.top/img/blog/20201203/yarn-config-current.jpg" alt="yarn-config-current"></p>
-<p>上面截图中（针对我本机）globalFolder、linkFolder 咋找不到地址！是啥原因？猜想：我还没有使用 yarn 全局安装过一个依赖导致，该目录没有生成！再此之前我一直执行 yarn config list ，如下：</p>
-<p><img src="https://file.798run.top/img/blog/20201203/yarn-config-list.jpg" alt="yarn-config-list"></p>
-<p>这样也仅展示相关的基本信息，一直没找到默认配置文件的目录地址！带着上面的疑问，我决定使用 yarn 全局安装一下 webpack，于是执行 <code> yarn global add webpack</code>，最终效果如下：</p>
-<p><img src="https://file.798run.top/img/blog/20201203/yarn-global-add-webpack.jpg" alt="yarn-global-add-webpack"></p>
-<p>红色标记是新增的一个目录。结论：你使用 yarn 全局安装依赖，默认会在 *\AppData\Local\Yarn\ 下新增一个 Data 目录。Data 目录展开如下：</p>
-<p><img src="https://file.798run.top/img/blog/20201203/yarn-global-add-webpack-Data-sub-direct.jpg" alt="yarn-global-add-webpack-Data-sub-direct"></p>
-<p>这不就是网上千篇一律说的修改 yarn 全局安装的默认 global 目录吗？记在最后：我没有找到 “默认的 .yarnrc 文件”，也许是它是以脚本的形式写在了 yarn.cmd 中，等后续在细究吧！</p>
-<h3 id="指令">指令</h3>
-<p>1、根据上面疑问版块的内容，可知，yarn 指令有：</p>
-<ul>
-<li><code>yarn add pkgName</code></li>
-<li><code>yarn add pkgName@1.22.4</code></li>
-<li><code>yarn remove pkgName</code></li>
-<li><code>yarn global add pkgName</code></li>
-<li><code>yarn global remove pkgName</code></li>
-<li><code>yarn config ls</code></li>
-<li><code>yarn global ls</code></li>
-</ul>
-<p>2、通用指令：</p>
-<ul>
-<li><code>yarn config [options]</code></li>
-<li><code>yarn global [options]</code></li>
-</ul>
-<p>其实很多的指令其实就是通用指令加上子命令而来！假如我们记不清楚指令了，我们可键入 yarn global 会提示你缺少子命令，同时把相关常用的子命令给你罗列出来！截图如下：</p>
-<p><img src="https://file.798run.top/img/blog/20201203/yarn-global.jpg" alt="yarn-global"></p>
-<p>看到上面的截图中的子命令有 bin ，执行 yarn global bin =&gt; C:\Users\admin\AppData\Local\Yarn\bin，结论：把此目录添加到环境变量，则使用 yarn 安装的全局依赖，在任意 cmd 下，就能使用了！</p>
-<p>3、yarn upgrade 仅更新 yarn.lock、package.json 不更新，参考：<a target="_blank" rel="noopener" href="https://classic.yarnpkg.com/zh-Hans/docs/cli/upgrade/">升级包到它们基于规范范围的最新版本</a>、<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017014622">yarn upgrade 更新依赖包时 yarn.lock 更新但 package.json 不同步更新版本信息</a></p>
-<h3 id="杂记">杂记</h3>
-<p>1、20201230 看到之前使用 yarn 安装过 webpack，于是 yarn global remove webpack，我的 yarn 全局安装的指令在如下目录：</p>
-<p><img src="https://file.798run.top/img/blog/20201230/yarn-global-remove-webpack.jpg" alt="yarn-global-remove-webpack"></p>
-<p>但原本此目录仅有 node-dev、webpack 但刚执行了 yarn global remove webpack，多了 semver、which。这是何缘故？不知，反正就是 which 也能使用了（我理解的 which 仅在 linux 上可以使用，windows 上可使用 where）。</p>
-<h3 id="问题">问题</h3>
-<p>1、在使用 yarn 安装依赖时候，一直提示：There appears to be trouble with your network connection. Retrying… 后来 Google 一下，看到一个<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/51508364/yarn-there-appears-to-be-trouble-with-your-network-connection-retrying">帖子</a>说的很好，总结原因：Ⅰ、网速不好，yarn 认为你有超时可能，于是提示你。Ⅱ、说执行 yarn config delete https-proxy &amp;&amp; yarn config delete proxy。我认为是第一种原因最大，我已经在自己目录 ~ 下，创建 .yarnrc 文件，并设置为：network-timeout 600000，问题解决！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/03/Nodejs%E4%B9%8BYarn/" data-id="cm7x2d15v001o7gvp2rirfrg9" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="cm86t9fvh0023t4vp4et6c96b" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -670,7 +653,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -683,6 +666,14 @@
       <ul>
         
           <li>
+            <a href="/2025/03/12/React%E4%B8%ADStore%E8%AE%B0%E5%BD%95/">React中Store记录</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/07/React%E4%B8%ADHook%E8%AE%B0%E5%BD%95/">React中Hook记录</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/">React脚手架细节</a>
           </li>
         
@@ -692,14 +683,6 @@
         
           <li>
             <a href="/2025/02/25/React%E8%AD%A6%E5%91%8A%E5%8F%8A%E6%8A%A5%E9%94%99/">React警告及报错</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/18/onblur_onfocusout/">onblur、onfocus、onfocusout记录</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
           </li>
         
       </ul>
