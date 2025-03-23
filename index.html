@@ -68,6 +68,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-js原生添加class" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/" class="article-date">
+  <time datetime="2025-03-23T10:23:05.000Z" itemprop="datePublished">2025-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="原生添加方法"><strong>原生添加方法</strong></h3>
+<p>原生 js 添加 class 的方法如下：</p>
+<p>方法一：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> el = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;domId&#x27;</span>);</span><br><span class="line"></span><br><span class="line">el.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;class1&#x27;</span>, <span class="string">&#x27;class2&#x27;</span>, <span class="string">&#x27;class3&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>方法二：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> el = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;domId&#x27;</span>);</span><br><span class="line"></span><br><span class="line">el.<span class="property">className</span> += <span class="string">&#x27; class1 class2 class3&#x27;</span>; <span class="comment">// 注意 class1 前面有一个空格</span></span><br></pre></td></tr></table></figure>
+<p>方法三：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> el = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;domId&#x27;</span>);</span><br><span class="line"></span><br><span class="line">el.<span class="title function_">setAttribute</span>(<span class="string">&#x27;class&#x27;</span>, <span class="string">&#x27;class1 class2 class3&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/" data-id="cm8li4t6l003bm8vp1b302np6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-面试之代码执行片段" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/" class="article-date">
@@ -119,12 +165,18 @@
 <hr>
 <hr>
 <h3 id="promise-打印顺序">promise 打印顺序</h3>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>);</span><br><span class="line">  <span class="title function_">resolve</span>();</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>);</span><br><span class="line">  <span class="title function_">reject</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">promise</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">4</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">5</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">6</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">7</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 7</span></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="comment">// 5</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<h4 id="代码片段-1：-2">代码片段 1：</h4>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>);</span><br><span class="line">  <span class="title function_">resolve</span>();</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>);</span><br><span class="line">  <span class="title function_">reject</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>);</span><br><span class="line">&#125;, <span class="number">2000</span>);</span><br><span class="line"></span><br><span class="line">promise</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">4</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">5</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">6</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">7</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 7</span></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="comment">// 5</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>解释：如上，代码开始自上而下执行，走 new Promise 里面的函数，马上打印 1，解析到 <code>resolve()</code>，甩到微任务队列，接着往下解析，打印 2，主线程接着走，一看下面有 log(7)， 于是打印 7，这时候主线程走完了，开始把执行微任务里的函数，网上说：其实就是把微任务的函数，弹出来，在主线程执行，于是 resolve(), 走完这个就甩到 then 里，打印 4、5，因为 Promise 中 resolve 与 reject 只能是一个态，走了 resolve 之后，reject 就不执行，最后执行宏任务中定时器里面的函数，打印为 3</p>
+<p>补充：浏览器有一个定时器模块，当主线程，扫描到定时器之后，定时器模块马上就开始计时，一般最小的就是 4ms，过了 2000 ms 之后，马上把这个定时器的代码，塞到宏任务中，主线程执行完，直接从宏任务队列去定时任务，马上就开始执行。当你写了 2 个定时器，一个是 1000 ms，一个是 2000ms，那定时器模块，会优先把 1000ms 的定时器任务塞到宏任务队列中，主线程执行完，先从宏任务队列，取那个 1000ms 的定时器中函数执行，参考<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1eJ41177Rg">帖子</a>，该视频是一个博主[后盾人]讲的，讲的很好很细。微任务 &gt; DOM 渲染 &gt; 宏任务</p>
+<h4 id="代码片段-2：-2">代码片段 2：</h4>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">bar</span>();</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">5</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">bar</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>();</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">4</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">foo</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">6</span>);</span><br></pre></td></tr></table></figure>
+<p>解释：首先打印 1，执行 foo 函数，不管 foo 有没有被 async 修饰，对于它来说就是一个函数，仅仅是它加了 async 修饰之后，会影响它里面有写 await 之类的代码。执行 foo，打印 2，此时有一个 <code>await bar()</code>，这个就是告诉我们 bar 返回的是一个 promise，不管 bar 函数 return 写了没写，最后 bar 函数都会自己包装一个 promise 对象返回过来。在 bar 的 promise 没有返回之前，<strong><em>该函数</em></strong> 下面的代码不能执行，否则也不叫 await 了, 但是针对 bar 它会接着执行，于是走到 bar 了就把它当成一个函数就行，执行 bar 马上打印 3，此时关键点来了，又是一个 <code>await Promise.resolve()</code> ，此时，针对 Promise.resolve() 会放到微任务队列里，主线程接着执行其他的东西，在 <code>await Promise.resolve()</code> 后面的代码，不会被执行，因为主线程还有其他的任务没执行完，只有都执行完了，才能执行微任务 Promise.resolve() ，于是打印 6 ，这时候没有啥可执行的了，开始执行 微任务队列 里代码，也就是 bar 里面 Promise.resolve()，执行完微任务，发现下面有同步任务，开始切换任务，马上打印出来了 4，bar 里面的函数都执行完了，走完了，也默认给 return 了一个 promise 对象，则 <code>await bar()</code> 结束，此时没有变量接这个 <code>await bar()</code>，那就不管，最后切换主线程， 就打印出来了 5</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/" data-id="cm87htjht0067fgvpch4ignh6" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/" data-id="cm8li4t9g0067m8vp2tys7gwu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
@@ -279,7 +331,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/03/12/React%E4%B8%ADStore%E8%AE%B0%E5%BD%95/" data-id="cm87htjg00025fgvp9i679ldv" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2025/03/12/React%E4%B8%ADStore%E8%AE%B0%E5%BD%95/" data-id="cm8li4t5f001vm8vp0xvy6745" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
@@ -366,7 +418,7 @@ useEffect 传入依赖，有些依赖每次渲染都会重新生成一个引用�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/03/07/React%E4%B8%ADHook%E8%AE%B0%E5%BD%95/" data-id="cm87htjfy0020fgvp8tdj806i" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2025/03/07/React%E4%B8%ADHook%E8%AE%B0%E5%BD%95/" data-id="cm8li4t5i001ym8vp1a1ahzrk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
@@ -491,7 +543,7 @@ CRA 已经内置了 ESLint，并且通过 eslint-config-react-app 配置了基�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/" data-id="cm87htjg4002dfgvpcai39p4m" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/" data-id="cm8li4t5p0026m8vpfklpf19r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
@@ -531,7 +583,7 @@ CRA 已经内置了 ESLint，并且通过 eslint-config-react-app 配置了基�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/" data-id="cm87htjg2002afgvp0hvt2cpf" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/" data-id="cm8li4t5t0028m8vpgsb55401" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
@@ -601,7 +653,7 @@ CRA 已经内置了 ESLint，并且通过 eslint-config-react-app 配置了基�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/02/25/React%E8%AD%A6%E5%91%8A%E5%8F%8A%E6%8A%A5%E9%94%99/" data-id="cm87htjg5002ffgvpezzd2w4g" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2025/02/25/React%E8%AD%A6%E5%91%8A%E5%8F%8A%E6%8A%A5%E9%94%99/" data-id="cm8li4t5w002dm8vpegiw3tat" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
@@ -654,7 +706,7 @@ CRA 已经内置了 ESLint，并且通过 eslint-config-react-app 配置了基�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/02/18/onblur_onfocusout/" data-id="cm87htjgu003yfgvph24y4gkp" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2025/02/18/onblur_onfocusout/" data-id="cm8li4t7f0043m8vpch5y9z62" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li></ul>
@@ -707,7 +759,7 @@ CRA 已经内置了 ESLint，并且通过 eslint-config-react-app 配置了基�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/" data-id="cm87htjgj003efgvpdtr17zz1" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/" data-id="cm8li4t6m003dm8vp8yl8frf2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -751,50 +803,10 @@ CRA 已经内置了 ESLint，并且通过 eslint-config-react-app 配置了基�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/" data-id="cm87htjgh0038fgvp31s97b30" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/" data-id="cm8li4t6o003fm8vp2kvhho2l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-MD记录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2024/12/07/MD%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2024-12-07T03:11:42.000Z" itemprop="datePublished">2024-12-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2024/12/07/MD%E8%AE%B0%E5%BD%95/">MD记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="总结">总结</h3>
-<p>md 记录博客很是方便，但是图片不好处理，要么是自己弄个啥工具，直接把这个图片放到静态资源服务器上，用域名访问。要么是直接在放在你的博客项目(如：hexo 博客项目)里。想着图片大，能不能转为 svg，但是 svg 的场景是针对一些小的 icon 使用方便。我用了一个图片转 svg 的 <a target="_blank" rel="noopener" href="https://www.samt.cloud/">工具</a> 效果确实很差。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/12/07/MD%E8%AE%B0%E5%BD%95/" data-id="cm87htjfq001ffgvpezcg4t61" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
 
     </footer>
   </div>
@@ -846,6 +858,10 @@ CRA 已经内置了 ESLint，并且通过 eslint-config-react-app 配置了基�
       <ul>
         
           <li>
+            <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
+          </li>
+        
+          <li>
             <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
           </li>
         
@@ -859,10 +875,6 @@ CRA 已经内置了 ESLint，并且通过 eslint-config-react-app 配置了基�
         
           <li>
             <a href="/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/">React脚手架细节</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/">React类组件函数组件对props及state及ref使用</a>
           </li>
         
       </ul>

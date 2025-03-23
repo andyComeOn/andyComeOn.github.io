@@ -68,6 +68,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-单车系统" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/26/%E5%8D%95%E8%BD%A6%E7%B3%BB%E7%BB%9F/" class="article-date">
+  <time datetime="2020-12-26T08:13:21.000Z" itemprop="datePublished">2020-12-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/26/%E5%8D%95%E8%BD%A6%E7%B3%BB%E7%BB%9F/">单车系统</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言">前言</h3>
+<p>20201207-20201209 三天</p>
+<h3 id="笔记">笔记</h3>
+<p>1、项目使用vue-cli@3.0搭建，src/server 是后端目录，src/views 是前端目录；前端 vue，后端 node，数据库 mysql；<br>
+2、针对 mysql 首先 npm i mysql -S 中内地 hxzn 讲到 mysql 的连接池</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">const mysql = require(<span class="string">&quot;mysql&quot;</span>);</span><br><span class="line"><span class="comment"># 连接池</span></span><br><span class="line">const pool = mysql.createPool(&#123;</span><br><span class="line">  host: <span class="string">&quot;localhost&quot;</span>,</span><br><span class="line">  user: <span class="string">&quot;root&quot;</span>,</span><br><span class="line">  password: <span class="string">&quot;123456&quot;</span>,</span><br><span class="line">  database: <span class="string">&quot;my db&quot;</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment"># 传统写法</span></span><br><span class="line"><span class="comment"># const pool = mysql.createConnection(&#123;</span></span><br><span class="line"><span class="comment">#   host: &quot;localhost&quot;,</span></span><br><span class="line"><span class="comment">#   user: &quot;root&quot;,</span></span><br><span class="line"><span class="comment">#   password: &quot;123456&quot;,</span></span><br><span class="line"><span class="comment">#   database: &quot;my db&quot;,</span></span><br><span class="line"><span class="comment"># &#125;);</span></span><br><span class="line"><span class="comment"># pool.connect();</span></span><br><span class="line"><span class="comment"># pool.end();</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const query = <span class="keyword">function</span> (sql, callback) &#123;</span><br><span class="line">  pool.getconnection((err, conn) =&gt; &#123;</span><br><span class="line">    if (err) &#123;</span><br><span class="line">      callback(err, null);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      conn.query(sql, (err, result) =&gt; &#123;</span><br><span class="line">        conn.release();</span><br><span class="line">        callback(err, result);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line">module.exports = query;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/26/%E5%8D%95%E8%BD%A6%E7%B3%BB%E7%BB%9F/" data-id="cm8li4t8p005bm8vp0b9ca9xd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-vue-main-js的一些配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/26/vue-main-js%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/" class="article-date">
@@ -97,7 +141,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/26/vue-main-js%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/" data-id="cm87htjh4004ffgvpf0sl5wp6" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/26/vue-main-js%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/" data-id="cm8li4t86004nm8vp294339jb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
@@ -168,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E4%B9%8BEslint/" data-id="cm87htjh7004kfgvp06wtemce" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E4%B9%8BEslint/" data-id="cm8li4t88004pm8vpauzjhpzg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -210,7 +254,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/" data-id="cm87htjha004rfgvphrbh31on" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BHTML/" data-id="cm8li4t8e004um8vpauy053lt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -250,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BMixins/" data-id="cm87htjhb004wfgvp29122vst" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BMixins/" data-id="cm8li4t8j0051m8vpdqhebamz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -313,7 +357,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/" data-id="cm87htjha004tfgvpc040aoin" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BJS/" data-id="cm8li4t8j0053m8vp7vy15iz7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -379,7 +423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/25/CSS%E6%9D%82%E8%AE%B0/" data-id="cm87htjf2000bfgvp5tth7clr" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/25/CSS%E6%9D%82%E8%AE%B0/" data-id="cm8li4t390008m8vp0zhogygv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -432,7 +476,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="cm87htjhq0062fgvp265w718g" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="cm8li4t9i0069m8vphyax8xew" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li></ul>
@@ -482,7 +526,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cm87htjeh0001fgvpf3ed3aw8" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cm8li4t220001m8vp6zc1cxmy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -534,72 +578,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/11/Vue%E6%9D%82%E9%9B%86/" data-id="cm87htjg9002ofgvp9yoz3lh6" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/11/Vue%E6%9D%82%E9%9B%86/" data-id="cm8li4t66002qm8vpdhlybkjp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Linux下安装git" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" class="article-date">
-  <time datetime="2020-12-08T03:57:50.000Z" itemprop="datePublished">2020-12-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/">Linux下安装git</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言">前言</h3>
-<p>早几年时候买的阿里云或腾讯云的服务器，默认的 centos 的版本自带的有 git，现买的服务器系统中没有自带 git，又想使用高版本 git 只能手动安装了！现记录一下安装步骤！</p>
-<h3 id="内容">内容</h3>
-<p>1、安装包下载 wget -c <a target="_blank" rel="noopener" href="https://github.com/git/git/archive/v2.29.0.tar.gz">https://github.com/git/git/archive/v2.29.0.tar.gz</a><br>
-2、压缩包解压 tar -zxvf v2.29.0.tar.gz<br>
-3、安装编译源码所需依赖 yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker 但：我执行之后出现提示如下：</p>
-<p><img src="https://file.798run.top/img/blog/20201208/install-compile-git-pkg.png" alt="install-compile-git-pkg"></p>
-<p>这说明系统有这些依赖。</p>
-<p>4、安装依赖时，yum 自动安装了 Git，需要卸载旧版本 Git，命令为： yum remove git 出现提示输入 y 即可！注：我的 linux 上执行了上面的第三步骤，并没有 git</p>
-<p>5、进入解压后的文件夹，命令 cd git-2.29.0 ，然后执行编译，命令为 make prefix=/usr/local/git all 耐心等待编译即可；</p>
-<p>6、安装 Git 至/usr/local/git 路径，命令为 make prefix=/usr/local/git install</p>
-<p>7、打开环境变量配置文件，命令 vim /etc/profile ，在底部加上 Git 相关配置信息：PATH=$PATH:/usr/local/git/bin export PATH 然后保存，退出！</p>
-<p>8、输入命令 git --version ，查看安装的 git 版本，校验通过，安装成功，截图如下：</p>
-<p><img src="https://file.798run.top/img/blog/20201208/git-version.jpg" alt="git --version"></p>
-<h3 id="问题">问题</h3>
-<p>1、在 linux 上依次设置：git config --global <a target="_blank" rel="noopener" href="http://user.name">user.name</a> “zhangbo” git config --global user.email “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>”</p>
-<p>2、ssh-keygen -t rsa -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>” 提示：-bash: ssh-keygen -t rsa -C <a href="mailto:1174839512@qq.com">1174839512@qq.com</a>: command not found</p>
-<p>3、一顿搜索啊，找到了<a target="_blank" rel="noopener" href="https://www.shangmayuan.com/a/5bc94047236246f2a01aa795.html">解决 bash: ssh-keygen: command not found</a></p>
-<p>4、按照上面帖子执行：yum install openssh，可是还是不行啊，Google 了很多，后来我发现有一个指令：ssh-keygen -t rsa -b 2048 -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>” 与我的有道云笔记报错（ssh-keygen -t rsa -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>” ）的内容不一样！后来就死马当成活马医！结果可以了！</p>
-<p>5、接着说解决上面问题的过程：既然是一直提示<code>-bash: ssh-keygen -t rsa -C 1174839512@qq.com: command not found</code>，那我就键入 ssh 看提示啥，效果如下：<br>
-<img src="https://file.798run.top/img/blog/20201208/linux-ssh.png" alt="linux-ssh"><br>
-细看一下，没有 -C 的选项，但是第二个指令也有 -C，那我就先试试这个：ssh-keygen -t rsa -b 2048 -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>”，竟然可以了！猜想：linux 下必须要设置 -b 吧！Windows 估计是读取的默认的配置！问题解决！</p>
-<h3 id="参考链接">参考链接</h3>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/imyalost/p/8715688.html">环境部署（三）：Linux 下安装 Git</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" data-id="cm87htjfp001cfgvpfflibyfg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
 
     </footer>
   </div>
@@ -651,6 +633,10 @@
       <ul>
         
           <li>
+            <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
+          </li>
+        
+          <li>
             <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
           </li>
         
@@ -664,10 +650,6 @@
         
           <li>
             <a href="/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/">React脚手架细节</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/">React类组件函数组件对props及state及ref使用</a>
           </li>
         
       </ul>

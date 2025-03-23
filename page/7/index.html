@@ -68,6 +68,121 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-this-bind-call-apply-构造函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/27/this-bind-call-apply-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2020-06-27T13:51:48.000Z" itemprop="datePublished">2020-06-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/27/this-bind-call-apply-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">this-bind-call-apply-构造函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言">前言</h3>
+<p>针对 this 指向问题，bind、call、apply 调用、构造函数等知识点，时间久了就会忘记！以下文档是一些总结，可以达到温故知识的目的！</p>
+<h3 id="1-事件调用环境">1. 事件调用环境</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&quot;box&quot;</span>&gt;&lt;/div&gt;;</span><br><span class="line"><span class="keyword">let</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.box&#x27;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">move</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">style</span>.<span class="property">left</span> = <span class="string">&#x27;100px&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line">el.<span class="property">onclick</span> = move;</span><br><span class="line"><span class="comment">// 这是最早的 this 应用！总结：谁触发事件，函数里面的 this 就指向谁！试想在多个 box 出现的场景，我们只需要把 move 赋给每个 box 的点击事件，这样我们就精简了很多代码，而不是给每个 box 的点击事件都写一个 move 函数！</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-全局环境">2. 全局环境</h3>
+<p>在浏览器环境下：直接打印 this，其 this 指向的是 window。如，我们直接在全局声明一个函数如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">fn</span>();</span><br><span class="line"><span class="comment">// 此时我们这样调取函数，非严格模式是这样的 window.fn()。</span></span><br><span class="line"><span class="comment">// 所以函里面的 this 依然是满足原则：“谁调用它，它指向谁”。</span></span><br><span class="line"><span class="comment">// 但是在代码最开始若是加上了 use strict 此时打印的 this 显示 undefined！这个小细节要注意！</span></span><br></pre></td></tr></table></figure>
+<p>在 node 环境下：直接打印 this，打印结果 {} 。具体测试步骤，新建一个 test.js 直接执行 <code>node test.js</code>。 若我们打印 console.log(this === module.exports) 其结果是 true。 这说明：node 环境下 this 指向的是 module.exports</p>
+<h3 id="3-函数内部">3. 函数内部</h3>
+<p>情况一：[this 最终指向的是调用他的对象]请看下面代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.<span class="title function_">b</span>();</span><br><span class="line"><span class="comment">// 我们调用对象中 b 属性上的函数，此时打印出的 this 是：&#123;a: 10, b: f&#125;，这不就是 obj 吗？</span></span><br><span class="line"><span class="comment">// 所以正好验证了上面的那句话：“this 最终指向调用他的对象”</span></span><br></pre></td></tr></table></figure>
+<p>此时有人针对上面的代码并举例说，我这样调用 <code>window.obj.b()</code>，此刻 this 不是应该指向 window 吗？但是打印的结果依然是 {a: 10, b: f}。所以此时有了第二条总结如下：</p>
+<p>情况二：[函数被多层对象所包含，如果函数被做外层对象调用，this 指向的依然是它上一级的对象] “多层对象中函数的 this 指向”、“对象中的函数被赋值给另外一个变量”</p>
+<p>针对情况二，我们把代码层级在加深：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="attr">b</span>: &#123;</span><br><span class="line">    <span class="attr">fn</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">obj</span>.<span class="property">b</span>.<span class="title function_">fn</span>(); <span class="comment">// fn 被调用，他的上级就是 b，所以此时 this 打印结果：&#123;fn: f&#125;</span></span><br></pre></td></tr></table></figure>
+<p>有变量接收 fn 时，<code>var a = obj.b.fn</code> 此时我们调用 a()。此时大家看着有点懵，我们还是按照总结结论来分析（一切都要按照章程来）。a() 其实就是 window.a()。也就是说 window 调用 a 函数，则 this 指的就是 Window！在浏览器控制台一看，就是 Window！（补充：this 本身就有啥意义，只有 this 所在的环境被调用时候，this 才有意义！）</p>
+<h3 id="4-构造函数应用">4. 构造函数应用</h3>
+<p>构造函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">num</span> = <span class="number">10</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="title function_">fn</span>();</span><br></pre></td></tr></table></figure>
+<p>执行上面代码后，打印的 this 是：fn { num: 10 }，这是一个对象，对象的名字是 fn。上面使用了 new 关键字，下面总结一下 new 关键字作用：</p>
+<ul>
+<li>调用函数</li>
+<li>自动创建一个对象 {隐式创建我们看不到}</li>
+<li>把创建出来的对象与 this 进行绑定</li>
+<li>如果构造函数(这里指 fn，一般推荐函数名字大写如 Fn)没有返回值，隐式返回 this 对象</li>
+</ul>
+<p>面试题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">num</span> = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn.<span class="property">num</span> = <span class="number">20</span>;</span><br><span class="line">fn.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">num</span> = <span class="number">30</span>;</span><br><span class="line">fn.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">method</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> prototype = fn.<span class="property"><span class="keyword">prototype</span></span>;</span><br><span class="line"><span class="keyword">var</span> method = prototype.<span class="property">method</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title function_">fn</span>().<span class="title function_">method</span>(); <span class="comment">// fn &#123;num: 10&#125;</span></span><br><span class="line">prototype.<span class="title function_">method</span>(); <span class="comment">// protoptype &#123;num: 30, method: f, constructor: f&#125;</span></span><br><span class="line"><span class="title function_">method</span>(); <span class="comment">// Window</span></span><br></pre></td></tr></table></figure>
+<p>结论：构造函数中的 this 指向的是实例对象，如果构造函数中有 return value，value 若是基本类型，则返回的实例还是隐式的对象（null 也属于此情况）；若是引用类型，则返回的就是该对象。举例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">num</span> = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="title function_">fn</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="property">num</span>); <span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 若是上面的 return [] || &#123;&#125; || function() &#123;&#125;，此时返回的就是对象，打印 obj.num 就是 undefined。</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-箭头函数">5. 箭头函数</h3>
+<p>es6 中定时器涉及到 this 的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">move</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">style</span>.<span class="property">left</span> = <span class="string">&#x27;100px&#x27;</span>;</span><br><span class="line">  &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#block&#x27;</span>);</span><br><span class="line"></span><br><span class="line">el.<span class="property">onclick</span> = move;</span><br></pre></td></tr></table></figure>
+<p>箭头函数：本身没有 this 和 arguments，在 箭头函数内部使用 this 实际上是根据词法作用域，代码写好之后，其函数里面的 this 指向就已固定，就是其上一层函数作用域的 this，此例子中 this 指向 move 函数作用域中的 this。</p>
+<p>es5 写法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">move</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> _this = <span class="variable language_">this</span>;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    _this.<span class="property">style</span>.<span class="property">left</span> = <span class="string">&#x27;100px&#x27;</span>;</span><br><span class="line">  &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#block&#x27;</span>);</span><br><span class="line"></span><br><span class="line">el.<span class="property">onclick</span> = move;</span><br></pre></td></tr></table></figure>
+<p>在之前 es5 中，调用定时器中的函数，此时该函数被 window 调用！所以定时器函数体内 this.style.left = ‘100px’ 该 this 指向的是 window（其并没有 style 属性，故而报错！）。若想要实现 this.style.left = ‘100px’ 的执行，需要我们修改 this 指向。则需要在 move 函数里面添加 let _this = this，进而调用 _this.style.left = ‘100px’</p>
+<p>对象中属性值是箭头函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">fn</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.<span class="title function_">fn</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 此时 this 指向的是 Window 解释：在该例子中，箭头函数作为 obj 的一个属性值</span></span><br><span class="line"><span class="comment">// 根据箭头函数 this 指向的是其上一层函数作用域中的 this ，但是 obj 是一个对象，并不是函数！</span></span><br><span class="line"><span class="comment">// 所以继续向上找，则 this 指向的就是 Window！注：对象是不能形成独立作用域的！</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-call-含义">6. call 含义</h3>
+<p>call 可以改变 this 的指向，看下面例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> box = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.box&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">fn</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.<span class="property">fn</span>.<span class="title function_">call</span>(box); <span class="comment">// this 指 box 对象</span></span><br></pre></td></tr></table></figure>
+<p>正常情况下，obj.fn() 执行时，this 指向的是 obj，我们使用 call 方法可改变 调用 fn 时的 this 指向！</p>
+<p>把 fn 改为箭头函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> box = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.box&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">fn</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.<span class="property">fn</span>.<span class="title function_">call</span>(box); <span class="comment">// this 指向的是 Window</span></span><br></pre></td></tr></table></figure>
+<p>虽然在使用 call 方法，可是写的时候把 fn 声明成了箭头函数，此时 this 已经固定，再加上 obj 不是函数作用域，所以 this 指向的是 Window。结论：call 改变 this 的指向，特指普通的函数而非箭头函数！</p>
+<ul>
+<li>
+<p>call 与 apply 的作用是一样的，他们的区别是传参的方式不同，call 是可以一个一个的传参，而 apply 参数要求是一个数组 <code>apply(this, [a, b, c])</code></p>
+</li>
+<li>
+<p>bind 亦是可改变 this 的指向，只是它特殊在 bind 返回的是一个函数的 copy 如：<code>obj.fn.bind(box)</code> （仅是一个 copy 的函数），我们还需要对其调用 <code>obj.fn.bind(box)()</code></p>
+</li>
+</ul>
+<h3 id="构造函数">构造函数</h3>
+<p>下面的分类，参考了此<a target="_blank" rel="noopener" href="https://blog.csdn.net/snowball_li/article/details/121858501">链接</a></p>
+<p>2025.02 补充：对 js 而言，构造函数就是一个名词，他就是一个函数，只要你使用 new fn() 调用，此时我们就称 fn 为一个构造函数，一般推荐函数名大写，如 function Dog () {}、function Person () {}。js 中有很多的内置的构造函数，如：Object、Array、String、Boolean、Number、Date… 这都是！</p>
+<h4 id="理解构造函数">理解构造函数</h4>
+<blockquote>
+<p>构造函数是一个函数<br>
+JS 中的任何一个普通函数，当用 new 关键字来调用时，它就是构造函数。<br>
+构造函数与函数定义无关，与调用方法有关。<br>
+构造函数用 new 关键字来进行调用的函数称为构造函数，一般首字母大写（表示该函数以后希望被作为构造函数来使用）。<br>
+构造函数主要用来在创建对象时初始化对象， 即为对象成员变量赋初始值/为初始化的对象添加属性成员或方法成员。<br>
+JS 中面向对象编程是基于构造函数（constructor）和原型链（prototype）的。<br>
+JS 语言中使用构造函数（constructor）作为对象的模板，所谓构造函数，就是提供一个生成对象的模板，并描述对象的基本结构的函数。一个构造函数，可以生成多个对象，每个对象都有相同的结构。<br>
+JS 中使用同一个构造函数创建的对象，我们称为一类对象，也将一个构造函数称为一个类(理解为模板，表示某一类实物的共同特征)。我们将通过这个构造函数创建的对象，称为是该类的实例。<br>
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/snowball_li/article/details/121858501">https://blog.csdn.net/snowball_li/article/details/121858501</a></p>
+</blockquote>
+<h4 id="构造函数的意义">构造函数的意义</h4>
+<p>使用对象字面量创建一系列同一类型的对象时，这些对象可能具有一些相似的特征(属性)和行为(方法)，此时会产生很多重复的代码，把这些重复性的特征和属性抽象出来，做成构造函数，可以实现代码复用。</p>
+<h4 id="构造函数与普通函数的区别">构造函数与普通函数的区别</h4>
+<p>普通函数是小驼峰的名命方式，而构造函数是大驼峰的名命方式（行业规范）。我们知道普通函数的 this 指向是指向全局对象的，而构造函数内部的 this 指向当前对象的实例。使用的方式不同，普通函数直接调用，构造函数必须使用 new 来调用，通过 new.target 来判断调用的方式是不是构造函数。任何函数只要使用 new 操作符调用就是构造函数，而不使用 new 操作符调用的函数就是普通函数。请看下面例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="keyword">new</span>.<span class="property">target</span>) <span class="keyword">throw</span> <span class="string">&#x27;Foo() must be called with new&#x27;</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Foo instantiated with new&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Foo</span>(); <span class="comment">// Foo() must be called with new</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Foo</span>(); <span class="comment">// Foo instantiated with new</span></span><br></pre></td></tr></table></figure>
+<h3 id="参考">参考</h3>
+<p>没事了看下此文章 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/liu-di/p/10690335.html">JS 中的 bind 、call 、apply</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sa.<span class="property">App</span> = <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="title function_">mp_proxy</span>((e = e || &#123;&#125;), <span class="string">&#x27;onLaunch&#x27;</span>, <span class="string">&#x27;appLaunch&#x27;</span>),</span><br><span class="line">    <span class="title function_">mp_proxy</span>(e, <span class="string">&#x27;onShow&#x27;</span>, <span class="string">&#x27;appShow&#x27;</span>),</span><br><span class="line">    <span class="title function_">mp_proxy</span>(e, <span class="string">&#x27;onHide&#x27;</span>, <span class="string">&#x27;appHide&#x27;</span>),</span><br><span class="line">    <span class="title class_">App</span>.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">sa.<span class="property">Page</span> = <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="title function_">mp_proxy</span>(e, <span class="string">&#x27;onLoad&#x27;</span>, <span class="string">&#x27;pageLoad&#x27;</span>),</span><br><span class="line">    <span class="title function_">mp_proxy</span>(e, <span class="string">&#x27;onShow&#x27;</span>, <span class="string">&#x27;pageShow&#x27;</span>),</span><br><span class="line">    <span class="string">&#x27;function&#x27;</span> == <span class="keyword">typeof</span> e.<span class="property">onShareAppMessage</span> &amp;&amp; sa.<span class="property">autoTrackCustom</span>.<span class="title function_">pageShare</span>(e),</span><br><span class="line">    <span class="title class_">Page</span>.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/06/27/this-bind-call-apply-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-id="cm8li4t81004im8vpd9zmdcuc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-js中的prototype总结" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/04/12/js%E4%B8%AD%E7%9A%84prototype%E6%80%BB%E7%BB%93/" class="article-date">
@@ -141,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/04/12/js%E4%B8%AD%E7%9A%84prototype%E6%80%BB%E7%BB%93/" data-id="cm87htjgh003afgvp33kt8a04" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/04/12/js%E4%B8%AD%E7%9A%84prototype%E6%80%BB%E7%BB%93/" data-id="cm8li4t6j0037m8vpa5bwe45q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -198,7 +313,7 @@ display_errors = On display_startup_errors = On 是不行的！其根本原因�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/18/%E5%AE%9D%E5%A1%94%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/" data-id="cm87htjhg005afgvpawnm2erq" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/03/18/%E5%AE%9D%E5%A1%94%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/" data-id="cm8li4t8v005gm8vpeewi417a" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li></ul>
@@ -258,7 +373,7 @@ display_errors = On display_startup_errors = On 是不行的！其根本原因�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/16/Git%E5%9C%A8linux%E4%B8%8A%E7%9A%84%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" data-id="cm87htjff000pfgvpc6snbqd5" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/03/16/Git%E5%9C%A8linux%E4%B8%8A%E7%9A%84%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" data-id="cm8li4t4e000mm8vpgvqgaqam" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
@@ -310,7 +425,7 @@ display_errors = On display_startup_errors = On 是不行的！其根本原因�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/08/Nodejs%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cm87htjft001mfgvpgpth4x6b" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/03/08/Nodejs%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cm8li4t56001gm8vpfiif5p18" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -392,7 +507,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/03/laravel%E5%88%9B%E5%BB%BAtable%E5%AD%97%E6%AE%B5%E5%8F%82%E8%80%83%E8%A1%A8/" data-id="cm87htjgn003ofgvpby1v0pms" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/03/03/laravel%E5%88%9B%E5%BB%BAtable%E5%AD%97%E6%AE%B5%E5%8F%82%E8%80%83%E8%A1%A8/" data-id="cm8li4t73003um8vp8ijh1wxe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
@@ -480,7 +595,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/18/Form%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/" data-id="cm87htjfc000kfgvp0icndiul" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/12/18/Form%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/" data-id="cm8li4t4a000hm8vpdwx253r6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li></ul>
@@ -550,7 +665,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/11/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BCSS/" data-id="cm87htjh8004mfgvp12ie213c" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/12/11/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BCSS/" data-id="cm8li4t8g004ym8vp7w2zhw6k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -644,7 +759,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/10/CSS%E5%AD%97%E4%BD%93%E6%8D%A2%E6%80%BB%E7%BB%93%E8%A1%8C/" data-id="cm87htjet0007fgvp348ya0rr" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/12/10/CSS%E5%AD%97%E4%BD%93%E6%8D%A2%E6%80%BB%E7%BB%93%E8%A1%8C/" data-id="cm8li4t370007m8vpgaza7blv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -711,114 +826,9 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/11/26/PMS%E4%B8%ADform%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/" data-id="cm87htjfy001yfgvp6lqh8hr1" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/11/26/PMS%E4%B8%ADform%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/" data-id="cm8li4t5e001tm8vp8z6abga5" class="article-share-link">Share</a>
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Git常用命令" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/25/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
-  <time datetime="2019-11-25T09:11:19.000Z" itemprop="datePublished">2019-11-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/25/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Git常用命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="示例-1">示例 1</h3>
-<ul>
-<li>ums 仓库默认已创建 master 分支，部署项目（为了给邱双弄 Nginx 接口代理），于是我 <code>git pull</code> 截图如下：</li>
-</ul>
-<p><img src="https://file.798run.top/img/blog/20200717/ums-git-pull.png" alt="ums-git-pull"></p>
-<p>图中看到新增加了 dev 分支(其他同事创建)。于是我就执行 <code>git checkout -b dev</code> 切换到 dev 分支，随即 <code>git pull</code>，提示如下：</p>
-<p><img src="https://file.798run.top/img/blog/20200717/checkout-pull.png" alt="checkout-pull"></p>
-<p>已不止一次看到上面截图提示！心想先不管它，先干活。我就在 dev 分支上修改了一个文件，于是 <code>git status</code>、<code>git add .</code>、<code>git commit -m &quot;修改 .gitignore 文件&quot;</code>、<code>git pull</code>、<code>git push</code>。push 的时候出现提示如下：</p>
-<p><img src="https://file.798run.top/img/blog/20200717/git-push.png" alt="git-push"></p>
-<p>push 没成功，则必须要解决图中提示的问题，于是找到：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f6f7dae0b8b6">git pull 报错 There is no tracking information for the current branch…</a>。按照文中提示，我执行 <code>git branch --set-upstream-to=origin/dev dev</code>。随后又通过 <code>git branch -vv</code> 确认是否关联。总的截图如下：</p>
-<p><img src="https://file.798run.top/img/blog/20200717/set-upstream-vv.png" alt="set-upstream-vv"></p>
-<p>上图则说明关联成功，git pull 拉下来很多代码！随后我又重复 <code>git add .</code>、<code>git commit -m &quot;修改 .gitignore 文件&quot;</code>、<code>git pull</code>、<code>git push</code>。把我刚才修改的文件 push 到 dev 了！此场景提示，说明在切换新的分支之后，若想使用简单明了 git pull 、git push，这必须事先把该分支，与远程的分支进行关联。否则，只能把指令写完整 git pull origin dev、git push origin dev。</p>
-<h3 id="示例-2">示例 2</h3>
-<p>下图是又一次遇到上面场景：</p>
-<p><img src="https://file.798run.top/img/blog/20210127/git-branch--set-upstream-to=.jpg" alt="git branch--set-upstream-to="></p>
-<p>可查看<a target="_blank" rel="noopener" href="https://blog.csdn.net/nonfuxinyang/article/details/77206479">此文</a></p>
-<ul>
-<li>20200808 补记：在看方的 express 章节时候，看到其使用 git 执行如下：创建一个本地目录 express-demo-3，随后 git init 则生成一个 .git 目录。并在他的 github 上新建了 express-demo-3 仓库。随后执行 <code>git add .</code>、<code>git commit -m init</code> 、 <code>git remote add orgin git@github.com:FrankFang/express-demo-3.git</code>、<code>git push -u orgin master</code>。注：最后两个指令是在你初始化了仓库之后，github 上生成的！并没有遇到我之前的提示啥 upstream 之类的报错，这说明这也是一种方法！但是我思考在秋果 git 仓库是不是没有配置啥钩子才出现这种错误，还是说 github、gitee 等已经给你创建了啥钩子呢？</li>
-</ul>
-<ul>
-<li>20200817 在家弄 peter 分配的 CRM 系统，说让参考墨宇的 fms，其项目一直跑不起来有问题：他用 Mac 在 git 上提交了 import ‘@/keren /keren.vue’（不知道为啥竟然能提交，在 Windows 上 vscode 直接回提示你目录不能这样创建）。周一，墨宇说的让删除仓库。重新 init 一个仓库！我初始化 fms.git 仓库之后：在本地新建 a.txt。开始 git add . 之一些列的操作，最后 git pull 出现如下截图：</li>
-</ul>
-<p><img src="https://file.798run.top/img/blog/20200818/git-pull.png" alt="git-pull"></p>
-<p>看到这我还以为是 git 又报啥错了。于是就执行操作如下：</p>
-<p><img src="https://file.798run.top/img/blog/20200818/git-upstream.png" alt="git-pull"></p>
-<p>搜了一堆帖子，发现不行。后来查看自己写的 git 总结文档，发现在新建 dev 分支时候，才需要执行 git branch --set-upstream-to=origin/dev dev<br>
-于是我就直接 push 了，没啥报错！上的提示是你第一次 pull 默认的提示。</p>
-<h3 id="2、查看、切换分支">2、查看、切换分支</h3>
-<ul>
-<li>
-<p>查看分支是 <code>git branch</code> 后面可以加参数 -a （指的是所有的分支）</p>
-</li>
-<li>
-<p>切换分支 <code>git checkout 分支名</code></p>
-</li>
-<li>
-<p>创建分支 <code>git checkout -b dev</code>，此指令创建一个 dev 分支，若是 dev 分支已经存在，命令行会有提示：dev has already exists！</p>
-</li>
-<li>
-<p>创建于切换其实是一个指令，仅仅是添加的参数不同！</p>
-</li>
-</ul>
-<h3 id="记录">记录</h3>
-<ul>
-<li>使用 webstorm 自带 git 工具 commit 时，提示如下：</li>
-</ul>
-<p><img src="https://file.798run.top/img/blog/20210131/webstorm-git-commit-warning.png" alt="webstorm-git-commit-warning"></p>
-<p>意思：让我配置 crlf 自动转换，也就是说，本地的文格式是 crlf，git 远程仓库格式 lf，你本地的文件提交远程仓库需要转换！于是在该目录下执行了：<code>git config --local core.autocrlf true</code>，再次 commit 时候不在提示。</p>
-<ul>
-<li>在我的 files 项目，我在 commit 时候提示如下：</li>
-</ul>
-<p><img src="https://file.798run.top/img/blog/20210131/vscode-git-commit-warning.png" alt="vscode-git-commit-warning"></p>
-<p>意思：将会被 autocrlf，不让我 commit，于是我执行 <code>git config --local core.autocrlf false</code>，vscode，webstorm 怎么提示的设置的不一样？原因：新建了 baby.html(其格式是 crlf)，然 git commit 默认将文件转为 lf，可是本地项目没有对该仓库进行配置，所以提示。若是大的工程项目，其下有一个.editorconfig 文件（在此文件中我们设置 end_of_line = lf），则在 git commit 时不会有警告！由这两种情况我们可得出，针对一个仓库若配置 end_of_line = lf，IDE 在 commit 时，也不会出现警告；若是简单小项目则可对该仓库设置：<code>git config --local core.autocrlf true</code>也不会出现警告；与其针对每个仓库执行上面的配置，我们可全局配置 <code>git config --global core.autocrlf true</code>。按理说，我们大概率将 core.autocrlf 设置为 true，可在部署 hexo 博客时候，只有设置为 core.autocrlf false 才让发布，具体 err 详情在“Hexo 杂集”博客中有提现。</p>
-<ul>
-<li>在项目 <code>file.798run.top</code> 项目中，我在 xshell 中，git pull 提示如下：</li>
-</ul>
-<p><img src="https://file.798run.top/img/blog/20210131/git-pull-warning.jpg" alt="git-pull-warning"></p>
-<p>于是我执行了<code>git config --global pull.rebase false</code>，参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/hongdada/p/9549506.html">文档</a></p>
-<h3 id="参考文章">参考文章</h3>
-<ul>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/outs/p/6909567.html">Git 中的 core.autocrlf 选项含义</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b03ad01acd69">CRLF、CR、LF 详解</a></p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/11/25/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cm87htjfg000rfgvp831ad4ms" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
-
     </footer>
   </div>
   
@@ -869,6 +879,10 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       <ul>
         
           <li>
+            <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
+          </li>
+        
+          <li>
             <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
           </li>
         
@@ -882,10 +896,6 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
         
           <li>
             <a href="/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/">React脚手架细节</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/">React类组件函数组件对props及state及ref使用</a>
           </li>
         
       </ul>

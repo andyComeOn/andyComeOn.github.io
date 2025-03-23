@@ -68,6 +68,68 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Linux下安装git" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" class="article-date">
+  <time datetime="2020-12-08T03:57:50.000Z" itemprop="datePublished">2020-12-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/">Linux下安装git</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言">前言</h3>
+<p>早几年时候买的阿里云或腾讯云的服务器，默认的 centos 的版本自带的有 git，现买的服务器系统中没有自带 git，又想使用高版本 git 只能手动安装了！现记录一下安装步骤！</p>
+<h3 id="内容">内容</h3>
+<p>1、安装包下载 wget -c <a target="_blank" rel="noopener" href="https://github.com/git/git/archive/v2.29.0.tar.gz">https://github.com/git/git/archive/v2.29.0.tar.gz</a><br>
+2、压缩包解压 tar -zxvf v2.29.0.tar.gz<br>
+3、安装编译源码所需依赖 yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker 但：我执行之后出现提示如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201208/install-compile-git-pkg.png" alt="install-compile-git-pkg"></p>
+<p>这说明系统有这些依赖。</p>
+<p>4、安装依赖时，yum 自动安装了 Git，需要卸载旧版本 Git，命令为： yum remove git 出现提示输入 y 即可！注：我的 linux 上执行了上面的第三步骤，并没有 git</p>
+<p>5、进入解压后的文件夹，命令 cd git-2.29.0 ，然后执行编译，命令为 make prefix=/usr/local/git all 耐心等待编译即可；</p>
+<p>6、安装 Git 至/usr/local/git 路径，命令为 make prefix=/usr/local/git install</p>
+<p>7、打开环境变量配置文件，命令 vim /etc/profile ，在底部加上 Git 相关配置信息：PATH=$PATH:/usr/local/git/bin export PATH 然后保存，退出！</p>
+<p>8、输入命令 git --version ，查看安装的 git 版本，校验通过，安装成功，截图如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201208/git-version.jpg" alt="git --version"></p>
+<h3 id="问题">问题</h3>
+<p>1、在 linux 上依次设置：git config --global <a target="_blank" rel="noopener" href="http://user.name">user.name</a> “zhangbo” git config --global user.email “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>”</p>
+<p>2、ssh-keygen -t rsa -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>” 提示：-bash: ssh-keygen -t rsa -C <a href="mailto:1174839512@qq.com">1174839512@qq.com</a>: command not found</p>
+<p>3、一顿搜索啊，找到了<a target="_blank" rel="noopener" href="https://www.shangmayuan.com/a/5bc94047236246f2a01aa795.html">解决 bash: ssh-keygen: command not found</a></p>
+<p>4、按照上面帖子执行：yum install openssh，可是还是不行啊，Google 了很多，后来我发现有一个指令：ssh-keygen -t rsa -b 2048 -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>” 与我的有道云笔记报错（ssh-keygen -t rsa -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>” ）的内容不一样！后来就死马当成活马医！结果可以了！</p>
+<p>5、接着说解决上面问题的过程：既然是一直提示<code>-bash: ssh-keygen -t rsa -C 1174839512@qq.com: command not found</code>，那我就键入 ssh 看提示啥，效果如下：<br>
+<img src="https://file.798run.top/img/blog/20201208/linux-ssh.png" alt="linux-ssh"><br>
+细看一下，没有 -C 的选项，但是第二个指令也有 -C，那我就先试试这个：ssh-keygen -t rsa -b 2048 -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>”，竟然可以了！猜想：linux 下必须要设置 -b 吧！Windows 估计是读取的默认的配置！问题解决！</p>
+<h3 id="参考链接">参考链接</h3>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/imyalost/p/8715688.html">环境部署（三）：Linux 下安装 Git</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" data-id="cm8li4t4z0019m8vp5u2ie2bi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Nodejs如何在linux上安装" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" class="article-date">
@@ -112,7 +174,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="cm87htjfv001rfgvp06b1e6ys" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="cm8li4t59001lm8vp7br998yi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -164,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="cm87htjg20028fgvp447tdbtd" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="cm8li4t5k0020m8vp00rwewta" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
@@ -242,7 +304,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/03/Nodejs%E4%B9%8BYarn/" data-id="cm87htjfu001ofgvpbxipbslx" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/03/Nodejs%E4%B9%8BYarn/" data-id="cm8li4t5n0024m8vpdz488a5t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -285,7 +347,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" data-id="cm87htjgz0048fgvp7vzdhzcm" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" data-id="cm8li4t7x004dm8vpdjel7uk9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
@@ -369,7 +431,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/vscode%E6%9D%82%E8%AE%B0/" data-id="cm87htjh1004afgvpehvfgnsl" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/02/vscode%E6%9D%82%E8%AE%B0/" data-id="cm8li4t7v004bm8vpa8xp0w82" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
@@ -420,7 +482,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/02/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9D%82%E8%AE%B0/" data-id="cm87htjhi005ffgvpfxhe9xyq" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/02/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9D%82%E8%AE%B0/" data-id="cm8li4t8w005im8vp26s94u0v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
@@ -459,7 +521,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/30/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E8%AE%A8%E8%AE%BA/" data-id="cm87htjho005xfgvpal5bfzuh" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/11/30/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E8%AE%A8%E8%AE%BA/" data-id="cm8li4t98005wm8vphxlobifb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -503,7 +565,7 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/11/30/%E5%B0%8F%E7%A8%8B%E5%BA%8Fcanvas%E8%AE%B0%E5%BD%95/" data-id="cm87htjhg005cfgvp04rj9lsb" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/11/30/%E5%B0%8F%E7%A8%8B%E5%BA%8Fcanvas%E8%AE%B0%E5%BD%95/" data-id="cm8li4t8z005mm8vp1jxs5jvp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
@@ -607,73 +669,10 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/10/12/Nodejs%E6%9D%82%E9%9B%86/" data-id="cm87htjfw001tfgvp96nehqr3" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/10/12/Nodejs%E6%9D%82%E9%9B%86/" data-id="cm8li4t5b001om8vpc0ps1bet" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JS判断对象是否为空" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/31/JS%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA/" class="article-date">
-  <time datetime="2020-08-31T08:31:41.000Z" itemprop="datePublished">2020-08-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/31/JS%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA/">JS判断对象是否为空</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="JS-判断对象是否为空">JS 判断对象是否为空</h2>
-<ol>
-<li>
-<p>在开发会客厅预定逻辑，渲染门店列表时候后台返回的是一个 <code>对象</code>，之前是 <code>数组</code>，后台说自己不好处理，那我就对数据进行二次转换把。首先想到如何判断一个变量是<code>对象</code>还是<code>数组</code>呢？于是就使用最稳妥的办法：<code>const string = Object.prototype.toString.call(var)</code>，在对此结果进行 <code>string.indexOf('Object')</code>、<code>string.indexOf('Array')</code>、<code>string.includes('Object')</code>、<code>string.includes('Array')</code>进行判断！</p>
-</li>
-<li>
-<p>此时我又想到判断数组是否为空可以使用 <code>array.length &gt; 0</code>，那么怎么判断判断一个对象是否为空呢？</p>
-</li>
-<li>
-<p>方法如下：</p>
-</li>
-</ol>
-<ul>
-<li>
-<p>代码示例</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (var i in obj) &#123;</span><br><span class="line">  return true  // 如果不为空，则会执行到这一步，返回true</span><br><span class="line">&#125;</span><br><span class="line">return false // 如果为空,返回 false</span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>使用 es6 的方法 <code>Object.keys(var)</code> 该方法返回一个数组，若改数组的长度为 0 这说明为空对象！</p>
-</li>
-<li>
-<p>使用 JSON.stringify()，将 JavaScript 值转换为 JSON 字符串</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if (JSON.stringify(data) === &#x27;&#123;&#125;&#x27;) &#123;</span><br><span class="line">　　return false // 如果为空,返回false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">return true // 如果不为空，则会执行到这一步，返回true</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/08/31/JS%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA/" data-id="cm87htjfj000yfgvp5jt4fkh1" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
 
     </footer>
   </div>
@@ -725,6 +724,10 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
       <ul>
         
           <li>
+            <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
+          </li>
+        
+          <li>
             <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
           </li>
         
@@ -738,10 +741,6 @@ vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
         
           <li>
             <a href="/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/">React脚手架细节</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/27/React%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E5%AF%B9props%E5%8F%8Astate%E5%8F%8Aref%E4%BD%BF%E7%94%A8/">React类组件函数组件对props及state及ref使用</a>
           </li>
         
       </ul>
