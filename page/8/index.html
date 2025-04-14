@@ -68,6 +68,165 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CSS字体换总结行" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/10/CSS%E5%AD%97%E4%BD%93%E6%8D%A2%E6%80%BB%E7%BB%93%E8%A1%8C/" class="article-date">
+  <time datetime="2019-12-10T08:19:45.000Z" itemprop="datePublished">2019-12-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/10/CSS%E5%AD%97%E4%BD%93%E6%8D%A2%E6%80%BB%E7%BB%93%E8%A1%8C/">CSS字体换行总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在一些 UI 框架如 layui 的 col 中有默认的换行样式，主要是取决于 CSS 的三个属性 <code>white-space</code> <code>、word-break</code> <code>、word-wrap(overflow-wrap)</code> 下面分别记录一下。</p>
+<blockquote>
+<p>HTML 中 white-space 问题总结</p>
+</blockquote>
+<p>首先看下面的 html 代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  Hi<span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span>,</span><br><span class="line">  This     is a incomprehensibilities long word.</span><br><span class="line">  <span class="tag">&lt;/<span class="name">br</span>&gt;</span></span><br><span class="line">  你好<span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span>，</span><br><span class="line">  这   是一个不可思议的长单词</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们要清楚，我们的浏览器都有一些默认的 CSS 样式，若我们对某个标签写了 CSS 样式，刚好覆盖着浏览器的默认样式，则浏览器会按照我们写的 CSS 进行渲染。上面代码我们只对 box 容器加宽加边框。其渲染效果：遇到 <code>&lt;br&gt;</code> 会换行，遇到 <code>&amp;nbsp;</code> 会保留一个空格，注 代码中我们故意在文字之间多敲上几个空格，但渲染效果还是按照一个空格渲染！如下图：</p>
+<p><img src="https://file.798run.top/img/blog/20191210/ic_0.jpg" alt="white-space默认值效果"></p>
+<p>接下来我们看下， 给它上面三个 css 属性赋值后会出现什么变化。</p>
+<p><code>white-space</code> 按照其字面意思来理解，即空白之意、控制空白字符的显示的，同时还能控制是否自动换行。它有五个值：normal | nowrap | pre | pre-wrap | pre-line。因为默认是 normal，所以我们主要研究下其它四种值时的展现情况。</p>
+<ol>
+<li>nowrap 意思不换行。加上 <code>white-space: nowrap;</code> 就是告诉浏览器不要给我换行。效果如下：</li>
+</ol>
+<p><img src="https://file.798run.top/img/blog/20191210/ic_item1_nowrap.jpg" alt="white-space: nowrap; 效果"></p>
+<p>原文本的自动换行没了！只有</br>才换行！所以这个属性值我们可以理解为永不换行，即使超出容器宽度也会渲染。</p>
+<hr>
+<ol start="2">
+<li><code>pre</code> 是预定义之意，是 predefined 的简写，指预定义。作用：保留空格、换行等。也就可以了理解是你写的是什么结构的 html 代码他就给你展示啥样。加上 <code>white-space: pre;</code> 浏览器会按照原样的代码结构给你展示，也就是说你的代码的每一个小方块，给该小方块上下左右都给你加留白（就是原样展示）。应用场景：后台工作人员查看他们返回前端的数据，在输出 echo 打印时加上一对 <code>&lt;pre&gt;&lt;/pre&gt;</code> 标签，结果很清晰！效果如下：</li>
+</ol>
+<p><img src="https://file.798run.top/img/blog/20191210/ic_item1_pre.jpg" alt="white-space: pre; 效果"></p>
+<hr>
+<ol start="3">
+<li><code>pre-wrap</code> 可理解为在 pre 的基础上加上换行：</li>
+</ol>
+<p><img src="https://file.798run.top/img/blog/20191210/ic_item1_pre_wrap.jpg" alt="white-space: pre-wrap; 效果"></p>
+<ol start="4">
+<li><code>pre-line</code> 可理解为在 pre 的基础上左右的留白给你去掉了，当然也换行，应为我们没有写换行的属性值，浏览器默认排版都是换行的：</li>
+</ol>
+<p><img src="https://file.798run.top/img/blog/20191210/ic_item1_pre_line.jpg" alt="white-space: pre-line; 效果"></p>
+<hr>
+<blockquote>
+<p>HTML 中 word-break 问题总结</p>
+</blockquote>
+<p>从这个名字可以知道，这个属性是控制单词如何被拆分换行的。它有三个值：normal | break-all | keep-all。</p>
+<p><code>word-break: keep-all;</code> 效果如下：</p>
+<p><img src="https://file.798run.top/img/blog/20191210/ic_item2_1.jpg" alt="word-break: keep-all 效果"></p>
+<ol>
+<li>解释：你写的   继续给你渲染，但是它会根据你在文本中按下的空格（1 个或多个空格都按一个空格处理）把你的文本拆分不同文字段给你渲染，你的文字段若是有点大，会给你继续渲染即使超过了容器宽度也不换行。</li>
+</ol>
+<p><code>word-break: break-all;</code> 效果如下：</p>
+<p><img src="https://file.798run.top/img/blog/20191210/ic_item2_2.jpg" alt="word-break: break-all 效果"></p>
+<ol start="2">
+<li>解释：你写的   继续给你渲染，其他的不管是英文单词还是中文、日韩文字都是直接给你截断。空格直接不渲染。这种方式有点粗暴，若是英文单词直接截断换行渲染阅读效果很差！但是我想在一个小容器中要是标签内容都是长数字、长中文，不影响阅读，使用这个属性也没啥不可以！</li>
+</ol>
+<blockquote>
+<p>HTML 中 word-wrap(overflow-wrap) 问题总结</p>
+</blockquote>
+<p>word-wrap 又叫做 overflow-wrap：</p>
+<p>word-wrap 属性原本属于微软的一个私有属性，在 CSS3 现在的文本规范草案中已经被重名为 overflow-wrap 。 word-wrap 现在被当作 overflow-wrap 的 “别名”。 稳定的谷歌 Chrome 和 Opera 浏览器版本支持这种新语法。</p>
+<p>这个属性也是控制单词如何被拆分换行的，实际上是作为 word-break 的互补，它只有两个值：normal | break-word，那我们看下 break-word：</p>
+<p><code>word-wrap: break-word; overflow-wrap: break-word;</code> 效果如下：</p>
+<p><img src="https://file.798run.top/img/blog/20191210/ic_item3_1.jpg" alt="overflow-wrap: break-word 效果"></p>
+<p>解释：这种场景是为了解决，break-all 属性值不管啥都是直接截断，针对一个长单词如 incomprehensibilities，如 容器宽度小于这个单词宽度，直接在 incom 下一个字母 p 截断了，当前行最后显示 incom 下一行显示 prehensibilities，这在英文场合下，很不友好，若该长单词新起一行，在新的一行中也显示不了，在换行，这种情况效果比上面“硬换行”效果好一些，我理解，W3C 设置该属性就解决此类问题！</p>
+<p>补充：（其实前面的 word-break 属性除了列出的那三个值外，也有个 break-word 值，效果跟这里的 word-wrap: break-word 一样，然而只有 Chrome、Safari 等部分浏览器支持）</p>
+<p>具体的 html 测试文件在 testme 目录下的 white_space.html</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dfyg-xiaoxiao/p/9640422.html">参考链接</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/10/CSS%E5%AD%97%E4%BD%93%E6%8D%A2%E6%80%BB%E7%BB%93%E8%A1%8C/" data-id="cm9h6rkpe0007m8vphvhfcdpj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-PMS中form查询总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/26/PMS%E4%B8%ADform%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2019-11-26T06:51:58.000Z" itemprop="datePublished">2019-11-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/26/PMS%E4%B8%ADform%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/">PMS中form查询总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>写在前面：空格缩进、代码换行、注释描述、结构清晰、 一个系统面对的是形形色色的用户，不要想当然啥，例如loading的添加。最终趋势还是前后端分离！</p>
+<p>PMS在很多页面都是查询数据为主，为此在该项目中，前同事封装了一些查询的方法。这里做一些总结！</p>
+<h3 id="1、页面布局最好遵循下面的说明">1、页面布局最好遵循下面的说明</h3>
+<p>页面body中有一个根容器 <code>&lt;div class=&quot;layui-row pad10&quot;&gt;&lt;/div&gt;</code>，紧接着是form标签，下面就是table标签。Form是用来提交数据这里面包含查询条件等，table中若有表格名字、一些信息，可看情况写在table中的<code>&lt;caption&gt;&lt;h1&gt;*表&lt;/h1&gt;&lt;div&gt;&lt;/div&gt;&lt;/caption&gt;</code>。当然这种表格头部信息写法的前提是表格已经存在了，就是最普通的表格，在html上已经全部渲染好了。若是使用下文中table.render方法（此时table字标签还没有渲染好），那就在table标签上面写div，写清楚table表头相关信息即可！</p>
+<h3 id="2、需要-layui-form-verify-验证">2、需要 layui form.verify 验证</h3>
+<p>这种场景：需要验证form-item中input的name值。所以需写成layui中lay-submit的形式！这样才能很好的使用layui中封装的form.verify方法和效果。补充：使用form.on(‘submit’)，就要阻止 form默认提交，可在form.on(‘submit’)函数中末尾加return false、可把button的type默认提交修改为按钮类型。</p>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 验证 满足什么条件</span></span><br><span class="line">form.<span class="title function_">verify</span>(&#123;</span><br><span class="line">    <span class="attr">verifyAddtime</span>: <span class="keyword">function</span> (<span class="params">value</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> temp = value.<span class="title function_">split</span>(<span class="string">&#x27; , &#x27;</span>); </span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">date_subtraction</span>(temp[<span class="number">0</span>], temp[<span class="number">1</span>]) &gt; <span class="number">90</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;查询时间间隔不能超过 3 个月，请重新选择时间段！&#x27;</span>;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);  </span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交</span></span><br><span class="line">form.<span class="title function_">on</span>(<span class="string">&#x27;submit(filterSubmit)&#x27;</span>, <span class="keyword">function</span>(<span class="params">data</span>) &#123; </span><br><span class="line">	table.<span class="title function_">reload</span>(<span class="string">&#x27;lists&#x27;</span>, &#123;</span><br><span class="line">    	<span class="attr">where</span>: data.<span class="property">field</span>,</span><br><span class="line">        <span class="attr">page</span>: &#123;</span><br><span class="line">            <span class="attr">curr</span>: <span class="number">1</span> </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;) </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="3、提交使用commonjs中封装的-getListData-return-false-的情况">3、提交使用commonjs中封装的 <code>getListData(); return false;</code>的情况</h3>
+<ul>
+<li>对于这种情况，不能一概而论，要看场景的需要，归根到底就是form的原生提交与否，是否使用layui中的verify的效果和方法。每次后台套页面之后提交了，测试人员看到，告诉前端时间段要验证，这是事后诸葛亮的表现，事先可以规划好。使用 getListData 也许之前是封装的一个方法，可是没有细究，有些小问题没考虑到。还要注意的是 form 中的默认提交问题，有的是需要使用默认的提交，有的不需要（此种情况，一定要给与阻止！）。对于规则的表格最好是使用 <code>&lt;table class=&quot;layui-table&quot; id=&quot;lists&quot; lay-filter=&quot;filterLists&quot;&gt;&lt;/table&gt;</code>。在js中使用渲染的方式！</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">table.<span class="title function_">render</span>(&#123;</span><br><span class="line">    <span class="attr">elem</span>: <span class="string">&#x27;#lists&#x27;</span>,</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;/ReportStatis/forwardEarningsStatis&#x27;</span>,</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;远期收益分析表&#x27;</span>, <span class="comment">// 发现这个title不起作用！</span></span><br><span class="line">    <span class="attr">totalRow</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">cols</span>: [[</span><br><span class="line">        &#123;<span class="attr">field</span>: <span class="string">&#x27;business_time&#x27;</span>, <span class="attr">title</span>: <span class="string">&#x27;日期&#x27;</span>, <span class="attr">align</span>:<span class="string">&#x27;center&#x27;</span>, <span class="attr">totalRowText</span>: <span class="string">&#x27;合计&#x27;</span>&#125;,</span><br><span class="line">        &#123;<span class="attr">field</span>: <span class="string">&#x27;week&#x27;</span>, <span class="attr">title</span>: <span class="string">&#x27;星期&#x27;</span>, <span class="attr">align</span>:<span class="string">&#x27;center&#x27;</span>&#125;,</span><br><span class="line">        &#123;<span class="attr">field</span>:<span class="string">&#x27; usable_room_num&#x27;</span>, <span class="attr">title</span>:<span class="string">&#x27;可用房数&#x27;</span>, <span class="attr">align</span>:<span class="string">&#x27;center&#x27;</span>, <span class="attr">totalRow</span>:<span class="literal">true</span>&#125;,</span><br><span class="line">    ]],</span><br><span class="line">    <span class="attr">response</span>:&#123;</span><br><span class="line">        <span class="attr">statusName</span>:<span class="string">&#x27;status&#x27;</span>,</span><br><span class="line">        <span class="attr">statusCode</span>:<span class="number">1</span>,</span><br><span class="line">        <span class="attr">msgName</span>:<span class="string">&#x27;msg&#x27;</span>,</span><br><span class="line">        <span class="attr">countName</span>:<span class="string">&#x27;total&#x27;</span>,</span><br><span class="line">        <span class="attr">dataName</span>:<span class="string">&#x27;data&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">page</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// limit: 0,</span></span><br><span class="line">    <span class="attr">limit</span>: <span class="title class_">Number</span>.<span class="property">MAX_VALUE</span>,</span><br><span class="line">    <span class="attr">done</span>: <span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">        <span class="comment">// 取消分页展示</span></span><br><span class="line">        $(<span class="string">&#x27;.layui-table-page&#x27;</span>).<span class="title function_">hide</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>切记只有这种第一次页面已经使用render方法的表格，才能使用<code>table.reload()</code>函数。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">table.<span class="title function_">reload</span>(<span class="string">&#x27;lists&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">where</span>: data.<span class="property">field</span>,</span><br><span class="line">    <span class="attr">page</span>: &#123;</span><br><span class="line">        <span class="attr">curr</span>: <span class="number">1</span> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>为什么要使用 <code>&lt;table lay-data=&quot;&#123;&#125;&quot;&gt; ... &lt;/table&gt;</code>这种方式？官网上说此种写法是为了 SEO 优化，PMS一般是功能软件，需要SEO优化吗？况且使用这种方式，格式也没有对齐，即使对齐占用很大的篇幅，在done中写回调代码也不高亮！</p>
+</li>
+<li>
+<p>这种最常见的情况（后台也是最快做出页面）阻止了form默认提交，在页面加载完之后，再次输入查询条件，点击查询按钮执行的函数就是commonjs中的getListData方法。getListData是一个封装好的方法，很多页面都在使用，这时候要是测试让前端人员修改verify逻辑怎么办，原方法不能动，只能在该页面重新写，所以我认为慢慢全部把这些东西解耦，说明开始封装的方法有的地方不合适！所以该场景，测试若要验证form，就在页面中单独写逻辑。</p>
+</li>
+</ul>
+<h3 id="4、使用原生form提交，table是灌好的数据（report-statis-forwardSourceStatis-远期客源分析表）">4、使用原生form提交，table是灌好的数据（report_statis/forwardSourceStatis 远期客源分析表）</h3>
+<p>该例子使用form原生提交，应用了lay-verify验证，数据及页面结构在后台已经渲染好（我写的后台循环），结构清晰，可做模板使用。注：此类型表格是一个统计表格无分页场景。就是要应用原生form的提交功能。layui中lay-submit应该是封装了，只要是不满足verify，即使是type是默认提交，也不会给你提交！</p>
+<h3 id="5、筛选条件：按钮-form">5、筛选条件：按钮 + form</h3>
+<p>查询条件：按钮选择 + form中的input筛选条件，在测试ar_account/rechargeList页面时候，测试要添加时间段区间验证，把getListData方法删除，直接写。发现按钮区的逻辑依然是正常。20191127补记，就拿rechargeList.php来说，上面有按钮，点击按钮的逻辑：在commonjs中写好的按钮绑定函数（处理样式和筛选出data-name值2个大逻辑），获取到data-name的值之后，再次与form中的input name值组合，进而where查询。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/11/26/PMS%E4%B8%ADform%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/" data-id="cm9h6rksi0025m8vph1aubzg5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Git常用命令" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/11/25/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
@@ -161,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/11/25/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cm8n41tpg000y0ovp5ercgmdn" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/11/25/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cm9h6rkqb000mm8vp66tw3sft" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
@@ -206,7 +365,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/11/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%8A%A5%E9%94%99/" data-id="cm8n41tw100610ovp0hvq1tzh" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/11/07/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%8A%A5%E9%94%99/" data-id="cm9h6rl0s0064m8vpgdivdusc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -288,7 +447,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/09/25/table%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" data-id="cm8n41tt500420ovpeq5lg9tb" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/09/25/table%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" data-id="cm9h6rkux0041m8vpfsnwed32" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li></ul>
@@ -411,7 +570,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/09/17/js%E6%97%A5%E6%9C%9F%E8%AE%BE%E7%BD%AE%E6%80%BB%E7%BB%93/" data-id="cm8n41tsq003o0ovp445o84yq" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/09/17/js%E6%97%A5%E6%9C%9F%E8%AE%BE%E7%BD%AE%E6%80%BB%E7%BB%93/" data-id="cm9h6rkum003nm8vp0vdg1akm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -472,7 +631,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/07/23/JS%E6%9D%82%E9%9B%86/" data-id="cm8n41tpo00150ovp3d1o2zhc" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/07/23/JS%E6%9D%82%E9%9B%86/" data-id="cm9h6rkqr0010m8vp1z8pdf2r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -565,7 +724,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/07/02/%E7%9C%8B%E5%86%B4%E7%BE%BD%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0/" data-id="cm8n41tvx005w0ovp190vcnvq" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/07/02/%E7%9C%8B%E5%86%B4%E7%BE%BD%E5%8D%9A%E5%AE%A2%E7%AC%94%E8%AE%B0/" data-id="cm9h6rl0f005wm8vphsod0u4x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -661,7 +820,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/06/14/layui%E4%B8%AD%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-id="cm8n41tsw003x0ovpe32acttt" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/06/14/layui%E4%B8%AD%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" data-id="cm9h6rkup003rm8vp7ue4g2hd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li></ul>
@@ -714,107 +873,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/06/11/Math%E5%87%BD%E6%95%B0/" data-id="cm8n41tq1001k0ovp9bk01iie" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/06/11/Math%E5%87%BD%E6%95%B0/" data-id="cm9h6rkrc001km8vpe3nqa4lg" class="article-share-link">Share</a>
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-h5中img标签的边框问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/" class="article-date">
-  <time datetime="2019-06-10T05:22:11.000Z" itemprop="datePublished">2019-06-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/">h5中img标签的边框问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="总结一下-h5-中-img-标签的边框问题">总结一下 h5 中 img 标签的边框问题</h3>
-<p>我们常在一些重置 css 如：reset.css、normaize.css 看到：<code>border-style: none; border: 0;</code>。在网页中搜到 img 标签的边框问题。自己总结如下：</p>
-<ol>
-<li>网上说 img 有边框问题，我在 chrome（版本 74.0.3729.169（正式版本） （64 位））中测试无发现此 bug。</li>
-<li>网上说解决边框问题方法：</li>
-</ol>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span><span class="selector-attr">[src=<span class="string">&quot;&quot;</span>]</span>,</span><br><span class="line"><span class="selector-tag">img</span><span class="selector-pseudo">:not</span>(<span class="selector-attr">[src]</span>) &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>确实可以解决部门场景的 img 边框，但这是有条件的。上面 css 代码指：该 img 标签无 src 属性或 src 属性值为空。试想一下写前端代码的小伙伴谁会忘记写 src 属性？若忘记写 src 属性，则图片渲染不出来，Ta 也会发现该 bug！若开发小伙伴就是如下写法：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.imgWrap</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">background</span>: antiquewhite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.imgSrc</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;imgWrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;imgSrc&quot;</span> <span class="attr">src</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>渲染效果：<br>
-<img src="https://file.798run.top/img/blog/20190610/img_src1.jpg" alt="opacity=0效果"></p>
-<p>确实 img 图片无渲染，无边框。opacity:0;把 img 占位区的透明度给置为 0，所以不展示边框。</p>
-<hr>
-<ol start="3">
-<li>正常情况，对 img 写了 src 属性，可是图片没有加载过来，2 中的解决方法依然是有边框。代码如下：</li>
-</ol>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.imgWrap</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">background</span>: antiquewhite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.imgSrc</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;imgWrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;imgSrc&quot;</span> <span class="attr">src</span>=<span class="string">&quot;favicon.ic&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>网上说的方法大多不行，自己思考你给图片写了宽高，但图片没有加载出来， 浏览器就按照你写的宽高给 img 添加默认的边框。<br>
-<img src="https://file.798run.top/img/blog/20190610/img_src2.jpg" alt="无加载出图片依旧有边框"></p>
-<p>默认的没有加载出的图片大小是 16x16：<br>
-<img src="https://file.798run.top/img/blog/20190610/img_src3.jpg" alt="无加载出默认图片大小"></p>
-<p>但是一般情况大家都会对图片写宽高啊! 最后得出：只对图片写宽（刚好图片有一个机制是宽度确认高自己是适配），加载不出来，也有一个默认 16x16 的图片提示，本来浏览器就是这样提示用户的，设计、产品、老板就只顾着说，哈哈。 最后得出网上所谓的方法也是鸡肋办法，不实用。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/" data-id="cm8n41trq002v0ovp2604c892" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-CSS的normalize-css的文档说明" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/" class="article-date">
-  <time datetime="2019-05-09T07:32:46.000Z" itemprop="datePublished">2019-05-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/">CSS的normalize.css的文档说明</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/" data-id="cm8n41tod000b0ovpdvuo9ikl" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
-
     </footer>
   </div>
   
@@ -852,7 +913,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -865,6 +926,14 @@
       <ul>
         
           <li>
+            <a href="/2025/04/14/prettier%E4%BB%8B%E7%BB%8D/">prettier介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/vite%E4%BB%8B%E7%BB%8D/">vite介绍</a>
+          </li>
+        
+          <li>
             <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
           </li>
         
@@ -874,14 +943,6 @@
         
           <li>
             <a href="/2025/03/12/React%E4%B8%ADStore%E8%AE%B0%E5%BD%95/">React中Store记录</a>
-          </li>
-        
-          <li>
-            <a href="/2025/03/07/React%E4%B8%ADHook%E8%AE%B0%E5%BD%95/">React中Hook记录</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/">React脚手架细节</a>
           </li>
         
       </ul>

@@ -68,6 +68,94 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-JS精度问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2021-02-20T15:37:40.000Z" itemprop="datePublished">2021-02-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">JS精度问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、js-处理进度使用菜鸟上推荐的库，其自己的数学的处理精度的问题，全部都不准备。">1、js 处理进度使用菜鸟上推荐的库，其自己的数学的处理精度的问题，全部都不准备。</h3>
+<h3 id="2、针对一个浮点型数，保留几位小数（符合四舍五入）的方法（之前的写的代码，现在看来不是很准确）">2、针对一个浮点型数，保留几位小数（符合四舍五入）的方法（之前的写的代码，现在看来不是很准确）</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fixto</span>(<span class="params">number, n = <span class="number">2</span></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = number.<span class="title function_">toString</span>();</span><br><span class="line">    <span class="keyword">const</span> arr = result.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> integer = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> decimal = arr[<span class="number">1</span>];</span><br><span class="line">    result = integer + <span class="string">&#x27;.&#x27;</span> + decimal.<span class="title function_">substr</span>(<span class="number">0</span>, n);</span><br><span class="line">    <span class="keyword">const</span> last = decimal.<span class="title function_">substr</span>(n, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 四舍五入，转换为整数再处理，避免浮点数精度的损失</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(last, <span class="number">10</span>) &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> x = <span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">10</span>, n);</span><br><span class="line">        result = ((<span class="built_in">parseFloat</span>(result) * x) + <span class="number">1</span>) / x;</span><br><span class="line">        result = result.<span class="title function_">toFixed</span>(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>说明：保留几位小数点，参数 n 设置为几！</p>
+<h3 id="3、在调试泛能运营经理管理记录">3、在调试泛能运营经理管理记录</h3>
+<p>拉取区域 list 接口，其区域 id 是 number 型。数据如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;list&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;defaultManager&quot;: &quot;魏秀涛&quot;,</span><br><span class="line">      &quot;defaultManagerAccount&quot;: &quot;&quot;,</span><br><span class="line">      &quot;provinceCodeStr&quot;: &quot;120000、130000&quot;,</span><br><span class="line">      &quot;provinceNameStr&quot;: &quot;天津市、河北省&quot;,</span><br><span class="line">      &quot;regionId&quot;: 812352198852055040,</span><br><span class="line">      &quot;regionName&quot;: &quot;京津冀区&quot;,</span><br><span class="line">      &quot;totalEnt&quot;: 74,</span><br><span class="line">      &quot;totalManager&quot;: 1,</span><br><span class="line">      &quot;totalProject&quot;: 69</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;defaultManager&quot;: &quot;吴冰&quot;,</span><br><span class="line">      &quot;defaultManagerAccount&quot;: &quot;&quot;,</span><br><span class="line">      &quot;provinceCodeStr&quot;: &quot;820000&quot;,</span><br><span class="line">      &quot;provinceNameStr&quot;: &quot;澳门特别行政区&quot;,</span><br><span class="line">      &quot;regionId&quot;: 812692729802227712,</span><br><span class="line">      &quot;regionName&quot;: &quot;澳门区 &quot;,</span><br><span class="line">      &quot;totalEnt&quot;: 1,</span><br><span class="line">      &quot;totalManager&quot;: 2,</span><br><span class="line">      &quot;totalProject&quot;: 1</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在点击 table 操作项，编辑是路由传的 regionId=812352198852055040，可是浏览器会把后面 2 位给给字动转为 00，进而变为 regionId=812352198852055000。解决办法是：后端把 regionId 设置为 string 类型。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://my.oschina.net/lcfblogs/blog/4425879">关于浏览器接口 Preview 中的数值和 postman 中获取到的不一致问题</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33270001/article/details/82887084">关于浏览器响应数据 long 型超长自动转换精度丢失的坑</a>、<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000009599204">如何在 JavaScript 中实现一个 Long 型——Long.js 源码学习与分析</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" data-id="cm9h6rkqu0013m8vp94iw74rk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-修改hosts" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/14/%E4%BF%AE%E6%94%B9hosts/" class="article-date">
+  <time datetime="2021-02-14T06:49:33.000Z" itemprop="datePublished">2021-02-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/14/%E4%BF%AE%E6%94%B9hosts/">修改hosts</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、 打开 Windows 左下角 “开始” ，找到 powershell，记得使用管理员模式打开！如下图：</p>
+<p><img src="https://file.798run.top/img/blog/20210214/powershell-modify-hosts.png" alt="powershell-modify-hosts"></p>
+<p>打开 powershell 之后，找到 hosts 所在目录：<code>C:\windows\system32\drivers\etc\</code>，可直接键入：<code>cd C:\windows\system32\drivers\etc\</code>，在该目录下键入：<code>notepad hosts</code>，则 hosts 会以记事本的形式打开，可进行编辑并保存。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/14/%E4%BF%AE%E6%94%B9hosts/" data-id="cm9h6rkzj005bm8vpani4e18w" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Webpack记录" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/01/30/Webpack%E8%AE%B0%E5%BD%95/" class="article-date">
@@ -144,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/30/Webpack%E8%AE%B0%E5%BD%95/" data-id="cm8n41trg002o0ovp2aalhzcg" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/30/Webpack%E8%AE%B0%E5%BD%95/" data-id="cm9h6rkto002tm8vp05xn7alh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -195,7 +283,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/11/webstorm%E6%9D%82%E8%AE%B0/" data-id="cm8n41ttx004j0ovpffdxareu" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/11/webstorm%E6%9D%82%E8%AE%B0/" data-id="cm9h6rkvg004pm8vpdn0183r8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
@@ -244,7 +332,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/08/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9D%82%E9%9B%86/" data-id="cm8n41tvs005r0ovpakdeeuec" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/08/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9D%82%E9%9B%86/" data-id="cm9h6rl02005qm8vp78wv5vox" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/" rel="tag">Server</a></li></ul>
@@ -315,7 +403,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/08/JS%E4%B9%8Bdefer-async/" data-id="cm8n41tpe000v0ovp9p79hwg9" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/08/JS%E4%B9%8Bdefer-async/" data-id="cm9h6rkqp000ym8vpe5lx2lln" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -364,7 +452,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/07/React%E8%B7%AF%E7%94%B1/" data-id="cm8n41tr7002b0ovp76qv6jau" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/07/React%E8%B7%AF%E7%94%B1/" data-id="cm9h6rksr002dm8vp40395nm0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
@@ -404,7 +492,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/06/React%E4%B9%8Bcss/" data-id="cm8n41tr100240ovpggul4cnq" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/06/React%E4%B9%8Bcss/" data-id="cm9h6rkso002am8vp6c22e0gv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
@@ -444,7 +532,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/04/Github%E6%9D%82%E8%AE%B0/" data-id="cm8n41tp2000k0ovp6t08hbxy" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/04/Github%E6%9D%82%E8%AE%B0/" data-id="cm9h6rkqj000tm8vp9ehkg6ax" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -493,133 +581,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/04/ejs%E6%96%87%E6%A1%A3/" data-id="cm8n41ts400350ovpg5vcfu8l" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/04/ejs%E6%96%87%E6%A1%A3/" data-id="cm9h6rktm002rm8vp7rni2mfa" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-gitignore" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/31/gitignore/" class="article-date">
-  <time datetime="2020-12-31T08:13:41.000Z" itemprop="datePublished">2020-12-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/31/gitignore/">gitignore</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言">前言</h3>
-<p>针对不同语言的工程，其脚手架中的 .gitignore 已经做了部分的封装，项目在开始之前最好是编辑好此文件，避免后期麻烦！在我的 gitee 中的 files 仓库，有此模板文件！</p>
-<h3 id="格式规范">格式规范</h3>
-<p>1、所有空行或者以注释符号 ＃ 开头的行都会被 Git 忽略<br>
-2、可以使用标准的 glob 模式匹配<br>
-3、匹配模式最后跟斜杠(/)说明要忽略的是目录<br>
-4、要忽略指定模式以外的文件或目录，可以在模式前加上感叹号(!)进行取反</p>
-<h3 id="glob-模式">glob 模式</h3>
-<p>所谓的 glob 模式是指 shell 所使用的简化了的正则表达式，匹配规则如下：</p>
-<ul>
-<li><code>*</code> 星号匹配零个或多个任意字符</li>
-<li><code>[]</code> 匹配任何一个列在方括号中的字符，如[ab]匹配 a 或者匹配 b</li>
-<li><code>?</code> 问号匹配一个任意字符</li>
-<li><code>[n-m]</code> 匹配所有在这两个字符范围内的字符，如[0-9]表示匹配所有 0 到 9 的数字</li>
-</ul>
-<h3 id="示例">示例</h3>
-<ul>
-<li><code>logs/</code> 忽略当前路径下的 logs 目录，包含 logs 下的所有子目录和文件，注：并不局限于根目录下 logs</li>
-<li><code>/logs.txt</code> 忽略根目录下的 logs.txt 文件</li>
-<li><code>*.class</code> 忽略所有后缀为 .class 的文件</li>
-<li><code>!/classes/a.class</code> 不忽略跟目录下 classes 目录下的 a.class 文件</li>
-<li><code>tmp/*.txt</code> 只忽略 tmp 目录下的 .txt 文件</li>
-<li><code>**/foo</code> 可以忽略/foo, a/foo, a/b/foo 等</li>
-</ul>
-<h3 id="疑问">疑问</h3>
-<p>写 node_modules/ 与 node_modules 效果是一样。都是直接忽略了目录下的所有文件、目录。我 gitee 仓库中的 stream2 项目中的 .gitignore 有体现！</p>
-<h3 id="问题">问题</h3>
-<p>在我的 ddyg-crs 中 .gitignore 已添加 /dist/ 但修改 dist 下的文件，git 依然会记录，此时需执行 <code>git rm -r --cached .</code>，<code>git add .</code>，<code>git commit -m 'update.gitignore'</code> 即可</p>
-<h3 id="参考">参考</h3>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/699ed86028c2">.gitignore</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/31/gitignore/" data-id="cm8n41tro002t0ovp036n4t3x" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ts笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/12/31/ts%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time datetime="2020-12-31T07:01:16.000Z" itemprop="datePublished">2020-12-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/12/31/ts%E7%AC%94%E8%AE%B0/">ts笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="杂记">杂记</h3>
-<ul>
-<li>1、若自己搭建项目，执行 tsc --init，前提需：&gt; npm install -g typescript</li>
-</ul>
-<h3 id="例子">例子</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 变量</span></span><br><span class="line"><span class="built_in">let</span> a: string = <span class="string">&#x27;hi&#x27;</span>;</span><br><span class="line"><span class="built_in">let</span> b:boolean = <span class="literal">true</span>;</span><br><span class="line"><span class="comment"># 函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="built_in">sum</span>(a: number, b:number): number &#123;</span><br><span class="line">  <span class="built_in">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用字面量进行类型声明</span></span><br><span class="line"><span class="built_in">let</span> d: 10; // 只能是 d = 10，这样感觉也没有意义</span><br><span class="line"><span class="built_in">let</span> gender: <span class="string">&#x27;male&#x27;</span> | <span class="string">&#x27;female&#x27;</span>; // 这样使用场景不多，但很巧妙</span><br><span class="line"><span class="built_in">let</span> c: string | boolean; // 言外之意，c可赋值为<span class="string">&#x27;hello&#x27;</span>，也可赋值为 <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># any 不建议使用</span></span><br><span class="line"><span class="built_in">let</span> e:any; // 显式</span><br><span class="line"><span class="built_in">let</span> e; // 隐式</span><br><span class="line">e = 10;</span><br><span class="line">e = <span class="literal">true</span>;</span><br><span class="line">e = <span class="string">&#x27;hi&#x27;</span>;</span><br><span class="line">// any不好，如：<span class="built_in">let</span> f: string; f = e; 这样编辑器无红色警告，这说明any跟谁沾边恶心谁。这种情况下最好使用unknown</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># unknown</span></span><br><span class="line"><span class="built_in">let</span> e:unknown; // 隐式</span><br><span class="line">e = <span class="string">&#x27;hi&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">let</span> g:string;</span><br><span class="line">g = e;</span><br><span class="line">// 提示报错，虽然此时e是字符串hi，但是此时解析器看的是e的类型，unknown不能赋值给string，unknown实际上就是一个类型安全的any，不能直接赋值给其他变量，解决办法有2种方法如下：</span><br><span class="line"></span><br><span class="line">// 方法一</span><br><span class="line"><span class="keyword">if</span> (typeof e === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">  g = e</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 方法二</span><br><span class="line">g = e as string</span><br><span class="line">g = &lt;string&gt; e</span><br><span class="line"></span><br><span class="line"><span class="comment"># +++++++++++++++++++++++++++</span></span><br><span class="line"><span class="comment"># 针对断言</span></span><br><span class="line">var foo = &lt;foo&gt;bar;</span><br><span class="line">// 这里断言bar变量是foo类型的。 因为TypeScript也使用尖括号来表示类型断言，在结合JSX的语法后将带来解析上的困难。因此，TypeScript在.tsx文件里禁用了使用尖括号的类型断言。所以我们使用 as 作为断言多一些</span><br><span class="line"></span><br><span class="line"><span class="comment"># +++++++++++++++++++++++++++</span></span><br><span class="line"><span class="comment"># void 针对的是函数没有返回值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> fn():void&#123;</span><br><span class="line">  // <span class="built_in">return</span></span><br><span class="line">  // <span class="built_in">return</span> null</span><br><span class="line">  // <span class="built_in">return</span> undefined</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># never 是针对上面函数返回的 void 所言，是从来都不会返回，这种函数是用来提示报错的</span></span><br><span class="line"><span class="keyword">function</span> fn2():never&#123;</span><br><span class="line">  throw new Error(<span class="string">&#x27;err&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 声明对象类型，因为在js中一切皆为对象，所以下面的声明没有意义</span></span><br><span class="line"><span class="built_in">let</span> j: object</span><br><span class="line">j = &#123;&#125;;</span><br><span class="line">j = <span class="function"><span class="title">function</span></span> () &#123;&#125;;</span><br><span class="line"></span><br><span class="line">// 为此我们若对对象声明可以有如下写法：</span><br><span class="line">// 语法：&#123;属性：属性值,属性?：属性值&#125;</span><br><span class="line">// 在属性值后面加?,表示属性可选</span><br><span class="line"><span class="built_in">let</span> j:&#123;&#125;</span><br><span class="line">j=&#123;age:18&#125;</span><br><span class="line"><span class="built_in">let</span> k:&#123;name: string, age?number&#125;</span><br><span class="line">k=&#123;name: <span class="string">&#x27;bo&#x27;</span>,age:18&#125;</span><br><span class="line"></span><br><span class="line">// [propName: string]: any 表示任意的属性，都可</span><br><span class="line"><span class="built_in">let</span> m: &#123; name: string, [propName: string]: any &#125;</span><br><span class="line">m = &#123;name: <span class="string">&#x27;zb&#x27;</span>, age: 18, height: 180&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 函数</span></span><br><span class="line"><span class="built_in">let</span> f: (a: number, b: number) =&gt; number</span><br><span class="line">// 设置函数结构类型声明：</span><br><span class="line">//      语法：（形参：类型，形参：类型）=&gt; 返回值类型</span><br><span class="line"><span class="built_in">let</span> f: (a: number, b: number) =&gt; number</span><br><span class="line">f = (a, b): number =&gt; &#123;</span><br><span class="line">    <span class="built_in">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line">// 在m-sbc-supplier发现 @types/react/index.d.ts 这样写的的</span><br><span class="line"><span class="comment"># componentWillReceiveProps?(nextProps: Readonly&lt;P&gt;, nextContext: any): void;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数组</span></span><br><span class="line">// 数组</span><br><span class="line"><span class="built_in">let</span> e: string[]</span><br><span class="line">e = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">let</span> num: number[]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 元组</span></span><br><span class="line">// 元组：就是固定长度的数组</span><br><span class="line"><span class="built_in">let</span> h: [string, number]</span><br><span class="line">h = [<span class="string">&#x27;hi&#x27;</span>, 2]</span><br></pre></td></tr></table></figure>
-<h3 id="笔记-之前自己总结">笔记(之前自己总结)</h3>
-<p>在 TypeScript 中，可以使用  null  和  undefined  来定义这两个原始数据类型：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let u: undefined = undefined;</span><br><span class="line">let n: null = null;</span><br></pre></td></tr></table></figure>
-<p>与   void   的区别是，undefined   和   null   是所有类型的子类型。也就是说   undefined   类型的变量，可以赋值给  number  类型的变量，如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 这样不会报错</span><br><span class="line"><span class="built_in">let</span> num: number = undefined;</span><br><span class="line"></span><br><span class="line">// 这样也不会报错</span><br><span class="line"><span class="built_in">let</span> u: undefined;</span><br><span class="line"><span class="built_in">let</span> num: number = u;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">interface DeprecatedLifecycle&lt;P, S&gt;</span><br><span class="line"></span><br><span class="line"><span class="built_in">declare</span> namespace cats &#123;</span><br><span class="line">  interface KittySettings &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="接口">接口</h3>
-<p>写法如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/31/ts%E7%AC%94%E8%AE%B0/" data-id="cm8n41tt600440ovp0hk2hknz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
 
     </footer>
   </div>
@@ -658,7 +623,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -671,6 +636,14 @@
       <ul>
         
           <li>
+            <a href="/2025/04/14/prettier%E4%BB%8B%E7%BB%8D/">prettier介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/vite%E4%BB%8B%E7%BB%8D/">vite介绍</a>
+          </li>
+        
+          <li>
             <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
           </li>
         
@@ -680,14 +653,6 @@
         
           <li>
             <a href="/2025/03/12/React%E4%B8%ADStore%E8%AE%B0%E5%BD%95/">React中Store记录</a>
-          </li>
-        
-          <li>
-            <a href="/2025/03/07/React%E4%B8%ADHook%E8%AE%B0%E5%BD%95/">React中Hook记录</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/">React脚手架细节</a>
           </li>
         
       </ul>

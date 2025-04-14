@@ -68,6 +68,154 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-小程序canvas记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/30/%E5%B0%8F%E7%A8%8B%E5%BA%8Fcanvas%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2020-11-30T14:52:24.000Z" itemprop="datePublished">2020-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/30/%E5%B0%8F%E7%A8%8B%E5%BA%8Fcanvas%E8%AE%B0%E5%BD%95/">小程序canvas记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>最近在开发分销小程序，使用了 wx 的 canvas，现记录一下！</p>
+</blockquote>
+<p>场景就是：点击分享按钮，弹出一个 modal，效果如下：<br>
+<img src="https://file.798run.top/img/blog/20201130/UI.png" alt="设计稿">，这里面使用了 canvas 绘图，小程序的 canvas 有很多的诡异的地方，之前的项目的旧代码，copy 之后不能用，只能在网上搜搜找答案，在之前席鹏飞弄的营业厅小程序有使用的场景如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">drawPoster</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="title class_">Promise</span>.<span class="title function_">all</span>([</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">getBgImageInfo</span>(<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">currentImgurl</span>),</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">getBgImageInfo</span>(<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">avatar</span>),</span><br><span class="line">    ]).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> canvas2d = wx.<span class="title function_">createCanvasContext</span>(<span class="string">&quot;posterCanvas&quot;</span>);</span><br><span class="line">        <span class="keyword">const</span> paddingSize = <span class="number">40</span>; <span class="comment">// 海报中左边、右边的留白</span></span><br><span class="line">        <span class="keyword">const</span> primaryImgSize = <span class="number">670</span>; <span class="comment">// 封面图尺寸</span></span><br><span class="line">        <span class="keyword">const</span> maxWidth = <span class="number">670</span>;</span><br><span class="line">        <span class="keyword">const</span> primaryImgBottom = <span class="number">20</span>; <span class="comment">// 封面图下面marginBottom尺寸为20</span></span><br><span class="line">        <span class="comment">// const titleFontSize = 34; // 标题的字号为34；注：canvas绘图文字，y轴的起点要把自身的高度算进去，再次设计稿中得出，文字的行高是10+34+10=54。</span></span><br><span class="line">        <span class="keyword">const</span> titleBottom = <span class="number">20</span>; <span class="comment">// title下面有30的</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> titleHeight = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">const</span> priceSize = <span class="number">44</span>; <span class="comment">// 价格这一行的高度是32</span></span><br><span class="line">        <span class="keyword">const</span> priceBottom = <span class="number">40</span>; <span class="comment">// 价格这一行下面有40</span></span><br><span class="line">        <span class="keyword">let</span> priceBox = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">const</span> footerAvatarMarginTop = <span class="number">80</span>; <span class="comment">// 头像距离footer容器上边框的距离</span></span><br><span class="line">        <span class="keyword">const</span> footerQRMarginTop = <span class="number">20</span>; <span class="comment">// 头像距离footer容器上边框的距离</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1、首先绘制整个白板</span></span><br><span class="line">        canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;#ffffff&quot;</span>;</span><br><span class="line">        canvas2d.<span class="title function_">fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">750</span>, <span class="number">1200</span>);</span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2、绘制sku图片</span></span><br><span class="line"></span><br><span class="line">        canvas2d.<span class="title function_">drawImage</span>(</span><br><span class="line">          res[<span class="number">0</span>].<span class="property">path</span>,</span><br><span class="line">          paddingSize,</span><br><span class="line">          paddingSize,</span><br><span class="line">          primaryImgSize,</span><br><span class="line">          primaryImgSize</span><br><span class="line">        );</span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3、绘制标题</span></span><br><span class="line">        canvas2d.<span class="property">font</span> = <span class="string">&quot;normal bold 34px PingFangSC-Regular&quot;</span>;</span><br><span class="line">        canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;black&quot;</span>; <span class="comment">// 黑色需要写</span></span><br><span class="line">        <span class="comment">// canvas2d.fillText(`$&#123;this.data.currentTitle&#125;`, 40, 784, 670);</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">const</span> str = <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">currentTitle</span>;</span><br><span class="line">        <span class="keyword">let</span> row1Index = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">let</span> row2Index = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">let</span> row3Index = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> k = <span class="number">0</span>; k &lt; str.<span class="property">length</span>; k++) &#123;</span><br><span class="line">          <span class="keyword">const</span> temp = canvas2d.<span class="title function_">measureText</span>(str.<span class="title function_">slice</span>(<span class="number">0</span>, k)).<span class="property">width</span>;</span><br><span class="line">          <span class="comment">// 1行文字</span></span><br><span class="line">          <span class="keyword">if</span> (temp &lt;= maxWidth) &#123;</span><br><span class="line">            row1Index = k;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 1行半文字</span></span><br><span class="line">          <span class="keyword">if</span> (temp &gt; maxWidth &amp;&amp; temp &lt;= maxWidth * <span class="number">2</span>) &#123;</span><br><span class="line">            row2Index = k;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 2行文字之多</span></span><br><span class="line">          <span class="keyword">if</span> (temp &gt; maxWidth * <span class="number">2</span>) &#123;</span><br><span class="line">            row3Index = k;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (row3Index &amp;&amp; row2Index) &#123;</span><br><span class="line">          canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">            str.<span class="title function_">slice</span>(<span class="number">0</span>, row1Index),</span><br><span class="line">            paddingSize,</span><br><span class="line">            <span class="string">`<span class="subst">$&#123;paddingSize + primaryImgSize + primaryImgBottom + <span class="number">54</span>&#125;</span>`</span>,</span><br><span class="line">            maxWidth</span><br><span class="line">          );</span><br><span class="line"></span><br><span class="line">          canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">            str.<span class="title function_">slice</span>(row1Index, row2Index - <span class="number">2</span>) + <span class="string">&quot;...&quot;</span>,</span><br><span class="line">            paddingSize,</span><br><span class="line">            <span class="string">`<span class="subst">$&#123;paddingSize + primaryImgSize + primaryImgBottom + <span class="number">108</span>&#125;</span>`</span>,</span><br><span class="line">            maxWidth</span><br><span class="line">          );</span><br><span class="line"></span><br><span class="line">          titleHeight = <span class="number">108</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!row3Index &amp;&amp; row2Index) &#123;</span><br><span class="line">          canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">            str.<span class="title function_">slice</span>(<span class="number">0</span>, row1Index),</span><br><span class="line">            paddingSize,</span><br><span class="line">            <span class="string">`<span class="subst">$&#123;paddingSize + primaryImgSize + primaryImgBottom + <span class="number">54</span>&#125;</span>`</span>,</span><br><span class="line">            maxWidth</span><br><span class="line">          );</span><br><span class="line"></span><br><span class="line">          canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">            str.<span class="title function_">slice</span>(row1Index, row2Index + <span class="number">1</span>),</span><br><span class="line">            paddingSize,</span><br><span class="line">            <span class="string">`<span class="subst">$&#123;paddingSize + primaryImgSize + primaryImgBottom + <span class="number">108</span>&#125;</span>`</span>,</span><br><span class="line">            maxWidth</span><br><span class="line">          );</span><br><span class="line"></span><br><span class="line">          titleHeight = <span class="number">108</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!row3Index &amp;&amp; !row2Index) &#123;</span><br><span class="line">          canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">            str.<span class="title function_">slice</span>(<span class="number">0</span>, row1Index + <span class="number">1</span>),</span><br><span class="line">            paddingSize,</span><br><span class="line">            <span class="string">`<span class="subst">$&#123;paddingSize + primaryImgSize + primaryImgBottom + <span class="number">54</span>&#125;</span>`</span>,</span><br><span class="line">            maxWidth</span><br><span class="line">          );</span><br><span class="line"></span><br><span class="line">          titleHeight = <span class="number">54</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4、绘制价格（文字描述下面有20px的留白，所以Y=690）</span></span><br><span class="line">        <span class="comment">// 仅e家集市海报中才有价格绘制</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="title class_">Number</span>(<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">type</span>) === <span class="number">1001</span>) &#123;</span><br><span class="line">          <span class="comment">// 打折价格</span></span><br><span class="line">          canvas2d.<span class="property">font</span> = <span class="string">&quot;44px PingFangSC-Regular&quot;</span>;</span><br><span class="line">          canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;#ec1500&quot;</span>;</span><br><span class="line">          canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">            <span class="string">`¥<span class="subst">$&#123;<span class="variable language_">this</span>.data.currentActivityPrice&#125;</span>`</span>,</span><br><span class="line">            paddingSize,</span><br><span class="line">            <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">              paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">              primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">              primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">              titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">              titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">              priceSize</span></span></span><br><span class="line"><span class="subst"><span class="string">            &#125;</span>`</span>,</span><br><span class="line">            maxWidth</span><br><span class="line">          );</span><br><span class="line">          canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 历史价格（如果价格为0，不绘图）</span></span><br><span class="line">          <span class="keyword">if</span> (<span class="title class_">Number</span>(<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">currentMarketPrice</span>) != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> currentMarketPriceLeft =</span><br><span class="line">              paddingSize +</span><br><span class="line">              <span class="title class_">Number</span>(</span><br><span class="line">                canvas2d.<span class="title function_">measureText</span>(<span class="string">`¥<span class="subst">$&#123;<span class="variable language_">this</span>.data.currentActivityPrice&#125;</span>`</span>).<span class="property">width</span></span><br><span class="line">              ) +</span><br><span class="line">              <span class="number">20</span>;</span><br><span class="line">            canvas2d.<span class="property">font</span> = <span class="string">&quot;30px PingFangSC-Regular&quot;</span>;</span><br><span class="line">            canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;#acacac&quot;</span>;</span><br><span class="line">            canvas2d.<span class="title function_">setStrokeStyle</span>(<span class="string">&quot;#acacac&quot;</span>);</span><br><span class="line">            canvas2d.<span class="title function_">moveTo</span>(</span><br><span class="line">              currentMarketPriceLeft,</span><br><span class="line">              <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">                paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">                primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">                primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">                titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">                titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">                priceSize -</span></span></span><br><span class="line"><span class="subst"><span class="string">                <span class="number">8</span></span></span></span><br><span class="line"><span class="subst"><span class="string">              &#125;</span>`</span></span><br><span class="line">            );</span><br><span class="line">            canvas2d.<span class="title function_">lineTo</span>(</span><br><span class="line">              currentMarketPriceLeft +</span><br><span class="line">                <span class="title class_">Number</span>(</span><br><span class="line">                  canvas2d.<span class="title function_">measureText</span>(<span class="string">`¥<span class="subst">$&#123;<span class="variable language_">this</span>.data.currentMarketPrice&#125;</span>`</span>).<span class="property">width</span></span><br><span class="line">                ),</span><br><span class="line">              <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">                paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">                primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">                primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">                titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">                titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">                priceSize -</span></span></span><br><span class="line"><span class="subst"><span class="string">                <span class="number">8</span></span></span></span><br><span class="line"><span class="subst"><span class="string">              &#125;</span>`</span></span><br><span class="line">            );</span><br><span class="line">            canvas2d.<span class="title function_">stroke</span>();</span><br><span class="line"></span><br><span class="line">            canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">              <span class="string">`¥<span class="subst">$&#123;<span class="variable language_">this</span>.data.currentMarketPrice&#125;</span>`</span>,</span><br><span class="line">              currentMarketPriceLeft,</span><br><span class="line">              <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">                paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">                primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">                primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">                titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">                titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">                priceSize</span></span></span><br><span class="line"><span class="subst"><span class="string">              &#125;</span>`</span>,</span><br><span class="line">              maxWidth</span><br><span class="line">            );</span><br><span class="line">            canvas2d.<span class="title function_">save</span>();</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          priceBox = priceSize + priceBottom;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          priceBox = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5、绘制底部信息</span></span><br><span class="line">        <span class="comment">// 绘制底部信息矩形区域</span></span><br><span class="line">        canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;#fffaf5&quot;</span>;</span><br><span class="line">        canvas2d.<span class="title function_">fillRect</span>(</span><br><span class="line">          paddingSize,</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">            paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            priceBox</span></span></span><br><span class="line"><span class="subst"><span class="string">          &#125;</span>`</span>,</span><br><span class="line">          maxWidth,</span><br><span class="line">          <span class="number">250</span></span><br><span class="line">        ); <span class="comment">// 886</span></span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绘制底部信息的logo 886+80=966</span></span><br><span class="line">        canvas2d.<span class="title function_">drawImage</span>(</span><br><span class="line">          res[<span class="number">1</span>].<span class="property">path</span>,</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;paddingSize + <span class="number">30</span>&#125;</span>`</span>,</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">            paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            priceBox +</span></span></span><br><span class="line"><span class="subst"><span class="string">            footerAvatarMarginTop</span></span></span><br><span class="line"><span class="subst"><span class="string">          &#125;</span>`</span>,</span><br><span class="line">          <span class="number">90</span>,</span><br><span class="line">          <span class="number">90</span></span><br><span class="line">        ); <span class="comment">// 绘制logo</span></span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绘制底部信息：微信昵称、tips</span></span><br><span class="line">        canvas2d.<span class="property">font</span> = <span class="string">&quot;bold 28px PingFangSC-Regular&quot;</span>;</span><br><span class="line">        canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;black&quot;</span>;</span><br><span class="line">        canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;<span class="variable language_">this</span>.data.nickName&#125;</span>`</span>,</span><br><span class="line">          <span class="number">180</span>,</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">            paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            priceBox +</span></span></span><br><span class="line"><span class="subst"><span class="string">            footerAvatarMarginTop +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">12</span> +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">28</span></span></span></span><br><span class="line"><span class="subst"><span class="string">          &#125;</span>`</span></span><br><span class="line">        );</span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line">        canvas2d.<span class="property">font</span> = <span class="string">&quot;24px PingFangSC-Regular&quot;</span>;</span><br><span class="line">        canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;#666&quot;</span>;</span><br><span class="line">        canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">          <span class="string">&quot;推荐您享受e城e家优惠&quot;</span>,</span><br><span class="line">          <span class="number">180</span>,</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">            paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            priceBox +</span></span></span><br><span class="line"><span class="subst"><span class="string">            footerAvatarMarginTop +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">12</span> +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">28</span> +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">15</span> +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">24</span></span></span></span><br><span class="line"><span class="subst"><span class="string">          &#125;</span>`</span></span><br><span class="line">        ); <span class="comment">// 1040=1006+10+24</span></span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绘制底部信息：二维码,886+20=906</span></span><br><span class="line">        canvas2d.<span class="title function_">drawImage</span>(</span><br><span class="line">          <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">handleQRTempPath</span>,</span><br><span class="line">          <span class="number">510</span>,</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">            paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            priceBox +</span></span></span><br><span class="line"><span class="subst"><span class="string">            footerQRMarginTop</span></span></span><br><span class="line"><span class="subst"><span class="string">          &#125;</span>`</span>,</span><br><span class="line">          <span class="number">180</span>,</span><br><span class="line">          <span class="number">180</span></span><br><span class="line">        ); <span class="comment">// 绘制二维码</span></span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line">        canvas2d.<span class="property">font</span> = <span class="string">&quot;22px PingFangSC-Regular&quot;</span>;</span><br><span class="line">        canvas2d.<span class="property">fillStyle</span> = <span class="string">&quot;#666&quot;</span>; <span class="comment">// 默认是黑色可不写</span></span><br><span class="line">        canvas2d.<span class="title function_">fillText</span>(</span><br><span class="line">          <span class="string">&quot;长按识别&quot;</span>,</span><br><span class="line">          <span class="number">556</span>,</span><br><span class="line">          <span class="string">`<span class="subst">$&#123;</span></span></span><br><span class="line"><span class="subst"><span class="string">            paddingSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgSize +</span></span></span><br><span class="line"><span class="subst"><span class="string">            primaryImgBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleHeight +</span></span></span><br><span class="line"><span class="subst"><span class="string">            titleBottom +</span></span></span><br><span class="line"><span class="subst"><span class="string">            priceBox +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">20</span> +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">180</span> +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">10</span> +</span></span></span><br><span class="line"><span class="subst"><span class="string">            <span class="number">22</span></span></span></span><br><span class="line"><span class="subst"><span class="string">          &#125;</span>`</span></span><br><span class="line">        ); <span class="comment">// 1118=footer的Y轴+20+180+10</span></span><br><span class="line">        canvas2d.<span class="title function_">save</span>();</span><br><span class="line"></span><br><span class="line">        canvas2d.<span class="title function_">draw</span>(</span><br><span class="line">          <span class="literal">true</span>,</span><br><span class="line">          <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="title function_">canvasToTempFilePath</span>();</span><br><span class="line">          &#125;, <span class="number">400</span>)</span><br><span class="line">        );</span><br><span class="line">      &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    ).<span class="title function_">catch</span>(<span class="function">(<span class="params">catchErr</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(catchErr);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/11/30/%E5%B0%8F%E7%A8%8B%E5%BA%8Fcanvas%E8%AE%B0%E5%BD%95/" data-id="cm9h6rkzn005fm8vpfdoedkgi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Nodejs杂集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/12/Nodejs%E6%9D%82%E9%9B%86/" class="article-date">
+  <time datetime="2020-10-12T02:06:50.000Z" itemprop="datePublished">2020-10-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/12/Nodejs%E6%9D%82%E9%9B%86/">Nodejs杂集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="杂集">杂集</h3>
+<p>1、在初建项目时，针对 Windows 我们可在根目录下执行 <code>type null&gt;.babelrc</code> 会生成该文件；还有一种针对 Windows 的方法，手动新建 babelrc.txt，执行 <code>ren babelrc.txt .babelrc</code> 针对 linux、git bash 可执行 touch .babelrc；<br>
+2、Ctrl + D 直接退出 node 命令行，也可执行两次 Ctrl + C<br>
+3、npm config ls === npm config list<br>
+4、为啥你能直接使用 npm -v node-v npx -v；npm node 指令在目录 D:\Program Files\Nodejs\ 中，而此目录已经添加了环境变量！C:\Users\admin\AppData\Roaming\npm 目录，也添加了环境变量，在该目录下有很多的使用 npm 全局安装的依赖，如 hexo browser-sync tsc nrm yarn，所以我们键入 yarn --version; hexo -v 才能显示出相关信息！<br>
+5、针对依赖，在我的项目 yaya，我通过 npm install pkg，则在项目的 node*modules 目录下，会下载 pkg 包，那加入我门全局安装了 pkg ，在 yaya 项目下怎么使用？答：需在系统环境变量添加 <code>NODE_PATH: C:\Users\zhangboba\AppData\Roaming\npm\node_modules</code>！参考：<a target="_blank" rel="noopener" href="https://www.html.cn/qa/node-js/12207.html">如何配置 node 全局依赖包？</a>。具体测试过程：npm i lodash -g，我新建一个极简项目，目录下创建 index.js，写入代码：<code>const * = require(&quot;lodash&quot;);</code> <code>console.log(\_.chunk([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;], 2));</code> 执行：<code>node index.js</code>，无报错则说明测试通过，否则系统报错！</p>
+<p>6、<code>import Home from &quot;@/views/Home.vue&quot;;</code> <code>import Home from '../views/Home'</code>在 IDE(WebStorm) 中<code>Ctrl + 点击 Home</code>，前者可打开文件，后者不能打开！</p>
+<p>7、在 vue-cli 2.0 版本中，<code>npm run dev </code>走的脚本是 <code>webpack-dev-server ...</code>，build 使用的 <code>node build/build.js</code>，本地开发环境启动服务过程，在查阅了相关资料之后总结： 在 node_modules/.bin/webpack-dev-server（这里有 2 个执行脚本一个针对 Linux 的 shell、一个是针对 Windows 的 bat 脚本）， 该脚本代码里有这句代码：<code>\webpack-dev-server\bin\webpack-dev-server.js&quot;</code>此意就是执行<code>webpack-dev-server/.bin/webpack-dev-server.js</code>，至于怎么串起来的这些，就是 <code>shebang #!/bin/sh #!/usr/bin/env node</code>。</p>
+<p>8、20200803 下午（不忙），看 vuepress 中文文档，使用 yarn 安装，提示如下：<br>
+<img src="https://file.798run.top/img/blog/20201231/node-tips.png" alt="node-tips"><br>
+无奈，想到切换 nvm use 10.15.0，使用 yarn 安装时候，提示 yarn 不是命令，这说明我的很多全局命令安装到 node v8.10.0 上了。</p>
+<p>9、dependencies 和  devDependencies <strong><em>相同的地方：</em></strong> 就是在你或者别人  clone  这个库进行开发调试的时候，可以通过  npm install  一键安装这两个目录下所有的依赖，而不用去一行行找你到底在文件中引用了那些依赖。<strong><em>不同的地方在于：</em></strong> 当某个项目依赖了你的   mylib，那么在安装的时候会链式地安装  mylib  这个项目中  dependencies  配置声明的依赖，因为根据约定，npm  认为这是项目运行时需要的依赖。而  devDependencies  则是开发时需要的依赖。  如果你输入  npm install --production  指令，就只会安装  dependencies  目录下的依赖，在一些服务端自动构建的过程中或者在一些特殊的需求下，可能会用到这个指令。以上总结缘由是，场景一：针对 node-ruanmou 项目中，在其 package.json 中仅有 <code>&quot;dependencies&quot;: &#123;&quot;express&quot;: &quot;^4.17.1&quot;&#125;</code> 于是 npm i，在 node_modules 下有许多的依赖包，我于是找到了 D:\Application\node\node-ruanmou\node_modules\express\package.json，发现其 dependencies 中仅有依赖数量 30 个，可是我的 D:\Application\node\node-ruanmou\node_modules 下面的依赖包除了 .bin 目录 express 还有 48 个包，这说明 express\package.json 下的 dependencies 中的依赖包，也依赖了其他包，在执行 npm i 时候一并下载了！场景二：我在 vue-cli-raw 中故意安装 ElementUI 依赖到 devDenpendencies，页面中仅使用了 el-button，构建之后，在 dist 目录下起服务，按钮效果完好展示。带着这种疑问找到了上面的解答！</p>
+<p>10、process 是 node 中的一个变量，在你执行脚本的时候如： npm run dev，时 node 就会产生一个 process，如果你的 npm run dev 对应的脚步没有声明 process.env.NODE_ENV，就会取默认的值，我在 vue-cli 2.0 看到在打包时候，再次声明了 process.env.NODE_ENV = ‘production’</p>
+<p>11、20210111 下午在处理 D:\Application\node\node-demo 项目（by webstorm），项目仅有一个 fs.readFile 功能，IDE 波浪线提示，于是在项目添加 nodejs 环境，后来发现：C:\Users\zhangboba\AppData\Roaming\JetBrains\WebStorm2020.1\javascript\nodejs\12.18.3\node-typings 目录是新生成的，个人理解这是 IDE 添加的 Node 环境超链！</p>
+<h3 id="指令、工具">指令、工具</h3>
+<p>1、<code>npm ls</code> 查看具体项目下，依赖包的关系<br>
+2、<code>npm ls -g --depth 0</code> 查看全局安装的依赖包的关系。<code>npm config ls [-g]</code> 查看 npm 的一些基本配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">npm config list</span><br><span class="line">; cli configs</span><br><span class="line">metrics-registry = &quot;https://registry.npm.taobao.org/&quot;</span><br><span class="line">scope = &quot;&quot;</span><br><span class="line">user-agent = &quot;npm/6.14.6 node/v12.18.3 win32 x64&quot;</span><br><span class="line"></span><br><span class="line">; userconfig C:\Users\ThinkPad\.npmrc</span><br><span class="line">disturl = &quot;https://npm.taobao.org/dist&quot;</span><br><span class="line">home = &quot;https://npm.taobao.org&quot;</span><br><span class="line">registry = &quot;https://registry.npm.taobao.org/&quot;</span><br><span class="line">sass-binary-site = &quot;http://npm.taobao.org/mirrors/node-sass&quot;</span><br><span class="line"></span><br><span class="line">; builtin config undefined</span><br><span class="line">prefix = &quot;C:\\Users\\ThinkPad\\AppData\\Roaming\\npm&quot;</span><br><span class="line"></span><br><span class="line">; node bin location = D:\Program Files\Nodejs\node.exe</span><br><span class="line">; cwd = C:\Users\ThinkPad\Desktop\457</span><br><span class="line">; HOME = C:\Users\ThinkPad</span><br><span class="line">; &quot;npm config ls -l&quot; to show all defaults.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>3、<code>npm root -g</code> 查看本机 node 全局安装的 node_modules 的位置<br>
+4、<code>yarn list</code> 查看具体项目下，依赖包的关系<br>
+5、<code>yarn global list</code> 看本机全局依赖包列表，<code>yarn config list</code> 查看本机中 yarn 的一些基本配置，显示如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">yarn config list</span><br><span class="line">yarn config v1.22.11</span><br><span class="line">info yarn config</span><br><span class="line">&#123;</span><br><span class="line">  &#x27;version-tag-prefix&#x27;: &#x27;v&#x27;,</span><br><span class="line">  &#x27;version-git-tag&#x27;: true,</span><br><span class="line">  &#x27;version-commit-hooks&#x27;: true,</span><br><span class="line">  &#x27;version-git-sign&#x27;: false,</span><br><span class="line">  &#x27;version-git-message&#x27;: &#x27;v%s&#x27;,</span><br><span class="line">  &#x27;init-version&#x27;: &#x27;1.0.0&#x27;,</span><br><span class="line">  &#x27;init-license&#x27;: &#x27;MIT&#x27;,</span><br><span class="line">  &#x27;save-prefix&#x27;: &#x27;^&#x27;,</span><br><span class="line">  &#x27;bin-links&#x27;: true,</span><br><span class="line">  &#x27;ignore-scripts&#x27;: false,</span><br><span class="line">  &#x27;ignore-optional&#x27;: false,</span><br><span class="line">  registry: &#x27;https://registry.npm.taobao.org/&#x27;,</span><br><span class="line">  &#x27;strict-ssl&#x27;: true,</span><br><span class="line">  &#x27;user-agent&#x27;: &#x27;yarn/1.22.11 npm/? node/v12.18.3 win32 x64&#x27;,</span><br><span class="line">  lastUpdateCheck: 1631502351834,</span><br><span class="line">  &#x27;network-timeout&#x27;: 6000000,</span><br><span class="line">  &#x27;sass-binary-site&#x27;: &#x27;http://npm.taobao.org/mirrors/node-sass&#x27;</span><br><span class="line">&#125;</span><br><span class="line">info npm config</span><br><span class="line">&#123;</span><br><span class="line">  registry: &#x27;https://registry.npm.taobao.org/&#x27;,</span><br><span class="line">  home: &#x27;https://npm.taobao.org&#x27;,</span><br><span class="line">  disturl: &#x27;https://npm.taobao.org/dist&#x27;,</span><br><span class="line">  &#x27;sass-binary-site&#x27;: &#x27;http://npm.taobao.org/mirrors/node-sass&#x27;</span><br><span class="line">&#125;</span><br><span class="line">Done in 0.10s.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>6、注：在具体项目中使用 <code>yarn</code> ，查看依赖包关系，则不能使用 <code>npm ls</code>，不能混用！但发现，yarn 项目，亦可用 npm ls<br>
+7、<code>browser-sync</code> 查看版本 browser-sync --version 有时候遇到不能自动 reload 页面，解决方法：h5 等元素要放在 body 标签下：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/480c707cd553">https://www.jianshu.com/p/480c707cd553</a><br>
+8、<code>nrm</code> 次依赖包安装指令：npm i nrm -g。nrm -v 查看其版本。nrm ls 查看当前 node 有多少镜像源！<code>nrm use taobao</code> || <code>nrm use npm</code> 遇到问题记录：执行了 nvm use 10.15.0 ，为了 开启 fms 项目服务。此场景下我执行 nrm 提示（‘nrm’ 不是内部或外部命令，也不是可运行的程序或批处理文件。）结论：安装的 nrm 只是针对当前 node 版本有效！我在 node v10.15.0 也全局安装了 npm install -g nrm。<a target="_blank" rel="noopener" href="https://www.cnblogs.com/YMaster/p/6810339.html">链接</a>。20210430 在自买的 ThinkPad 上全局安装了 nrm，在执行 nrm ls 后报错及后续解决问题，可参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/S_aitama/article/details/113706339">帖子</a><br>
+9、<code>node-dev</code> 开发 node 服务时、可不用重启 node 热刷新代码。<code>nodemon</code> 与之功能类似<br>
+10、<code>ts-node</code> <code>ts-node-dev</code> 与上面的 node-dev 类似，只是为 ts 开发的 node 服务而已<br>
+11、<code>nvm</code> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/gaozejie/p/10689742.html">链接</a></p>
+<p><img src="https://file.798run.top/img/blog/20201231/nvm-installing.png" alt="nvm-installing"></p>
+<p>补记：nvm 是 node 版本切换的一个工具，之前在秋果时候安装到工作电脑了，今天 2022.03.04 执行了 npm i nvm -g，在 cmd 下运行一直提示：<code>&quot;This is not the package you are looking for: please go to http://nvm.sh&quot;</code>。还有一个针对 node 版本切换的工具包名称是 n，我执行了 npm i n -g ，提示本机是 win32 不支持！<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/962773a0aa9e">参考 1</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/g_eorge/article/details/51379347">参考 2</a>。补记：针对 Windows 安装 nvm 使用 npm i nvm -g 指令，最后好像不好使，直接手动安装。<a target="_blank" rel="noopener" href="https://www.mintimate.cn/2021/07/26/nvmNode/">参考</a>这个就行了。上面帖子是在 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV12h411z7Kq">B 站</a>时候发现的。B 站上此<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1j44y1H7YF?spm_id_from=333.337.search-card.all.click">视频</a>也讲解了如何安装,背景音乐很好听！</p>
+<p>12、<code>nvm</code> 本机安装此依赖包，可以切换 node 版本，（场景：有一些老项目是 node8.*版本，有 bug 了需要排除，但是开发电脑上大多数项目都是高版本的 node10 以上），固需要此依赖包进行切换 node 版本调试</p>
+<p>13、<code>nvm</code> 安装就按照第 11 条的地址即可，cmd 命令下，执行 nrm 显示命令 options。补充：<code>nvm ls</code>： 展示本机 has installed node list；<code>nvm ls available</code>：展示的是官方已发布的 node 版本列表，node 官网上<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/package-manager/#windows">下载</a>的教程，感觉不是很友好！</p>
+<h3 id="yarn-npm-list-区别">yarn npm list 区别</h3>
+<p>1、如下图：<br>
+<img src="https://file.798run.top/img/blog/20201225/compare-yarn-npm-list.png" alt="compare-yarn-npm-list"><br>
+2、我个人理解 npm list、yarn list 首先读取项目内的 package-lock.json、yarn-lock.json 文件进而把依赖结构树展示出来。疑问：为啥我在 vue-cli-raw 项目（有农场登陆使用 yarn）中使用 npm ls 没有罗列出依赖树，但是我单独下载一下 vue-cli-raw，即使使用了 yarn，执行 npm ls 也可以罗列出依赖结构？</p>
+<h3 id="linux-上-node-杂集">linux 上 node 杂集</h3>
+<p>1、设置 npm 淘宝镜像源 npm config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org/</a><br>
+2、设置 npm 官网镜像源 npm config set registry <a target="_blank" rel="noopener" href="https://registry.npmjs.org/">https://registry.npmjs.org/</a><br>
+3、设置 yarn 淘宝镜像源 yarn config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org/</a><br>
+4、设置 yarn 淘宝镜像源 yarn config set registry <a target="_blank" rel="noopener" href="https://registry.npmjs.org/">https://registry.npmjs.org/</a><br>
+5、在 Linux 上查找 .npmrc 文件地址 find / -name .npmrc 查询到 2 个：/root/nodejs12.18.3/lib/node_modules/npm/.npmrc || /root/.npmrc<br>
+6、在 Linux 上查找 .yarnrc 文件地址 find / -name .yarnrc =&gt; /usr/local/share/.yarnrc</p>
+<h3 id="注意事项">注意事项</h3>
+<p>1、一般大家都是喜欢设置为淘宝镜像，进而修改了<code>~/.npmrc</code>、<code>~/.yarnrc</code> 但在 git clone 公司项目后，需查看一下 yarn.lock 中用的是什么镜像源，否则就会把整个 yarn.lock 文件修改，这样导致本地与公司的配置文件不一致！</p>
+<h3 id="相关文档">相关文档</h3>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/dpGN0ra3Tj2_TjlRouDISA">聊聊 CommonJS 与 ES6 Module 的使用与区别</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/foreverlin/p/10189069.html">favicon.ico 请求处理</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011781521/article/details/53526737">NodeJS 搭建博客系统(四)使用模版引擎(node+express+ejs 做的一个 demo)</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/40e0fc8ca371">Node.js 从白痴到入门(四)：Express 和 EJS</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/rubylouvre/p/3421805.html">nodejs express template (模版)的使用 (ejs + express) 司徒正美</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24145735/article/details/50351132">该贴原生手写 node 的请求可查看其写法</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/12/Nodejs%E6%9D%82%E9%9B%86/" data-id="cm9h6rkrs001vm8vp1udc89tu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-JS判断对象是否为空" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/08/31/JS%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA/" class="article-date">
@@ -119,7 +267,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/08/31/JS%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA/" data-id="cm8n41tpd000t0ovp2ein0ay2" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/08/31/JS%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E4%B8%BA%E7%A9%BA/" data-id="cm9h6rkqx0015m8vph6cb69i0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -337,7 +485,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/28/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" data-id="cm8n41tuf00560ovp96ru790a" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/28/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" data-id="cm9h6rkze0056m8vphibq83wz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li></ul>
@@ -390,7 +538,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/22/D_N_S%E8%AE%B0%E5%BD%95/" data-id="cm8n41tol000f0ovp5d5e3kc0" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/22/D_N_S%E8%AE%B0%E5%BD%95/" data-id="cm9h6rkpq000fm8vp359qaten" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -618,7 +766,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" data-id="cm8n41tvr005p0ovp0vu64r4p" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/20/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" data-id="cm9h6rkzt005km8vp46txd92g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -706,7 +854,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/15/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE/" data-id="cm8n41tvt005t0ovp4xlo2loe" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/15/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE/" data-id="cm9h6rl05005um8vp1d2w4rfs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -805,7 +953,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/15/%E5%BE%AA%E7%8E%AF%E4%B8%8E%E8%BF%AD%E4%BB%A3/" data-id="cm8n41tvo005n0ovph0up2gis" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/15/%E5%BE%AA%E7%8E%AF%E4%B8%8E%E8%BF%AD%E4%BB%A3/" data-id="cm9h6rl03005sm8vp620p886c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -876,7 +1024,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/13/ES6%E6%96%B0%E7%89%B9%E6%80%A7/" data-id="cm8n41ton000h0ovpa6tbgc2r" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/13/ES6%E6%96%B0%E7%89%B9%E6%80%A7/" data-id="cm9h6rkpu000hm8vpguu24dn6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -1011,156 +1159,10 @@ align-sel</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/" data-id="cm8n41tnr00030ovp236sbodh" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/" data-id="cm9h6rkp20003m8vpfyxj6fzd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-CSS中背景图片的总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/" class="article-date">
-  <time datetime="2020-07-10T15:27:23.000Z" itemprop="datePublished">2020-07-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/">CSS中背景图片的总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、background-在-css-中其实是一个复合属性。我们合理使用之能带来很好的效果。">一、background 在 css 中其实是一个复合属性。我们合理使用之能带来很好的效果。</h3>
-<ol>
-<li>
-<p>很多后台只会使用 img 不知道使用 bg （王柳）。</p>
-</li>
-<li>
-<p>background 的 size 属性，菜鸟上介绍：background-size: length|percentage|cover|contain;</p>
-</li>
-</ol>
-<ul>
-<li>
-<p>length： 设置背景图片高度和宽度。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为 auto(自动)。如：<code>background-size: 80px 60px</code></p>
-</li>
-<li>
-<p>percentage：将计算相对于背景定位区域的百分比。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为&quot;auto(自动)&quot;。如： <code>background-size: 100%</code></p>
-</li>
-<li>
-<p>cover：此时会保持图像的纵横比并将图像缩放成将完全覆盖背景定位区域的最小大小。如： <code>background-size: cover</code></p>
-</li>
-<li>
-<p>contain：此时会保持图像的纵横比并将图像缩放成将适合背景定位区域的最大大小。如：<code>background-size: contain</code></p>
-</li>
-</ul>
-<ol start="3">
-<li>谈谈自己理解</li>
-</ol>
-<ul>
-<li>
-<p>100% 100% 就是你的背景图会给你的容器大小一致，很容易出现背景图拉伸变形。在项目中一般针对矩形容器背景图也是做的和矩形一样大！</p>
-</li>
-<li>
-<p>方形容器背景图一般 UI 给的也是方形的！</p>
-</li>
-<li>
-<p>针对一个大的矩形容器，UI 给了一张背景图也是矩形的但是没有容器大，（再说，容器很可能是自己显示器大小，UI 也不可能兼顾这么多），我们可以不写 size 属性。发现 size 属性值是 inherit，大小就是 UI 背景图的大小！（我在写 DDYG crs 系统时候的欢迎页就是使用的该模式）</p>
-</li>
-<li>
-<p>一个原则：不想出现变形，那就最好让 UI 搞一下等比例的 bg 图！</p>
-</li>
-<li>
-<p>cover contain 菜鸟说的不是很易理解，可按照字面意思，cover 是覆盖（背景图把你的容器全部覆盖）， contain 是包含之意（容器会包含你的背景图，就是说你的背景图可能比你的容器小，容器有空白！）</p>
-</li>
-<li>
-<p>网上总结：两者均以保持图像宽高比的形式缩放来适合背景容器的大小。区别如下:</p>
-<ul>
-<li>
-<p>在 no-repeat 的情况下：</p>
-<ul>
-<li>cover:图片宽高比不变,铺满整个容器的宽高,图片多出来的部分会裁掉</li>
-<li>contain:图片宽高比不变 ,缩放至图片完全展示出来,所以会有留白区域</li>
-</ul>
-</li>
-<li>
-<p>在 repeat 情况下</p>
-<ul>
-<li>cover:图片宽高比不变,铺满整个容器的宽高,图片多出来的部分会裁掉</li>
-<li>contain:容器至少有一张完整的图,留白区域则平铺背景图,铺不下的再裁掉</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/" data-id="cm8n41to600070ovpdrisexy6" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="秋果开发服务器部署-秋果开发服务器部署node项目记录" class="article article-type-秋果开发服务器部署" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/07/%E7%A7%8B%E6%9E%9C%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2node%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2020-07-07T04:30:09.000Z" itemprop="datePublished">2020-07-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/07/%E7%A7%8B%E6%9E%9C%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2node%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/">秋果开发服务器部署 node 项目的记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>在秋果开发服务器，每次更新站点信息，就是直接 del dist 再次上传新的 dist 很是麻烦！于是就想在机器上安装 node ，直接在 git 上拉取代码，进而 npm run build。但是第一次失败了。错误截图如下：</p>
-</blockquote>
-<p><img src="https://file.798run.top/img/blog/20200707/1.png" alt="错误一"></p>
-<p><img src="https://file.798run.top/img/blog/20200707/2.png" alt="错误二"></p>
-<p><img src="https://file.798run.top/img/blog/20200707/3.png" alt="错误三"><br>
-<img src="https://file.798run.top/img/blog/20200707/4.png" alt="错误四"></p>
-<p><img src="https://file.798run.top/img/blog/20200707/5.png" alt="错误五"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/07/%E7%A7%8B%E6%9E%9C%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2node%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/" data-id="cm8n41tvy005y0ovp8sg14q2p" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
 
     </footer>
   </div>
@@ -1199,7 +1201,7 @@ align-sel</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -1212,6 +1214,14 @@ align-sel</p>
       <ul>
         
           <li>
+            <a href="/2025/04/14/prettier%E4%BB%8B%E7%BB%8D/">prettier介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/vite%E4%BB%8B%E7%BB%8D/">vite介绍</a>
+          </li>
+        
+          <li>
             <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
           </li>
         
@@ -1221,14 +1231,6 @@ align-sel</p>
         
           <li>
             <a href="/2025/03/12/React%E4%B8%ADStore%E8%AE%B0%E5%BD%95/">React中Store记录</a>
-          </li>
-        
-          <li>
-            <a href="/2025/03/07/React%E4%B8%ADHook%E8%AE%B0%E5%BD%95/">React中Hook记录</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/">React脚手架细节</a>
           </li>
         
       </ul>

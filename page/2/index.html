@@ -68,6 +68,103 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-js循环迭代" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/" class="article-date">
+  <time datetime="2025-02-12T05:00:05.000Z" itemprop="datePublished">2025-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/">js循环迭代</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="常见的循环"><strong>常见的循环</strong></h3>
+<p>一些官方文档(MDN)介绍的的常见的循环有：<code>for</code>、<code>while</code>，<code>do while</code> 等。<code>for</code> 循环是一个最常见的，其中 js 针对 for 循环衍生出了 for in、for of。for 循环的基本语法如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (begin; condition; step) &#123;</span><br><span class="line">  <span class="comment">// 循环体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>很多小伙伴，使用 for 习惯了，使用 while 的相少一些，其语法如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (condition) &#123;</span><br><span class="line">  <span class="comment">// 代码</span></span><br><span class="line">  <span class="comment">// 所谓循环体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只有满足了 condition 条件，while 循环体语句才会执行！举例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">while</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">  i--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那 do while 用法是啥？举例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> flag = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">  i++;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">  <span class="keyword">if</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    flag = <span class="literal">false</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    flag = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">while</span> (flag);</span><br></pre></td></tr></table></figure>
+<p>do while 有一个不好的现象是，无论 while 中的条件是 true 或 false 其 do 里面的循环体都会执行一次！！！这一点在使用时要格外注意！</p>
+<h3 id="常冒排序"><strong>常冒排序</strong></h3>
+<p>这个冒泡排序，在网上一搜很多代码片段，但是说的不是很清楚，我把自己理解的记录下来。为啥叫冒泡，来源于生活中，我们在烧水壶里面烧水时，眼睛看到随着不断的加热，水壶里的小水泡，从壶底不断网上冒，小水泡在壶底时体积还很小，可是水泡在往上冒的时候，越来越大，好像是有规律的逐渐变大了，这就是生活中的冒泡，我们说的冒泡排序，其实就是类比小水泡，我们把数组中的相邻的数字进行比较，即：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// array[0] 与 array[1] 比较</span></span><br><span class="line"><span class="comment">// array[1] 与 array[2] 比较</span></span><br><span class="line"><span class="comment">// array[2] 与 array[3] 比较</span></span><br><span class="line"><span class="comment">// 这些元素都是相邻的进行比较</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 例，下面的代码。我当时也不知道自己为啥这样写，下面的代码有 bug。</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bubbleSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> len = arr.<span class="property">length</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (j = i; j &lt; len; j++) &#123;</span><br><span class="line">      <span class="comment">// 既然是相邻的元素相比较，那就是 arr[j] 与 arr【j+1】之间的比较</span></span><br><span class="line">      <span class="comment">// 于是我写了如代码</span></span><br><span class="line">      <span class="keyword">if</span> (arr[j] &lt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">const</span> tmp = arr[j];</span><br><span class="line">        arr[j] = arr[j + <span class="number">1</span>];</span><br><span class="line">        arr[j + <span class="number">1</span>] = tmp;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 举例 ：arr = [3, 6, 9]</span></span><br><span class="line"><span class="comment">// arr =&gt; [6, 3, 9] 当 i=0 j=0 时</span></span><br><span class="line"><span class="comment">// arr =&gt; [6, 9, 3] 当 i=0 j=1 时</span></span><br><span class="line"><span class="comment">// arr =&gt; [6, 9, 3] ? 当 i=0 j=2 时，此处有一个数组越界的问题，j=2 那么 arr[j+1] 就是 arr[3] 哪有这个值！所以上面写的第二次循环应该有 bug，也就是 j 的范围要进一步缩小。还有一个问题就是最后数组变成了 [6, 9, 3]，也不符合我们的预期啊，我们的预期是数组变成9,6,3这样的降序的形式！那是不是第二层的for循环j的开始条件不对呢？，应该是j=0开始呢?</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 改造代码如下：</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bubbleSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> len = arr.<span class="property">length</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; len - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (arr[j] &lt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">const</span> tmp = arr[j];</span><br><span class="line">        arr[j] = arr[j + <span class="number">1</span>];</span><br><span class="line">        arr[j + <span class="number">1</span>] = tmp;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">bubbleSort</span>([<span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>])); <span class="comment">// [9, 6, 3] 排序结果正确</span></span><br></pre></td></tr></table></figure>
+<p>有了上面的例子，我们其实可对排序函数继续完善，加入一个参数，是升序还是降序需求！如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// asc升序 desc降序</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">bubbleSort</span>(<span class="params">arr, type = <span class="string">&#x27;asc&#x27;</span></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> len = arr.<span class="property">length</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; len - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">      <span class="comment">// 升序</span></span><br><span class="line">      <span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (type === <span class="string">&#x27;asc&#x27;</span>) &#123;</span><br><span class="line">          <span class="comment">// 直接解构,代码简洁，无需定义中间变量</span></span><br><span class="line">          [arr[j], arr[j + <span class="number">1</span>]] = [arr[j + <span class="number">1</span>], arr[j]];</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (type === <span class="string">&#x27;desc&#x27;</span>) &#123;</span><br><span class="line">          [arr[j], arr[j + <span class="number">1</span>]] = [arr[j + <span class="number">1</span>], arr[j]];</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// console.log(bubbleSort([6, 3, 9])); // 默认升序 3,6,9</span></span><br><span class="line"><span class="comment">// console.log(bubbleSort([6, 3, 9], &#x27;desc&#x27;)); // 降序 9,6,3</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/02/12/js%E5%BE%AA%E7%8E%AF%E8%BF%AD%E4%BB%A3/" data-id="cm9h6rkuc003fm8vp39ps1hs5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js一些代码块" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/" class="article-date">
+  <time datetime="2025-02-10T01:26:05.000Z" itemprop="datePublished">2025-02-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/">js一些代码块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="延迟多少毫秒执行"><strong>延迟多少毫秒执行</strong></h3>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">delay</span> = ms =&gt; <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> <span class="built_in">setTimeout</span>(resolve, ms));</span><br></pre></td></tr></table></figure>
+<h3 id="js-中-class-语法糖用法"><strong>js 中 class 语法糖用法</strong></h3>
+<p>示例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1 先定义一个类(一般类名大写)</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2 在类里面定义一个构造函数</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">value = <span class="number">0</span></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">value</span> = value;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">add</span>(<span class="params">num</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">value</span> += num;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">value</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3 把该类导出方便我们调用</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Calculator</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">value = <span class="number">0</span></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">value</span> = value;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">add</span>(<span class="params">num</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">value</span> += num;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">value</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/02/10/js%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81%E5%9D%97/" data-id="cm9h6rku10035m8vpc7bw5ac0" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-MD记录" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2024/12/07/MD%E8%AE%B0%E5%BD%95/" class="article-date">
@@ -96,7 +193,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/12/07/MD%E8%AE%B0%E5%BD%95/" data-id="cm8n41tpz001h0ovpdq4y9nyw" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2024/12/07/MD%E8%AE%B0%E5%BD%95/" data-id="cm9h6rkr1001am8vp7pgt48dx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -136,7 +233,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/" data-id="cm8n41tu7004z0ovpetjw9l7c" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/30/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BRegExp/" data-id="cm9h6rkxz0054m8vpc37h2jqq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -186,7 +283,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/" data-id="cm8n41tu3004s0ovp7jluco4d" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/01/20/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5%E4%B9%8BElementUI/" data-id="cm9h6rkxt004wm8vpejf7e5ho" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li></ul>
@@ -262,7 +359,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/" data-id="cm8n41tt4003z0ovp3sw5cso7" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/09/13/npm%E6%88%96yarn%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E5%B8%B8%E8%A7%81%E7%9A%84warn%E5%8F%8Aerror/" data-id="cm9h6rkuz0043m8vpdd5nhs6w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -302,7 +399,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/10/npm%E4%B8%8Eyarn%E5%AF%B9peerDependencies%E5%A4%84%E7%90%86%E7%9A%84%E5%B7%AE%E5%BC%82/" data-id="cm8n41tt2003y0ovpfabfffvc" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/09/10/npm%E4%B8%8Eyarn%E5%AF%B9peerDependencies%E5%A4%84%E7%90%86%E7%9A%84%E5%B7%AE%E5%BC%82/" data-id="cm9h6rkuu003vm8vp6m0aglpv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -385,7 +482,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/" data-id="cm8n41tqr001w0ovp4hb3ch8w" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/" data-id="cm9h6rkrq001tm8vphzoycl4x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -452,7 +549,7 @@ It could be a DNF plugin command, try: “dnf install ‘dnf-command(uninstall)�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/05/04/Jenkins%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cm8n41tpn00130ovpgjdh2wki" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/05/04/Jenkins%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cm9h6rkqy0017m8vp0zwshkgi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -528,98 +625,10 @@ ESLint + Prettier</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/31/vue-cli%E6%9D%82%E9%9B%86/" data-id="cm8n41ttt004e0ovp271y1e0w" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/31/vue-cli%E6%9D%82%E9%9B%86/" data-id="cm9h6rkwr004rm8vpgh7bevzu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JS精度问题" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" class="article-date">
-  <time datetime="2021-02-20T15:37:40.000Z" itemprop="datePublished">2021-02-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">JS精度问题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1、js-处理进度使用菜鸟上推荐的库，其自己的数学的处理精度的问题，全部都不准备。">1、js 处理进度使用菜鸟上推荐的库，其自己的数学的处理精度的问题，全部都不准备。</h3>
-<h3 id="2、针对一个浮点型数，保留几位小数（符合四舍五入）的方法（之前的写的代码，现在看来不是很准确）">2、针对一个浮点型数，保留几位小数（符合四舍五入）的方法（之前的写的代码，现在看来不是很准确）</h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fixto</span>(<span class="params">number, n = <span class="number">2</span></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = number.<span class="title function_">toString</span>();</span><br><span class="line">    <span class="keyword">const</span> arr = result.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> integer = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> decimal = arr[<span class="number">1</span>];</span><br><span class="line">    result = integer + <span class="string">&#x27;.&#x27;</span> + decimal.<span class="title function_">substr</span>(<span class="number">0</span>, n);</span><br><span class="line">    <span class="keyword">const</span> last = decimal.<span class="title function_">substr</span>(n, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 四舍五入，转换为整数再处理，避免浮点数精度的损失</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(last, <span class="number">10</span>) &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> x = <span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">10</span>, n);</span><br><span class="line">        result = ((<span class="built_in">parseFloat</span>(result) * x) + <span class="number">1</span>) / x;</span><br><span class="line">        result = result.<span class="title function_">toFixed</span>(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p>说明：保留几位小数点，参数 n 设置为几！</p>
-<h3 id="3、在调试泛能运营经理管理记录">3、在调试泛能运营经理管理记录</h3>
-<p>拉取区域 list 接口，其区域 id 是 number 型。数据如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;list&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;defaultManager&quot;: &quot;魏秀涛&quot;,</span><br><span class="line">      &quot;defaultManagerAccount&quot;: &quot;&quot;,</span><br><span class="line">      &quot;provinceCodeStr&quot;: &quot;120000、130000&quot;,</span><br><span class="line">      &quot;provinceNameStr&quot;: &quot;天津市、河北省&quot;,</span><br><span class="line">      &quot;regionId&quot;: 812352198852055040,</span><br><span class="line">      &quot;regionName&quot;: &quot;京津冀区&quot;,</span><br><span class="line">      &quot;totalEnt&quot;: 74,</span><br><span class="line">      &quot;totalManager&quot;: 1,</span><br><span class="line">      &quot;totalProject&quot;: 69</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;defaultManager&quot;: &quot;吴冰&quot;,</span><br><span class="line">      &quot;defaultManagerAccount&quot;: &quot;&quot;,</span><br><span class="line">      &quot;provinceCodeStr&quot;: &quot;820000&quot;,</span><br><span class="line">      &quot;provinceNameStr&quot;: &quot;澳门特别行政区&quot;,</span><br><span class="line">      &quot;regionId&quot;: 812692729802227712,</span><br><span class="line">      &quot;regionName&quot;: &quot;澳门区 &quot;,</span><br><span class="line">      &quot;totalEnt&quot;: 1,</span><br><span class="line">      &quot;totalManager&quot;: 2,</span><br><span class="line">      &quot;totalProject&quot;: 1</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在点击 table 操作项，编辑是路由传的 regionId=812352198852055040，可是浏览器会把后面 2 位给给字动转为 00，进而变为 regionId=812352198852055000。解决办法是：后端把 regionId 设置为 string 类型。</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://my.oschina.net/lcfblogs/blog/4425879">关于浏览器接口 Preview 中的数值和 postman 中获取到的不一致问题</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33270001/article/details/82887084">关于浏览器响应数据 long 型超长自动转换精度丢失的坑</a>、<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000009599204">如何在 JavaScript 中实现一个 Long 型——Long.js 源码学习与分析</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" data-id="cm8n41tpk00100ovp1jgs744l" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-修改hosts" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/02/14/%E4%BF%AE%E6%94%B9hosts/" class="article-date">
-  <time datetime="2021-02-14T06:49:33.000Z" itemprop="datePublished">2021-02-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/14/%E4%BF%AE%E6%94%B9hosts/">修改hosts</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1、 打开 Windows 左下角 “开始” ，找到 powershell，记得使用管理员模式打开！如下图：</p>
-<p><img src="https://file.798run.top/img/blog/20210214/powershell-modify-hosts.png" alt="powershell-modify-hosts"></p>
-<p>打开 powershell 之后，找到 hosts 所在目录：<code>C:\windows\system32\drivers\etc\</code>，可直接键入：<code>cd C:\windows\system32\drivers\etc\</code>，在该目录下键入：<code>notepad hosts</code>，则 hosts 会以记事本的形式打开，可进行编辑并保存。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/14/%E4%BF%AE%E6%94%B9hosts/" data-id="cm8n41tue00540ovp9dc80z86" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
 
     </footer>
   </div>
@@ -658,7 +667,7 @@ ESLint + Prettier</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -671,6 +680,14 @@ ESLint + Prettier</p>
       <ul>
         
           <li>
+            <a href="/2025/04/14/prettier%E4%BB%8B%E7%BB%8D/">prettier介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/vite%E4%BB%8B%E7%BB%8D/">vite介绍</a>
+          </li>
+        
+          <li>
             <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
           </li>
         
@@ -680,14 +697,6 @@ ESLint + Prettier</p>
         
           <li>
             <a href="/2025/03/12/React%E4%B8%ADStore%E8%AE%B0%E5%BD%95/">React中Store记录</a>
-          </li>
-        
-          <li>
-            <a href="/2025/03/07/React%E4%B8%ADHook%E8%AE%B0%E5%BD%95/">React中Hook记录</a>
-          </li>
-        
-          <li>
-            <a href="/2025/02/28/React%E8%84%9A%E6%89%8B%E6%9E%B6%E7%BB%86%E8%8A%82/">React脚手架细节</a>
           </li>
         
       </ul>
