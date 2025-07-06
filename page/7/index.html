@@ -68,6 +68,177 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-ES6新特性" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/13/ES6%E6%96%B0%E7%89%B9%E6%80%A7/" class="article-date">
+  <time datetime="2020-07-13T01:34:02.000Z" itemprop="datePublished">2020-07-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/13/ES6%E6%96%B0%E7%89%B9%E6%80%A7/">ES6新特性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、for-of-循环">1、for of 循环</h2>
+<p>我们最开始只有 for 循环，for 循环它只适用数组、类数组。如果我们想要循环一个对象，则 for 不能满足需求，我们可用 for in 代替之！for in 亦可循环数组！如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const digits = [1, 2, 3];</span><br><span class="line"></span><br><span class="line">for (const index in digits) &#123;</span><br><span class="line">  console.log(index, &#x27;--&#x27;, digits[index]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样一看，for in 挺好啊，对象与数组通吃！但，有一种场景 for in 就会出现问题。场景：开发过程中，你需要给数组中添加额外方法，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.decimalfy = function() &#123;</span><br><span class="line">  for (let i = 0; i &lt; this.length; i++) &#123;</span><br><span class="line">    this[i] = this[i].toFixed(2);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时循环上面的数组效果如下：</p>
+<p><img src="https://file.798run.top/img/blog/20200713/forin_proto.png" alt="for in 会循环出原型链上的属性"></p>
+<p>forin 直接把原型链上的方法也给循环了。为啥会出现此结果？因为 forin 循环访问所有可枚举的属性！既然 forin 在某些场景下出现我们不期望的结果！es6 就推出一个新的循环方法 for of！用于循环访问任何可迭代的数据类型，其编写方式和 for…in 循环的基本一样，只是将 in 替换为 of，可以忽略索引。于是我就写下了下面的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const digits = [11, 12, 13];</span><br><span class="line"></span><br><span class="line">for (const index of digits) &#123;</span><br><span class="line">  console.log(index, &#x27;--&#x27;, digits[index]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="https://file.798run.top/img/blog/20200713/for_of.png" alt="for of 循环效果"></p>
+<p>这一看好怪！ 怎么有 undefined，index 怎么分别是 11, 12, 13。于是我想是不是我写的语法不对？我就直接在 MDN 上查，人家举例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const array1 = [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;];</span><br><span class="line"></span><br><span class="line">for (const element of array1) &#123;</span><br><span class="line">  console.log(element);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// expected output: &quot;a&quot;</span><br><span class="line">// expected output: &quot;b&quot;</span><br><span class="line">// expected output: &quot;c&quot;</span><br></pre></td></tr></table></figure>
+<p>我发现自己理解错了，MDN 上 for of 的例子，压根就没有啥 index，人家直接使用的就是 element，恍然大悟明白，for of 就是直接给你把数组中的成员取出来了！所以我们也要按照 MDN 上写法使用该方法！</p>
+<p>此时脑袋中闪出一个想法，for of 既然这么强大，我能不能循环对象呢？于是直接写出下面代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var object = &#123;</span><br><span class="line">  name: &#x27;Tom&#x27;,</span><br><span class="line">  age: 19</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">for (const iterator of object) &#123;</span><br><span class="line">  console.log(iterator)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>遗憾的是出错了！错误：<code>Uncaught TypeError: object is not iterable</code> object 不是迭代类型。所以我们不能使用之循环 object！具体可细看 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/for...of">MDN for…of</a></p>
+<p>一直看 MDN 上看到可枚举的属性，这个详细定义在哪？闲了细究！</p>
+<h2 id="2、import、export">2、import、export</h2>
+<ul>
+<li>
+<p><strong>export</strong> 写 vue 时候，大家都习惯了 vue 的默认模板，在 script 里面我们直接 <code>export default &#123;&#125;</code>，还可以<code>export default function fn() &#123; return new Date().getTime() &#125;</code>。在项目中配置 api 时习惯这样写：<code>export const exchangeApi = '/api/Toutiao/conversion</code>，我们还可以导出常量如：<code>export const PI = 3.14</code>、<code>export let APP_NAME = &quot;qiuguo&quot;</code>。若我们在一个 js 文件中写最开始声明一个 let host = ‘’，最后对其二次赋值，host = ‘<a target="_blank" rel="noopener" href="https://www.baidu.com">https://www.baidu.com</a>’，我们可以这样导出 <code>export &#123; host &#125;</code>。</p>
+</li>
+<li>
+<p><strong>import</strong> 引入的逻辑简单，有一个场景，在一个文件中有 export default、有非 default 形式。我们可以这样简写：<code>import fn, &#123; name, PI, host &#125; from &quot;../components/demo.js&quot;;</code></p>
+</li>
+</ul>
+<h2 id="3、es6-解构">3、es6 解构</h2>
+<p>其实 es6 的解构，有一些是可以按照 es5 的理解，在面试中科院那家 AI 公司时，问我解构是怎么实现的，我回答的不好，其实归根就是遍历，数组是通过遍历通过索引取值，对象是通过 key 进行遍历之后取值。可参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_17175013/article/details/81490923/">帖子</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [a, ...b] = [<span class="number">1</span>, <span class="number">2</span>]; <span class="comment">// a = 1, b = [2]</span></span><br><span class="line"><span class="keyword">const</span> [a, ...b] = [<span class="number">1</span>]; <span class="comment">// a = 1, b = []</span></span><br><span class="line"><span class="keyword">const</span> [a, b] = [<span class="number">1</span>]; <span class="comment">// a = 1, b = undefined</span></span><br><span class="line"><span class="comment">// 数组的解构可理解为 es5 的 slice 切</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;zhuangzhuang&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">27</span>,</span><br><span class="line">  <span class="attr">gender</span>: <span class="literal">undefined</span>, <span class="comment">// 假设未知使用null</span></span><br><span class="line">  <span class="attr">isFat</span>: <span class="literal">false</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> &#123; name, age = <span class="number">18</span>, gender = <span class="string">&#x27;man&#x27;</span>, isFat = <span class="literal">true</span>, hobbies = <span class="string">&#x27;study&#x27;</span> &#125; = obj;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name, age, gender, isFat, hobbies); <span class="comment">// &quot;zhuangzhuang&quot;，27，null，false，&quot;study&quot;</span></span><br><span class="line"><span class="comment">// obj中gender为undefined，则取的是默认的 gender=man</span></span><br><span class="line"><span class="comment">// 若obj中gender为unull，则取的是obj中的 gender=null</span></span><br><span class="line"><span class="comment">// obj中无hobby属性，则取默认值！</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 特殊的</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line"></span><br><span class="line">(&#123; <span class="attr">foo</span>: obj.<span class="property">prop</span>, <span class="attr">bar</span>: arr[<span class="number">0</span>] &#125; = &#123; <span class="attr">foo</span>: <span class="number">123</span>, <span class="attr">bar</span>: <span class="literal">true</span> &#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj, arr); <span class="comment">// &#123;prop:123&#125;,[true]</span></span><br></pre></td></tr></table></figure>
+<p>字符串的相关解构如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [a, b, c, d, e] = <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; length &#125; = <span class="string">&#x27;hello&#x27;</span>; <span class="comment">// 字符串有一个length属性，我们可以对一个长串，直接解构其长度</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/13/ES6%E6%96%B0%E7%89%B9%E6%80%A7/" data-id="cmcrs9ehz000fqck40m187wqo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSS中背景图片的总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-07-10T15:27:23.000Z" itemprop="datePublished">2020-07-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/">CSS中背景图片的总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、background-在-css-中其实是一个复合属性。我们合理使用之能带来很好的效果。">一、background 在 css 中其实是一个复合属性。我们合理使用之能带来很好的效果。</h3>
+<ol>
+<li>
+<p>很多后台只会使用 img 不知道使用 bg （王柳）。</p>
+</li>
+<li>
+<p>background 的 size 属性，菜鸟上介绍：background-size: length|percentage|cover|contain;</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>length： 设置背景图片高度和宽度。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为 auto(自动)。如：<code>background-size: 80px 60px</code></p>
+</li>
+<li>
+<p>percentage：将计算相对于背景定位区域的百分比。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为&quot;auto(自动)&quot;。如： <code>background-size: 100%</code></p>
+</li>
+<li>
+<p>cover：此时会保持图像的纵横比并将图像缩放成将完全覆盖背景定位区域的最小大小。如： <code>background-size: cover</code></p>
+</li>
+<li>
+<p>contain：此时会保持图像的纵横比并将图像缩放成将适合背景定位区域的最大大小。如：<code>background-size: contain</code></p>
+</li>
+</ul>
+<ol start="3">
+<li>谈谈自己理解</li>
+</ol>
+<ul>
+<li>
+<p>100% 100% 就是你的背景图会给你的容器大小一致，很容易出现背景图拉伸变形。在项目中一般针对矩形容器背景图也是做的和矩形一样大！</p>
+</li>
+<li>
+<p>方形容器背景图一般 UI 给的也是方形的！</p>
+</li>
+<li>
+<p>针对一个大的矩形容器，UI 给了一张背景图也是矩形的但是没有容器大，（再说，容器很可能是自己显示器大小，UI 也不可能兼顾这么多），我们可以不写 size 属性。发现 size 属性值是 inherit，大小就是 UI 背景图的大小！（我在写 DDYG crs 系统时候的欢迎页就是使用的该模式）</p>
+</li>
+<li>
+<p>一个原则：不想出现变形，那就最好让 UI 搞一下等比例的 bg 图！</p>
+</li>
+<li>
+<p>cover contain 菜鸟说的不是很易理解，可按照字面意思，cover 是覆盖（背景图把你的容器全部覆盖）， contain 是包含之意（容器会包含你的背景图，就是说你的背景图可能比你的容器小，容器有空白！）</p>
+</li>
+<li>
+<p>网上总结：两者均以保持图像宽高比的形式缩放来适合背景容器的大小。区别如下:</p>
+<ul>
+<li>
+<p>在 no-repeat 的情况下：</p>
+<ul>
+<li>cover:图片宽高比不变,铺满整个容器的宽高,图片多出来的部分会裁掉</li>
+<li>contain:图片宽高比不变 ,缩放至图片完全展示出来,所以会有留白区域</li>
+</ul>
+</li>
+<li>
+<p>在 repeat 情况下</p>
+<ul>
+<li>cover:图片宽高比不变,铺满整个容器的宽高,图片多出来的部分会裁掉</li>
+<li>contain:容器至少有一张完整的图,留白区域则平铺背景图,铺不下的再裁掉</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/" data-id="cmcrs9eht0003qck46ema52mq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CSS中display总结" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/" class="article-date">
@@ -191,107 +362,7 @@ align-sel</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/" data-id="cmcro5lk60001qkk41k4nengl" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-CSS中背景图片的总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/" class="article-date">
-  <time datetime="2020-07-10T15:27:23.000Z" itemprop="datePublished">2020-07-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/">CSS中背景图片的总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、background-在-css-中其实是一个复合属性。我们合理使用之能带来很好的效果。">一、background 在 css 中其实是一个复合属性。我们合理使用之能带来很好的效果。</h3>
-<ol>
-<li>
-<p>很多后台只会使用 img 不知道使用 bg （王柳）。</p>
-</li>
-<li>
-<p>background 的 size 属性，菜鸟上介绍：background-size: length|percentage|cover|contain;</p>
-</li>
-</ol>
-<ul>
-<li>
-<p>length： 设置背景图片高度和宽度。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为 auto(自动)。如：<code>background-size: 80px 60px</code></p>
-</li>
-<li>
-<p>percentage：将计算相对于背景定位区域的百分比。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为&quot;auto(自动)&quot;。如： <code>background-size: 100%</code></p>
-</li>
-<li>
-<p>cover：此时会保持图像的纵横比并将图像缩放成将完全覆盖背景定位区域的最小大小。如： <code>background-size: cover</code></p>
-</li>
-<li>
-<p>contain：此时会保持图像的纵横比并将图像缩放成将适合背景定位区域的最大大小。如：<code>background-size: contain</code></p>
-</li>
-</ul>
-<ol start="3">
-<li>谈谈自己理解</li>
-</ol>
-<ul>
-<li>
-<p>100% 100% 就是你的背景图会给你的容器大小一致，很容易出现背景图拉伸变形。在项目中一般针对矩形容器背景图也是做的和矩形一样大！</p>
-</li>
-<li>
-<p>方形容器背景图一般 UI 给的也是方形的！</p>
-</li>
-<li>
-<p>针对一个大的矩形容器，UI 给了一张背景图也是矩形的但是没有容器大，（再说，容器很可能是自己显示器大小，UI 也不可能兼顾这么多），我们可以不写 size 属性。发现 size 属性值是 inherit，大小就是 UI 背景图的大小！（我在写 DDYG crs 系统时候的欢迎页就是使用的该模式）</p>
-</li>
-<li>
-<p>一个原则：不想出现变形，那就最好让 UI 搞一下等比例的 bg 图！</p>
-</li>
-<li>
-<p>cover contain 菜鸟说的不是很易理解，可按照字面意思，cover 是覆盖（背景图把你的容器全部覆盖）， contain 是包含之意（容器会包含你的背景图，就是说你的背景图可能比你的容器小，容器有空白！）</p>
-</li>
-<li>
-<p>网上总结：两者均以保持图像宽高比的形式缩放来适合背景容器的大小。区别如下:</p>
-<ul>
-<li>
-<p>在 no-repeat 的情况下：</p>
-<ul>
-<li>cover:图片宽高比不变,铺满整个容器的宽高,图片多出来的部分会裁掉</li>
-<li>contain:图片宽高比不变 ,缩放至图片完全展示出来,所以会有留白区域</li>
-</ul>
-</li>
-<li>
-<p>在 repeat 情况下</p>
-<ul>
-<li>cover:图片宽高比不变,铺满整个容器的宽高,图片多出来的部分会裁掉</li>
-<li>contain:容器至少有一张完整的图,留白区域则平铺背景图,铺不下的再裁掉</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/" data-id="cmcro5lke0008qkk48n7ug0kc" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/" data-id="cmcrs9ehy000cqck465al9mci" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
@@ -337,7 +408,7 @@ align-sel</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/07/07/%E7%A7%8B%E6%9E%9C%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2node%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/" data-id="cmcro5ln90062qkk4ex0igzzj" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/07/07/%E7%A7%8B%E6%9E%9C%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2node%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/" data-id="cmcrs9ejw0064qck45us35n9x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -452,7 +523,7 @@ JS 中使用同一个构造函数创建的对象，我们称为一类对象，�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/06/27/this-bind-call-apply-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-id="cmcro5lmk0047qkk49tvdc27p" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/06/27/this-bind-call-apply-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-id="cmcrs9ejc0041qck489nec87k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -537,7 +608,7 @@ JS 中使用同一个构造函数创建的对象，我们称为一类对象，�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/04/12/js%E4%B8%AD%E7%9A%84prototype%E6%80%BB%E7%BB%93/" data-id="cmcro5llh0034qkk4dkgzbcpm" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/04/12/js%E4%B8%AD%E7%9A%84prototype%E6%80%BB%E7%BB%93/" data-id="cmcrs9ej5003aqck4gj2ugei8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -594,7 +665,7 @@ display_errors = On display_startup_errors = On 是不行的！其根本原因�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/18/%E5%AE%9D%E5%A1%94%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/" data-id="cmcro5ln30059qkk40elc9jqm" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/03/18/%E5%AE%9D%E5%A1%94%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/" data-id="cmcrs9ejr0058qck41ivq8i96" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li></ul>
@@ -654,7 +725,7 @@ display_errors = On display_startup_errors = On 是不行的！其根本原因�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/16/Git%E5%9C%A8linux%E4%B8%8A%E7%9A%84%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" data-id="cmcro5lkx0011qkk4edkl34do" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/03/16/Git%E5%9C%A8linux%E4%B8%8A%E7%9A%84%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" data-id="cmcrs9eif000rqck41ushck1j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
@@ -706,7 +777,7 @@ display_errors = On display_startup_errors = On 是不行的！其根本原因�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/08/Nodejs%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cmcro5ll0001hqkk4gbaf3fn4" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/03/08/Nodejs%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cmcrs9eiq001qqck472u87hqh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -788,98 +859,10 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/03/03/laravel%E5%88%9B%E5%BB%BAtable%E5%AD%97%E6%AE%B5%E5%8F%82%E8%80%83%E8%A1%A8/" data-id="cmcro5lm7003oqkk4baejcsyp" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/03/03/laravel%E5%88%9B%E5%BB%BAtable%E5%AD%97%E6%AE%B5%E5%8F%82%E8%80%83%E8%A1%A8/" data-id="cmcrs9ejb003wqck4gpvz9fbq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Form的相关记录" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/18/Form%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2019-12-18T06:14:09.000Z" itemprop="datePublished">2019-12-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/18/Form%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/">Form的相关记录</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>在 web 早期，大家使用 form 提交数据居多，现对 form 相关知识进行一下总结。</p>
-</blockquote>
-<h2 id="提交方式-Get-Post">提交方式 Get Post</h2>
-<p>表单有两种提交方式，POST 和 GET。通常我们会使用 POST 方式，一是因为形式上的安全 ；二是可以上传文件。下面先看一段 html 代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/xxxx&quot;</span> <span class="attr">method</span>=<span class="string">&quot;&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;application/x-www-form-urlencoded&quot;</span>&gt;</span></span><br><span class="line">  username: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  password: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>针对一个 form 想到三大件 <code>action</code>、<code>method</code>、<code>enctype</code> 其中 action 是你的表单提交的地址，method 是表单的提交方式，大家一般就是使用 2 种 get、post。method 的属性值若是不写就会默认为 get。 enctype 是指你的表单编码类型，这个单词我是这样记忆 en(使能) + c(content 编码) + type ，针对 html 表单 enctype 的常见类型详见下表：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left"><strong>enctype</strong></th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">application/x-www-form-urlencoded</td>
-<td>默认编码方式， key1=value1&amp;key2=value2</td>
-</tr>
-<tr>
-<td style="text-align:left">multipart/form-data</td>
-<td>普通表单提交，以及表单文件上传</td>
-</tr>
-<tr>
-<td style="text-align:left">text/plain</td>
-<td>该方式不常用，数据获取方式 getInputStream</td>
-</tr>
-</tbody>
-</table>
-<p>其实 Content-Type 是 http/https 发送信息至服务器时的内容编码类型，Content-Type 用于表明发送数据流的类型，服务器根据编码类型使用特定的解析方式，获取数据流中的数据。上面表格仅仅是 html 表单支持的编码方式，实际上面还有存在各种文件类型的编码方式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">image/jpeg, image/png, image/gif, text/css, text/javascript,text/html,text/xml 等等</span><br></pre></td></tr></table></figure>
-<p>表单的 get 请求方式，在浏览器控制台可以看到 参数编码前后的数据：</p>
-<p><img src="https://file.798run.top/img/blog/20191219/get_type_url_encoded.jpg" alt="get_type_url_encoded"></p>
-<p><img src="https://file.798run.top/img/blog/20191219/get_type_url_decoded.jpg" alt="get_type_url_decoded"></p>
-<p>在其请求头里不会添加 <code>Content-Type</code> 字段。</p>
-<h2 id="POST-请求方式">POST 请求方式</h2>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/xxxx&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">  username: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  password: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li>
-<p>post 请求 即使你没有在表单里写 <code>enctype=&quot;application/x-www-form-urlencoded&quot;</code> ，也会在请求头里默认给你加上 application/x-www-form-urlencoded ，这是 post 默认类型。</p>
-</li>
-<li>
-<p>还有一种类型是 <code>enctype=&quot;application/form-data&quot;</code>这种类型是为了解决上面的类型在传送 非 ASC2 码效率低问题，此类型还可以传送文件！这种传输方式有 在 form data 中有边界提示：</p>
-<p><img src="https://file.798run.top/img/blog/20191219/post_type_multipart.jpg" alt="post_type_multipart"></p>
-</li>
-<li>
-<p>post 主要是这 2 种使用较多。</p>
-</li>
-</ol>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/12/18/Form%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/" data-id="cmcro5lkr000nqkk4cf6ohp32" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li></ul>
 
     </footer>
   </div>
@@ -918,7 +901,7 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -929,6 +912,10 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2025/07/06/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%A2%84%E8%A7%88%E5%9B%BE%E7%89%87%E5%8F%8A%E8%A7%86%E9%A2%91%E6%80%BB%E7%BB%93/">小程序之预览图片及视频总结</a>
+          </li>
         
           <li>
             <a href="/2025/05/05/CSS%E4%B9%8Bflex/">CSS之flex</a>
@@ -944,10 +931,6 @@ $table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
         
           <li>
             <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
-          </li>
-        
-          <li>
-            <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
           </li>
         
       </ul>

@@ -68,6 +68,73 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Jenkins安装记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/05/04/Jenkins%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2021-05-04T09:55:06.000Z" itemprop="datePublished">2021-05-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/04/Jenkins%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/">Jenkins安装记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="说明">说明</h3>
+<p>20210504 假期在家，试着在“亚亚阿里云”安装一下 Jenkins，首先是参考了这篇<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzUzNjk5MTE1OQ==&amp;mid=2247501427&amp;idx=1&amp;sn=1f74291ba4217f164add273a299a1ed2&amp;chksm=faef42abcd98cbbd29ddb102a7aea350afc28793abe8da9f373590b0d3f018c2bd1f9960fadb&amp;scene=132#wechat_redirect">文章</a>，因为 Jenkins 需要 Java 环境，按照上面的文章，首先执行：<code>yum install -y java</code>。随后步骤：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">cd</span>  /data</span><br><span class="line"></span><br><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/jenkins/redhat-stable/jenkins-2.277.2-1.1.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> yum install jenkins-2.277.2-1.1.noarch.rpm</span><br></pre></td></tr></table></figure>
+<p>看到上面脚本中有在根目录下创建了 data 目录，我没有采纳，于是我在 /root 目录下执行了上面的脚本。最后 Jenkins 还是不能使用，就是在浏览器上不能访问 Jenkins 服务。</p>
+<p>思考是不是因为我安装的 java 环境的问题，发现我网上很多都是安装 jdk 而不是直接执行 <code>yum uninstall -y java</code>，于是决定全部卸载</p>
+<h3 id="过程">过程</h3>
+<p>步骤一：卸载 Jenkins：执行了<code>yum -y remove jenkins</code>，网上还有一种卸载的方法 <code>rpm -qc jenkins</code>，我又执行了一次，提示：<code>error: package jenkins is not installed</code>。 随后把 Jenkins 的相关文件清理干净执行：<br>
+<code>find / -iname jenkins | xargs -n 1000 rm -rf</code></p>
+<p>步骤二：卸载 java，执行：<code>yum uninstall -y java</code>，提示：No such command: uninstall. Please use /usr/bin/yum --help<br>
+It could be a DNF plugin command, try: “dnf install ‘dnf-command(uninstall)’”，记录到这里我发现自己眼瞎，卸载 Jenkins 使用的指令是 remove，自己为啥卸载 java 使用自己独创的 uninstall，真是太马虎了。于是输入指令： <code>rpm -qa|grep java </code> //查看 jdk 的信息，得到如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tzdata-java-2021a-1.el8.noarch</span><br><span class="line">javapackages-filesystem-5.3.0-1.module_el8.0.0+11+5b8c10bd.noarch</span><br><span class="line">java-1.8.0-openjdk-1.8.0.292.b10-0.el8_3.x86_64</span><br><span class="line">java-1.8.0-openjdk-headless-1.8.0.292.b10-0.el8_3.x86_64</span><br></pre></td></tr></table></figure>
+<p>执行：<code>yum -y remove tzdata-java-2021a-1.el8.noarch</code>，只需卸载第一个就行了。</p>
+<p>参考<a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_155063c740102wmi9.html">新浪帖子</a>。</p>
+<p>后来我自己按照上面的新浪帖子，安装了 jdk，继续安装 Jenkins，在正确配置了阿里云的安全组之后，终于可以访问了！</p>
+<h3 id="成功之后记录">成功之后记录</h3>
+<ul>
+<li>
+<p>主要参考<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/UArV_CTQ27MuSXljHAxwXQ">学会使用 Jenkins 自动部署你的项目</a></p>
+</li>
+<li>
+<p>我的 Jenkins 的一些信息：</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/var/lib/jenkins/secrets/initialAdminPassword</span><br><span class="line">ec0471264ace471f8bd3654cfa331e63</span><br><span class="line">Jenkins 2.277.2</span><br></pre></td></tr></table></figure>
+<p>参考：<a target="_blank" rel="noopener" href="https://juejin.cn/book/6897616008173846543/section/6901971104106512392">从 0 到 1 实现一套 CI/CD 流程</a></p>
+<h3 id="一些记录">一些记录</h3>
+<p>在安装完之后，配置 Jenkins 的过程中，参考了创值回顾中 Jenkins 的配置，不解的是为哈必须使用 node 插件而不能使用机器上自身的 node 呢？</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const &#123; spawnSync &#125; = require(<span class="string">&#x27;child_process&#x27;</span>);</span><br><span class="line">console.log(<span class="string">&#x27;开始执行npm安装&#x27;</span>)</span><br><span class="line">const  installEcho = spawnSync(<span class="string">&#x27;npm&#x27;</span>, [<span class="string">&#x27;install&#x27;</span>, <span class="string">&#x27;--registry=https://registry.npm.taobao.org&#x27;</span>])</span><br><span class="line"></span><br><span class="line">console.log(installEcho)</span><br><span class="line"></span><br><span class="line">console.log(<span class="string">&#x27;开始执行打包&#x27;</span>)</span><br><span class="line">const buildEcho = spawnSync(<span class="string">&#x27;npm&#x27;</span>, [<span class="string">&#x27;run&#x27;</span>, <span class="string">&#x27;build&#x27;</span>])</span><br><span class="line">console.log(buildEcho)</span><br><span class="line"></span><br><span class="line">Cache location   Default (~/.npm or %APP_DATA%\npm-cache)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://file.798run.top/img/blog/20210531/Jenkins-node-build.jpg" alt="Jenkins-node-build"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/05/04/Jenkins%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cmcrs9eik001bqck43ulv54vn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-vue-cli杂集" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/03/31/vue-cli%E6%9D%82%E9%9B%86/" class="article-date">
@@ -132,7 +199,7 @@ ESLint + Prettier</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/03/31/vue-cli%E6%9D%82%E9%9B%86/" data-id="cmcro5lmq004mqkk48slsgs36" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/03/31/vue-cli%E6%9D%82%E9%9B%86/" data-id="cmcrs9eji004hqck44v5g502i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
@@ -179,7 +246,7 @@ ESLint + Prettier</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" data-id="cmcro5lky0013qkk47mri07tm" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" data-id="cmcrs9eil001dqck48hm6d4g4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -220,7 +287,7 @@ ESLint + Prettier</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/02/14/%E4%BF%AE%E6%94%B9hosts/" data-id="cmcro5ln10051qkk4g8psh908" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/02/14/%E4%BF%AE%E6%94%B9hosts/" data-id="cmcrs9ejm004wqck477f9gh9h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -308,7 +375,7 @@ ESLint + Prettier</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/30/Webpack%E8%AE%B0%E5%BD%95/" data-id="cmcro5llf002tqkk48ojj1313" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/30/Webpack%E8%AE%B0%E5%BD%95/" data-id="cmcrs9eiy002pqck4bjol25b4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
@@ -359,7 +426,7 @@ ESLint + Prettier</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/11/webstorm%E6%9D%82%E8%AE%B0/" data-id="cmcro5lmp004kqkk41qihakq1" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/11/webstorm%E6%9D%82%E8%AE%B0/" data-id="cmcrs9ejj004mqck46ttt6ofh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
@@ -408,7 +475,7 @@ ESLint + Prettier</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/08/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9D%82%E9%9B%86/" data-id="cmcro5ln7005vqkk40w5gaxct" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/08/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9D%82%E9%9B%86/" data-id="cmcrs9eju005pqck468a4c6tp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/" rel="tag">Server</a></li></ul>
@@ -479,7 +546,7 @@ ESLint + Prettier</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/08/JS%E4%B9%8Bdefer-async/" data-id="cmcro5lkx000zqkk47c8n5wk4" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/08/JS%E4%B9%8Bdefer-async/" data-id="cmcrs9eih000uqck4222u0p0z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
@@ -528,7 +595,7 @@ ESLint + Prettier</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/07/React%E8%B7%AF%E7%94%B1/" data-id="cmcro5ll80029qkk49jey8acu" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/07/React%E8%B7%AF%E7%94%B1/" data-id="cmcrs9eix002iqck4aj187ab5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
@@ -568,50 +635,10 @@ ESLint + Prettier</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/06/React%E4%B9%8Bcss/" data-id="cmcro5ll5001uqkk4arvh533a" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/01/06/React%E4%B9%8Bcss/" data-id="cmcrs9eiv0029qck437jt59r9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Github杂记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/01/04/Github%E6%9D%82%E8%AE%B0/" class="article-date">
-  <time datetime="2021-01-04T08:46:04.000Z" itemprop="datePublished">2021-01-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/04/Github%E6%9D%82%E8%AE%B0/">Github杂记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="杂项">杂项</h3>
-<p>在查看 github 上项目中某个文件代码时，在文件头部会出现对该文件的简介，例如：22 lines (22 sloc)  400 Bytes。22 lines 意思是 22 行；22 sloc 意思是 22 代码行，SLOC(single line of code)，代码行 LOC 的基本单位之一；400 Bytes 意思是 400 字节。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/01/04/Github%E6%9D%82%E8%AE%B0/" data-id="cmcro5lks000pqkk46yq2arkx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
 
     </footer>
   </div>
@@ -650,7 +677,7 @@ ESLint + Prettier</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -661,6 +688,10 @@ ESLint + Prettier</p>
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2025/07/06/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%A2%84%E8%A7%88%E5%9B%BE%E7%89%87%E5%8F%8A%E8%A7%86%E9%A2%91%E6%80%BB%E7%BB%93/">小程序之预览图片及视频总结</a>
+          </li>
         
           <li>
             <a href="/2025/05/05/CSS%E4%B9%8Bflex/">CSS之flex</a>
@@ -676,10 +707,6 @@ ESLint + Prettier</p>
         
           <li>
             <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
-          </li>
-        
-          <li>
-            <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
           </li>
         
       </ul>
