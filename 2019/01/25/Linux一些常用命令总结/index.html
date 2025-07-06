@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Linux一些常用命令总结 | 我的点滴记录</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近在提交 git 时候（我使用的是 git 的命令行），在执行 git pull 时候出现了，让编辑 merge 提交。一时间束手无策。决定好好看看这个命令，把常用的命令记录一下，主要参考的这篇帖子Linux 常用命令大全（非常全！！！） 这篇帖子总结的也很好linux 的一些命令  1、下面的一些常用指令我在 git bash 中测试，git bash 只是模拟了部分的 linux 指令。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux一些常用命令总结">
+<meta property="og:url" content="http://example.com/2019/01/25/Linux%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="我的点滴记录">
+<meta property="og:description" content="最近在提交 git 时候（我使用的是 git 的命令行），在执行 git pull 时候出现了，让编辑 merge 提交。一时间束手无策。决定好好看看这个命令，把常用的命令记录一下，主要参考的这篇帖子Linux 常用命令大全（非常全！！！） 这篇帖子总结的也很好linux 的一些命令  1、下面的一些常用指令我在 git bash 中测试，git bash 只是模拟了部分的 linux 指令。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://file.798run.top/img/blog/20190125/vim-edit-status.jpg">
+<meta property="og:image" content="https://file.798run.top/img/blog/20190125/vim-insert-status.jpg">
+<meta property="og:image" content="https://file.798run.top/img/blog/20190125/vim-esc-status.jpg">
+<meta property="og:image" content="https://file.798run.top/img/blog/20190125/ps_eg.png">
+<meta property="og:image" content="https://file.798run.top/img/blog/20210528/linux-execute-shell-err.jpg">
+<meta property="article:published_time" content="2019-01-25T02:23:45.000Z">
+<meta property="article:modified_time" content="2025-06-16T00:52:32.680Z">
+<meta property="article:author" content="Andy Zhang">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://file.798run.top/img/blog/20190125/vim-edit-status.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的点滴记录</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Linux一些常用命令总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/25/Linux%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2019-01-25T02:23:45.000Z" itemprop="datePublished">2019-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux一些常用命令总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在提交 git 时候（我使用的是 git 的命令行），在执行 git pull 时候出现了，让编辑 merge 提交。一时间束手无策。决定好好看看这个命令，把常用的命令记录一下，主要参考的这篇帖子<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yjd_hycf_space/p/7730690.html">Linux 常用命令大全（非常全！！！）</a><br>
+这篇帖子总结的也很好<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0ba3e4da38de">linux 的一些命令</a></p>
+<hr>
+<h4 id="1、下面的一些常用指令我在-git-bash-中测试，git-bash-只是模拟了部分的-linux-指令。">1、下面的一些常用指令我在 git bash 中测试，git bash 只是模拟了部分的 linux 指令。</h4>
+<ul>
+<li>clear：清除记录</li>
+<li>pwd：显示当前的目录</li>
+<li>cd ~：直接进入到用户的主目录</li>
+<li>cd -：返回上次所在目录</li>
+<li>ls：我理解的是把该目录下的所有文件列出来</li>
+<li>ll：我理解的是把该目录下的所有文件以列表的形式显示出来，显示的有文件创建时间，还有文件夹（drwxr-xr-x）与文件（-rw-r–r–）的区别，这个 ll 指令没有细查，可能是 ls -l 的简写，在文档上没有找到 ll 的指令，只是找到了指令 ls -l。ll 后面可以加某个目录，此时仅列举出来该目录下的文件，如 <code>ll .git</code> 会列举出来 .git 目录下文件详情！</li>
+<li>mkdir dir1：创建一个目录 dir1</li>
+<li>mkdir dir2 dir3：创建 2 个平级目录 dir2 dir3</li>
+<li>mkdir -p tmp/dir1/dir2：创建一个目录树</li>
+<li>mkdir -p tmp\dir1\dir2：这个指令在 <strong>Win</strong> 下效果，创建 -p 目录、创建 tmp\dir1\dir2 多级目录</li>
+</ul>
+<hr>
+<h4 id="2、在-windows-的-cmd-下面也有一些类命令">2、在 windows 的 cmd 下面也有一些类命令</h4>
+<ul>
+<li>cd：命令进去目录</li>
+<li>cls：清除记录</li>
+<li>ls：查看文件列表 / windows 有自己特有的查看文件列表指令 dir</li>
+</ul>
+<hr>
+<h4 id="3、删除和移动指令">3、删除和移动指令</h4>
+<ul>
+<li>rm -f xx.html ：删除一个文件</li>
+<li>rmdir dir1：删除 dir1 目录，并且这个目录只能是空目录，其中不能有文件，若有文件命令行会提示 Directory not empty，感觉这个命令不用记，没什么卵用啊，一般一个目录都有文件。</li>
+<li>rmdir dir1 dir2：删除 dir1 和 dir2 目录</li>
+<li>rm -rf dir1：删除 dir1 目录并且把该目录下的文件内容都删除了</li>
+<li>rm -rf dir1 dir2：同时删除两个目录及它们的内容</li>
+<li>rm -rf * 删除目录下所有文件，但是删除不了类似 <code>.gitignore</code> <code>.well-known</code> 文件及目录。我发现此问题是我想删除我项目（包含 <code>.</code> 的文件及目录）下的所有文件，发现不行！可使用下面的指令配合</li>
+<li>rm -rf . 可删除类似 <code>.gitignore</code> <code>.well-known</code> 文件及目录</li>
+<li>mv dir1 dir2 把 dir1 移动到 dir2 目录</li>
+<li>mv file1 file2 将源文件名改为目标文件名</li>
+<li>mv file1 dir1 将源文件移动到目标目录</li>
+<li>mv dir1 file1 出错</li>
+<li>在 19/12/30 在弄自己双十一买的阿里云，看到帖子说</li>
+</ul>
+<hr>
+<h4 id="4、复制">4、复制</h4>
+<ul>
+<li>cp file1 dir2：● 复制 file1 文件到 dir2 目录</li>
+<li>cp dir1/* dir2：● 复制 dir1 下面的所有文件到 dir2 目录，切记是 copy 的 dir1 下所有文件，不包含 dir1 下的目录</li>
+<li>cp dir1/* . ：● 复制 dir1 下面的所有文件到当前目录</li>
+<li>cp -a dir1 dir2：● 复制 dir1（包括 dir1 下边的所有目录和文件）到 dir2</li>
+<li>cp -a dir1/* dir2：● 复制 dir1 下边的所有目录和文件到 dir2</li>
+<li>cp -rf ${project_path}“/dist”/* ./standby-pre</li>
+<li>scp -r ./standby-pre <a href="mailto:root@39.107.59.44">root@39.107.59.44</a>:/root(针对整个目录，在我的 git bash、cmd 可顺利上传，可不加 -r)</li>
+<li>scp -r 456.html <a href="mailto:root@39.107.59.44">root@39.107.59.44</a>:/root (针对文件，在我的 git bash、cmd 可顺利上传，可不加 -r)</li>
+<li>scp -r ./dir/* <a href="mailto:root@39.107.59.44">root@39.107.59.44</a>:/root (针对目录下多个文件，在我的 git bash、cmd 可顺利上传，可不加 -r)</li>
+</ul>
+<hr>
+<h4 id="5、新建文件">5、新建文件</h4>
+<p>linux 的 touch 命令不常用，一般在使用 make 的时候可能会用到，用来修改文件时间戳，或者新建一个不存在的文件，但是在 git bash 中使用 touch aa.txt 会直接生成文件。</p>
+<ul>
+<li>touch file1 ：创建一个新文件</li>
+</ul>
+<p>Win 创建文件。</p>
+<ul>
+<li>type nul&gt;test.html ：创建一个 test.html 文件</li>
+</ul>
+<hr>
+<h4 id="6、修改、编辑文件">6、修改、编辑文件</h4>
+<ul>
+<li>首先进到目录下，直接键入 vim aa.txt 或者是 vim dir1/bb.txt 会出现如下截图：</li>
+</ul>
+<p><img src="https://file.798run.top/img/blog/20190125/vim-edit-status.jpg" alt="vim-edit-status"></p>
+<p>按下【i, I, o, O, a, A, r, R】等任何一个字母之后才会进入编辑模式，不过大家一般都是按下 i，其本意就是 insert（插入）之意。按下 i 之后显示插入状态：</p>
+<p><img src="https://file.798run.top/img/blog/20190125/vim-insert-status.jpg" alt="vim-insert-status"></p>
+<p>想怎么编辑就怎能编辑。我编辑的输入的一句话：“我在进行 vim 编辑”。编辑之后需要按下 ESC 才退出编辑状态，如下截图：</p>
+<p><img src="https://file.798run.top/img/blog/20190125/vim-esc-status.jpg" alt="vim-esc-status"></p>
+<p>这时候选择你想要退出的模式：</p>
+<ul>
+<li>:w 保存编辑的内容，执行了这个命令指令，还是在命令行模式。</li>
+<li>:w! 强制写入该文件，但跟你对该文件的权限有关</li>
+<li>:q 离开（quit），如果修改了文件，执行这个指令会提示：已经修改但尚未保存（可用！强制执行）</li>
+<li>:q! 不保存修改强制离开！！这个也是很常用</li>
+<li>:wq 保存后离开，这个指令感觉是:w :q 的简写</li>
+<li>:x 保存后离开</li>
+<li>20190725 总结，vim 在 xshell 连接到服务器（linux）才能使用。本地的文件 xshell 使用 vim 打开，没有该指令。Git Bash vim 可以使用，但是 xshell 的 ctrl + insert（复制） 不能使用，shift + insert（粘贴）可以使用。</li>
+</ul>
+<hr>
+<h4 id="7、压缩解压文件">7、压缩解压文件</h4>
+<ul>
+<li>打包网上说了很多种有 zip rar tar 等很多的指令但是在 git bush 上我只能使用 tar</li>
+<li>tar –cvf xx.tar file1 创建一个非压缩的 xx.tar 这句话我理解创建一个非压缩的文件，意为，直接压缩的文件，压缩比很小所以叫非压缩。</li>
+<li>tar –cvf xx.tar file file1 file2 dir1 创建一个包含了 ‘file1’, ‘file2’ 以及 'dir1’的档案文件</li>
+<li>tar -tf archive.tar 显示一个包中的内容</li>
+<li>tar -xvf archive.tar 释放一个包</li>
+<li>tar -xvf archive.tar -C /tmp 将压缩包释放到 /tmp 目录下</li>
+<li>其中压缩解压指令不好记忆可参考<a target="_blank" rel="noopener" href="http://www.360doc.com/content/11/0620/13/2104556_128204591.shtml">tar 参数详解</a></li>
+</ul>
+<hr>
+<h4 id="8、查看文件">8、查看文件</h4>
+<ul>
+<li>cat 某个文件，即在命令行显示文件内容</li>
+</ul>
+<h4 id="9、一些杂记（关于-linux-安装目录）">9、一些杂记（关于 linux 安装目录）</h4>
+<ul>
+<li>
+<p>问：Windows 下软件的默认安装位置一般是 c:\program files ，Linux 中是否也有一个类似的目录用来存放应用软件安装后形成的文件夹？ 答：在/usr/local 下；一般的 deb 包（包括新立得或者 apt-get 下载的）都装在/usr.自己下载的压缩包或者编译的包,有些可以选择安装目录,一般放在/usr/local/,也有在/opt 的。如果想知道具体位置,用命令。</p>
+</li>
+<li>
+<p>sudo 是普通用户想以 root 的身份运行命令</p>
+</li>
+<li>
+<p>yum: 是 redhat, centos 系统下的软件安装方式，基于 Linux，全称为 Yellow dog Updater, Modified，是一个在 Fedora 和 RedHat 以及 CentOS 中的 Shell 前端软件包管理器基于 RPM 包管理，能够从指定的服务器自动下载 RPM 包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软件包。</p>
+</li>
+<li>
+<p>rpm: 软件管理; redhat 的软件格式 rpm ：r=redhat p=package m=management 用于安装 卸载 .rpm 软件</p>
+</li>
+<li>
+<p>wget 类似于迅雷，是一种下载工具，通过 HTTP、HTTPS、FTP 三个最常见的 TCP/IP 协议下载，并可以使用 HTTP 代理名字是 World Wide Web”与“get”的结合。</p>
+</li>
+<li>
+<p>串联下：使用 wget 下载一个 rpm 包, 然后用 rpm -ivh xxx.rpm 安装这个软件，嫌麻烦的话，就可以直接用 yum install sqoop 来自动下载和安装依赖的 rpm 软件。</p>
+</li>
+<li>
+<p>ap-get 是 ubuntu 下的一个软件安装方式，它是基于 debain。</p>
+</li>
+<li>
+<p>dnf 是一个较新的安装命令，centos6 不支持 dnf，可以在 centos7 上安装 dnf，dnf 安装速度比 yum 要快的多，但是几乎所有的 yum 选项 dnf 都支持，并且 dnf 与 yum 共享数据库。（可理解为 node 中 npm 与 yarn 的状况）</p>
+</li>
+<li>
+<p>网友回答 1：yum 安装，其实就是自动下载 rpm 软件包，然后把 rpm 软件包解压缩，把包里面的文件复制到相应的目录下。必须要明白，linux 下的每个目录是有特殊含义的。/bin /etc /home /mnt /opt 等等，都是意味着这个目录下放置某种类型的文件。而你所安装的软件，是分散到这些目录里面去的。是“分散”的！你还是在 windows 系统里面下载一个 rpm 或 deb 的 linux 软件包，然后用解压软件打开看看。</p>
+</li>
+<li>
+<p>网友回答 2：如果是 rpm，deb 等软件包，你可以使用解压缩软件打开看看目录结构就明白了。linux 的软件安装是分散在各个目录里面的，比如/usr/bin /usr/share /usr/lib 等等，总之，你要先弄明白 linux 的这些目录是什么意思。当然，也可以集中在一个目录里面。一些闭源的软件就集中放在/opt 里面。</p>
+</li>
+<li>
+<p>这是老东在安装 lnmp 的指令：<br>
+wget <a target="_blank" rel="noopener" href="http://soft.vpser.net/lnmp/lnmp1.6.tar.gz">http://soft.vpser.net/lnmp/lnmp1.6.tar.gz</a> -cO lnmp1.6.tar.gz &amp;&amp; tar zxf lnmp1.6.tar.gz &amp;&amp; cd lnmp1.6 &amp;&amp; ./install.sh lnmp</p>
+</li>
+</ul>
+<h4 id="10、常用命令补充-1：-curl-命令">10、常用命令补充 1： curl 命令</h4>
+<ul>
+<li>在 shell 中可以使用该命令 curl <a target="_blank" rel="noopener" href="http://www.baidu.com">www.baidu.com</a> 模拟在浏览器中访问，返回服务器响应。</li>
+</ul>
+<h4 id="11、sz-rz-下载到本地-上传到远程服务器">11、sz rz 下载到本地 上传到远程服务器</h4>
+<ul>
+<li>sz rz 是 send Zmodem receive Zmodem 的缩写，可这样记忆：都以远程服务器为中心， 那么 rz 就是指服务器收到文件，也就是上传本地文件到远程服务器。反之，sz 指远程服务器发送文件到本地。</li>
+<li>最开始我使用 rz 提示好像是没有这个指令，查资料发现要安装一个软件 <code>yum -y install lrzsz</code> 于是安装之后就可以顺利的使用 <code>rz</code>、<code>sz</code>指令了。</li>
+</ul>
+<h4 id="12、ps-命令">12、ps 命令</h4>
+<ul>
+<li>
+<p>作用：表示 process show，查看进程</p>
+</li>
+<li>
+<p>语法：# ps -ef</p>
+</li>
+<li>
+<p>选项含义：-e：等价于-A，all，表示全部 -f：表示 full，显示全部的列</p>
+<p><img src="https://file.798run.top/img/blog/20190125/ps_eg.png" alt="ps_eg.png"><br>
+UID：该进程的启动用户名；<br>
+PID：process id，进程的 id 号<br>
+PPID：parent process id，父级进程 id 号<br>
+C：表示的 cpu 的使用情况<br>
+STIME：start time，启动时间<br>
+TTY：终端的设备编号，“？”表示该进程不是由终端发起的<br>
+TIME：持续运行的时间<br>
+CMD：command，显示进程的名称或者位置</p>
+</li>
+<li>
+<p>补充：结束进程的指令 # kill PID</p>
+</li>
+</ul>
+<h4 id="13、在-linux-中新建文件">13、在 linux 中新建文件</h4>
+<ul>
+<li>我在自己的 xshell 中新建一个 aa.txt 并且编辑文件添加一些数字文本：123478787。下载到 windows 本地，发现编码是 ANSI。但是我针对新建的文件添加文本中包含中文字符，该文件下载到本地之后，发现编码就是 UTF-8。猜想这是 linux 自动转换格式的原因!</li>
+</ul>
+<h4 id="14、配置相关（网上帖子）">14、配置相关（网上帖子）</h4>
+<ul>
+<li>系统配置文件基本都放在/etc 下</li>
+<li>个人配置文件放在用户目录下/usr</li>
+<li>这些默认配置，我使用的 lnmp 安装（个人理解：一部分软件是按照 lnmp 的默认配置安装，还有一些 linux 的默认安装）可以查看帖子 [<a target="_blank" rel="noopener" href="https://lnmp.org/faq/lnmp-vhost-add-howto.html">LNMP 添加、删除虚拟主机及伪静态使用教程</a>](<a target="_blank" rel="noopener" href="https://lnmp.org/faq/lnmp-vhost-add-howto.html">https://lnmp.org/faq/lnmp-vhost-add-howto.html</a>)</li>
+</ul>
+<h4 id="15、rpm-qa-查看-linux-安装的软件">15、rpm -qa 查看 linux 安装的软件</h4>
+<ul>
+<li>rpm -qa | grep wegt 单独查看是否安装 wegt。应为 rpm -qa 会打印所有安装软件，不容易查看，我们可以使用此命令过滤某软件，查看是否安装之！</li>
+</ul>
+<h4 id="16、linux-如何查看是否开启、重启某进程如：nginx-mysql">16、linux 如何查看是否开启、重启某进程如：nginx mysql</h4>
+<ul>
+<li>service mysql status</li>
+<li>service mysql restart</li>
+<li>===================</li>
+<li>启动 service nginx start</li>
+<li>停止 service nginx stop</li>
+<li>重启 service nginx restart</li>
+</ul>
+<h4 id="17、Windows-查看端口">17、Windows 查看端口</h4>
+<ul>
+<li>netstat -a -n 出现列表 分别指：协议 本地地址 外部地址 状态</li>
+<li>状态 listen：表示 FTP 服务启动后首先处于侦听（LISTENING）状态？？？</li>
+<li>状态 establish：ESTABLISHED 的意思是建立连接，表示两台机器正在通信</li>
+<li>CLOSE_WAIT 表示对方主动关闭连接或者网络异常导致连接中断，此时我方要调用 close()来使得连接正确关闭。</li>
+<li>TIME_WAIT 表示我方主动调用 close()断开连接，收到对方确认后状态变为 TIME_WAIT。</li>
+<li>如果 7626 端口显示为 LISTENING（正在监听等待连接）状态，电脑极有可能感染了病毒！！！</li>
+</ul>
+<h4 id="18、linux-下如何查看某软件是否已安装">18、linux 下如何查看某软件是否已安装</h4>
+<ul>
+<li>rpm 包安装的，可以用 rpm -qa 看到 <code> rpm -qa | grep php</code></li>
+<li>以 deb 包安装的 dpkg -l 能看到 <code> dpkg -l| grep php</code></li>
+<li>yum 方法安装的，可以用 yum list installed 查找 <code>yum list installed | grep php</code></li>
+<li>源码包安装，可以通过文件查找 <code>find / -name php</code></li>
+</ul>
+<h4 id="19、linux-下查看已安装的软件位置">19、linux 下查看已安装的软件位置</h4>
+<ul>
+<li>
+<p>whereis java，显示的信息更详细，如：我在自己服务器上安装 Jenkins 之前首先安装的 java 环境，我是直接按照此文档执行：yum install -y java。后来 Jenkins 不能正常使用，我于是卸载 Jenkins，在卸载 java，执行了 whereis java，得到：<code>java: /usr/bin/java /usr/lib/java /etc/java /usr/share/java /usr/share/man/man1/java.1.gz</code></p>
+</li>
+<li>
+<p>which java 得到 <code>/usr/bin/java</code></p>
+</li>
+<li>
+<p>where node 在 Windows 里可使用</p>
+</li>
+</ul>
+<h4 id="20、连接远程服务器">20、连接远程服务器</h4>
+<ul>
+<li>ssh -p 22 <a href="mailto:root@39.107.59.44">root@39.107.59.44</a><br>
+连接服务器，可使用 xshell，Windows 也可使用 git bash、powershell 连接，我看到此文章讲的很清楚！想到 Mac 上的默认终端也是可以方便连接！我随后又花了几分钟测试，Windows10 啥终端都可以远程连接服务器！！！注：仅仅能连接远程服务器，可查看一基本的目录及文件，但是上传文件不便！</li>
+</ul>
+<h4 id="21、linux-下执行-sh-脚本">21、linux 下执行 sh 脚本</h4>
+<ul>
+<li>
+<p>开发业问时候，发现有 <a target="_blank" rel="noopener" href="http://autopublish.sh">autopublish.sh</a> 脚本，偶然发现了<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/4uu5Y0Aglfvgco4mfUk93w">干货 | Shell 脚本进阶的经典用法</a>，于是就是自己弄了一个 <a target="_blank" rel="noopener" href="http://testshell.sh">testshell.sh</a>，放在我的服务器 /root 下。执行一直报错如下：<br>
+<img src="https://file.798run.top/img/blog/20210528/linux-execute-shell-err.jpg" alt="linux-execute-shell-err">，于是直接百度，发现<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhangzikui/article/details/91411111">解决 Linux sh 脚本无法执行的问题</a>，执行 dos2unix filename，随后可正确执行。</p>
+</li>
+<li>
+<p>在花了好几个小时后，针对业问中，自动发版脚本进行了一些改进。首先老脚本问题：每次发版没有删除上一次目录里面的文件，这样会导致很多垃圾冗余文件。现改进 <code>my_auto_publish.sh</code> 如下：</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># shell</span></span><br><span class="line"></span><br><span class="line"><span class="comment">################################</span></span><br><span class="line"><span class="comment">## 生产 sh autopublish.sh 0   ###</span></span><br><span class="line"><span class="comment">## 测试 sh autopublish.sh     ###</span></span><br><span class="line"><span class="comment">################################</span></span><br><span class="line"></span><br><span class="line">a=<span class="string">&quot;<span class="variable">$1</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务器参数</span></span><br><span class="line">dir1=<span class="string">&quot;/usr/local/webserver/nginx/html&quot;</span></span><br><span class="line"><span class="built_in">dir</span>=<span class="string">&quot;/root&quot;</span></span><br><span class="line">ip=<span class="string">&#x27;39.107.59.44&#x27;</span></span><br><span class="line">user=<span class="string">&#x27;root&#x27;</span></span><br><span class="line">project_path=$(<span class="built_in">cd</span> `<span class="built_in">dirname</span> <span class="variable">$0</span>`; <span class="built_in">pwd</span>)</span><br><span class="line">commit=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;project_path&#125;</span><span class="string">&quot;/dist&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 脚本开始</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$&#123;a&#125;</span>&quot;</span> = 0 ];<span class="keyword">then</span></span><br><span class="line"><span class="comment"># 此处执行打包指令</span></span><br><span class="line"><span class="comment"># npm run build:prod</span></span><br><span class="line"><span class="built_in">echo</span>  <span class="string">&quot;---------------------生产环境---------------------&quot;</span></span><br><span class="line">commit=<span class="string">&quot;生产环境自动化部署代码提交&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试环境</span></span><br><span class="line"><span class="comment"># 此处执行打包指令</span></span><br><span class="line"><span class="comment"># npm run build:stage</span></span><br><span class="line"><span class="built_in">echo</span>  <span class="string">&quot;---------------------测试环境---------------------&quot;</span></span><br><span class="line">commit=<span class="string">&quot;测试环境自动化部署代码提交&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 发布脚本开始</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$&#123;a&#125;</span>&quot;</span> = 0 ]; <span class="keyword">then</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> [ ! -d expert-app ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&#x27;不存在 expert-app 目录&#x27;</span></span><br><span class="line">    <span class="built_in">mkdir</span> expert-app</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">cd</span> <span class="string">&quot;<span class="variable">$&#123;project_path&#125;</span>&quot;</span>/expert-app</span><br><span class="line">  <span class="built_in">rm</span> -rf *</span><br><span class="line"></span><br><span class="line">  <span class="built_in">cp</span> -rf <span class="string">&quot;<span class="variable">$&#123;project_path&#125;</span>&quot;</span>/dist/* <span class="string">&quot;<span class="variable">$&#123;project_path&#125;</span>/expert-app&quot;</span></span><br><span class="line">  scp -r <span class="string">&quot;<span class="variable">$&#123;project_path&#125;</span>/expert-app&quot;</span> <span class="variable">$&#123;user&#125;</span>@<span class="variable">$&#123;ip&#125;</span>:<span class="variable">$&#123;dir&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> [ ! -d standby-pre ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&#x27;不存在 standby-pre 目录&#x27;</span></span><br><span class="line">    <span class="built_in">mkdir</span> standby-pre</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">cd</span> <span class="string">&quot;<span class="variable">$&#123;project_path&#125;</span>&quot;</span>/standby-pre</span><br><span class="line">  <span class="built_in">rm</span> -rf *</span><br><span class="line"></span><br><span class="line">  <span class="built_in">cp</span> -rf <span class="string">&quot;<span class="variable">$&#123;project_path&#125;</span>&quot;</span>/dist/* <span class="string">&quot;<span class="variable">$&#123;project_path&#125;</span>/standby-pre&quot;</span></span><br><span class="line">  <span class="comment"># 思路：直接把本地的测试环境对应的目录传到服务器上，但是没有删除远程服务器上该目录的历史文件，会导致文件越来越臃肿。</span></span><br><span class="line">  scp -r <span class="string">&quot;<span class="variable">$&#123;project_path&#125;</span>/standby-pre&quot;</span> <span class="variable">$&#123;user&#125;</span>@<span class="variable">$&#123;ip&#125;</span>:<span class="variable">$&#123;dir&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>补充说明：1、shell 语法判断目录是否存在，<a target="_blank" rel="noopener" href="https://www.cnblogs.com/37yan/p/6962563.html">帖子</a>指令： <code>if [ ! -d &quot;/data/&quot; ]; then mkdir /data</code>，不好用！上面的写法是我自己试出来的，后来发现<a target="_blank" rel="noopener" href="https://www.cnblogs.com/kingsonfu/p/11457047.html">此贴</a>讲述的可使用。2、针对这种 <code>&quot;$&#123;project_path&#125;&quot;/dist/*</code>，shell 语法虽然是解析了双引号里面的内容，但是针对有通配符 _ 的路基，不能写成：<code>&quot;$&#123;project_path&#125;/dist/_&quot;</code>，或 <code>&quot;$&#123;project_path&#125;/dist/\\*&quot;</code>。3、针对普通的路径：<code>&quot;$&#123;project_path&#125;&quot;/standby-pre</code>，可这样写：<code>&quot;$&#123;project_path&#125;/standby-pre&quot;</code>。4、scp -r 是把本地的测试环境对应的目录传到服务器上，但是没有删除远程服务器上该目录的历史文件，亦导致文件越来越臃肿。5、还是要全面拥抱 Jenkins 等自动发版工具。业问项目中 shell 发版脚本，是同事临时的一个解决方法。仅可救急使用。6、指令：<code>if [ $&#123;a&#125; = 0 ];</code> 会提示错误：<code>&quot;[: =: unary operator expected&quot;</code>，对变量使用双引号包裹后则提示消失！参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/goodlixueyong/article/details/6564591">帖子</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/01/25/Linux%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" data-id="cmcro5ll0001fqkk49t9t4y2c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/01/26/%E7%BE%8E%E5%9B%A22019%E6%98%A5%E8%8A%82%E5%B9%B2%E8%B4%A7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          美团2019春节干货
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/01/25/%E5%A4%A7%E5%89%8D%E7%AB%AF%E7%BE%A4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">大前端群</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/05/05/CSS%E4%B9%8Bflex/">CSS之flex</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/prettier%E4%BB%8B%E7%BB%8D/">prettier介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/vite%E4%BB%8B%E7%BB%8D/">vite介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Andy Zhang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

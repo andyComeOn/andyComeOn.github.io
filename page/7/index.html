@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>我的点滴记录</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="我的点滴记录">
+<meta property="og:url" content="http://example.com/page/7/index.html">
+<meta property="og:site_name" content="我的点滴记录">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Andy Zhang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的点滴记录</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-CSS中display总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-07-10T15:27:23.000Z" itemprop="datePublished">2020-07-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/">CSS中display总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<h3 id="CSS-中-display-有很多的属性值。记录一下">CSS 中 display 有很多的属性值。记录一下 !!!</h3>
+</blockquote>
+<h4 id="display-在-css-中包含很多属性。我们合理使用之能带来很好的效果。">display 在 css 中包含很多属性。我们合理使用之能带来很好的效果。</h4>
+<ul>
+<li>
+<ol>
+<li>display 的最常用的 none、block 就不在记录了。</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>display 在开发过程中，看到在写 gddyg crs 欢迎页时候使用 <code>display: flex</code> 时候，发现了 display: -webkit-box，很是疑问（缘由是项目中有 normalize.css 自动给加上 -webkit-box 了）于是查资料发下：</li>
+</ol>
+<ul>
+<li>
+<p>flex 是 2012 年的语法，也将是以后标准的语法，大部分浏览器已经实现了无前缀版本。</p>
+</li>
+<li>
+<p>box 是 2009 年的语法，已经过时，是需要加上对应前缀的。</p>
+</li>
+<li>
+<p>所以兼容性的代码，大致如下：</p>
+</li>
+</ul>
+<p>display: -webkit-box; /_ Chrome 4+, Safari 3.1, iOS Safari 3.2+ <em>/<br>
+display: -moz-box; /</em> Firefox 17- <em>/<br>
+display: -webkit-flex; /</em> Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 <em>/<br>
+display: -moz-flex; /</em> Firefox 18+ <em>/<br>
+display: -ms-flexbox; /</em> IE 10 <em>/<br>
+display: flex; /</em> Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ _/</p>
+<ul>
+<li>
+<p>都是当时各阶段草案命名。</p>
+</li>
+<li>
+<p>既然后出现的 flex 浏览器已经支持，个人感觉就没有必要在使用 box 了，再说 normalize.css 已经帮我们做了！</p>
+</li>
+<li>
+<p>参考博文 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/websmile/p/11607884.html">display：flex 和 display：box 有什么区别</a>！</p>
+</li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>flex 一些用法</li>
+</ol>
+<ul>
+<li>
+<p><strong>父元素的属性</strong></p>
+</li>
+<li>
+<p>妈的很容易忘记。不理会特殊复杂的情况。flex-direction 就是你的 item 排列方向。默认是水平排列，就别贱贱的写代码。若想主轴是垂直排列：写上 <code>flex-direction: column</code></p>
+</li>
+<li>
+<p>justify-content 属性：定义项目在主轴上的对齐方式。切记是主轴！<code>justify-content: flex-start | flex-end | center | left | right | space-between（两端对齐，项目之间间隔相等，C 端订房入住、离店、几晚可使用此属性值） | space-around（每个项目两侧的间隔相等，即使是first、last与父元素都有间隔） |</code> 这个还有很多，没写完但是不常用！</p>
+</li>
+<li>
+<p>align-items 属性：定义在交叉轴上的对齐方式，这个有一个单词是 items，可能认为是不止一个 item 所以加 items。<code>align-items: flex-start | flex-end | center | baseline | stretch;</code></p>
+</li>
+<li>
+<p>align-content 属性：定义多根轴线的对齐方式（如果项目只有一根轴线，该属性不起作用。所以容器必须设置 flex-wrap，flex-wrap 是写在父元素上的，一般也是不常用！<code>flex-wrap: nowrap | wrap | wrap-reverse;</code>）</p>
+</li>
+<li>
+<p>flex 中的子元素还有一个 order 写法，就是直接可以使用 order: 1。css 把子元素的位置按照你写的 order 顺序排列！个个感觉也没多大的用处，妈的不会把 子元素 顺序写好吗？非得要使用 order 吗？</p>
+</li>
+<li>
+<p><strong>子元素的属性</strong></p>
+</li>
+<li>
+<p>设置在项目上的属性也有 6 个。<br>
+order<br>
+flex-grow<br>
+flex-shrink<br>
+flex-basis<br>
+flex<br>
+align-sel</p>
+</li>
+<li>
+<p><strong>补记</strong>，在开发业问时遇到情况了，父元素写了 display: flex; 子元素默认 flex-shrink: 1，一般大家都是给子元素进行写了宽度，所以要给子元素添加 flex-shrink: 0；具体参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/cblx/p/12272729.html">帖子</a></p>
+</li>
+</ul>
+</li>
+<li>
+<ol start="4">
+<li>个人总结</li>
+</ol>
+<ul>
+<li>其实很多场景下我们就是简单的运用。例如我们在一个容易，想快速把里面一个图片垂直水平居中，直接就写了管它啥轴不轴的，直接：<code>justify-content: center; align-items: center;</code> 就完事了。</li>
+</ul>
+</li>
+<li>
+<ol start="5">
+<li>参考了解 [前端布局神器 display:flex] (<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qingchunshiguang/p/8011103.html">https://www.cnblogs.com/qingchunshiguang/p/8011103.html</a>)</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%ADdisplay%E6%80%BB%E7%BB%93/" data-id="cmcro5lk60001qkk41k4nengl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSS中背景图片的总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-07-10T15:27:23.000Z" itemprop="datePublished">2020-07-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/">CSS中背景图片的总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、background-在-css-中其实是一个复合属性。我们合理使用之能带来很好的效果。">一、background 在 css 中其实是一个复合属性。我们合理使用之能带来很好的效果。</h3>
+<ol>
+<li>
+<p>很多后台只会使用 img 不知道使用 bg （王柳）。</p>
+</li>
+<li>
+<p>background 的 size 属性，菜鸟上介绍：background-size: length|percentage|cover|contain;</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>length： 设置背景图片高度和宽度。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为 auto(自动)。如：<code>background-size: 80px 60px</code></p>
+</li>
+<li>
+<p>percentage：将计算相对于背景定位区域的百分比。第一个值设置宽度，第二个值设置的高度。如果只给出一个值，第二个是设置为&quot;auto(自动)&quot;。如： <code>background-size: 100%</code></p>
+</li>
+<li>
+<p>cover：此时会保持图像的纵横比并将图像缩放成将完全覆盖背景定位区域的最小大小。如： <code>background-size: cover</code></p>
+</li>
+<li>
+<p>contain：此时会保持图像的纵横比并将图像缩放成将适合背景定位区域的最大大小。如：<code>background-size: contain</code></p>
+</li>
+</ul>
+<ol start="3">
+<li>谈谈自己理解</li>
+</ol>
+<ul>
+<li>
+<p>100% 100% 就是你的背景图会给你的容器大小一致，很容易出现背景图拉伸变形。在项目中一般针对矩形容器背景图也是做的和矩形一样大！</p>
+</li>
+<li>
+<p>方形容器背景图一般 UI 给的也是方形的！</p>
+</li>
+<li>
+<p>针对一个大的矩形容器，UI 给了一张背景图也是矩形的但是没有容器大，（再说，容器很可能是自己显示器大小，UI 也不可能兼顾这么多），我们可以不写 size 属性。发现 size 属性值是 inherit，大小就是 UI 背景图的大小！（我在写 DDYG crs 系统时候的欢迎页就是使用的该模式）</p>
+</li>
+<li>
+<p>一个原则：不想出现变形，那就最好让 UI 搞一下等比例的 bg 图！</p>
+</li>
+<li>
+<p>cover contain 菜鸟说的不是很易理解，可按照字面意思，cover 是覆盖（背景图把你的容器全部覆盖）， contain 是包含之意（容器会包含你的背景图，就是说你的背景图可能比你的容器小，容器有空白！）</p>
+</li>
+<li>
+<p>网上总结：两者均以保持图像宽高比的形式缩放来适合背景容器的大小。区别如下:</p>
+<ul>
+<li>
+<p>在 no-repeat 的情况下：</p>
+<ul>
+<li>cover:图片宽高比不变,铺满整个容器的宽高,图片多出来的部分会裁掉</li>
+<li>contain:图片宽高比不变 ,缩放至图片完全展示出来,所以会有留白区域</li>
+</ul>
+</li>
+<li>
+<p>在 repeat 情况下</p>
+<ul>
+<li>cover:图片宽高比不变,铺满整个容器的宽高,图片多出来的部分会裁掉</li>
+<li>contain:容器至少有一张完整的图,留白区域则平铺背景图,铺不下的再裁掉</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/10/CSS%E4%B8%AD%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%80%BB%E7%BB%93/" data-id="cmcro5lke0008qkk48n7ug0kc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="秋果开发服务器部署-秋果开发服务器部署node项目记录" class="article article-type-秋果开发服务器部署" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/07/%E7%A7%8B%E6%9E%9C%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2node%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2020-07-07T04:30:09.000Z" itemprop="datePublished">2020-07-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/07/%E7%A7%8B%E6%9E%9C%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2node%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/">秋果开发服务器部署 node 项目的记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在秋果开发服务器，每次更新站点信息，就是直接 del dist 再次上传新的 dist 很是麻烦！于是就想在机器上安装 node ，直接在 git 上拉取代码，进而 npm run build。但是第一次失败了。错误截图如下：</p>
+</blockquote>
+<p><img src="https://file.798run.top/img/blog/20200707/1.png" alt="错误一"></p>
+<p><img src="https://file.798run.top/img/blog/20200707/2.png" alt="错误二"></p>
+<p><img src="https://file.798run.top/img/blog/20200707/3.png" alt="错误三"><br>
+<img src="https://file.798run.top/img/blog/20200707/4.png" alt="错误四"></p>
+<p><img src="https://file.798run.top/img/blog/20200707/5.png" alt="错误五"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/07/07/%E7%A7%8B%E6%9E%9C%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2node%E9%A1%B9%E7%9B%AE%E8%AE%B0%E5%BD%95/" data-id="cmcro5ln90062qkk4ex0igzzj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-this-bind-call-apply-构造函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/27/this-bind-call-apply-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2020-06-27T13:51:48.000Z" itemprop="datePublished">2020-06-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/27/this-bind-call-apply-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">this-bind-call-apply-构造函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言">前言</h3>
+<p>针对 this 指向问题，bind、call、apply 调用、构造函数等知识点，时间久了就会忘记！以下文档是一些总结，可以达到温故知识的目的！</p>
+<h3 id="1-事件调用环境">1. 事件调用环境</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&quot;box&quot;</span>&gt;&lt;/div&gt;;</span><br><span class="line"><span class="keyword">let</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.box&#x27;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">move</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">style</span>.<span class="property">left</span> = <span class="string">&#x27;100px&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line">el.<span class="property">onclick</span> = move;</span><br><span class="line"><span class="comment">// 这是最早的 this 应用！总结：谁触发事件，函数里面的 this 就指向谁！试想在多个 box 出现的场景，我们只需要把 move 赋给每个 box 的点击事件，这样我们就精简了很多代码，而不是给每个 box 的点击事件都写一个 move 函数！</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-全局环境">2. 全局环境</h3>
+<p>在浏览器环境下：直接打印 this，其 this 指向的是 window。如，我们直接在全局声明一个函数如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">fn</span>();</span><br><span class="line"><span class="comment">// 此时我们这样调取函数，非严格模式是这样的 window.fn()。</span></span><br><span class="line"><span class="comment">// 所以函里面的 this 依然是满足原则：“谁调用它，它指向谁”。</span></span><br><span class="line"><span class="comment">// 但是在代码最开始若是加上了 use strict 此时打印的 this 显示 undefined！这个小细节要注意！</span></span><br></pre></td></tr></table></figure>
+<p>在 node 环境下：直接打印 this，打印结果 {} 。具体测试步骤，新建一个 test.js 直接执行 <code>node test.js</code>。 若我们打印 console.log(this === module.exports) 其结果是 true。 这说明：node 环境下 this 指向的是 module.exports</p>
+<h3 id="3-函数内部">3. 函数内部</h3>
+<p>情况一：[this 最终指向的是调用他的对象]请看下面代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="attr">b</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.<span class="title function_">b</span>();</span><br><span class="line"><span class="comment">// 我们调用对象中 b 属性上的函数，此时打印出的 this 是：&#123;a: 10, b: f&#125;，这不就是 obj 吗？</span></span><br><span class="line"><span class="comment">// 所以正好验证了上面的那句话：“this 最终指向调用他的对象”</span></span><br></pre></td></tr></table></figure>
+<p>此时有人针对上面的代码并举例说，我这样调用 <code>window.obj.b()</code>，此刻 this 不是应该指向 window 吗？但是打印的结果依然是 {a: 10, b: f}。所以此时有了第二条总结如下：</p>
+<p>情况二：[函数被多层对象所包含，如果函数被做外层对象调用，this 指向的依然是它上一级的对象] “多层对象中函数的 this 指向”、“对象中的函数被赋值给另外一个变量”</p>
+<p>针对情况二，我们把代码层级在加深：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">10</span>,</span><br><span class="line">  <span class="attr">b</span>: &#123;</span><br><span class="line">    <span class="attr">fn</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">obj</span>.<span class="property">b</span>.<span class="title function_">fn</span>(); <span class="comment">// fn 被调用，他的上级就是 b，所以此时 this 打印结果：&#123;fn: f&#125;</span></span><br></pre></td></tr></table></figure>
+<p>有变量接收 fn 时，<code>var a = obj.b.fn</code> 此时我们调用 a()。此时大家看着有点懵，我们还是按照总结结论来分析（一切都要按照章程来）。a() 其实就是 window.a()。也就是说 window 调用 a 函数，则 this 指的就是 Window！在浏览器控制台一看，就是 Window！（补充：this 本身就有啥意义，只有 this 所在的环境被调用时候，this 才有意义！）</p>
+<h3 id="4-构造函数应用">4. 构造函数应用</h3>
+<p>构造函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">num</span> = <span class="number">10</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="title function_">fn</span>();</span><br></pre></td></tr></table></figure>
+<p>执行上面代码后，打印的 this 是：fn { num: 10 }，这是一个对象，对象的名字是 fn。上面使用了 new 关键字，下面总结一下 new 关键字作用：</p>
+<ul>
+<li>调用函数</li>
+<li>自动创建一个对象 {隐式创建我们看不到}</li>
+<li>把创建出来的对象与 this 进行绑定</li>
+<li>如果构造函数(这里指 fn，一般推荐函数名字大写如 Fn)没有返回值，隐式返回 this 对象</li>
+</ul>
+<p>面试题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">num</span> = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn.<span class="property">num</span> = <span class="number">20</span>;</span><br><span class="line">fn.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">num</span> = <span class="number">30</span>;</span><br><span class="line">fn.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">method</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> prototype = fn.<span class="property"><span class="keyword">prototype</span></span>;</span><br><span class="line"><span class="keyword">var</span> method = prototype.<span class="property">method</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title function_">fn</span>().<span class="title function_">method</span>(); <span class="comment">// fn &#123;num: 10&#125;</span></span><br><span class="line">prototype.<span class="title function_">method</span>(); <span class="comment">// protoptype &#123;num: 30, method: f, constructor: f&#125;</span></span><br><span class="line"><span class="title function_">method</span>(); <span class="comment">// Window</span></span><br></pre></td></tr></table></figure>
+<p>结论：构造函数中的 this 指向的是实例对象，如果构造函数中有 return value，value 若是基本类型，则返回的实例还是隐式的对象（null 也属于此情况）；若是引用类型，则返回的就是该对象。举例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">num</span> = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="title function_">fn</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="property">num</span>); <span class="comment">// 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 若是上面的 return [] || &#123;&#125; || function() &#123;&#125;，此时返回的就是对象，打印 obj.num 就是 undefined。</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-箭头函数">5. 箭头函数</h3>
+<p>es6 中定时器涉及到 this 的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">move</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">style</span>.<span class="property">left</span> = <span class="string">&#x27;100px&#x27;</span>;</span><br><span class="line">  &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#block&#x27;</span>);</span><br><span class="line"></span><br><span class="line">el.<span class="property">onclick</span> = move;</span><br></pre></td></tr></table></figure>
+<p>箭头函数：本身没有 this 和 arguments，在 箭头函数内部使用 this 实际上是根据词法作用域，代码写好之后，其函数里面的 this 指向就已固定，就是其上一层函数作用域的 this，此例子中 this 指向 move 函数作用域中的 this。</p>
+<p>es5 写法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">move</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> _this = <span class="variable language_">this</span>;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    _this.<span class="property">style</span>.<span class="property">left</span> = <span class="string">&#x27;100px&#x27;</span>;</span><br><span class="line">  &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#block&#x27;</span>);</span><br><span class="line"></span><br><span class="line">el.<span class="property">onclick</span> = move;</span><br></pre></td></tr></table></figure>
+<p>在之前 es5 中，调用定时器中的函数，此时该函数被 window 调用！所以定时器函数体内 this.style.left = ‘100px’ 该 this 指向的是 window（其并没有 style 属性，故而报错！）。若想要实现 this.style.left = ‘100px’ 的执行，需要我们修改 this 指向。则需要在 move 函数里面添加 let _this = this，进而调用 _this.style.left = ‘100px’</p>
+<p>对象中属性值是箭头函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">fn</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.<span class="title function_">fn</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 此时 this 指向的是 Window 解释：在该例子中，箭头函数作为 obj 的一个属性值</span></span><br><span class="line"><span class="comment">// 根据箭头函数 this 指向的是其上一层函数作用域中的 this ，但是 obj 是一个对象，并不是函数！</span></span><br><span class="line"><span class="comment">// 所以继续向上找，则 this 指向的就是 Window！注：对象是不能形成独立作用域的！</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-call-含义">6. call 含义</h3>
+<p>call 可以改变 this 的指向，看下面例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> box = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.box&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">fn</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.<span class="property">fn</span>.<span class="title function_">call</span>(box); <span class="comment">// this 指 box 对象</span></span><br></pre></td></tr></table></figure>
+<p>正常情况下，obj.fn() 执行时，this 指向的是 obj，我们使用 call 方法可改变 调用 fn 时的 this 指向！</p>
+<p>把 fn 改为箭头函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> box = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;.box&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">fn</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.<span class="property">fn</span>.<span class="title function_">call</span>(box); <span class="comment">// this 指向的是 Window</span></span><br></pre></td></tr></table></figure>
+<p>虽然在使用 call 方法，可是写的时候把 fn 声明成了箭头函数，此时 this 已经固定，再加上 obj 不是函数作用域，所以 this 指向的是 Window。结论：call 改变 this 的指向，特指普通的函数而非箭头函数！</p>
+<ul>
+<li>
+<p>call 与 apply 的作用是一样的，他们的区别是传参的方式不同，call 是可以一个一个的传参，而 apply 参数要求是一个数组 <code>apply(this, [a, b, c])</code></p>
+</li>
+<li>
+<p>bind 亦是可改变 this 的指向，只是它特殊在 bind 返回的是一个函数的 copy 如：<code>obj.fn.bind(box)</code> （仅是一个 copy 的函数），我们还需要对其调用 <code>obj.fn.bind(box)()</code></p>
+</li>
+</ul>
+<h3 id="构造函数">构造函数</h3>
+<p>下面的分类，参考了此<a target="_blank" rel="noopener" href="https://blog.csdn.net/snowball_li/article/details/121858501">链接</a></p>
+<p>2025.02 补充：对 js 而言，构造函数就是一个名词，他就是一个函数，只要你使用 new fn() 调用，此时我们就称 fn 为一个构造函数，一般推荐函数名大写，如 function Dog () {}、function Person () {}。js 中有很多的内置的构造函数，如：Object、Array、String、Boolean、Number、Date… 这都是！</p>
+<h4 id="理解构造函数">理解构造函数</h4>
+<blockquote>
+<p>构造函数是一个函数<br>
+JS 中的任何一个普通函数，当用 new 关键字来调用时，它就是构造函数。<br>
+构造函数与函数定义无关，与调用方法有关。<br>
+构造函数用 new 关键字来进行调用的函数称为构造函数，一般首字母大写（表示该函数以后希望被作为构造函数来使用）。<br>
+构造函数主要用来在创建对象时初始化对象， 即为对象成员变量赋初始值/为初始化的对象添加属性成员或方法成员。<br>
+JS 中面向对象编程是基于构造函数（constructor）和原型链（prototype）的。<br>
+JS 语言中使用构造函数（constructor）作为对象的模板，所谓构造函数，就是提供一个生成对象的模板，并描述对象的基本结构的函数。一个构造函数，可以生成多个对象，每个对象都有相同的结构。<br>
+JS 中使用同一个构造函数创建的对象，我们称为一类对象，也将一个构造函数称为一个类(理解为模板，表示某一类实物的共同特征)。我们将通过这个构造函数创建的对象，称为是该类的实例。<br>
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/snowball_li/article/details/121858501">https://blog.csdn.net/snowball_li/article/details/121858501</a></p>
+</blockquote>
+<h4 id="构造函数的意义">构造函数的意义</h4>
+<p>使用对象字面量创建一系列同一类型的对象时，这些对象可能具有一些相似的特征(属性)和行为(方法)，此时会产生很多重复的代码，把这些重复性的特征和属性抽象出来，做成构造函数，可以实现代码复用。</p>
+<h4 id="构造函数与普通函数的区别">构造函数与普通函数的区别</h4>
+<p>普通函数是小驼峰的名命方式，而构造函数是大驼峰的名命方式（行业规范）。我们知道普通函数的 this 指向是指向全局对象的，而构造函数内部的 this 指向当前对象的实例。使用的方式不同，普通函数直接调用，构造函数必须使用 new 来调用，通过 new.target 来判断调用的方式是不是构造函数。任何函数只要使用 new 操作符调用就是构造函数，而不使用 new 操作符调用的函数就是普通函数。请看下面例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="keyword">new</span>.<span class="property">target</span>) <span class="keyword">throw</span> <span class="string">&#x27;Foo() must be called with new&#x27;</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Foo instantiated with new&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Foo</span>(); <span class="comment">// Foo() must be called with new</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Foo</span>(); <span class="comment">// Foo instantiated with new</span></span><br></pre></td></tr></table></figure>
+<h3 id="参考">参考</h3>
+<p>没事了看下此文章 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/liu-di/p/10690335.html">JS 中的 bind 、call 、apply</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sa.<span class="property">App</span> = <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="title function_">mp_proxy</span>((e = e || &#123;&#125;), <span class="string">&#x27;onLaunch&#x27;</span>, <span class="string">&#x27;appLaunch&#x27;</span>),</span><br><span class="line">    <span class="title function_">mp_proxy</span>(e, <span class="string">&#x27;onShow&#x27;</span>, <span class="string">&#x27;appShow&#x27;</span>),</span><br><span class="line">    <span class="title function_">mp_proxy</span>(e, <span class="string">&#x27;onHide&#x27;</span>, <span class="string">&#x27;appHide&#x27;</span>),</span><br><span class="line">    <span class="title class_">App</span>.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">sa.<span class="property">Page</span> = <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="title function_">mp_proxy</span>(e, <span class="string">&#x27;onLoad&#x27;</span>, <span class="string">&#x27;pageLoad&#x27;</span>),</span><br><span class="line">    <span class="title function_">mp_proxy</span>(e, <span class="string">&#x27;onShow&#x27;</span>, <span class="string">&#x27;pageShow&#x27;</span>),</span><br><span class="line">    <span class="string">&#x27;function&#x27;</span> == <span class="keyword">typeof</span> e.<span class="property">onShareAppMessage</span> &amp;&amp; sa.<span class="property">autoTrackCustom</span>.<span class="title function_">pageShare</span>(e),</span><br><span class="line">    <span class="title class_">Page</span>.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/06/27/this-bind-call-apply-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" data-id="cmcro5lmk0047qkk49tvdc27p" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js中的prototype总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/12/js%E4%B8%AD%E7%9A%84prototype%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2020-04-12T05:56:28.000Z" itemprop="datePublished">2020-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/12/js%E4%B8%AD%E7%9A%84prototype%E6%80%BB%E7%BB%93/">js中的prototype总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言">前言</h3>
+<p>序： 在看 js 的几种继承方式相关文档时候，看到原型(prototype)继承，之前也看到有关的 prototype 的相关知识，看了就忘了，现自己总结一下。</p>
+<ol>
+<li>我们大家在平时写代码时候，一般都是：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>但是在看到一些封装的函数一般是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Foo</span>(<span class="params"></span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>后来自己的理解：封装的一些函数，一般是采用的大写命名，醒目、清晰、大家约定俗称（这里针对 js，jq 的传统 js 写法）。自己写的函数一般小写命名，固函数大小写命名区别不大。</p>
+<p>下面说一下 prototype，看代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Person</span>(<span class="params">name</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">foo</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&#x27;Byron&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>我们把 p1 称为 Person 的一个实例，new Person(‘Byron’)，可理解为构造函数。 针对 Person 函数，我们在函数体中写了<br>
+<code>this.name = name;</code>,<code>this.foo = function () &#123;&#125;;</code>, 这意思就是给 Person 声明了 2 个属性 <code>name</code>、<code>foo</code>（这是我们通过代码增加的属性）；只要 Person 函数已经声明了，它就有一个属性 prototype（是一个对象-包含 1 个默认的属性<code>constructor</code>）,这个 <code>constructor</code>又指向了 Person 函数本身！</p>
+<p>再来说 p1，p1 详见上面的代码，p1 它具有了 2 个挂载属性：<code>name: 'Byron'</code>， <code>foo: function()&#123;&#125; </code> 和一个默认的 <code>__proto__</code>，这个<code>__proto__</code> 指向的是 Person 的<code>prototype</code>。而 Person 的<code>prototype</code>又指向自己的<code>constructor</code>。 看起来有点绕，每次脑子就乱乱的，那么就看下面图：</p>
+<p><img src="https://file.798run.top/img/blog/20190412/i-prototype.png" alt="prototype解释图"></p>
+<p>下面就是防盗链的体现，图片无法预览！(补：这是我在 2025.02 在家看原型链笔记时，看到我的博客中此篇文章，该图片加载不出来，这种就是图片防盗链的体现，因为博客域名为 <a target="_blank" rel="noopener" href="http://andycomeon.github.io">andycomeon.github.io</a>，该文章涉及的 html 中，img 标签去加载图片静态资源，携带的请求头，有一对键值对：<code>Referer: https://andycomeon.github.io/</code>，所以博客园的文件服务直接抛出 403，图片防盗链一般都是使用此字段进行判断，还有对图片加上水印，防止盗取图片！ )<br>
+<img src="https://images2015.cnblogs.com/blog/960109/201607/960109-20160712231541998-1991573736.png" alt="prototype解释图"></p>
+<p>我想只要大家没事就看看上面的图，不断温习就有印象了。</p>
+<hr>
+<p>针对上面 p1 它其中一个属性 name，其属性值是传的实参’Byron’，他的 foo 属性是一个函数，这就是继承了父的属性。<br>
+若：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&#x27;Frank&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>p2 同样拥有了 name、foo 属性。我们可以对 p2 拥有的属性进行改动<code>p2.f00 = [];</code>, 请看下面的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p2.<span class="property">f00</span>); <span class="comment">// []</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p1.<span class="property">f00</span>); <span class="comment">// function()&#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>上面的代码打印结果显示， 虽然是 p1 和 p2 都是 Person 的实例，但是他们好像是把 Person 的属性深 copy 一份，彼此相互独立！</p>
+<p>针对 p1, p2 这种构造的 Person(),他们都有一个 <strong>proto</strong> 属性，好像这种情况，这 2 个变量才有 <strong>proto</strong> 属性。</p>
+<h3 id="对象的继承">对象的继承</h3>
+<p>上面谈到了针对函数，我们使用 <code>new Func ()</code> 的方式，把 new 出来的函数，赋值给 p1 之后它就有了 name、foo 属性。我们可以说 p1、p2 继承了函数的一些属性。其实就是 <code>Person.prototype.name = 'Frank'</code>，<code>Person.prototype.foo = function () &#123;&#125;</code>，有了这些东西，p1、p2 才可以继承。</p>
+<p>其实对象 <code>Object</code> 中的 <code>prototype</code> 属性下也有很多的方法，为啥能用这些方法，就是因为我们在通过对象字面量声明变量时继承了<code>Object.prototype</code> 中的一些方法。如我们判断一个变量到底是 <code>Array</code> 还是 <code>Object</code>，可以使用 <code>Object.prototype.toString.call(var)</code> 方法来判断，若变量是 <code>Array</code>，则打印为 <code>[object Array]</code>，若变量是 <code>Object</code>，则打印为 <code>[object Object]</code>。</p>
+<p>其实 <code>Object</code> 还有一些方法，就是大家平时所说的静态方法，常用的有 7 个如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Object</span>.<span class="title function_">assign</span>();</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">create</span>();</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>();</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">values</span>(); <span class="comment">// es8</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">entries</span>(); <span class="comment">// es8</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">defineProperty</span>();</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">defineProperties</span>();</span><br></pre></td></tr></table></figure>
+<p>还有一些不常用的下面列举一二：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [text](https://blog.csdn.net/Jet_Lover/article/details/130176103)</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">freeze</span>(obj);</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">is</span>(obj1, obj2); <span class="comment">// 判断两个值是否严格相等</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">hasOwnProperty</span>(prop); <span class="comment">// 这个好像给 Object.prototype.hasOwnPrototype() 有点类似</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">fromEntries</span>(iterable); <span class="comment">// es10</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">getOwnPropertyNames</span>(obj);</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">getOwnPropertySymbols</span>(obj);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">getOwnPropertyDescriptor</span>(obj, prop);</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">setPrototypeOf</span>(obj, prototype);</span><br><span class="line"></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">isExtensible</span>(obj);</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">preventExtensions</span>(obj);</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">isSealed</span>(obj);</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">seal</span>(obj);</span><br></pre></td></tr></table></figure>
+<p>补充一下，针对 <code>Object</code>，<code>Array</code>，<code>Date</code>，这些 js 内置的函数，打印之显示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">f <span class="title class_">Object</span>() &#123; native code &#125;;</span><br><span class="line">f <span class="title class_">Array</span>() &#123; native code &#125;;</span><br><span class="line">f <span class="title class_">Date</span>() &#123; native code &#125;;</span><br></pre></td></tr></table></figure>
+<p>不知 <code>Object</code> 是根对象，还是场景所致，其原型上(Object.prototype)挂载的方法是如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// console.log(Object.prototype)</span></span><br><span class="line"><span class="comment">// 像很常用的 Object.key() 这些方法，是在 constructor 里面，进行折叠了。</span></span><br><span class="line"><span class="attr">constructor</span>: ƒ <span class="title class_">Object</span>()</span><br><span class="line"><span class="attr">hasOwnProperty</span>: ƒ <span class="title function_">hasOwnProperty</span>()</span><br><span class="line"><span class="attr">isPrototypeOf</span>: ƒ <span class="title function_">isPrototypeOf</span>()</span><br><span class="line"><span class="attr">propertyIsEnumerable</span>: ƒ <span class="title function_">propertyIsEnumerable</span>()</span><br><span class="line"><span class="attr">toLocaleString</span>: ƒ <span class="title function_">toLocaleString</span>()</span><br><span class="line"><span class="attr">toString</span>: ƒ <span class="title function_">toString</span>()</span><br><span class="line"><span class="attr">valueOf</span>: ƒ <span class="title function_">valueOf</span>()</span><br><span class="line"><span class="attr">__defineGetter__</span>: ƒ <span class="title function_">__defineGetter__</span>()</span><br><span class="line"><span class="attr">__defineSetter__</span>: ƒ <span class="title function_">__defineSetter__</span>()</span><br><span class="line"><span class="attr">__lookupGetter__</span>: ƒ <span class="title function_">__lookupGetter__</span>()</span><br><span class="line"><span class="attr">__lookupSetter__</span>: ƒ <span class="title function_">__lookupSetter__</span>()</span><br><span class="line"><span class="attr">__proto__</span>: (<span class="literal">null</span>)</span><br><span class="line">get <span class="attr">__proto__</span>: ƒ <span class="title function_">__proto__</span>()</span><br><span class="line">set <span class="attr">__proto__</span>: ƒ <span class="title function_">__proto__</span>()</span><br></pre></td></tr></table></figure>
+<p><code>Array</code> 其原型上挂载的方法更多，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// console.log(Array.prototype)</span></span><br><span class="line"><span class="attr">constructor</span>: ƒ <span class="title class_">Array</span>()</span><br><span class="line"><span class="attr">at</span>: ƒ <span class="title function_">at</span>()</span><br><span class="line"><span class="attr">concat</span>: ƒ <span class="title function_">concat</span>()</span><br><span class="line"><span class="attr">find</span>: ƒ <span class="title function_">find</span>()</span><br><span class="line"><span class="attr">findIndex</span>: ƒ <span class="title function_">findIndex</span>()</span><br><span class="line"><span class="attr">join</span>: ƒ <span class="title function_">join</span>()</span><br><span class="line">... <span class="comment">// 很多</span></span><br><span class="line">... <span class="comment">// 很多</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>Date</code> 其原型上挂载的方法也很多，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// console.log(Date.prototype)</span></span><br><span class="line"><span class="comment">// Date该内置对象，打印效果也是有构造方法constructor，还有一些其他的常用的方法</span></span><br><span class="line"><span class="attr">constructor</span>: ƒ <span class="title class_">Date</span>()</span><br><span class="line"><span class="attr">getDate</span>: ƒ <span class="title function_">getDate</span>()</span><br><span class="line"><span class="attr">getDay</span>: ƒ <span class="title function_">getDay</span>()</span><br><span class="line"><span class="attr">getTime</span>: ƒ <span class="title function_">getTime</span>()</span><br><span class="line"><span class="attr">getFullYear</span>: ƒ <span class="title function_">getFullYear</span>()</span><br><span class="line"><span class="attr">toJSON</span>: ƒ <span class="title function_">toJSON</span>()</span><br><span class="line"><span class="attr">toLocaleDateString</span>: ƒ <span class="title function_">toLocaleDateString</span>()</span><br><span class="line">... <span class="comment">// 很多</span></span><br><span class="line">... <span class="comment">// 很多</span></span><br></pre></td></tr></table></figure>
+<p>上面列举了 <code>Object</code>、<code>Array</code>、<code>Date</code> 内制对象中一些原型链 (prototype) 上的方法，在原型链 (prototype) 上还有一个叫做 constructor 的方法，暂且叫 “构造器”，该 “构造器” 里面还有一些方法，如：<code>Object</code> 的 <code>prototype</code> 下的 <code>constructor</code> 中的 <code>assign</code>，<code>create</code>，<code>keys</code>，<code>defineProperty</code> 等。这些方法可理解为 <code>Object</code> 下的静态方法，使用如：<code>Object.assign()</code>，<code>Object.create()</code>，同理 <code>Date</code>，<code>Array</code>，<code>Number</code> 等内置对象也有类似特征。</p>
+<p>补充：上面的无论是我们定义了一个 <code>Person</code> 函数类，还是用字面量方式定义 <code>const obj = &#123; age: 18 &#125; </code>，这些都是我们定义对象的方法，我们在 <code>Object.prototype</code> 看到一些方法。如 <code>propertyIsEnumerable</code> 这些方法共性的用法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123; <span class="attr">age</span>: <span class="number">18</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// obj通过原型链继承了Object.prototype中的propertyIsEnumerable方法</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj.<span class="title function_">propertyIsEnumerable</span>(<span class="string">&#x27;age&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Object.prototype.propertyIsEnumerable通过js中的call改变this指向，指向obj，去或则该对象的是否有age属性</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">propertyIsEnumerable</span>.<span class="title function_">call</span>(obj, <span class="string">&#x27;age&#x27;</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>同理，Array 是这样，Date 亦是这样！</p>
+<h3 id="参考">参考</h3>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Jet_Lover/article/details/130176103">JS 中 Object 方法大全</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/04/12/js%E4%B8%AD%E7%9A%84prototype%E6%80%BB%E7%BB%93/" data-id="cmcro5llh0034qkk4dkgzbcpm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-宝塔配置记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/18/%E5%AE%9D%E5%A1%94%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2020-03-18T06:34:37.000Z" itemprop="datePublished">2020-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/18/%E5%AE%9D%E5%A1%94%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/">宝塔配置记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>记录一次宝塔使用过程</p>
+<ol>
+<li>
+<p>新建站点，la.798run.top。在 wwwroot 目录下默认新建了目录 la.798run.top，一定要记得默认二次配置站点，站点是 /wwwroot/la.798run.top/项目名，在下面二级目录写好 public ！</p>
+</li>
+<li>
+<p>我在修改了 站点配置目录时，一直提示 该网页无法正常运作， la.798run.top 无法处理此请求。网上说的修改 php.ini 中<br>
+display_errors = On display_startup_errors = On 是不行的！其根本原因是权限不够，在项目的同级目录，执行 sudo chmod -R 777 项目名 即可。</p>
+</li>
+<li>
+<p>在首次配置站点 la.798run.top 时，项目一直访问不了，帖子说修改 php.ini 的 open_basedir 配置，后来在配置第二个站点 lara.798run.top，发现 composer 不能使用，于是我想很多项目都是用我安装的 php7.3，修改这个 php.ini 的 open_basedir 是不是不合适，于是我注释该配置，composer 可用！</p>
+</li>
+</ol>
+<ul>
+<li>出现的报错截图：<br>
+<img src="https://file.798run.top/img/blog/20200318/composer_err.jpg" alt="composer不能使用"></li>
+<li>按照上面方案解决，composer 可用。截图如下：<br>
+<img src="https://file.798run.top/img/blog/20200318/composer_suc.jpg" alt="composer可用"></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/03/18/%E5%AE%9D%E5%A1%94%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/" data-id="cmcro5ln30059qkk40elc9jqm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Git在linux上的一次使用记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/16/Git%E5%9C%A8linux%E4%B8%8A%E7%9A%84%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2020-03-16T06:42:49.000Z" itemprop="datePublished">2020-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/16/Git%E5%9C%A8linux%E4%B8%8A%E7%9A%84%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/">Git在linux上的一次使用记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="记录一次-Git-在-linux-的操作过程">记录一次 Git 在 linux 的操作过程</h2>
+<h5 id="1、linux-主机是百度云活动免费试用-3-个月，是-CentOS-。">1、linux 主机是百度云活动免费试用 3 个月，是 CentOS 。</h5>
+<ul>
+<li>系统默认安装的有 git 客户端，键入 git --version 显示 1.8.3.1。我想试试如何在 linux 下试用 git 拉取代码。由于之前我弄过很多次，直接 copy 我电脑中的 .ssh\id_rsa | id_rsa.pub 就能用，于是我直接把我 ddyg 工作的 ThinkPad 中的 id_rsa | id_rsa.pub 移动到 linux ~/.ssh 目录中，我直接执行 git clone <a href="mailto:git@github.com">git@github.com</a>:andyComeOn/CXADView.git 提示如下：</li>
+</ul>
+<p><img src="https://file.798run.top/img/blog/20200316/know_hosts.jpg" alt="know_hosts"></p>
+<p>我想是不是 linux 不能直接 copy id_rsa.pub 文件，于是我想干脆自己生成一对新的 id_rsa 得了。于是在 linux 中依次执行如下：</p>
+<p><img src="https://file.798run.top/img/blog/20200316/get_ssh_key.jpg" alt="get_ssh_key"></p>
+<p>再次 clone 依旧是不成功，于是在网上开始找答案，让修改 /etc/ssh/ssh_config 文件</p>
+<p><img src="https://file.798run.top/img/blog/20200316/ssh_config.jpg" alt="ssh_config"></p>
+<p>让把啥 ask 改成 no，依旧是不行，后来还让在 ~/.ssh/ 创建 config 文件加上 LogLeval=什么我忘记了，尝试如下</p>
+<p><img src="https://file.798run.top/img/blog/20200316/can_not_remote.jpg" alt="can_not_remote"></p>
+<p>依旧不行，后来想到我在自己电脑上配置的多个 git 拉取代码，不就是在 config 配置的吗？于是我直接把自己的配置的代码修改之后放到我的~/.ssh/config 中，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">User andyComeOn</span><br><span class="line">IdentityFile ~/.ssh/id_rsa_baiduyun</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentitiesOnly yes</span><br></pre></td></tr></table></figure>
+<p>问题解决，网上说也不一定对，自己要摸索！</p>
+<p>补记：我自己想着能不能把我的 gitee 的公钥也配置一下，直接 copy 电脑的 id_rsa_gitee_117 文件，不行，linux 下不让这样搞，只能再次生产 ssh-keygen -t rsa -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>” ，配置好 config 就可以拉取 gitee 仓库的代码了。</p>
+<h5 id="2、记录一下阿里云服务器-git-拉取-gitee-项目过程">2、记录一下阿里云服务器 git 拉取 gitee 项目过程</h5>
+<ul>
+<li>在 20200317 这天想把自己本地学习 laravel 项目部署到宝塔上，已经知道 bt 可以自动创建站点，心想自己的项目使用 git 拉取更方便，于是就在自己的阿里云服务器上配置 ssh key，由于服务器默认自带 git ，我就直接执行：<code>git config --local user.name &quot;andyComeOn&quot;</code> 效果：<br>
+<img src="https://file.798run.top/img/blog/20200316/could_not_lock_config.jpg" alt=""><br>
+后来发现这是我马虎，键入的指令错了，正确的应该是：<code>git config --global user.name &quot;andyComeOn&quot;</code>，键入之后会在 ~/目录下生成一个 <code>.gitconfig</code> 文件，接着说上面的截图错误，如果你在某个目录执行 <code>git config --local user.name &quot;andyComeOn&quot; </code> 必须是该目录下有一个 <code>.git</code> 目录 。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/03/16/Git%E5%9C%A8linux%E4%B8%8A%E7%9A%84%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" data-id="cmcro5lkx0011qkk4edkl34do" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Nodejs一次安装记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/08/Nodejs%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2020-03-08T12:45:57.000Z" itemprop="datePublished">2020-03-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/08/Nodejs%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/">Nodejs一次安装记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于 github 上的博客太慢了，我决定在 gitee 上搭建一份博客！于疫情期间 2020-03-05 在家捯饬，想到我的 hexo 安装的比较早（大概是在 20190122，参考的文档就更早了），就打算找一个最近发布的文档参考！文档中让安装 npm install -g hexo-cli ，于是执行命令效果如下：</p>
+<p><img src="https://file.798run.top/img/blog/20200308/install-hexo-cli.png" alt="执行命令效果"></p>
+<p>我在执行 npm install -g hexo-cli 时候在想我之前应该已经执行了类似的全局操作，这次执行会不会覆盖之前的版本？升级 hexo 依赖包不行吗？npm 升级 hexo 包的指令又是啥？带着上面的疑问我 Windows10 系统找到本机 nodejs 安装目录：C:\Program Files\nodejs，截图如下：</p>
+<p><img src="https://file.798run.top/img/blog/20200308/nodejs-install-dir.png" alt="nodejs安装目录"></p>
+<p>看到之后发现怎么是一个快捷方式？该快捷方式地址详情如下：</p>
+<p><img src="https://file.798run.top/img/blog/20200308/nodejs-shortcut.png" alt="快捷方式详情"></p>
+<p>怎么是 user 下 Roaming 的 nvm？nvm 是为了切换当前 nodejs 运行版本安装的一个小工具，难道是 nvm 把 nodejs 安装地址更改了？又找到我本机缓存的目录如下：</p>
+<p><img src="https://file.798run.top/img/blog/20200308/roaming.png" alt=""></p>
+<p>hexo 之前参考的老文档是让安装 npm install hexo –g，新参考文档让安装 npm install hexo-cli –g，老文档中安装完成键入 hexo –v 显示：</p>
+<p><img src="https://file.798run.top/img/blog/20200308/hexo-v-old.png" alt=""></p>
+<p>我在安装了 hexo-cli –g 之后也执行 hexo –v 显示：</p>
+<p><img src="https://file.798run.top/img/blog/20200308/hexo-v-new.png" alt=""></p>
+<p>猜想是不是 hexo 的版本升级，之前安装的指令与现在安装的指令虽有点不太一样，安装完之后功能是一样的，可以在一个新电脑在尝试！</p>
+<h6 id="思考，是不是安装了-nvm-nodejs-的安装目录就是变成了快捷方式，属性值指向了-roaming-下的-nvm-了？">思考，是不是安装了 nvm nodejs 的安装目录就是变成了快捷方式，属性值指向了 roaming 下的 nvm 了？</h6>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/03/08/Nodejs%E4%B8%80%E6%AC%A1%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cmcro5ll0001hqkk4gbaf3fn4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-laravel创建table字段参考表" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/03/laravel%E5%88%9B%E5%BB%BAtable%E5%AD%97%E6%AE%B5%E5%8F%82%E8%80%83%E8%A1%A8/" class="article-date">
+  <time datetime="2020-03-03T04:44:06.000Z" itemprop="datePublished">2020-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/03/laravel%E5%88%9B%E5%BB%BAtable%E5%AD%97%E6%AE%B5%E5%8F%82%E8%80%83%E8%A1%A8/">laravel创建table字段参考表</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>$table-&gt;bigIncrements(‘id’);   自增ID，类型为bigint<br>
+$table-&gt;bigInteger(‘votes’);   等同于数据库中的BIGINT类型<br>
+$table-&gt;binary(‘data’);    等同于数据库中的BLOB类型<br>
+$table-&gt;boolean(‘confirmed’);  等同于数据库中的BOOLEAN类型<br>
+$table-&gt;char(‘name’, 4);   等同于数据库中的CHAR类型<br>
+$table-&gt;date(‘created_at’);    等同于数据库中的DATE类型<br>
+$table-&gt;dateTime(‘created_at’);    等同于数据库中的DATETIME类型<br>
+$table-&gt;dateTimeTz(‘created_at’);  等同于数据库中的DATETIME类型（带时区）<br>
+$table-&gt;decimal(‘amount’, 5, 2);   等同于数据库中的DECIMAL类型，带一个精度和范围<br>
+$table-&gt;double(‘column’, 15, 8);   等同于数据库中的DOUBLE类型，带精度, 总共15位数字，小数点后8位.<br>
+$table-&gt;enum(‘choices’, [‘foo’, ‘bar’]);   等同于数据库中的 ENUM类型<br>
+$table-&gt;float(‘amount’);   等同于数据库中的 FLOAT 类型<br>
+$table-&gt;increments(‘id’);  数据库主键自增ID<br>
+$table-&gt;integer(‘votes’);  等同于数据库中的 INTEGER 类型<br>
+$table-&gt;ipAddress(‘visitor’);  等同于数据库中的 IP 地址<br>
+$table-&gt;json(‘options’);   等同于数据库中的 JSON 类型<br>
+$table-&gt;jsonb(‘options’);  等同于数据库中的 JSONB 类型<br>
+$table-&gt;longText(‘description’);   等同于数据库中的 LONGTEXT 类型<br>
+$table-&gt;macAddress(‘device’);  等同于数据库中的 MAC 地址<br>
+$table-&gt;mediumIncrements(‘id’);    自增ID，类型为无符号的mediumint<br>
+$table-&gt;mediumInteger(‘numbers’);  等同于数据库中的 MEDIUMINT类型<br>
+$table-&gt;mediumText(‘description’); 等同于数据库中的 MEDIUMTEXT类型<br>
+$table-&gt;morphs(‘taggable’);    添加一个 INTEGER类型的 taggable_id 列和一个 STRING类型的 taggable_type列<br>
+$table-&gt;nullableTimestamps();  和 timestamps()一样但允许 NULL值.<br>
+$table-&gt;rememberToken();   添加一个 remember_token 列： VARCHAR(100) NULL.<br>
+$table-&gt;smallIncrements(‘id’); 自增ID，类型为无符号的smallint<br>
+$table-&gt;smallInteger(‘votes’); 等同于数据库中的 SMALLINT 类型<br>
+$table-&gt;softDeletes(); 新增一个 deleted_at 列 用于软删除.<br>
+$table-&gt;string(‘email’);   等同于数据库中的 VARCHAR 列  .<br>
+$table-&gt;string(‘name’, 100);   等同于数据库中的 VARCHAR，带一个长度<br>
+$table-&gt;text(‘description’);   等同于数据库中的 TEXT 类型<br>
+$table-&gt;time(‘sunrise’);   等同于数据库中的 TIME类型<br>
+$table-&gt;timeTz(‘sunrise’); 等同于数据库中的 TIME 类型（带时区）<br>
+$table-&gt;tinyInteger(‘numbers’);    等同于数据库中的 TINYINT 类型<br>
+$table-&gt;timestamp(‘added_on’); 等同于数据库中的 TIMESTAMP 类型<br>
+$table-&gt;timestampTz(‘added_on’);   等同于数据库中的 TIMESTAMP 类型（带时区）<br>
+$table-&gt;timestamps();  添加 created_at 和 updated_at列<br>
+$table-&gt;timestampsTz();    添加 created_at 和 updated_at列（带时区）<br>
+$table-&gt;unsignedBigInteger(‘votes’);   等同于数据库中无符号的 BIGINT 类型<br>
+$table-&gt;unsignedInteger(‘votes’);  等同于数据库中无符号的 INT 类型<br>
+$table-&gt;unsignedMediumInteger(‘votes’);    等同于数据库中无符号的 MEDIUMINT 类型<br>
+$table-&gt;unsignedSmallInteger(‘votes’); 等同于数据库中无符号的 SMALLINT 类型<br>
+$table-&gt;unsignedTinyInteger(‘votes’);  等同于数据库中无符号的 TINYINT 类型<br>
+$table-&gt;uuid(‘id’);     等同于数据库的UUID</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/03/03/laravel%E5%88%9B%E5%BB%BAtable%E5%AD%97%E6%AE%B5%E5%8F%82%E8%80%83%E8%A1%A8/" data-id="cmcro5lm7003oqkk4baejcsyp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Form的相关记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/18/Form%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2019-12-18T06:14:09.000Z" itemprop="datePublished">2019-12-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/18/Form%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/">Form的相关记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在 web 早期，大家使用 form 提交数据居多，现对 form 相关知识进行一下总结。</p>
+</blockquote>
+<h2 id="提交方式-Get-Post">提交方式 Get Post</h2>
+<p>表单有两种提交方式，POST 和 GET。通常我们会使用 POST 方式，一是因为形式上的安全 ；二是可以上传文件。下面先看一段 html 代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/xxxx&quot;</span> <span class="attr">method</span>=<span class="string">&quot;&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;application/x-www-form-urlencoded&quot;</span>&gt;</span></span><br><span class="line">  username: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  password: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>针对一个 form 想到三大件 <code>action</code>、<code>method</code>、<code>enctype</code> 其中 action 是你的表单提交的地址，method 是表单的提交方式，大家一般就是使用 2 种 get、post。method 的属性值若是不写就会默认为 get。 enctype 是指你的表单编码类型，这个单词我是这样记忆 en(使能) + c(content 编码) + type ，针对 html 表单 enctype 的常见类型详见下表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>enctype</strong></th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">application/x-www-form-urlencoded</td>
+<td>默认编码方式， key1=value1&amp;key2=value2</td>
+</tr>
+<tr>
+<td style="text-align:left">multipart/form-data</td>
+<td>普通表单提交，以及表单文件上传</td>
+</tr>
+<tr>
+<td style="text-align:left">text/plain</td>
+<td>该方式不常用，数据获取方式 getInputStream</td>
+</tr>
+</tbody>
+</table>
+<p>其实 Content-Type 是 http/https 发送信息至服务器时的内容编码类型，Content-Type 用于表明发送数据流的类型，服务器根据编码类型使用特定的解析方式，获取数据流中的数据。上面表格仅仅是 html 表单支持的编码方式，实际上面还有存在各种文件类型的编码方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">image/jpeg, image/png, image/gif, text/css, text/javascript,text/html,text/xml 等等</span><br></pre></td></tr></table></figure>
+<p>表单的 get 请求方式，在浏览器控制台可以看到 参数编码前后的数据：</p>
+<p><img src="https://file.798run.top/img/blog/20191219/get_type_url_encoded.jpg" alt="get_type_url_encoded"></p>
+<p><img src="https://file.798run.top/img/blog/20191219/get_type_url_decoded.jpg" alt="get_type_url_decoded"></p>
+<p>在其请求头里不会添加 <code>Content-Type</code> 字段。</p>
+<h2 id="POST-请求方式">POST 请求方式</h2>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/xxxx&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">  username: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  password: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;提交&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>
+<p>post 请求 即使你没有在表单里写 <code>enctype=&quot;application/x-www-form-urlencoded&quot;</code> ，也会在请求头里默认给你加上 application/x-www-form-urlencoded ，这是 post 默认类型。</p>
+</li>
+<li>
+<p>还有一种类型是 <code>enctype=&quot;application/form-data&quot;</code>这种类型是为了解决上面的类型在传送 非 ASC2 码效率低问题，此类型还可以传送文件！这种传输方式有 在 form data 中有边界提示：</p>
+<p><img src="https://file.798run.top/img/blog/20191219/post_type_multipart.jpg" alt="post_type_multipart"></p>
+</li>
+<li>
+<p>post 主要是这 2 种使用较多。</p>
+</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/18/Form%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95/" data-id="cmcro5lkr000nqkk4cf6ohp32" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <!-- &laquo; -->
+    <!-- &raquo; -->
+    
+    <a class="extend prev" rel="prev" href="/page/6/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/">Next</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/05/05/CSS%E4%B9%8Bflex/">CSS之flex</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/prettier%E4%BB%8B%E7%BB%8D/">prettier介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/vite%E4%BB%8B%E7%BB%8D/">vite介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Andy Zhang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

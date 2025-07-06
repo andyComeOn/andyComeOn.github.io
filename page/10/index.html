@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>我的点滴记录</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="我的点滴记录">
+<meta property="og:url" content="http://example.com/page/10/index.html">
+<meta property="og:site_name" content="我的点滴记录">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Andy Zhang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的点滴记录</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-JS封装备份" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/22/JS%E5%B0%81%E8%A3%85%E5%A4%87%E4%BB%BD/" class="article-date">
+  <time datetime="2019-02-22T06:40:54.000Z" itemprop="datePublished">2019-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/22/JS%E5%B0%81%E8%A3%85%E5%A4%87%E4%BB%BD/">JS封装备份及一些表达式写法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法">1、针对一个浮点型数，保留几位小数（符合四舍五入）的方法</h3>
+<p><strong>方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fixto</span>(<span class="params">number, n = <span class="number">2</span></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = number.<span class="title function_">toString</span>();</span><br><span class="line">    <span class="keyword">const</span> arr = result.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> integer = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> decimal = arr[<span class="number">1</span>];</span><br><span class="line">    result = integer + <span class="string">&#x27;.&#x27;</span> + decimal.<span class="title function_">substr</span>(<span class="number">0</span>, n);</span><br><span class="line">    <span class="keyword">const</span> last = decimal.<span class="title function_">substr</span>(n, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 四舍五入，转换为整数再处理，避免浮点数精度的损失</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(last, <span class="number">10</span>) &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> x = <span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">10</span>, n);</span><br><span class="line">        result = ((<span class="built_in">parseFloat</span>(result) * x) + <span class="number">1</span>) / x;</span><br><span class="line">        result = result.<span class="title function_">toFixed</span>(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>说明：保留几位小数点，参数 n 设置为几！</p>
+<hr>
+<h3 id="2、简单的分页逻辑">2、简单的分页逻辑</h3>
+<p><strong>方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">page</span>(<span class="params">total, pagesize = <span class="number">10</span></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> tmp = (total / pagesize).<span class="title function_">toString</span>();</span><br><span class="line">  <span class="keyword">if</span> (tmp.<span class="title function_">indexOf</span>(<span class="string">&quot;.&quot;</span>) == -<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> tmp - <span class="number">0</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">ceil</span>(tmp);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">page</span>(<span class="number">21</span>, <span class="number">22</span>));</span><br></pre></td></tr></table></figure>
+<p>说明：第一个参数是数据的总数量，第二个参数是每页数量，该函数抛出的是总共有几页！</p>
+<hr>
+<h3 id="3、数字字符串转数字">3、数字字符串转数字</h3>
+<p><strong>方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">&quot;1&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a - <span class="number">0</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Number</span>(a));</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="4、函数传参">4、函数传参</h3>
+<p><strong>方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">todo</span>(<span class="params">a, b = <span class="number">2</span></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> a + <span class="string">&quot;|&quot;</span> + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">todo</span>(<span class="number">1</span>, <span class="number">3</span>)); <span class="comment">// &#x27;1|3&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">todo</span>(<span class="number">1</span>)); <span class="comment">// &#x27;1|2&#x27;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="5、巧妙写法">5、巧妙写法</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 逻辑与：</span><br><span class="line">mood &amp;&amp; 0</span><br><span class="line">若是 mood 在经过Boolean转换后为假，则直接就是短路取mood的值，看下面例子：</span><br><span class="line">1、&#x27;&#x27; &amp;&amp; 0 =&gt; &#x27;&#x27;</span><br><span class="line">2、0 &amp;&amp; 0 =&gt; 0</span><br><span class="line">3、false &amp;&amp; 0 =&gt; 0</span><br><span class="line"></span><br><span class="line">// +++++++++++++++++</span><br><span class="line"></span><br><span class="line">// 逻辑或 取得是后面的</span><br><span class="line">mood || 0</span><br><span class="line">1、&#x27;&#x27; || 0 =&gt; 0</span><br><span class="line">2、0 || 0 =&gt; 0</span><br><span class="line">3、false || 0 =&gt; 0</span><br><span class="line"></span><br><span class="line">return mood &amp;&amp; &quot;I like this&quot; || &quot;I don&#x27;t like this&quot;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="6、try-catch-finally">6、try catch finally</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line"></span><br><span class="line">&#125; finally &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">try &#123;</span><br><span class="line"></span><br><span class="line">&#125; catch (error) &#123;</span><br><span class="line"></span><br><span class="line">&#125; finally &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/02/22/JS%E5%B0%81%E8%A3%85%E5%A4%87%E4%BB%BD/" data-id="cmcro5lkz0017qkk46ms64s6v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jq中一些总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/22/jq%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2019-02-22T06:40:54.000Z" itemprop="datePublished">2019-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/22/jq%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/">jq中一些总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、标签下的data-总结">1、标签下的data-**总结</h3>
+<p><strong>写法一：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;el1&quot;</span> <span class="attr">data-isdata</span> = <span class="string">&quot;1&quot;</span>&gt;</span>标签1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;el2&quot;</span> <span class="attr">data-isData</span> = <span class="string">&quot;2&quot;</span>&gt;</span>标签2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;el3&quot;</span> <span class="attr">data-is_Data</span> = <span class="string">&quot;3&quot;</span>&gt;</span>标签3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>($(<span class="string">&#x27;.el1&#x27;</span>).<span class="title function_">data</span>(<span class="string">&#x27;isdata&#x27;</span>));  <span class="comment">// 1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>($(<span class="string">&#x27;.el2&#x27;</span>).<span class="title function_">data</span>(<span class="string">&#x27;isData&#x27;</span>));  <span class="comment">// undefined</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>($(<span class="string">&#x27;.el3&#x27;</span>).<span class="title function_">data</span>(<span class="string">&#x27;isdata&#x27;</span>));  <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确的用法</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>($(<span class="string">&#x27;.el2&#x27;</span>).<span class="title function_">data</span>(<span class="string">&#x27;isdata&#x27;</span>)); <span class="comment">// 2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>($(<span class="string">&#x27;.el3&#x27;</span>).<span class="title function_">data</span>(<span class="string">&#x27;is_data&#x27;</span>)); <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 总结就是遇见大写的就转为小写即可</span></span><br></pre></td></tr></table></figure>
+<p>说明：保留几位小数点，参数n设置为几！</p>
+<hr>
+<h3 id="2、简单的分页逻辑">2、简单的分页逻辑</h3>
+<p><strong>方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">page</span>(<span class="params">total, pagesize = <span class="number">10</span></span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> tmp = (total / pagesize).<span class="title function_">toString</span>();</span><br><span class="line">    <span class="keyword">if</span> (tmp.<span class="title function_">indexOf</span>(<span class="string">&#x27;.&#x27;</span>) == -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> tmp - <span class="number">0</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">ceil</span>(tmp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">page</span>(<span class="number">21</span>, <span class="number">22</span>));</span><br></pre></td></tr></table></figure>
+<p>说明：第一个参数是数据的总数量，第二个参数是每页数量，该函数抛出的是总共有几页！</p>
+<hr>
+<h3 id="3、数字字符串转数字">3、数字字符串转数字</h3>
+<p><strong>方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a - <span class="number">0</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Number</span>(a));</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="4、函数传参">4、函数传参</h3>
+<p><strong>方法：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">todo</span>(<span class="params">a, b = <span class="number">2</span></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + <span class="string">&#x27;|&#x27;</span> + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">todo</span>(<span class="number">1</span>, <span class="number">3</span>)); <span class="comment">// &#x27;1|3&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">todo</span>(<span class="number">1</span>)); <span class="comment">// &#x27;1|2&#x27;</span></span><br></pre></td></tr></table></figure>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/02/22/jq%E4%B8%AD%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/" data-id="cmcro5lma003rqkk4hm3y3fqr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-设置路由器的一次记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/15/%E8%AE%BE%E7%BD%AE%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2019-02-15T13:18:08.000Z" itemprop="datePublished">2019-02-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/15/%E8%AE%BE%E7%BD%AE%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/">设置路由器的一次记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="记录一次路由器的设置的过程">记录一次路由器的设置的过程</h4>
+<ul>
+<li>
+<p>网络已不能连接，点击路由器小按钮（一般是一个小孔，用卡针之类扎一下），这时候其已复位，连接其默认WiFi，找到其背面的标签写的：用户名、密码，进去。输入你的的宽带账号密码（运营商给你的）之后选择动态获取（联通电话技术支持说是PPPoe）。看到光猫的Internet灯只要亮说明就已经连接成功了。在连接上路由器进行密码设置即可。</p>
+</li>
+<li>
+<p>还有一个疑问是，师傅直接操作路由器，能否直接操作光猫呢？我在设置时候一开始没弄好，就试着把光猫的网线插到电脑上这样行吗？后来师傅弄好之后，登录路由器的登录页面访问网址变成了192.168.0.1，光猫的变成了192.168.1.1。最开始路由器的登录页面访问网址是192.168.1.1。</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/iview/iview-admin/releases"><img src="https://img.shields.io/github/release/iview/iview-admin.svg" alt=""></a><br>
+<a target="_blank" rel="noopener" href="https://travis-ci.org/iview/iview-admin"><img src="https://img.shields.io/travis/iview/iview-admin.svg?style=flat-square" alt=""></a><br>
+<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue"><img src="https://img.shields.io/badge/vue-2.5.17-brightgreen.svg?style=flat-square" alt="vue"></a><br>
+<a target="_blank" rel="noopener" href="https://github.com/iview/iview"><img src="https://img.shields.io/badge/iview-3.2.2-brightgreen.svg?style=flat-square" alt="iview ui"></a><br>
+<a href=""><img src="https://img.shields.io/npm/l/express.svg" alt="npm"></a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/02/15/%E8%AE%BE%E7%BD%AE%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/" data-id="cmcro5lna0067qkk44akrhtrn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSS字体行高相关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/15/CSS%E5%AD%97%E4%BD%93%E8%A1%8C%E9%AB%98%E7%9B%B8%E5%85%B3/" class="article-date">
+  <time datetime="2019-02-15T06:32:14.000Z" itemprop="datePublished">2019-02-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/15/CSS%E5%AD%97%E4%BD%93%E8%A1%8C%E9%AB%98%E7%9B%B8%E5%85%B3/">CSS字体行高相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="CSS字体行高等相关杂集">CSS字体行高等相关杂集</h4>
+<ol>
+<li>
+<p>在与一个前端同事讨论input的宽度问题时，查到input默认的宽度随screen宽度的不同而不同，谈论到在chrome中可以设置字体大小，今天我尝试在chrome中调节字体，发现有些网页中的元素的css是这样写的<code>font-size: medium;</code>很是疑问，随后在浏览器中调节字体，伴随着设置字体大小的改变，页面字体展示随之改变。</p>
+</li>
+<li>
+<p>网页中字体的一些单位<code>px</code>，<code>em</code>，<code>rem</code>，<code>vh</code>，<code>vm</code>，<code>vmax</code>，<code>vmin</code>这其中的一些单位大家都比较熟悉，针对</p>
+</li>
+</ol>
+<p>vh：当前可见高度的1%=1vh</p>
+<p>区别是：当div中没有内容时，height=100%，则高度不显示出来</p>
+<p>当div中没有内容时，height=100vh，则高度依然能显示出来</p>
+<p>vw：当前可见宽度的1%=1vw</p>
+<p>区别是：当div中没有内容时，width=100%，则宽度不显示出来</p>
+<p>当div中没有内容时，width=100vh，则宽度依然能显示出来</p>
+<p>vmin、vmax：关于视口高度和宽度两者的最小值或者最大值。</p>
+<p>比如，浏览器的宽度设置为1200px，高度设置为800px， 1vmax = 1200/100px = 12px， 1vmin = 800/100px = 8px。如果宽度设置为600px,高度设置为1080px, 1vmin就等于6px, 1vmax则未10.8px。</p>
+<p>具体的参考的链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/alex-415/p/6844243.html">css中单位px,em，rem和vh/vw的理解</a>，<a target="_blank" rel="noopener" href="http://www.cnblogs.com/lidongfeng/p/7243650.html">深度解析使用CSS单位px、em、rem、vh、vw、vmin、vmax实现页面布局</a>，<a target="_blank" rel="noopener" href="https://www.cnblogs.com/gwcyulong/p/6202639.html">CSS3中的px,em,rem,vh,vw辨析</a></p>
+<ol start="3">
+<li>字体对应的行高集</li>
+</ol>
+<p>12<em>1.333333=15.999996<br>
+13</em>1.333333=17.333329<br>
+14<em>1.333333=18.666662<br>
+15</em>1.333333=19.999995<br>
+16<em>1.333333=21.333328<br>
+17</em>1.333333=22.666661<br>
+18<em>1.333333=23.999994<br>
+19</em>1.333333=23.999994<br>
+20<em>1.333333=23.999994<br>
+22</em>1.333333=23.999994<br>
+24<em>1.333333=23.999994<br>
+26</em>1.333333=23.999994<br>
+28<em>1.333333=23.999994<br>
+30</em>1.333333=23.999994<br>
+32<em>1.333333=23.999994<br>
+36</em>1.333333=23.999994</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/02/15/CSS%E5%AD%97%E4%BD%93%E8%A1%8C%E9%AB%98%E7%9B%B8%E5%85%B3/" data-id="cmcro5lkp000lqkk4fvwbgjam" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-layui中相关模块记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/13/layui%E4%B8%AD%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2019-02-13T02:47:10.000Z" itemprop="datePublished">2019-02-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/13/layui%E4%B8%AD%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97%E8%AE%B0%E5%BD%95/">layui中相关模块记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>写在前面：此文档是在使用 <code>layui</code> 过程的一些总结！</p>
+<h3 id="1-layui-的模块化和非模块化使用">1. layui 的模块化和非模块化使用</h3>
+<p>下面这个帖子<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qlqwjy/p/8975931.html">layui 的模块化和非模块化使用</a>，着重介绍了 layui 中模块与非模块化的区别，这个帖子讲的很详细，解决了我的下面的疑问：<br>
+<img src="https://file.798run.top/img/blog/20190213/layui-on-err.jpg" alt="layui-on-err"></p>
+<p>我发现这个错误是由于自己是使用非模块化模式，但是又引入了模块化的 js，导致了这个 err。但是有一个疑问，按理说模块化与非模块化的 2 种模式只是用户的使用方式，但是我发现使用非模块化（只引入 layui.all.js）在页面中即使这样写了<code>required lay-verify=&quot;&quot;</code>出现不了下面这个效果：</p>
+<p><img src="https://file.798run.top/img/blog/20190213/verify-tips.jpg" alt="verify-tips"></p>
+<p>这感觉不合理！</p>
+<h4 id="2-模块加载问题">2. 模块加载问题</h4>
+<p>layui 只 use layer 打印 form table 是 undefined<br>
+layui 只 use table 打印 form table 是 OK 的<br>
+layui 只 use form 打印 form table 仅 form 是 OK 的</p>
+<p>得出结论，只要 use 使用的有模块，layer 就能使用（全局的），只 use table，form 也能使用；只 ues form，table 不能使用；table 逻辑嵌入了 form 逻辑。</p>
+<h4 id="3-form-的验证问题">3. form 的验证问题</h4>
+<p><code>&lt;div class=&quot;layui-form-item&quot; style=&quot;display: none;&quot;&gt;</code><br>
+即使对这种隐藏的元素，<code>layui</code>也进行了验证，这种情况会让用户看着很懵，这是我在 pms 的底部“办理入住”看代码逻辑：</p>
+<p><img src="https://file.798run.top/img/blog/20190124/layui-form.jpg" alt="代码逻辑"><br>
+验证问题在修改 862bug 时效果如下：<br>
+<img src="https://file.798run.top/img/blog/20190213/verify-tips.jpg" alt="verify-tips"> 这个提示是在验证时候加了<code>required lay-verify=&quot;&quot;</code>属性，出现此效果还要额外引入<code>layui.js</code>。若这样写<code>required lay-verify=&quot;required&quot;</code>只会提示下面的效果：<img src="https://file.798run.top/img/blog/20190213/required-tips.jpg" alt="required-tips"><br>
+针对 verify 官方上说是可以串联写：<code>lay-verify=&quot;required|verifyAddtime&quot;</code>注：这里面别出现空格！</p>
+<h4 id="4-filter-相关">4. filter 相关</h4>
+<p>filter，为 class=“layui-form” 所在元素的 lay-filter=“” 的值。你可以借助该参数，对表单完成局部更新。<br>
+如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-form&quot;</span> <span class="attr">lay-filter</span>=<span class="string">&quot;test1&quot;</span>&gt;</span>…<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-form&quot;</span> <span class="attr">lay-filter</span>=<span class="string">&quot;test2&quot;</span>&gt;</span>…<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">form.<span class="title function_">render</span>(<span class="literal">null</span>, <span class="string">&quot;test1&quot;</span>); <span class="comment">// 更新 lay-filter=&quot;test1&quot; 所在容器内的全部表单状态</span></span><br><span class="line">form.<span class="title function_">render</span>(<span class="string">&quot;select&quot;</span>, <span class="string">&quot;test2&quot;</span>); <span class="comment">// 更新 lay-filter=&quot;test2&quot; 所在容器内的全部 select 状态</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-layui-input-相关">5. layui-input 相关</h4>
+<p>form 中 layui-input 默认是 width: 100%; display: block; 官网中给的有一个价格输入，他是针对 input 标签又包括了一个标签<code>&lt;div class=&quot;layui-input-inline&quot; style=&quot;width: 100px;&quot;&gt;&lt;/div&gt;</code>，我在开发 crs 中的新版房态页涉及到修改房价 dialog 中有加减按钮和 input 在一行的效果，我想到官网的该例子，后来想到何必在加一对标签呢？况且加了一对标签（layui-input-inline）该标签默认左浮动。综合考虑直接在 input 添加 display: inline; 加上一个宽度即可，input 左侧与右侧的按钮该怎么写就怎么写！</p>
+<p>20191028 补充，记忆中 <code>.layui-input-inline</code>是 <code>float: left;</code> 但是在今天的 ReportStatis/ondutyIncomeStatisOld 页面中发现使用的 layui-input-inline 并没左浮动。细查发现如下 css：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.layui-form-item</span> <span class="selector-class">.layui-input-inline</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">190px</span>;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.layui-input-inline</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只有在 layui-form-item 包裹下的 html，才有上面的 css，具体效果见：testme/layui/form_module_room_status.html</p>
+<h4 id="6-laydate">6. laydate</h4>
+<p>laydate 应用场景：一般是在 input 中起一个 id，在 js 中，进行渲染。如下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 日期的初始化赋值</span></span><br><span class="line">laydate.<span class="title function_">render</span>(&#123;</span><br><span class="line">  <span class="attr">elem</span>: <span class="string">&quot;#dateArea&quot;</span>,</span><br><span class="line">  <span class="attr">range</span>: <span class="string">&quot;至&quot;</span>,</span><br><span class="line">  <span class="attr">value</span>: <span class="string">&quot;2019-09-26 至 2019-09-26&quot;</span>,</span><br><span class="line">  <span class="comment">// done: function (value, startDate, endDate) &#123;</span></span><br><span class="line">  <span class="comment">// 	$(&#x27;input[name=business_time]&#x27;).val(value);</span></span><br><span class="line">  <span class="comment">// 	console.log(value);</span></span><br><span class="line">  <span class="comment">// 	console.log(&#x27;startDate&#x27;, startDate);</span></span><br><span class="line">  <span class="comment">// 	console.log(&#x27;endDate&#x27;, endDate);</span></span><br><span class="line">  <span class="comment">// &#125;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在 laydate 中添加 range 属性，laydate 默认就是给你一个日期选择范围，若不写 range 属性，默认就是一个单日历，若<code>range: '至'</code>，那么你 value 中赋值就要符合格式，正确的格式如：<code>value: '2019-09-26 至 2019-09-26'</code>，当然了欧美国家一般设置为<code>value: '2019-09-26 , 2019-09-26'</code>。注：单日历赋值 2019-9-1、2019-09-01 都能识别。</p>
+<hr>
+<p>上面所述的是简单的使用方法，有一些非简单的场景如下：</p>
+<ul>
+<li>
+<p>select 联动场景 参考链接 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43939956/article/details/90749302">laydate 日期选择器类型切换</a> 具体使用实例：在 pms 的报表-营业数据表。</p>
+</li>
+<li>
+<p>2 个时间段限制场景 <a target="_blank" rel="noopener" href="https://blog.csdn.net/cherry_11qianqian/article/details/82259704">layui 中 laydate 的使用——设置动态时间范围限制、重置时间范围（清空动态限制）</a></p>
+</li>
+</ul>
+<h4 id="7-关于-form-的思考">7. 关于 form 的思考</h4>
+<p>最早时候网页很简单，就是一些静态页，后来有了简单的 form 提交数据，这就是原生的 <code>&lt;form&gt; ... &lt;/form&gt;</code>，前后端没有分离，都是写在一块，直接使用原生 form 提交数据，后来技术发展前后端分离之后，使用接口的形式拉取数据。上面的 layui 中的 form 模块是写好的美观的 form，在业务复杂情况下也可以直接写元素 form 的标签，form 中原生标签如：input=radio 、button、select、input=checkbox、textarea 都是可以写 css 的，也可以写的符合业务要求。注：个人测试 select（css 生效）下的 option（写 css 不生效）！</p>
+<h4 id="8-layui-的-form-是直接按照其官网的写法即可：">8. layui 的 form 是直接按照其官网的写法即可：</h4>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;layui-form&quot;</span> <span class="attr">action</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-form-item&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;layui-form-label&quot;</span>&gt;</span>输入框<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-input-block&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">        <span class="attr">type</span>=<span class="string">&quot;text&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">name</span>=<span class="string">&quot;title&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">required</span></span></span><br><span class="line"><span class="tag">        <span class="attr">lay-verify</span>=<span class="string">&quot;required&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">placeholder</span>=<span class="string">&quot;请输入标题&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">autocomplete</span>=<span class="string">&quot;off&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">class</span>=<span class="string">&quot;layui-input&quot;</span></span></span><br><span class="line"><span class="tag">      /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-form-item&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-input-block&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;layui-btn&quot;</span> <span class="attr">lay-submit</span> <span class="attr">lay-filter</span>=<span class="string">&quot;formDemo&quot;</span>&gt;</span></span><br><span class="line">        立即提交</span><br><span class="line">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;reset&quot;</span> <span class="attr">class</span>=<span class="string">&quot;layui-btn layui-btn-primary&quot;</span>&gt;</span>重置<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>别忘了 form 中要加上<code>form.layui-form</code>，form 的每一个项是<code>&lt;div class=&quot;layui-form-item&quot;&gt;&lt;/div&gt;</code>，其中<code>lay-verify=&quot;required&quot;</code>这是验证用的，在 input 的 html 代码中加入了 required 属性，当用户的鼠标放到这个 input 输入框时候会有一个提示，这个在“layui 中 form <a target="_blank" rel="noopener" href="http://xn--w2ty92cu4o6b846h.md">的验证记录.md</a>”文档中有提现。<code>lay-filter=&quot;formDemo&quot;</code>中的 lay-filter 是提交的对数据的过滤。若你想传哪个字段如 desc 字段，要如下写法：</p>
+<p>在 input 中的 name 属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">&quot;text&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">name</span>=<span class="string">&quot;desc&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">required</span></span></span><br><span class="line"><span class="tag">  <span class="attr">lay-verify</span>=<span class="string">&quot;required&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">placeholder</span>=<span class="string">&quot;请输入标题&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">autocomplete</span>=<span class="string">&quot;off&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">class</span>=<span class="string">&quot;layui-input&quot;</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>对 layui 中的循环出来的 input（集团端的循环出来的门店），一般是不加 name，用一个 input type=hidden 的 name 来接（隐藏作用域），针对 radio 这种（认为浏览器自己内部封装的有，你点击之后，name 就是获取你当前触发的那个 input 的 value）</p>
+<p>layui 中的<input type="checkbox" name="switch" lay-skin="switch">这个开关不开，在 form 中 data.field 是不会打印 switch 的，也许这个是 layui 的二次封装，radio 也是一样，没有默认选中，是不会提交该 radio 对应的 name 字段的值。</p>
+<hr>
+<p>layui 中的 select ，若是其下的 option 比较多，可以在 select 标签上加上属性 <code>lay-search</code> 在 pms 中看到在 form 中加的 class 类 search-form，查资料没发现有该 class 对应的 css 效果，可理解为是 开发人员自己写的！还回忆起提交按钮查询时候，加了一些不认识的 class 类，估计这也是工作人员 copy 的。</p>
+<h4 id="9-layui-的-margin、padding-重置-css">9. layui 的 margin、padding 重置 css</h4>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">blockquote</span>,</span><br><span class="line"><span class="selector-tag">body</span>,</span><br><span class="line"><span class="selector-tag">button</span>,</span><br><span class="line"><span class="selector-tag">dd</span>,</span><br><span class="line"><span class="selector-tag">div</span>,</span><br><span class="line"><span class="selector-tag">dl</span>,</span><br><span class="line"><span class="selector-tag">dt</span>,</span><br><span class="line"><span class="selector-tag">form</span>,</span><br><span class="line"><span class="selector-tag">h1</span>,</span><br><span class="line"><span class="selector-tag">h2</span>,</span><br><span class="line"><span class="selector-tag">h3</span>,</span><br><span class="line"><span class="selector-tag">h4</span>,</span><br><span class="line"><span class="selector-tag">h5</span>,</span><br><span class="line"><span class="selector-tag">h6</span>,</span><br><span class="line"><span class="selector-tag">input</span>,</span><br><span class="line"><span class="selector-tag">li</span>,</span><br><span class="line"><span class="selector-tag">ol</span>,</span><br><span class="line"><span class="selector-tag">p</span>,</span><br><span class="line">pre,</span><br><span class="line"><span class="selector-tag">td</span>,</span><br><span class="line"><span class="selector-tag">textarea</span>,</span><br><span class="line"><span class="selector-tag">th</span>,</span><br><span class="line"><span class="selector-tag">ul</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  -webkit-tap-highlight-<span class="attribute">color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="10-layui-的报错记录">10. layui 的报错记录</h4>
+<ul>
+<li>使用 layer 时报错：<code>layui s.parents is not a function</code>，我是在使用 <code>layer.msg</code> 时报错，这是应为 layer.msg(msg, {icon: 1}) 输出的 msg 值为 Object 类型（对象），导致报错。详见下链接：<br>
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/Radish999/article/details/88737483">layui s.parents is not a function</a><br>
+注：layer.alert() 里面的内容也不能是 obj。</li>
+</ul>
+<h4 id="11-layer-的-confirm">11. layer 的 confirm</h4>
+<p>是给的例子是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">layer.confirm(&#x27;未到离店日期，请修改离店日期再退房&#x27;, &#123; title: &quot;&quot; &#125;, function (index) &#123;</span><br><span class="line">   // layer.close(index);</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<p>不选择 title 效果如下</p>
+<p><img src="https://file.798run.top/img/blog/20191223/confirm_no_title.jpg" alt="confirm无标题"></p>
+<p>若是配置了 title，效果如下</p>
+<p><img src="https://file.798run.top/img/blog/20191223/confirm_has_title.jpg" alt="confirm有标题"></p>
+<p>看自己展示需求进行配置。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/02/13/layui%E4%B8%AD%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97%E8%AE%B0%E5%BD%95/" data-id="cmcro5lmk0045qkk46aneaau8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-html一些不常用标签" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/12/html%E4%B8%80%E4%BA%9B%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" class="article-date">
+  <time datetime="2019-02-12T08:13:52.000Z" itemprop="datePublished">2019-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/12/html%E4%B8%80%E4%BA%9B%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/">HTML笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="html-的一些不常用标签">html 的一些不常用标签</h3>
+<ul>
+<li>blockquote 顾名思义是引用引述的意思，它有默认的 css，请看下面的代码：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Here comes a long quotation:</span><br><span class="line"><span class="tag">&lt;<span class="name">blockquote</span></span></span><br><span class="line"><span class="tag">  <span class="attr">class</span>=<span class="string">&quot;quote1&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">cite</span>=<span class="string">&quot;http://www.baidu.com&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;background: #ccc;&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  This is a long quotation. This is a long quotation. This is a long quotation.</span><br><span class="line">  This is a long quotation. This is a long quotation.</span><br><span class="line"><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>渲染效果如下：</p>
+<p><img src="https://file.798run.top/img/blog/20190212/blockquote-formal.jpg" alt="blockquote-formal"></p>
+<ul>
+<li>在 layui 中看到有衍生使用例子，请看下面的代码：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Here comes a long quotation:</span><br><span class="line"><span class="tag">&lt;<span class="name">blockquote</span></span></span><br><span class="line"><span class="tag">  <span class="attr">class</span>=<span class="string">&quot;quote1&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">cite</span>=<span class="string">&quot;http://www.baidu.com&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;margin: 0; padding: 15px; border-left: 5px solid #009688;&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  This is a long quotation. This is a long quotation. This is a long quotation.</span><br><span class="line">  This is a long quotation. This is a long quotation.</span><br><span class="line"><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>渲染效果如下：</p>
+<p><img src="https://file.798run.top/img/blog/20190212/blockquote.jpg" alt="blockquote"></p>
+<hr>
+<ul>
+<li>在开发过程中遇到 fieldset 和 legend 标签，细查之后发现这个是 form 中的分组，请看下面的代码：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">fieldset</span> <span class="attr">class</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">legend</span> <span class="attr">class</span>=<span class="string">&quot;&quot;</span>&gt;</span>标题标题标题标题标题标题标题标题<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    身高：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span> 体重：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>展示效果如下：</p>
+<p><img src="https://file.798run.top/img/blog/20190212/fieldset1.jpg" alt="fieldset1"></p>
+<p>这里面的边框是 fieldset 的。</p>
+<ul>
+<li>fieldset 的衍生写法，代码如下：</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.fieldset</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">1px</span> solid <span class="number">#e5e5e5</span>;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.legend</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">6px</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#009688</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">fieldset</span> <span class="attr">class</span>=<span class="string">&quot;fieldset&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">legend</span> <span class="attr">class</span>=<span class="string">&quot;legend&quot;</span>&gt;</span>标题标题标题标题标题标题标题标题<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    身高：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span> 体重：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>效果如下：<br>
+<img src="https://file.798run.top/img/blog/20190212/fieldset2.jpg" alt="fieldset2"><br>
+针对这种衍生写法，可以直接使用它做标题使用，但是标题内容不能太长否则会把上边框覆盖了。在网页上也找到 fieldset 相关的帖子：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/theWayToAce/p/5456208.html">fieldset——一个不常用的 HTML 标签</a></p>
+<p>我在写这个文档时候，突然想到 weui 中的底部标题居中，打开网页看代码一开他是父元素写的 border-top，里面的内容标签是使用定位<code>relative</code>，还纠正了我的理解<code>relative</code> 并不能把 inline 元素转变为块元素，只有<code>absolute</code>，<code>float</code>能把非 block 元素转变为 block 元素。</p>
+<p>代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.demo</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">24px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">40px</span> auto;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">1px</span> solid red;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="comment">/* position: relative; */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.demo</span> <span class="selector-tag">span</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: inline-block;</span><br><span class="line">  <span class="comment">/* display: block; */</span></span><br><span class="line">  <span class="comment">/* position: absolute; */</span></span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">24px</span>;</span><br><span class="line">  <span class="attribute">top</span>: -<span class="number">12px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">0.55em</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ffffff</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#808080</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;demo&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>你好<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>展示效果如下：</p>
+<p><img src="https://file.798run.top/img/blog/20190212/demo.jpg" alt="demo"></p>
+<hr>
+<ol>
+<li>
+<p>在 css 中 html 和 body 是有区别的，大家常对 body 写背景色，若对 html 上写背景色#ccc，这时查找 body 中 css 的 background 属性也没有继承#ccc，但是整个可视区的背景色确是#ccc。猜想：这是浏览器的机制所致。</p>
+</li>
+<li>
+<p>body 中对其写 height: 100%;是不起作用的！可这样写<code>body &#123; height: 100vh; &#125;</code>，这样 body 的高度就是整个可视区。 vh 这个单位我也是使用的不多，后来发现它是针对可视区的高度，在某些场景很实用。如：在移动端的 actionsheet 中高度可设置为 80vh，在对其加上滚动属性，效果很实用。如下图：</p>
+</li>
+</ol>
+<p><img src="https://file.798run.top/img/blog/20190509/actionsheet.jpg" alt="actionsheet"></p>
+<p>接着上面的聊： body 写 height: 100%;无效。但 html 写 height: 100%;高度却可以铺满整个屏。这个时候，在对 body 写 height: 100%;body 的高度也铺满整个屏，其实这里面的原因：html 的 height: 100%;生效 =&gt; 高度铺满屏 =&gt; body 继承了其高 =&gt; 高度也铺满整个屏。</p>
+<p>总结：有些小伙伴就是直接写：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>,</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实这里面 body 的高度是继承了 html 而来！</p>
+<h3 id="记录">记录</h3>
+<ul>
+<li>在写“e 家农场”登录页面时候，使用 webstorm 检查代码好家伙，这么多警告啊，其中表单中的 input 要使用一个 label 包裹着，这是 webstorm 的友好提示！</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/02/12/html%E4%B8%80%E4%BA%9B%E4%B8%8D%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/" data-id="cmcro5llg002vqkk47yr66ekc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js默认行为和事件冒泡" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/12/js%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1/" class="article-date">
+  <time datetime="2019-02-12T06:02:02.000Z" itemprop="datePublished">2019-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/12/js%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1/">js默认行为和事件冒泡</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="js默认行为和事件冒泡的几种方法">js默认行为和事件冒泡的几种方法</h4>
+<ol>
+<li>js阻止事件冒泡</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;el&#x27;</span>);</span><br><span class="line">el.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (event &amp;&amp; event.<span class="property">stopPropagation</span>) &#123;</span><br><span class="line">        <span class="comment">// 如果提供了事件对象，则这是一个非IE浏览器</span></span><br><span class="line">        event.<span class="title function_">stopPropagation</span>();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 否则，我们需要使用IE的方式来取消事件冒泡</span></span><br><span class="line">        <span class="variable language_">window</span>.<span class="property">event</span>.<span class="property">cancelBubble</span> = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>js阻止默认事件</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;el&#x27;</span>);</span><br><span class="line">el.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params">ev</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> ev = ev || event;</span><br><span class="line">    <span class="keyword">if</span> (ev &amp;&amp; ev.<span class="property">preventDefault</span>) &#123;</span><br><span class="line">        <span class="comment">// 如果提供了默认事件，则这是一个非IE浏览器</span></span><br><span class="line">        <span class="comment">// w3c阻止默认浏览器动作</span></span><br><span class="line">        ev.<span class="title function_">preventDefault</span>();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// IE中阻止函数器默认动作的方式</span></span><br><span class="line">        <span class="variable language_">window</span>.<span class="property">event</span>.<span class="property">returnValue</span> = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>jq阻止事件冒泡和默认行为</li>
+</ol>
+<ul>
+<li>阻止事件冒泡</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;a&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">    e.<span class="title function_">stopPropagation</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>阻止默认行为</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;a&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">    e.<span class="title function_">preventDefault</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>阻止默认和冒泡事件</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;a&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>针对上面的click()，在括号内直接写<code>function () &#123;&#125;</code> 这里面可传入e，ev，event，evok等形参都可以，函数体中直接写<code>e.preventDefault()</code>、<code>ev.preventDefault()</code>、<code>event.preventDefault()</code>、<code>evok.preventDefault()</code>等语句都可以生效，切忌是形参不穿，直接写：<code>e.preventDefault()</code>、<code>ev.preventDefault()</code>、<code>event.preventDefault()</code>；还可以是形参不写，使用<code>event.preventDefault()</code>（不报错猜想event是关键字）。</p>
+</li>
+<li>
+<p>上面的click()，都是简写的：</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;el&quot;</span>).<span class="title function_">click</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;&#125;);</span><br></pre></td></tr></table></figure>
+<p>这种方法虽是看着简单，但是针对document中已经存在的元素，动态添加的元素是绑定不上click事件的，所以一是养成好习惯，二是为了避免click绑定不上。固<code>$('el').on('click', function () &#123;&#125;)</code>这样写。注：在之前老版本jq是bind关键词，后来改为了on。</p>
+<h4 id="js默认行为有哪些">js默认行为有哪些</h4>
+<p>很多的网页元素都会有默认的行为，比如说当你点击一下超链接a标签的时候，它会有一个跳转的行为；当你在网页上点鼠标右键时会出现一个右键菜；当你在一个form表单里点击提交按钮时网页会产生提交行为并刷新网页，当你网页上滚动鼠标滚轮时，网页的滚动条会动等等。这些都叫事件的默认行为，如果想把这默认行为取消了，相应的JS代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">el.<span class="property">onclick</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="keyword">return</span> <span class="literal">false</span>;&#125;<span class="comment">//在方法里加个return false，就阻止超链接点击时的跳转行为了</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">oncontextmenu</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">/* 在这里你还可以加一些代码，实现自定义的右键菜单 */</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 系统自带的右键菜单就失效了</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 这样表单就不会产生提交行为了</span></span><br><span class="line"><span class="title class_">Form</span>.<span class="property">onsubmit</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="keyword">return</span> <span class="literal">false</span>;&#125;</span><br><span class="line"><span class="comment">// IE和chrome的方式，取消鼠标的滚轮的默认行为，网页的滚动条就不会动了</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">onmousewheel</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="keyword">return</span> <span class="literal">false</span>&#125;</span><br><span class="line"><span class="comment">// 功能同上，火狐的方式。火狐只能用DOM二级的绑定方式，并且用e.preventDefault=true</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;DOMMouseScroll&#x27;</span>,<span class="keyword">function</span>(<span class="params">e</span>)&#123;e.<span class="property">preventDefault</span>=<span class="literal">true</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>我们要知道常见的事件默认行为有那些，并且要知道阻止默认行为，只要在绑定到这个行为事件的方法里最后加一句：return false;就可以了。<br>
+但要强调注意的是：如果你的事件绑定是用addEventListener来实现的，那阻止默认行为必须用e.preventDefault=true。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/02/12/js%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1/" data-id="cmcro5llr003kqkk47l92hbsd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jqready" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/12/jqready/" class="article-date">
+  <time datetime="2019-02-12T03:14:09.000Z" itemprop="datePublished">2019-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/12/jqready/">jq中ready函数总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="记录一下-jq-的-ready-的几种写法">记录一下 jq 的 ready 的几种写法</h4>
+<ol>
+<li>最常用也是最标准</li>
+</ol>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="variable language_">document</span>).<span class="title function_">ready</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// todo sth</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>是上面的简写</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// todo sth</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这种写法可能有很多人有疑问，jq 的源码中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// jQuery的构造函数；</span></span><br><span class="line"><span class="keyword">var</span> jQuery = <span class="keyword">function</span>(<span class="params"> a, c </span>) &#123;</span><br><span class="line"><span class="comment">// $(document).ready()的简写形式，只有在$(function()&#123;...&#125;)下才会执行；</span></span><br><span class="line"><span class="keyword">if</span> ( a &amp;&amp; <span class="keyword">typeof</span> a == <span class="string">&quot;function&quot;</span> &amp;&amp; jQuery.<span class="property">fn</span>.<span class="property">ready</span> ) <span class="keyword">return</span> <span class="title function_">jQuery</span>(<span class="variable language_">document</span>).<span class="title function_">ready</span>(a);</span><br><span class="line"><span class="comment">// 确保参数a非空，默认值为document；</span></span><br><span class="line">a = a || jQuery.<span class="property">context</span> || <span class="variable language_">document</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 耶！找到了,我们再看下$这个方法的参数</span></span><br><span class="line"><span class="comment">// $(selector,context)</span></span><br><span class="line"><span class="comment">// 第一个为选择器,第二个是容器</span></span><br><span class="line"><span class="comment">// 如果不填就默认为document k</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>这个帖子上说是打酱油的</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">jQuery</span>(<span class="variable language_">document</span>).<span class="title function_">ready</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// todo sth</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>看清楚</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">jQuery</span>(<span class="keyword">function</span> (<span class="params">$</span>) &#123;</span><br><span class="line">  <span class="comment">// todo sth</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>这种写法是为了避免其他插件中也使用了美元符号$，造成冲突，才传入参数，通过<code>jQuery.noConflict()</code>这个方法,我们可在代码中通过jQuery来代替$来使用,但又习惯了使用$怎么办?看下面代码:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jQuery.<span class="title function_">noConflict</span>();</span><br><span class="line"><span class="title function_">jQuery</span>(<span class="keyword">function</span> (<span class="params">$</span>) &#123;</span><br><span class="line">  <span class="title function_">alert</span>($(<span class="string">&quot;#ready1&quot;</span>).<span class="title function_">html</span>()); <span class="comment">//我们又能用上$符号了</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面的第二个 jQuery 不能使用$。</p>
+<hr>
+<p>$(document).ready(function(){}),$().ready(function(){})和$(function(){})三个有区别么？<br>
+没什么区别，最简单的写法是$(function(){}),这只是简写，和$(document).ready(function(){}) 是相同的，jQuery(function($){ }) 为了防止和其它类库冲突</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/02/12/jqready/" data-id="cmcro5llg002xqkk441zs7hao" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-浏览器中网址访问过程详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%BD%91%E5%9D%80%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time datetime="2019-01-29T03:03:28.000Z" itemprop="datePublished">2019-01-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%BD%91%E5%9D%80%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/">浏览器中网址访问过程详解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="这个md是记录浏览器访问网页的一个过程">这个md是记录浏览器访问网页的一个过程</h4>
+<ol>
+<li>
+<p>主要参考一下的2个帖子：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m_buddy/article/details/77800998">浏览器中网址访问过程详解</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/mengnizizi/article/details/78529738">用户用浏览器访问一个网站，发生了什么</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20513729">用户用浏览器访问一个网站的时候背后的过程与步骤是怎样的？</a></li>
+</ul>
+</li>
+<li>
+<p>没事可以常看看</p>
+<ul>
+<li>温故而知新</li>
+</ul>
+</li>
+<li>
+<p>一直在搜后台接到前端的接口请求是怎么一个处理过程，搜的结果不是自己想要的，但是发现了<a target="_blank" rel="noopener" href="https://blog.csdn.net/lp09160206/article/details/72964893">nginx是如何处理请求的</a>，这篇帖子我理解，在访问接口（刨除寻找主机的过程）时，首先是Nginx处理逻辑，因为我在文档中发现Nginx的配置代码：</p>
+</li>
+</ol>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>      <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> example.org www.example.org;</span><br><span class="line">    <span class="attribute">root</span>        /data/www;</span><br><span class="line">     </span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">index</span>   index.html index.php;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="section">location</span> <span class="regexp">~* \.(gif|jpg|png)$</span> &#123;</span><br><span class="line">        <span class="attribute">expires</span> <span class="number">30d</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="section">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span>  localhost:<span class="number">9000</span>;</span><br><span class="line">        <span class="attribute">fastcgi_param</span> SCRIPT_FILENAME;</span><br><span class="line">        $<span class="attribute">document_root</span> <span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">        <span class="attribute">include</span>  fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虽然我不是太懂Nginx的配置的意思，我自己猜想不一定对，若是网页请求的是静态的图片就走的<code>location ~* \.(gif|jpg|png)$</code>通道，直接返回目录下的静态资源。若是带有参数接口请求，会走<code>location ~ \.php$</code>，进而在去查sql，查好了进行数据的包装，在return到前端。大致就是这个过程。</p>
+<ol start="4">
+<li>
+<p>本地的机器上在配置网络时都会填写DNS</p>
+<ul>
+<li>在网上看到这句话，我个人理解就是你的个人电脑在连接wifi热点或者使用网线自己就接入了公网，这个公网有自己所在的区域DNS（即是：本地的机器上在配置网络时都会填写DNS）。</li>
+</ul>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lycsmzl/p/5225809.html">一个http请求发送到后端的详细过程</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/foohack/p/5053084.html">用javascript向一个网页连接接口发送请求，并接收该接口返回的json串</a></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/01/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%BD%91%E5%9D%80%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/" data-id="cmcro5ln6005pqkk49tdx0jap" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-美团2019春节干货" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/26/%E7%BE%8E%E5%9B%A22019%E6%98%A5%E8%8A%82%E5%B9%B2%E8%B4%A7/" class="article-date">
+  <time datetime="2019-01-26T13:48:13.000Z" itemprop="datePublished">2019-01-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/26/%E7%BE%8E%E5%9B%A22019%E6%98%A5%E8%8A%82%E5%B9%B2%E8%B4%A7/">美团2019春节干货</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="这是美团2019春节干货包含一些电子书">这是美团2019春节干货包含一些电子书</h4>
+<p>温馨提醒：文件有点大（全部下载约350M），请耐心等候下载。建议通过WIFI下载，或将地址复制到PC端，使用浏览器下载。</p>
+<ol>
+<li>【前端系列】下载链接：<a target="_blank" rel="noopener" href="http://dpurl.cn/DWVhPpS">http://dpurl.cn/DWVhPpS</a></li>
+<li>【后台系列】下载链接：<a target="_blank" rel="noopener" href="http://dpurl.cn/obtIVn">http://dpurl.cn/obtIVn</a></li>
+<li>【系统系列】下载链接：<a target="_blank" rel="noopener" href="http://dpurl.cn/zTDWq8Q">http://dpurl.cn/zTDWq8Q</a></li>
+<li>【算法系列】下载链接：<a target="_blank" rel="noopener" href="http://dpurl.cn/ODj5qAB">http://dpurl.cn/ODj5qAB</a></li>
+<li>【运维系列】下载链接：<a target="_blank" rel="noopener" href="http://dpurl.cn/6zjgHFj">http://dpurl.cn/6zjgHFj</a></li>
+<li>【测试系列】下载链接：<a target="_blank" rel="noopener" href="http://dpurl.cn/wfKQqy">http://dpurl.cn/wfKQqy</a></li>
+<li>【工程师成长系列】下载链接：<a target="_blank" rel="noopener" href="http://dpurl.cn/p5sPoKT">http://dpurl.cn/p5sPoKT</a></li>
+<li>【2018年美团点评技术文章合辑】下载链接：<a target="_blank" rel="noopener" href="http://dpurl.cn/iLGBtuS">http://dpurl.cn/iLGBtuS</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/01/26/%E7%BE%8E%E5%9B%A22019%E6%98%A5%E8%8A%82%E5%B9%B2%E8%B4%A7/" data-id="cmcro5lna0069qkk47oabbtuh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <!-- &laquo; -->
+    <!-- &raquo; -->
+    
+    <a class="extend prev" rel="prev" href="/page/9/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/11/">Next</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/05/05/CSS%E4%B9%8Bflex/">CSS之flex</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/prettier%E4%BB%8B%E7%BB%8D/">prettier介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/vite%E4%BB%8B%E7%BB%8D/">vite介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Andy Zhang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>我的点滴记录</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="我的点滴记录">
+<meta property="og:url" content="http://example.com/page/5/index.html">
+<meta property="og:site_name" content="我的点滴记录">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Andy Zhang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的点滴记录</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-移动端键盘问题记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2020-12-24T08:56:34.000Z" itemprop="datePublished">2020-12-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">移动端键盘问题记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言">前言</h3>
+<p>开发新奥 e 家农场登录页过程中，会遇到很多的坑，记录一下！</p>
+<h3 id="问题一">问题一</h3>
+<p>iOS 上，登录页，input 获焦，则软键盘弹起，可点击空白区域软键盘不消失！input 依旧是在 focus 状态！安卓则无此现象！可查看如下链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/phen/p/7886640.html">IOS 下 H5 的 input/textarea 元素失去焦点时隐藏键盘</a>、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/gd-dql/p/7476330.html">js 控制 ios 端的 input/textarea 元素失去焦点时隐藏键盘</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012038144/article/details/46591607?utm_source=blogxgwz7&amp;utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-2&amp;spm=1001.2101.3001.4242">js 控制 iphone 端的 input/textarea 元素失去焦点时隐藏键盘</a>、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/blackbentel/p/10239886.html">h5 解决 ios 端输入框失去焦点后页面不回弹或者底部留白问题</a></p>
+<h3 id="问题二">问题二</h3>
+<p>iOS、Android 都出现，底部留白！ 详见下图：</p>
+<p><img src="https://file.798run.top/img/blog/20201224/padding-white.png" alt="padding-white"></p>
+<p>为啥会出现此问题？</p>
+<h3 id="问题三">问题三</h3>
+<p>iOS、Android 都出现（前者出现概率小）键盘遮挡 input 输入框问题！在搜索问题过程中，发现其他人的帖子：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Miracle-ZLZ/p/10030608.html">IOS 微信 6.7.4 输入框失去焦点，软键盘关闭后，被撑起的页面无法回退到原来正常的位置</a>。我的登录页没遇到（弹不回去）问题（1、可能微信或者 ios 系统升级修复此 bug 了；2、或者我的场景与帖子中不一致，我的页面高度是 100vh，而帖子中的文档高度大于 100vh）！我最后解决了，在 e 家农场项目中有提现，而网上说的这<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3320b5aa8879">帖子</a>（报存在我的书签 CSS_UI 下）是不正确的！仅<code>document.body.scrollTop</code>就不兼容。我的解决方案：</p>
+<blockquote>
+<p>针对 document.activeElement.scrollIntoView、document.activeElement.scrollIntoViewIfNeeded 最开始在 csdn 偶然看到此文：<a target="_blank" rel="noopener" href="https://blog.csdn.net/jermyo/article/details/107742955%EF%BC%8C%E4%BD%86%E6%AD%A4%E6%96%87%E4%B8%AD%E5%8F%91%E7%8E%B0%E8%BF%98%E9%9C%80%E5%88%A4%E6%96%AD%E5%AE%89%E5%8D%93%E3%80%81ios%EF%BC%8C%E7%BB%86%E6%9F%A5%E4%BA%86%E4%B9%8B%E5%90%8E%E5%8F%91%E4%B8%8B%E5%A4%A7%E5%8F%AF%E4%B8%8D%E5%BF%85%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%98%AF">https://blog.csdn.net/jermyo/article/details/107742955，但此文中发现还需判断安卓、ios，细查了之后发下大可不必，这个是</a> MDN 的一个实验性的 API。最后查博客解决了问题：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/yelongsan/p/9086847.html%E3%80%82%E5%90%8E%E6%9D%A5%E6%9F%A5%E8%AF%A2">https://www.cnblogs.com/yelongsan/p/9086847.html。后来查询</a> document.activeElement.scrollIntoView 相关知识，这篇帖子讲的还可以 <a target="_blank" rel="noopener" href="http://caibaojian.com/scrollintoview.html">http://caibaojian.com/scrollintoview.html</a></p>
+</blockquote>
+<h3 id="问题四">问题四</h3>
+<p>iOS 在 input 获焦弹起软键盘，点击页面其他空白区域，则并没有失焦，软键盘也不消失，</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/24/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%94%AE%E7%9B%98%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="cmcro5ln90063qkk42ee21zyw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-AJAX与JSONP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/17/AJAX%E4%B8%8EJSONP/" class="article-date">
+  <time datetime="2020-12-17T02:05:57.000Z" itemprop="datePublished">2020-12-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/17/AJAX%E4%B8%8EJSONP/">AJAX与JSONP</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言">前言</h3>
+<p>记录以免忘记</p>
+<h3 id="AJAX"><strong><em>AJAX</em></strong></h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="built_in">type</span>: <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">  beforeSend: <span class="function"><span class="title">function</span></span> () &#123;&#125;,</span><br><span class="line">  dataType: <span class="string">&quot;jsonp&quot;</span>,</span><br><span class="line">  jsonp: <span class="string">&quot;callback&quot;</span>,</span><br><span class="line">  jsonpCallback: <span class="string">&quot;success_jsonpCallback&quot;</span>,</span><br><span class="line">  success: <span class="keyword">function</span> (res) &#123;</span><br><span class="line">    console.log(res);</span><br><span class="line">  &#125;,</span><br><span class="line">  error: <span class="keyword">function</span> (err) &#123;</span><br><span class="line">    console.log(<span class="string">&quot;err&quot;</span>, err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="GET"><strong>GET</strong></h3>
+<p>1、针对 get 请求，我们可在浏览器地址栏键入请求地址，此时浏览器进行了二次封装！为啥这样说，在浏览器控制台 Elements 有元素节点，在 Network 中请求记录中，All 有可现实，使用 xhr 过滤则无记录！同样请求连接键入 Postman，选择 get 请求，则是正常请求！注：测试效果时，禁止 json 格式化等插件，以免造成干扰！在测试请求页的 title 有 favicon.ico。测试 get 请求链接：<code>http://api.map.baidu.com/geocoder?location=38.76623,116.43213&amp;output=json&amp;key=r49TjsbOLT9nkbS4ZljYf1GgnTkecbNQ</code>。</p>
+<h3 id="POST"><strong>POST</strong></h3>
+<p>1、POST 类型的请求，后台有时候会告诉前端：“不要用 body 方式传递参数，用 param 方式”。为何？猜，是后端框架解析参数方便所致！</p>
+<h3 id="JSONP"><strong>JSONP</strong></h3>
+<p>1、JSONP 需要后端配合，jq 对其进行了优化，只要是 jsonp 形式，无论 type 写成 post 与否皆转为 get。注：别忘记添加 <code>dataType: 'JSONP'</code>;</p>
+<h3 id="参考"><strong>参考</strong></h3>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zxf13598202302/article/details/53489592">说说 JSON 和 JSONP，跨域解决问题</a></p>
+<h3 id="预检请求">预检请求</h3>
+<p>25.03.24 记：预检请求为啥会发生？只要是非简单请求，浏览器都会进行预检请求！简单请求与复杂请求区别？简单请求满足：</p>
+<ul>
+<li><code>get</code>、<code>post</code>、<code>HEAD</code> 三种的任意一种</li>
+<li>请求头满足 AACC 这四种键，分别是：<code>Accept</code>、<code>Accept-language</code>、<code>Content-Type</code>、<code>Content-language</code> 的一种或几种，键 <code>Content-Type</code> 对应的值需是 <code>application/x-www-form-urlencoded</code>、<code>multipart/form-data</code>、<code>text/plain</code>、 里面的任意一种</li>
+</ul>
+<p>满足以上条件就是简单请求，否全部是复杂请求！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/17/AJAX%E4%B8%8EJSONP/" data-id="cmcro5lka0003qkk4dgbl44p7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Vue杂集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/11/Vue%E6%9D%82%E9%9B%86/" class="article-date">
+  <time datetime="2020-12-11T08:21:19.000Z" itemprop="datePublished">2020-12-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/11/Vue%E6%9D%82%E9%9B%86/">Vue杂集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言">前言</h3>
+<p>时间长了、很多的东西都会忘记，记录一些 Vue 的相关知识</p>
+<h3 id="vue-cli">vue-cli</h3>
+<p>之前有 2.0 后来，3.0 出现之后包名变为 @vue/cli 了，官方文档很详细！我使用 webstorm 创建一个 vue.js 的工程（vue-cli-3.0-by-webstorm）很方便，后来又给 ddyg-crs 比较发现后者增添了很多配置，然我又在 xinao 工作电脑全局安装 yarn global add @vue/cli，自己手动按照提示生成了一个项目 vue-cli-3.0-by-webstorm1 对比二个工程无差别，则全局安装@vue/cli 无必要！</p>
+<h3 id="组件">组件</h3>
+<p>1、组件使用很常见，父、子组件都可以自定义事件，子组件点击事件就不举例了，如父组件中的原生事件如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;my-component @click.native=&quot;onClick&quot;&gt;&lt;/my-component&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>此时我们可能想到子组件一般是通过 emit 传递给父组件，父组件接受即可，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div @click=&quot;onClick1&quot;&gt;我是子组件&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">onClick1() &#123;</span><br><span class="line">    this.$emit(&#x27;my-event&#x27;, &#123; age: 17 &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;my-component @my-event=&quot;handleThis&quot;&gt;&lt;/my-component&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>父组件通过接受子组件传递过来的信息，在进行逻辑处理！带着这种模模糊糊的记忆又去看了一下 vue 官网，看到了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 内联语句 --&gt;</span><br><span class="line">&lt;my-component @my-event=&quot;handleThis(123, $event)&quot;&gt;&lt;/my-component&gt;</span><br></pre></td></tr></table></figure>
+<p>一看有点蒙，这 <code>$event</code> 是什么？后来自己尝试一下，发现了，123，可以使你自己写的标识，<code>$event</code> 是你子组件 emit 方法穿过来的参数！这使我联想到，123 这种标识，我们可以在循环时候，针对不用的业务类型，把标识打上去。在 methods 中 handleThis 方法，可以打印出组合的参数，代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 内联语句 --&gt;</span><br><span class="line">&lt;my-component @my-event=&quot;handleThis(123, $event)&quot;&gt;&lt;/my-component&gt;</span><br><span class="line">handleThis(arg1, arg2) &#123;</span><br><span class="line">    console.log(arg1, arg2); // 123 &#123; age: 17 &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>没事就要温故而知新啊！多写博客！上面总结是我在写新奥 e 家农场的新加的注册登录页时候，进行按钮封装，想到父子组件自定义方法查了<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/api/#v-on">vue 的官网相关 api</a>之后所做！针对小页面我们可以直接在父组件中写 <code>@click</code>就行，父组件中属性传递不同的样式即可！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/11/Vue%E6%9D%82%E9%9B%86/" data-id="cmcro5lla002jqkk4d4yp9zak" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Linux下安装git" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" class="article-date">
+  <time datetime="2020-12-08T03:57:50.000Z" itemprop="datePublished">2020-12-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/">Linux下安装git</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言">前言</h3>
+<p>早几年时候买的阿里云或腾讯云的服务器，默认的 centos 的版本自带的有 git，现买的服务器系统中没有自带 git，又想使用高版本 git 只能手动安装了！现记录一下安装步骤！</p>
+<h3 id="内容">内容</h3>
+<p>1、安装包下载 wget -c <a target="_blank" rel="noopener" href="https://github.com/git/git/archive/v2.29.0.tar.gz">https://github.com/git/git/archive/v2.29.0.tar.gz</a><br>
+2、压缩包解压 tar -zxvf v2.29.0.tar.gz<br>
+3、安装编译源码所需依赖 yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker 但：我执行之后出现提示如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201208/install-compile-git-pkg.png" alt="install-compile-git-pkg"></p>
+<p>这说明系统有这些依赖。</p>
+<p>4、安装依赖时，yum 自动安装了 Git，需要卸载旧版本 Git，命令为： yum remove git 出现提示输入 y 即可！注：我的 linux 上执行了上面的第三步骤，并没有 git</p>
+<p>5、进入解压后的文件夹，命令 cd git-2.29.0 ，然后执行编译，命令为 make prefix=/usr/local/git all 耐心等待编译即可；</p>
+<p>6、安装 Git 至/usr/local/git 路径，命令为 make prefix=/usr/local/git install</p>
+<p>7、打开环境变量配置文件，命令 vim /etc/profile ，在底部加上 Git 相关配置信息：PATH=$PATH:/usr/local/git/bin export PATH 然后保存，退出！</p>
+<p>8、输入命令 git --version ，查看安装的 git 版本，校验通过，安装成功，截图如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201208/git-version.jpg" alt="git --version"></p>
+<h3 id="问题">问题</h3>
+<p>1、在 linux 上依次设置：git config --global <a target="_blank" rel="noopener" href="http://user.name">user.name</a> “zhangbo” git config --global user.email “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>”</p>
+<p>2、ssh-keygen -t rsa -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>” 提示：-bash: ssh-keygen -t rsa -C <a href="mailto:1174839512@qq.com">1174839512@qq.com</a>: command not found</p>
+<p>3、一顿搜索啊，找到了<a target="_blank" rel="noopener" href="https://www.shangmayuan.com/a/5bc94047236246f2a01aa795.html">解决 bash: ssh-keygen: command not found</a></p>
+<p>4、按照上面帖子执行：yum install openssh，可是还是不行啊，Google 了很多，后来我发现有一个指令：ssh-keygen -t rsa -b 2048 -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>” 与我的有道云笔记报错（ssh-keygen -t rsa -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>” ）的内容不一样！后来就死马当成活马医！结果可以了！</p>
+<p>5、接着说解决上面问题的过程：既然是一直提示<code>-bash: ssh-keygen -t rsa -C 1174839512@qq.com: command not found</code>，那我就键入 ssh 看提示啥，效果如下：<br>
+<img src="https://file.798run.top/img/blog/20201208/linux-ssh.png" alt="linux-ssh"><br>
+细看一下，没有 -C 的选项，但是第二个指令也有 -C，那我就先试试这个：ssh-keygen -t rsa -b 2048 -C “<a href="mailto:1174839512@qq.com">1174839512@qq.com</a>”，竟然可以了！猜想：linux 下必须要设置 -b 吧！Windows 估计是读取的默认的配置！问题解决！</p>
+<h3 id="参考链接">参考链接</h3>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/imyalost/p/8715688.html">环境部署（三）：Linux 下安装 Git</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/08/Linux%E4%B8%8B%E5%AE%89%E8%A3%85git/" data-id="cmcro5lkz0019qkk4bof3dzyo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Nodejs如何在linux上安装" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" class="article-date">
+  <time datetime="2020-12-07T06:25:38.000Z" itemprop="datePublished">2020-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/">Nodejs如何在linux上安装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="前言">前言</h4>
+<p>虽然一直在使用 nodejs 启动 spa 项目，但是在服务器上部署 nodejs 作为后端，做的很少，记录一下步骤！</p>
+<h4 id="内容">内容</h4>
+<p>1、本地机器、公司的 Jenkins 发版的机器记得保持版本号一直！<br>
+2、直接打开<a target="_blank" rel="noopener" href="https://nodejs.org/">官网</a>，可切换中文查看文档（就没有必要使用<a target="_blank" rel="noopener" href="http://nodejs.cn/">nodejs 中文网</a>地址了）。在站点找到：下载 =&gt; 以往的版本 =&gt; version list（找自己的 Linux 对应的版本）=&gt; 我本地机器是（Win10 v12.18.3）</p>
+<p>Linux 对应的版本截图如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201207/node-version-list-fragment.jpg" alt="node-version-list-fragment"></p>
+<p>点击下载，详情如下：<br>
+<img src="https://file.798run.top/img/blog/20201207/node-version-list.jpg" alt="node-version-list"></p>
+<p>找到具体版本对应的平台包，如 v12.18.3 对应的 Linux 平台的包：<code>node-v12.18.3-linux-x64.tar.xz</code>，注意针对上面的红色框圈出来的文件，不要点击，要单击鼠标右键，找到“复制链接地址”，如下图所示：<br>
+<img src="https://file.798run.top/img/blog/20201207/see-nodejs-download-url.jpg" alt="see-nodejs-download-url"></p>
+<p>我在自己的服务器上切换到目录为：<code>~</code></p>
+<p>这时候执行：<code> wget -c https://nodejs.org/download/release/v12.18.3/node-v12.18.3-linux-x64.tar.xz</code>，随后提取文件：<code>tar -xvf node-v12.18.3-linux-x64.tar.xz</code>，修改名字：<code>mv node-v12.18.3-linux-x64 ~/nodejs12.18.3</code>。然而，这种方式安装的 Nodejs 并不完美。首先，Nodejs 的命令 node 和 npm 并不能在全局使用。为了解决这个问题，我们需要建立两个软链接：<code>ln -s ~/nodejs12.18.3/bin/node /usr/local/bin/node</code>、<code>ln -s ~/nodejs12.18.3/bin/npm /usr/local/bin/npm</code>。这时候我们执行：<code>npm -v</code>、<code>node -v</code>，就可以显示 npm node 的版本信息了！</p>
+<p>趁热打铁就随便安装一下 yarn 吧，我本机、公司安装的都是 1.22.4。于是我执行：<code>npm i yarn@1.22.4 -g</code>。安装效果如下：<br>
+<img src="https://file.798run.top/img/blog/20201207/linux-install-yarn.png" alt="linux-install-yarn"><br>
+此时的 yarn 不能用，因为没有配置环境变量！这时候我想起来了，我的 Windows 上 yarn 安装在<code>C:\Users\zhangboba\AppData\Local\Yarn\bin</code>下，我把该目录添加到了我的环境变量！那我的 Linux 安装的 yarn 是不是需要添加环境变量啊，查资料之后，得知添加环境变量方法：找到 <code>vim /etc/profile</code>，添加：<code>export NODE_HOME=~/nodejs12.18.3/bin</code>、<code>export PATH=$NODE_HOME:$PATH</code>，保存退出即可！至此 node 安装完毕！</p>
+<h4 id="参考链接">参考链接</h4>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012297511">（小白指南）在 Linux 服务器上安装 Nodejs、Nginx 以及部署 Web 应用</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/07/Nodejs%E5%A6%82%E4%BD%95%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85/" data-id="cmcro5ll1001mqkk4fzxxc4dz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-React生命周期" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="article-date">
+  <time datetime="2020-12-07T03:25:42.000Z" itemprop="datePublished">2020-12-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">React生命周期</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="用法">用法</h3>
+<p>1、使用 react 时要注意其生命周期，最开始初始化 defaultProps、state。我们可以在组件的生命周期钩子函数中写相关逻辑来满足我们的业务需求。</p>
+<p>2、<code>componentWillMount</code>：最初该钩子是为了异步的获取数据，现在官方已不赞成使用（在 ssr 场景下，服务端与客户端都会渲染一遍，浪费资源！）</p>
+<p>3、<code>componentDidMount</code>：该组件是渲染完毕之后会触发！此时页面中已经有相关的 DOM，我们可以进行 DOM 的相关操作（思考：我们使用了 MVVM 之后还会操作 DOM 吗？）</p>
+<p>4、我们在 componentDidMount 中可以己写一些逻辑。如：有一个 banner，我们需要给它动态设置 height，而 height 则是根据 width 而来，此时 dom 也已经渲染完了，我们可以获取该元素的 width，进而满足设置 height 的目的，最后在通过 setState 把 height 的值更新；若是组件的父组件的 prop 改变了，此时，就会走到 componentWillReceiveProps(newProps)，此钩子接受一个参数!</p>
+<p>5、<code>componentWillReceiveProps(newProps, newState)</code>：我们可以在此函数中进行判断，如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">shouldComponentUpdate(newProps, newState) &#123;</span><br><span class="line">  <span class="keyword">if</span> (newProps.number &lt; 5) <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="built_in">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line">// 该钩子函数可以接收到两个参数，新的属性和状态，返回`<span class="literal">true</span>/false`来控制组件是否需要更新。</span><br></pre></td></tr></table></figure>
+<p>我们使用这个生命周期一般用于优化，有的时候，我们在界面上只需要更新一个很小的组件，而一个父组件的更新会造成整个子组件都进行渲染，形成一个崭新的虚拟 DOM，但是这样的话，会造成资源的浪费，我们可以根据实际的开发情况在 shouldComponentUpdate()生命周期加入条件，来进行性能的优化。</p>
+<p>6、上面的钩子返回 true 接着走 componentWillUpdate（组件即将被更新时触发，丢弃），在这个生命周期使用 setState，会导致重新跑回到 updata 的生命周期，然后在跑到 componentWillUpdate，如果不慎用的话，会导致反复的执行。</p>
+<p>7、接着再次 render()，在接着是 componentDidUpdate，最后当离开页面时候，触发 componentWillUnMount，我们可以在 componentWillUnMount 中写清除定时器之类的操作！</p>
+<h3 id="参考">参考</h3>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/46022f1cbbb3">React 生命周期的图解</a></p>
+<h3 id="任务">任务</h3>
+<p>有空细看这篇文章：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b331d0e4b398">React 生命周期</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" data-id="cmcro5ll5001wqkk444bm0m70" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Nodejs之Yarn" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/03/Nodejs%E4%B9%8BYarn/" class="article-date">
+  <time datetime="2020-12-03T02:35:06.000Z" itemprop="datePublished">2020-12-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/03/Nodejs%E4%B9%8BYarn/">Nodejs之Yarn</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言">前言</h3>
+<p>yarn 安装有三种方式（官网说），最便捷的还是使用 <code>npm i yarn@1.22.4 -g</code>，默认安装目录：<code>C:\Users\admin\AppData\Roaming\npm\yarn</code>（Win 下执行 where yarn 可知）。yarn 诞生就是为了解决 npm 早期依赖包比较混乱的问题，伴随着 node 的升级，npm 版本也随之升级，针对依赖包已经做的很好了，详情可<a target="_blank" rel="noopener" href="https://fanyi.baidu.com/">点击</a>我。</p>
+<h3 id="疑问">疑问</h3>
+<p>网上的文章几乎是千篇一律，你可以修改 yarn 的默认仓库，那么 yarn 的默认的仓库是啥，网上很少有人说！是不是有一个默认的 .yarnrc 文件？它在何处？于是我开始了寻找这个默认的 .yarnrc 文件（尽管他可能不存在）。开搞，cmd 下，执行 yarn config，于是出现如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-config.jpg" alt="yarn-config"></p>
+<p>这里面提示我们，我们可以在键入 yarn config 时候配上选项啊，于是我执行 yarn config current，得到效果如下:</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-config-current.jpg" alt="yarn-config-current"></p>
+<p>上面截图中（针对我本机）globalFolder、linkFolder 咋找不到地址！是啥原因？猜想：我还没有使用 yarn 全局安装过一个依赖导致，该目录没有生成！再此之前我一直执行 yarn config list ，如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-config-list.jpg" alt="yarn-config-list"></p>
+<p>这样也仅展示相关的基本信息，一直没找到默认配置文件的目录地址！带着上面的疑问，我决定使用 yarn 全局安装一下 webpack，于是执行 <code> yarn global add webpack</code>，最终效果如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-global-add-webpack.jpg" alt="yarn-global-add-webpack"></p>
+<p>红色标记是新增的一个目录。结论：你使用 yarn 全局安装依赖，默认会在 *\AppData\Local\Yarn\ 下新增一个 Data 目录。Data 目录展开如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-global-add-webpack-Data-sub-direct.jpg" alt="yarn-global-add-webpack-Data-sub-direct"></p>
+<p>这不就是网上千篇一律说的修改 yarn 全局安装的默认 global 目录吗？记在最后：我没有找到 “默认的 .yarnrc 文件”，也许是它是以脚本的形式写在了 yarn.cmd 中，等后续在细究吧！</p>
+<h3 id="指令">指令</h3>
+<p>1、根据上面疑问版块的内容，可知，yarn 指令有：</p>
+<ul>
+<li><code>yarn add pkgName</code></li>
+<li><code>yarn add pkgName@1.22.4</code></li>
+<li><code>yarn remove pkgName</code></li>
+<li><code>yarn global add pkgName</code></li>
+<li><code>yarn global remove pkgName</code></li>
+<li><code>yarn config ls</code></li>
+<li><code>yarn global ls</code></li>
+</ul>
+<p>2、通用指令：</p>
+<ul>
+<li><code>yarn config [options]</code></li>
+<li><code>yarn global [options]</code></li>
+</ul>
+<p>其实很多的指令其实就是通用指令加上子命令而来！假如我们记不清楚指令了，我们可键入 yarn global 会提示你缺少子命令，同时把相关常用的子命令给你罗列出来！截图如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-global.jpg" alt="yarn-global"></p>
+<p>看到上面的截图中的子命令有 bin ，执行 yarn global bin =&gt; C:\Users\admin\AppData\Local\Yarn\bin，结论：把此目录添加到环境变量，则使用 yarn 安装的全局依赖，在任意 cmd 下，就能使用了！</p>
+<p>3、yarn upgrade 仅更新 yarn.lock、package.json 不更新，参考：<a target="_blank" rel="noopener" href="https://classic.yarnpkg.com/zh-Hans/docs/cli/upgrade/">升级包到它们基于规范范围的最新版本</a>、<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017014622">yarn upgrade 更新依赖包时 yarn.lock 更新但 package.json 不同步更新版本信息</a></p>
+<h3 id="杂记">杂记</h3>
+<p>1、20201230 看到之前使用 yarn 安装过 webpack，于是 yarn global remove webpack，我的 yarn 全局安装的指令在如下目录：</p>
+<p><img src="https://file.798run.top/img/blog/20201230/yarn-global-remove-webpack.jpg" alt="yarn-global-remove-webpack"></p>
+<p>但原本此目录仅有 node-dev、webpack 但刚执行了 yarn global remove webpack，多了 semver、which。这是何缘故？不知，反正就是 which 也能使用了（我理解的 which 仅在 linux 上可以使用，windows 上可使用 where）。</p>
+<h3 id="问题">问题</h3>
+<p>1、在使用 yarn 安装依赖时候，一直提示：There appears to be trouble with your network connection. Retrying… 后来 Google 一下，看到一个<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/51508364/yarn-there-appears-to-be-trouble-with-your-network-connection-retrying">帖子</a>说的很好，总结原因：Ⅰ、网速不好，yarn 认为你有超时可能，于是提示你。Ⅱ、说执行 yarn config delete https-proxy &amp;&amp; yarn config delete proxy。我认为是第一种原因最大，我已经在自己目录 ~ 下，创建 .yarnrc 文件，并设置为：network-timeout 600000，问题解决！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/03/Nodejs%E4%B9%8BYarn/" data-id="cmcro5ll70024qkk46w51cj31" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vscode之PHP配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2020-12-02T06:29:43.000Z" itemprop="datePublished">2020-12-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/">vscode之PHP配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="杂项">杂项</h4>
+<p>1、PHP Intelephense 插件直接格式化 php 代码不需要啥配置安装即可<br>
+2、配置 PHP 开发环境  <a target="_blank" rel="noopener" href="https://blog.csdn.net/Vezn_King/article/details/75453717">https://blog.csdn.net/Vezn_King/article/details/75453717</a><br>
+3、配置 php <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/languages/php">https://code.visualstudio.com/docs/languages/php</a><br>
+4、PHP copy 变量前面的 $，<a target="_blank" rel="noopener" href="https://www.v2ex.com/t/520357">https://www.v2ex.com/t/520357</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" data-id="cmcro5lml0049qkk409v6bfyv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vscode杂记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/02/vscode%E6%9D%82%E8%AE%B0/" class="article-date">
+  <time datetime="2020-12-02T05:34:28.000Z" itemprop="datePublished">2020-12-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/02/vscode%E6%9D%82%E8%AE%B0/">vscode杂记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前言：vscode 使用很广泛，记一些笔记</p>
+<h3 id="快捷键">快捷键</h3>
+<p>1、md 文件，键入 Ctrl + Shift + v 可预览</p>
+<p>▲ 放大缩小字体 Ctrl + (+/-)<br>
+▲ 显示/隐藏底部控制台：Ctrl + Shift + Y || Ctrl + ` 二则区别：前者是在 调试控制台 Tab 后者是在 终端 Tab<br>
+▲ 格式代码 =&gt; Shift + Alt + F<br>
+▲ 命令模式 =&gt; Ctrl + Shift + P （这里面可重载窗口、可选择 node_modules 插件查询下面的依赖包）<br>
+▲ 打开最近文件列表 =&gt; Ctrl + P || Ctrl + E<br>
+▲ 打开最近打开项目 =&gt; Ctrl + R ，按住 Ctrl 在鼠标点击项目，直接新窗口打开该项目</p>
+<p>▲vscode 中添加很多项目时，鼠标选中某目录，直接 Shift + Alt + F 可直接检索出该目录下的检索词<br>
+▲ 资源管理器 =&gt; Ctrl + Shift + E 资源管理器(文件编辑区)<br>
+▲ 项目搜索 =&gt; Ctrl + Shift + F 项目搜索<br>
+▲ 在某文件搜索 =&gt; Ctrl + F 在某文件搜索<br>
+vscode 可以选中光标，F12 一起改 ？？待验证，群里说的。</p>
+<p>重启 IDE CTRL + SHITF + P 键入 Reload Window</p>
+<p>▲ 快捷键文档<br>
+<a target="_blank" rel="noopener" href="https://www.cnblogs.com/schut/p/10461840.html">https://www.cnblogs.com/schut/p/10461840.html</a><br>
+<a target="_blank" rel="noopener" href="https://www.cnblogs.com/sufaith/p/vscode-key-text-transform-case.html">https://www.cnblogs.com/sufaith/p/vscode-key-text-transform-case.html</a></p>
+<p>▲ 打开外部终端：你在编辑某个项目的文件时候，按下 Ctrl + Shift + C 会弹出该项目为根目录的 Windows 的 cmd</p>
+<p>▲VS Code 集成终端字体修改 &amp; 字体颜色、大小修改方法<br>
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/donaldsy/article/details/94474600">https://blog.csdn.net/donaldsy/article/details/94474600</a></p>
+<p>▲Ctrl + K 在按下 Ctrl + T 就可以更换主题</p>
+<p>▲ 快速复制某行 =&gt; Shift + Alt + 下箭头 / 上箭头<br>
+▲ p<em>2 、li</em>2、div*2、.el 回车、#el 回车</p>
+<p>▲VsCode 中使用 Emmet 神器快速编写 HTML 代码<br>
+<a target="_blank" rel="noopener" href="https://www.cnblogs.com/summit7ca/p/6944215.html">https://www.cnblogs.com/summit7ca/p/6944215.html</a></p>
+<h3 id="插件">插件</h3>
+<p>1、在写 react demo 时，使用 vscode 自带的 shift + alt + f ，直接把我的 react 代码弄得很乱，后来发现格式化代码是使用插件 beautify 来弄的！后来才知道，针对 vscode 你可以安装 eslint prettier 这是为了你单独开发普通项目，你可以美化代码、校验语法，在 vue react 脚手架有的 package.json 自带给你配置了 eslint ，所以可在教手架中关闭！</p>
+<p>2、.editorconfig 文件，此文件就是对编码方式的声明，前提是要在 IDE 中安装此插件！以前还以为 .editorconfig 是不是给 webstorm 读取的啊？后来知它是给 IDE 一个声明，让编辑器知道我的代码（无论是何种语言）风格都是按照 .editorconfig 配置。根目录建立.editorconfig 配置。这个的作用是为项目统一编辑器的实时格式。简单来说就是它负责敲代码那一刻的格式，prettier 负责保存代码那一刻的格式。两者统一体验更好。20201110 我在新奥开发分销小程序时候，发现我加了 .editorconfig 格式化就不生效了！</p>
+<p>3、之前安装的插件集，仅记录如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201202/plugin1.png" alt="plugin1"></p>
+<p><img src="https://file.798run.top/img/blog/20201202/plugin2.png" alt="plugin2"></p>
+<p><img src="https://file.798run.top/img/blog/20201202/plugin3.png" alt="plugin3"></p>
+<p>4、疑问，vscode 真对刚导入的项目，会提示你是否使用 eslint 检测，一旦你点击运行，针对项目下文件会报红色（若是你的代码本身不符合 eslint 规范），针对此场景，如何取消烦人的红色提示？<br>
+红色提示记录：</p>
+<p><img src="https://file.798run.top/img/blog/20210426/vscode_eslint_err.png" alt="vscode_eslint_err"></p>
+<h3 id="多项目">多项目</h3>
+<p>1、vscode 可以添加多项目，鼠标选中某目录，直接 Shift + Alt + F 可直接检索出该目录下的检索词。</p>
+<h3 id="杂项">杂项</h3>
+<p>1、安装了该软件，或者是任意一个工程软件，一般会在你的 Users/user 目录 （不在此目录，安装在其他目录也不合适呀） 下生成一个配置目录 .vscode ，查看之，发现安装的 vscode 插件 list 都在这！</p>
+<p>2、用户可以根据自己需要配置 settings.json ，此文件也是类似于工程软件，一般会在你的机器用户名下的 AppData\Roaming 目录下，我个人的完整目录在 C:\Users\Andy_Zhang\AppData\Roaming\Code\User\settings.json，当然了针对你的各个不同的项目，也可单独配置，我理解：vscode 首先是读取你的项目的 .vscode\settings.json 文件，进而在读取你的系统的配置文件，属性相同的配置，合并之。若无此文件，就直接就取你系统的文件！</p>
+<p>3、settings.json 配置了粘贴自动保存，弄巧成拙！</p>
+<p>4、离开秋果后使用 Hasee ，vscode 在 testme 项目中写 demo ，发现格式化效果不好（注释的代码不会对齐）细看自己没有安装 prettier 插件，于是安装之，再次格式化 html 代码，提示选择格式化的程序（有一个默认的格式化程序、还一个是就是刚刚安装的 prettier ，选择之，格式化 OK！）</p>
+<p>5、在 VSCode 中使用 Remote Workspace 进行远程文件管理 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3a18568ffa92">https://www.jianshu.com/p/3a18568ffa92</a><br>
+关于 VSCode 中工作区的讲解与使用工作区还你一个轻量的 VSCode <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/25706af1f6a7">https://www.jianshu.com/p/25706af1f6a7</a></p>
+<p>6、20200820 CRS 针对 js 文件一直提示要是有分号，Google 之后发现，发现在 .eslintrc.js 中这样写 semi: [2], =&gt; semi: [0], 即可，参考：<a target="_blank" rel="noopener" href="https://juejin.im/post/6844903854379630599">https://juejin.im/post/6844903854379630599</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/02/vscode%E6%9D%82%E8%AE%B0/" data-id="cmcro5lmo004hqkk463fi0m7a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-小程序杂记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/02/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9D%82%E8%AE%B0/" class="article-date">
+  <time datetime="2020-12-02T02:45:07.000Z" itemprop="datePublished">2020-12-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/02/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9D%82%E8%AE%B0/">小程序杂记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前言：小程序体验效果相比在微信打开一个 H5 的 spa 单页效果好一些！现记录一些笔记！</p>
+<h4 id="初始化项目">初始化项目</h4>
+<ul>
+<li>
+<p>使用微信开发工具可直接初始化一个新项目（appId可使用随机分配的测试号的appId）。注：此时生成的项目是普通的项目（不具有云函数开发功能）。</p>
+</li>
+<li>
+<p>若初始化一个云函数新项目（需要有appId，若使用测试号的appId，则云函数的选项不能使用），初始化完成之后目录结构如下：</p>
+</li>
+</ul>
+<p><img src="https://file.798run.top/img/blog/20201202/yunFn.jpg" alt="云函数目录结构"></p>
+<p>其中 <code>miniprogram</code> 目录下结构与我们初始化普通项目的结构类似，<code>cloudfunctions</code> 目录结构如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201202/cloudfunctions.jpg" alt="cloudfunctions目录结构"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/02/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9D%82%E8%AE%B0/" data-id="cmcro5ln4005bqkk4fvyu9pw9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <!-- &laquo; -->
+    <!-- &raquo; -->
+    
+    <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/6/">Next</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/05/05/CSS%E4%B9%8Bflex/">CSS之flex</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/prettier%E4%BB%8B%E7%BB%8D/">prettier介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/vite%E4%BB%8B%E7%BB%8D/">vite介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Andy Zhang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

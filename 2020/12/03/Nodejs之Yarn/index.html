@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Nodejs之Yarn | 我的点滴记录</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言 yarn 安装有三种方式（官网说），最便捷的还是使用 npm i yarn@1.22.4 -g，默认安装目录：C:\Users\admin\AppData\Roaming\npm\yarn（Win 下执行 where yarn 可知）。yarn 诞生就是为了解决 npm 早期依赖包比较混乱的问题，伴随着 node 的升级，npm 版本也随之升级，针对依赖包已经做的很好了，详情可点击我。 疑问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nodejs之Yarn">
+<meta property="og:url" content="http://example.com/2020/12/03/Nodejs%E4%B9%8BYarn/index.html">
+<meta property="og:site_name" content="我的点滴记录">
+<meta property="og:description" content="前言 yarn 安装有三种方式（官网说），最便捷的还是使用 npm i yarn@1.22.4 -g，默认安装目录：C:\Users\admin\AppData\Roaming\npm\yarn（Win 下执行 where yarn 可知）。yarn 诞生就是为了解决 npm 早期依赖包比较混乱的问题，伴随着 node 的升级，npm 版本也随之升级，针对依赖包已经做的很好了，详情可点击我。 疑问">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://file.798run.top/img/blog/20201203/yarn-config.jpg">
+<meta property="og:image" content="https://file.798run.top/img/blog/20201203/yarn-config-current.jpg">
+<meta property="og:image" content="https://file.798run.top/img/blog/20201203/yarn-config-list.jpg">
+<meta property="og:image" content="https://file.798run.top/img/blog/20201203/yarn-global-add-webpack.jpg">
+<meta property="og:image" content="https://file.798run.top/img/blog/20201203/yarn-global-add-webpack-Data-sub-direct.jpg">
+<meta property="og:image" content="https://file.798run.top/img/blog/20201203/yarn-global.jpg">
+<meta property="og:image" content="https://file.798run.top/img/blog/20201230/yarn-global-remove-webpack.jpg">
+<meta property="article:published_time" content="2020-12-03T02:35:06.000Z">
+<meta property="article:modified_time" content="2025-06-16T00:52:32.680Z">
+<meta property="article:author" content="Andy Zhang">
+<meta property="article:tag" content="Node.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://file.798run.top/img/blog/20201203/yarn-config.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的点滴记录</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Nodejs之Yarn" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/03/Nodejs%E4%B9%8BYarn/" class="article-date">
+  <time datetime="2020-12-03T02:35:06.000Z" itemprop="datePublished">2020-12-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Nodejs之Yarn
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言">前言</h3>
+<p>yarn 安装有三种方式（官网说），最便捷的还是使用 <code>npm i yarn@1.22.4 -g</code>，默认安装目录：<code>C:\Users\admin\AppData\Roaming\npm\yarn</code>（Win 下执行 where yarn 可知）。yarn 诞生就是为了解决 npm 早期依赖包比较混乱的问题，伴随着 node 的升级，npm 版本也随之升级，针对依赖包已经做的很好了，详情可<a target="_blank" rel="noopener" href="https://fanyi.baidu.com/">点击</a>我。</p>
+<h3 id="疑问">疑问</h3>
+<p>网上的文章几乎是千篇一律，你可以修改 yarn 的默认仓库，那么 yarn 的默认的仓库是啥，网上很少有人说！是不是有一个默认的 .yarnrc 文件？它在何处？于是我开始了寻找这个默认的 .yarnrc 文件（尽管他可能不存在）。开搞，cmd 下，执行 yarn config，于是出现如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-config.jpg" alt="yarn-config"></p>
+<p>这里面提示我们，我们可以在键入 yarn config 时候配上选项啊，于是我执行 yarn config current，得到效果如下:</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-config-current.jpg" alt="yarn-config-current"></p>
+<p>上面截图中（针对我本机）globalFolder、linkFolder 咋找不到地址！是啥原因？猜想：我还没有使用 yarn 全局安装过一个依赖导致，该目录没有生成！再此之前我一直执行 yarn config list ，如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-config-list.jpg" alt="yarn-config-list"></p>
+<p>这样也仅展示相关的基本信息，一直没找到默认配置文件的目录地址！带着上面的疑问，我决定使用 yarn 全局安装一下 webpack，于是执行 <code> yarn global add webpack</code>，最终效果如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-global-add-webpack.jpg" alt="yarn-global-add-webpack"></p>
+<p>红色标记是新增的一个目录。结论：你使用 yarn 全局安装依赖，默认会在 *\AppData\Local\Yarn\ 下新增一个 Data 目录。Data 目录展开如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-global-add-webpack-Data-sub-direct.jpg" alt="yarn-global-add-webpack-Data-sub-direct"></p>
+<p>这不就是网上千篇一律说的修改 yarn 全局安装的默认 global 目录吗？记在最后：我没有找到 “默认的 .yarnrc 文件”，也许是它是以脚本的形式写在了 yarn.cmd 中，等后续在细究吧！</p>
+<h3 id="指令">指令</h3>
+<p>1、根据上面疑问版块的内容，可知，yarn 指令有：</p>
+<ul>
+<li><code>yarn add pkgName</code></li>
+<li><code>yarn add pkgName@1.22.4</code></li>
+<li><code>yarn remove pkgName</code></li>
+<li><code>yarn global add pkgName</code></li>
+<li><code>yarn global remove pkgName</code></li>
+<li><code>yarn config ls</code></li>
+<li><code>yarn global ls</code></li>
+</ul>
+<p>2、通用指令：</p>
+<ul>
+<li><code>yarn config [options]</code></li>
+<li><code>yarn global [options]</code></li>
+</ul>
+<p>其实很多的指令其实就是通用指令加上子命令而来！假如我们记不清楚指令了，我们可键入 yarn global 会提示你缺少子命令，同时把相关常用的子命令给你罗列出来！截图如下：</p>
+<p><img src="https://file.798run.top/img/blog/20201203/yarn-global.jpg" alt="yarn-global"></p>
+<p>看到上面的截图中的子命令有 bin ，执行 yarn global bin =&gt; C:\Users\admin\AppData\Local\Yarn\bin，结论：把此目录添加到环境变量，则使用 yarn 安装的全局依赖，在任意 cmd 下，就能使用了！</p>
+<p>3、yarn upgrade 仅更新 yarn.lock、package.json 不更新，参考：<a target="_blank" rel="noopener" href="https://classic.yarnpkg.com/zh-Hans/docs/cli/upgrade/">升级包到它们基于规范范围的最新版本</a>、<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017014622">yarn upgrade 更新依赖包时 yarn.lock 更新但 package.json 不同步更新版本信息</a></p>
+<h3 id="杂记">杂记</h3>
+<p>1、20201230 看到之前使用 yarn 安装过 webpack，于是 yarn global remove webpack，我的 yarn 全局安装的指令在如下目录：</p>
+<p><img src="https://file.798run.top/img/blog/20201230/yarn-global-remove-webpack.jpg" alt="yarn-global-remove-webpack"></p>
+<p>但原本此目录仅有 node-dev、webpack 但刚执行了 yarn global remove webpack，多了 semver、which。这是何缘故？不知，反正就是 which 也能使用了（我理解的 which 仅在 linux 上可以使用，windows 上可使用 where）。</p>
+<h3 id="问题">问题</h3>
+<p>1、在使用 yarn 安装依赖时候，一直提示：There appears to be trouble with your network connection. Retrying… 后来 Google 一下，看到一个<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/51508364/yarn-there-appears-to-be-trouble-with-your-network-connection-retrying">帖子</a>说的很好，总结原因：Ⅰ、网速不好，yarn 认为你有超时可能，于是提示你。Ⅱ、说执行 yarn config delete https-proxy &amp;&amp; yarn config delete proxy。我认为是第一种原因最大，我已经在自己目录 ~ 下，创建 .yarnrc 文件，并设置为：network-timeout 600000，问题解决！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/03/Nodejs%E4%B9%8BYarn/" data-id="cmcro5ll70024qkk46w51cj31" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/12/07/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          React生命周期
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/12/02/vscode%E4%B9%8BPHP%E9%85%8D%E7%BD%AE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">vscode之PHP配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/05/05/CSS%E4%B9%8Bflex/">CSS之flex</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/prettier%E4%BB%8B%E7%BB%8D/">prettier介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/vite%E4%BB%8B%E7%BB%8D/">vite介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Andy Zhang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

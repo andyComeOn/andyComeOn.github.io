@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>我的点滴记录</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="我的点滴记录">
+<meta property="og:url" content="http://example.com/page/9/index.html">
+<meta property="og:site_name" content="我的点滴记录">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Andy Zhang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的点滴记录</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Math函数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/11/Math%E5%87%BD%E6%95%B0/" class="article-date">
+  <time datetime="2019-06-11T09:25:00.000Z" itemprop="datePublished">2019-06-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/11/Math%E5%87%BD%E6%95%B0/">Math函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="总结一下Math相关函数">总结一下Math相关函数</h3>
+<ol>
+<li>我们在写涉及到钱业务逻辑前端页面时，会有保留2位小数的场景，后台一般返回钱数相关字段的值是字符串，如：<code>3.00</code>，但是有时候页面需要计算钱数，如 3.00 + 5.00 = &gt; 8，这时候8转为8.00比较符合场景，这时候可能会使用到toFixed(2)。</li>
+</ol>
+<p>toFixed用法 ：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">NumberObject</span>.<span class="title function_">toFixed</span>(num);</span><br></pre></td></tr></table></figure>
+<p>上面意思是针对Number型，才能使用 <code>toFixed()</code>, 切记这个也是满足四舍五入的数学规则。</p>
+<ol start="2">
+<li>Math.ceil(num))，是只是向上取整数，但是若是3.00之类的数还是3 如下：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Math</span>.<span class="title function_">ceil</span>(<span class="number">3.12</span>))   <span class="comment">// 4</span></span><br><span class="line"><span class="title class_">Math</span>.<span class="title function_">ceil</span>(<span class="number">3.00</span>))   <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>同理Math.floor()也是如此。</p>
+<ol start="3">
+<li>toString() 也是针对Number。但是它好像是有2进制的作用</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/11/Math%E5%87%BD%E6%95%B0/" data-id="cmcro5ll1001kqkk4b86o0fau" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-h5中img标签的边框问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2019-06-10T05:22:11.000Z" itemprop="datePublished">2019-06-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/">h5中img标签的边框问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="总结一下-h5-中-img-标签的边框问题">总结一下 h5 中 img 标签的边框问题</h3>
+<p>我们常在一些重置 css 如：reset.css、normaize.css 看到：<code>border-style: none; border: 0;</code>。在网页中搜到 img 标签的边框问题。自己总结如下：</p>
+<ol>
+<li>网上说 img 有边框问题，我在 chrome（版本 74.0.3729.169（正式版本） （64 位））中测试无发现此 bug。</li>
+<li>网上说解决边框问题方法：</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span><span class="selector-attr">[src=<span class="string">&quot;&quot;</span>]</span>,</span><br><span class="line"><span class="selector-tag">img</span><span class="selector-pseudo">:not</span>(<span class="selector-attr">[src]</span>) &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>确实可以解决部门场景的 img 边框，但这是有条件的。上面 css 代码指：该 img 标签无 src 属性或 src 属性值为空。试想一下写前端代码的小伙伴谁会忘记写 src 属性？若忘记写 src 属性，则图片渲染不出来，Ta 也会发现该 bug！若开发小伙伴就是如下写法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.imgWrap</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">background</span>: antiquewhite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.imgSrc</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;imgWrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;imgSrc&quot;</span> <span class="attr">src</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>渲染效果：<br>
+<img src="https://file.798run.top/img/blog/20190610/img_src1.jpg" alt="opacity=0效果"></p>
+<p>确实 img 图片无渲染，无边框。opacity:0;把 img 占位区的透明度给置为 0，所以不展示边框。</p>
+<hr>
+<ol start="3">
+<li>正常情况，对 img 写了 src 属性，可是图片没有加载过来，2 中的解决方法依然是有边框。代码如下：</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.imgWrap</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">background</span>: antiquewhite;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.imgSrc</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">64px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">64px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;imgWrap&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">&quot;imgSrc&quot;</span> <span class="attr">src</span>=<span class="string">&quot;favicon.ic&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>网上说的方法大多不行，自己思考你给图片写了宽高，但图片没有加载出来， 浏览器就按照你写的宽高给 img 添加默认的边框。<br>
+<img src="https://file.798run.top/img/blog/20190610/img_src2.jpg" alt="无加载出图片依旧有边框"></p>
+<p>默认的没有加载出的图片大小是 16x16：<br>
+<img src="https://file.798run.top/img/blog/20190610/img_src3.jpg" alt="无加载出默认图片大小"></p>
+<p>但是一般情况大家都会对图片写宽高啊! 最后得出：只对图片写宽（刚好图片有一个机制是宽度确认高自己是适配），加载不出来，也有一个默认 16x16 的图片提示，本来浏览器就是这样提示用户的，设计、产品、老板就只顾着说，哈哈。 最后得出网上所谓的方法也是鸡肋办法，不实用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/10/h5%E4%B8%ADimg%E6%A0%87%E7%AD%BE%E7%9A%84%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/" data-id="cmcro5lle002oqkk4bxqo21ql" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSS的normalize-css的文档说明" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time datetime="2019-05-09T07:32:46.000Z" itemprop="datePublished">2019-05-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/">CSS的normalize.css的文档说明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/05/09/CSS%E7%9A%84normalize-css%E7%9A%84%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E/" data-id="cmcro5lkh000dqkk48dsj0o3h" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js数组排序去重等" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/15/js%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%8E%BB%E9%87%8D%E7%AD%89/" class="article-date">
+  <time datetime="2019-04-15T02:32:19.000Z" itemprop="datePublished">2019-04-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/15/js%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%8E%BB%E9%87%8D%E7%AD%89/">js数组排序去重等</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>针对js数组排序，有几种方法，现总结一下，以免自己忘记。</p>
+<h4 id="1-js数组的排序之sort-方法">1. js数组的排序之sort()方法</h4>
+<ul>
+<li>数组有一个sort()方法，可用之简单排序，如下代码：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmpArr = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">2</span>];</span><br><span class="line">functon <span class="title function_">sortMethod</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (a &gt; b) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a &lt; b) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="number">0</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( tmpArr.<span class="title function_">sort</span>(sortMethod) );</span><br></pre></td></tr></table></figure>
+<p>可满足从小到大排序。</p>
+<ul>
+<li>若需要是从大到小排序，则可以改造为：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmpArr = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">2</span>];</span><br><span class="line">functon <span class="title function_">sortMethod</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (a &gt; b) &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (a &lt; b) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="number">0</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( tmpArr.<span class="title function_">sort</span>(sortMethod) );</span><br></pre></td></tr></table></figure>
+<p>无意中看到一篇关于 sort 的帖子，本来在我的微信悬浮中，现在用博客记录一下链接：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/lVPKNh6SCdf9EDHQPzjLaQ">为什么使用sort()不是不是真正意义的乱序呢？</a></p>
+<h4 id="2-冒泡排序">2. 冒泡排序</h4>
+<ul>
+<li>冒泡的含义，来源于生活，是一个形象的比喻，就像是锅中烧水，小泡在下面，大炮在上面，小泡慢慢从下面升起来跑到上面。 所谓的冒泡排序就是从最开始的第一个数arr[0]，与他临近的arr[1]比较，若arr[0] &gt; arr[1]，对调位置（类似于冒泡）。这时候新的arr[1]继续与arr[2]比较，若满足条件对调位置，知道把数据循环一遍。循环一遍结束后，这只是把arr[0]与其他元素做了比较，这时候要对新的arr[1]与他之后的元素依次比较，所以这会有双重循环。 看代码：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmpArr = [<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, -<span class="number">1</span>];</span><br><span class="line">functon <span class="title function_">bubbleSort</span>(<span class="params">arr</span>) &#123;</span><br><span class="line">    <span class="comment">// 第一次循环，针对每一个元素分别走一遍，让他开始冒泡</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.<span class="property">length</span> - <span class="number">1</span>; i++ ) &#123;</span><br><span class="line">        <span class="comment">// 第二次循环，每一个元素分别比较之后，继续与他右边元素比较，一直到循环到头</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; arr.<span class="property">length</span> - <span class="number">1</span> - i; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j+<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">var</span> tmp = arr[j];</span><br><span class="line">                arr[j] = arr[j+<span class="number">1</span>];</span><br><span class="line">                arr[j+<span class="number">1</span>] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="title function_">bubbleSort</span>(tmpArr) );</span><br></pre></td></tr></table></figure>
+<p>解释一下这里的代码含义，为什么是 arr.length - 1 ，arr.length - 1 - i主要是内层的循环，为了代码不进行多余的循环，还有一个重要的原因，上面的代码中有arr[j+1]，要是不限制，有可能数组越界。 第二次循环若是 &lt; 4,则j 有可能等于3，则arr[j+1] 既是arr[4]，所以这是不合理的。</p>
+<h4 id="3-数组去重">3. 数组去重</h4>
+<ul>
+<li>数组去重，一般是想到使用indexOf(‘el’)找到其索引，在直接对数组使用 arr.splice(index, ‘el’)即可！我在集团端crs中direct_hotel\room_status.php中使用到数组去重逻辑，具体如下：很多房型是form中的input type=“checkbox”，每次选中或者取消checkbox要实时获取数组中有效房型。具体代码：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> roomTypeArr = [];</span><br><span class="line">form.<span class="title function_">on</span>(<span class="string">&#x27;checkbox(filterRoomType)&#x27;</span>, <span class="keyword">function</span> (<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data.<span class="property">value</span>);</span><br><span class="line">    <span class="keyword">if</span> (data.<span class="property">elem</span>.<span class="property">checked</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (roomTypeArr.<span class="title function_">indexOf</span>(data.<span class="property">value</span>) == -<span class="number">1</span>) &#123;</span><br><span class="line">            roomTypeArr.<span class="title function_">push</span>(data.<span class="property">value</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> ind = roomTypeArr.<span class="title function_">indexOf</span>(data.<span class="property">value</span>);</span><br><span class="line">        <span class="keyword">if</span> (ind != -<span class="number">1</span>) &#123;</span><br><span class="line">            roomTypeArr.<span class="title function_">splice</span>(ind, <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(roomTypeArr);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>原生jq点击事件，针对checkbox模拟上面的场景</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;hobbyWrap&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;hobby[]&quot;</span> <span class="attr">value</span>=<span class="string">&quot;看书&quot;</span> <span class="attr">id</span>=<span class="string">&quot;checkbox1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">label</span></span></span><br><span class="line"><span class="tag">            <span class="attr">for</span>=<span class="string">&quot;checkbox1&quot;</span>&gt;</span>看书<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;hobby[]&quot;</span> <span class="attr">value</span>=<span class="string">&quot;写字&quot;</span> <span class="attr">id</span>=<span class="string">&quot;checkbox2&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;checkbox2&quot;</span>&gt;</span>写字<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;hobby[]&quot;</span> <span class="attr">value</span>=<span class="string">&quot;学习&quot;</span> <span class="attr">id</span>=<span class="string">&quot;checkbox3&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;checkbox3&quot;</span>&gt;</span>学习<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hobbyArr = [];</span><br><span class="line">$(<span class="string">&#x27;.hobbyWrap&#x27;</span>).<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>, <span class="string">&#x27;:checkbox&#x27;</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> v = $(<span class="variable language_">this</span>).<span class="title function_">val</span>();</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(v, $(<span class="variable language_">this</span>).<span class="title function_">prop</span>(<span class="string">&quot;checked&quot;</span>));</span><br><span class="line">    <span class="keyword">if</span> ($(<span class="variable language_">this</span>).<span class="title function_">prop</span>(<span class="string">&quot;checked&quot;</span>)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (hobbyArr.<span class="title function_">indexOf</span>(v) == -<span class="number">1</span>) &#123;</span><br><span class="line">            hobbyArr.<span class="title function_">push</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> ind = hobbyArr.<span class="title function_">indexOf</span>(v);</span><br><span class="line">        <span class="keyword">if</span> (ind != -<span class="number">1</span>) &#123;</span><br><span class="line">            hobbyArr.<span class="title function_">splice</span>(ind, <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(hobbyArr, hobbyArr.<span class="title function_">join</span>(<span class="string">&#x27;,&#x27;</span>));</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在网页上也看到过对Array的原型链上绑定一个方法，直接可以使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">remove</span> = <span class="keyword">function</span> (<span class="params">v</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="variable language_">this</span>.<span class="title function_">indexOf</span>(v);</span><br><span class="line">    <span class="keyword">if</span> (i &gt; -<span class="number">1</span>) <span class="variable language_">this</span>.<span class="title function_">splice</span>(i, v);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.<span class="title function_">remove</span>(<span class="number">3</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/04/15/js%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%8E%BB%E9%87%8D%E7%AD%89/" data-id="cmcro5llp003gqkk42lbchmw4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js function的相关总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/11/js%20function%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2019-04-11T08:40:05.000Z" itemprop="datePublished">2019-04-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/11/js%20function%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">js函数的一些记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>function的定义方法，及function对象的理解,首先说一下 function的的定义：</p>
+<p>一：实际上就和我们最为平常的方法是一样的。<br>
+<code>function fname(test)&#123; alert(&quot;&quot;+test); &#125;</code></p>
+<p>二：通过Function的函数的构造器进行函数对象的定义。</p>
+<p><code>var fname = new Function(&quot;test&quot;, &quot;alert(''+test);&quot;);</code><br>
+第一个参数表示的要传入函数的参数，第二个参数表示的是当前函数要执行的过程（语句）。两个参数实际上都是string类型的。但是可以看出当前的内容是十分的繁杂。</p>
+<p>三：通过变量只带一块function关键字定义的方法来进行定义。</p>
+<p><code>var fname = function(test)&#123;alert(&quot;&quot;+test);&#125;</code></p>
+<p>上面的三种方法虽然最后都是声明定义了一个函数，但是也是有区别的。第一种方法实际上是为函数命名为fname（这被称之为函数声明 declaration），而二三种方法使用起来实际上是把一个匿名函数赋值给一个变量（这被称之为函数声明 expression）。使用第二种方法来定义函数的时候，实际上就是<strong>调用构造函数并在每次解析的时候都会重新读取并创建一新的函数对象</strong>，由此可见当在循环体中调用这样的函数的时候会是十分的低效的，还有一点就是，当我们使用其创建一个函数对象的时候，其并不遵循典型的作用域，而是一直作为顶级函数来执行的。意思就是，当在函数内部调用它的时候，其实他并不会用函数内部定义的变量。而是只能使用全局变量。</p>
+<p>第一三种方法实际上定义了一种函数字面量也可以称之为是一种函数表达式。当我们不为函数直接量定义名称的时候。函数就叫做匿名函数。那么我们如何调用一个匿名直接量，如下:</p>
+<ol>
+<li>执行后得到返回值的函数调用</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式一，调用函数，得到返回值。强制运算符使函数调用执行</span></span><br><span class="line">(<span class="keyword">function</span>(<span class="params">x,y</span>)&#123;</span><br><span class="line">　　<span class="title function_">alert</span>(x+y);</span><br><span class="line">　　<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;(<span class="number">3</span>,<span class="number">4</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式二，调用函数，得到返回值。强制函数直接量执行再返回一个引用，引用在去调用执行</span></span><br><span class="line">(<span class="keyword">function</span>(<span class="params">x,y</span>)&#123;</span><br><span class="line">　　<span class="title function_">alert</span>(x+y);</span><br><span class="line">　　<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;)(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 还有一种很奇葩的方式三</span></span><br><span class="line">~<span class="keyword">function</span>(<span class="params">x,y</span>)&#123;</span><br><span class="line"><span class="comment">// to do sth</span></span><br><span class="line">&#125;(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line"><span class="comment">// 这样写实际上也是可以执行的~可以把函数表达式进行运算符操作并使用后面的小括号中传入的参数。</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>执行后忽略返回值</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式四，调用函数，忽略返回值</span></span><br><span class="line"><span class="keyword">void</span> <span class="keyword">function</span> (<span class="params">x</span>) &#123;</span><br><span class="line">    x = x-<span class="number">1</span>;</span><br><span class="line">    <span class="title function_">alert</span>(x);</span><br><span class="line">&#125;(<span class="number">9</span>);<span class="comment">//这里实际上就是使用了void运算符，其用于计算之后的表达式并且不返回任何值。</span></span><br></pre></td></tr></table></figure>
+<p>这个例子不理解，该写法有什么含义呢？既然封装为函数，一般就是调用它，该函数表示不返回任何值，感觉失去了函数的意义！</p>
+<p>实际上在使用第一和第三种方法来说，在第一次解析的时候会通过new Function来定义一个函数的对象，并把这一对象作为内部对象来进行存储和运行。由此可知在js中每写一个函数，实际上就是在其中存储一个相关的函数对象，并在我们需要调用的时候对其进行调用。</p>
+<hr>
+<p>接下来我们来具体的了解一下Function对象的定义和内容</p>
+<ol>
+<li>首先是我们最为常用的内容arguments对象。他的定义是，一个类似于数组的对象，对应的是传递给函数对象的属性。arguments对象是一个所有的函数内部都可以用的函数内部变量。当我们调用函数的时候，他会存储我们传输进来的参数的数据。如下：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable language_">arguments</span>[<span class="number">0</span>])&#123;</span><br><span class="line">        <span class="title function_">alert</span>(<span class="string">&quot;arguments:&quot;</span>,+<span class="variable language_">arguments</span>[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>(<span class="string">&quot;a&quot;</span>);</span><br><span class="line"><span class="comment">// 当前页面中会显示出一个弹出框并显示arguments:a</span></span><br></pre></td></tr></table></figure>
+<p>该arguments是一个类数组，针对上面代码打印arguments: [a, callee: ƒ, Symbol(Symbol.iterator): ƒ]，但是arguments.length 为1<br>
+当然在arguments对象中也是有一些其自己的属性的，如下：</p>
+<ul>
+<li>
+<p>callee，属性存储的是当前的调用的函数对象。当我们使用匿名函数的时候，如果需要调用存储当前的arguments对象的方法对象，此时可以使用当前属性。但是在ECM5中是阻止使用这一属性的。这样做的原因是，函数命名来调用函数的实现是优于这种方式的。</p>
+</li>
+<li>
+<p>caller，这一属性只有当函数正在执行的情况之下才会被定义。当然其返回的内容是当前的和toString方法是一样的，为function的反编译文本。但是实际上在使用的时候返回便以文本之后，js有解析成为函数对象之后执行，所以说，这一属性实际上还是返回函数本身。但是这一属性在ECM5中已经被删除了。</p>
+</li>
+<li>
+<p>length属性，是初始化的时候读取当前函数中的参数后获取的值。所以函数的length属性的值其实就和arguments.length的值的大小是一样的。</p>
+</li>
+<li>
+<p>prototype属性，表示的是当前的function对象的原型对象。也可以了几位当前的函数对象继承了原型对象的属性和方法。具体参见js原型链学习。</p>
+</li>
+</ul>
+<p>当然对于函数对象js中也是有定义一些基本方法的</p>
+<ul>
+<li>apply方法相信你不会陌生，制定方法替换当前的this指针，冰用穿入的对象中的数据替换当前函数的参数值。上例子：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&quot;&quot;</span> + <span class="variable language_">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">testTwo</span>(<span class="params">a</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;this:&quot;</span>+<span class="variable language_">this</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;a:&quot;</span>+a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">testTwo.<span class="title function_">apply</span>(test, [<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出的效果是this:function test()&#123; alert(&quot;&quot; + this);&#125; 与 a:1</span></span><br></pre></td></tr></table></figure>
+<p>实际上apply是用第一个参数中的对象替换当前的函数中的this指针，并用数组参数中的数据来来替换但钱的函数调用时的参数。</p>
+<ul>
+<li>bind方法，其效果是不论当前的函数怎么调用，他的this指针代表的值都是一样的。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> displayArgs = <span class="keyword">function</span> (<span class="params">val1, val2, val3, val4</span>) &#123;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">write</span>(val1 + <span class="string">&quot; &quot;</span> + val2 + <span class="string">&quot; &quot;</span> + val3 + <span class="string">&quot; &quot;</span> + val4);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> emptyObject = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> displayArgs2 = displayArgs.<span class="title function_">bind</span>(emptyObject, <span class="number">12</span>, <span class="string">&quot;a&quot;</span>);</span><br><span class="line"><span class="title function_">displayArgs2</span>(<span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Output: 12 a b c</span></span><br></pre></td></tr></table></figure>
+<p>由上面可见实际上bind函数就有点像是绑定当前的内容和一个数据的关系。并返回一个可调用对象。</p>
+<ul>
+<li>call方法使用效果实际上和apply方法是一样的，只是其后面传递的第二个参数不在是严格要求是数组。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/04/11/js%20function%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" data-id="cmcro5llg0030qkk4azxbbgg8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js构造函数及原型链继承" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/11/js%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF/" class="article-date">
+  <time datetime="2019-04-11T06:41:48.000Z" itemprop="datePublished">2019-04-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/11/js%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF/">js的几种继承</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>js的构造函数继承</li>
+</ol>
+<ul>
+<li>我所理解的就是在原有函数声明之后，new了一次。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="keyword">new</span> <span class="title class_">Foo</span>();</span><br></pre></td></tr></table></figure>
+<p>这个时候el 就继承了Foo函数的prototype。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/04/11/js%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%8F%8A%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF/" data-id="cmcro5lm8003pqkk49sjl9tnk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-eval总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/15/eval%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2019-03-15T02:07:55.000Z" itemprop="datePublished">2019-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/15/eval%E6%80%BB%E7%BB%93/">eval总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="eval的一些总结">eval的一些总结</h4>
+<h5 id="eval的用法">eval的用法</h5>
+<ol>
+<li>
+<p>在很多的js代码中，可以看到有eval的身影，在菜鸟教程中：“eval() 函数计算 JavaScript 字符串，并把它作为脚本代码来执行。”这个言外之意是处理字符串。可是下面还有一句话：“如果参数是一个表达式，eval() 函数将执行表达式。如果参数是Javascript语句，eval()将执行 Javascript 语句。” 总结一下就是eval()无论你是处理什么，他就会执行，大不了执行不了的就报错！</p>
+</li>
+<li>
+<p>在w3school中写 ：eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。eval(string)，既然都是这样定义的，那为什呢会让他执行什么语句啥的呢？ 我个人猜想一定是后来把js引擎中的eval()处理方法更改了，赋予它更多的功能。</p>
+</li>
+<li>
+<p>eval的巧用</p>
+<ul>
+<li>
+<p>如果data是字符串，使用eval(“(”+data+“)”)可以将其转换为json对象，和JSON.parse的功能一样。<br>
+如果data是json对象，使用eval(“(”+data+“)”)会报错，正如你描述的错误。eval一个json对象，没有什么作用，这个时候不需要使用eval方法，直接用data即可。</p>
+</li>
+<li>
+<p>所以，如果你那边能确定后台返回的是字符串，就使用eval(“(”+data+“)”)(eval会带来很多问题，不建议使用，如果想实现转化用JSON.parse更好)，如果后台返回的是json对象，什么操作都不需要，直接使用data即可。如果你是用的jquery, 将type（一般为这个配置属性）设为json，或者利用$.getJSON()方法获得服务器返回，那么就不需要eval()方法了，因为这时候得到的结果已经是json对象了，只需直接调用该对象即可</p>
+</li>
+<li>
+<p>另外多说一点：为什么eval要添加括号呢？原因：eval本身的问题。 由于json是以{}的方式来开始以及结束的，在JS中，它会被当成一个语句块来处理，所以必须强制性的将它转换成一种表达式。加上圆括号的目的是迫使eval函数在处理JavaScript代码的时候强制将括号内的表达式(expression)转化为对象，而不是作为语句(statement)来执行。举一个例子，例如对象字面量{}，如若不加外层的括号，那么eval会将大括号识别为JavaScript代码块的开始和结束标记，那么{}将会被认为是执行了一句空语句。</p>
+</li>
+</ul>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">eval</span>(<span class="string">&quot;&#123;&#125;&quot;</span>); <span class="comment">// undefined </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">eval</span>(<span class="string">&quot;(&#123;&#125;)&quot;</span>);<span class="comment">// object[Object] </span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>这使我想到为什么有时候后台返回的数据是一个字符串，我使用<code>JSON.parse()</code>处理（目的转为json对象使用）之后会出现：<code>Uncaught SyntaxError: Unexpected token r</code>，这里报错的根本原因是你后台返回的数据不是标准格式，以至于<code>JSON.parse()</code>解析不了。上面无序列表第二条是说用jq的json方法，我认为这是jq里面帮你处理数据了。所以大家只要是各个工种都按照严格的规范来，怎么不出现这个问题呢？</li>
+</ul>
+</li>
+<li>
+<p>我来做最后的总结：记住，eval()解析字符串参数时,会把参数以执行语句的方式返回，请看下面例子。</p>
+</li>
+</ol>
+<p>例子1：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;2&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">eval</span>(str));  <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p>上面会输出2，但是这样做没有什么意义。2和’2’都被eval作为参数以执行语句的方式返回。</p>
+<p>例子2：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;a:3&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;a=3&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">eval</span>(str));  <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>上面会输出3，我认为这和例子1差不多，'a:3’和’a=3’也都被eval作为参数以执行语句的方式返回。</p>
+<p>例子2：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;a:3&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;a=3&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;&#123;a:3&#125;&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">eval</span>(str));  <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>上面会输出3，我认为这和例子1差不多，‘a:3’、‘a=3’、'{a:3}'也都被eval作为参数以执行语句的方式返回。但是这是简单的字符串，请看下面的例子。</p>
+<p>例子3：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;&#123;a:3,b:4&#125;&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">eval</span>(str));  <span class="comment">// Uncaught SyntaxError: Unexpected token :</span></span><br></pre></td></tr></table></figure>
+<p>为什么报错了，我理解的是eval处理不了，本身这是<code>'&#123; , &#125;'</code>这是对象，比较复杂，在eval解析的时候，解释器遇到{},它会认为这个是一个代码块，会执行它，处理不了报错，有人说例子2中为什么可以，我认为例子2中固然有’{a:3}'例子，但是该对象只有一对键值对。比较简单。复杂的<code>'&#123; , &#125;'</code>，解释器把它当成代码块处理就会出错，我们为此用一个()包裹起来，把代码块转为表达式，这样解释器就把<code>'&#123; , &#125;'</code>作为一个对象正常解析。</p>
+<p>例子4：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;&#123;&#125;&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">eval</span>(str));  <span class="comment">// undefined 由于他也是简单的对象，所以js输出了undefined</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">eval</span>(<span class="string">&#x27;(&#x27;</span>+str+<span class="string">&#x27;)&#x27;</span>));  <span class="comment">// &#123;&#125; ,把代码块加上()，当做表达式来处理，固输出&#123;&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>例子5：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">&quot;x=10;y=20;console.log(x*y)&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这种可以执行，打印出200。</p>
+<ol start="5">
+<li>详细见这篇帖子<a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000006965715">关于eval（data）和eval(“(”+data+“)”)</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/03/15/eval%E6%80%BB%E7%BB%93/" data-id="cmcro5llo003eqkk4ai1u3qqx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js中的逗号" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/14/js%E4%B8%AD%E7%9A%84%E9%80%97%E5%8F%B7/" class="article-date">
+  <time datetime="2019-03-14T06:57:55.000Z" itemprop="datePublished">2019-03-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/14/js%E4%B8%AD%E7%9A%84%E9%80%97%E5%8F%B7/">js中的逗号</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="js中的逗号，分号的小议">js中的逗号，分号的小议</h4>
+<h5 id="使用var">使用var</h5>
+<ol>
+<li>js中声明变量使用var，如：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a, b, c;  <span class="comment">// 这里a，b，c都是局部变量；</span></span><br><span class="line"><span class="keyword">var</span> a;</span><br><span class="line">    b;</span><br><span class="line">    c; <span class="comment">// 这里除了a为局部变量外，b和c都为全局变量。</span></span><br></pre></td></tr></table></figure>
+<p>分号就是相当于划分了代码片段，逗号可理解为语句没有说完。</p>
+<h5 id="确定你的存在-变量声明">确定你的存在(变量声明)</h5>
+<ol>
+<li>
+<p>我们要使用盒子装东西,是不是先要找到盒子,那在编程中，这个过程叫声明变量,找盒子的动作，如何表示：</p>
+<ul>
+<li>声明变量语法: var 变量名;</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/03/14/js%E4%B8%AD%E7%9A%84%E9%80%97%E5%8F%B7/" data-id="cmcro5llj0036qkk46rvr1lz6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-故事目录序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/28/%E6%95%85%E4%BA%8B%E7%9B%AE%E5%BD%95%E5%BA%8F/" class="article-date">
+  <time datetime="2019-02-28T07:09:46.000Z" itemprop="datePublished">2019-02-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/28/%E6%95%85%E4%BA%8B%E7%9B%AE%E5%BD%95%E5%BA%8F/">故事目录序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>记录故事点滴，缅怀逝去青春，展望未来生活</p>
+<ol>
+<li>
+<p>童年的回忆</p>
+<ul>
+<li>主要讲述了自己小时候在村庄玩耍的点滴，坝上，冬天到水沟边点枯草，江湾里玩。</li>
+</ul>
+</li>
+<li>
+<p>前后一起长大的村庄小伙伴的点滴</p>
+</li>
+<li>
+<p>北京的辛酸、快乐、充实的经历</p>
+</li>
+<li>
+<p>父亲在十堰打工睡在山坡上的辛酸会议[20190227]</p>
+</li>
+<li>
+<p>初中至高中至上大学的短回忆[20190228]</p>
+</li>
+<li>
+<p>大学的小回忆[20190301]</p>
+</li>
+<li>
+<p>张新班主任读的那篇潸然泪下的作文[20190302]</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/02/28/%E6%95%85%E4%BA%8B%E7%9B%AE%E5%BD%95%E5%BA%8F/" data-id="cmcro5ln5005iqkk491b5h1cb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Vuex总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/02/26/Vuex%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2019-02-26T07:35:27.000Z" itemprop="datePublished">2019-02-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/26/Vuex%E6%80%BB%E7%BB%93/">Vuex总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言">前言</h3>
+<p>这是对 Vuex 的一次小总结！</p>
+<h3 id="vuex-是什么？">vuex 是什么？</h3>
+<p>1、vuex 它是解决：针对 vue 中的组件，当应用遇到多个组件共享状态时，单向数据流的简洁性很容易被破坏：</p>
+<ul>
+<li>多个视图依赖于同一状态。
+<ul>
+<li>11111</li>
+<li>22222</li>
+</ul>
+</li>
+<li>来自不同视图的行为需要变更同一状态 。</li>
+</ul>
+<p>总结起来就是：有些场景如兄弟组件，通信很麻烦；还有就是多层嵌套 Son.vue &gt; Father.vue &gt; Grandfa.vue 孙子给爷爷通信也很困难。有困难，为了解决困难，Vuex 应运而生！</p>
+<p>2、每次看每次忘！到底怎么梳理</p>
+<ul>
+<li>首先记住就三个大的状态管理部门：<code>action</code>，<code>state</code>，<code>view</code>最开始我们定义的 state，就是显示在页面上(view)的状态，在页面(view)上用户操作之后，就是我们常说的 action。</li>
+<li>详解：Father.vue 中引入了 Son.vue，在 Father.vue 页面对 Son.vue 组件进行操作，我们引入了 dispatch 的概念，即：<code>$store.diapatch('switch_dialog')</code>，代码的意思是分发<code>switch_dialog</code>方法，该方法就是 store 中 action 的方法。</li>
+<li>store 中 action 下的 switch_dialog 方法，又进行了<code>context.commit('switch_dialog')</code>，这个 context.commit 中的 switch_dialog，就是 mutation 中的 switch_dialog，在 mutation 的 switch_dialog 终于进行了代码的逻辑操作，如：<code>state.show = true</code>，最开始 show 的状态是 false。</li>
+<li>这就是 store 的过程，下面把代码截图展示一下。</li>
+</ul>
+<p>3、截图如下：Father.vue 中有 2 个容器（加了 click 事件）代码：</p>
+<p><img src="https://file.798run.top/img/blog/20190226/father.vue.jpg" alt="father.vue"></p>
+<p>其中的 2 个组件分别是<code>dialog.vue</code>、<code>dialogTab.vue</code>，在这两个组件中代码截图（只截图 dialog.vue）如下：</p>
+<p><img src="https://file.798run.top/img/blog/20190226/son-dialog.jpg" alt="son-dialog.vue"></p>
+<p>最后的 store 中的<code>dialog.js</code>、<code>dialogTab.js</code>的代码截图如下：</p>
+<p><img src="https://file.798run.top/img/blog/20190226/store-dialog.jpg" alt="store-dialog.jpg"></p>
+<p><img src="https://file.798run.top/img/blog/20190226/store-dialog-tab.jpg" alt="store-dialog-tab.jpg"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/02/26/Vuex%E6%80%BB%E7%BB%93/" data-id="cmcro5ll9002hqkk492i996ke" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <!-- &laquo; -->
+    <!-- &raquo; -->
+    
+    <a class="extend prev" rel="prev" href="/page/8/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/10/">Next</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/05/05/CSS%E4%B9%8Bflex/">CSS之flex</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/prettier%E4%BB%8B%E7%BB%8D/">prettier介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/vite%E4%BB%8B%E7%BB%8D/">vite介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Andy Zhang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

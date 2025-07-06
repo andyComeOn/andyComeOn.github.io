@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>我的点滴记录</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="我的点滴记录">
+<meta property="og:url" content="http://example.com/page/3/index.html">
+<meta property="og:site_name" content="我的点滴记录">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Andy Zhang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的点滴记录</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-vue-cli杂集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/03/31/vue-cli%E6%9D%82%E9%9B%86/" class="article-date">
+  <time datetime="2021-03-31T14:06:27.000Z" itemprop="datePublished">2021-03-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/31/vue-cli%E6%9D%82%E9%9B%86/">vue-cli杂集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="vue-cli-3-0、4-0-指令集">@vue/cli(3.0、4.0) 指令集</h3>
+<ul>
+<li><code>yarn add less-loader@5.0.0 less@4.1.1</code></li>
+</ul>
+<h3 id="前言">前言</h3>
+<p>vue-cli 这是之前 2.0 的叫法，最后的版本是 2.9.6，其在 npm 的仓库地址在我的 Chrome 书签 vue 分类里。其 3.0 名字修改为@vue/cli，更加智能了，可配置 vue.config.js，在开发创值回顾 2.0 后，我决心看一下 3.0 之后的版本，看的时候已经更新到 v4.5.12 了。</p>
+<ul>
+<li>创建新的项目，只需执行<code>vue create you-app-name</code>，会以交互的方式让你选择配置信息。有以下交互方法：</li>
+</ul>
+<p><img src="https://file.798run.top/img/blog/20210331/Please-pick-a-preset.jpg" alt="Please-pick-a-preset"></p>
+<p>其中选项不同，生成的项目规则不同，我在自己的 ThinkPad 上，把下面的情况都 vue create * 一遍：</p>
+<p>ESLint with error prevention only<br>
+ESLint + Airbnb config<br>
+ESLint + Standard config<br>
+ESLint + Prettier</p>
+<p>一些截图如下：<br>
+<img src="https://file.798run.top/img/blog/20210331/v4.3-prettier.png" alt="v4.3-prettier"></p>
+<p><img src="https://file.798run.top/img/blog/20210331/v4.4-airbnb.png" alt="v4.4-airbnb"></p>
+<h3 id="过程">过程</h3>
+<ul>
+<li>代码颜色问题（v4.3-prettier vue 文件，template 没有换行，颜色不对）：</li>
+</ul>
+<p><img src="https://file.798run.top/img/blog/20210402/code-color-err.png" alt="v4.3-prettier vue文件，template没有换行，颜色"></p>
+<ul>
+<li>eslint 多余空行提示问题（v4.3-prettier 多余空行效果）：</li>
+</ul>
+<p><img src="https://file.798run.top/img/blog/20210402/empty-line.png" alt="v4.3-prettier 多余空行效果"></p>
+<ul>
+<li>eslint 多余空行提示问题（v4.3-prettier 安装安装依赖会提示你本地文件没有提交问题）：</li>
+</ul>
+<p><img src="https://file.798run.top/img/blog/20210402/uncommit-warn.png" alt="v4.3-prettier 安装安装依赖会提示你本地文件没有提交问题"></p>
+<ul>
+<li>在 v4.3-prettier 中，我想使用 less，于是搜到<a target="_blank" rel="noopener" href="https://blog.csdn.net/bamboozjy/article/details/112251803?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-4&amp;spm=1001.2101.3001.4242">vue-cli3/4 引入 less 全局变量</a><br>
+文档中让执行 <code>vue add style-resources-loader</code>，后来发现在 vue-cli 的官方文档中有涉及。安装完了，vue.config.js 被创建。于是在 views/B.vue 中对 div 写 less 但是报错，细看 vue-cli 文档，在 style-resources-loader 文档前，讲述到“预处理器”，我于是执行 <code>vue add less-loader less</code>,提示没有找到该包名，截图如下：<br>
+![v4.3-prettier vue-add less-loader–less-err](<a target="_blank" rel="noopener" href="https://file.798run.top/img/blog/20210402/vue-add">https://file.798run.top/img/blog/20210402/vue-add</a> less-loader–less-err.png)<br>
+最开始猜想是不是淘宝源没有该依赖包呢？于是配置 yarn 的包仓库，再次执行依旧如上图提示。后来发现不应该使用 vue add，要使用 yarn add，于是<code>yarn add less-loader less</code>，启动项目发现报错如下：<br>
+<code>TypeError: this.getOptions is not a function</code>,发现是 less-loader 的版本太高了，于是<code>yarn remove less-loader</code>，执行<code>yarn add less-loader@5.0.0</code>，启动项目可以了。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/03/31/vue-cli%E6%9D%82%E9%9B%86/" data-id="cmcro5lmq004mqkk48slsgs36" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JS精度问题" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2021-02-20T15:37:40.000Z" itemprop="datePublished">2021-02-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/">JS精度问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、js-处理进度使用菜鸟上推荐的库，其自己的数学的处理精度的问题，全部都不准备。">1、js 处理进度使用菜鸟上推荐的库，其自己的数学的处理精度的问题，全部都不准备。</h3>
+<h3 id="2、针对一个浮点型数，保留几位小数（符合四舍五入）的方法（之前的写的代码，现在看来不是很准确）">2、针对一个浮点型数，保留几位小数（符合四舍五入）的方法（之前的写的代码，现在看来不是很准确）</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fixto</span>(<span class="params">number, n = <span class="number">2</span></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = number.<span class="title function_">toString</span>();</span><br><span class="line">    <span class="keyword">const</span> arr = result.<span class="title function_">split</span>(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> integer = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> decimal = arr[<span class="number">1</span>];</span><br><span class="line">    result = integer + <span class="string">&#x27;.&#x27;</span> + decimal.<span class="title function_">substr</span>(<span class="number">0</span>, n);</span><br><span class="line">    <span class="keyword">const</span> last = decimal.<span class="title function_">substr</span>(n, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 四舍五入，转换为整数再处理，避免浮点数精度的损失</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">parseInt</span>(last, <span class="number">10</span>) &gt;= <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> x = <span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">10</span>, n);</span><br><span class="line">        result = ((<span class="built_in">parseFloat</span>(result) * x) + <span class="number">1</span>) / x;</span><br><span class="line">        result = result.<span class="title function_">toFixed</span>(n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>说明：保留几位小数点，参数 n 设置为几！</p>
+<h3 id="3、在调试泛能运营经理管理记录">3、在调试泛能运营经理管理记录</h3>
+<p>拉取区域 list 接口，其区域 id 是 number 型。数据如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;list&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;defaultManager&quot;: &quot;魏秀涛&quot;,</span><br><span class="line">      &quot;defaultManagerAccount&quot;: &quot;&quot;,</span><br><span class="line">      &quot;provinceCodeStr&quot;: &quot;120000、130000&quot;,</span><br><span class="line">      &quot;provinceNameStr&quot;: &quot;天津市、河北省&quot;,</span><br><span class="line">      &quot;regionId&quot;: 812352198852055040,</span><br><span class="line">      &quot;regionName&quot;: &quot;京津冀区&quot;,</span><br><span class="line">      &quot;totalEnt&quot;: 74,</span><br><span class="line">      &quot;totalManager&quot;: 1,</span><br><span class="line">      &quot;totalProject&quot;: 69</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;defaultManager&quot;: &quot;吴冰&quot;,</span><br><span class="line">      &quot;defaultManagerAccount&quot;: &quot;&quot;,</span><br><span class="line">      &quot;provinceCodeStr&quot;: &quot;820000&quot;,</span><br><span class="line">      &quot;provinceNameStr&quot;: &quot;澳门特别行政区&quot;,</span><br><span class="line">      &quot;regionId&quot;: 812692729802227712,</span><br><span class="line">      &quot;regionName&quot;: &quot;澳门区 &quot;,</span><br><span class="line">      &quot;totalEnt&quot;: 1,</span><br><span class="line">      &quot;totalManager&quot;: 2,</span><br><span class="line">      &quot;totalProject&quot;: 1</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在点击 table 操作项，编辑是路由传的 regionId=812352198852055040，可是浏览器会把后面 2 位给给字动转为 00，进而变为 regionId=812352198852055000。解决办法是：后端把 regionId 设置为 string 类型。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://my.oschina.net/lcfblogs/blog/4425879">关于浏览器接口 Preview 中的数值和 postman 中获取到的不一致问题</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33270001/article/details/82887084">关于浏览器响应数据 long 型超长自动转换精度丢失的坑</a>、<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000009599204">如何在 JavaScript 中实现一个 Long 型——Long.js 源码学习与分析</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/20/JS%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/" data-id="cmcro5lky0013qkk47mri07tm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-修改hosts" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/02/14/%E4%BF%AE%E6%94%B9hosts/" class="article-date">
+  <time datetime="2021-02-14T06:49:33.000Z" itemprop="datePublished">2021-02-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/14/%E4%BF%AE%E6%94%B9hosts/">修改hosts</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、 打开 Windows 左下角 “开始” ，找到 powershell，记得使用管理员模式打开！如下图：</p>
+<p><img src="https://file.798run.top/img/blog/20210214/powershell-modify-hosts.png" alt="powershell-modify-hosts"></p>
+<p>打开 powershell 之后，找到 hosts 所在目录：<code>C:\windows\system32\drivers\etc\</code>，可直接键入：<code>cd C:\windows\system32\drivers\etc\</code>，在该目录下键入：<code>notepad hosts</code>，则 hosts 会以记事本的形式打开，可进行编辑并保存。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/02/14/%E4%BF%AE%E6%94%B9hosts/" data-id="cmcro5ln10051qkk4g8psh908" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Webpack记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/30/Webpack%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2021-01-30T13:25:30.000Z" itemprop="datePublished">2021-01-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/30/Webpack%E8%AE%B0%E5%BD%95/">Webpack记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1、简介">1、简介</h3>
+<p>简单使用 webpack，只需在一个空目录下执行 <code>npm init -y</code>，随即安装 <code>npm i webpack -D webpack webpack-cli</code>即可，一定不能忘记安装 webpack-cli（这样我们才能在 package.json 的脚本使用 webpack）</p>
+<h3 id="2、基本配置">2、基本配置</h3>
+<ul>
+<li>
+<p>一般在项目根目录新建 webpack.config.js 文件，我们在使用脚本时候，自动会读取该文件的配置项！该文件一般会引入一些 path 之类的依赖包方便项目配置。</p>
+</li>
+<li>
+<p>输出 module.exports = {}</p>
+</li>
+<li>
+<p>入口 entry: 一般项目入口仅有一个，我们可以简写如下：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">entry: &#x27;./src/index.js&#x27;  // 简写</span><br><span class="line">entry: path.resolve(__dirname, &#x27;./src/index.js) // 健壮写法</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>但是其实 entry 可以配置为一个如下对象：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 下面是vue-cli2.0的入口配置</span><br><span class="line">entry: &#123;</span><br><span class="line">  app: &#x27;./src/main.js&#x27;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>最后注意 <code>./src/index.js</code>文件格式不能省略（否则报错！），怎么解决此错误，就是我们可增添配置项：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">resolve: &#123;</span><br><span class="line">  extensions: [&#x27;.ts&#x27;, &#x27;.js&#x27;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>output 出口：同理可以得出，其也可配置为一个如下对象：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">output:</span><br><span class="line">  // 输出的目录</span><br><span class="line">  // path: &quot;./dist&quot;,  // 此写法不灵活</span><br><span class="line">  path: path.resolve(__dirname, &#x27;dist&#x27;), // 此写法灵活</span><br><span class="line">  filename: &quot;bundle.js&quot;, // 输出的文件名字</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<ul>
+<li>module：指定 webpack 在打包时候使用的模块，其配置也是一个对象，如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">  // rules是一个数组，则说明可以配置多个。数组里可接受简单配置的字符串，也可接受配置一个对象。（大多数的数组配置都是这样的风格）</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.ts$/,  // 规则生效的文件类型，一般使用正则表达式描述</span><br><span class="line">      loader: &#x27;babel-loader&#x27;, // 注意早期的webpack版本是使用loader配置（vue-cli2.0有提现），后期的使用下面的use</span><br><span class="line">      use: &#x27;ts-loader&#x27;, // 就是使用什么加载器来打包上面的文件</span><br><span class="line">      exclude: /node_modules/  // 想要排除的文件</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>webpack-test</code> 项目例子。在我的码云项目 <code>webpack-test</code> 我在进行键盘配置之后，我执行了脚本 <code>npm run build</code>，提示如下：<br>
+<img src="https://file.798run.top/img/blog/20210130/webpack-warning.png" alt="webpack-warning"><br>
+原来提示是 mode 没有配置，于是在网上搜到<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wendj/p/10069882.html">帖子</a>中讲到可在脚本中配置，这使我联想到 public-project 项目中配置的静态站点，执行脚本配置如下:</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;serve:si&quot;: &quot;vue-cli-service serve --mode si&quot;,</span><br><span class="line">&quot;serve:st&quot;: &quot;vue-cli-service serve --mode st&quot;,</span><br><span class="line">&quot;serve:pro&quot;: &quot;vue-cli-service serve --mode pro&quot;,</span><br><span class="line">&quot;build:si&quot;: &quot;vue-cli-service build --mode si&quot;,</span><br><span class="line">&quot;build:st&quot;: &quot;vue-cli-service build --mode st&quot;,</span><br><span class="line">&quot;build:pro&quot;: &quot;vue-cli-service build --mode pro&quot;,</span><br></pre></td></tr></table></figure>
+<p>于是我在自己 demo 项目写入：<code>&quot;build&quot;: &quot;webpack --mode production&quot;</code>，则警告消除。</p>
+<ul>
+<li>
+<p>针对 webpack-test 项目，已基本配置了 webpack，打包后也已经输出 dist/bundle.js，此时在项目下新建一个 index.html 文件，我们可在该 html 文件新建 <code>&lt;script src=&quot;dist/bundle.js&quot;&gt;&lt;/script&gt;</code>，怎么一看也能满足需求，但：1、这需要我们手动引入比较麻烦，2、以后我们要是有 css 文件，其他 js 文件难道还是要每次手动引入吗？这样不优雅！此时我们希望我们的 html 文件 webpack 能给自动创建这样该多方便！这时候有一个 html-webpack-plugin 插件可以帮助我们解决此问题！</p>
+</li>
+<li>
+<p>html-webpack-plugin 首先要安装，在 webpack.config.js 引入<code>const HTMLWebpackPlugin = require('html-webpack-plugin')</code>，此时需配置文件中与 module 平级，配置该插件：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">插件配置是一个数组</span><br><span class="line">plugins: [</span><br><span class="line">  new HTMLWebpackPlugin() // 此写法，该插件会自己在配置的 dist 目录下生成一个index.html。默认的title是Webpack APP，我们可自己传入一个对象进而自定义title。</span><br><span class="line"></span><br><span class="line">  // 传入一个对象进而自定义title。</span><br><span class="line">  new HTMLWebpackPlugin(&#123;</span><br><span class="line">    // title: &quot;123&quot;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  // 若是还不能满足我们的需求，我们可自己配置一个模板html（自定义好），写法如下：</span><br><span class="line">  new HTMLWebpackPlugin(&#123;</span><br><span class="line">    // template: &quot;./src/index.html&quot;</span><br><span class="line">  &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>— webpack-dev-server 安装此插件，随后修改指令为：<code>&quot;build&quot;: &quot;webpack serve --mode production --open chrome.exe&quot;</code>即可。</p>
+<p>— clean-webpack-plugin 我们现在打包每次都是生成相同文件，进而覆盖之前的文件，该插件首先把我们的 dist 目录清空，在打包新的文件，这样会避免漏文件！使用如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">const &#123; CleanWebpackPlugin &#125; = require(&#x27;clean-webpack-plugin&#x27;)</span><br><span class="line">plugins: [</span><br><span class="line">  new CleanWebpackPlugin(),</span><br><span class="line">],</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="任务">任务</h3>
+<ul>
+<li>可细看 vue-cli2.0 || 3.0、public-project 其 webpack 配置，</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/30/Webpack%E8%AE%B0%E5%BD%95/" data-id="cmcro5llf002tqkk48ojj1313" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-webstorm杂记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/11/webstorm%E6%9D%82%E8%AE%B0/" class="article-date">
+  <time datetime="2021-01-11T03:56:54.000Z" itemprop="datePublished">2021-01-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/11/webstorm%E6%9D%82%E8%AE%B0/">webstorm杂记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="笔记">笔记</h3>
+<ul>
+<li>可自己配置缩进，若项目中有 .editorconfig 文件自动读取，但不要禁止 editorconfig。</li>
+<li>看下面代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  document.addEventListener(&#x27;DOMContentLoaded&#x27;, () =&gt; &#123;</span><br><span class="line">    console.log(2);</span><br><span class="line"></span><br><span class="line">    console.log($(&#x27;div&#x27;).html());</span><br><span class="line"></span><br><span class="line">    console.log($(&#x27;.app&#x27;).text());</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  console.log(1);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">  console.log(3);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">webstorm 会提示你可以 merge script，这说明尽可能要减少 script 标签的数量，毕竟解析也需要时间！</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>webstorm 有一特点就是，你故意空很多行，在格式化时候，会把多余空行删除，但会保留 2行</li>
+</ul>
+<h3 id="格式化">格式化</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wodexk/p/10279143.html">Webstorm 操作 HTML 文件时的快捷键</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/11/webstorm%E6%9D%82%E8%AE%B0/" data-id="cmcro5lmp004kqkk41qihakq1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-服务端杂集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/08/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9D%82%E9%9B%86/" class="article-date">
+  <time datetime="2021-01-08T08:18:19.000Z" itemprop="datePublished">2021-01-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/08/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9D%82%E9%9B%86/">服务端杂集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="http-状态码">http 状态码</h3>
+<p>204 (from disk cache)，在查看简书控制台时候发现：No Content。（此<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ace12639bfc0">链接</a>的<a target="_blank" rel="noopener" href="https://www.jianshu.com/shakespeare/notes/ace12639bfc0/mark_viewed">接口</a>）<br>
+401 (Unauthorized) 在开发创值回顾 2.0 项目 时候一直提示 token 无效，即无授权，状态码是 401<br>
+403 (forbidden) 禁止访问<br>
+50* 服务器问题</p>
+<h3 id="curl">curl</h3>
+<ul>
+<li>curl https:www.baidu.com (带有请求头)</li>
+<li>curl https:www.baidu.com -s (去掉请求头)</li>
+<li>curl 在 gitbash 中不会出现中文乱码</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/08/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%9D%82%E9%9B%86/" data-id="cmcro5ln7005vqkk40w5gaxct" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/" rel="tag">Server</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JS之defer-async" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/08/JS%E4%B9%8Bdefer-async/" class="article-date">
+  <time datetime="2021-01-08T06:12:29.000Z" itemprop="datePublished">2021-01-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/08/JS%E4%B9%8Bdefer-async/">JS之defer-async</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言">前言</h3>
+<p>现代的网站中，脚本往往比 HTML 更“重”：它们的大小通常更大，处理时间也更长。</p>
+<p>当浏览器加载 HTML 时遇到 <script>…</script> 标签，浏览器就不能继续构建 DOM。它必须立刻执行此脚本。对于外部脚本 <script src="..."></script> 也是一样的：浏览器必须等脚本下载完，并执行结束，之后才能继续处理剩余的页面。</p>
+<p>这会导致两个重要的问题：</p>
+<ul>
+<li>脚本不能访问到位于它们下面的 DOM 元素，因此，脚本无法给它们添加处理程序等。</li>
+<li>如果页面顶部有一个笨重的脚本，它会“阻塞页面”。在该脚本下载并执行结束前，用户都不能看到页面内容：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;...content before script...&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src=&quot;https://javascript.info/article/script-async-defer/long.js?speed=1&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- This isn&#x27;t visible until the script loads --&gt;</span><br><span class="line">&lt;p&gt;...content after script...&lt;/p&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>于是 script 中有了 2 个属性 defer async！</p>
+<h3 id="总结">总结</h3>
+<ul>
+<li>
+<p>平时大家写 <code>&lt;script src=&quot;http://libs.baidu.com/jquery/2.0.0/jquery.min.js&quot;&gt;</code>，此情况默认就是顺序执行，有些场景下严重影响用户体验！</p>
+</li>
+<li>
+<p>若加了 <code>async = true</code> 动态脚本的行为是“异步”的。也就是说“不要阻塞页面”，此属性可添加在广告、统计、计数器的远程脚本中，如谷歌分析脚本：<code>&lt;script async src=&quot;https://google-analytics.com/analytics.js&quot;&gt;&lt;/script&gt;</code></p>
+</li>
+<li>
+<p>若加了 <code>defer</code>，亦是告诉浏览器“不要阻塞页面”，只是他有顺序执行特点，如下：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script defer src=&quot;https://javascript.info/article/script-async-defer/long.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script defer src=&quot;https://javascript.info/article/script-async-defer/small.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>两个脚本是并行下载的。small.js 可能会先下载完成。因此，即使 small.js 先加载完成，它也需要等到 long.js 执行结束才会被执行。当我们需要先加载 JavaScript 库，然后再加载依赖于它的脚本时，这可能会很有用。如下场景：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script defer src=&quot;http://libs.baidu.com/jquery/2.0.0/jquery.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script defer src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.x.x/js/swiper.jquery.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>书归正传，我想到场景，加入我们的 jQuery.js 是网络请求的，我们可以在其对其脚本添加 defer，同时我们在本地的文件中这样写：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">document.addEventListener(&#x27;DOMContentLoaded&#x27;, () =&gt; &#123;</span><br><span class="line">  $(&#x27;#app&#x27;).html(&#x27;我是app容器里面的内容&#x27;);</span><br><span class="line">  // 此时我也想到了，JQ中不是有$.ready()、是不是他们就是做了这些事情！以后细究</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="参考">参考</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zh.javascript.info/script-async-defer#defer">脚本：async，defer</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/08/JS%E4%B9%8Bdefer-async/" data-id="cmcro5lkx000zqkk47c8n5wk4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-React路由" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/07/React%E8%B7%AF%E7%94%B1/" class="article-date">
+  <time datetime="2021-01-07T03:11:42.000Z" itemprop="datePublished">2021-01-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/07/React%E8%B7%AF%E7%94%B1/">React路由</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="路由">路由</h3>
+<p>react 的路由非常灵活，与 vue 的路由有区别（需要一个 router-view 来作为宿主容器），react 则不需要宿主容器，在 m-b2b-wechat 项目中是在主入口文件 src/index.tsx （类似于 Vue 中的 App.vue）中，在该文件中定义了一个变量 <code>const = D2CWechat = () =&gt; (&lt;Provider&gt;&lt;/Provider&gt;)</code>，其中 Provider 是来自 react-redux，在该容器里面就是<code>&lt;Router&gt;&lt;/Router&gt;</code>，Router 下面就是 Route，我在自己的 react-cli 项目中 src/pages/use-route/index.js 中有代码片段，这是我在 react router 的官网上找到的。所以我们可以理解为，这就是官方给的使用示例！其中 m-b2b-wechat 项目中 route 及其他代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Route</span> component=&#123;<span class="title class_">Container</span>&#125; /&gt;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Container</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span>&lt;any, any&gt; &#123;&#125;</span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">D2CWechat</span> /&gt;</span></span>, <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;app&#x27;</span>));</span><br></pre></td></tr></table></figure>
+<p>注：Route 可 <code>&lt;Route component=&#123;Container&#125;/&gt;</code>，也可像我的 react-cli 项目中，<code>&lt;Route path=&quot;/&quot;&gt;&lt;Home /&gt;&lt;/Route&gt;</code>，<code>function Home() &#123; return &lt;h2&gt;Home&lt;/h2&gt; &#125;</code> 这样写！接着说，在我自己练习的项目 react-cli 中，是在脚手架主入口 index.js 中引入 page 的某个页面，其实是大同小异！在 index.js 中引入 import UseRouteWithNested from “@/pages/use-route-with-nested/”; 针对 use-route-with-nested/index.js 中我配置了路由信息！使用 Route、Router 时候要记得引入依赖：import { Route, Router } from ‘react-router-dom’; react-router-dom 是针对浏览器单独整合的，react-router 是一个大包，react-native 也需要，后来才有 react-router-dom 小依赖包。我在 use-route-with-nested/index.js 的路由引入写法是在 react-router 官网上看到其例子如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  <span class="title class_">BrowserRouter</span> <span class="keyword">as</span> <span class="title class_">Router</span>,</span><br><span class="line">  <span class="title class_">Switch</span>,</span><br><span class="line">  <span class="title class_">Route</span>,</span><br><span class="line">  <span class="title class_">Link</span>,</span><br><span class="line">  useRouteMatch,</span><br><span class="line">  useParams</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;react-router-dom&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>注：<code>import ReactDOM from &quot;react-dom&quot;</code>; 主要是在主入口使用 <code>ReactDOM.render(&lt;App /&gt;, document.getElementById(&quot;root&quot;));</code></p>
+<p>导出 class 有 2 中写法：<code>import React from &quot;react&quot;;</code> 随后写 <code>export default class Goods React.Component &#123;&#125;;</code> 或 <code>import &#123;React, Component &#125; from &quot;react&quot;;</code> 随后写 <code>export default class Goods extends Component &#123;&#125;;</code></p>
+<h3 id="杂记-2025-02-23-记录">杂记(2025.02.23 记录)</h3>
+<p>在我创建的 vite-react 项目中的，有使用 hooks 的例子，使用的是函数式组件，而非 class 类组件！普通写法(class 写法)如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span> <span class="keyword">extends</span> <span class="title class_">Components</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  state = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">0</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上面的代码其实 state 中的 name 与 age 就是 App 类中的属性而已，所以针对函数式写法(使用hooks)，这个 name 与 age 也应该是 App 中的属性，写法如下：</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">App</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> [name, setName] = <span class="title function_">useState</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// button 事件中，想要把 state 中 name 的值改变，可使用 hooks，一般来说我们用 hooks 中 useState 函数，进行解构之后，来对 name 的值进行更改。xyx setXyz 这两个是 useState 函数执行后解构出来的两个 “对象”！</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">handleName</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">setName</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (<span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;handleName&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="任务">任务</h3>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/07/React%E8%B7%AF%E7%94%B1/" data-id="cmcro5ll80029qkk49jey8acu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-React之css" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/06/React%E4%B9%8Bcss/" class="article-date">
+  <time datetime="2021-01-06T08:43:03.000Z" itemprop="datePublished">2021-01-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/06/React%E4%B9%8Bcss/">React之CSS</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="CSS">CSS</h3>
+<p><strong>react 的样式管理是比较弱的，官方是建议把 style 直接写到 jsx 标签里</strong>，请参考：<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv6964874/">React 系列十一 - React 中的 CSS</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/06/React%E4%B9%8Bcss/" data-id="cmcro5ll5001uqkk4arvh533a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Github杂记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/01/04/Github%E6%9D%82%E8%AE%B0/" class="article-date">
+  <time datetime="2021-01-04T08:46:04.000Z" itemprop="datePublished">2021-01-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/04/Github%E6%9D%82%E8%AE%B0/">Github杂记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="杂项">杂项</h3>
+<p>在查看 github 上项目中某个文件代码时，在文件头部会出现对该文件的简介，例如：22 lines (22 sloc)  400 Bytes。22 lines 意思是 22 行；22 sloc 意思是 22 代码行，SLOC(single line of code)，代码行 LOC 的基本单位之一；400 Bytes 意思是 400 字节。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/04/Github%E6%9D%82%E8%AE%B0/" data-id="cmcro5lks000pqkk46yq2arkx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <!-- &laquo; -->
+    <!-- &raquo; -->
+    
+    <a class="extend prev" rel="prev" href="/page/2/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/4/">Next</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/05/05/CSS%E4%B9%8Bflex/">CSS之flex</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/prettier%E4%BB%8B%E7%BB%8D/">prettier介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/vite%E4%BB%8B%E7%BB%8D/">vite介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Andy Zhang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

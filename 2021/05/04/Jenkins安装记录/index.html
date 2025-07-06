@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Jenkins安装记录 | 我的点滴记录</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="说明 20210504 假期在家，试着在“亚亚阿里云”安装一下 Jenkins，首先是参考了这篇文章，因为 Jenkins 需要 Java 环境，按照上面的文章，首先执行：yum install -y java。随后步骤： 123456cd  &#x2F;datawget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;jenkins&#x2F;redhat-stable&#x2F;jenkins-2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jenkins安装记录">
+<meta property="og:url" content="http://example.com/2021/05/04/Jenkins%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="我的点滴记录">
+<meta property="og:description" content="说明 20210504 假期在家，试着在“亚亚阿里云”安装一下 Jenkins，首先是参考了这篇文章，因为 Jenkins 需要 Java 环境，按照上面的文章，首先执行：yum install -y java。随后步骤： 123456cd  &#x2F;datawget https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;jenkins&#x2F;redhat-stable&#x2F;jenkins-2">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://file.798run.top/img/blog/20210531/Jenkins-node-build.jpg">
+<meta property="article:published_time" content="2021-05-04T09:55:06.000Z">
+<meta property="article:modified_time" content="2025-06-16T00:52:32.680Z">
+<meta property="article:author" content="Andy Zhang">
+<meta property="article:tag" content="IT-工具-数码">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://file.798run.top/img/blog/20210531/Jenkins-node-build.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="我的点滴记录" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的点滴记录</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Jenkins安装记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/05/04/Jenkins%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2021-05-04T09:55:06.000Z" itemprop="datePublished">2021-05-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Jenkins安装记录
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="说明">说明</h3>
+<p>20210504 假期在家，试着在“亚亚阿里云”安装一下 Jenkins，首先是参考了这篇<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzUzNjk5MTE1OQ==&amp;mid=2247501427&amp;idx=1&amp;sn=1f74291ba4217f164add273a299a1ed2&amp;chksm=faef42abcd98cbbd29ddb102a7aea350afc28793abe8da9f373590b0d3f018c2bd1f9960fadb&amp;scene=132#wechat_redirect">文章</a>，因为 Jenkins 需要 Java 环境，按照上面的文章，首先执行：<code>yum install -y java</code>。随后步骤：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">cd</span>  /data</span><br><span class="line"></span><br><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/jenkins/redhat-stable/jenkins-2.277.2-1.1.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> yum install jenkins-2.277.2-1.1.noarch.rpm</span><br></pre></td></tr></table></figure>
+<p>看到上面脚本中有在根目录下创建了 data 目录，我没有采纳，于是我在 /root 目录下执行了上面的脚本。最后 Jenkins 还是不能使用，就是在浏览器上不能访问 Jenkins 服务。</p>
+<p>思考是不是因为我安装的 java 环境的问题，发现我网上很多都是安装 jdk 而不是直接执行 <code>yum uninstall -y java</code>，于是决定全部卸载</p>
+<h3 id="过程">过程</h3>
+<p>步骤一：卸载 Jenkins：执行了<code>yum -y remove jenkins</code>，网上还有一种卸载的方法 <code>rpm -qc jenkins</code>，我又执行了一次，提示：<code>error: package jenkins is not installed</code>。 随后把 Jenkins 的相关文件清理干净执行：<br>
+<code>find / -iname jenkins | xargs -n 1000 rm -rf</code></p>
+<p>步骤二：卸载 java，执行：<code>yum uninstall -y java</code>，提示：No such command: uninstall. Please use /usr/bin/yum --help<br>
+It could be a DNF plugin command, try: “dnf install ‘dnf-command(uninstall)’”，记录到这里我发现自己眼瞎，卸载 Jenkins 使用的指令是 remove，自己为啥卸载 java 使用自己独创的 uninstall，真是太马虎了。于是输入指令： <code>rpm -qa|grep java </code> //查看 jdk 的信息，得到如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tzdata-java-2021a-1.el8.noarch</span><br><span class="line">javapackages-filesystem-5.3.0-1.module_el8.0.0+11+5b8c10bd.noarch</span><br><span class="line">java-1.8.0-openjdk-1.8.0.292.b10-0.el8_3.x86_64</span><br><span class="line">java-1.8.0-openjdk-headless-1.8.0.292.b10-0.el8_3.x86_64</span><br></pre></td></tr></table></figure>
+<p>执行：<code>yum -y remove tzdata-java-2021a-1.el8.noarch</code>，只需卸载第一个就行了。</p>
+<p>参考<a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_155063c740102wmi9.html">新浪帖子</a>。</p>
+<p>后来我自己按照上面的新浪帖子，安装了 jdk，继续安装 Jenkins，在正确配置了阿里云的安全组之后，终于可以访问了！</p>
+<h3 id="成功之后记录">成功之后记录</h3>
+<ul>
+<li>
+<p>主要参考<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/UArV_CTQ27MuSXljHAxwXQ">学会使用 Jenkins 自动部署你的项目</a></p>
+</li>
+<li>
+<p>我的 Jenkins 的一些信息：</p>
+</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/var/lib/jenkins/secrets/initialAdminPassword</span><br><span class="line">ec0471264ace471f8bd3654cfa331e63</span><br><span class="line">Jenkins 2.277.2</span><br></pre></td></tr></table></figure>
+<p>参考：<a target="_blank" rel="noopener" href="https://juejin.cn/book/6897616008173846543/section/6901971104106512392">从 0 到 1 实现一套 CI/CD 流程</a></p>
+<h3 id="一些记录">一些记录</h3>
+<p>在安装完之后，配置 Jenkins 的过程中，参考了创值回顾中 Jenkins 的配置，不解的是为哈必须使用 node 插件而不能使用机器上自身的 node 呢？</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const &#123; spawnSync &#125; = require(<span class="string">&#x27;child_process&#x27;</span>);</span><br><span class="line">console.log(<span class="string">&#x27;开始执行npm安装&#x27;</span>)</span><br><span class="line">const  installEcho = spawnSync(<span class="string">&#x27;npm&#x27;</span>, [<span class="string">&#x27;install&#x27;</span>, <span class="string">&#x27;--registry=https://registry.npm.taobao.org&#x27;</span>])</span><br><span class="line"></span><br><span class="line">console.log(installEcho)</span><br><span class="line"></span><br><span class="line">console.log(<span class="string">&#x27;开始执行打包&#x27;</span>)</span><br><span class="line">const buildEcho = spawnSync(<span class="string">&#x27;npm&#x27;</span>, [<span class="string">&#x27;run&#x27;</span>, <span class="string">&#x27;build&#x27;</span>])</span><br><span class="line">console.log(buildEcho)</span><br><span class="line"></span><br><span class="line">Cache location   Default (~/.npm or %APP_DATA%\npm-cache)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://file.798run.top/img/blog/20210531/Jenkins-node-build.jpg" alt="Jenkins-node-build"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/05/04/Jenkins%E5%AE%89%E8%A3%85%E8%AE%B0%E5%BD%95/" data-id="cmcro5lkz001bqkk4052x0nye" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/09/06/Nodejs%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8npm%E4%B8%8E%E4%BD%BF%E7%94%A8yarn%E8%A1%A8%E7%8E%B0%E6%95%88%E6%9E%9C%E7%9A%84%E4%B8%80%E6%AC%A1%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Nodejs项目使用npm与使用yarn表现效果的一次记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/31/vue-cli%E6%9D%82%E9%9B%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">vue-cli杂集</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS%E7%9B%B8%E5%85%B3/" rel="tag">CSS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Form%E8%A1%A8%E5%8D%95%E7%9B%B8%E5%85%B3/" rel="tag">Form表单相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git%E7%9B%B8%E5%85%B3/" rel="tag">Git相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS%E7%9B%B8%E5%85%B3/" rel="tag">JS相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Server/" rel="tag">Server</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Table%E7%9B%B8%E5%85%B3/" rel="tag">Table相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web%E6%9D%82%E9%9B%86/" rel="tag">Web杂集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/layui%E7%9B%B8%E5%85%B3/" rel="tag">layui相关</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5/" rel="tag">代码片段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E7%B2%BE%E8%BF%9B/" rel="tag">前端精进</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%9D%E5%A1%94/" rel="tag">宝塔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">小程序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/05/05/CSS%E4%B9%8Bflex/">CSS之flex</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/prettier%E4%BB%8B%E7%BB%8D/">prettier介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/04/14/vite%E4%BB%8B%E7%BB%8D/">vite介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/13/%E9%9D%A2%E8%AF%95%E4%B9%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E7%89%87%E6%AE%B5/">面试之代码执行片段</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Andy Zhang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
