@@ -68,6 +68,78 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-浏览器中网址访问过程详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/01/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%BD%91%E5%9D%80%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time datetime="2019-01-29T03:03:28.000Z" itemprop="datePublished">2019-01-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%BD%91%E5%9D%80%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/">浏览器中网址访问过程详解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="这个md是记录浏览器访问网页的一个过程">这个md是记录浏览器访问网页的一个过程</h4>
+<ol>
+<li>
+<p>主要参考一下的2个帖子：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m_buddy/article/details/77800998">浏览器中网址访问过程详解</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/mengnizizi/article/details/78529738">用户用浏览器访问一个网站，发生了什么</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20513729">用户用浏览器访问一个网站的时候背后的过程与步骤是怎样的？</a></li>
+</ul>
+</li>
+<li>
+<p>没事可以常看看</p>
+<ul>
+<li>温故而知新</li>
+</ul>
+</li>
+<li>
+<p>一直在搜后台接到前端的接口请求是怎么一个处理过程，搜的结果不是自己想要的，但是发现了<a target="_blank" rel="noopener" href="https://blog.csdn.net/lp09160206/article/details/72964893">nginx是如何处理请求的</a>，这篇帖子我理解，在访问接口（刨除寻找主机的过程）时，首先是Nginx处理逻辑，因为我在文档中发现Nginx的配置代码：</p>
+</li>
+</ol>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>      <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> example.org www.example.org;</span><br><span class="line">    <span class="attribute">root</span>        /data/www;</span><br><span class="line">     </span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">index</span>   index.html index.php;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="section">location</span> <span class="regexp">~* \.(gif|jpg|png)$</span> &#123;</span><br><span class="line">        <span class="attribute">expires</span> <span class="number">30d</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="section">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span>  localhost:<span class="number">9000</span>;</span><br><span class="line">        <span class="attribute">fastcgi_param</span> SCRIPT_FILENAME;</span><br><span class="line">        $<span class="attribute">document_root</span> <span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">        <span class="attribute">include</span>  fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虽然我不是太懂Nginx的配置的意思，我自己猜想不一定对，若是网页请求的是静态的图片就走的<code>location ~* \.(gif|jpg|png)$</code>通道，直接返回目录下的静态资源。若是带有参数接口请求，会走<code>location ~ \.php$</code>，进而在去查sql，查好了进行数据的包装，在return到前端。大致就是这个过程。</p>
+<ol start="4">
+<li>
+<p>本地的机器上在配置网络时都会填写DNS</p>
+<ul>
+<li>在网上看到这句话，我个人理解就是你的个人电脑在连接wifi热点或者使用网线自己就接入了公网，这个公网有自己所在的区域DNS（即是：本地的机器上在配置网络时都会填写DNS）。</li>
+</ul>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lycsmzl/p/5225809.html">一个http请求发送到后端的详细过程</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/foohack/p/5053084.html">用javascript向一个网页连接接口发送请求，并接收该接口返回的json串</a></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/01/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%BD%91%E5%9D%80%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/" data-id="cmreok9v6005zqwuddq45ck7q" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-美团2019春节干货" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/01/26/%E7%BE%8E%E5%9B%A22019%E6%98%A5%E8%8A%82%E5%B9%B2%E8%B4%A7/" class="article-date">
@@ -106,7 +178,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/26/%E7%BE%8E%E5%9B%A22019%E6%98%A5%E8%8A%82%E5%B9%B2%E8%B4%A7/" data-id="cmqste4nx006dngudfp41h5ux" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/26/%E7%BE%8E%E5%9B%A22019%E6%98%A5%E8%8A%82%E5%B9%B2%E8%B4%A7/" data-id="cmreok9vb006hqwud54qzdjiq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -412,7 +484,7 @@ CMD：command，显示进程的名称或者位置</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/25/Linux%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" data-id="cmqste4me001hngud6k1j9zw0" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/25/Linux%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" data-id="cmreok9ty001dqwud8a65ce1z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
@@ -462,7 +534,7 @@ CMD：command，显示进程的名称或者位置</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/25/%E5%A4%A7%E5%89%8D%E7%AB%AF%E7%BE%A4/" data-id="cmqste4no005jngud41hdgh25" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/25/%E5%A4%A7%E5%89%8D%E7%AB%AF%E7%BE%A4/" data-id="cmreok9uy005hqwudb7u0efdj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -554,7 +626,7 @@ Session 项输入你的服务器地址。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/23/Shell%E6%80%BB%E7%BB%93/" data-id="cmqste4mp002jngud1ut174be" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/23/Shell%E6%80%BB%E7%BB%93/" data-id="cmreok9ua002wqwud822b9rjw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -665,7 +737,7 @@ Session 项输入你的服务器地址。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/22/MarkDown%E6%80%BB%E7%BB%93/" data-id="cmqste4md001fngud04ui8a6x" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/22/MarkDown%E6%80%BB%E7%BB%93/" data-id="cmreok9tz001iqwudhh5wgeq8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -806,7 +878,7 @@ Session 项输入你的服务器地址。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/22/Hexo%E6%9D%82%E9%9B%86/" data-id="cmqste4m8000wngudag60bk9b" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/22/Hexo%E6%9D%82%E9%9B%86/" data-id="cmreok9tu000uqwudbz6rh0uy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -848,7 +920,7 @@ Session 项输入你的服务器地址。</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/07/">July 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/07/">July 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">April 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -859,6 +931,10 @@ Session 项输入你的服务器地址。</p>
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2026/07/10/npm-yarn-pnpm%E6%8C%87%E4%BB%A4/">npm-yarn-pnpm指令</a>
+          </li>
         
           <li>
             <a href="/2025/07/06/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%A2%84%E8%A7%88%E5%9B%BE%E7%89%87%E5%8F%8A%E8%A7%86%E9%A2%91%E6%80%BB%E7%BB%93/">小程序之预览图片及视频总结</a>
@@ -874,10 +950,6 @@ Session 项输入你的服务器地址。</p>
         
           <li>
             <a href="/2025/04/14/vite%E4%BB%8B%E7%BB%8D/">vite介绍</a>
-          </li>
-        
-          <li>
-            <a href="/2025/03/23/js%E5%8E%9F%E7%94%9F%E6%B7%BB%E5%8A%A0class/">js原生添加class</a>
           </li>
         
       </ul>
