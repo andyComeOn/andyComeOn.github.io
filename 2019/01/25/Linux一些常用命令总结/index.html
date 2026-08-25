@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://file.798run.top/img/blog/20190125/ps_eg.png">
 <meta property="og:image" content="https://file.798run.top/img/blog/20210528/linux-execute-shell-err.jpg">
 <meta property="article:published_time" content="2019-01-25T02:23:45.000Z">
-<meta property="article:modified_time" content="2026-06-25T01:09:38.756Z">
+<meta property="article:modified_time" content="2026-08-25T02:35:26.734Z">
 <meta property="article:author" content="Andy Zhang">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -369,11 +369,20 @@ CMD：command，显示进程的名称或者位置</p>
 <ul>
 <li>补充说明：1、shell 语法判断目录是否存在，<a target="_blank" rel="noopener" href="https://www.cnblogs.com/37yan/p/6962563.html">帖子</a>指令： <code>if [ ! -d &quot;/data/&quot; ]; then mkdir /data</code>，不好用！上面的写法是我自己试出来的，后来发现<a target="_blank" rel="noopener" href="https://www.cnblogs.com/kingsonfu/p/11457047.html">此贴</a>讲述的可使用。2、针对这种 <code>&quot;$&#123;project_path&#125;&quot;/dist/*</code>，shell 语法虽然是解析了双引号里面的内容，但是针对有通配符 _ 的路基，不能写成：<code>&quot;$&#123;project_path&#125;/dist/_&quot;</code>，或 <code>&quot;$&#123;project_path&#125;/dist/\\*&quot;</code>。3、针对普通的路径：<code>&quot;$&#123;project_path&#125;&quot;/standby-pre</code>，可这样写：<code>&quot;$&#123;project_path&#125;/standby-pre&quot;</code>。4、scp -r 是把本地的测试环境对应的目录传到服务器上，但是没有删除远程服务器上该目录的历史文件，亦导致文件越来越臃肿。5、还是要全面拥抱 Jenkins 等自动发版工具。业问项目中 shell 发版脚本，是同事临时的一个解决方法。仅可救急使用。6、指令：<code>if [ $&#123;a&#125; = 0 ];</code> 会提示错误：<code>&quot;[: =: unary operator expected&quot;</code>，对变量使用双引号包裹后则提示消失！参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/goodlixueyong/article/details/6564591">帖子</a></li>
 </ul>
+<h4 id="22、linux-下查找-find-某个目录">22、linux 下查找 find 某个目录</h4>
+<ul>
+<li>
+<p><code>find /usr -type d -name &quot;greate_sw&quot;</code> 在 <code>/usr</code> 目录下或其子目录下查找名称为 <code>greate_sw</code> 的目录。此指令会输出一些冗余 <code>Permission denied</code> 的报错信息，干扰你的视线。不过你已经限制了查找范围 /usr，即使输出冗余信息也不会太多。</p>
+</li>
+<li>
+<p><code>find / -type d -name &quot;greate_sw&quot; 2&gt;/dev/null</code> 2&gt;/dev/null 会忽略掉冗余的报错信息。直接从根目录查找，会耗费很长时间（几分钟），所以还是限定范围比较好。</p>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/25/Linux%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" data-id="cmreok9ty001dqwud8a65ce1z" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/25/Linux%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" data-id="cmt81zd0t001cn8ud3adke6wd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
