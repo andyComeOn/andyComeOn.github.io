@@ -130,7 +130,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%BD%91%E5%9D%80%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/" data-id="cmt9smsmz0066eoud807i2grd" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/29/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%BD%91%E5%9D%80%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/" data-id="cmtb7kims00645oud0et3cug4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -178,7 +178,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/26/%E7%BE%8E%E5%9B%A22019%E6%98%A5%E8%8A%82%E5%B9%B2%E8%B4%A7/" data-id="cmt9smsn3006heoudfaeicbnk" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/26/%E7%BE%8E%E5%9B%A22019%E6%98%A5%E8%8A%82%E5%B9%B2%E8%B4%A7/" data-id="cmtb7kimx006e5oud8xfpeihf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -487,11 +487,47 @@ CMD：command，显示进程的名称或者位置</p>
 <p><code>find / -type d -name &quot;greate_sw&quot; 2&gt;/dev/null</code> 2&gt;/dev/null 会忽略掉冗余的报错信息。直接从根目录查找，会耗费很长时间（几分钟），所以还是限定范围比较好。</p>
 </li>
 </ul>
+<h4 id="23、linux-根目录磁盘满了-郭老师在群里说：根目录磁盘快满了，发版的时候需要改一下，不要都放在根目录下。">23、linux 根目录磁盘满了(郭老师在群里说：根目录磁盘快满了，发版的时候需要改一下，不要都放在根目录下。)</h4>
+<ul>
+<li>Windows：先有盘 (C 盘 D 盘)，再有文件夹</li>
+</ul>
+<p>Windows 逻辑：</p>
+<blockquote>
+<p><strong>磁盘分区 → 分配盘符 (C:/D:/E:) → 盘符下面再建文件夹</strong><br>
+C 盘本身就是一个分区，C:\Windows、C:\Users 只是这个盘里面的文件夹。<br>
+D 盘是另外一块分区，D:\xxx 和 C 盘互相独立。</p>
+</blockquote>
+<ul>
+<li>Linux：没有盘符，用「挂载点」把磁盘分区<strong>挂到目录树上</strong></li>
+</ul>
+<p>Linux 没有 C 盘 D 盘这种字母盘符。<br>
+所有东西都从<strong>根目录 <code>/</code></strong> 这一棵统一目录树开始。</p>
+<blockquote>
+<p>⚠️关键点：<br>
+<code>/</code> 它<strong>首先是一个目录</strong>，但这个目录可以绑定（挂载）到某一块磁盘分区。<br>
+我们口语说 “根目录磁盘满了”，完整准确说法是：<strong>挂载到 <code>/</code> 的那个磁盘分区满了</strong>。</p>
+</blockquote>
+<ul>
+<li>场景 1：虚拟机最简单 —— 整个磁盘就 1 个分区，挂载到 <code>/</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/dev/sda1  挂载到  /</span><br></pre></td></tr></table></figure>
+<ul>
+<li>场景 2：做多分区，分开挂载（相当于 Windows 分 C 盘 D 盘）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/dev/sda1 → 挂载 /        （相当于Windows C盘，系统分区）</span><br><span class="line">/dev/sda2 → 挂载 /home    （相当于D盘，用户数据）</span><br><span class="line">/dev/sda3 → 挂载 /var     （日志、数据库）</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>df -h</code> 输出：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/sda1        20G   20G     0 100% /</span><br><span class="line">/dev/sda2       100G   10G   90G  10% /home</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如下截图：</li>
+</ul>
+<p><img src="https://file.798run.top/img/blog/20260827/root-dir-disk-full.png" alt="root-dir-disk-full"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/25/Linux%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" data-id="cmt9smsjm001ceoudcas9apew" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/25/Linux%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" data-id="cmtb7kikd001a5oudaqijaheb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
@@ -541,7 +577,7 @@ CMD：command，显示进程的名称或者位置</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/25/%E5%A4%A7%E5%89%8D%E7%AB%AF%E7%BE%A4/" data-id="cmt9smsmq005meoudh06hgp4r" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/25/%E5%A4%A7%E5%89%8D%E7%AB%AF%E7%BE%A4/" data-id="cmtb7kimk005l5oud9rgec5k3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -633,7 +669,7 @@ Session 项输入你的服务器地址。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/23/Shell%E6%80%BB%E7%BB%93/" data-id="cmt9smsju002heoudbgrchzfr" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/23/Shell%E6%80%BB%E7%BB%93/" data-id="cmtb7kil3002k5oud53mncoxx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -744,7 +780,7 @@ Session 项输入你的服务器地址。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/22/MarkDown%E6%80%BB%E7%BB%93/" data-id="cmt9smsjn001heoud41x7fk4l" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/22/MarkDown%E6%80%BB%E7%BB%93/" data-id="cmtb7kikk001m5oud9j2hdk5d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
@@ -885,7 +921,7 @@ Session 项输入你的服务器地址。</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/01/22/Hexo%E6%9D%82%E9%9B%86/" data-id="cmt9smsji000yeoudcorsbta0" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/01/22/Hexo%E6%9D%82%E9%9B%86/" data-id="cmtb7kik5000w5oudhnqn67c5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IT-%E5%B7%A5%E5%85%B7-%E6%95%B0%E7%A0%81/" rel="tag">IT-工具-数码</a></li></ul>
